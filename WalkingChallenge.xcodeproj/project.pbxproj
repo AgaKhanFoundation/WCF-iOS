@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26A41BA81E73B393005A6CEA /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26A41BA71E73B393005A6CEA /* Launch.storyboard */; };
 		E40C78CB9031D23CA2450710 /* libPods-WalkingChallenge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 417F32504154E8DD5B3F88C3 /* libPods-WalkingChallenge.a */; };
 		F0FDBD251E732DB40069C245 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD241E732DB40069C245 /* main.m */; };
 		F0FDBD281E732DB40069C245 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD271E732DB40069C245 /* AppDelegate.m */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		0E4A343E640BC9F55ED917F4 /* Pods-WalkingChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.debug.xcconfig"; sourceTree = "<group>"; };
+		26A41BA71E73B393005A6CEA /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		417F32504154E8DD5B3F88C3 /* libPods-WalkingChallenge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WalkingChallenge.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC9BF542ECDBDA61104C4E6E /* Pods-WalkingChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		F0FDBD201E732DB40069C245 /* WalkingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,9 +92,6 @@
 			children = (
 				F0FDBD261E732DB40069C245 /* AppDelegate.h */,
 				F0FDBD271E732DB40069C245 /* AppDelegate.m */,
-				F0FDBD321E732DB40069C245 /* Assets.xcassets */,
-				F0FDBD371E732DB40069C245 /* Info.plist */,
-				F0FDBD231E732DB40069C245 /* Supporting Files */,
 				F0FDBD4A1E7339B60069C245 /* LoginViewController.m */,
 				F0FDBD4C1E7339DD0069C245 /* LoginViewController.h */,
 				F0FDBD4D1E7347290069C245 /* RootViewController.h */,
@@ -107,6 +106,9 @@
 				F0FDBD5A1E7372870069C245 /* Profile.m */,
 				F0FDBD5C1E73849F0069C245 /* Team.h */,
 				F0FDBD5D1E73849F0069C245 /* Team.m */,
+				F0FDBD321E732DB40069C245 /* Assets.xcassets */,
+				26A41BA71E73B393005A6CEA /* Launch.storyboard */,
+				F0FDBD231E732DB40069C245 /* Supporting Files */,
 			);
 			path = WalkingChallenge;
 			sourceTree = "<group>";
@@ -114,6 +116,7 @@
 		F0FDBD231E732DB40069C245 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F0FDBD371E732DB40069C245 /* Info.plist */,
 				F0FDBD241E732DB40069C245 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -189,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0FDBD331E732DB40069C245 /* Assets.xcassets in Resources */,
+				26A41BA81E73B393005A6CEA /* Launch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
