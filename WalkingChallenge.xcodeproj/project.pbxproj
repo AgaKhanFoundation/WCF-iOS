@@ -92,9 +92,6 @@
 			children = (
 				F0FDBD261E732DB40069C245 /* AppDelegate.h */,
 				F0FDBD271E732DB40069C245 /* AppDelegate.m */,
-				F0FDBD321E732DB40069C245 /* Assets.xcassets */,
-				F0FDBD371E732DB40069C245 /* Info.plist */,
-				F0FDBD231E732DB40069C245 /* Supporting Files */,
 				F0FDBD4A1E7339B60069C245 /* LoginViewController.m */,
 				F0FDBD4C1E7339DD0069C245 /* LoginViewController.h */,
 				F0FDBD4D1E7347290069C245 /* RootViewController.h */,
@@ -109,7 +106,9 @@
 				F0FDBD5A1E7372870069C245 /* Profile.m */,
 				F0FDBD5C1E73849F0069C245 /* Team.h */,
 				F0FDBD5D1E73849F0069C245 /* Team.m */,
+				F0FDBD321E732DB40069C245 /* Assets.xcassets */,
 				26A41BA71E73B393005A6CEA /* Launch.storyboard */,
+				F0FDBD231E732DB40069C245 /* Supporting Files */,
 			);
 			path = WalkingChallenge;
 			sourceTree = "<group>";
@@ -117,6 +116,7 @@
 		F0FDBD231E732DB40069C245 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F0FDBD371E732DB40069C245 /* Info.plist */,
 				F0FDBD241E732DB40069C245 /* main.m */,
 			);
 			name = "Supporting Files";
