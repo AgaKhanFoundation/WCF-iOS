@@ -67,7 +67,8 @@ static const float kNameFontSize = 32.0f;
   _profile = nil;
   // TODO(compnerd) do this more cleanly -- we shouldn't have to go digging
   RootViewController *controller =
-      (RootViewController *)[[UIApplication sharedApplication] keyWindow];
+      (RootViewController *)[[UIApplication sharedApplication] keyWindow]
+          .rootViewController;
   [controller showLoginView];
 }
 @end
