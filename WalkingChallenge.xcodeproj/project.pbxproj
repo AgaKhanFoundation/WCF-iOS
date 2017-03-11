@@ -11,9 +11,6 @@
 		F0FDBD251E732DB40069C245 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD241E732DB40069C245 /* main.m */; };
 		F0FDBD281E732DB40069C245 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD271E732DB40069C245 /* AppDelegate.m */; };
 		F0FDBD331E732DB40069C245 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0FDBD321E732DB40069C245 /* Assets.xcassets */; };
-		F0FDBD431E7337C60069C245 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0FDBD421E7337C60069C245 /* FBSDKCoreKit.framework */; };
-		F0FDBD451E7337C90069C245 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0FDBD441E7337C90069C245 /* FBSDKLoginKit.framework */; };
-		F0FDBD471E7337D00069C245 /* AccountKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0FDBD461E7337D00069C245 /* AccountKit.framework */; };
 		F0FDBD4B1E7339B60069C245 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD4A1E7339B60069C245 /* LoginViewController.m */; };
 		F0FDBD4F1E7347290069C245 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD4E1E7347290069C245 /* RootViewController.m */; };
 		F0FDBD541E734BF30069C245 /* SponsorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD511E734BF30069C245 /* SponsorViewController.m */; };
@@ -33,10 +30,6 @@
 		F0FDBD271E732DB40069C245 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F0FDBD321E732DB40069C245 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F0FDBD371E732DB40069C245 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F0FDBD421E7337C60069C245 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../prebuilt/FacebookSDKs-iOS-4/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
-		F0FDBD441E7337C90069C245 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../prebuilt/FacebookSDKs-iOS-4/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
-		F0FDBD461E7337D00069C245 /* AccountKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AccountKit.framework; path = "../prebuilt/FacebookSDKs-iOS-4/AccountKit.framework"; sourceTree = "<group>"; };
-		F0FDBD481E7337D40069C245 /* AccountKitStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AccountKitStrings.bundle; path = "../prebuilt/FacebookSDKs-iOS-4/AccountKitStrings.bundle"; sourceTree = "<group>"; };
 		F0FDBD4A1E7339B60069C245 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		F0FDBD4C1E7339DD0069C245 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		F0FDBD4D1E7347290069C245 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
@@ -58,9 +51,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0FDBD431E7337C60069C245 /* FBSDKCoreKit.framework in Frameworks */,
-				F0FDBD451E7337C90069C245 /* FBSDKLoginKit.framework in Frameworks */,
-				F0FDBD471E7337D00069C245 /* AccountKit.framework in Frameworks */,
 				E40C78CB9031D23CA2450710 /* libPods-WalkingChallenge.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,10 +122,6 @@
 		F0FDBD3D1E73332D0069C245 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F0FDBD481E7337D40069C245 /* AccountKitStrings.bundle */,
-				F0FDBD461E7337D00069C245 /* AccountKit.framework */,
-				F0FDBD441E7337C90069C245 /* FBSDKLoginKit.framework */,
-				F0FDBD421E7337C60069C245 /* FBSDKCoreKit.framework */,
 				417F32504154E8DD5B3F88C3 /* libPods-WalkingChallenge.a */,
 			);
 			name = Frameworks;
