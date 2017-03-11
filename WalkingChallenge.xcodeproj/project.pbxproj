@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E40C78CB9031D23CA2450710 /* libPods-WalkingChallenge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 417F32504154E8DD5B3F88C3 /* libPods-WalkingChallenge.a */; };
 		F0FDBD251E732DB40069C245 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD241E732DB40069C245 /* main.m */; };
 		F0FDBD281E732DB40069C245 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD271E732DB40069C245 /* AppDelegate.m */; };
 		F0FDBD331E732DB40069C245 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0FDBD321E732DB40069C245 /* Assets.xcassets */; };
@@ -23,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E4A343E640BC9F55ED917F4 /* Pods-WalkingChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.debug.xcconfig"; sourceTree = "<group>"; };
+		417F32504154E8DD5B3F88C3 /* libPods-WalkingChallenge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WalkingChallenge.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC9BF542ECDBDA61104C4E6E /* Pods-WalkingChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		F0FDBD201E732DB40069C245 /* WalkingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0FDBD241E732DB40069C245 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F0FDBD261E732DB40069C245 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -57,18 +61,29 @@
 				F0FDBD431E7337C60069C245 /* FBSDKCoreKit.framework in Frameworks */,
 				F0FDBD451E7337C90069C245 /* FBSDKLoginKit.framework in Frameworks */,
 				F0FDBD471E7337D00069C245 /* AccountKit.framework in Frameworks */,
+				E40C78CB9031D23CA2450710 /* libPods-WalkingChallenge.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22023238D69D20C7F48580F1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0E4A343E640BC9F55ED917F4 /* Pods-WalkingChallenge.debug.xcconfig */,
+				DC9BF542ECDBDA61104C4E6E /* Pods-WalkingChallenge.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F0FDBD171E732DB40069C245 = {
 			isa = PBXGroup;
 			children = (
 				F0FDBD221E732DB40069C245 /* WalkingChallenge */,
 				F0FDBD211E732DB40069C245 /* Products */,
 				F0FDBD3D1E73332D0069C245 /* Frameworks */,
+				22023238D69D20C7F48580F1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -121,6 +136,7 @@
 				F0FDBD461E7337D00069C245 /* AccountKit.framework */,
 				F0FDBD441E7337C90069C245 /* FBSDKLoginKit.framework */,
 				F0FDBD421E7337C60069C245 /* FBSDKCoreKit.framework */,
+				417F32504154E8DD5B3F88C3 /* libPods-WalkingChallenge.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -132,9 +148,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0FDBD3A1E732DB40069C245 /* Build configuration list for PBXNativeTarget "WalkingChallenge" */;
 			buildPhases = (
+				92DF10A7D33F800DBE2D3836 /* [CP] Check Pods Manifest.lock */,
 				F0FDBD1C1E732DB40069C245 /* Sources */,
 				F0FDBD1D1E732DB40069C245 /* Frameworks */,
 				F0FDBD1E1E732DB40069C245 /* Resources */,
+				4FFBD3781F61845717F86E6A /* [CP] Embed Pods Frameworks */,
+				81FA4C41D9AF500DD12907BE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -188,6 +207,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4FFBD3781F61845717F86E6A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		81FA4C41D9AF500DD12907BE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		92DF10A7D33F800DBE2D3836 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F0FDBD1C1E732DB40069C245 /* Sources */ = {
@@ -304,6 +371,7 @@
 		};
 		F0FDBD3B1E732DB40069C245 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E4A343E640BC9F55ED917F4 /* Pods-WalkingChallenge.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = "../prebuilt/FacebookSDKs-iOS-4";
@@ -318,6 +386,7 @@
 		};
 		F0FDBD3C1E732DB40069C245 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC9BF542ECDBDA61104C4E6E /* Pods-WalkingChallenge.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = "../prebuilt/FacebookSDKs-iOS-4";
