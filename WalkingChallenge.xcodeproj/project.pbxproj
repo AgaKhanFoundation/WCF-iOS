@@ -1,0 +1,357 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F0FDBD251E732DB40069C245 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD241E732DB40069C245 /* main.m */; };
+		F0FDBD281E732DB40069C245 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD271E732DB40069C245 /* AppDelegate.m */; };
+		F0FDBD331E732DB40069C245 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0FDBD321E732DB40069C245 /* Assets.xcassets */; };
+		F0FDBD431E7337C60069C245 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0FDBD421E7337C60069C245 /* FBSDKCoreKit.framework */; };
+		F0FDBD451E7337C90069C245 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0FDBD441E7337C90069C245 /* FBSDKLoginKit.framework */; };
+		F0FDBD471E7337D00069C245 /* AccountKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0FDBD461E7337D00069C245 /* AccountKit.framework */; };
+		F0FDBD4B1E7339B60069C245 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD4A1E7339B60069C245 /* LoginViewController.m */; };
+		F0FDBD4F1E7347290069C245 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD4E1E7347290069C245 /* RootViewController.m */; };
+		F0FDBD541E734BF30069C245 /* SponsorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD511E734BF30069C245 /* SponsorViewController.m */; };
+		F0FDBD551E734BF30069C245 /* TeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD531E734BF30069C245 /* TeamViewController.m */; };
+		F0FDBD581E734BFD0069C245 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD571E734BFD0069C245 /* ProfileViewController.m */; };
+		F0FDBD5B1E7372870069C245 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD5A1E7372870069C245 /* Profile.m */; };
+		F0FDBD5E1E73849F0069C245 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD5D1E73849F0069C245 /* Team.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F0FDBD201E732DB40069C245 /* WalkingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0FDBD241E732DB40069C245 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F0FDBD261E732DB40069C245 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F0FDBD271E732DB40069C245 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F0FDBD321E732DB40069C245 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F0FDBD371E732DB40069C245 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0FDBD421E7337C60069C245 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../prebuilt/FacebookSDKs-iOS-4/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		F0FDBD441E7337C90069C245 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../prebuilt/FacebookSDKs-iOS-4/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		F0FDBD461E7337D00069C245 /* AccountKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AccountKit.framework; path = "../prebuilt/FacebookSDKs-iOS-4/AccountKit.framework"; sourceTree = "<group>"; };
+		F0FDBD481E7337D40069C245 /* AccountKitStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AccountKitStrings.bundle; path = "../prebuilt/FacebookSDKs-iOS-4/AccountKitStrings.bundle"; sourceTree = "<group>"; };
+		F0FDBD4A1E7339B60069C245 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		F0FDBD4C1E7339DD0069C245 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		F0FDBD4D1E7347290069C245 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		F0FDBD4E1E7347290069C245 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		F0FDBD501E734BF30069C245 /* SponsorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SponsorViewController.h; sourceTree = "<group>"; };
+		F0FDBD511E734BF30069C245 /* SponsorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SponsorViewController.m; sourceTree = "<group>"; };
+		F0FDBD521E734BF30069C245 /* TeamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamViewController.h; sourceTree = "<group>"; };
+		F0FDBD531E734BF30069C245 /* TeamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamViewController.m; sourceTree = "<group>"; };
+		F0FDBD561E734BFD0069C245 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		F0FDBD571E734BFD0069C245 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		F0FDBD591E7372870069C245 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
+		F0FDBD5A1E7372870069C245 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
+		F0FDBD5C1E73849F0069C245 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
+		F0FDBD5D1E73849F0069C245 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F0FDBD1D1E732DB40069C245 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0FDBD431E7337C60069C245 /* FBSDKCoreKit.framework in Frameworks */,
+				F0FDBD451E7337C90069C245 /* FBSDKLoginKit.framework in Frameworks */,
+				F0FDBD471E7337D00069C245 /* AccountKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F0FDBD171E732DB40069C245 = {
+			isa = PBXGroup;
+			children = (
+				F0FDBD221E732DB40069C245 /* WalkingChallenge */,
+				F0FDBD211E732DB40069C245 /* Products */,
+				F0FDBD3D1E73332D0069C245 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F0FDBD211E732DB40069C245 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F0FDBD201E732DB40069C245 /* WalkingChallenge.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F0FDBD221E732DB40069C245 /* WalkingChallenge */ = {
+			isa = PBXGroup;
+			children = (
+				F0FDBD261E732DB40069C245 /* AppDelegate.h */,
+				F0FDBD271E732DB40069C245 /* AppDelegate.m */,
+				F0FDBD321E732DB40069C245 /* Assets.xcassets */,
+				F0FDBD371E732DB40069C245 /* Info.plist */,
+				F0FDBD231E732DB40069C245 /* Supporting Files */,
+				F0FDBD4A1E7339B60069C245 /* LoginViewController.m */,
+				F0FDBD4C1E7339DD0069C245 /* LoginViewController.h */,
+				F0FDBD4D1E7347290069C245 /* RootViewController.h */,
+				F0FDBD4E1E7347290069C245 /* RootViewController.m */,
+				F0FDBD501E734BF30069C245 /* SponsorViewController.h */,
+				F0FDBD511E734BF30069C245 /* SponsorViewController.m */,
+				F0FDBD521E734BF30069C245 /* TeamViewController.h */,
+				F0FDBD531E734BF30069C245 /* TeamViewController.m */,
+				F0FDBD561E734BFD0069C245 /* ProfileViewController.h */,
+				F0FDBD571E734BFD0069C245 /* ProfileViewController.m */,
+				F0FDBD591E7372870069C245 /* Profile.h */,
+				F0FDBD5A1E7372870069C245 /* Profile.m */,
+				F0FDBD5C1E73849F0069C245 /* Team.h */,
+				F0FDBD5D1E73849F0069C245 /* Team.m */,
+			);
+			path = WalkingChallenge;
+			sourceTree = "<group>";
+		};
+		F0FDBD231E732DB40069C245 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F0FDBD241E732DB40069C245 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F0FDBD3D1E73332D0069C245 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F0FDBD481E7337D40069C245 /* AccountKitStrings.bundle */,
+				F0FDBD461E7337D00069C245 /* AccountKit.framework */,
+				F0FDBD441E7337C90069C245 /* FBSDKLoginKit.framework */,
+				F0FDBD421E7337C60069C245 /* FBSDKCoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F0FDBD1F1E732DB40069C245 /* WalkingChallenge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F0FDBD3A1E732DB40069C245 /* Build configuration list for PBXNativeTarget "WalkingChallenge" */;
+			buildPhases = (
+				F0FDBD1C1E732DB40069C245 /* Sources */,
+				F0FDBD1D1E732DB40069C245 /* Frameworks */,
+				F0FDBD1E1E732DB40069C245 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WalkingChallenge;
+			productName = WalkingChallenge;
+			productReference = F0FDBD201E732DB40069C245 /* WalkingChallenge.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F0FDBD181E732DB40069C245 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Saleem Abdulrasool";
+				TargetAttributes = {
+					F0FDBD1F1E732DB40069C245 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = F0FDBD1B1E732DB40069C245 /* Build configuration list for PBXProject "WalkingChallenge" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F0FDBD171E732DB40069C245;
+			productRefGroup = F0FDBD211E732DB40069C245 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F0FDBD1F1E732DB40069C245 /* WalkingChallenge */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F0FDBD1E1E732DB40069C245 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0FDBD331E732DB40069C245 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F0FDBD1C1E732DB40069C245 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0FDBD281E732DB40069C245 /* AppDelegate.m in Sources */,
+				F0FDBD251E732DB40069C245 /* main.m in Sources */,
+				F0FDBD581E734BFD0069C245 /* ProfileViewController.m in Sources */,
+				F0FDBD551E734BF30069C245 /* TeamViewController.m in Sources */,
+				F0FDBD5E1E73849F0069C245 /* Team.m in Sources */,
+				F0FDBD541E734BF30069C245 /* SponsorViewController.m in Sources */,
+				F0FDBD5B1E7372870069C245 /* Profile.m in Sources */,
+				F0FDBD4F1E7347290069C245 /* RootViewController.m in Sources */,
+				F0FDBD4B1E7339B60069C245 /* LoginViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F0FDBD381E732DB40069C245 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_GENERATE_MAP_FILE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				USE_HEADERMAP = NO;
+			};
+			name = Debug;
+		};
+		F0FDBD391E732DB40069C245 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_GENERATE_MAP_FILE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				USE_HEADERMAP = NO;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F0FDBD3B1E732DB40069C245 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "../prebuilt/FacebookSDKs-iOS-4";
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = WalkingChallenge/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.akdn.akf.WalkingChallenge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USE_HEADERMAP = NO;
+			};
+			name = Debug;
+		};
+		F0FDBD3C1E732DB40069C245 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "../prebuilt/FacebookSDKs-iOS-4";
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = WalkingChallenge/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.akdn.akf.WalkingChallenge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USE_HEADERMAP = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F0FDBD1B1E732DB40069C245 /* Build configuration list for PBXProject "WalkingChallenge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0FDBD381E732DB40069C245 /* Debug */,
+				F0FDBD391E732DB40069C245 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F0FDBD3A1E732DB40069C245 /* Build configuration list for PBXNativeTarget "WalkingChallenge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0FDBD3B1E732DB40069C245 /* Debug */,
+				F0FDBD3C1E732DB40069C245 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F0FDBD181E732DB40069C245 /* Project object */;
+}
