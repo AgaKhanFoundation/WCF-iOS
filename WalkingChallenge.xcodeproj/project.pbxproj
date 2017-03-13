@@ -3,129 +3,191 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		26A41BA81E73B393005A6CEA /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26A41BA71E73B393005A6CEA /* Launch.storyboard */; };
-		E40C78CB9031D23CA2450710 /* libPods-WalkingChallenge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 417F32504154E8DD5B3F88C3 /* libPods-WalkingChallenge.a */; };
-		F0FDBD251E732DB40069C245 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD241E732DB40069C245 /* main.m */; };
-		F0FDBD281E732DB40069C245 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD271E732DB40069C245 /* AppDelegate.m */; };
-		F0FDBD331E732DB40069C245 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0FDBD321E732DB40069C245 /* Assets.xcassets */; };
-		F0FDBD4B1E7339B60069C245 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD4A1E7339B60069C245 /* LoginViewController.m */; };
-		F0FDBD4F1E7347290069C245 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD4E1E7347290069C245 /* RootViewController.m */; };
-		F0FDBD541E734BF30069C245 /* SponsorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD511E734BF30069C245 /* SponsorViewController.m */; };
-		F0FDBD551E734BF30069C245 /* TeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD531E734BF30069C245 /* TeamViewController.m */; };
-		F0FDBD581E734BFD0069C245 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD571E734BFD0069C245 /* ProfileViewController.m */; };
-		F0FDBD5B1E7372870069C245 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD5A1E7372870069C245 /* Profile.m */; };
-		F0FDBD5E1E73849F0069C245 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBD5D1E73849F0069C245 /* Team.m */; };
+		269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E34C91E765828000726C2 /* AppDelegate.swift */; };
+		269E34D11E765828000726C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 269E34D01E765828000726C2 /* Assets.xcassets */; };
+		269E34EC1E7658E6000726C2 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E34E91E7658E6000726C2 /* AppController.swift */; };
+		269E34FD1E7658F2000726C2 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 269E34EE1E7658F2000726C2 /* Launch.storyboard */; };
+		269E35071E765C68000726C2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35061E765C68000726C2 /* LoginViewController.swift */; };
+		269E35091E765F24000726C2 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35081E765F24000726C2 /* UIView.swift */; };
+		269E350C1E765F73000726C2 /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E350B1E765F73000726C2 /* StyleGuide.swift */; };
+		269E350E1E76664F000726C2 /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E350D1E76664F000726C2 /* Async.swift */; };
+		269E35101E7666EE000726C2 /* Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E350F1E7666EE000726C2 /* Blocks.swift */; };
+		269E35121E76685A000726C2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35111E76685A000726C2 /* ProfileViewController.swift */; };
+		269E35141E7668C1000726C2 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35131E7668C1000726C2 /* TeamViewController.swift */; };
+		269E35161E7668CF000726C2 /* SponsorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35151E7668CF000726C2 /* SponsorViewController.swift */; };
+		269E35181E7669FB000726C2 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35171E7669FB000726C2 /* LocalizedStrings.swift */; };
+		269E351B1E766B8C000726C2 /* ProfileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E351A1E766B8C000726C2 /* ProfileDataSource.swift */; };
+		269E351D1E766BB0000726C2 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E351C1E766BB0000726C2 /* Profile.swift */; };
+		269E35211E7673B6000726C2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35201E7673B6000726C2 /* User.swift */; };
+		269E35241E767807000726C2 /* TeamDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35231E767807000726C2 /* TeamDataSource.swift */; };
+		269E35271E76783B000726C2 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35261E76783B000726C2 /* Cells.swift */; };
+		269E35291E767AE1000726C2 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35281E767AE1000726C2 /* Collection.swift */; };
+		269E352B1E767C7A000726C2 /* TeamNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E352A1E767C7A000726C2 /* TeamNameCell.swift */; };
+		269E352D1E767C81000726C2 /* TeamMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E352C1E767C81000726C2 /* TeamMemberCell.swift */; };
+		ED85D460832E1D261F31B25E /* Pods_WalkingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0E4A343E640BC9F55ED917F4 /* Pods-WalkingChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.debug.xcconfig"; sourceTree = "<group>"; };
-		26A41BA71E73B393005A6CEA /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
-		417F32504154E8DD5B3F88C3 /* libPods-WalkingChallenge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WalkingChallenge.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC9BF542ECDBDA61104C4E6E /* Pods-WalkingChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.release.xcconfig"; sourceTree = "<group>"; };
-		F0FDBD201E732DB40069C245 /* WalkingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F0FDBD241E732DB40069C245 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		F0FDBD261E732DB40069C245 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		F0FDBD271E732DB40069C245 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F0FDBD321E732DB40069C245 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F0FDBD371E732DB40069C245 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F0FDBD4A1E7339B60069C245 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		F0FDBD4C1E7339DD0069C245 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		F0FDBD4D1E7347290069C245 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		F0FDBD4E1E7347290069C245 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		F0FDBD501E734BF30069C245 /* SponsorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SponsorViewController.h; sourceTree = "<group>"; };
-		F0FDBD511E734BF30069C245 /* SponsorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SponsorViewController.m; sourceTree = "<group>"; };
-		F0FDBD521E734BF30069C245 /* TeamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamViewController.h; sourceTree = "<group>"; };
-		F0FDBD531E734BF30069C245 /* TeamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamViewController.m; sourceTree = "<group>"; };
-		F0FDBD561E734BFD0069C245 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
-		F0FDBD571E734BFD0069C245 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
-		F0FDBD591E7372870069C245 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
-		F0FDBD5A1E7372870069C245 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
-		F0FDBD5C1E73849F0069C245 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
-		F0FDBD5D1E73849F0069C245 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
+		00596233B5D00EAEF7957964 /* Pods-WalkingChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.debug.xcconfig"; sourceTree = "<group>"; };
+		269E34C61E765828000726C2 /* WalkingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		269E34C91E765828000726C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		269E34D01E765828000726C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		269E34D51E765828000726C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		269E34E91E7658E6000726C2 /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		269E34EE1E7658F2000726C2 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
+		269E35061E765C68000726C2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		269E35081E765F24000726C2 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		269E350B1E765F73000726C2 /* StyleGuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
+		269E350D1E76664F000726C2 /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
+		269E350F1E7666EE000726C2 /* Blocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blocks.swift; sourceTree = "<group>"; };
+		269E35111E76685A000726C2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		269E35131E7668C1000726C2 /* TeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
+		269E35151E7668CF000726C2 /* SponsorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SponsorViewController.swift; sourceTree = "<group>"; };
+		269E35171E7669FB000726C2 /* LocalizedStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
+		269E351A1E766B8C000726C2 /* ProfileDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDataSource.swift; sourceTree = "<group>"; };
+		269E351C1E766BB0000726C2 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		269E35201E7673B6000726C2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		269E35231E767807000726C2 /* TeamDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamDataSource.swift; sourceTree = "<group>"; };
+		269E35261E76783B000726C2 /* Cells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
+		269E35281E767AE1000726C2 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		269E352A1E767C7A000726C2 /* TeamNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamNameCell.swift; sourceTree = "<group>"; };
+		269E352C1E767C81000726C2 /* TeamMemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMemberCell.swift; sourceTree = "<group>"; };
+		6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkingChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB0F6813102ABF61F968C9BD /* Pods-WalkingChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F0FDBD1D1E732DB40069C245 /* Frameworks */ = {
+		269E34C31E765828000726C2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E40C78CB9031D23CA2450710 /* libPods-WalkingChallenge.a in Frameworks */,
+				ED85D460832E1D261F31B25E /* Pods_WalkingChallenge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		22023238D69D20C7F48580F1 /* Pods */ = {
+		269E34BD1E765828000726C2 = {
 			isa = PBXGroup;
 			children = (
-				0E4A343E640BC9F55ED917F4 /* Pods-WalkingChallenge.debug.xcconfig */,
-				DC9BF542ECDBDA61104C4E6E /* Pods-WalkingChallenge.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		F0FDBD171E732DB40069C245 = {
-			isa = PBXGroup;
-			children = (
-				F0FDBD221E732DB40069C245 /* WalkingChallenge */,
-				F0FDBD211E732DB40069C245 /* Products */,
-				F0FDBD3D1E73332D0069C245 /* Frameworks */,
-				22023238D69D20C7F48580F1 /* Pods */,
+				269E34C81E765828000726C2 /* WalkingChallenge */,
+				269E34C71E765828000726C2 /* Products */,
+				32BEA0F580FBBCEE2DC19561 /* Pods */,
+				71A05532D1340D55ABD0E4B4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		F0FDBD211E732DB40069C245 /* Products */ = {
+		269E34C71E765828000726C2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F0FDBD201E732DB40069C245 /* WalkingChallenge.app */,
+				269E34C61E765828000726C2 /* WalkingChallenge.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F0FDBD221E732DB40069C245 /* WalkingChallenge */ = {
+		269E34C81E765828000726C2 /* WalkingChallenge */ = {
 			isa = PBXGroup;
 			children = (
-				F0FDBD261E732DB40069C245 /* AppDelegate.h */,
-				F0FDBD271E732DB40069C245 /* AppDelegate.m */,
-				F0FDBD4A1E7339B60069C245 /* LoginViewController.m */,
-				F0FDBD4C1E7339DD0069C245 /* LoginViewController.h */,
-				F0FDBD4D1E7347290069C245 /* RootViewController.h */,
-				F0FDBD4E1E7347290069C245 /* RootViewController.m */,
-				F0FDBD501E734BF30069C245 /* SponsorViewController.h */,
-				F0FDBD511E734BF30069C245 /* SponsorViewController.m */,
-				F0FDBD521E734BF30069C245 /* TeamViewController.h */,
-				F0FDBD531E734BF30069C245 /* TeamViewController.m */,
-				F0FDBD561E734BFD0069C245 /* ProfileViewController.h */,
-				F0FDBD571E734BFD0069C245 /* ProfileViewController.m */,
-				F0FDBD591E7372870069C245 /* Profile.h */,
-				F0FDBD5A1E7372870069C245 /* Profile.m */,
-				F0FDBD5C1E73849F0069C245 /* Team.h */,
-				F0FDBD5D1E73849F0069C245 /* Team.m */,
-				F0FDBD321E732DB40069C245 /* Assets.xcassets */,
-				26A41BA71E73B393005A6CEA /* Launch.storyboard */,
-				F0FDBD231E732DB40069C245 /* Supporting Files */,
+				269E34E91E7658E6000726C2 /* AppController.swift */,
+				269E352E1E768058000726C2 /* Login */,
+				269E35191E766B74000726C2 /* Profile */,
+				269E351E1E7671FE000726C2 /* Team */,
+				269E351F1E767202000726C2 /* Sponsor */,
+				269E35251E76782D000726C2 /* Protocols */,
+				269E350A1E765F2A000726C2 /* Extensions */,
+				269E35051E765BBF000726C2 /* Supporting Files */,
+				269E350B1E765F73000726C2 /* StyleGuide.swift */,
+				269E35171E7669FB000726C2 /* LocalizedStrings.swift */,
 			);
 			path = WalkingChallenge;
 			sourceTree = "<group>";
 		};
-		F0FDBD231E732DB40069C245 /* Supporting Files */ = {
+		269E35051E765BBF000726C2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F0FDBD371E732DB40069C245 /* Info.plist */,
-				F0FDBD241E732DB40069C245 /* main.m */,
+				269E34C91E765828000726C2 /* AppDelegate.swift */,
+				269E34D01E765828000726C2 /* Assets.xcassets */,
+				269E34D51E765828000726C2 /* Info.plist */,
+				269E34EE1E7658F2000726C2 /* Launch.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F0FDBD3D1E73332D0069C245 /* Frameworks */ = {
+		269E350A1E765F2A000726C2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				417F32504154E8DD5B3F88C3 /* libPods-WalkingChallenge.a */,
+				269E35081E765F24000726C2 /* UIView.swift */,
+				269E350D1E76664F000726C2 /* Async.swift */,
+				269E350F1E7666EE000726C2 /* Blocks.swift */,
+				269E35281E767AE1000726C2 /* Collection.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		269E35191E766B74000726C2 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				269E35111E76685A000726C2 /* ProfileViewController.swift */,
+				269E351A1E766B8C000726C2 /* ProfileDataSource.swift */,
+				269E351C1E766BB0000726C2 /* Profile.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		269E351E1E7671FE000726C2 /* Team */ = {
+			isa = PBXGroup;
+			children = (
+				269E35131E7668C1000726C2 /* TeamViewController.swift */,
+				269E35231E767807000726C2 /* TeamDataSource.swift */,
+				269E352A1E767C7A000726C2 /* TeamNameCell.swift */,
+				269E352C1E767C81000726C2 /* TeamMemberCell.swift */,
+			);
+			name = Team;
+			sourceTree = "<group>";
+		};
+		269E351F1E767202000726C2 /* Sponsor */ = {
+			isa = PBXGroup;
+			children = (
+				269E35151E7668CF000726C2 /* SponsorViewController.swift */,
+			);
+			name = Sponsor;
+			sourceTree = "<group>";
+		};
+		269E35251E76782D000726C2 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				269E35261E76783B000726C2 /* Cells.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		269E352E1E768058000726C2 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				269E35201E7673B6000726C2 /* User.swift */,
+				269E35061E765C68000726C2 /* LoginViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		32BEA0F580FBBCEE2DC19561 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				00596233B5D00EAEF7957964 /* Pods-WalkingChallenge.debug.xcconfig */,
+				FB0F6813102ABF61F968C9BD /* Pods-WalkingChallenge.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		71A05532D1340D55ABD0E4B4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -133,16 +195,16 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F0FDBD1F1E732DB40069C245 /* WalkingChallenge */ = {
+		269E34C51E765828000726C2 /* WalkingChallenge */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F0FDBD3A1E732DB40069C245 /* Build configuration list for PBXNativeTarget "WalkingChallenge" */;
+			buildConfigurationList = 269E34E31E765828000726C2 /* Build configuration list for PBXNativeTarget "WalkingChallenge" */;
 			buildPhases = (
-				92DF10A7D33F800DBE2D3836 /* [CP] Check Pods Manifest.lock */,
-				F0FDBD1C1E732DB40069C245 /* Sources */,
-				F0FDBD1D1E732DB40069C245 /* Frameworks */,
-				F0FDBD1E1E732DB40069C245 /* Resources */,
-				4FFBD3781F61845717F86E6A /* [CP] Embed Pods Frameworks */,
-				81FA4C41D9AF500DD12907BE /* [CP] Copy Pods Resources */,
+				14FA866E60122FB13DD0CD94 /* [CP] Check Pods Manifest.lock */,
+				269E34C21E765828000726C2 /* Sources */,
+				269E34C31E765828000726C2 /* Frameworks */,
+				269E34C41E765828000726C2 /* Resources */,
+				65FAF8F474BBD7BA376F8E48 /* [CP] Embed Pods Frameworks */,
+				35FF4ACCB1F0D8178ECC045D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -150,86 +212,58 @@
 			);
 			name = WalkingChallenge;
 			productName = WalkingChallenge;
-			productReference = F0FDBD201E732DB40069C245 /* WalkingChallenge.app */;
+			productReference = 269E34C61E765828000726C2 /* WalkingChallenge.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		F0FDBD181E732DB40069C245 /* Project object */ = {
+		269E34BE1E765828000726C2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = AKDN;
 				TargetAttributes = {
-					F0FDBD1F1E732DB40069C245 = {
+					269E34C51E765828000726C2 = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = F0FDBD1B1E732DB40069C245 /* Build configuration list for PBXProject "WalkingChallenge" */;
-			compatibilityVersion = "Xcode 8.0";
+			buildConfigurationList = 269E34C11E765828000726C2 /* Build configuration list for PBXProject "WalkingChallenge" */;
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = F0FDBD171E732DB40069C245;
-			productRefGroup = F0FDBD211E732DB40069C245 /* Products */;
+			mainGroup = 269E34BD1E765828000726C2;
+			productRefGroup = 269E34C71E765828000726C2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F0FDBD1F1E732DB40069C245 /* WalkingChallenge */,
+				269E34C51E765828000726C2 /* WalkingChallenge */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F0FDBD1E1E732DB40069C245 /* Resources */ = {
+		269E34C41E765828000726C2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0FDBD331E732DB40069C245 /* Assets.xcassets in Resources */,
-				26A41BA81E73B393005A6CEA /* Launch.storyboard in Resources */,
+				269E34D11E765828000726C2 /* Assets.xcassets in Resources */,
+				269E34FD1E7658F2000726C2 /* Launch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4FFBD3781F61845717F86E6A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		81FA4C41D9AF500DD12907BE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		92DF10A7D33F800DBE2D3836 /* [CP] Check Pods Manifest.lock */ = {
+		14FA866E60122FB13DD0CD94 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -244,41 +278,81 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		35FF4ACCB1F0D8178ECC045D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		65FAF8F474BBD7BA376F8E48 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		F0FDBD1C1E732DB40069C245 /* Sources */ = {
+		269E34C21E765828000726C2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0FDBD281E732DB40069C245 /* AppDelegate.m in Sources */,
-				F0FDBD251E732DB40069C245 /* main.m in Sources */,
-				F0FDBD581E734BFD0069C245 /* ProfileViewController.m in Sources */,
-				F0FDBD551E734BF30069C245 /* TeamViewController.m in Sources */,
-				F0FDBD5E1E73849F0069C245 /* Team.m in Sources */,
-				F0FDBD541E734BF30069C245 /* SponsorViewController.m in Sources */,
-				F0FDBD5B1E7372870069C245 /* Profile.m in Sources */,
-				F0FDBD4F1E7347290069C245 /* RootViewController.m in Sources */,
-				F0FDBD4B1E7339B60069C245 /* LoginViewController.m in Sources */,
+				269E35091E765F24000726C2 /* UIView.swift in Sources */,
+				269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */,
+				269E352B1E767C7A000726C2 /* TeamNameCell.swift in Sources */,
+				269E35141E7668C1000726C2 /* TeamViewController.swift in Sources */,
+				269E35121E76685A000726C2 /* ProfileViewController.swift in Sources */,
+				269E350E1E76664F000726C2 /* Async.swift in Sources */,
+				269E35101E7666EE000726C2 /* Blocks.swift in Sources */,
+				269E35291E767AE1000726C2 /* Collection.swift in Sources */,
+				269E35161E7668CF000726C2 /* SponsorViewController.swift in Sources */,
+				269E351B1E766B8C000726C2 /* ProfileDataSource.swift in Sources */,
+				269E350C1E765F73000726C2 /* StyleGuide.swift in Sources */,
+				269E35241E767807000726C2 /* TeamDataSource.swift in Sources */,
+				269E35181E7669FB000726C2 /* LocalizedStrings.swift in Sources */,
+				269E352D1E767C81000726C2 /* TeamMemberCell.swift in Sources */,
+				269E35271E76783B000726C2 /* Cells.swift in Sources */,
+				269E34EC1E7658E6000726C2 /* AppController.swift in Sources */,
+				269E35211E7673B6000726C2 /* User.swift in Sources */,
+				269E351D1E766BB0000726C2 /* Profile.swift in Sources */,
+				269E35071E765C68000726C2 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		F0FDBD381E732DB40069C245 /* Debug */ = {
+		269E34E11E765828000726C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -291,8 +365,8 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = NO;
-				GCC_C_LANGUAGE_STANDARD = c99;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -306,28 +380,28 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_GENERATE_MAP_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				USE_HEADERMAP = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		F0FDBD391E732DB40069C245 /* Release */ = {
+		269E34E21E765828000726C2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -341,8 +415,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = NO;
-				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -350,67 +423,65 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_GENERATE_MAP_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				USE_HEADERMAP = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		F0FDBD3B1E732DB40069C245 /* Debug */ = {
+		269E34E41E765828000726C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0E4A343E640BC9F55ED917F4 /* Pods-WalkingChallenge.debug.xcconfig */;
+			baseConfigurationReference = 00596233B5D00EAEF7957964 /* Pods-WalkingChallenge.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = "../prebuilt/FacebookSDKs-iOS-4";
-				HEADER_SEARCH_PATHS = "";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = WalkingChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.akdn.akf.WalkingChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akdn.WalkingChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USE_HEADERMAP = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		F0FDBD3C1E732DB40069C245 /* Release */ = {
+		269E34E51E765828000726C2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC9BF542ECDBDA61104C4E6E /* Pods-WalkingChallenge.release.xcconfig */;
+			baseConfigurationReference = FB0F6813102ABF61F968C9BD /* Pods-WalkingChallenge.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = "../prebuilt/FacebookSDKs-iOS-4";
-				HEADER_SEARCH_PATHS = "";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = WalkingChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.akdn.akf.WalkingChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akdn.WalkingChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USE_HEADERMAP = NO;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F0FDBD1B1E732DB40069C245 /* Build configuration list for PBXProject "WalkingChallenge" */ = {
+		269E34C11E765828000726C2 /* Build configuration list for PBXProject "WalkingChallenge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F0FDBD381E732DB40069C245 /* Debug */,
-				F0FDBD391E732DB40069C245 /* Release */,
+				269E34E11E765828000726C2 /* Debug */,
+				269E34E21E765828000726C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F0FDBD3A1E732DB40069C245 /* Build configuration list for PBXNativeTarget "WalkingChallenge" */ = {
+		269E34E31E765828000726C2 /* Build configuration list for PBXNativeTarget "WalkingChallenge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F0FDBD3B1E732DB40069C245 /* Debug */,
-				F0FDBD3C1E732DB40069C245 /* Release */,
+				269E34E41E765828000726C2 /* Debug */,
+				269E34E51E765828000726C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = F0FDBD181E732DB40069C245 /* Project object */;
+	rootObject = 269E34BE1E765828000726C2 /* Project object */;
 }
