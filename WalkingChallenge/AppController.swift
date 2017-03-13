@@ -14,6 +14,26 @@ class AppController {
         
         configureApp()
     }
+    
+    enum ViewController {
+        case login
+        case tabBar
+        
+        var viewController: UIViewController {
+            switch self {
+            case .login: return LoginViewController()
+            case .tabBar: return AppController.shared.tabBarController
+            }
+        }
+    }
+    
+    func transition(to viewController: ViewController) {
+        guard let window = window else { return }
+        
+        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: { 
+            window.rootViewController = viewController.viewController
+        }, completion: nil)
+    }
 }
 
 // MARK: - Configuration
