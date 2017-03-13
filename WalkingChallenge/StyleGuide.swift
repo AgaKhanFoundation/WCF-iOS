@@ -9,6 +9,17 @@ struct Style {
         static let accent = #colorLiteral(red: 0.344225198, green: 0.6224462986, blue: 0.1597332358, alpha: 1) // #699D3D //TODO: Replace with AKDN branding
     }
     
+    struct Padding {
+        static let p8: CGFloat = 8
+        static let p12: CGFloat = 12
+        static let p16: CGFloat = 16
+        static let p24: CGFloat = 24
+        static let p32: CGFloat = 32
+        static let p40: CGFloat = 40
+        static let p48: CGFloat = 48
+        static let p64: CGFloat = 64
+    }
+    
     enum Typography {
         //TODO: Add more styles as a style guide is made
         case header
