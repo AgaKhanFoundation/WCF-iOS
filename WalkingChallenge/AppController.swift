@@ -34,6 +34,14 @@ class AppController {
             window.rootViewController = viewController.viewController
         }, completion: nil)
     }
+    
+    func login() {
+        transition(to: .tabBar)
+    }
+    
+    func logout() {
+        transition(to: .login)
+    }
 }
 
 // MARK: - Configuration
