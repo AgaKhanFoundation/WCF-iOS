@@ -51,6 +51,14 @@ extension AppController {
         configureAnalytics()
         configureTabBarController()
         configureWindow()
+        
+        if User.isLoggedIn {
+            transition(to: .tabBar)
+        } else {
+            transition(to: .login)
+        }
+    }
+    
     private func configureTabBarController() {
         let profileNVC = UINavigationController(rootViewController: ProfileViewController())
         let teamNVC = UINavigationController(rootViewController: TeamViewController())
