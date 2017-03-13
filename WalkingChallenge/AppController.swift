@@ -7,6 +7,8 @@ class AppController {
     
     var window: UIWindow?
     
+    var tabBarController = UITabBarController()
+    
     func launch(in window: UIWindow?) {
         self.window = window
         
@@ -19,7 +21,16 @@ extension AppController {
     
     fileprivate func configureApp() {
         configureAnalytics()
+        configureTabBarController()
         configureWindow()
+    private func configureTabBarController() {
+        let profileNVC = UINavigationController(rootViewController: ProfileViewController())
+        let teamNVC = UINavigationController(rootViewController: TeamViewController())
+        let sponsorNVC = UINavigationController(rootViewController: SponsorViewController())
+        
+        tabBarController.viewControllers = [
+            profileNVC, teamNVC, sponsorNVC
+        ]
     }
     
     private func configureWindow() {
