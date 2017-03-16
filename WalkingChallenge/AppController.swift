@@ -70,7 +70,7 @@ extension AppController {
         sponsorNVC.tabBarItem = UITabBarItem(title: Strings.NavBarTitles.sponsor, image: nil, selectedImage: nil)
         
         tabBarController.viewControllers = [
-            teamNVC, sponsorNVC, profileNVC
+            profileNVC, teamNVC, sponsorNVC,
         ]
     }
     
