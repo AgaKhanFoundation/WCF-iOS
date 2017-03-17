@@ -68,7 +68,7 @@ extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
     guard
       let cellInfo = dataSource.cells[safe: indexPath.row],
       let cell = tableView.dequeueReusableCell(withIdentifier: cellInfo.cellIdentifier, for: indexPath) as? ConfigurableTableViewCell
-      else { return UITableViewCell() }
+    else { return UITableViewCell() }
 
     cell.configure(cellInfo: cellInfo)
 
