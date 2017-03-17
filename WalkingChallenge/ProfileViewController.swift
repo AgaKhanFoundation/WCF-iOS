@@ -7,6 +7,7 @@ class ProfileViewController: UIViewController {
 
   // Views
   let nameLabel = UILabel(.title)
+  let teamLabel = UILabel(.title)
   let logoutButton = FBSDKLoginButton()
 
   // MARK: - Lifecycle
@@ -30,11 +31,16 @@ class ProfileViewController: UIViewController {
     title = Strings.NavBarTitles.profile
     logoutButton.delegate = self
 
-    view.addSubviews([nameLabel, logoutButton])
+    view.addSubviews([nameLabel, teamLabel, logoutButton])
 
     nameLabel.snp.makeConstraints { (make) in
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
       make.top.equalTo(topLayoutGuide.snp.bottom).offset(Style.Padding.p12)
+    }
+
+    teamLabel.snp.makeConstraints { (make) in
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+      make.top.equalTo(nameLabel.snp.bottom).offset(Style.Padding.p12)
     }
 
     logoutButton.snp.makeConstraints { (make) in
@@ -47,6 +53,7 @@ class ProfileViewController: UIViewController {
     dataSource.updateProfile { [weak self] (success: Bool) in
       if success {
         self?.nameLabel.text = self?.dataSource.profile?.name
+        self?.teamLabel.text = self?.dataSource.profile?.team
       } else {
         self?.presentErrorAlert()
       }
