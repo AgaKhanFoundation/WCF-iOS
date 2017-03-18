@@ -14,20 +14,25 @@ class HealthKitDataProvider : DataProvider {
   
   func retrieveStepCountForDateRange(_ interval : DateInterval,
                                      _ completion: @escaping (_ steps : Int) -> Void) {
-    let stepCount = HKSampleType.quantityType(forIdentifier: .stepCount)
-    let predicate = HKQuery.predicateForSamples(withStart: interval.startDate, end: interval.endDate, options: .init(rawValue: 0))
-    let query = HKSampleQuery(sampleType: stepCount!, predicate: predicate, limit: 0, sortDescriptors: nil) { (query, results, error) in
-      var steps = 0.0
-      if let count = results?.count {
-        if count > 0 {
-          for result in results as! [HKQuantitySample] {
-            steps = steps + result.quantity.doubleValue(for: .count())
+    guard let stepCount = HKSampleType.quantityType(forIdentifier: .stepCount) else { return }
+    
+    store.requestAuthorization(toShare: nil, read: [stepCount]) { (success: Bool, error: Error?) in
+      if error == nil {
+        let predicate = HKQuery.predicateForSamples(withStart: interval.start, end: interval.end, options: [])
+        let query = HKSampleQuery(sampleType: stepCount, predicate: predicate, limit: 0, sortDescriptors: nil) { (query, results, error) in
+          var steps = 0.0
+          if let count = results?.count {
+            if count > 0 {
+              for result in results as! [HKQuantitySample] {
+                steps = steps + result.quantity.doubleValue(for: .count())
+              }
+            }
           }
+          completion(Int(steps))
         }
+        self.store.execute(query)
       }
-      completion(Int(steps))
     }
-    store.execute(query)
   }
 }
 
