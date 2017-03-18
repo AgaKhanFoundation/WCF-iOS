@@ -5,14 +5,14 @@ import FBSDKCoreKit
 import HealthKit
 
 protocol DataProvider {
-  func retrieveStepCountForDateRange(_ interval : NSDateInterval,
+  func retrieveStepCountForDateRange(_ interval : DateInterval,
                                      _ completion : @escaping (_ steps : Int) -> Void)
 }
 
 class HealthKitDataProvider : DataProvider {
   let store = HKHealthStore()
-
-  func retrieveStepCountForDateRange(_ interval : NSDateInterval,
+  
+  func retrieveStepCountForDateRange(_ interval : DateInterval,
                                      _ completion: @escaping (_ steps : Int) -> Void) {
     let stepCount = HKSampleType.quantityType(forIdentifier: .stepCount)
     let predicate = HKQuery.predicateForSamples(withStart: interval.startDate, end: interval.endDate, options: .init(rawValue: 0))
