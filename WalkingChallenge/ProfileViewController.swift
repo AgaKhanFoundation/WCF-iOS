@@ -58,8 +58,8 @@ class ProfileViewController: UIViewController {
   private func updateProfile() {
     dataSource.updateProfile { [weak self] (success: Bool) in
       if success {
-        self?.nameLabel.text = self?.dataSource.profile?.name
-        self?.teamNameLabel.text = self?.dataSource.profile?.team
+        self?.nameLabel.text = self?.dataSource.realName
+        self?.teamNameLabel.text = self?.dataSource.teamName
       } else {
         self?.presentErrorAlert()
       }

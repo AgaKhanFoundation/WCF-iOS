@@ -3,7 +3,8 @@ import Foundation
 import FBSDKCoreKit
 
 class ProfileDataSource {
-  var profile: Profile?
+  var realName : String = ""
+  var teamName : String = ""
 
   func updateProfile(completion: @escaping SuccessBlock) {
     let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name"])
@@ -18,7 +19,9 @@ class ProfileDataSource {
       }
 
       // TODO(compnerd) fetch this from our dasta source
-      self?.profile = Profile(name: name, team: "Team Name")
+      self?.realName = name
+      self?.teamName = "Team Name"
+
       onMain {
         completion(true)
       }
