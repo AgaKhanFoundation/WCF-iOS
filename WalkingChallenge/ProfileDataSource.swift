@@ -20,9 +20,9 @@ class HealthKitDataProvider : DataProvider {
       var steps = 0.0
       if let count = results?.count {
         if count > 0 {
-        for result in results as! [HKQuantitySample] {
-          steps = steps + result.quantity.doubleValue(for: .count())
-        }
+          for result in results as! [HKQuantitySample] {
+            steps = steps + result.quantity.doubleValue(for: .count())
+          }
         }
       }
       completion(Int(steps))
@@ -43,7 +43,7 @@ class ProfileDataSource {
   func updateProfile(completion: @escaping SuccessBlock) {
     // TODO(compnerd) enumerate across all data providers
     dataProviders[0].retrieveStepCountForDateRange(NSDateInterval()) {
-     steps in NSLog("steps: %d", steps)
+      steps in NSLog("steps: %d", steps)
     }
 
     let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name"])
