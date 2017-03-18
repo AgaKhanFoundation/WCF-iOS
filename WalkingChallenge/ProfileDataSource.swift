@@ -18,7 +18,7 @@ class ProfileDataSource {
       }
 
       // TODO(compnerd) fetch this from our dasta source
-      self?.profile = Profile(name: name, team: "My Team")
+      self?.profile = Profile(name: name, team: "Team Name")
       onMain {
         completion(true)
       }
