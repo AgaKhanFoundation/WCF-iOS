@@ -42,8 +42,8 @@ class ProfileDataSource {
 
   func updateProfile(completion: @escaping SuccessBlock) {
     // TODO(compnerd) enumerate across all data providers
-    dataProviders[0].retrieveStepCountForDateRange(NSDateInterval()) {
-      steps in NSLog("steps: %d", steps)
+    dataProviders[0].retrieveStepCountForDateRange(DateInterval(start: Date().startOfDay, end: Date().endOfDay)) {
+     steps in NSLog("steps: %d", steps)
     }
 
     let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name"])
