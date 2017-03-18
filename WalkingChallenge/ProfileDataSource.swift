@@ -16,23 +16,20 @@ class HealthKitDataProvider : DataProvider {
                                      _ completion: @escaping (_ steps : Int) -> Void) {
     guard let stepCount = HKSampleType.quantityType(forIdentifier: .stepCount) else { return }
     
-    store.requestAuthorization(toShare: nil, read: [stepCount]) { (success: Bool, error: Error?) in
-      if error == nil {
-        let predicate = HKQuery.predicateForSamples(withStart: interval.start, end: interval.end, options: [])
-        let query = HKSampleQuery(sampleType: stepCount, predicate: predicate, limit: 0, sortDescriptors: nil) { (query, results, error) in
-          var steps = 0.0
-          if let count = results?.count {
-            if count > 0 {
-              for result in results as! [HKQuantitySample] {
-                steps = steps + result.quantity.doubleValue(for: .count())
-              }
-            }
+  private func query(sampleType: HKSampleType, interval: DateInterval, completion: @escaping (_ steps: Int) -> Void) {
+    let predicate = HKQuery.predicateForSamples(withStart: interval.start, end: interval.end, options: [])
+    let query = HKSampleQuery(sampleType: sampleType, predicate: predicate, limit: 0, sortDescriptors: nil) { (query, results, error) in
+      var steps = 0.0
+      if let count = results?.count {
+        if count > 0 {
+          for result in results as! [HKQuantitySample] {
+            steps = steps + result.quantity.doubleValue(for: .count())
           }
-          completion(Int(steps))
         }
-        self.store.execute(query)
       }
+      completion(Int(steps))
     }
+    self.store.execute(query)
   }
 }
 
