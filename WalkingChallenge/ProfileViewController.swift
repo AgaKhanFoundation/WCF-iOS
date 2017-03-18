@@ -6,8 +6,9 @@ class ProfileViewController: UIViewController {
   let dataSource = ProfileDataSource()
 
   // Views
-  let nameLabel = UILabel(.title)
-  let teamLabel = UILabel(.title)
+  let nameLabel = UILabel(.header)
+  let teamLabel = UILabel(.body)
+  let teamNameLabel = UILabel(.title)
   let logoutButton = FBSDKLoginButton()
 
   // MARK: - Lifecycle
@@ -31,15 +32,20 @@ class ProfileViewController: UIViewController {
     title = Strings.NavBarTitles.profile
     logoutButton.delegate = self
 
-    view.addSubviews([nameLabel, teamLabel, logoutButton])
+    view.addSubviews([nameLabel, teamLabel, teamNameLabel, logoutButton])
 
     nameLabel.snp.makeConstraints { (make) in
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
       make.top.equalTo(topLayoutGuide.snp.bottom).offset(Style.Padding.p12)
     }
 
+    teamLabel.text = "My Team"
     teamLabel.snp.makeConstraints { (make) in
-      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+      make.left.equalToSuperview().inset(Style.Padding.p12)
+      make.top.equalTo(nameLabel.snp.bottom).offset(Style.Padding.p12)
+    }
+    teamNameLabel.snp.makeConstraints { (make) in
+      make.rightMargin.equalTo(-Style.Padding.p12)
       make.top.equalTo(nameLabel.snp.bottom).offset(Style.Padding.p12)
     }
 
@@ -53,7 +59,7 @@ class ProfileViewController: UIViewController {
     dataSource.updateProfile { [weak self] (success: Bool) in
       if success {
         self?.nameLabel.text = self?.dataSource.profile?.name
-        self?.teamLabel.text = self?.dataSource.profile?.team
+        self?.teamNameLabel.text = self?.dataSource.profile?.team
       } else {
         self?.presentErrorAlert()
       }
