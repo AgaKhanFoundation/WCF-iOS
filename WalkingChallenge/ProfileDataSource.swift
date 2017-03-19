@@ -5,18 +5,32 @@ import FBSDKCoreKit
 import HealthKit
 
 protocol DataProvider {
-  func retrieveStepCountForDateRange(_ interval : NSDateInterval,
+  func retrieveStepCountForDateRange(_ interval : DateInterval,
                                      _ completion : @escaping (_ steps : Int) -> Void)
 }
 
 class HealthKitDataProvider : DataProvider {
   let store = HKHealthStore()
-
-  func retrieveStepCountForDateRange(_ interval : NSDateInterval,
+  
+  func retrieveStepCountForDateRange(_ interval : DateInterval,
                                      _ completion: @escaping (_ steps : Int) -> Void) {
-    let stepCount = HKSampleType.quantityType(forIdentifier: .stepCount)
-    let predicate = HKQuery.predicateForSamples(withStart: interval.startDate, end: interval.endDate, options: .init(rawValue: 0))
-    let query = HKSampleQuery(sampleType: stepCount!, predicate: predicate, limit: 0, sortDescriptors: nil) { (query, results, error) in
+    guard let stepCount = HKSampleType.quantityType(forIdentifier: .stepCount) else { return }
+    if store.authorizationStatus(for: stepCount) == .sharingAuthorized {
+      query(sampleType: stepCount, interval: interval, completion: completion)
+    } else {
+      store.requestAuthorization(toShare: nil, read: [stepCount], completion: { [weak self] (success: Bool, error: Error?) in
+        guard error == nil && success else {
+          print("Error getting HealthKit access: \(error)")
+          return
+        }
+        self?.query(sampleType: stepCount, interval: interval, completion: completion)
+      })
+    }
+  }
+    
+  private func query(sampleType: HKSampleType, interval: DateInterval, completion: @escaping (_ steps: Int) -> Void) {
+    let predicate = HKQuery.predicateForSamples(withStart: interval.start, end: interval.end, options: [])
+    let query = HKSampleQuery(sampleType: sampleType, predicate: predicate, limit: 0, sortDescriptors: nil) { (query, results, error) in
       var steps = 0.0
       if let count = results?.count {
         if count > 0 {
@@ -27,7 +41,7 @@ class HealthKitDataProvider : DataProvider {
       }
       completion(Int(steps))
     }
-    store.execute(query)
+    self.store.execute(query)
   }
 }
 
@@ -42,8 +56,8 @@ class ProfileDataSource {
 
   func updateProfile(completion: @escaping SuccessBlock) {
     // TODO(compnerd) enumerate across all data providers
-    dataProviders[0].retrieveStepCountForDateRange(NSDateInterval()) {
-      steps in NSLog("steps: %d", steps)
+    dataProviders[0].retrieveStepCountForDateRange(DateInterval(start: Date().startOfDay, end: Date().endOfDay)) {
+     steps in NSLog("steps: %d", steps)
     }
 
     let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name"])
