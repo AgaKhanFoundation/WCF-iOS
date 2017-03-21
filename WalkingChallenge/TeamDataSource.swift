@@ -24,6 +24,8 @@ class TeamDataSource: TableDataSource {
   func addTeamMember(completion: @escaping SuccessBlock) {
     // TODO: Push data to backend and refresh cells
 
+    FriendList().getTaggableFriends()
+
     cells.append(TeamMemberCellInfo(name: "Someone New"))
 
     onMain {
