@@ -4,12 +4,14 @@ import SnapKit
 struct TeamMemberCellInfo: CellInfo {
   let cellIdentifier: String = TeamMemberCell.identifier
   let name: String
+  let picture: String
 }
 
 class TeamMemberCell: ConfigurableTableViewCell {
   static let identifier: String = "TeamMemberCell"
 
   // Views
+  let picture = UIImageView()
   let nameLabel = UILabel(.body)
 
   // MARK: - Init
@@ -25,20 +27,33 @@ class TeamMemberCell: ConfigurableTableViewCell {
   }
 
   private func commonInit() {
-    contentView.addSubview(nameLabel)
+    contentView.addSubviews([picture, nameLabel])
     backgroundColor = .clear
 
+    picture.snp.makeConstraints { (make) in
+      make.height.equalTo(32)
+      make.width.equalTo(32)
+      make.left.equalToSuperview().inset(Style.Padding.p12)
+    }
     nameLabel.snp.makeConstraints { (make) in
-      make.edges.equalToSuperview().inset(Style.Padding.p12)
+      make.left.equalTo(picture.snp.right).offset(Style.Padding.p12)
+      make.right.equalToSuperview().inset(Style.Padding.p12)
+      make.height.equalTo(picture.snp.height)
     }
   }
 
   // MARK: - Configure
 
   override func configure(cellInfo: CellInfo) {
-    guard let cellInfo = cellInfo as? TeamMemberCellInfo else { return }
+    guard let cell = cellInfo as? TeamMemberCellInfo else { return }
 
-    nameLabel.text = cellInfo.name
+    nameLabel.text = cell.name
+
+    do {
+      let data = try Data(contentsOf: URL(string: cell.picture)!)
+      picture.image = UIImage(data: data)
+    } catch {
+    }
   }
 }
 

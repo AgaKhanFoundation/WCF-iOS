@@ -1,8 +1,14 @@
 
 import FBSDKCoreKit
 
-class FriendList {
-  private func getTaggableFriends(cursor: String?) {
+struct Friend {
+  let fbid : String
+  let name : String
+  let picture_url : String
+}
+
+class Facebook {
+  private static func enumerateFriends(cursor: String?, handler: @escaping (_ : Friend) -> Void) {
     var params = [ "fields" : "id, name, picture" ]
     if (cursor != nil) {
       params["after"] = cursor!
@@ -21,21 +27,21 @@ class FriendList {
           let id = (friend as! NSDictionary).value(forKey: "id") as! String
           let picture = (friend as! NSDictionary).value(forKey: "picture") as! NSDictionary
           let picture_url = (picture.value(forKey: "data") as! NSDictionary).value(forKey: "url") as! String
-          print("friend (\(name), \(id), \(picture_url))")
+          handler(Friend(fbid: id, name: name, picture_url: picture_url))
         }
       }
       if let pagination = (result as! NSDictionary).value(forKey: "paging") as? NSDictionary {
         if let cursors = pagination.value(forKey: "cursors") as? NSDictionary {
           if let after = cursors.value(forKey: "after") as? String {
-            self.getTaggableFriends(cursor: after)
+            self.enumerateFriends(cursor: after, handler: handler)
           }
         }
       }
     }
   }
 
-  func getTaggableFriends() {
-    getTaggableFriends(cursor: nil)
+  static func getTaggableFriends(handler: @escaping (_ : Friend) -> Void) {
+    enumerateFriends(cursor: nil, handler: handler)
   }
 }
 
