@@ -9,9 +9,7 @@ class TeamDataSource: TableDataSource {
 
     if cells.isEmpty {
       self.cells.append(TeamNameCellInfo(name: "Team Name"))
-      Facebook.getTaggableFriends { (friend) in
-        if self.cells.count > 12 { return }
-
+      Facebook.getTaggableFriends(limit: .count(12)) { (friend) in
         self.cells.append(TeamMemberCellInfo(name: friend.name, picture: friend.picture_url))
         onMain {
           completion(true)
