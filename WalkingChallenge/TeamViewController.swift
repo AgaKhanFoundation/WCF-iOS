@@ -53,9 +53,9 @@ class TeamViewController: UIViewController {
   // MARK: - Actions
 
   func addTapped() {
-    dataSource.addTeamMember { [weak self] (success: Bool) in
-      self?.tableView.reloadData()
-    }
+    let picker = FriendListView()
+    self.present(picker, animated: true, completion: nil)
+    // TODO(compnerd) wire up the dismisal to tableView.reloadData()
   }
 }
 

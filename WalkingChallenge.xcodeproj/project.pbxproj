@@ -30,6 +30,7 @@
 		269E352D1E767C81000726C2 /* TeamMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E352C1E767C81000726C2 /* TeamMemberCell.swift */; };
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
 		ED85D460832E1D261F31B25E /* Pods_WalkingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */; };
+		F09E7DFA1E860CE300AD8CAF /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09E7DF91E860CE300AD8CAF /* FriendListViewController.swift */; };
 		F0E1828A1E80B1DB00665E4F /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E182891E80B1DB00665E4F /* Facebook.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		26C5E3601E7DCACF0053DE3E /* WalkingChallenge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WalkingChallenge.entitlements; sourceTree = "<group>"; };
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkingChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F09E7DF91E860CE300AD8CAF /* FriendListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		F0E182891E80B1DB00665E4F /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
 		FB0F6813102ABF61F968C9BD /* Pods-WalkingChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,6 +156,7 @@
 				269E352A1E767C7A000726C2 /* TeamNameCell.swift */,
 				269E352C1E767C81000726C2 /* TeamMemberCell.swift */,
 				F0E182891E80B1DB00665E4F /* Facebook.swift */,
+				F09E7DF91E860CE300AD8CAF /* FriendListViewController.swift */,
 			);
 			name = Team;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				269E35161E7668CF000726C2 /* SponsorViewController.swift in Sources */,
 				269E351B1E766B8C000726C2 /* ProfileDataSource.swift in Sources */,
 				269E350C1E765F73000726C2 /* StyleGuide.swift in Sources */,
+				F09E7DFA1E860CE300AD8CAF /* FriendListViewController.swift in Sources */,
 				F0E1828A1E80B1DB00665E4F /* Facebook.swift in Sources */,
 				269E35241E767807000726C2 /* TeamDataSource.swift in Sources */,
 				269E35181E7669FB000726C2 /* LocalizedStrings.swift in Sources */,
