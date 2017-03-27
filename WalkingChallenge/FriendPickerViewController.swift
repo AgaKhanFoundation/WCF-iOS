@@ -1,6 +1,7 @@
 
 import UIKit
 import SnapKit
+import ContactsUI
 
 struct FriendCellInfo : CellInfo {
   let cellIdentifier: String = FriendCell.identifier
@@ -69,10 +70,10 @@ class FriendsDataSource: TableDataSource {
   }
 }
 
-class FriendListView : UIViewController {
+class FriendPickerViewController : UIViewController {
   var tableView = UITableView()
   let dataSource = FriendsDataSource()
-  let add = UIButton()
+  let search = UISearchBar()
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -86,20 +87,20 @@ class FriendListView : UIViewController {
 
     configureTableView()
 
-    add.setTitle("Add", for: .normal)
-    add.addTarget(self, action: #selector(addMembers), for: .touchUpInside)
+    // TODO(compnerd) color the background to .clear
+    search.delegate = self
 
     view.backgroundColor = Style.Colors.white
+    view.addSubviews([search, tableView])
 
-    view.addSubviews([tableView, add])
+    search.snp.makeConstraints { (make) in
+      make.left.right.equalToSuperview().inset(Style.Padding.p12)
+      make.top.equalToSuperview().inset(Style.Padding.p12)
+    }
     tableView.snp.makeConstraints { (make) in
       make.left.right.equalToSuperview().inset(Style.Padding.p12)
-      make.top.equalToSuperview().offset(Style.Padding.p12)
-    }
-    add.snp.makeConstraints { (make) in
-      make.left.right.equalToSuperview().inset(Style.Padding.p12)
-      make.top.equalTo(tableView.snp.bottom).offset(Style.Padding.p12)
-      make.bottom.equalToSuperview().offset(Style.Padding.p12)
+      make.top.equalTo(search.snp.bottom).offset(Style.Padding.p12)
+      make.bottom.equalToSuperview().inset(Style.Padding.p12)
     }
   }
 
@@ -114,13 +115,9 @@ class FriendListView : UIViewController {
                        forCellReuseIdentifier: FriendCell.identifier)
     tableView.allowsMultipleSelection = true
   }
-
-  func addMembers() {
-    // TODO(compnerd) dismiss view controller
-  }
 }
 
-extension FriendListView : UITableViewDataSource {
+extension FriendPickerViewController : UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
       -> UITableViewCell {
     guard
@@ -138,9 +135,14 @@ extension FriendListView : UITableViewDataSource {
         (cellInfo as! FriendCellInfo).selected ? .checkmark : .none
     return cell
   }
+
+  func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+    return ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
+            "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "#"]
+  }
 }
 
-extension FriendListView : UITableViewDelegate {
+extension FriendPickerViewController : UITableViewDelegate {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)
       -> Int {
     return dataSource.cells.count
@@ -185,5 +187,8 @@ extension FriendListView : UITableViewDelegate {
       cell.accessoryType = .none
     }
   }
+}
+
+extension FriendPickerViewController : UISearchBarDelegate {
 }
 
