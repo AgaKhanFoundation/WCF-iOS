@@ -5,9 +5,9 @@ import ContactsUI
 
 struct FriendCellInfo : CellInfo {
   let cellIdentifier: String = FriendCell.identifier
+  let fbid: String
   let name: String
   let picture: String
-  var selected: Bool
 }
 
 class FriendCell: ConfigurableTableViewCell {
@@ -57,11 +57,14 @@ class FriendCell: ConfigurableTableViewCell {
 class FriendsDataSource: TableDataSource {
   var cells = [CellInfo]()
 
+  var selectedFriends = [String]()
+
   func reload(completion: @escaping () -> Void) {
     if cells.isEmpty {
       Facebook.getTaggableFriends(limit: .none) { (friend) in
-        self.cells.append(FriendCellInfo(name: friend.display_name,
-                          picture: friend.picture_url, selected: false))
+        self.cells.append(FriendCellInfo(fbid: friend.fbid,
+                                         name: friend.display_name,
+                                         picture: friend.picture_url))
         onMain {
           completion()
         }
@@ -121,7 +124,7 @@ extension FriendPickerViewController : UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
       -> UITableViewCell {
     guard
-      let cellInfo = dataSource.cells[safe: indexPath.row],
+      let cellInfo = dataSource.cells[safe: indexPath.row] as? FriendCellInfo,
       let cell =
           tableView.dequeueReusableCell(withIdentifier: cellInfo.cellIdentifier,
                                         for: indexPath)
@@ -131,8 +134,7 @@ extension FriendPickerViewController : UITableViewDataSource {
     }
 
     cell.configure(cellInfo: cellInfo)
-    cell.accessoryType =
-        (cellInfo as! FriendCellInfo).selected ? .checkmark : .none
+    cell.accessoryType = dataSource.selectedFriends.contains(cellInfo.fbid) ? .checkmark : .none
     return cell
   }
 
@@ -151,7 +153,7 @@ extension FriendPickerViewController : UITableViewDelegate {
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
                  forRowAt indexPath: IndexPath) {
     let cellInfo = dataSource.cells[safe: indexPath.row] as! FriendCellInfo
-    cell.accessoryType = cellInfo.selected ? .checkmark : .none
+    cell.accessoryType = dataSource.selectedFriends.contains(cellInfo.fbid) ? .checkmark : .none
   }
 
   func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath)
@@ -173,17 +175,19 @@ extension FriendPickerViewController : UITableViewDelegate {
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if let cell = tableView.cellForRow(at: indexPath) {
-      var cellInfo = dataSource.cells[safe: indexPath.row] as! FriendCellInfo
-      cellInfo.selected = true
+      let cellInfo = dataSource.cells[safe: indexPath.row] as! FriendCellInfo
+      dataSource.selectedFriends.append(cellInfo.fbid)
       cell.accessoryType = .checkmark
     }
   }
 
   func tableView(_ tableView: UITableView,
                  didDeselectRowAt indexPath: IndexPath) {
-    var cellInfo = dataSource.cells[safe: indexPath.row] as! FriendCellInfo
     if let cell = tableView.cellForRow(at: indexPath) {
-      cellInfo.selected = false
+      let cellInfo = dataSource.cells[safe: indexPath.row] as! FriendCellInfo
+      dataSource.selectedFriends = dataSource.selectedFriends.filter { (fbid) -> Bool in
+        return fbid != cellInfo.fbid
+      }
       cell.accessoryType = .none
     }
   }
