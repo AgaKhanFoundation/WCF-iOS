@@ -58,6 +58,7 @@ class FriendsDataSource: TableDataSource {
   var cells = [CellInfo]()
 
   var selectedFriends = [String]()
+  var sortedFriends = [String: [String]]()
 
   func reload(completion: @escaping () -> Void) {
     if cells.isEmpty {
@@ -65,6 +66,13 @@ class FriendsDataSource: TableDataSource {
         self.cells.append(FriendCellInfo(fbid: friend.fbid,
                                          name: friend.display_name,
                                          picture: friend.picture_url))
+        var sorted = [String]()
+        let key = String(friend.first_name.characters.first!).uppercased()
+        if let friends = self.sortedFriends[key] {
+          sorted = friends
+        }
+        sorted.append(friend.fbid)
+        self.sortedFriends[key] = sorted
         onMain {
           completion()
         }
@@ -88,6 +96,7 @@ class FriendPickerViewController : UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    configureNavigationBar()
     configureTableView()
 
     // TODO(compnerd) color the background to .clear
@@ -107,9 +116,19 @@ class FriendPickerViewController : UIViewController {
     }
   }
 
+  private func configureNavigationBar() {
+    navigationItem.title = "Select Friends"
+    navigationItem.leftBarButtonItem =
+        UIBarButtonItem(barButtonSystemItem: .cancel, target: self,
+                        action: #selector(cancelTapped))
+    navigationItem.rightBarButtonItem =
+        UIBarButtonItem(barButtonSystemItem: .done, target: self,
+                        action: #selector(doneTapped))
+  }
+
   private func configureTableView() {
-    tableView.estimatedRowHeight = Style.Padding.p32
-    tableView.rowHeight = UITableViewAutomaticDimension
+    // TODO(compnerd) create a constant for this value
+    tableView.rowHeight = 40.0
     tableView.separatorStyle = .none
     tableView.delegate = self
     tableView.dataSource = self
@@ -118,21 +137,34 @@ class FriendPickerViewController : UIViewController {
                        forCellReuseIdentifier: FriendCell.identifier)
     tableView.allowsMultipleSelection = true
   }
+
+  func cancelTapped() {
+    self.dismiss(animated: true, completion: nil)
+  }
+
+  func doneTapped() {
+    self.dismiss(animated: true, completion: nil)
+  }
 }
 
 extension FriendPickerViewController : UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
       -> UITableViewCell {
     guard
-      let cellInfo = dataSource.cells[safe: indexPath.row] as? FriendCellInfo,
+        let key = dataSource.sortedFriends.keys.sorted()[safe: indexPath.section],
+      let contacts = dataSource.sortedFriends[key],
+      let contact = contacts[safe: indexPath.row],
       let cell =
-          tableView.dequeueReusableCell(withIdentifier: cellInfo.cellIdentifier,
+          tableView.dequeueReusableCell(withIdentifier: FriendCell.identifier,
                                         for: indexPath)
               as? ConfigurableTableViewCell
     else {
       return UITableViewCell()
     }
 
+    let cellInfo = dataSource.cells.filter { (ci) in
+      return (ci as! FriendCellInfo).fbid == contact
+    }.first! as! FriendCellInfo
     cell.configure(cellInfo: cellInfo)
     cell.accessoryType =
         dataSource.selectedFriends.contains(cellInfo.fbid) ? .checkmark : .none
@@ -140,20 +172,33 @@ extension FriendPickerViewController : UITableViewDataSource {
   }
 
   func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-    return ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
-            "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "#"]
+    return dataSource.sortedFriends.keys.sorted()
   }
 }
 
 extension FriendPickerViewController : UITableViewDelegate {
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return dataSource.sortedFriends.keys.count
+  }
+
+  func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    return dataSource.sortedFriends.keys.sorted()[section]
+  }
+
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)
       -> Int {
-    return dataSource.cells.count
+    let key = dataSource.sortedFriends.keys.sorted()[section]
+    return (dataSource.sortedFriends[key]?.count)!
   }
 
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
                  forRowAt indexPath: IndexPath) {
-    let cellInfo = dataSource.cells[safe: indexPath.row] as! FriendCellInfo
+    let key = dataSource.sortedFriends.keys.sorted()[safe: indexPath.section]
+    let contacts = dataSource.sortedFriends[key!]
+    let contact = contacts?[safe: indexPath.row]
+    let cellInfo = dataSource.cells.filter { (ci) in
+      return (ci as! FriendCellInfo).fbid == contact
+    }.first! as! FriendCellInfo
     cell.accessoryType =
         dataSource.selectedFriends.contains(cellInfo.fbid) ? .checkmark : .none
   }
