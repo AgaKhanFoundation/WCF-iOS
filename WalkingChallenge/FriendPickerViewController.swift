@@ -134,7 +134,8 @@ extension FriendPickerViewController : UITableViewDataSource {
     }
 
     cell.configure(cellInfo: cellInfo)
-    cell.accessoryType = dataSource.selectedFriends.contains(cellInfo.fbid) ? .checkmark : .none
+    cell.accessoryType =
+        dataSource.selectedFriends.contains(cellInfo.fbid) ? .checkmark : .none
     return cell
   }
 
@@ -153,7 +154,8 @@ extension FriendPickerViewController : UITableViewDelegate {
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
                  forRowAt indexPath: IndexPath) {
     let cellInfo = dataSource.cells[safe: indexPath.row] as! FriendCellInfo
-    cell.accessoryType = dataSource.selectedFriends.contains(cellInfo.fbid) ? .checkmark : .none
+    cell.accessoryType =
+        dataSource.selectedFriends.contains(cellInfo.fbid) ? .checkmark : .none
   }
 
   func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath)
