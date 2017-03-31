@@ -53,7 +53,7 @@ class TeamViewController: UIViewController {
   // MARK: - Actions
 
   func addTapped() {
-    let picker = FriendPickerViewController()
+    let picker = UINavigationController(rootViewController: FriendPickerViewController())
     self.present(picker, animated: true, completion: nil)
     // TODO(compnerd) wire up the dismisal to tableView.reloadData()
   }
