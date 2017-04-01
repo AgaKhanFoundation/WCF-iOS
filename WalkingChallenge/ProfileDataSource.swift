@@ -20,7 +20,7 @@ class HealthKitDataProvider : DataProvider {
     } else {
       store.requestAuthorization(toShare: nil, read: [stepCount], completion: { [weak self] (success: Bool, error: Error?) in
         guard error == nil && success else {
-          print("Error getting HealthKit access: \(error)")
+          print("Error getting HealthKit access: \(String(describing: error))")
           return
         }
         self?.query(sampleType: stepCount, interval: interval, completion: completion)
