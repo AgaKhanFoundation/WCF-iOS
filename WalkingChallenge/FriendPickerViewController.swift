@@ -147,13 +147,23 @@ class FriendPickerViewController : UIViewController {
   }
 }
 
+extension FriendPickerViewController {
+  fileprivate func contact(for indexPath: IndexPath) -> String? {
+    guard
+      let key = dataSource.sortedFriends.keys.sorted()[safe: indexPath.section],
+      let contacts = dataSource.sortedFriends[key]
+    else {
+        return nil
+    }
+    return contacts[safe: indexPath.row]!
+  }
+}
+
 extension FriendPickerViewController : UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
       -> UITableViewCell {
     guard
-        let key = dataSource.sortedFriends.keys.sorted()[safe: indexPath.section],
-      let contacts = dataSource.sortedFriends[key],
-      let contact = contacts[safe: indexPath.row],
+      let contact = self.contact(for: indexPath),
       let cell =
           tableView.dequeueReusableCell(withIdentifier: FriendCell.identifier,
                                         for: indexPath)
@@ -193,9 +203,7 @@ extension FriendPickerViewController : UITableViewDelegate {
 
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
                  forRowAt indexPath: IndexPath) {
-    let key = dataSource.sortedFriends.keys.sorted()[safe: indexPath.section]
-    let contacts = dataSource.sortedFriends[key!]
-    let contact = contacts?[safe: indexPath.row]
+    let contact = self.contact(for: indexPath)
     let cellInfo = dataSource.cells.filter { (ci) in
       return (ci as! FriendCellInfo).fbid == contact
     }.first! as! FriendCellInfo
