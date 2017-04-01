@@ -1,7 +1,7 @@
 
 import UIKit
 import SnapKit
-import ContactsUI
+import Contacts
 
 struct FriendCellInfo : CellInfo {
   let cellIdentifier: String = FriendCell.identifier
@@ -62,12 +62,25 @@ class FriendsDataSource: TableDataSource {
 
   func reload(completion: @escaping () -> Void) {
     if cells.isEmpty {
+      let sortOrder = CNContactsUserDefaults.shared().sortOrder
       Facebook.getTaggableFriends(limit: .none) { (friend) in
         self.cells.append(FriendCellInfo(fbid: friend.fbid,
                                          name: friend.display_name,
                                          picture: friend.picture_url))
         var sorted = [String]()
-        let key = String(friend.first_name.characters.first!).uppercased()
+
+        var key: String
+        switch (sortOrder) {
+        case .givenName:
+          key = String(friend.first_name.characters.first!).uppercased()
+        case .none:
+          fallthrough
+        case .familyName:
+          key = String(friend.last_name.characters.first!).uppercased()
+        case .userDefault:
+          key = "#"
+        }
+
         if let friends = self.sortedFriends[key] {
           sorted = friends
         }
