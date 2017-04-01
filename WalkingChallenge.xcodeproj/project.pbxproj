@@ -135,6 +135,7 @@
 				269E350F1E7666EE000726C2 /* Blocks.swift */,
 				269E35281E767AE1000726C2 /* Collection.swift */,
 				2606948A1E7DD1A200BFED76 /* Date.swift */,
+				F0E182891E80B1DB00665E4F /* Facebook.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -155,7 +156,6 @@
 				269E35231E767807000726C2 /* TeamDataSource.swift */,
 				269E352A1E767C7A000726C2 /* TeamNameCell.swift */,
 				269E352C1E767C81000726C2 /* TeamMemberCell.swift */,
-				F0E182891E80B1DB00665E4F /* Facebook.swift */,
 				F09E7DF91E860CE300AD8CAF /* FriendPickerViewController.swift */,
 			);
 			name = Team;
