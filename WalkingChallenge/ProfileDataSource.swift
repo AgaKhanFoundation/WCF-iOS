@@ -1,6 +1,5 @@
 
 import Foundation
-import FBSDKCoreKit
 
 import HealthKit
 
@@ -60,25 +59,17 @@ class ProfileDataSource {
      steps in NSLog("steps: %d", steps)
     }
 
-    let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name"])
-    let _ = request?.start(completionHandler: { [weak self] (_, result: Any?, error: Error?) in
-      guard
-        error == nil,
-        let result = result as? [String: Any],
-        let name = result["name"] as? String
-        else {
-          completion(false)
-          return
-      }
+    // TODO(compnerd) fetch this from our backend
+    self.teamName = "Team Name"
 
-      // TODO(compnerd) fetch this from our dasta source
-      self?.realName = name
-      self?.teamName = "Team Name"
+    Facebook.getRealName { [weak self] (name) in
+      guard name != nil else { return }
+      self?.realName = name!
 
       onMain {
         completion(true)
       }
-    })
+    }
   }
 }
 
