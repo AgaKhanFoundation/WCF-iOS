@@ -53,8 +53,7 @@ class TeamViewController: UIViewController {
   // MARK: - Actions
 
   func addTapped() {
-    let picker =
-        UINavigationController(rootViewController: FriendPickerViewController())
+    let picker = UINavigationController(rootViewController: ContactPicker())
     self.present(picker, animated: true, completion: nil)
   }
 }

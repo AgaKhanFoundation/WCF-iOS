@@ -81,7 +81,7 @@ class FriendsDataSource: TableDataSource {
   }
 }
 
-class FriendPickerViewController : UIViewController {
+class ContactPicker : UIViewController {
   var tableView = UITableView()
   let dataSource = FriendsDataSource()
   let search = UISearchBar()
@@ -147,7 +147,7 @@ class FriendPickerViewController : UIViewController {
   }
 }
 
-extension FriendPickerViewController {
+extension ContactPicker {
   fileprivate func contact(for indexPath: IndexPath) -> String? {
     guard
       let key = dataSource.sortedFriends.keys.sorted()[safe: indexPath.section],
@@ -159,7 +159,7 @@ extension FriendPickerViewController {
   }
 }
 
-extension FriendPickerViewController : UITableViewDataSource {
+extension ContactPicker : UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
       -> UITableViewCell {
     guard
@@ -186,12 +186,13 @@ extension FriendPickerViewController : UITableViewDataSource {
   }
 }
 
-extension FriendPickerViewController : UITableViewDelegate {
+extension ContactPicker : UITableViewDelegate {
   func numberOfSections(in tableView: UITableView) -> Int {
     return dataSource.sortedFriends.keys.count
   }
 
-  func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+  func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int)
+      -> String? {
     return dataSource.sortedFriends.keys.sorted()[section]
   }
 
@@ -240,14 +241,15 @@ extension FriendPickerViewController : UITableViewDelegate {
                  didDeselectRowAt indexPath: IndexPath) {
     if let cell = tableView.cellForRow(at: indexPath) {
       let cellInfo = dataSource.cells[safe: indexPath.row] as! FriendCellInfo
-      dataSource.selectedFriends = dataSource.selectedFriends.filter { (fbid) -> Bool in
-        return fbid != cellInfo.fbid
-      }
+      dataSource.selectedFriends =
+          dataSource.selectedFriends.filter { (fbid) -> Bool in
+            return fbid != cellInfo.fbid
+          }
       cell.accessoryType = .none
     }
   }
 }
 
-extension FriendPickerViewController : UISearchBarDelegate {
+extension ContactPicker : UISearchBarDelegate {
 }
 
