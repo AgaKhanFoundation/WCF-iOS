@@ -22,16 +22,17 @@ private enum FriendType {
 class Facebook {
   typealias EnumerationCallback = (_: Friend) -> Void
 
-  private static func deserialiseFriend(_ json: NSDictionary) -> Friend? {
+  private static func deserialiseFriend(_ json: Dictionary<String, Any>)
+      -> Friend? {
     guard
-      let id = json.value(forKey: "id") as? String,
-      let name = json.value(forKey: "name") as? String,
-      let first_name = json.value(forKey: "first_name") as? String,
-      let last_name = json.value(forKey: "last_name") as? String,
+      let id = json["id"] as? String,
+      let name = json["name"] as? String,
+      let first_name = json["first_name"] as? String,
+      let last_name = json["last_name"] as? String,
 
-      let picture = json.value(forKey: "picture") as? NSDictionary,
-      let picture_data = picture.value(forKey: "data") as? NSDictionary,
-      let picture_url = picture_data.value(forKey: "url") as? String
+      let picture = json["picture"] as? Dictionary<String, Any>,
+      let picture_data = picture["data"] as? Dictionary<String, Any>,
+      let picture_url = picture_data["url"] as? String
     else {
       return nil
     }
@@ -68,15 +69,15 @@ class Facebook {
         print("error executing GraphQL query: \(String(describing: error))")
         return
       }
-      guard let deserialised = result as? NSDictionary else {
+      guard let deserialised = result as? Dictionary<String, Any> else {
         print("unable to deserialise response \(String(describing: result))")
         return
       }
 
-      if let data = deserialised.value(forKey: "data") as? NSArray {
+      if let data = deserialised["data"] as? [Any] {
         for serialised in data {
           guard
-            let deserialised = serialised as? NSDictionary,
+            let deserialised = serialised as? Dictionary<String, Any>,
             let friend = deserialiseFriend(deserialised)
           else {
             print("unable to deserialise friend \(serialised)")
@@ -88,16 +89,17 @@ class Facebook {
         }
       }
 
-      if let pagination = deserialised.value(forKey: "paging") as? NSDictionary {
-        if let cursors = pagination.value(forKey: "cursors") as? NSDictionary {
-          if let after = cursors.value(forKey: "after") as? String {
+      if let pagination = deserialised["paging"] as? Dictionary<String, Any> {
+        if let cursors = pagination["cursors"] as? Dictionary<String, Any> {
+          if let after = cursors["after"] as? String {
             switch limit {
             case .none:
               self.enumerateFriends(type: type, limit: .none, cursor: after,
                                     handler: handler)
               break
             case .count(let count):
-              self.enumerateFriends(type: type, limit: .count(count - retrieved),
+              self.enumerateFriends(type: type,
+                                    limit: .count(count - retrieved),
                                     cursor: after, handler: handler)
             }
           }
