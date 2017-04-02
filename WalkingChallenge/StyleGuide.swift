@@ -9,6 +9,12 @@ struct Style {
     static let accent = #colorLiteral(red: 0.344225198, green: 0.6224462986, blue: 0.1597332358, alpha: 1) // #699D3D //TODO: Replace with AKDN branding
   }
 
+  struct Size {
+    static let s32: CGFloat = 32
+    static let s40: CGFloat = 40
+    static let s48: CGFloat = 48
+  }
+
   struct Padding {
     static let p8: CGFloat = 8
     static let p12: CGFloat = 12

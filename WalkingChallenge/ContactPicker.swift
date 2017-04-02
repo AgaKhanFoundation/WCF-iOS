@@ -31,8 +31,7 @@ class FriendCell: ConfigurableTableViewCell {
     backgroundColor = .clear
 
     picture.snp.makeConstraints { (make) in
-      // TODO(compnerd) create a constant for the photo size
-      make.height.width.equalTo(32)
+      make.height.width.equalTo(Style.Size.s32)
       make.left.equalToSuperview().inset(Style.Padding.p12)
     }
     name.snp.makeConstraints { (make) in
@@ -140,8 +139,7 @@ class ContactPicker : UIViewController {
   }
 
   private func configureTableView() {
-    // TODO(compnerd) create a constant for this value
-    tableView.rowHeight = 40.0
+    tableView.rowHeight = Style.Size.s40
     tableView.separatorStyle = .none
     tableView.delegate = self
     tableView.dataSource = self

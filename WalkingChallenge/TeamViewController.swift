@@ -31,7 +31,7 @@ class TeamViewController: UIViewController {
 
   private func configureTableView() {
     tableView.estimatedRowHeight = Style.Padding.p32
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = Style.Size.s40
     tableView.separatorStyle = .none
     tableView.delegate = self
     tableView.dataSource = self
