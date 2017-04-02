@@ -240,12 +240,12 @@ extension ContactPicker: UITableViewDelegate {
   func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath)
       -> IndexPath? {
     if let selected = tableView.indexPathsForSelectedRows {
-      if selected.count == 11 {
-        let alert = UIAlertController(title: "Error",
-                                      message: "You are limited to 11 members",
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default,
-                                      handler: nil))
+      if selected.count == Team.limit {
+        let alert =
+            UIAlertController(title: "Error",
+                              message: "You are limited to \(Team.limit) members",
+                              preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         return nil
       }
