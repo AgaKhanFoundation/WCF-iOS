@@ -30,6 +30,7 @@
 		269E352D1E767C81000726C2 /* TeamMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E352C1E767C81000726C2 /* TeamMemberCell.swift */; };
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
 		ED85D460832E1D261F31B25E /* Pods_WalkingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */; };
+		F02FB49E1E9180CE0097481D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49D1E9180CE0097481D /* Preferences.swift */; };
 		F09E7DFA1E860CE300AD8CAF /* ContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09E7DF91E860CE300AD8CAF /* ContactPicker.swift */; };
 		F0E1828A1E80B1DB00665E4F /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E182891E80B1DB00665E4F /* Facebook.swift */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 		26C5E3601E7DCACF0053DE3E /* WalkingChallenge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WalkingChallenge.entitlements; sourceTree = "<group>"; };
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkingChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F02FB49D1E9180CE0097481D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		F09E7DF91E860CE300AD8CAF /* ContactPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPicker.swift; sourceTree = "<group>"; };
 		F0E182891E80B1DB00665E4F /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
 		FB0F6813102ABF61F968C9BD /* Pods-WalkingChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.release.xcconfig"; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				269E35051E765BBF000726C2 /* Supporting Files */,
 				269E350B1E765F73000726C2 /* StyleGuide.swift */,
 				269E35171E7669FB000726C2 /* LocalizedStrings.swift */,
+				F02FB49D1E9180CE0097481D /* Preferences.swift */,
 			);
 			path = WalkingChallenge;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				269E352D1E767C81000726C2 /* TeamMemberCell.swift in Sources */,
 				269E35271E76783B000726C2 /* Cells.swift in Sources */,
 				269E34EC1E7658E6000726C2 /* AppController.swift in Sources */,
+				F02FB49E1E9180CE0097481D /* Preferences.swift in Sources */,
 				2606948B1E7DD1A200BFED76 /* Date.swift in Sources */,
 				269E35211E7673B6000726C2 /* User.swift in Sources */,
 				269E35071E765C68000726C2 /* LoginViewController.swift in Sources */,

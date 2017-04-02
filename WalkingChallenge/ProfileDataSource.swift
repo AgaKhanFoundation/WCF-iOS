@@ -55,12 +55,18 @@ class HealthKitDataProvider : DataProvider {
 }
 
 class ProfileDataSource {
-  var realName : String = ""
-  var teamName : String = ""
-  var dataProviders : [DataProvider] = []
+  var realName: String = ""
+  var teamName: String = ""
+  var dataProvider: DataProvider? = nil
 
   init() {
-    dataProviders.append(HealthKitDataProvider())
+    switch Preferences.instance.device {
+    case .None:
+      break
+    case .HealthKit:
+      dataProvider = HealthKitDataProvider()
+      break
+    }
   }
 
   func updateProfile(completion: @escaping SuccessBlock) {
