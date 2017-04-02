@@ -8,6 +8,12 @@ struct FriendCellInfo : CellInfo {
   let fbid: String
   let name: String
   let picture: String
+
+  init(from friend: Friend) {
+    self.fbid = friend.fbid
+    self.name = friend.display_name
+    self.picture = friend.picture_url
+  }
 }
 
 class FriendCell: ConfigurableTableViewCell {
@@ -63,10 +69,7 @@ class FriendsDataSource: TableDataSource {
     if cells.isEmpty {
       let sortOrder = CNContactsUserDefaults.shared().sortOrder
       Facebook.getTaggableFriends(limit: .none) { (friend) in
-        self.cells.append(FriendCellInfo(fbid: friend.fbid,
-                                         name: friend.display_name,
-                                         picture: friend.picture_url))
-        var sorted = [String]()
+        self.cells.append(FriendCellInfo(from: friend))
 
         var key: String
         switch (sortOrder) {
@@ -80,11 +83,14 @@ class FriendsDataSource: TableDataSource {
           key = "#"
         }
 
+        var sorted = [String]()
         if let friends = self.sortedContacts[key] {
           sorted = friends
         }
         sorted.append(friend.fbid)
+
         self.sortedContacts[key] = sorted
+
         onMain {
           completion()
         }
