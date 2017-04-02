@@ -1,15 +1,15 @@
 
-enum Device {
+enum Pedometer {
   case None
   case HealthKit
 }
 
 class Preferences {
   static var instance = Preferences()
-  var device: Device = .None
+  var source: Pedometer = .None
 
   init() {
     // TODO(compnerd) deserialise user preferences
-    device = .HealthKit
+    source = .HealthKit
   }
 }
