@@ -15,7 +15,7 @@ class Team: TableDataSource {
 
     self.cells.append(TeamNameCellInfo(name: Team.name))
     Facebook.getTaggableFriends(limit: .count(12)) { (friend) in
-      self.cells.append(TeamMemberCellInfo(name: friend.display_name, picture: friend.picture_url))
+      self.cells.append(TeamMemberCellInfo(for: friend))
       onMain {
         completion(true)
       }

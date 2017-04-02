@@ -3,8 +3,14 @@ import SnapKit
 
 struct TeamMemberCellInfo: CellInfo {
   let cellIdentifier: String = TeamMemberCell.identifier
+
   let name: String
   let picture: String
+
+  init(for friend: Friend) {
+    self.name = friend.display_name
+    self.picture = friend.picture_url
+  }
 }
 
 class TeamMemberCell: ConfigurableTableViewCell {
