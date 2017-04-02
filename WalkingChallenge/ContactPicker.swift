@@ -3,8 +3,9 @@ import UIKit
 import SnapKit
 import Contacts
 
-struct FriendCellInfo : CellInfo {
-  let cellIdentifier: String = FriendCell.identifier
+struct ContactCellInfo {
+  let cellIdentifier = ContactCell.identifier
+
   let fbid: String
   let name: String
   let picture: String
@@ -16,8 +17,8 @@ struct FriendCellInfo : CellInfo {
   }
 }
 
-class FriendCell: ConfigurableTableViewCell {
-  static let identifier: String = "FriendCell"
+class ContactCell: UITableViewCell {
+  static let identifier: String = "ContactCell"
 
   let picture = UIImageView()
   let name = UILabel(.body)
@@ -47,20 +48,18 @@ class FriendCell: ConfigurableTableViewCell {
     }
   }
 
-  override func configure(cellInfo: CellInfo) {
-    guard let cell = cellInfo as? FriendCellInfo else { return }
-
-    name.text = cell.name
+  func configure(info: ContactCellInfo) {
+    name.text = info.name
     do {
-      let data = try Data(contentsOf: URL(string: cell.picture)!)
+      let data = try Data(contentsOf: URL(string: info.picture)!)
       picture.image = UIImage(data: data)
     } catch {
     }
   }
 }
 
-class FriendsDataSource: TableDataSource {
-  var cells = [CellInfo]()
+class ContactDataSource {
+  var cells = [ContactCellInfo]()
 
   var selectedContacts = [String]()
   var sortedContacts = [String: [String]]()
@@ -69,7 +68,7 @@ class FriendsDataSource: TableDataSource {
     if cells.isEmpty {
       let sortOrder = CNContactsUserDefaults.shared().sortOrder
       Facebook.getTaggableFriends(limit: .none) { (friend) in
-        self.cells.append(FriendCellInfo(from: friend))
+        self.cells.append(ContactCellInfo(from: friend))
 
         var key: String
         switch (sortOrder) {
@@ -99,9 +98,9 @@ class FriendsDataSource: TableDataSource {
   }
 }
 
-class ContactPicker : UIViewController {
+class ContactPicker: UIViewController {
   var tableView = UITableView()
-  let dataSource = FriendsDataSource()
+  let dataSource = ContactDataSource()
   let search = UISearchBar()
 
   override func viewWillAppear(_ animated: Bool) {
@@ -150,8 +149,8 @@ class ContactPicker : UIViewController {
     tableView.delegate = self
     tableView.dataSource = self
     tableView.backgroundColor = Style.Colors.white
-    tableView.register(FriendCell.self,
-                       forCellReuseIdentifier: FriendCell.identifier)
+    tableView.register(ContactCell.self,
+                       forCellReuseIdentifier: ContactCell.identifier)
     tableView.allowsMultipleSelection = true
   }
 
@@ -165,6 +164,12 @@ class ContactPicker : UIViewController {
 }
 
 extension ContactPicker {
+  fileprivate func cell(for fbid: String) -> ContactCellInfo? {
+    return dataSource.cells.filter { (info) in
+      return info.fbid == fbid
+    }.first
+  }
+
   fileprivate func contact(for indexPath: IndexPath) -> String? {
     guard
       let key = dataSource.sortedContacts.keys.sorted()[safe: indexPath.section],
@@ -191,25 +196,22 @@ extension ContactPicker {
   }
 }
 
-extension ContactPicker : UITableViewDataSource {
+extension ContactPicker: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
       -> UITableViewCell {
     guard
       let contact = self.contact(for: indexPath),
+      let info = self.cell(for: contact),
       let cell =
-          tableView.dequeueReusableCell(withIdentifier: FriendCell.identifier,
-                                        for: indexPath)
-              as? ConfigurableTableViewCell
+          tableView.dequeueReusableCell(withIdentifier: ContactCell.identifier,
+                                        for: indexPath) as? ContactCell
     else {
       return UITableViewCell()
     }
 
-    let cellInfo = dataSource.cells.filter { (ci) in
-      return (ci as! FriendCellInfo).fbid == contact
-    }.first! as! FriendCellInfo
-    cell.configure(cellInfo: cellInfo)
+    cell.configure(info: info)
     cell.accessoryType =
-        dataSource.selectedContacts.contains(cellInfo.fbid) ? .checkmark : .none
+        dataSource.selectedContacts.contains(info.fbid) ? .checkmark : .none
     return cell
   }
 
@@ -218,7 +220,7 @@ extension ContactPicker : UITableViewDataSource {
   }
 }
 
-extension ContactPicker : UITableViewDelegate {
+extension ContactPicker: UITableViewDelegate {
   func numberOfSections(in tableView: UITableView) -> Int {
     return dataSource.sortedContacts.keys.count
   }
@@ -278,6 +280,6 @@ extension ContactPicker : UITableViewDelegate {
   }
 }
 
-extension ContactPicker : UISearchBarDelegate {
+extension ContactPicker: UISearchBarDelegate {
 }
 
