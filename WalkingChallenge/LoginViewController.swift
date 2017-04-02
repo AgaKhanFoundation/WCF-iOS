@@ -30,7 +30,7 @@ class LoginViewController: UIViewController {
   private func configureButton() {
     loginButton.delegate = self
     loginButton.readPermissions = [
-      "public_profile", "email", "user_friends"
+      "public_profile", "email", "user_friends", "user_location"
     ]
   }
 

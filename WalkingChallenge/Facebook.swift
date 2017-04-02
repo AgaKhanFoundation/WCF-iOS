@@ -123,19 +123,38 @@ class Facebook {
   static func getRealName(completion: @escaping (_: String?) -> Void) {
     let request = FBSDKGraphRequest(graphPath: "me",
                                     parameters: ["fields" : "name"])
-    _ = request?.start { (_: FBSDKGraphRequestConnection?,
-                          result: Any?,
-                          error: Error?) in
-      guard error == nil else {
-        print("unable to execute GraphQL query: \(String(describing: error))")
-        return
-      }
-      guard let deserialised = result as? Dictionary<String, Any> else {
-        print("unable to deserialise response \(String(describing: result))")
-        return
-      }
+    _ = request?.start {
+      (_: FBSDKGraphRequestConnection?, result: Any?, error: Error?) in
+        guard error == nil else {
+          print("unable to execute GraphQL query: \(String(describing: error))")
+          return
+        }
+        guard let deserialised = result as? Dictionary<String, Any> else {
+          print("unable to deserialise response \(String(describing: result))")
+          return
+        }
 
-      completion(deserialised["name"] as? String)
+        completion(deserialised["name"] as? String)
+    }
+  }
+
+  static func getLocation(completion: @escaping (_: String?) -> Void) {
+    let request = FBSDKGraphRequest(graphPath: "me",
+                                    parameters: ["fields" : "location"])
+    _ = request?.start {
+      (_: FBSDKGraphRequestConnection?, result: Any?, error: Error?) in
+        guard error == nil else {
+          print("unable to execute GraphQL query: \(String(describing: error))")
+            return
+        }
+        guard let deserialised = result as? Dictionary<String, Any> else {
+          print("unable to deserialise response \(String(describing: result))")
+            return
+        }
+
+        if let location = deserialised["location"] as? Dictionary<String, Any> {
+          completion(location["name"] as? String)
+        }
     }
   }
 }
