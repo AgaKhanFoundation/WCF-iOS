@@ -54,11 +54,6 @@ class ProfileDataSource {
   }
 
   func updateProfile(completion: @escaping SuccessBlock) {
-    // TODO(compnerd) enumerate across all data providers
-    dataProviders[0].retrieveStepCountForDateRange(DateInterval(start: Date().startOfDay, end: Date().endOfDay)) {
-     steps in NSLog("steps: %d", steps)
-    }
-
     // TODO(compnerd) fetch this from our backend
     self.teamName = "Team Name"
 
