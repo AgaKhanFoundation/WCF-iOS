@@ -130,7 +130,7 @@ class ContactPicker : UIViewController {
   }
 
   private func configureNavigationBar() {
-    navigationItem.title = "Select Friends"
+    navigationItem.title = Strings.ContactPicker.title
     navigationItem.leftBarButtonItem =
         UIBarButtonItem(barButtonSystemItem: .cancel, target: self,
                         action: #selector(cancelTapped))
