@@ -101,7 +101,6 @@ class ContactDataSource {
 class ContactPicker: UIViewController {
   var tableView = UITableView()
   let dataSource = ContactDataSource()
-  let search = UISearchBar()
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -116,19 +115,12 @@ class ContactPicker: UIViewController {
     configureNavigationBar()
     configureTableView()
 
-    // TODO(compnerd) color the background to .clear
-    search.delegate = self
-
     view.backgroundColor = Style.Colors.white
-    view.addSubviews([search, tableView])
+    view.addSubview(tableView)
 
-    search.snp.makeConstraints { (make) in
-      make.left.right.equalToSuperview().inset(Style.Padding.p12)
-      make.top.equalToSuperview().inset(Style.Padding.p12)
-    }
     tableView.snp.makeConstraints { (make) in
       make.left.right.equalToSuperview().inset(Style.Padding.p12)
-      make.top.equalTo(search.snp.bottom).offset(Style.Padding.p12)
+      make.top.equalToSuperview().inset(Style.Padding.p12)
       make.bottom.equalToSuperview().inset(Style.Padding.p12)
     }
   }
@@ -278,8 +270,5 @@ extension ContactPicker: UITableViewDelegate {
       cell.accessoryType = .none
     }
   }
-}
-
-extension ContactPicker: UISearchBarDelegate {
 }
 
