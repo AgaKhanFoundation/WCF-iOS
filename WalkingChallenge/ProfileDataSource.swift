@@ -4,15 +4,16 @@ import Foundation
 import HealthKit
 
 protocol DataProvider {
+  typealias StepCountCallback = (_ steps: Int) -> Void
   func retrieveStepCountForDateRange(_ interval : DateInterval,
-                                     _ completion : @escaping (_ steps : Int) -> Void)
+                                     _ completion : @escaping StepCountCallback)
 }
 
 class HealthKitDataProvider : DataProvider {
   let store = HKHealthStore()
   
   func retrieveStepCountForDateRange(_ interval : DateInterval,
-                                     _ completion: @escaping (_ steps : Int) -> Void) {
+                                     _ completion: @escaping StepCountCallback) {
     guard let stepCount = HKSampleType.quantityType(forIdentifier: .stepCount) else { return }
     if store.authorizationStatus(for: stepCount) == .sharingAuthorized {
       query(sampleType: stepCount, interval: interval, completion: completion)
@@ -27,7 +28,7 @@ class HealthKitDataProvider : DataProvider {
     }
   }
     
-  private func query(sampleType: HKSampleType, interval: DateInterval, completion: @escaping (_ steps: Int) -> Void) {
+  private func query(sampleType: HKSampleType, interval: DateInterval, completion: @escaping StepCountCallback) {
     let predicate = HKQuery.predicateForSamples(withStart: interval.start, end: interval.end, options: [])
     let query = HKSampleQuery(sampleType: sampleType, predicate: predicate, limit: 0, sortDescriptors: nil) { (query, results, error) in
       var steps = 0.0
