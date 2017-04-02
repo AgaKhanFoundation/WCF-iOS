@@ -14,23 +14,32 @@ class HealthKitDataProvider : DataProvider {
   
   func retrieveStepCountForDateRange(_ interval : DateInterval,
                                      _ completion: @escaping StepCountCallback) {
-    guard let stepCount = HKSampleType.quantityType(forIdentifier: .stepCount) else { return }
+    guard
+      let stepCount = HKSampleType.quantityType(forIdentifier: .stepCount)
+    else { return }
+
     if store.authorizationStatus(for: stepCount) == .sharingAuthorized {
       query(sampleType: stepCount, interval: interval, completion: completion)
     } else {
-      store.requestAuthorization(toShare: nil, read: [stepCount], completion: { [weak self] (success: Bool, error: Error?) in
+      store.requestAuthorization(toShare: nil, read: [stepCount]) {
+        [weak self] (success: Bool, error: Error?) in
         guard error == nil && success else {
           print("Error getting HealthKit access: \(String(describing: error))")
           return
         }
-        self?.query(sampleType: stepCount, interval: interval, completion: completion)
-      })
+        self?.query(sampleType: stepCount, interval: interval,
+                    completion: completion)
+      }
     }
   }
     
-  private func query(sampleType: HKSampleType, interval: DateInterval, completion: @escaping StepCountCallback) {
-    let predicate = HKQuery.predicateForSamples(withStart: interval.start, end: interval.end, options: [])
-    let query = HKSampleQuery(sampleType: sampleType, predicate: predicate, limit: 0, sortDescriptors: nil) { (query, results, error) in
+  private func query(sampleType: HKSampleType, interval: DateInterval,
+                     completion: @escaping StepCountCallback) {
+    let predicate = HKQuery.predicateForSamples(withStart: interval.start,
+                                                end: interval.end, options: [])
+    let query = HKSampleQuery(sampleType: sampleType, predicate: predicate,
+                              limit: 0, sortDescriptors: nil) {
+      (query, results, error) in
       var steps = 0.0
       if let count = results?.count {
         if count > 0 {
