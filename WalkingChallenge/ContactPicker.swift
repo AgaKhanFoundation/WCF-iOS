@@ -57,8 +57,8 @@ class FriendCell: ConfigurableTableViewCell {
 class FriendsDataSource: TableDataSource {
   var cells = [CellInfo]()
 
-  var selectedFriends = [String]()
-  var sortedFriends = [String: [String]]()
+  var selectedContacts = [String]()
+  var sortedContacts = [String: [String]]()
 
   func reload(completion: @escaping () -> Void) {
     if cells.isEmpty {
@@ -81,11 +81,11 @@ class FriendsDataSource: TableDataSource {
           key = "#"
         }
 
-        if let friends = self.sortedFriends[key] {
+        if let friends = self.sortedContacts[key] {
           sorted = friends
         }
         sorted.append(friend.fbid)
-        self.sortedFriends[key] = sorted
+        self.sortedContacts[key] = sorted
         onMain {
           completion()
         }
@@ -163,12 +163,27 @@ class ContactPicker : UIViewController {
 extension ContactPicker {
   fileprivate func contact(for indexPath: IndexPath) -> String? {
     guard
-      let key = dataSource.sortedFriends.keys.sorted()[safe: indexPath.section],
-      let contacts = dataSource.sortedFriends[key]
+      let key = dataSource.sortedContacts.keys.sorted()[safe: indexPath.section],
+      let contacts = dataSource.sortedContacts[key]
     else {
         return nil
     }
     return contacts[safe: indexPath.row]!
+  }
+
+  fileprivate func selectContact(fbid: String) {
+    dataSource.selectedContacts.append(fbid)
+  }
+
+  fileprivate func unselectContact(fbid: String) {
+    dataSource.selectedContacts =
+        dataSource.selectedContacts.filter { (contact) in
+          return !(contact == fbid)
+        }
+  }
+
+  fileprivate func isSelected(fbid: String) -> Bool {
+    return dataSource.selectedContacts.contains(fbid)
   }
 }
 
@@ -190,39 +205,38 @@ extension ContactPicker : UITableViewDataSource {
     }.first! as! FriendCellInfo
     cell.configure(cellInfo: cellInfo)
     cell.accessoryType =
-        dataSource.selectedFriends.contains(cellInfo.fbid) ? .checkmark : .none
+        dataSource.selectedContacts.contains(cellInfo.fbid) ? .checkmark : .none
     return cell
   }
 
   func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-    return dataSource.sortedFriends.keys.sorted()
+    return dataSource.sortedContacts.keys.sorted()
   }
 }
 
 extension ContactPicker : UITableViewDelegate {
   func numberOfSections(in tableView: UITableView) -> Int {
-    return dataSource.sortedFriends.keys.count
+    return dataSource.sortedContacts.keys.count
   }
 
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int)
       -> String? {
-    return dataSource.sortedFriends.keys.sorted()[section]
+    return dataSource.sortedContacts.keys.sorted()[section]
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)
       -> Int {
-    let key = dataSource.sortedFriends.keys.sorted()[section]
-    return (dataSource.sortedFriends[key]?.count)!
+    let key = dataSource.sortedContacts.keys.sorted()[section]
+    return (dataSource.sortedContacts[key]?.count)!
   }
 
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
                  forRowAt indexPath: IndexPath) {
-    let contact = self.contact(for: indexPath)
-    let cellInfo = dataSource.cells.filter { (ci) in
-      return (ci as! FriendCellInfo).fbid == contact
-    }.first! as! FriendCellInfo
-    cell.accessoryType =
-        dataSource.selectedFriends.contains(cellInfo.fbid) ? .checkmark : .none
+    guard let contact = self.contact(for: indexPath) else {
+      cell.accessoryType = .none
+      return
+    }
+    cell.accessoryType = isSelected(fbid: contact) ? .checkmark : .none
   }
 
   func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath)
@@ -244,8 +258,8 @@ extension ContactPicker : UITableViewDelegate {
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if let cell = tableView.cellForRow(at: indexPath) {
-      let cellInfo = dataSource.cells[safe: indexPath.row] as! FriendCellInfo
-      dataSource.selectedFriends.append(cellInfo.fbid)
+      guard let contact = self.contact(for: indexPath) else { return }
+      selectContact(fbid: contact)
       cell.accessoryType = .checkmark
     }
   }
@@ -253,11 +267,8 @@ extension ContactPicker : UITableViewDelegate {
   func tableView(_ tableView: UITableView,
                  didDeselectRowAt indexPath: IndexPath) {
     if let cell = tableView.cellForRow(at: indexPath) {
-      let cellInfo = dataSource.cells[safe: indexPath.row] as! FriendCellInfo
-      dataSource.selectedFriends =
-          dataSource.selectedFriends.filter { (fbid) -> Bool in
-            return fbid != cellInfo.fbid
-          }
+      guard let contact = self.contact(for: indexPath) else { return }
+      unselectContact(fbid: contact)
       cell.accessoryType = .none
     }
   }
