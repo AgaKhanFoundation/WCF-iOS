@@ -58,7 +58,9 @@ class LoginViewController: UIViewController {
 
 // MARK: - FBSDKLoginButtonDelegate
 extension LoginViewController: FBSDKLoginButtonDelegate {
-  func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+  func loginButton(_ loginButton: FBSDKLoginButton!,
+                   didCompleteWith result: FBSDKLoginManagerLoginResult!,
+                   error: Error!) {
     guard let error = error else {
       AppController.shared.login()
       return
@@ -66,14 +68,14 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
 
     let alertVC = UIAlertController(title: "Error",
                                     message: "Error logging in: \(error)",
-      preferredStyle: .alert)
-
+                                    preferredStyle: .alert)
     alertVC.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
     present(alertVC, animated: true, completion: nil)
   }
 
   func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-    // Left blank on purpose since the user shouldn't be logged in on this view controller
+    // Left blank on purpose since the user shouldn't be logged in on this view
+    // controller
   }
 }
 

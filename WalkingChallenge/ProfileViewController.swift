@@ -69,7 +69,9 @@ class ProfileViewController: UIViewController {
   // Error
 
   private func presentErrorAlert() {
-    let alertVC = UIAlertController(title: "Error", message: "Error loading profile", preferredStyle: .alert)
+    let alertVC = UIAlertController(title: "Error",
+                                    message: "Error loading profile",
+                                    preferredStyle: .alert)
     alertVC.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
     present(alertVC, animated: true, completion: nil)
   }
@@ -80,7 +82,9 @@ extension ProfileViewController: FBSDKLoginButtonDelegate {
     AppController.shared.logout()
   }
 
-  func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+  func loginButton(_ loginButton: FBSDKLoginButton!,
+                   didCompleteWith result: FBSDKLoginManagerLoginResult!,
+                   error: Error!) {
     // Left blank because the user should be logged in when reaching this point
   }
 }
