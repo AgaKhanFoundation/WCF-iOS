@@ -39,7 +39,7 @@ class ProfileViewController: UIViewController {
       make.top.equalTo(topLayoutGuide.snp.bottom).offset(Style.Padding.p12)
     }
 
-    teamLabel.text = "My Team"
+    teamLabel.text = Strings.Profile.myTeam
     teamLabel.snp.makeConstraints { (make) in
       make.left.equalToSuperview().inset(Style.Padding.p12)
       make.top.equalTo(nameLabel.snp.bottom).offset(Style.Padding.p12)

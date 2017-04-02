@@ -7,6 +7,10 @@ struct Strings {
     static let desciption = NSLocalizedString("Please login in via facebook to continue", comment: "Description for login screen")
   }
 
+  struct Profile {
+    static let myTeam = NSLocalizedString("My Team", comment: "Description label for team")
+  }
+
   struct ContactPicker {
     static let title = NSLocalizedString("Select Contacts", comment: "Title for Contact Picker")
   }
