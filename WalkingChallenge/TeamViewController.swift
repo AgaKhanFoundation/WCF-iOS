@@ -3,7 +3,7 @@ import SnapKit
 
 class TeamViewController: UIViewController {
   let tableView = UITableView()
-  let dataSource = TeamDataSource()
+  let dataSource = Team()
 
   // MARK: - Lifecycle
 
