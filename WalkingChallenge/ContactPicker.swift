@@ -64,6 +64,8 @@ class ContactDataSource {
   var selectedContacts = [String]()
   var sortedContacts = [String: [String]]()
 
+  var filteredContacts = [String]()
+
   func reload(completion: @escaping () -> Void) {
     if cells.isEmpty {
       let sortOrder = CNContactsUserDefaults.shared().sortOrder
@@ -141,6 +143,8 @@ class ContactPicker: UIViewController {
     searchController.searchResultsUpdater = self
     searchController.obscuresBackgroundDuringPresentation = false
     searchController.hidesNavigationBarDuringPresentation = false
+    searchController.searchBar.delegate = self
+    searchController.searchBar.isTranslucent = true
   }
 
   private func configureTableView() {
@@ -178,12 +182,14 @@ extension ContactPicker {
 
   fileprivate func contact(for indexPath: IndexPath) -> String? {
     guard
-      let key = dataSource.sortedContacts.keys.sorted()[safe: indexPath.section],
-      let contacts = dataSource.sortedContacts[key]
+      let key =
+          dataSource.sortedContacts.keys.sorted()[safe: indexPath.section],
+      let contacts = isSearchActive ? dataSource.filteredContacts
+                                    : dataSource.sortedContacts[key]
     else {
         return nil
     }
-    return contacts[safe: indexPath.row]!
+    return contacts[safe: indexPath.row]
   }
 
   fileprivate func selectContact(fbid: String) {
@@ -203,8 +209,8 @@ extension ContactPicker {
 }
 
 extension ContactPicker: UITableViewDataSource {
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
-      -> UITableViewCell {
+  func tableView(_ tableView: UITableView,
+                 cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard
       let contact = self.contact(for: indexPath),
       let info = self.cell(for: contact),
@@ -222,24 +228,40 @@ extension ContactPicker: UITableViewDataSource {
   }
 
   func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-    return dataSource.sortedContacts.keys.sorted()
+    if isSearchActive {
+      return nil
+    } else {
+      return dataSource.sortedContacts.keys.sorted()
+    }
   }
 }
 
 extension ContactPicker: UITableViewDelegate {
   func numberOfSections(in tableView: UITableView) -> Int {
-    return dataSource.sortedContacts.keys.count
+    if isSearchActive {
+      return 1
+    } else {
+      return dataSource.sortedContacts.keys.count
+    }
   }
 
-  func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int)
-      -> String? {
-    return dataSource.sortedContacts.keys.sorted()[section]
+  func tableView(_ tableView: UITableView,
+                 titleForHeaderInSection section: Int) -> String? {
+    if isSearchActive {
+      return nil
+    } else {
+      return dataSource.sortedContacts.keys.sorted()[section]
+    }
   }
 
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)
-      -> Int {
-    let key = dataSource.sortedContacts.keys.sorted()[section]
-    return (dataSource.sortedContacts[key]?.count)!
+  func tableView(_ tableView: UITableView,
+                 numberOfRowsInSection section: Int) -> Int {
+    if isSearchActive {
+      return dataSource.filteredContacts.count
+    } else {
+      let key = dataSource.sortedContacts.keys.sorted()[section]
+      return (dataSource.sortedContacts[key]?.count)!
+    }
   }
 
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
@@ -251,8 +273,8 @@ extension ContactPicker: UITableViewDelegate {
     cell.accessoryType = isSelected(fbid: contact) ? .checkmark : .none
   }
 
-  func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath)
-      -> IndexPath? {
+  func tableView(_ tableView: UITableView,
+                 willSelectRowAt indexPath: IndexPath) -> IndexPath? {
     guard let selected = tableView.indexPathsForSelectedRows else { return nil }
 
     if selected.count == Team.limit {
@@ -268,7 +290,8 @@ extension ContactPicker: UITableViewDelegate {
     return indexPath
   }
 
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  func tableView(_ tableView: UITableView,
+                 didSelectRowAt indexPath: IndexPath) {
     if let cell = tableView.cellForRow(at: indexPath) {
       guard let contact = self.contact(for: indexPath) else { return }
       selectContact(fbid: contact)
@@ -288,6 +311,25 @@ extension ContactPicker: UITableViewDelegate {
 
 extension ContactPicker: UISearchResultsUpdating {
   func updateSearchResults(for searchController: UISearchController) {
+    guard let string = searchController.searchBar.text?.lowercased() else {
+      return
+    }
+
+    dataSource.filteredContacts = dataSource.cells.filter { (cell) in
+      return cell.name.lowercased().contains(string)
+    }.map { return $0.fbid }
+
+    tableView.reloadData()
+  }
+}
+
+extension ContactPicker: UISearchBarDelegate {
+  func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    tableView.reloadData()
+  }
+
+  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    tableView.reloadData()
   }
 }
 
