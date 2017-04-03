@@ -91,6 +91,7 @@
 		266986791E91D50E004D45B4 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				F0E182891E80B1DB00665E4F /* Facebook.swift */,
 				2669867A1E91D527004D45B4 /* APIClient.swift */,
 			);
 			name = Networking;
@@ -155,7 +156,6 @@
 				269E350F1E7666EE000726C2 /* Blocks.swift */,
 				269E35281E767AE1000726C2 /* Collection.swift */,
 				2606948A1E7DD1A200BFED76 /* Date.swift */,
-				F0E182891E80B1DB00665E4F /* Facebook.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
