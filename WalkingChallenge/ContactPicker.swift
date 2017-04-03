@@ -165,6 +165,11 @@ class ContactPicker: UIViewController {
 }
 
 extension ContactPicker {
+  fileprivate var isSearchActive: Bool {
+    return searchController.isActive &&
+           !(searchController.searchBar.text?.isEmpty)!
+  }
+
   fileprivate func cell(for fbid: String) -> ContactCellInfo? {
     return dataSource.cells.filter { (info) in
       return info.fbid == fbid
