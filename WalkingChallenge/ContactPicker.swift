@@ -100,6 +100,7 @@ class ContactDataSource {
 
 class ContactPicker: UIViewController {
   var tableView = UITableView()
+  let searchController = UISearchController(searchResultsController: nil)
   let dataSource = ContactDataSource()
 
   override func viewWillAppear(_ animated: Bool) {
@@ -113,6 +114,7 @@ class ContactPicker: UIViewController {
     super.viewDidLoad()
 
     configureNavigationBar()
+    configureSearchController()
     configureTableView()
 
     view.backgroundColor = Style.Colors.white
@@ -135,7 +137,14 @@ class ContactPicker: UIViewController {
                         action: #selector(doneTapped))
   }
 
+  private func configureSearchController() {
+    searchController.searchResultsUpdater = self
+    searchController.obscuresBackgroundDuringPresentation = false
+    searchController.hidesNavigationBarDuringPresentation = false
+  }
+
   private func configureTableView() {
+    tableView.tableHeaderView = searchController.searchBar
     tableView.rowHeight = Style.Size.s40
     tableView.separatorStyle = .none
     tableView.delegate = self
@@ -269,6 +278,11 @@ extension ContactPicker: UITableViewDelegate {
       unselectContact(fbid: contact)
       cell.accessoryType = .none
     }
+  }
+}
+
+extension ContactPicker: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
   }
 }
 
