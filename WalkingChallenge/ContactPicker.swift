@@ -50,10 +50,12 @@ class ContactCell: UITableViewCell {
 
   func configure(info: ContactCellInfo) {
     name.text = info.name
-    do {
-      let data = try Data(contentsOf: URL(string: info.picture)!)
-      picture.image = UIImage(data: data)
-    } catch {
+    onBackground {
+      do {
+        let data = try Data(contentsOf: URL(string: info.picture)!)
+        self.picture.image = UIImage(data: data)
+      } catch {
+      }
     }
   }
 }
