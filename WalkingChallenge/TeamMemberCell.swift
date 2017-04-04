@@ -58,7 +58,7 @@ class TeamMemberCell: ConfigurableTableViewCell {
     onBackground {
       do {
         let data = try Data(contentsOf: URL(string: cell.picture)!)
-        self.picture.image = UIImage(data: data)
+        onMain { self.picture.image = UIImage(data: data) }
       } catch {
       }
     }
