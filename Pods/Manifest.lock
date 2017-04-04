@@ -5,23 +5,30 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - FBSDKCoreKit (4.19.0):
+  - FBSDKCoreKit (4.20.1):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.19.0):
+  - FBSDKLoginKit (4.20.1):
+    - FBSDKCoreKit
+  - FBSDKMessengerShareKit (1.3.2)
+  - FBSDKShareKit (4.20.1):
     - FBSDKCoreKit
   - SnapKit (3.2.0)
 
 DEPENDENCIES:
-  - FBSDKCoreKit (~> 4.19.0)
-  - FBSDKLoginKit (~> 4.19.0)
+  - FBSDKCoreKit (~> 4.20.1)
+  - FBSDKLoginKit (~> 4.20.1)
+  - FBSDKMessengerShareKit (~> 1.3.2)
+  - FBSDKShareKit (~> 4.20.1)
   - SnapKit (~> 3.2.0)
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  FBSDKCoreKit: 894b2b6eda6a4c8c4204e92e59cc355709ef045c
-  FBSDKLoginKit: 83ca4d8f12a2022570af9fd6aacf27f6b425b99f
+  FBSDKCoreKit: 39a3569652983bf8666620dd334804c9057ae9b2
+  FBSDKLoginKit: 17092ff61a18c54ca423aebc18c5acc2e5a4a728
+  FBSDKMessengerShareKit: 41c0b1a667d685c9433f993eb9611b3d5074e1cb
+  FBSDKShareKit: 4f37934d9ee9500d2d35752595816dc35f967478
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
 
-PODFILE CHECKSUM: f8809d7313549c92863376925ae0e78cc8e00304
+PODFILE CHECKSUM: 988837e0ae5c6a06e99cb5f5a3008cdb93efc6c1
 
 COCOAPODS: 1.2.0
