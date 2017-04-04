@@ -53,7 +53,7 @@ class ContactCell: UITableViewCell {
     onBackground {
       do {
         let data = try Data(contentsOf: URL(string: info.picture)!)
-        self.picture.image = UIImage(data: data)
+        onMain { self.picture.image = UIImage(data: data) }
       } catch {
       }
     }
