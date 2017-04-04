@@ -55,10 +55,12 @@ class TeamMemberCell: ConfigurableTableViewCell {
 
     nameLabel.text = cell.name
 
-    do {
-      let data = try Data(contentsOf: URL(string: cell.picture)!)
-      picture.image = UIImage(data: data)
-    } catch {
+    onBackground {
+      do {
+        let data = try Data(contentsOf: URL(string: cell.picture)!)
+        self.picture.image = UIImage(data: data)
+      } catch {
+      }
     }
   }
 }
