@@ -3,62 +3,6 @@ import UIKit
 import SnapKit
 import Contacts
 
-struct ContactCellInfo {
-  let cellIdentifier = ContactCell.identifier
-
-  let fbid: String
-  let name: String
-  let picture: String
-
-  init(from friend: Friend) {
-    self.fbid = friend.fbid
-    self.name = friend.display_name
-    self.picture = friend.picture_url
-  }
-}
-
-class ContactCell: UITableViewCell {
-  static let identifier: String = "ContactCell"
-
-  let picture = UIImageView()
-  let name = UILabel(.body)
-
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
-    initialize()
-  }
-
-  required init?(coder: NSCoder) {
-    super.init(coder: coder)
-    initialize()
-  }
-
-  private func initialize() {
-    contentView.addSubviews([picture, name])
-    backgroundColor = .clear
-
-    picture.snp.makeConstraints { (make) in
-      make.height.width.equalTo(Style.Size.s32)
-      make.left.equalToSuperview().inset(Style.Padding.p12)
-    }
-    name.snp.makeConstraints { (make) in
-      make.left.equalTo(picture.snp.right).offset(Style.Padding.p12)
-      make.right.equalToSuperview().inset(Style.Padding.p12)
-      make.height.equalTo(picture.snp.height)
-    }
-  }
-
-  func configure(info: ContactCellInfo) {
-    name.text = info.name
-    onBackground {
-      do {
-        let data = try Data(contentsOf: URL(string: info.picture)!)
-        onMain { self.picture.image = UIImage(data: data) }
-      } catch {
-      }
-    }
-  }
-}
 
 class ContactDataSource {
   var cells = [ContactCellInfo]()
@@ -277,10 +221,15 @@ extension ContactPicker: UITableViewDelegate {
 
   func tableView(_ tableView: UITableView,
                  willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-    let selected = tableView.indexPathsForSelectedRows
+    guard let selected = tableView.indexPathsForSelectedRows else { return nil }
 
-    if selected?.count == Team.limit {
-      alert(message: "You are limited to \(Team.limit) members")
+    if selected.count == Team.limit {
+      let alert =
+          UIAlertController(title: "Error",
+                            message: "You are limited to \(Team.limit) members",
+                            preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+      self.present(alert, animated: true, completion: nil)
       return nil
     }
 
