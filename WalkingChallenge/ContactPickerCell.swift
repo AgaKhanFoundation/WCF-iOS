@@ -7,6 +7,7 @@ struct ContactCellInfo: CellInfo {
   let fbid: String
   let name: String
   let picture: String
+  var isSelected: Bool = false
   
   init(from friend: Friend) {
     self.fbid = friend.fbid
