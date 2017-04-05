@@ -277,9 +277,9 @@ extension ContactPicker: UITableViewDelegate {
 
   func tableView(_ tableView: UITableView,
                  willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-    guard let selected = tableView.indexPathsForSelectedRows else { return nil }
+    let selected = tableView.indexPathsForSelectedRows
 
-    if selected.count == Team.limit {
+    if selected?.count == Team.limit {
       let alert =
           UIAlertController(title: "Error",
                             message: "You are limited to \(Team.limit) members",
