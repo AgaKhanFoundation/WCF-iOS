@@ -61,16 +61,11 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
   func loginButton(_ loginButton: FBSDKLoginButton!,
                    didCompleteWith result: FBSDKLoginManagerLoginResult!,
                    error: Error!) {
-    guard let error = error else {
-      AppController.shared.login()
+    guard error == nil else {
+      alert(message: "Error logging in: \(error)", style: .cancel)
       return
     }
-
-    let alertVC = UIAlertController(title: "Error",
-                                    message: "Error logging in: \(error)",
-                                    preferredStyle: .alert)
-    alertVC.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-    present(alertVC, animated: true, completion: nil)
+    AppController.shared.login()
   }
 
   func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
