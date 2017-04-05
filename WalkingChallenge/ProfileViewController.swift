@@ -61,19 +61,9 @@ class ProfileViewController: UIViewController {
         self?.nameLabel.text = self?.dataSource.realName
         self?.teamNameLabel.text = Team.name
       } else {
-        self?.presentErrorAlert()
+        self?.alert(message: "Error loading profile")
       }
     }
-  }
-
-  // Error
-
-  private func presentErrorAlert() {
-    let alertVC = UIAlertController(title: "Error",
-                                    message: "Error loading profile",
-                                    preferredStyle: .alert)
-    alertVC.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-    present(alertVC, animated: true, completion: nil)
   }
 }
 
