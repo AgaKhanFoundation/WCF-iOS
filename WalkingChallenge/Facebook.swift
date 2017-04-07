@@ -1,5 +1,6 @@
 
 import FBSDKCoreKit
+import FBSDKShareKit
 
 struct Friend {
   let fbid: String
@@ -155,6 +156,20 @@ class Facebook {
         if let location = deserialised["location"] as? Dictionary<String, Any> {
           completion(location["name"] as? String)
         }
+    }
+  }
+
+  static func invite(url: String, image: String? = nil) {
+    let invite = FBSDKAppInviteContent()
+    invite.appLinkURL = URL(string: url)!
+    if let image = image {
+      invite.appInvitePreviewImageURL = URL(string: image)!
+    }
+
+    let dialog = FBSDKAppInviteDialog()
+    dialog.content = invite
+    if dialog.canShow() {
+      dialog.show()
     }
   }
 }
