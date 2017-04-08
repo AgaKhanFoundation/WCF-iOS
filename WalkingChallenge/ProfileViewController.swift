@@ -9,6 +9,10 @@ class ProfileViewController: UIViewController {
   let profileImage = UIImageView()
   let nameLabel = UILabel(.header)
   let teamLabel = UILabel(.title)
+
+  let rangePicker = DropDownPickerView(data: ["This Week", "This Month",
+                                              "This Event", "Overall"])
+
   let logoutButton = FBSDKLoginButton()
 
   // MARK: - Lifecycle
@@ -40,7 +44,7 @@ class ProfileViewController: UIViewController {
     title = Strings.NavBarTitles.profile
     logoutButton.delegate = self
 
-    view.addSubviews([profileImage, nameLabel, teamLabel])
+    view.addSubviews([profileImage, nameLabel, teamLabel, rangePicker])
 
     profileImage.contentMode = .scaleAspectFill
     profileImage.layer.cornerRadius = Style.Size.s128 / 2
@@ -63,6 +67,14 @@ class ProfileViewController: UIViewController {
     teamLabel.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(nameLabel.snp.bottom).offset(Style.Padding.p12)
       ConstraintMaker.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+    }
+
+    // TODO(compnerd) make this look better ...
+    rangePicker.layer.borderColor = Style.Colors.grey.cgColor
+    rangePicker.layer.borderWidth = 1
+    rangePicker.snp.makeConstraints { (ConstraintMaker) in
+      ConstraintMaker.top.equalTo(teamLabel.snp.bottom).offset(Style.Padding.p24)
+      ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
     // TODO(compnerd) move this to settings view
