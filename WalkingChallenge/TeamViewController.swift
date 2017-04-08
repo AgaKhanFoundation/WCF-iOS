@@ -2,8 +2,9 @@
 import SnapKit
 
 class TeamViewController: UIViewController {
-  let tableView = UITableView()
-  let dataSource = Team()
+  let teamImage = UIImageView()
+  let teamName = UILabel(.header)
+  let memberCount = UILabel(.body)
 
   // MARK: - Lifecycle
 
@@ -11,16 +12,7 @@ class TeamViewController: UIViewController {
     super.viewDidLoad()
 
     configureNavigationBar()
-    configureTableView()
     configureView()
-  }
-
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-
-    dataSource.reload { [weak self] (success: Bool) in
-      self?.tableView.reloadData()
-    }
   }
 
   // MARK: - Configure
@@ -29,24 +21,33 @@ class TeamViewController: UIViewController {
     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
   }
 
-  private func configureTableView() {
-    tableView.estimatedRowHeight = Style.Padding.p32
-    tableView.rowHeight = Style.Size.s40
-    tableView.separatorStyle = .none
-    tableView.delegate = self
-    tableView.dataSource = self
-    tableView.backgroundColor = Style.Colors.white
-    tableView.register(TeamNameCell.self, forCellReuseIdentifier: TeamNameCell.identifier)
-    tableView.register(TeamMemberCell.self, forCellReuseIdentifier: TeamMemberCell.identifier)
-  }
-
   private func configureView() {
     view.backgroundColor = Style.Colors.white
     title = Strings.NavBarTitles.team
 
-    view.addSubview(tableView)
-    tableView.snp.makeConstraints { (make) in
-      make.edges.equalToSuperview()
+    view.addSubviews([teamImage, teamName, memberCount])
+
+    teamImage.snp.makeConstraints { (ConstraintMaker) in
+      ConstraintMaker.top.equalTo(topLayoutGuide.snp.bottom).offset(Style.Padding.p12)
+      ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
+      ConstraintMaker.height.width.equalTo(Style.Size.s56)
+    }
+
+    teamName.text = Team.name
+    teamName.textAlignment = .left
+    teamName.snp.makeConstraints { (ConstraintMaker) in
+      ConstraintMaker.top.equalTo(teamImage.snp.top)
+      ConstraintMaker.left.equalTo(teamImage.snp.right).offset(Style.Padding.p12)
+      ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
+    }
+
+    // TODO(compnerd) make this localizable, get a better chevron
+    memberCount.text = "\(Team.size) Members >"
+    memberCount.textAlignment = .left
+    memberCount.snp.makeConstraints { (ConstraintMaker) in
+      ConstraintMaker.top.equalTo(teamName.snp.bottom).offset(Style.Padding.p8)
+      ConstraintMaker.left.equalTo(teamImage.snp.right).offset(Style.Padding.p12)
+      ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
     }
   }
 
@@ -55,23 +56,6 @@ class TeamViewController: UIViewController {
   func addTapped() {
     let picker = UINavigationController(rootViewController: ContactPicker())
     self.present(picker, animated: true, completion: nil)
-  }
-}
-
-extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return dataSource.cells.count
-  }
-
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard
-      let cellInfo = dataSource.cells[safe: indexPath.row],
-      let cell = tableView.dequeueReusableCell(withIdentifier: cellInfo.cellIdentifier, for: indexPath) as? ConfigurableTableViewCell
-    else { return UITableViewCell() }
-
-    cell.configure(cellInfo: cellInfo)
-
-    return cell
   }
 }
 
