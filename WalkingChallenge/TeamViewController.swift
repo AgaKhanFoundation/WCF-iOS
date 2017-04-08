@@ -27,6 +27,10 @@ class TeamViewController: UIViewController {
 
     view.addSubviews([teamImage, teamName, memberCount])
 
+    teamImage.layer.cornerRadius = Style.Size.s56 / 2
+    teamImage.layer.masksToBounds = true
+    teamImage.layer.borderColor = Style.Colors.grey.cgColor
+    teamImage.layer.borderWidth = 1
     teamImage.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(topLayoutGuide.snp.bottom).offset(Style.Padding.p12)
       ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
