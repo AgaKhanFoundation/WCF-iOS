@@ -43,6 +43,10 @@ class ProfileViewController: UIViewController {
     view.addSubviews([profileImage, nameLabel, teamLabel])
 
     profileImage.contentMode = .scaleAspectFill
+    profileImage.layer.cornerRadius = Style.Size.s128 / 2
+    profileImage.layer.masksToBounds = true
+    profileImage.layer.borderColor = Style.Colors.grey.cgColor
+    profileImage.layer.borderWidth = 1
     profileImage.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(topLayoutGuide.snp.bottom).offset(Style.Padding.p12)
       ConstraintMaker.size.equalTo(Style.Size.s128)
