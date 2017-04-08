@@ -11,6 +11,12 @@ class Team: TableDataSource {
   }
 
   // TODO(compnerd) cache this value to avoid unnecessary requests
+  static var size: Int {
+    // TODO(compnerd) fetch this from the backend
+    return 7
+  }
+
+  // TODO(compnerd) cache this value to avoid unnecessary requests
   static var limit: Int {
     // TODO(compnerd) fetch this from the backend
     return 11
