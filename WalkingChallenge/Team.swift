@@ -7,7 +7,7 @@ class Team: TableDataSource {
   // TODO(compnerd) cache this value to avoid unnecessary requests
   static var name: String {
     // TODO(compnerd) fetch this from the backend
-    return "Team Name"
+    return "Walk4Change"
   }
 
   // TODO(compnerd) cache this value to avoid unnecessary requests
