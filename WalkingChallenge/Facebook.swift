@@ -172,5 +172,29 @@ class Facebook {
       dialog.show()
     }
   }
+
+  static func profileImage(for fbid: String,
+                           completion: @escaping (_: URL?) -> ()) {
+    let request =
+      FBSDKGraphRequest(graphPath: "/\(fbid)/picture?type=large&redirect=false",
+                        parameters: ["fields" : ""])
+    _ = request?.start {
+      (_: FBSDKGraphRequestConnection?, result: Any?, error: Error?) in
+        guard error == nil else {
+          print("unable to execute GraphQL query: \(String(describing: error))")
+          return
+        }
+        guard let deserialised = result as? Dictionary<String, Any> else {
+          print("unable to deserialise response \(String(describing: result))")
+          return
+        }
+
+        if let data = deserialised["data"] as? Dictionary<String, Any> {
+          if let url = data["url"] as? String {
+            completion(URL(string: url))
+          }
+        }
+    }
+  }
 }
 
