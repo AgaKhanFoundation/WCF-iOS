@@ -18,7 +18,9 @@ class TeamViewController: UIViewController {
   // MARK: - Configure
 
   private func configureNavigationBar() {
-    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+    navigationItem.rightBarButtonItem =
+        UIBarButtonItem(barButtonSystemItem: .add, target: self,
+                        action: #selector(addTapped))
   }
 
   private func configureView() {
@@ -32,7 +34,8 @@ class TeamViewController: UIViewController {
     teamImage.layer.borderColor = Style.Colors.grey.cgColor
     teamImage.layer.borderWidth = 1
     teamImage.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(topLayoutGuide.snp.bottom).offset(Style.Padding.p12)
+      ConstraintMaker.top.equalTo(topLayoutGuide.snp.bottom)
+          .offset(Style.Padding.p12)
       ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
       ConstraintMaker.height.width.equalTo(Style.Size.s56)
     }
@@ -41,7 +44,8 @@ class TeamViewController: UIViewController {
     teamName.textAlignment = .left
     teamName.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(teamImage.snp.top)
-      ConstraintMaker.left.equalTo(teamImage.snp.right).offset(Style.Padding.p12)
+      ConstraintMaker.left.equalTo(teamImage.snp.right)
+          .offset(Style.Padding.p12)
       ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
@@ -50,7 +54,8 @@ class TeamViewController: UIViewController {
     memberCount.textAlignment = .left
     memberCount.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(teamName.snp.bottom).offset(Style.Padding.p8)
-      ConstraintMaker.left.equalTo(teamImage.snp.right).offset(Style.Padding.p12)
+      ConstraintMaker.left.equalTo(teamImage.snp.right)
+          .offset(Style.Padding.p12)
       ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
     }
   }
