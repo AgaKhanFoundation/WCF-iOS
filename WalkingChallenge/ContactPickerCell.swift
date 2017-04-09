@@ -57,7 +57,12 @@ class ContactCell: ConfigurableTableViewCell {
         let url = URL(string: info.picture),
         let data = try? Data(contentsOf: url)
       else { return }
-      self.picture.image = UIImage(data: data)
+      
+      let image = UIImage(data: data)
+      
+      onMain {
+        self.picture.image = image
+      }
     }
   }
 }
