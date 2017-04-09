@@ -12,7 +12,7 @@ struct Strings {
     static let thisMonth = NSLocalizedString("This Month", comment: "This Month range")
     static let thisEvent = NSLocalizedString("This Event", comment: "This Event range")
     static let overall = NSLocalizedString("Overall", comment: "Overall Range")
-    static let supporters = NSLocalizedString("Supports", comment: "Title for Supporters")
+    static let supporters = NSLocalizedString("Supporters", comment: "Title for Supporters")
   }
 
   struct ContactPicker {
