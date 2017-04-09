@@ -10,8 +10,9 @@ class ProfileViewController: UIViewController {
   let nameLabel = UILabel(.header)
   let teamLabel = UILabel(.title)
 
-  let rangePicker = DropDownPickerView(data: ["This Week", "This Month",
-                                              "This Event", "Overall"])
+  static let ranges = [Strings.Profile.thisWeek, Strings.Profile.thisMonth,
+                       Strings.Profile.thisEvent, Strings.Profile.overall]
+  let rangePicker = DropDownPickerView(data: ranges)
 
   let logoutButton = FBSDKLoginButton()
 
@@ -72,6 +73,7 @@ class ProfileViewController: UIViewController {
     // TODO(compnerd) make this look better ...
     rangePicker.layer.borderColor = Style.Colors.grey.cgColor
     rangePicker.layer.borderWidth = 1
+    rangePicker.selection = Preferences.instance.profileStatsRange
     rangePicker.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(teamLabel.snp.bottom).offset(Style.Padding.p24)
       ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)

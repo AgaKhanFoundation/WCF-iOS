@@ -155,14 +155,14 @@ extension DropDownPicker: UITextFieldDelegate {
 extension DropDownPicker: UIPickerViewDelegate {
   public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
                          forComponent component: Int) -> String? {
-    guard row > 0 && row < data.count else { return nil }
+    guard row >= 0 && row < data.count else { return nil }
 
     return data[row]
   }
 
   public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int,
                          inComponent component: Int) {
-    guard row > 0 && row < data.count else { return }
+    guard row >= 0 && row < data.count else { return }
 
     textfield.text = data[row]
     sendActions(for: .valueChanged)
@@ -182,6 +182,11 @@ extension DropDownPicker: UIPickerViewDataSource {
 
 class DropDownPickerView: UITextField {
   private var picker: DropDownPicker!
+
+  var selection: Int? {
+    get { return picker.selectedIndex }
+    set { picker.selectedIndex = newValue }
+  }
 
   public init(frame: CGRect, data: Array<String>) {
     super.init(frame: frame)
