@@ -65,13 +65,13 @@ class ContactPickerViewController: UIViewController {
   
   fileprivate func updateNavigationBar() {
     if dataSource.anyFriendsSelected {
-      navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                                         target: self,
-                                                         action: #selector(addTapped))
+      navigationItem.leftBarButtonItem =
+          UIBarButtonItem(barButtonSystemItem: .add, target: self,
+                          action: #selector(addTapped))
     } else {
-      navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
-                                                         target: self,
-                                                         action: #selector(cancelTapped))
+      navigationItem.leftBarButtonItem =
+          UIBarButtonItem(barButtonSystemItem: .cancel, target: self,
+                          action: #selector(cancelTapped))
     }
   }
   
@@ -99,28 +99,36 @@ extension ContactPickerViewController: UISearchBarDelegate {
   }
 }
 
-extension ContactPickerViewController: UITableViewDelegate, UITableViewDataSource {
-  
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension ContactPickerViewController: UITableViewDataSource {
+  func tableView(_ tableView: UITableView,
+                 numberOfRowsInSection section: Int) -> Int {
     return dataSource.cells.count
   }
-  
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+  func tableView(_ tableView: UITableView,
+                 cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard
       let cellInfo = dataSource.cells[safe: indexPath.row],
-      let cell = tableView.dequeueReusableCell(withIdentifier: cellInfo.cellIdentifier, for: indexPath) as? ConfigurableTableViewCell
+      let cell =
+          tableView.dequeueReusableCell(withIdentifier: cellInfo.cellIdentifier,
+                                        for: indexPath)
+              as? ConfigurableTableViewCell
     else { return UITableViewCell() }
-    
+
     cell.configure(cellInfo: cellInfo)
     return cell
   }
-  
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+}
+
+extension ContactPickerViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView,
+                 didSelectRowAt indexPath: IndexPath) {
     dataSource.changeSelection(at: indexPath, select: true)
     updateNavigationBar()
   }
   
-  func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+  func tableView(_ tableView: UITableView,
+                 didDeselectRowAt indexPath: IndexPath) {
     dataSource.changeSelection(at: indexPath, select: false)
     updateNavigationBar()
   }
