@@ -56,7 +56,7 @@ class ContactDataSource: TableDataSource {
     
     if let filter = filter {
       sortedFilteredFriends = sortedFilteredFriends
-        .filter {$0.first_name.contains(filter) || $0.last_name.contains(filter)}
+        .filter {$0.display_name.lowercased().contains(filter.lowercased())}
     }
     
     cells.removeAll()
