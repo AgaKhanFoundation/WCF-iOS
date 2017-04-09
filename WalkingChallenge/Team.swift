@@ -26,12 +26,6 @@ class Team: TableDataSource {
     guard cells.isEmpty else { return }
 
     self.cells.append(TeamNameCellInfo(name: Team.name))
-//    Facebook.getTaggableFriends(limit: .count(Team.limit)) { (friend) in
-//      self.cells.append(TeamMemberCellInfo(for: friend))
-//      onMain {
-//        completion(true)
-//      }
-//    }
   }
 
   func addTeamMember(completion: @escaping SuccessBlock) {
