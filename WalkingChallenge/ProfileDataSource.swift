@@ -3,15 +3,14 @@ import Foundation
 
 class ProfileDataSource {
   var realName: String = ""
-  var dataProvider: PedometerDataProvider? = nil
+  var dataProvider: PedometerDataProvider?
 
   init() {
-    switch Preferences.instance.source {
-    case .None:
-      break
-    case .HealthKit:
-      dataProvider = HealthKitDataProvider()
-      break
+    if let dataSource = UserInfo.pedometerSource {
+      switch dataSource {
+      case .healthKit:
+        dataProvider = HealthKitDataProvider()
+      }
     }
   }
 
