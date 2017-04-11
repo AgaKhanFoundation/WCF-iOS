@@ -73,6 +73,8 @@ class ProfileViewController: UIViewController {
     // TODO(compnerd) make this look better ...
     rangePicker.layer.borderColor = Style.Colors.grey.cgColor
     rangePicker.layer.borderWidth = 1
+    rangePicker.inset = UIEdgeInsetsMake(Style.Padding.p8, Style.Padding.p8,
+                                         Style.Padding.p8, Style.Padding.p8)
     rangePicker.selection = UserInfo.profileStatsRange
     rangePicker.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(teamLabel.snp.bottom).offset(Style.Padding.p24)

@@ -181,6 +181,8 @@ extension DropDownPicker: UIPickerViewDataSource {
 }
 
 class DropDownPickerView: UITextField {
+  var inset: UIEdgeInsets = UIEdgeInsets()
+
   private var picker: DropDownPicker!
 
   var selection: Int? {
@@ -200,6 +202,14 @@ class DropDownPickerView: UITextField {
 
   public required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+
+  override func textRect(forBounds bounds: CGRect) -> CGRect {
+    return UIEdgeInsetsInsetRect(bounds, inset)
+  }
+
+  override func editingRect(forBounds bounds: CGRect) -> CGRect {
+    return UIEdgeInsetsInsetRect(bounds, inset)
   }
 }
 
