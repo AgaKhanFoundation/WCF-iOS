@@ -29,9 +29,12 @@ class AppController {
   func transition(to viewController: ViewController) {
     guard let window = window else { return }
 
-    UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: { 
-      window.rootViewController = viewController.viewController
-    }, completion: nil)
+    UIView.transition(with: window, duration: 0.3,
+                      options: .transitionCrossDissolve,
+                      animations: {
+                        window.rootViewController = viewController.viewController
+                      },
+                      completion: nil)
   }
 
   func login() {
@@ -45,7 +48,6 @@ class AppController {
 
 // MARK: - Configuration
 extension AppController {
-
   fileprivate func configureApp() {
     configureAnalytics()
     configureTabBarController()
@@ -59,15 +61,25 @@ extension AppController {
   }
 
   private func configureTabBarController() {
-    let profileNVC = UINavigationController(rootViewController: ProfileViewController())
-    profileNVC.tabBarItem = UITabBarItem(title: Strings.NavBarTitles.profile, image: nil, selectedImage: nil)
+    let leaderboardNVC =
+        UINavigationController(rootViewController: LeaderboardViewController())
+    leaderboardNVC.tabBarItem =
+        UITabBarItem(title: Strings.NavBarTitles.leaderboard, image: nil,
+                     selectedImage: nil)
 
-    let teamNVC = UINavigationController(rootViewController: TeamViewController())
-    teamNVC.tabBarItem = UITabBarItem(title: Strings.NavBarTitles.team, image: nil, selectedImage: nil)
+    let teamNVC =
+        UINavigationController(rootViewController: TeamViewController())
+    teamNVC.tabBarItem =
+        UITabBarItem(title: Strings.NavBarTitles.team, image: nil,
+                     selectedImage: nil)
 
-    tabBarController.viewControllers = [
-      teamNVC, profileNVC,
-    ]
+    let profileNVC =
+        UINavigationController(rootViewController: ProfileViewController())
+    profileNVC.tabBarItem =
+        UITabBarItem(title: Strings.NavBarTitles.profile, image: nil,
+                     selectedImage: nil)
+
+    tabBarController.viewControllers = [ leaderboardNVC, teamNVC, profileNVC, ]
   }
 
   private func configureWindow() {

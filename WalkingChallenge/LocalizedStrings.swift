@@ -22,6 +22,7 @@ struct Strings {
   struct NavBarTitles {
     static let team = NSLocalizedString("My Team", comment: "Navigation bar title for team tab")
     static let profile = NSLocalizedString("My Profile", comment: "Navigation bar title for profile tab")
+    static let leaderboard = NSLocalizedString("Leaderboard", comment: "Navigation bar title for leaderboard")
   }
 }
 
