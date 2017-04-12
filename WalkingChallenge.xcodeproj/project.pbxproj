@@ -23,7 +23,6 @@
 		269E35101E7666EE000726C2 /* Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E350F1E7666EE000726C2 /* Blocks.swift */; };
 		269E35121E76685A000726C2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35111E76685A000726C2 /* ProfileViewController.swift */; };
 		269E35141E7668C1000726C2 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35131E7668C1000726C2 /* TeamViewController.swift */; };
-		269E35161E7668CF000726C2 /* SponsorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35151E7668CF000726C2 /* SponsorViewController.swift */; };
 		269E35181E7669FB000726C2 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35171E7669FB000726C2 /* LocalizedStrings.swift */; };
 		269E351B1E766B8C000726C2 /* ProfileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E351A1E766B8C000726C2 /* ProfileDataSource.swift */; };
 		269E35211E7673B6000726C2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35201E7673B6000726C2 /* User.swift */; };
@@ -63,7 +62,6 @@
 		269E350F1E7666EE000726C2 /* Blocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blocks.swift; sourceTree = "<group>"; };
 		269E35111E76685A000726C2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		269E35131E7668C1000726C2 /* TeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
-		269E35151E7668CF000726C2 /* SponsorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SponsorViewController.swift; sourceTree = "<group>"; };
 		269E35171E7669FB000726C2 /* LocalizedStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
 		269E351A1E766B8C000726C2 /* ProfileDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDataSource.swift; sourceTree = "<group>"; };
 		269E35201E7673B6000726C2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -147,7 +145,6 @@
 				269E352E1E768058000726C2 /* Login */,
 				269E35191E766B74000726C2 /* Profile */,
 				269E351E1E7671FE000726C2 /* Team */,
-				269E351F1E767202000726C2 /* Sponsor */,
 				266986791E91D50E004D45B4 /* Networking */,
 				269E35251E76782D000726C2 /* Protocols */,
 				269E350A1E765F2A000726C2 /* Extensions */,
@@ -203,14 +200,6 @@
 				260D26751E935BB2004189F8 /* ContactPicker */,
 			);
 			name = Team;
-			sourceTree = "<group>";
-		};
-		269E351F1E767202000726C2 /* Sponsor */ = {
-			isa = PBXGroup;
-			children = (
-				269E35151E7668CF000726C2 /* SponsorViewController.swift */,
-			);
-			name = Sponsor;
 			sourceTree = "<group>";
 		};
 		269E35251E76782D000726C2 /* Protocols */ = {
@@ -400,7 +389,6 @@
 				269E35101E7666EE000726C2 /* Blocks.swift in Sources */,
 				26792DD81E91DCB400A7E5BA /* APIClient.swift in Sources */,
 				269E35291E767AE1000726C2 /* Collection.swift in Sources */,
-				269E35161E7668CF000726C2 /* SponsorViewController.swift in Sources */,
 				260D26791E935D4F004189F8 /* ContactPickerViewController.swift in Sources */,
 				F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */,
 				269E351B1E766B8C000726C2 /* ProfileDataSource.swift in Sources */,

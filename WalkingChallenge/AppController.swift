@@ -65,11 +65,8 @@ extension AppController {
     let teamNVC = UINavigationController(rootViewController: TeamViewController())
     teamNVC.tabBarItem = UITabBarItem(title: Strings.NavBarTitles.team, image: nil, selectedImage: nil)
 
-    let sponsorNVC = UINavigationController(rootViewController: SponsorViewController())
-    sponsorNVC.tabBarItem = UITabBarItem(title: Strings.NavBarTitles.sponsor, image: nil, selectedImage: nil)
-
     tabBarController.viewControllers = [
-      profileNVC, teamNVC, sponsorNVC,
+      teamNVC, profileNVC,
     ]
   }
 
