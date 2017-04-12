@@ -22,6 +22,12 @@ class Team: TableDataSource {
     return 11
   }
 
+  // TODO(compnerd) cache this value to avoid unnecessary requests
+  static var leaders: [String] {
+    // TODO(compnerd) fetch this from the backend
+    return [ "Alpha", "Beta", "Gamma" ]
+  }
+
   func reload(completion: @escaping SuccessBlock) {
     guard cells.isEmpty else { return }
 

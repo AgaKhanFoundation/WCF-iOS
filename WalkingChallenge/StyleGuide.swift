@@ -17,6 +17,7 @@ struct Style {
   }
 
   struct Size {
+    static let s16: CGFloat = 16
     static let s32: CGFloat = 32
     static let s40: CGFloat = 40
     static let s48: CGFloat = 48
