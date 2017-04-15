@@ -30,8 +30,6 @@ class Team: TableDataSource {
 
   func reload(completion: @escaping SuccessBlock) {
     guard cells.isEmpty else { return }
-
-    self.cells.append(TeamNameCellInfo(name: Team.name))
   }
 
   func addTeamMember(completion: @escaping SuccessBlock) {

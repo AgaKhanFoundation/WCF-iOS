@@ -29,8 +29,6 @@
 		269E35241E767807000726C2 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35231E767807000726C2 /* Team.swift */; };
 		269E35271E76783B000726C2 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35261E76783B000726C2 /* Cells.swift */; };
 		269E35291E767AE1000726C2 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35281E767AE1000726C2 /* Collection.swift */; };
-		269E352B1E767C7A000726C2 /* TeamNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E352A1E767C7A000726C2 /* TeamNameCell.swift */; };
-		269E352D1E767C81000726C2 /* TeamMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E352C1E767C81000726C2 /* TeamMemberCell.swift */; };
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
 		26C657B91E91E41700FD3084 /* APIClient+Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C657B81E91E41700FD3084 /* APIClient+Requests.swift */; };
 		ED85D460832E1D261F31B25E /* Pods_WalkingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */; };
@@ -40,6 +38,7 @@
 		F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */; };
 		F09E7DFA1E860CE300AD8CAF /* ContactPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09E7DF91E860CE300AD8CAF /* ContactPickerDataSource.swift */; };
 		F0C6D5051E9DBAE3008E3B82 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6D5041E9DBAE3008E3B82 /* LeaderboardViewController.swift */; };
+		F0C6D5071EA07BF8008E3B82 /* TeamMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6D5061EA07BF8008E3B82 /* TeamMembersViewController.swift */; };
 		F0E1828A1E80B1DB00665E4F /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E182891E80B1DB00665E4F /* Facebook.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,8 +68,6 @@
 		269E35231E767807000726C2 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		269E35261E76783B000726C2 /* Cells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		269E35281E767AE1000726C2 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
-		269E352A1E767C7A000726C2 /* TeamNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamNameCell.swift; sourceTree = "<group>"; };
-		269E352C1E767C81000726C2 /* TeamMemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMemberCell.swift; sourceTree = "<group>"; };
 		26C5E3601E7DCACF0053DE3E /* WalkingChallenge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WalkingChallenge.entitlements; sourceTree = "<group>"; };
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		26C657B81E91E41700FD3084 /* APIClient+Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Requests.swift"; sourceTree = "<group>"; };
@@ -81,6 +78,7 @@
 		F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitDataProvider.swift; sourceTree = "<group>"; };
 		F09E7DF91E860CE300AD8CAF /* ContactPickerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerDataSource.swift; sourceTree = "<group>"; };
 		F0C6D5041E9DBAE3008E3B82 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
+		F0C6D5061EA07BF8008E3B82 /* TeamMembersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMembersViewController.swift; sourceTree = "<group>"; };
 		F0E182891E80B1DB00665E4F /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
 		FB0F6813102ABF61F968C9BD /* Pods-WalkingChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -198,9 +196,8 @@
 			children = (
 				269E35131E7668C1000726C2 /* TeamViewController.swift */,
 				269E35231E767807000726C2 /* Team.swift */,
-				269E352A1E767C7A000726C2 /* TeamNameCell.swift */,
-				269E352C1E767C81000726C2 /* TeamMemberCell.swift */,
 				260D26751E935BB2004189F8 /* ContactPicker */,
+				F0C6D5061EA07BF8008E3B82 /* TeamMembersViewController.swift */,
 			);
 			name = Team;
 			sourceTree = "<group>";
@@ -393,9 +390,9 @@
 				F00B4B2C1E9944ED002A0B29 /* DropDownPicker.swift in Sources */,
 				269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */,
 				2669867B1E91D527004D45B4 /* APIClientHelpers.swift in Sources */,
-				269E352B1E767C7A000726C2 /* TeamNameCell.swift in Sources */,
 				269E35141E7668C1000726C2 /* TeamViewController.swift in Sources */,
 				269E35121E76685A000726C2 /* ProfileViewController.swift in Sources */,
+				F0C6D5071EA07BF8008E3B82 /* TeamMembersViewController.swift in Sources */,
 				269E350E1E76664F000726C2 /* Async.swift in Sources */,
 				269E35101E7666EE000726C2 /* Blocks.swift in Sources */,
 				26792DD81E91DCB400A7E5BA /* APIClient.swift in Sources */,
@@ -410,7 +407,6 @@
 				26C657B91E91E41700FD3084 /* APIClient+Requests.swift in Sources */,
 				269E35181E7669FB000726C2 /* LocalizedStrings.swift in Sources */,
 				F0C6D5051E9DBAE3008E3B82 /* LeaderboardViewController.swift in Sources */,
-				269E352D1E767C81000726C2 /* TeamMemberCell.swift in Sources */,
 				269E35271E76783B000726C2 /* Cells.swift in Sources */,
 				269E34EC1E7658E6000726C2 /* AppController.swift in Sources */,
 				F02FB49E1E9180CE0097481D /* Preferences.swift in Sources */,

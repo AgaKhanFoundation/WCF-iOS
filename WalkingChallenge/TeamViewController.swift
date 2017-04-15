@@ -63,7 +63,7 @@ class LeaderboardCell: UITableViewCell {
 class TeamViewController: UIViewController {
   let teamImage = UIImageView()
   let teamName = UILabel(.header)
-  let memberCount = UILabel(.body)
+  let memberCount = UIButton(type: .system)
 
   let leaderboardLabel = UILabel(.header)
   // TODO(compnerd) should these be the same or different?
@@ -118,10 +118,12 @@ class TeamViewController: UIViewController {
     }
 
     // TODO(compnerd) make this localizable, get a better chevron
-    memberCount.text = "\(Team.size) Members >"
-    memberCount.textAlignment = .left
+    memberCount.setTitle("\(Team.size) Members >", for: .normal)
+    memberCount.contentHorizontalAlignment = .left
+    memberCount.addTarget(self, action: #selector(showMembers),
+                          for: .touchUpInside)
     memberCount.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(teamName.snp.bottom).offset(Style.Padding.p8)
+      ConstraintMaker.top.equalTo(teamName.snp.bottom)
       ConstraintMaker.left.equalTo(teamImage.snp.right)
           .offset(Style.Padding.p12)
       ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
@@ -171,6 +173,12 @@ class TeamViewController: UIViewController {
     contactPickerVC.delegate = self
     let picker = UINavigationController(rootViewController: contactPickerVC)
     present(picker, animated: true, completion: nil)
+  }
+
+  func showMembers() {
+    let memberListVC = TeamMembersViewController()
+    let memberList = UINavigationController(rootViewController: memberListVC)
+    present(memberList, animated: true, completion: nil)
   }
 }
 
