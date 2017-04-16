@@ -43,6 +43,7 @@ struct Style {
     case title
     case body
     case button
+    case section
 
     // TODO: Custom fonts can be replaced here
     var font: UIFont? {
@@ -51,6 +52,7 @@ struct Style {
       case .title: return UIFont.preferredFont(forTextStyle: .subheadline)
       case .body: return UIFont.preferredFont(forTextStyle: .body)
       case .button: return UIFont.preferredFont(forTextStyle: .callout)
+      case .section: return UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
       }
     }
   }
@@ -60,7 +62,11 @@ extension UILabel {
   convenience init(_ typography: Style.Typography) {
     self.init()
     font = typography.font
-    textColor = Style.Colors.black
+    if (typography == .section) {
+      textColor = Style.Colors.grey
+    } else {
+      textColor = Style.Colors.black
+    }
     numberOfLines = 0
   }
 }
