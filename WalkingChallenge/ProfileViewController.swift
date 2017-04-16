@@ -1,6 +1,5 @@
 
 import SnapKit
-import FBSDKLoginKit
 
 struct Supporter {
   let name: String
@@ -235,13 +234,12 @@ class ProfileViewController: UIViewController {
   let pastEventsTable = UITableView()
   let pastEventsExpandButton = UIButton(type: .system)
 
-  let logoutButton = FBSDKLoginButton()
-
   // MARK: - Lifecycle
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    configureNavigation()
     configureView()
   }
 
@@ -261,10 +259,15 @@ class ProfileViewController: UIViewController {
 
   // MARK: - Configure
 
+  private func configureNavigation() {
+    navigationItem.rightBarButtonItem =
+        UIBarButtonItem(barButtonSystemItem: .edit, target: self,
+                        action: #selector(configureApp))
+  }
+
   private func configureView() {
     view.backgroundColor = Style.Colors.white
     title = Strings.NavBarTitles.profile
-    logoutButton.delegate = self
 
     view.addSubviews([profileImage, nameLabel, teamLabel, rangePicker,
                       supportersLabel, supportersTable, supportersExpandButton,
@@ -363,13 +366,6 @@ class ProfileViewController: UIViewController {
           .offset(Style.Padding.p8)
       ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
     }
-
-    // TODO(compnerd) move this to settings view
-    view.addSubview(logoutButton)
-    logoutButton.snp.makeConstraints { (make) in
-      make.centerX.equalToSuperview()
-      make.bottom.equalTo(bottomLayoutGuide.snp.top).offset(-Style.Padding.p12)
-    }
   }
 
   private func updateProfile() {
@@ -383,17 +379,12 @@ class ProfileViewController: UIViewController {
       self?.teamLabel.text = Team.name
     }
   }
-}
 
-extension ProfileViewController: FBSDKLoginButtonDelegate {
-  func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-    AppController.shared.logout()
-  }
-
-  func loginButton(_ loginButton: FBSDKLoginButton!,
-                   didCompleteWith result: FBSDKLoginManagerLoginResult!,
-                   error: Error!) {
-    // Left blank because the user should be logged in when reaching this point
+  func configureApp() {
+    let configurationView = ConfigurationViewController()
+    let controller =
+          UINavigationController(rootViewController: configurationView)
+    present(controller, animated: true, completion: nil)
   }
 }
 

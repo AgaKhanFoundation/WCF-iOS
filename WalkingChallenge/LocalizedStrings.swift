@@ -24,6 +24,10 @@ struct Strings {
     static let overall = NSLocalizedString("Overall", comment: "Overall Range")
     static let leaderboard = NSLocalizedString("Leaderboard", comment: "Title for leaderboard")
   }
+  
+  struct Configuration {
+    static let device = NSLocalizedString("Device", comment: "Title for device section")
+  }
 
   struct ContactPicker {
     static let title = NSLocalizedString("Select Contacts", comment: "Title for Contact Picker")
@@ -34,6 +38,7 @@ struct Strings {
     static let profile = NSLocalizedString("My Profile", comment: "Navigation bar title for profile tab")
     static let leaderboard = NSLocalizedString("Leaderboard", comment: "Navigation bar title for leaderboard")
     static let teamMembers = NSLocalizedString("Team Members", comment: "Team Members")
+    static let configuration = NSLocalizedString("Configuration", comment: "Configuration")
   }
 }
 
