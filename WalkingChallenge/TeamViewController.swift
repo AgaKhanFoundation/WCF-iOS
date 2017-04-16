@@ -41,6 +41,11 @@ class TeamViewController: UIViewController, SelectionButtonDataSource, LeaderBoa
     navigationItem.rightBarButtonItem =
         UIBarButtonItem(barButtonSystemItem: .add, target: self,
                         action: #selector(addTapped))
+
+    navigationController?.navigationBar.barTintColor = Style.Colors.darkGreen
+    navigationController?.navigationBar.tintColor = Style.Colors.white
+    navigationController?.navigationBar.titleTextAttributes =
+      [NSForegroundColorAttributeName: Style.Colors.white]
   }
 
   private func configureView() {

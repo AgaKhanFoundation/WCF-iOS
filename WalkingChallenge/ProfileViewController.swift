@@ -269,9 +269,15 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
   // MARK: - Configure
 
   private func configureNavigation() {
+    // TODO(compnerd) use the gear icon instead
     navigationItem.rightBarButtonItem =
-        UIBarButtonItem(barButtonSystemItem: .edit, target: self,
+        UIBarButtonItem(barButtonSystemItem: .compose, target: self,
                         action: #selector(configureApp))
+
+    navigationController?.navigationBar.barTintColor = Style.Colors.darkGreen
+    navigationController?.navigationBar.tintColor = Style.Colors.white
+    navigationController?.navigationBar.titleTextAttributes =
+      [NSForegroundColorAttributeName: Style.Colors.white]
   }
 
   private func configureView() {
