@@ -176,6 +176,8 @@ class TeamMembersViewController: UIViewController {
                          Style.Padding.p8)
     inviteButton.layer.borderWidth = 1
     inviteButton.setTitle("Invite Members", for: .normal)
+    inviteButton.addTarget(self, action: #selector(inviteFriends),
+                           for: .touchUpInside)
     inviteButton.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(tableView.snp.bottom).offset(Style.Padding.p12)
       ConstraintMaker.bottom.equalToSuperview().inset(Style.Padding.p12)
@@ -188,6 +190,10 @@ class TeamMembersViewController: UIViewController {
     navigationItem.leftBarButtonItem =
         UIBarButtonItem(title: "Done", style: .done, target: self,
                         action: #selector(dismissView))
+  }
+
+  func inviteFriends() {
+    Facebook.invite(url: "http://www.google.com")
   }
 
   func dismissView() {
