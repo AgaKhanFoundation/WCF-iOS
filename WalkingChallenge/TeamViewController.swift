@@ -60,7 +60,7 @@ class LeaderboardCell: UITableViewCell {
   }
 }
 
-class TeamViewController: UIViewController {
+class TeamViewController: UIViewController, SelectionButtonDataSource {
   let teamImage = UIImageView()
   let teamName = UILabel(.header)
   let memberCount = UIButton(type: .system)
@@ -69,8 +69,17 @@ class TeamViewController: UIViewController {
   // TODO(compnerd) should these be the same or different?
   static let ranges = [Strings.Team.thisWeek, Strings.Team.thisMonth,
                        Strings.Team.thisEvent, Strings.Team.overall]
-  let rangeSelector = DropDownPickerView(data: ranges)
+  let rangeSelector = SelectionButton(type: .system)
   let leaderboardTable = UITableView()
+
+  var items: Array<String> = TeamViewController.ranges
+  var selection: Int? {
+    didSet {
+      if let value = selection {
+        rangeSelector.setTitle(TeamViewController.ranges[safe: value], for: .normal)
+      }
+    }
+  }
 
   // MARK: - Lifecycle
 
@@ -135,11 +144,8 @@ class TeamViewController: UIViewController {
       ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
     }
 
-    // TODO(compnerd) make this look better ...
-    rangeSelector.layer.borderColor = Style.Colors.grey.cgColor
-    rangeSelector.layer.borderWidth = 1
-    rangeSelector.inset =
-        UIEdgeInsetsMake(0, Style.Padding.p8, 0, Style.Padding.p8)
+    rangeSelector.dataSource = self
+    rangeSelector.delegate = self
     rangeSelector.selection = UserInfo.teamLeaderStatsRange
     rangeSelector.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(memberCount.snp.bottom)
@@ -207,5 +213,8 @@ extension TeamViewController: ContactPickerViewControllerDelegate {
   func contactPickerSelected(friends: [String]) {
     print(friends)
   }
+}
+
+extension TeamViewController: SelectionButtonDelegate {
 }
 
