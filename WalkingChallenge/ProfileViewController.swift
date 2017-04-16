@@ -233,13 +233,13 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
   }
 
   let supportersDataSource = SupporterDataSource()
-  let supportersLabel = UILabel(.header)
+  let supportersLabel = UILabel(.section)
   let supportersTable = UITableView()
   let supportersExpandButton = UIButton(type: .system)
 
   let eventsDelegate = EventsDelegate()
   let eventsDataSource = EventsDataSource()
-  let pastEventsLabel = UILabel(.header)
+  let pastEventsLabel = UILabel(.section)
   let pastEventsTable = UITableView()
   let pastEventsExpandButton = UIButton(type: .system)
 
@@ -324,7 +324,8 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
       ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
-    supportersLabel.text = Strings.Profile.supporters
+    // TODO(compnerd) localise this properly
+    supportersLabel.text = "Current Supporters (\(supportersDataSource.supporters.count))"
     supportersLabel.snp.makeConstraints { (ConstraintMaker) in
       // FIXME(compenrd) this needs to be based off of the previous row of stats
       ConstraintMaker.top.equalTo(rangeButton.snp.bottom)
@@ -351,7 +352,8 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
       ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
-    pastEventsLabel.text = Strings.Profile.pastEvents
+    // TODO(compnerd) localise this properly
+    pastEventsLabel.text = "Past Events (\(eventsDataSource.events.count))"
     pastEventsLabel.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(supportersExpandButton.snp.bottom)
           .offset(Style.Padding.p12)
