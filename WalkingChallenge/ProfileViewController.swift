@@ -308,6 +308,7 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
     }
 
     teamLabel.textAlignment = .center
+    teamLabel.textColor = Style.Colors.grey
     teamLabel.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(nameLabel.snp.bottom)
           .offset(Style.Padding.p12)
@@ -334,7 +335,9 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
     }
 
     supportersTable.allowsSelection = false
+    supportersTable.bounces = false
     supportersTable.dataSource = supportersDataSource
+    supportersTable.separatorStyle = .none
     supportersTable.register(SupporterCell.self,
                              forCellReuseIdentifier: SupporterCell.identifier)
     supportersTable.snp.makeConstraints { (ConstraintMaker) in
