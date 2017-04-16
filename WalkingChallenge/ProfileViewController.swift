@@ -211,7 +211,7 @@ class EventsDataSource: NSObject, UITableViewDataSource {
   }
 }
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, SelectionButtonDataSource {
   let dataSource = ProfileDataSource()
 
   // Views
@@ -221,7 +221,16 @@ class ProfileViewController: UIViewController {
 
   static let ranges = [Strings.Profile.thisWeek, Strings.Profile.thisMonth,
                        Strings.Profile.thisEvent, Strings.Profile.overall]
-  let rangePicker = DropDownPickerView(data: ranges)
+  var rangeButton = SelectionButton(type: .system)
+
+  var items: Array<String> = ProfileViewController.ranges
+  var selection: Int? {
+    didSet {
+      if let value = selection {
+        rangeButton.setTitle(items[safe: value], for: .normal)
+      }
+    }
+  }
 
   let supportersDataSource = SupporterDataSource()
   let supportersLabel = UILabel(.header)
@@ -269,7 +278,7 @@ class ProfileViewController: UIViewController {
     view.backgroundColor = Style.Colors.white
     title = Strings.NavBarTitles.profile
 
-    view.addSubviews([profileImage, nameLabel, teamLabel, rangePicker,
+    view.addSubviews([profileImage, nameLabel, teamLabel, rangeButton,
                       supportersLabel, supportersTable, supportersExpandButton,
                       pastEventsLabel, pastEventsTable, pastEventsExpandButton])
 
@@ -301,13 +310,10 @@ class ProfileViewController: UIViewController {
           .inset(Style.Padding.p12)
     }
 
-    // TODO(compnerd) make this look better ...
-    rangePicker.layer.borderColor = Style.Colors.grey.cgColor
-    rangePicker.layer.borderWidth = 1
-    rangePicker.inset = UIEdgeInsetsMake(Style.Padding.p8, Style.Padding.p8,
-                                         Style.Padding.p8, Style.Padding.p8)
-    rangePicker.selection = UserInfo.profileStatsRange
-    rangePicker.snp.makeConstraints { (ConstraintMaker) in
+    rangeButton.dataSource = self
+    rangeButton.delegate = self
+    rangeButton.selection = UserInfo.profileStatsRange
+    rangeButton.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(teamLabel.snp.bottom)
           .offset(Style.Padding.p12)
       ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
@@ -316,7 +322,7 @@ class ProfileViewController: UIViewController {
     supportersLabel.text = Strings.Profile.supporters
     supportersLabel.snp.makeConstraints { (ConstraintMaker) in
       // FIXME(compenrd) this needs to be based off of the previous row of stats
-      ConstraintMaker.top.equalTo(rangePicker.snp.bottom)
+      ConstraintMaker.top.equalTo(rangeButton.snp.bottom)
           .offset(Style.Padding.p12)
       ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
     }
@@ -386,5 +392,8 @@ class ProfileViewController: UIViewController {
           UINavigationController(rootViewController: configurationView)
     present(controller, animated: true, completion: nil)
   }
+}
+
+extension ProfileViewController: SelectionButtonDelegate {
 }
 
