@@ -13,7 +13,7 @@ struct Strings {
     static let thisEvent = NSLocalizedString("This Event", comment: "This Event range")
     static let overall = NSLocalizedString("Overall", comment: "Overall Range")
     static let supporters = NSLocalizedString("Supporters", comment: "Title for Supporters")
-    static let showMore = NSLocalizedString("Show More ...", comment: "Show More")
+    static let seeMore = NSLocalizedString("See More \u{203a}", comment: "Show More")
     static let pastEvents = NSLocalizedString("Past Events", comment: "Past Evvents")
   }
 

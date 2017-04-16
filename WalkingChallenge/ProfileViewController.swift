@@ -345,11 +345,11 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
       ConstraintMaker.height.greaterThanOrEqualTo(40.0 * 2.25)
     }
 
-    supportersExpandButton.setTitle(Strings.Profile.showMore, for: .normal)
+    supportersExpandButton.setTitle(Strings.Profile.seeMore, for: .normal)
     supportersExpandButton.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(supportersTable.snp.bottom)
           .offset(Style.Padding.p8)
-      ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
+      ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
     pastEventsLabel.text = Strings.Profile.pastEvents
@@ -372,11 +372,11 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
       ConstraintMaker.height.greaterThanOrEqualTo(40.0 * 2.25)
     }
 
-    pastEventsExpandButton.setTitle(Strings.Profile.showMore, for: .normal)
+    pastEventsExpandButton.setTitle(Strings.Profile.seeMore, for: .normal)
     pastEventsExpandButton.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(pastEventsTable.snp.bottom)
           .offset(Style.Padding.p8)
-      ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
+      ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
     }
   }
 
