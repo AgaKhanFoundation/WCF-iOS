@@ -289,10 +289,9 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
                       pastEventsLabel, pastEventsTable, pastEventsExpandButton])
 
     profileImage.contentMode = .scaleAspectFill
-    profileImage.layer.cornerRadius = Style.Size.s128 / 2
+    // TODO(compnerd) figure out how to get this value properly
+    profileImage.layer.cornerRadius = Style.Size.s128 / 2.0
     profileImage.layer.masksToBounds = true
-    profileImage.layer.borderColor = Style.Colors.grey.cgColor
-    profileImage.layer.borderWidth = 1
     profileImage.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(topLayoutGuide.snp.bottom)
           .offset(Style.Padding.p12)
