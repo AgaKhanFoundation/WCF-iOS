@@ -40,6 +40,7 @@
 		F0C6D5071EA07BF8008E3B82 /* TeamMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6D5061EA07BF8008E3B82 /* TeamMembersViewController.swift */; };
 		F0C6D5091EA2F50A008E3B82 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6D5081EA2F50A008E3B82 /* ConfigurationViewController.swift */; };
 		F0C6D50D1EA3071A008E3B82 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6D50C1EA3071A008E3B82 /* SelectionButton.swift */; };
+		F0C6D50F1EA3DCB2008E3B82 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6D50E1EA3DCB2008E3B82 /* Leaderboard.swift */; };
 		F0E1828A1E80B1DB00665E4F /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E182891E80B1DB00665E4F /* Facebook.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		F0C6D5061EA07BF8008E3B82 /* TeamMembersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMembersViewController.swift; sourceTree = "<group>"; };
 		F0C6D5081EA2F50A008E3B82 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		F0C6D50C1EA3071A008E3B82 /* SelectionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionButton.swift; path = WalkingChallenge/SelectionButton.swift; sourceTree = "<group>"; };
+		F0C6D50E1EA3DCB2008E3B82 /* Leaderboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Leaderboard.swift; path = WalkingChallenge/Leaderboard.swift; sourceTree = "<group>"; };
 		F0E182891E80B1DB00665E4F /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
 		FB0F6813102ABF61F968C9BD /* Pods-WalkingChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -245,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				F0C6D50C1EA3071A008E3B82 /* SelectionButton.swift */,
+				F0C6D50E1EA3DCB2008E3B82 /* Leaderboard.swift */,
 			);
 			name = Widgets;
 			path = ..;
@@ -387,6 +390,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0C6D50F1EA3DCB2008E3B82 /* Leaderboard.swift in Sources */,
 				260D26771E935BCB004189F8 /* ContactPickerCell.swift in Sources */,
 				269E35091E765F24000726C2 /* UIView.swift in Sources */,
 				F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */,
