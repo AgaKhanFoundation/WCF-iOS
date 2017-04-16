@@ -149,11 +149,6 @@ class TeamViewController: UIViewController {
 
     leaderboardTable.allowsSelection = false
     leaderboardTable.dataSource = self
-    leaderboardTable.contentInset =
-        UIEdgeInsetsMake(Style.Padding.p8, Style.Padding.p8, Style.Padding.p8,
-                         Style.Padding.p8)
-    leaderboardTable.layer.borderColor = Style.Colors.grey.cgColor
-    leaderboardTable.layer.borderWidth = 1
     leaderboardTable.register(LeaderboardCell.self,
                               forCellReuseIdentifier: "LeaderboardCell")
     leaderboardTable.snp.makeConstraints { (ConstraintMaker) in
