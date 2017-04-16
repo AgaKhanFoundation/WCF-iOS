@@ -32,7 +32,6 @@
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
 		26C657B91E91E41700FD3084 /* APIClient+Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C657B81E91E41700FD3084 /* APIClient+Requests.swift */; };
 		ED85D460832E1D261F31B25E /* Pods_WalkingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */; };
-		F00B4B2C1E9944ED002A0B29 /* DropDownPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00B4B2B1E9944ED002A0B29 /* DropDownPicker.swift */; };
 		F02FB49E1E9180CE0097481D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49D1E9180CE0097481D /* Preferences.swift */; };
 		F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */; };
 		F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */; };
@@ -74,7 +73,6 @@
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		26C657B81E91E41700FD3084 /* APIClient+Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Requests.swift"; sourceTree = "<group>"; };
 		6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkingChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F00B4B2B1E9944ED002A0B29 /* DropDownPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DropDownPicker.swift; path = WalkingChallenge/DropDownPicker.swift; sourceTree = "<group>"; };
 		F02FB49D1E9180CE0097481D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedometerDataProvider.swift; sourceTree = "<group>"; };
 		F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitDataProvider.swift; sourceTree = "<group>"; };
@@ -247,7 +245,6 @@
 			isa = PBXGroup;
 			children = (
 				F0C6D50C1EA3071A008E3B82 /* SelectionButton.swift */,
-				F00B4B2B1E9944ED002A0B29 /* DropDownPicker.swift */,
 			);
 			name = Widgets;
 			path = ..;
@@ -393,7 +390,6 @@
 				260D26771E935BCB004189F8 /* ContactPickerCell.swift in Sources */,
 				269E35091E765F24000726C2 /* UIView.swift in Sources */,
 				F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */,
-				F00B4B2C1E9944ED002A0B29 /* DropDownPicker.swift in Sources */,
 				269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */,
 				2669867B1E91D527004D45B4 /* APIClientHelpers.swift in Sources */,
 				269E35141E7668C1000726C2 /* TeamViewController.swift in Sources */,
