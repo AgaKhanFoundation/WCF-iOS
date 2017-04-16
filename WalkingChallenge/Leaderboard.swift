@@ -97,6 +97,7 @@ class LeaderBoard: UITableView {
     self.init(frame: CGRect.zero)
     self.allowsSelection = false
     self.dataSource = self
+    self.separatorStyle = .none
     self.register(LeaderBoardCell.self,
                   forCellReuseIdentifier: LeaderBoardCell.identifier)
   }
