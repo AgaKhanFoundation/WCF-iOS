@@ -65,13 +65,11 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
       alert(message: "Error logging in: \(error)", style: .cancel)
       return
     }
-    
-    if(FBSDKAccessToken.current() == nil){
+    if(result.isCancelled) {
+      alert(message: "Login Cancelled", style: .default)
       return;
-      
-    } else{
-      AppController.shared.login()
     }
+    AppController.shared.login()
   }
 
   func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
