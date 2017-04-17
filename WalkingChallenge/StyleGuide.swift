@@ -44,6 +44,7 @@ struct Style {
     case body
     case button
     case section
+    case caption
 
     // TODO: Custom fonts can be replaced here
     var font: UIFont? {
@@ -53,6 +54,7 @@ struct Style {
       case .body: return UIFont.preferredFont(forTextStyle: .body)
       case .button: return UIFont.preferredFont(forTextStyle: .callout)
       case .section: return UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
+      case .caption: return UIFont.preferredFont(forTextStyle: .caption1)
       }
     }
   }
