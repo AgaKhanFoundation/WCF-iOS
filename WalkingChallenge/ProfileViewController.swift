@@ -4,211 +4,154 @@ import SnapKit
 struct Supporter {
   let name: String
   let pledged: Int
-
-  init(name: String, pledged: Int) {
-    self.name = name
-    self.pledged = pledged
-  }
 }
 
-class SupporterCell: UITableViewCell {
-  static let identifier = "SupporterCell"
+class SupporterView: UIView {
+  internal var name: UILabel = UILabel(.body)
+  internal var donated: UILabel = UILabel(.body)
+  internal var pledged: UILabel = UILabel(.caption)
 
-  var nameLabel = UILabel(.body)
-  var donatedLabel = UILabel(.body)
-  var pledgedLabel = UILabel(.body)
-
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
-    initialise()
+  convenience init(supporter: Supporter) {
+    self.init(frame: CGRect.zero)
+    self.configure()
+    self.updateForSupporter(supporter)
   }
 
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+  convenience init() {
+    self.init(frame: CGRect.zero)
+    self.configure()
   }
 
-  private func initialise() {
-    addSubviews([nameLabel, donatedLabel, pledgedLabel])
+  private func configure() {
+    addSubviews([name, donated, pledged])
 
-    nameLabel.snp.makeConstraints { (ConstraintMaker) in
+    name.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
       ConstraintMaker.centerY.equalToSuperview()
     }
 
-    donatedLabel.snp.makeConstraints { (ConstraintMaker) in
+    donated.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
-      ConstraintMaker.left.equalTo(pledgedLabel.snp.left)
-      ConstraintMaker.bottom.equalTo(nameLabel.snp.centerY)
+      ConstraintMaker.bottom.equalTo(name.snp.centerY)
+      ConstraintMaker.left.equalTo(pledged.snp.left)
     }
 
-    pledgedLabel.snp.makeConstraints { (ConstraintMaker) in
+    pledged.textColor = Style.Colors.grey
+    pledged.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
-      ConstraintMaker.top.equalTo(nameLabel.snp.centerY)
+      ConstraintMaker.top.equalTo(name.snp.centerY)
     }
+  }
+
+  func updateForSupporter(_ supporter: Supporter) {
+    name.text = supporter.name
+
+    let formatter: NumberFormatter = NumberFormatter()
+    formatter.numberStyle = .currency
+
+    donated.text = formatter.string(from: NSNumber(value: 0))
+    // TODO(compnerd) localise this properly
+    pledged.text =
+        "Pledged " + formatter.string(from: NSNumber(value: supporter.pledged))!
   }
 }
 
-class SupporterDataSource: NSObject, UITableViewDataSource {
-  let supportersExpanded = false
-
+class SupporterDataSource {
   // TODO(compnerd) pull this from the backend
-  let supporters = [Supporter(name: "Alpha", pledged: 32),
-                    Supporter(name: "Beta", pledged: 64),
-                    Supporter(name: "Gamma", pledged: 128),
-                    Supporter(name: "Delta", pledged: 256)]
-
-  func tableView(_ tableView: UITableView,
-                 numberOfRowsInSection section: Int) -> Int {
-    // FIXME(compnerd) how many supporters should we be showing?
-    return supportersExpanded ? supporters.count : 2
-  }
-
-  func tableView(_ tableView: UITableView,
-                 cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard
-      let supporter = supporters[safe: indexPath.row],
-      let cell =
-      tableView.dequeueReusableCell(withIdentifier: SupporterCell.identifier,
-                                    for: indexPath)
-        as? SupporterCell
-      else { return UITableViewCell() }
-
-    if (indexPath.row >= (supportersExpanded ? supporters.count : 2) - 1) {
-      cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width)
-    }
-
-    cell.nameLabel.text = supporter.name
-    // TODO(compnerd) calculate this properly
-    cell.donatedLabel.text = "$0"
-    // TODO(compnerd) localise this
-    cell.pledgedLabel.text = "Pledged $\(supporter.pledged)"
-    return cell
-  }
+  var supporters: Array<Supporter> =
+      [Supporter(name: "Alpha", pledged: 32),
+       Supporter(name: "Beta", pledged: 64),
+       Supporter(name: "Gamma", pledged: 128),
+       Supporter(name: "Delta", pledged: 256)]
 }
 
-class Event {
+struct Event {
+  let image: URL?
   let name: String
   let time: String
   let team: String
-  let amountRaised: Int
-  let distance: Int
-
-  init(name: String, time: String, team: String, amountRaised: Int,
-       distance: Int) {
-    self.name = name
-    self.time = time
-    self.team = team
-    self.amountRaised = amountRaised
-    self.distance = distance
-  }
+  let raised: Float
+  let distance: Float
 }
 
-class EventCell: UITableViewCell {
-  static let identifier = "EventCell"
+class EventView: UIView {
+  internal var image: UIImageView = UIImageView()
+  internal var name: UILabel = UILabel(.title)
+  internal var time: UILabel = UILabel(.caption)
+  internal var team: UILabel = UILabel(.caption)
+  internal var raised: UILabel = UILabel(.caption)
+  internal var distance: UILabel = UILabel(.caption)
 
-  let eventImage = UIImageView()
-  let nameLabel = UILabel(.header)
-  let timeLabel = UILabel(.body)
-  let teamLabel = UILabel(.body)
-  let amountRaisedLabel = UILabel(.body)
-  let distanceLabel = UILabel(.body)
-
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
-    initialise()
+  convenience init(event: Event) {
+    self.init(frame: CGRect.zero)
+    self.configure()
+    self.updateForEvent(event)
   }
 
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+  private func configure() {
+    addSubviews([image, name, time, team, raised, distance])
 
-  private func initialise() {
-    addSubviews([eventImage, nameLabel, timeLabel, teamLabel, amountRaisedLabel,
-                 distanceLabel])
-
-    eventImage.layer.borderWidth = 1
-    eventImage.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
-      ConstraintMaker.top.equalToSuperview().inset(Style.Padding.p12)
+    image.snp.makeConstraints { (ConstraintMaker) in
+      ConstraintMaker.top.left.equalToSuperview().inset(Style.Padding.p12)
       ConstraintMaker.height.width.equalTo(Style.Size.s56)
     }
 
-    nameLabel.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.left.equalTo(eventImage.snp.right).offset(Style.Padding.p8)
-      ConstraintMaker.top.equalTo(eventImage.snp.top)
+    name.snp.makeConstraints { (ConstraintMaker) in
+      ConstraintMaker.left.equalTo(image.snp.right).offset(Style.Padding.p8)
+      ConstraintMaker.top.equalTo(image.snp.top)
     }
 
-    timeLabel.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.left.equalTo(eventImage.snp.right).offset(Style.Padding.p8)
-      ConstraintMaker.top.equalTo(nameLabel.snp.bottom)
+    time.textColor = Style.Colors.grey
+    time.snp.makeConstraints { (ConstraintMaker) in
+      ConstraintMaker.left.equalTo(image.snp.right).offset(Style.Padding.p8)
+      ConstraintMaker.top.equalTo(name.snp.bottom)
     }
 
-    teamLabel.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.left.equalTo(eventImage.snp.right).offset(Style.Padding.p8)
-      ConstraintMaker.top.equalTo(timeLabel.snp.bottom)
+    team.snp.makeConstraints { (ConstraintMaker) in
+      ConstraintMaker.left.equalTo(image.snp.right).offset(Style.Padding.p8)
+      ConstraintMaker.top.equalTo(time.snp.bottom)
     }
 
-    amountRaisedLabel.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.left.equalTo(eventImage.snp.right).offset(Style.Padding.p8)
-      ConstraintMaker.top.equalTo(teamLabel.snp.bottom)
+    raised.snp.makeConstraints { (ConstraintMaker) in
+      ConstraintMaker.left.equalTo(image.snp.right).offset(Style.Padding.p8)
+      ConstraintMaker.top.equalTo(team.snp.bottom)
     }
 
-    distanceLabel.snp.makeConstraints { (ConstraintMaker) in
+    distance.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
-      ConstraintMaker.top.equalTo(teamLabel.snp.bottom)
+      ConstraintMaker.top.equalTo(team.snp.bottom)
     }
   }
-}
 
-class EventsDelegate: NSObject, UITableViewDelegate {
-  func tableView(_ tableView: UITableView,
-                 heightForRowAt indexPath: IndexPath) -> CGFloat {
-    // FIXME(compnerd) properly calculate this
-    return 96.0
+  func updateForEvent(_ event: Event) {
+    if let url = event.image {
+    }
+
+    name.text = event.name
+    // TODO(compnerd) format this
+    time.text = event.time
+    // TODO(compnerd) properly localise this
+    team.text = "Team: \(event.team)"
+
+    let formatter: NumberFormatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    raised.text = formatter.string(from: NSNumber(value: event.raised))
+
+    // TODO(compnerd) properly localise this
+    distance.text = "\(event.distance) miles"
   }
 }
 
-class EventsDataSource: NSObject, UITableViewDataSource {
-  let eventsExpanded = false
-
+class EventsDataSource {
   // TODO(compnerd) pull this from the backend
-  let events = [Event(name: "Alpha", time: "January 2017", team: "Team",
-                      amountRaised: 32, distance: 1),
-                Event(name: "Beta", time: "February 2017", team: "Team",
-                      amountRaised: 64, distance: 2),
-                Event(name: "Gamma", time: "March 2017", team: "Team",
-                      amountRaised: 128, distance: 3)]
-
-  func tableView(_ tableView: UITableView,
-                 numberOfRowsInSection section: Int) -> Int {
-    // FIXME(compnerd) how many events should we be showing?
-    return eventsExpanded ? events.count : 2
-  }
-
-  func tableView(_ tableView: UITableView,
-                 cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard
-      let event = events[safe: indexPath.row],
-      let cell =
-      tableView.dequeueReusableCell(withIdentifier: EventCell.identifier,
-                                    for: indexPath)
-        as? EventCell
-      else { return UITableViewCell() }
-
-    if (indexPath.row >= (eventsExpanded ? events.count : 2) - 1) {
-      cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width)
-    }
-
-    cell.nameLabel.text = event.name
-    cell.timeLabel.text = event.time
-    cell.teamLabel.text = "Team: \(event.team)"
-    // TODO(compnerd) properly localise this
-    cell.amountRaisedLabel.text = "$\(event.amountRaised)"
-    // TODO(compnerd) properly localise this
-    cell.distanceLabel.text = "\(event.distance) miles"
-
-    return cell
-  }
+  let events: Array<Event> = [
+      Event(image: nil, name: "Alpha", time: "January 2017", team: "Team",
+            raised: 32.0, distance: 1.0),
+      Event(image: nil, name: "Beta", time: "February 2017", team: "Team",
+            raised: 64.0, distance: 2.0),
+      Event(image: nil, name: "Gamma", time: "March 2017", team: "Team",
+            raised: 128, distance: 3.0)
+  ]
 }
 
 class ProfileViewController: UIViewController, SelectionButtonDataSource {
@@ -233,15 +176,12 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
   }
 
   let supportersDataSource = SupporterDataSource()
-  let supportersLabel = UILabel(.header)
-  let supportersTable = UITableView()
-  let supportersExpandButton = UIButton(type: .system)
+  let supportersLabel = UILabel(.section)
+  let showSupportButton = UIButton(type: .system)
 
-  let eventsDelegate = EventsDelegate()
   let eventsDataSource = EventsDataSource()
-  let pastEventsLabel = UILabel(.header)
-  let pastEventsTable = UITableView()
-  let pastEventsExpandButton = UIButton(type: .system)
+  let pastEventsLabel = UILabel(.section)
+  let showEventsButton = UIButton(type: .system)
 
   // MARK: - Lifecycle
 
@@ -269,24 +209,37 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
   // MARK: - Configure
 
   private func configureNavigation() {
+    // TODO(compnerd) use the gear icon instead
     navigationItem.rightBarButtonItem =
-        UIBarButtonItem(barButtonSystemItem: .edit, target: self,
+        UIBarButtonItem(barButtonSystemItem: .compose, target: self,
                         action: #selector(configureApp))
+
+    navigationController?.navigationBar.barTintColor = Style.Colors.darkGreen
+    navigationController?.navigationBar.tintColor = Style.Colors.white
+    navigationController?.navigationBar.titleTextAttributes =
+      [NSForegroundColorAttributeName: Style.Colors.white]
   }
 
   private func configureView() {
     view.backgroundColor = Style.Colors.white
     title = Strings.NavBarTitles.profile
 
+    let supporter0: SupporterView =
+        SupporterView(supporter: supportersDataSource.supporters[0])
+    let supporter1: SupporterView =
+        SupporterView(supporter: supportersDataSource.supporters[1])
+
+    let event0: EventView = EventView(event: eventsDataSource.events[0])
+    let event1: EventView = EventView(event: eventsDataSource.events[1])
+
     view.addSubviews([profileImage, nameLabel, teamLabel, rangeButton,
-                      supportersLabel, supportersTable, supportersExpandButton,
-                      pastEventsLabel, pastEventsTable, pastEventsExpandButton])
+                      supportersLabel, supporter0, supporter1, showSupportButton,
+                      pastEventsLabel, event0, event1, showEventsButton])
 
     profileImage.contentMode = .scaleAspectFill
-    profileImage.layer.cornerRadius = Style.Size.s128 / 2
+    // TODO(compnerd) figure out how to get this value properly
+    profileImage.layer.cornerRadius = Style.Size.s128 / 2.0
     profileImage.layer.masksToBounds = true
-    profileImage.layer.borderColor = Style.Colors.grey.cgColor
-    profileImage.layer.borderWidth = 1
     profileImage.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(topLayoutGuide.snp.bottom)
           .offset(Style.Padding.p12)
@@ -303,6 +256,7 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
     }
 
     teamLabel.textAlignment = .center
+    teamLabel.textColor = Style.Colors.grey
     teamLabel.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(nameLabel.snp.bottom)
           .offset(Style.Padding.p12)
@@ -319,58 +273,59 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
       ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
-    supportersLabel.text = Strings.Profile.supporters
+    // TODO(compnerd) localise this properly
+    supportersLabel.text = "Current Supporters (\(supportersDataSource.supporters.count))"
     supportersLabel.snp.makeConstraints { (ConstraintMaker) in
       // FIXME(compenrd) this needs to be based off of the previous row of stats
       ConstraintMaker.top.equalTo(rangeButton.snp.bottom)
-          .offset(Style.Padding.p12)
+          .offset(Style.Padding.p8)
       ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
     }
 
-    supportersTable.allowsSelection = false
-    supportersTable.dataSource = supportersDataSource
-    supportersTable.register(SupporterCell.self,
-                             forCellReuseIdentifier: SupporterCell.identifier)
-    supportersTable.snp.makeConstraints { (ConstraintMaker) in
+    supporter0.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(supportersLabel.snp.bottom)
-          .offset(Style.Padding.p8)
+        .offset(Style.Padding.p8)
       ConstraintMaker.left.right.equalToSuperview().inset(Style.Padding.p12)
-      // FIXME(compnerd) how do we generate something reasonable here?
-      ConstraintMaker.height.greaterThanOrEqualTo(40.0 * 2.25)
     }
 
-    supportersExpandButton.setTitle(Strings.Profile.showMore, for: .normal)
-    supportersExpandButton.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(supportersTable.snp.bottom)
+    supporter1.snp.makeConstraints { (ConstraintMaker) in
+      // FIXME(compnerd) this shouldn't need the offset to be the height of the
+      // previous view
+      ConstraintMaker.top.equalTo(supporter0.snp.bottom).offset(48.0)
+      ConstraintMaker.left.right.equalToSuperview().inset(Style.Padding.p12)
+    }
+
+    showSupportButton.setTitle(Strings.Profile.seeMore, for: .normal)
+    showSupportButton.snp.makeConstraints { (ConstraintMaker) in
+      ConstraintMaker.top.equalTo(supporter1.snp.bottom)
           .offset(Style.Padding.p8)
-      ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
+      ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
-    pastEventsLabel.text = Strings.Profile.pastEvents
+    // TODO(compnerd) localise this properly
+    pastEventsLabel.text = "Past Events (\(eventsDataSource.events.count))"
     pastEventsLabel.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(supportersExpandButton.snp.bottom)
+      ConstraintMaker.top.equalTo(showSupportButton.snp.bottom)
           .offset(Style.Padding.p12)
       ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
     }
 
-    pastEventsTable.allowsSelection = false
-    pastEventsTable.dataSource = eventsDataSource
-    pastEventsTable.delegate = eventsDelegate
-    pastEventsTable.register(EventCell.self,
-                             forCellReuseIdentifier: EventCell.identifier)
-    pastEventsTable.snp.makeConstraints { (ConstraintMaker) in
+    event0.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(pastEventsLabel.snp.bottom)
-          .offset(Style.Padding.p8)
       ConstraintMaker.left.right.equalToSuperview().inset(Style.Padding.p12)
-      // FIXME(compnerd) how do we generate something reasonable here?
-      ConstraintMaker.height.greaterThanOrEqualTo(40.0 * 2.25)
     }
 
-    pastEventsExpandButton.setTitle(Strings.Profile.showMore, for: .normal)
-    pastEventsExpandButton.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(pastEventsTable.snp.bottom)
-          .offset(Style.Padding.p8)
-      ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
+    event1.snp.makeConstraints { (ConstraintMaker) in
+      // FIXME(compnerd) this shouldn't need the offset to be the height of the
+      // previous view
+      ConstraintMaker.top.equalTo(event0.snp.bottom).offset(64.0)
+      ConstraintMaker.left.right.equalToSuperview().inset(Style.Padding.p12)
+    }
+
+    showEventsButton.setTitle(Strings.Profile.seeMore, for: .normal)
+    showEventsButton.snp.makeConstraints { (ConstraintMaker) in
+      ConstraintMaker.top.equalTo(event1.snp.bottom).offset(Style.Padding.p8)
+      ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
     }
   }
 

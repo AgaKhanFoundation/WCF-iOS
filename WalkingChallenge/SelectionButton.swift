@@ -17,12 +17,13 @@ class SelectionButtonPopoverViewController: UIViewController {
     super.viewDidLoad()
 
     view.addSubview(tableView)
+    tableView.bounces = false
     tableView.dataSource = self
     tableView.delegate = self
     tableView.register(UITableViewCell.self,
                        forCellReuseIdentifier: "PopoverCell")
     tableView.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.edges.equalToSuperview().inset(Style.Padding.p12)
+      ConstraintMaker.edges.equalToSuperview()
     }
   }
 }
@@ -97,7 +98,8 @@ class SelectionButton: UIButton {
     popover.sourceView = self
     popover.modalPresentationStyle = .popover
     // TODO(compnerd) calculate this properly
-    popover.preferredContentSize = CGSize(width: 256, height: 196)
+    popover.preferredContentSize = CGSize(width: 152, height: 175)
+    popover.popoverPresentationController?.backgroundColor = .white
     popover.popoverPresentationController!.delegate = popover
     delegate?.present(popover, animated: true, completion: nil)
   }
