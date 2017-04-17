@@ -65,7 +65,7 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
       alert(message: "Error logging in: \(error)", style: .cancel)
       return
     }
-    if(result.isCancelled) {
+    guard result.isCancelled == false else {
       alert(message: "Login Cancelled", style: .default)
       return;
     }
