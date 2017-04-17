@@ -65,7 +65,13 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
       alert(message: "Error logging in: \(error)", style: .cancel)
       return
     }
-    AppController.shared.login()
+    
+    if(FBSDKAccessToken.current() == nil){
+      return;
+      
+    } else{
+      AppController.shared.login()
+    }
   }
 
   func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
