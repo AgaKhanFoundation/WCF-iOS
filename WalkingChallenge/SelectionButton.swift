@@ -87,7 +87,7 @@ class SelectionButton: UIButton, SelectionButtonPopoverViewControllerDelegate {
   var delegate: SelectionButtonDelegate?
 
   internal var items: [String] {
-    get { return (dataSource?.items)! }
+    return (dataSource?.items)!
   }
 
   internal var selection: Int? {
