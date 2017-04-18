@@ -308,7 +308,7 @@ class ProfileViewController: UIViewController {
     showSupportButton.setTitle(Strings.Profile.seeMore, for: .normal)
     showSupportButton.addTarget(self, action: #selector(showSupporters),
                                 for: .touchUpInside)
-    
+
     showSupportButton.snp.makeConstraints { (make) in
       make.top.equalTo(supporter1.snp.bottom)
           .offset(Style.Padding.p8)
@@ -366,4 +366,3 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: SelectionButtonDelegate {
 }
-

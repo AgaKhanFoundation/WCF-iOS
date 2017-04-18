@@ -9,43 +9,43 @@ class ContactPickerViewController: UIViewController {
   fileprivate let tableView = UITableView()
   fileprivate let dataSource = ContactDataSource()
   private let searchBar = UISearchBar()
-  
+
   weak var delegate: ContactPickerViewControllerDelegate?
-  
+
   // MARK: - Lifecycle
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     configureView()
     configureNavigationBar()
     configureTableView()
     configureSearcBar()
   }
-  
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     dataSource.reload { [weak self] in
       self?.tableView.reloadData()
     }
   }
-  
+
   // MARK: - Configure
-  
+
   private func configureView() {
     view.backgroundColor = Style.Colors.white
-    
+
     view.addSubview(tableView)
     tableView.snp.makeConstraints { (make) in
       make.edges.equalToSuperview().inset(Style.Padding.p12)
     }
   }
-  
+
   private func configureNavigationBar() {
     navigationItem.title = Strings.ContactPicker.title
     updateNavigationBar()
   }
-  
+
   private func configureTableView() {
     tableView.rowHeight = Style.Size.s40
     tableView.separatorStyle = .none
@@ -56,13 +56,13 @@ class ContactPickerViewController: UIViewController {
                        forCellReuseIdentifier: ContactCell.identifier)
     tableView.allowsMultipleSelection = true
   }
-  
+
   private func configureSearcBar() {
     searchBar.placeholder = "Search"
     searchBar.delegate = self
     navigationItem.titleView = searchBar
   }
-  
+
   fileprivate func updateNavigationBar() {
     if dataSource.anyFriendsSelected {
       navigationItem.leftBarButtonItem =
@@ -74,13 +74,13 @@ class ContactPickerViewController: UIViewController {
                           action: #selector(cancelTapped))
     }
   }
-  
+
   // MARK: - Actions
-  
+
   func cancelTapped() {
     presentingViewController?.dismiss(animated: true, completion: nil)
   }
-  
+
   func addTapped() {
     delegate?.contactPickerSelected(friends: dataSource.selectedFriendsIDs)
     presentingViewController?.dismiss(animated: true, completion: nil)
@@ -92,7 +92,7 @@ extension ContactPickerViewController: UISearchBarDelegate {
     dataSource.filter = searchText.isEmpty ? nil : searchText
     tableView.reloadData()
   }
-  
+
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
     dataSource.filter = nil
     tableView.reloadData()
@@ -126,7 +126,7 @@ extension ContactPickerViewController: UITableViewDelegate {
     dataSource.changeSelection(at: indexPath, select: true)
     updateNavigationBar()
   }
-  
+
   func tableView(_ tableView: UITableView,
                  didDeselectRowAt indexPath: IndexPath) {
     dataSource.changeSelection(at: indexPath, select: false)

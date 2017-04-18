@@ -130,14 +130,14 @@ extension TeamMembersDataSource: UITableViewDataSource {
                                         for: indexPath)
               as? ConfigurableUITableViewCell
     else { return UITableViewCell() }
-    
+
     cell.configure(info)
     //TODO: Sami fix this using CellInfo pattern
     if let cell = cell as? UITableViewCell {
       if indexPath.row == 0 {
         cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width)
       }
-      
+
       return cell
     } else {
       return UITableViewCell()

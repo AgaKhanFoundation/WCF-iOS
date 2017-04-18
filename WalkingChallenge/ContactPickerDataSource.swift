@@ -8,11 +8,11 @@ class ContactDataSource: TableDataSource {
   var filter: String? { didSet { configureCells() }}
   private var friends = [Friend]()
   private var selectedFriends = Set<String>()
-  
+
   func reload(completion: @escaping GenericBlock) {
     fetchFriends(completion: completion)
   }
-  
+
   func changeSelection(at indexPath: IndexPath, select: Bool) {
     if let fbid = (cells[safe: indexPath.row] as? ContactCellInfo)?.fbid {
       if select {
@@ -23,29 +23,29 @@ class ContactDataSource: TableDataSource {
       configureCells()
     }
   }
-  
+
   var anyFriendsSelected: Bool {
     return !selectedFriends.isEmpty
   }
-  
+
   var selectedFriendsIDs: [String] {
     return Array(selectedFriends)
   }
-  
+
   private func fetchFriends(completion: @escaping GenericBlock) {
     Facebook.getTaggableFriends(limit: .none) { [weak self] (friend: Friend) in
       self?.friends.append(friend)
       self?.configureCells()
-      
+
       completion()
     }
   }
-  
+
   private func configureCells() {
     let sortOrder = CNContactsUserDefaults.shared().sortOrder
-    
+
     var sortedFilteredFriends = friends
-    
+
     switch sortOrder {
     case .givenName:
       sortedFilteredFriends.sort { $0.firstName < $1.firstName }
@@ -53,12 +53,12 @@ class ContactDataSource: TableDataSource {
       sortedFilteredFriends.sort { $0.lastName < $1.lastName }
     default: break
     }
-    
+
     if let filter = filter {
       sortedFilteredFriends = sortedFilteredFriends
         .filter {$0.displayName.lowercased().contains(filter.lowercased())}
     }
-    
+
     cells.removeAll()
     cells = sortedFilteredFriends.map {
       var cell = ContactCellInfo(from: $0)

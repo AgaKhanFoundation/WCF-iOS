@@ -24,7 +24,7 @@ struct Strings {
     static let overall = NSLocalizedString("Overall", comment: "Overall Range")
     static let leaderboard = NSLocalizedString("Leaderboard", comment: "Title for leaderboard")
   }
-  
+
   struct Configuration {
     static let device = NSLocalizedString("Device", comment: "Title for device section")
   }
@@ -41,4 +41,3 @@ struct Strings {
     static let configuration = NSLocalizedString("Configuration", comment: "Configuration")
   }
 }
-
