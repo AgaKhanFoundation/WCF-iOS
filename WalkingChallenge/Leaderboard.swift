@@ -120,7 +120,7 @@ extension LeaderBoard: UITableViewDataSource {
     else { return UITableViewCell() }
 
     cell.configure(entry)
-    // TODO: Sami fix this to use actual CellInfo pattern.
+    // TODO(sami) fix this to use actual CellInfo pattern.
     return cell as? UITableViewCell ?? UITableViewCell()
   }
 }
