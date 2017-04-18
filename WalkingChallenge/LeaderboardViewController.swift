@@ -36,8 +36,8 @@ class LeaderboardViewController: UIViewController {
     title = Strings.NavBarTitles.leaderboard
 
     view.addSubview(leaderboard)
-    leaderboard.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.edges.equalToSuperview().inset(Style.Padding.p12)
+    leaderboard.snp.makeConstraints { (make) in
+      make.edges.equalToSuperview().inset(Style.Padding.p12)
     }
   }
 }

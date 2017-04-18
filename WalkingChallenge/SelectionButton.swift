@@ -25,8 +25,8 @@ class SelectionButtonPopoverViewController: UIViewController {
     tableView.delegate = self
     tableView.register(UITableViewCell.self,
                        forCellReuseIdentifier: "PopoverCell")
-    tableView.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.edges.equalToSuperview()
+    tableView.snp.makeConstraints { (make) in
+      make.edges.equalToSuperview()
     }
   }
 }

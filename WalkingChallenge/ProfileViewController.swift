@@ -31,23 +31,23 @@ class SupporterView: UIView {
 
     addSubviews([name, donated, pledged])
 
-    name.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.left.equalToSuperview()
-      ConstraintMaker.centerY.equalToSuperview()
+    name.snp.makeConstraints { (make) in
+      make.left.equalToSuperview()
+      make.centerY.equalToSuperview()
     }
 
-    donated.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalToSuperview()
-      ConstraintMaker.bottom.equalTo(name.snp.centerY)
-      ConstraintMaker.right.equalToSuperview()
-      ConstraintMaker.left.equalTo(pledged.snp.left)
+    donated.snp.makeConstraints { (make) in
+      make.top.equalToSuperview()
+      make.bottom.equalTo(name.snp.centerY)
+      make.right.equalToSuperview()
+      make.left.equalTo(pledged.snp.left)
     }
 
     pledged.textColor = Style.Colors.grey
-    pledged.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(name.snp.centerY)
-      ConstraintMaker.bottom.equalToSuperview()
-      ConstraintMaker.right.equalToSuperview()
+    pledged.snp.makeConstraints { (make) in
+      make.top.equalTo(name.snp.centerY)
+      make.bottom.equalToSuperview()
+      make.right.equalToSuperview()
     }
   }
 
@@ -105,37 +105,37 @@ class EventView: UIView {
 
     addSubviews([image, name, time, team, raised, distance])
 
-    image.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.left.equalToSuperview()
-      ConstraintMaker.height.width.equalTo(Style.Size.s56)
+    image.snp.makeConstraints { (make) in
+      make.top.left.equalToSuperview()
+      make.height.width.equalTo(Style.Size.s56)
     }
 
-    name.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.left.equalTo(image.snp.right).offset(Style.Padding.p8)
-      ConstraintMaker.top.equalTo(image.snp.top)
+    name.snp.makeConstraints { (make) in
+      make.left.equalTo(image.snp.right).offset(Style.Padding.p8)
+      make.top.equalTo(image.snp.top)
     }
 
     time.textColor = Style.Colors.grey
-    time.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.left.equalTo(image.snp.right).offset(Style.Padding.p8)
-      ConstraintMaker.top.equalTo(name.snp.bottom)
+    time.snp.makeConstraints { (make) in
+      make.left.equalTo(image.snp.right).offset(Style.Padding.p8)
+      make.top.equalTo(name.snp.bottom)
     }
 
-    team.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.left.equalTo(image.snp.right).offset(Style.Padding.p8)
-      ConstraintMaker.top.equalTo(time.snp.bottom)
+    team.snp.makeConstraints { (make) in
+      make.left.equalTo(image.snp.right).offset(Style.Padding.p8)
+      make.top.equalTo(time.snp.bottom)
     }
 
-    raised.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(team.snp.bottom)
-      ConstraintMaker.bottom.equalToSuperview()
-      ConstraintMaker.left.equalTo(team.snp.left)
+    raised.snp.makeConstraints { (make) in
+      make.top.equalTo(team.snp.bottom)
+      make.bottom.equalToSuperview()
+      make.left.equalTo(team.snp.left)
     }
 
-    distance.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(team.snp.bottom)
-      ConstraintMaker.bottom.equalToSuperview()
-      ConstraintMaker.right.equalToSuperview()
+    distance.snp.makeConstraints { (make) in
+      make.top.equalTo(team.snp.bottom)
+      make.bottom.equalToSuperview()
+      make.right.equalToSuperview()
     }
   }
 
@@ -255,89 +255,89 @@ class ProfileViewController: UIViewController {
     // TODO(compnerd) figure out how to get this value properly
     profileImage.layer.cornerRadius = Style.Size.s128 / 2.0
     profileImage.layer.masksToBounds = true
-    profileImage.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(topLayoutGuide.snp.bottom)
+    profileImage.snp.makeConstraints { (make) in
+      make.top.equalTo(topLayoutGuide.snp.bottom)
           .offset(Style.Padding.p12)
-      ConstraintMaker.size.equalTo(Style.Size.s128)
-      ConstraintMaker.centerX.equalToSuperview()
+      make.size.equalTo(Style.Size.s128)
+      make.centerX.equalToSuperview()
     }
 
-    nameLabel.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(profileImage.snp.bottom)
+    nameLabel.snp.makeConstraints { (make) in
+      make.top.equalTo(profileImage.snp.bottom)
           .offset(Style.Padding.p12)
-      ConstraintMaker.centerX.equalToSuperview()
+      make.centerX.equalToSuperview()
     }
 
     teamLabel.textAlignment = .center
     teamLabel.textColor = Style.Colors.grey
-    teamLabel.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(nameLabel.snp.bottom)
+    teamLabel.snp.makeConstraints { (make) in
+      make.top.equalTo(nameLabel.snp.bottom)
           .offset(Style.Padding.p12)
-      ConstraintMaker.centerX.equalToSuperview()
+      make.centerX.equalToSuperview()
     }
 
     rangeButton.dataSource = statisticsRangeDataSource
     rangeButton.delegate = self
     rangeButton.selection = UserInfo.profileStatsRange
-    rangeButton.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(teamLabel.snp.bottom)
+    rangeButton.snp.makeConstraints { (make) in
+      make.top.equalTo(teamLabel.snp.bottom)
           .offset(Style.Padding.p12)
-      ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
+      make.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
     // TODO(compnerd) localise this properly
-    supportersLabel.text =
-        "Current Supporters (\(supportersDataSource.supporters.count))"
-    supportersLabel.snp.makeConstraints { (ConstraintMaker) in
+    supportersLabel.text = "Current Supporters (\(supportersDataSource.supporters.count))"
+    supportersLabel.snp.makeConstraints { (make) in
       // FIXME(compenrd) this needs to be based off of the previous row of stats
-      ConstraintMaker.top.equalTo(rangeButton.snp.bottom)
+      make.top.equalTo(rangeButton.snp.bottom)
           .offset(Style.Padding.p8)
-      ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
+      make.left.equalToSuperview().inset(Style.Padding.p12)
     }
 
-    supporter0.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(supportersLabel.snp.bottom)
+    supporter0.snp.makeConstraints { (make) in
+      make.top.equalTo(supportersLabel.snp.bottom)
         .offset(Style.Padding.p8)
-      ConstraintMaker.left.right.equalToSuperview().inset(Style.Padding.p12)
+      make.left.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
-    supporter1.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(supporter0.snp.bottom)
-      ConstraintMaker.left.right.equalToSuperview().inset(Style.Padding.p12)
+    supporter1.snp.makeConstraints { (make) in
+      make.top.equalTo(supporter0.snp.bottom)
+      make.left.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
     showSupportButton.setTitle(Strings.Profile.seeMore, for: .normal)
     showSupportButton.addTarget(self, action: #selector(showSupporters),
                                 for: .touchUpInside)
-    showSupportButton.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(supporter1.snp.bottom)
+    
+    showSupportButton.snp.makeConstraints { (make) in
+      make.top.equalTo(supporter1.snp.bottom)
           .offset(Style.Padding.p8)
-      ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
+      make.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
     // TODO(compnerd) localise this properly
     pastEventsLabel.text = "Past Events (\(eventsDataSource.events.count))"
-    pastEventsLabel.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(showSupportButton.snp.bottom)
+    pastEventsLabel.snp.makeConstraints { (make) in
+      make.top.equalTo(showSupportButton.snp.bottom)
           .offset(Style.Padding.p12)
-      ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
+      make.left.equalToSuperview().inset(Style.Padding.p12)
     }
 
-    event0.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(pastEventsLabel.snp.bottom)
+    event0.snp.makeConstraints { (make) in
+      make.top.equalTo(pastEventsLabel.snp.bottom)
           .offset(Style.Padding.p8)
-      ConstraintMaker.left.right.equalToSuperview().inset(Style.Padding.p12)
+      make.left.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
-    event1.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(event0.snp.bottom)
-      ConstraintMaker.left.right.equalToSuperview().inset(Style.Padding.p12)
+    event1.snp.makeConstraints { (make) in
+      make.top.equalTo(event0.snp.bottom)
+      make.left.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
     showEventsButton.setTitle(Strings.Profile.seeMore, for: .normal)
-    showEventsButton.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(event1.snp.bottom).offset(Style.Padding.p8)
-      ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
+    showEventsButton.snp.makeConstraints { (make) in
+      make.top.equalTo(event1.snp.bottom).offset(Style.Padding.p8)
+      make.right.equalToSuperview().inset(Style.Padding.p12)
     }
   }
 

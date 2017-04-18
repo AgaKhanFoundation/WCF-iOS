@@ -31,41 +31,41 @@ class LeaderBoardCell: UITableViewCell, IdentifiedUITableViewCell {
   private func initialise() {
     addSubviews([standing, picture, name, distance, raised])
 
-    standing.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
+    standing.snp.makeConstraints { (make) in
+      make.left.equalToSuperview().inset(Style.Padding.p12)
       // TODO(compnerd) figure out the right way to get this value
-      ConstraintMaker.width.height.equalTo(Style.Size.s32)
-      ConstraintMaker.centerY.equalToSuperview()
+      make.width.height.equalTo(Style.Size.s32)
+      make.centerY.equalToSuperview()
     }
 
     picture.layer.backgroundColor = Style.Colors.grey.cgColor
     // TODO(compnerd) figure out the right way to get this value
     picture.layer.cornerRadius = Style.Size.s32 / 2.0
     picture.layer.masksToBounds = true
-    picture.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.left.equalTo(standing.snp.right)
+    picture.snp.makeConstraints { (make) in
+      make.left.equalTo(standing.snp.right)
           .offset(Style.Padding.p8)
       // TODO(compnerd) figure out the right way to get this value
-      ConstraintMaker.height.width.equalTo(Style.Size.s32)
-      ConstraintMaker.centerY.equalToSuperview()
+      make.height.width.equalTo(Style.Size.s32)
+      make.centerY.equalToSuperview()
     }
 
-    name.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.left.equalTo(picture.snp.right)
+    name.snp.makeConstraints { (make) in
+      make.left.equalTo(picture.snp.right)
           .offset(Style.Padding.p12)
-      ConstraintMaker.centerY.equalToSuperview()
+      make.centerY.equalToSuperview()
     }
 
-    distance.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
-      ConstraintMaker.bottom.equalTo(name.snp.centerY)
-      ConstraintMaker.width.equalTo(raised.snp.width)
+    distance.snp.makeConstraints { (make) in
+      make.right.equalToSuperview().inset(Style.Padding.p12)
+      make.bottom.equalTo(name.snp.centerY)
+      make.width.equalTo(raised.snp.width)
     }
 
     raised.textColor = Style.Colors.grey
-    raised.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
-      ConstraintMaker.top.equalTo(name.snp.centerY)
+    raised.snp.makeConstraints { (make) in
+      make.right.equalToSuperview().inset(Style.Padding.p12)
+      make.top.equalTo(name.snp.centerY)
     }
   }
 }
