@@ -286,7 +286,8 @@ class ProfileViewController: UIViewController {
     }
 
     // TODO(compnerd) localise this properly
-    supportersLabel.text = "Current Supporters (\(supportersDataSource.supporters.count))"
+    supportersLabel.text =
+        "Current Supporters (\(supportersDataSource.supporters.count))"
     supportersLabel.snp.makeConstraints { (ConstraintMaker) in
       // FIXME(compenrd) this needs to be based off of the previous row of stats
       ConstraintMaker.top.equalTo(rangeButton.snp.bottom)
