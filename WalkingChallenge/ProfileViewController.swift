@@ -23,23 +23,31 @@ class SupporterView: UIView {
   }
 
   private func configure() {
+    // FIXME(compnerd) this should inset eeverything by the desired amount, but
+    // doesnt seem to?
+    layoutMargins =
+        UIEdgeInsets(top: Style.Padding.p12, left: Style.Padding.p12,
+                     bottom: Style.Padding.p12, right: Style.Padding.p12)
+
     addSubviews([name, donated, pledged])
 
     name.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
+      ConstraintMaker.left.equalToSuperview()
       ConstraintMaker.centerY.equalToSuperview()
     }
 
     donated.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
+      ConstraintMaker.top.equalToSuperview()
       ConstraintMaker.bottom.equalTo(name.snp.centerY)
+      ConstraintMaker.right.equalToSuperview()
       ConstraintMaker.left.equalTo(pledged.snp.left)
     }
 
     pledged.textColor = Style.Colors.grey
     pledged.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
       ConstraintMaker.top.equalTo(name.snp.centerY)
+      ConstraintMaker.bottom.equalToSuperview()
+      ConstraintMaker.right.equalToSuperview()
     }
   }
 
@@ -88,10 +96,16 @@ class EventView: UIView {
   }
 
   private func configure() {
+    // FIXME(compnerd) this should inset eeverything by the desired amount, but
+    // doesnt seem to?
+    layoutMargins =
+      UIEdgeInsets(top: Style.Padding.p12, left: Style.Padding.p12,
+                   bottom: Style.Padding.p12, right: Style.Padding.p12)
+
     addSubviews([image, name, time, team, raised, distance])
 
     image.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.left.equalToSuperview().inset(Style.Padding.p12)
+      ConstraintMaker.top.left.equalToSuperview()
       ConstraintMaker.height.width.equalTo(Style.Size.s56)
     }
 
@@ -112,13 +126,15 @@ class EventView: UIView {
     }
 
     raised.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.left.equalTo(image.snp.right).offset(Style.Padding.p8)
       ConstraintMaker.top.equalTo(team.snp.bottom)
+      ConstraintMaker.bottom.equalToSuperview()
+      ConstraintMaker.left.equalTo(team.snp.left)
     }
 
     distance.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
       ConstraintMaker.top.equalTo(team.snp.bottom)
+      ConstraintMaker.bottom.equalToSuperview()
+      ConstraintMaker.right.equalToSuperview()
     }
   }
 
@@ -243,12 +259,10 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
       ConstraintMaker.centerX.equalToSuperview()
     }
 
-    nameLabel.textAlignment = .center
     nameLabel.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(profileImage.snp.bottom)
           .offset(Style.Padding.p12)
-      ConstraintMaker.leading.trailing.equalToSuperview()
-          .inset(Style.Padding.p12)
+      ConstraintMaker.centerX.equalToSuperview()
     }
 
     teamLabel.textAlignment = .center
@@ -256,8 +270,7 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
     teamLabel.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(nameLabel.snp.bottom)
           .offset(Style.Padding.p12)
-      ConstraintMaker.leading.trailing.equalToSuperview()
-          .inset(Style.Padding.p12)
+      ConstraintMaker.centerX.equalToSuperview()
     }
 
     rangeButton.dataSource = self
@@ -284,9 +297,7 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
     }
 
     supporter1.snp.makeConstraints { (ConstraintMaker) in
-      // FIXME(compnerd) this shouldn't need the offset to be the height of the
-      // previous view
-      ConstraintMaker.top.equalTo(supporter0.snp.bottom).offset(48.0)
+      ConstraintMaker.top.equalTo(supporter0.snp.bottom)
       ConstraintMaker.left.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
@@ -307,13 +318,12 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
 
     event0.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(pastEventsLabel.snp.bottom)
+          .offset(Style.Padding.p8)
       ConstraintMaker.left.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
     event1.snp.makeConstraints { (ConstraintMaker) in
-      // FIXME(compnerd) this shouldn't need the offset to be the height of the
-      // previous view
-      ConstraintMaker.top.equalTo(event0.snp.bottom).offset(64.0)
+      ConstraintMaker.top.equalTo(event0.snp.bottom)
       ConstraintMaker.left.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
