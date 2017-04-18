@@ -40,7 +40,7 @@ class HealthKitDataProvider: PedometerDataProvider {
 
         var steps = 0
         for result in results {
-          steps = steps + Int(result.quantity.doubleValue(for: .count()))
+          steps += Int(result.quantity.doubleValue(for: .count()))
         }
 
         completion(steps)
