@@ -175,7 +175,7 @@ class StatisticsRangeDataSource: SelectionButtonDataSource {
                        Strings.Profile.thisEvent, Strings.Profile.overall]
 
   var items: [String] = StatisticsRangeDataSource.ranges
-  var selection: Int? = nil
+  var selection: Int?
 }
 
 class ProfileViewController: UIViewController {
