@@ -247,12 +247,10 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
       ConstraintMaker.centerX.equalToSuperview()
     }
 
-    nameLabel.textAlignment = .center
     nameLabel.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(profileImage.snp.bottom)
           .offset(Style.Padding.p12)
-      ConstraintMaker.leading.trailing.equalToSuperview()
-          .inset(Style.Padding.p12)
+      ConstraintMaker.centerX.equalToSuperview()
     }
 
     teamLabel.textAlignment = .center
@@ -260,8 +258,7 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
     teamLabel.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(nameLabel.snp.bottom)
           .offset(Style.Padding.p12)
-      ConstraintMaker.leading.trailing.equalToSuperview()
-          .inset(Style.Padding.p12)
+      ConstraintMaker.centerX.equalToSuperview()
     }
 
     rangeButton.dataSource = self
