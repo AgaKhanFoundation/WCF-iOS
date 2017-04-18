@@ -86,7 +86,7 @@ class Facebook {
           }
 
           handler(friend)
-          retrieved = retrieved + 1
+          retrieved += 1
         }
       }
 
