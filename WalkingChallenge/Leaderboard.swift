@@ -87,7 +87,7 @@ extension LeaderBoardCell: ConfigurableUITableViewCell {
 }
 
 protocol LeaderBoardDataSource {
-  var leaders: Array<LeaderBoardEntry> { get }
+  var leaders: [LeaderBoardEntry] { get }
 }
 
 class LeaderBoard: UITableView {

@@ -14,10 +14,10 @@ class TeamViewController: UIViewController, SelectionButtonDataSource, LeaderBoa
   let leaderboardLabel = UILabel(.section)
   let leaderboard = LeaderBoard()
 
-  var leaders: Array<LeaderBoardEntry> = [
+  var leaders: [LeaderBoardEntry] = [
   ]
 
-  var items: Array<String> = TeamViewController.ranges
+  var items: [String] = TeamViewController.ranges
   var selection: Int? {
     didSet {
       if let value = selection {
@@ -138,5 +138,4 @@ extension TeamViewController: ContactPickerViewControllerDelegate {
 
 extension TeamViewController: SelectionButtonDelegate {
 }
-
 
