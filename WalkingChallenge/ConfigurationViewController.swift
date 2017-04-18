@@ -14,9 +14,6 @@ class ConfigurationViewController: UIViewController {
   }
 
   private func configureNavigation() {
-    navigationItem.leftBarButtonItem =
-        UIBarButtonItem(barButtonSystemItem: .done, target: self,
-                        action: #selector(dismissView))
   }
 
   private func configureView() {
@@ -37,10 +34,6 @@ class ConfigurationViewController: UIViewController {
       ConstraintMaker.bottom.equalTo(bottomLayoutGuide.snp.top)
           .offset(-Style.Padding.p12)
     }
-  }
-
-  func dismissView() {
-    presentingViewController?.dismiss(animated: true, completion: nil)
   }
 }
 

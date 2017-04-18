@@ -353,9 +353,7 @@ class ProfileViewController: UIViewController {
 
   func configureApp() {
     let configurationView = ConfigurationViewController()
-    let controller =
-          UINavigationController(rootViewController: configurationView)
-    present(controller, animated: true, completion: nil)
+    navigationController?.pushViewController(configurationView, animated: true)
   }
 }
 
