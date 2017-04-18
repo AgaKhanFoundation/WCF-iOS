@@ -4,10 +4,10 @@ import FBSDKShareKit
 
 struct Friend {
   let fbid: String
-  let display_name: String
-  let first_name: String
-  let last_name: String
-  let picture_url: String
+  let displayName: String
+  let firstName: String
+  let lastName: String
+  let pictureRawURL: String
 }
 
 enum QueryLimit {
@@ -38,8 +38,8 @@ class Facebook {
       return nil
     }
 
-    return Friend(fbid: id, display_name: name, first_name: first_name,
-                  last_name: last_name, picture_url: picture_url)
+        return Friend(fbid: id, displayName: name, firstName: first_name,
+                      lastName: last_name, pictureRawURL: picture_url)
   }
 
   private static func enumerateFriends(type: FriendType,
