@@ -66,7 +66,6 @@ struct Style {
 
   // TODO: Update this based on style guide from UX/UI person
   enum Typography {
-    // TODO: Add more styles as a style guide is made
     case header
     case title
     case body
@@ -74,7 +73,6 @@ struct Style {
     case section
     case caption
 
-    // TODO: Custom fonts can be replaced here
     var font: UIFont? {
       switch self {
       case .header: return UIFont.preferredFont(forTextStyle: .headline)
