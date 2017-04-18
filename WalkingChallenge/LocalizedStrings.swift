@@ -4,7 +4,8 @@ import Foundation
 struct Strings {
   struct Login {
     static let title = NSLocalizedString("Walking Challenge", comment: "Title for login screen")
-    static let desciption = NSLocalizedString("Please login in via facebook to continue", comment: "Description for login screen")
+    static let desciption = NSLocalizedString("Please login in via facebook to continue",
+                                              comment: "Description for login screen")
   }
 
   struct Profile {
