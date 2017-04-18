@@ -60,20 +60,20 @@ class TeamViewController: UIViewController, SelectionButtonDataSource, LeaderBoa
     teamImage.layer.masksToBounds = true
     teamImage.layer.borderColor = Style.Colors.grey.cgColor
     teamImage.layer.borderWidth = 1
-    teamImage.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(topLayoutGuide.snp.bottom)
+    teamImage.snp.makeConstraints { (make) in
+      make.top.equalTo(topLayoutGuide.snp.bottom)
           .offset(Style.Padding.p12)
-      ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
-      ConstraintMaker.height.width.equalTo(Style.Size.s56)
+      make.left.equalToSuperview().inset(Style.Padding.p12)
+      make.height.width.equalTo(Style.Size.s56)
     }
 
     teamName.text = Team.name
     teamName.textAlignment = .left
-    teamName.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(teamImage.snp.top)
-      ConstraintMaker.left.equalTo(teamImage.snp.right)
+    teamName.snp.makeConstraints { (make) in
+      make.top.equalTo(teamImage.snp.top)
+      make.left.equalTo(teamImage.snp.right)
           .offset(Style.Padding.p12)
-      ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
+      make.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
     // TODO(compnerd) make this localizable
@@ -81,35 +81,35 @@ class TeamViewController: UIViewController, SelectionButtonDataSource, LeaderBoa
     memberCount.contentHorizontalAlignment = .left
     memberCount.addTarget(self, action: #selector(showMembers),
                           for: .touchUpInside)
-    memberCount.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(teamName.snp.bottom)
-      ConstraintMaker.left.equalTo(teamImage.snp.right)
+    memberCount.snp.makeConstraints { (make) in
+      make.top.equalTo(teamName.snp.bottom)
+      make.left.equalTo(teamImage.snp.right)
           .offset(Style.Padding.p12)
-      ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
+      make.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
     rangeSelector.dataSource = self
     rangeSelector.delegate = self
     rangeSelector.selection = UserInfo.teamLeaderStatsRange
-    rangeSelector.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(memberCount.snp.bottom)
+    rangeSelector.snp.makeConstraints { (make) in
+      make.top.equalTo(memberCount.snp.bottom)
           .offset(Style.Padding.p24)
-      ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
+      make.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
     leaderboardLabel.text = Strings.Team.leaderboard
-    leaderboardLabel.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(rangeSelector.snp.bottom)
-      ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
+    leaderboardLabel.snp.makeConstraints { (make) in
+      make.top.equalTo(rangeSelector.snp.bottom)
+      make.left.equalToSuperview().inset(Style.Padding.p12)
     }
 
     leaderboard.data = self
-    leaderboard.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(leaderboardLabel.snp.bottom)
+    leaderboard.snp.makeConstraints { (make) in
+      make.top.equalTo(leaderboardLabel.snp.bottom)
           .offset(Style.Padding.p8)
-      ConstraintMaker.bottom.equalTo(bottomLayoutGuide.snp.top)
+      make.bottom.equalTo(bottomLayoutGuide.snp.top)
           .offset(-Style.Padding.p12)
-      ConstraintMaker.leading.trailing.equalToSuperview()
+      make.leading.trailing.equalToSuperview()
           .inset(Style.Padding.p12)
     }
   }

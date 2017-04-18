@@ -22,17 +22,15 @@ class ConfigurationViewController: UIViewController {
 
     view.addSubview(deviceLabel)
     deviceLabel.text = Strings.Configuration.device
-    deviceLabel.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalToSuperview().inset(Style.Padding.p12)
-      ConstraintMaker.left.right.equalToSuperview().inset(Style.Padding.p12)
+    deviceLabel.snp.makeConstraints { (make) in
+      make.leading.trailing.top.equalToSuperview().inset(Style.Padding.p12)
     }
 
     view.addSubview(logoutButton)
     logoutButton.delegate = self
-    logoutButton.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.centerX.equalToSuperview()
-      ConstraintMaker.bottom.equalTo(bottomLayoutGuide.snp.top)
-          .offset(-Style.Padding.p12)
+    logoutButton.snp.makeConstraints { (make) in
+      make.centerX.equalToSuperview()
+      make.bottom.equalTo(bottomLayoutGuide.snp.top).offset(-Style.Padding.p12)
     }
   }
 }

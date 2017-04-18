@@ -29,8 +29,8 @@ class TeamMemberCountCell: UITableViewCell, IdentifiedUITableViewCell {
     contentView.addSubview(label)
     backgroundColor = .clear
 
-    label.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.edges.equalToSuperview().inset(Style.Padding.p12)
+    label.snp.makeConstraints { (make) in
+      make.edges.equalToSuperview().inset(Style.Padding.p12)
     }
   }
 }
@@ -78,17 +78,17 @@ class TeamMemberCell: UITableViewCell, IdentifiedUITableViewCell {
     pictureView.layer.borderWidth = 1
     pictureView.layer.cornerRadius = Style.Size.s32 / 2
     pictureView.layer.masksToBounds = true
-    pictureView.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.height.width.equalTo(Style.Size.s32)
-      ConstraintMaker.left.equalToSuperview().inset(Style.Padding.p12)
-      ConstraintMaker.centerY.equalToSuperview()
+    pictureView.snp.makeConstraints { (make) in
+      make.height.width.equalTo(Style.Size.s32)
+      make.left.equalToSuperview().inset(Style.Padding.p12)
+      make.centerY.equalToSuperview()
     }
 
-    nameLabel.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.left.equalTo(pictureView.snp.right)
+    nameLabel.snp.makeConstraints { (make) in
+      make.left.equalTo(pictureView.snp.right)
           .offset(Style.Padding.p12)
-      ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
-      ConstraintMaker.centerY.equalTo(pictureView.snp.centerY)
+      make.right.equalToSuperview().inset(Style.Padding.p12)
+      make.centerY.equalTo(pictureView.snp.centerY)
     }
   }
 }
@@ -165,10 +165,10 @@ class TeamMembersViewController: UIViewController {
                        forCellReuseIdentifier: TeamMemberCountCell.identifier)
     tableView.register(TeamMemberCell.self,
                        forCellReuseIdentifier: TeamMemberCell.identifier)
-    tableView.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.leading.trailing.equalToSuperview()
+    tableView.snp.makeConstraints { (make) in
+      make.leading.trailing.equalToSuperview()
           .inset(Style.Padding.p12)
-      ConstraintMaker.top.equalToSuperview().inset(Style.Padding.p12)
+      make.top.equalToSuperview().inset(Style.Padding.p12)
     }
 
     inviteButton.contentEdgeInsets =
@@ -178,10 +178,10 @@ class TeamMembersViewController: UIViewController {
     inviteButton.setTitle("Invite Members", for: .normal)
     inviteButton.addTarget(self, action: #selector(inviteFriends),
                            for: .touchUpInside)
-    inviteButton.snp.makeConstraints { (ConstraintMaker) in
-      ConstraintMaker.top.equalTo(tableView.snp.bottom).offset(Style.Padding.p12)
-      ConstraintMaker.bottom.equalToSuperview().inset(Style.Padding.p12)
-      ConstraintMaker.centerX.equalToSuperview()
+    inviteButton.snp.makeConstraints { (make) in
+      make.top.equalTo(tableView.snp.bottom).offset(Style.Padding.p12)
+      make.bottom.equalToSuperview().inset(Style.Padding.p12)
+      make.centerX.equalToSuperview()
     }
   }
 
