@@ -5,7 +5,7 @@ class HealthKitDataProvider: PedometerDataProvider {
   private typealias HK = HealthKitDataProvider
   private static let store = HKHealthStore()
 
-  func retrieveStepCountForDateRange(_ interval : DateInterval,
+  func retrieveStepCountForDateRange(_ interval: DateInterval,
                                      _ completion: @escaping PedometerCallback) {
     guard
       let stepCount = HKSampleType.quantityType(forIdentifier: .stepCount)
