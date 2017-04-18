@@ -124,4 +124,3 @@ extension LeaderBoard: UITableViewDataSource {
     return cell as? UITableViewCell ?? UITableViewCell()
   }
 }
-

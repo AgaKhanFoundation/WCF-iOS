@@ -7,4 +7,3 @@ struct User {
     return FBSDKAccessToken.current() != nil
   }
 }
-

@@ -7,11 +7,11 @@ typealias JSON = [String: Any]
 extension Dictionary {
   func queryParams() -> String {
     var queryParams = [String]()
-    
+
     for (key, value) in self {
       queryParams.append("\(key)=\(value)")
     }
-    
+
     return queryParams.joined(separator: "&")
   }
 }
@@ -25,14 +25,14 @@ enum HTTPMethod: String {
 }
 
 enum Endpoint {
-  
+
   var rawValue: String {
     switch self {
     case .teams: return "/teams"
     case .team(let id): return "/teams/\(id)"
     }
   }
-  
+
   case teams
   case team(Int64)
 }
@@ -42,7 +42,7 @@ struct Request {
   let method: HTTPMethod
   let params: JSON?
   let query: JSON?
-  
+
   init(endpoint: Endpoint,
        method: HTTPMethod = .get,
        params: JSON? = nil,
@@ -52,12 +52,12 @@ struct Request {
     self.params = params
     self.query = query
   }
-  
+
   var queryString: String? {
     guard let query = query else { return nil }
     return query.queryParams()
   }
-  
+
   var paramData: Data? {
     guard let params = params else { return nil }
     return try? JSONSerialization.data(withJSONObject: params, options: [])
@@ -87,7 +87,7 @@ enum APIClientError: Error {
 enum Result {
   case success(Response)
   case error(APIClientError)
-  
+
   var response: Response? {
     switch self {
     case .success(let response):
@@ -96,7 +96,7 @@ enum Result {
       return nil
     }
   }
-  
+
   var isSuccess: Bool {
     switch self{
     case .success(let response):

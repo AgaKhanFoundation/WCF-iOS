@@ -49,4 +49,3 @@ class HealthKitDataProvider: PedometerDataProvider {
     HK.store.execute(query)
   }
 }
-

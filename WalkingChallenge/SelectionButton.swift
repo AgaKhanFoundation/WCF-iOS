@@ -122,4 +122,3 @@ class SelectionButton: UIButton, SelectionButtonPopoverViewControllerDelegate {
     delegate?.present(popover, animated: true, completion: nil)
   }
 }
-

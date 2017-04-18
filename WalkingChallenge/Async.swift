@@ -19,4 +19,3 @@ func onMain(delay: Seconds = 0, _ block: @escaping GenericBlock) {
 func onBackground(delay: Seconds = 0, _ block: @escaping GenericBlock) {
   DispatchQueue.global(qos: .background).asyncAfter(deadline: delay.timeAfterNow, execute: block)
 }
-

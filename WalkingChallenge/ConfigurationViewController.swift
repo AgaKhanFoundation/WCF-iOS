@@ -46,4 +46,3 @@ extension ConfigurationViewController: FBSDKLoginButtonDelegate {
     // Left blank because the user should be logged in when reaching this point
   }
 }
-
