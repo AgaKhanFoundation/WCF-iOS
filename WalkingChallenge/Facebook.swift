@@ -91,49 +91,48 @@ class Facebook {
 
     let path = type == .taggable ? "me/taggable_friends" : "me/friends"
     let request = FBSDKGraphRequest(graphPath: path, parameters: params)
-    _ = request?.start { (_: FBSDKGraphRequestConnection?,
-                          result: Any?,
-                          error: Error?) in
-      guard error == nil else {
-        print("error executing GraphQL query: \(String(describing: error))")
-        return
-      }
-      guard let deserialised = result as? [String:Any] else {
-        print("unable to deserialise response \(String(describing: result))")
-        return
-      }
-
-      if let data = deserialised["data"] as? [Any] {
-        for serialised in data {
-          guard
-            let deserialised = serialised as? [String:Any],
-            let friend = deserialiseFriend(deserialised)
-          else {
-            print("unable to deserialise friend \(serialised)")
-            continue
-          }
-
-          handler(friend)
-          retrieved += 1
+    _ = request?.start {
+      (_: FBSDKGraphRequestConnection?, result: Any?, error: Error?) in
+        guard error == nil else {
+          print("error executing GraphQL query: \(String(describing: error))")
+          return
         }
-      }
+        guard let deserialised = result as? [String:Any] else {
+          print("unable to deserialise response \(String(describing: result))")
+          return
+        }
 
-      if let pagination = deserialised["paging"] as? [String:Any] {
-        if let cursors = pagination["cursors"] as? [String:Any] {
-          if let after = cursors["after"] as? String {
-            switch limit {
-            case .none:
-              self.enumerateFriends(type: type, limit: .none, cursor: after,
-                                    handler: handler)
-              break
-            case .count(let count):
-              self.enumerateFriends(type: type,
-                                    limit: .count(count - retrieved),
-                                    cursor: after, handler: handler)
+        if let data = deserialised["data"] as? [Any] {
+          for serialised in data {
+            guard
+              let deserialised = serialised as? [String:Any],
+              let friend = deserialiseFriend(deserialised)
+            else {
+              print("unable to deserialise friend \(serialised)")
+              continue
+            }
+
+            handler(friend)
+            retrieved += 1
+          }
+        }
+
+        if let pagination = deserialised["paging"] as? [String:Any] {
+          if let cursors = pagination["cursors"] as? [String:Any] {
+            if let after = cursors["after"] as? String {
+              switch limit {
+              case .none:
+                self.enumerateFriends(type: type, limit: .none, cursor: after,
+                                      handler: handler)
+                break
+              case .count(let count):
+                self.enumerateFriends(type: type,
+                                      limit: .count(count - retrieved),
+                                      cursor: after, handler: handler)
+              }
             }
           }
         }
-      }
     }
   }
 
