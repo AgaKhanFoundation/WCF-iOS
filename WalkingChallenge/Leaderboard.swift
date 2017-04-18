@@ -121,11 +121,7 @@ extension LeaderBoard: UITableViewDataSource {
 
     cell.configure(entry)
     // TODO: Sami fix this to use actual CellInfo pattern.
-    if let cell = cell as? UITableViewCell {
-      return cell
-    } else {
-      return UITableViewCell()
-    }
+    return cell as? UITableViewCell ?? UITableViewCell()
   }
 }
 
