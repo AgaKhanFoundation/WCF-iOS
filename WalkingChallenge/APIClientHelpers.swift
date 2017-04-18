@@ -98,7 +98,7 @@ enum Result {
   }
 
   var isSuccess: Bool {
-    switch self{
+    switch self {
     case .success(let response):
       return response.code == 200
     default:
