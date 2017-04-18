@@ -16,8 +16,8 @@ enum QueryLimit {
 }
 
 private enum FriendType {
-  case Taggable
-  case AppUsers
+  case taggable
+  case appUsers
 }
 
 class Facebook {
@@ -61,7 +61,7 @@ class Facebook {
       params["after"] = cursor!
     }
 
-    let path = type == .Taggable ? "me/taggable_friends" : "me/friends"
+    let path = type == .taggable ? "me/taggable_friends" : "me/friends"
     let request = FBSDKGraphRequest(graphPath: path, parameters: params)
     _ = request?.start { (_: FBSDKGraphRequestConnection?,
                           result: Any?,
@@ -111,13 +111,13 @@ class Facebook {
 
   static func getTaggableFriends(limit : QueryLimit,
                                  handler: @escaping EnumerationCallback) {
-    enumerateFriends(type: .Taggable, limit: limit, cursor: nil,
+    enumerateFriends(type: .taggable, limit: limit, cursor: nil,
                      handler: handler)
   }
 
   static func getUserFriends(limit: QueryLimit,
                              handler: @escaping EnumerationCallback) {
-    enumerateFriends(type: .AppUsers, limit: limit, cursor: nil,
+    enumerateFriends(type: .appUsers, limit: limit, cursor: nil,
                      handler: handler)
   }
 
