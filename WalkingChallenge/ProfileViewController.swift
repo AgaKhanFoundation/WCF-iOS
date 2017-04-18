@@ -170,7 +170,15 @@ class EventsDataSource {
   ]
 }
 
-class ProfileViewController: UIViewController, SelectionButtonDataSource {
+class StatisticsRangeDataSource: SelectionButtonDataSource {
+  static let ranges = [Strings.Profile.thisWeek, Strings.Profile.thisMonth,
+                       Strings.Profile.thisEvent, Strings.Profile.overall]
+
+  var items: Array<String> = StatisticsRangeDataSource.ranges
+  var selection: Int? = nil
+}
+
+class ProfileViewController: UIViewController {
   let dataSource = ProfileDataSource()
 
   // Views
@@ -178,18 +186,9 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
   let nameLabel = UILabel(.header)
   let teamLabel = UILabel(.title)
 
-  static let ranges = [Strings.Profile.thisWeek, Strings.Profile.thisMonth,
-                       Strings.Profile.thisEvent, Strings.Profile.overall]
+  let statisticsRangeDataSource: StatisticsRangeDataSource =
+      StatisticsRangeDataSource()
   var rangeButton = SelectionButton(type: .system)
-
-  var items: Array<String> = ProfileViewController.ranges
-  var selection: Int? {
-    didSet {
-      if let value = selection {
-        rangeButton.setTitle(items[safe: value], for: .normal)
-      }
-    }
-  }
 
   let supportersDataSource = SupporterDataSource()
   let supportersLabel = UILabel(.section)
@@ -277,7 +276,7 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
       ConstraintMaker.centerX.equalToSuperview()
     }
 
-    rangeButton.dataSource = self
+    rangeButton.dataSource = statisticsRangeDataSource
     rangeButton.delegate = self
     rangeButton.selection = UserInfo.profileStatsRange
     rangeButton.snp.makeConstraints { (ConstraintMaker) in
