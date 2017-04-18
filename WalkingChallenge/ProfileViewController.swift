@@ -50,9 +50,8 @@ class SupporterView: UIView {
     formatter.numberStyle = .currency
 
     donated.text = formatter.string(from: NSNumber(value: 0))
-    // TODO(compnerd) localise this properly
     pledged.text =
-        "Pledged " + formatter.string(from: NSNumber(value: supporter.pledged))!
+        NSLocalizedString("WCF_KEY_PLEDGED", comment: "Pledged Key") + " " + formatter.string(from: NSNumber(value: supporter.pledged))!
   }
 }
 
@@ -130,15 +129,12 @@ class EventView: UIView {
     name.text = event.name
     // TODO(compnerd) format this
     time.text = event.time
-    // TODO(compnerd) properly localise this
-    team.text = "Team: \(event.team)"
+    team.text = NSLocalizedString("WCF_KEY_TEAM", comment: "Team key") + ": " + "\(event.team)"
 
     let formatter: NumberFormatter = NumberFormatter()
     formatter.numberStyle = .currency
     raised.text = formatter.string(from: NSNumber(value: event.raised))
-
-    // TODO(compnerd) properly localise this
-    distance.text = "\(event.distance) miles"
+    distance.text = "\(event.distance) " + NSLocalizedString("WCF_KEY_MILES", comment: "Miles key")
   }
 }
 
@@ -273,8 +269,7 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
       ConstraintMaker.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
-    // TODO(compnerd) localise this properly
-    supportersLabel.text = "Current Supporters (\(supportersDataSource.supporters.count))"
+    supportersLabel.text = NSLocalizedString("WCF_KEY_CURRENT_SUPPORTERS", comment: "Current Supporters Key") + " (\(supportersDataSource.supporters.count))"
     supportersLabel.snp.makeConstraints { (ConstraintMaker) in
       // FIXME(compenrd) this needs to be based off of the previous row of stats
       ConstraintMaker.top.equalTo(rangeButton.snp.bottom)
@@ -303,7 +298,7 @@ class ProfileViewController: UIViewController, SelectionButtonDataSource {
     }
 
     // TODO(compnerd) localise this properly
-    pastEventsLabel.text = "Past Events (\(eventsDataSource.events.count))"
+    pastEventsLabel.text = NSLocalizedString("WCF_KEY_PAST_EVENTS", comment: "Past Events Key") + " (\(eventsDataSource.events.count))"
     pastEventsLabel.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(showSupportButton.snp.bottom)
           .offset(Style.Padding.p12)
