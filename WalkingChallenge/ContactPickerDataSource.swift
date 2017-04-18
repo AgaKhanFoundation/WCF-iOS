@@ -48,15 +48,15 @@ class ContactDataSource: TableDataSource {
     
     switch sortOrder {
     case .givenName:
-      sortedFilteredFriends.sort { $0.first_name < $1.first_name }
+      sortedFilteredFriends.sort { $0.firstName < $1.firstName }
     case .familyName:
-      sortedFilteredFriends.sort { $0.last_name < $1.last_name }
+      sortedFilteredFriends.sort { $0.lastName < $1.lastName }
     default: break
     }
     
     if let filter = filter {
       sortedFilteredFriends = sortedFilteredFriends
-        .filter {$0.display_name.lowercased().contains(filter.lowercased())}
+        .filter {$0.displayName.lowercased().contains(filter.lowercased())}
     }
     
     cells.removeAll()

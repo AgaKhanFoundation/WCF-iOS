@@ -11,8 +11,8 @@ struct ContactCellInfo: CellInfo {
   
   init(from friend: Friend) {
     self.fbid = friend.fbid
-    self.name = friend.display_name
-    self.picture = friend.picture_url
+    self.name = friend.displayName
+    self.picture = friend.pictureRawURL
   }
 }
 
