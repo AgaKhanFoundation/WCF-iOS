@@ -106,4 +106,3 @@ extension UITextField {
     textColor = Style.Colors.black
   }
 }
-
