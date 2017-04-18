@@ -38,7 +38,7 @@ class Facebook {
       return nil
     }
 
-        return Friend(fbid: id, displayName: name, firstName: first_name,
+    return Friend(fbid: id, displayName: name, firstName: first_name,
                       lastName: last_name, pictureRawURL: picture_url)
   }
 
