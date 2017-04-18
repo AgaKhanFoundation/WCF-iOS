@@ -109,7 +109,7 @@ class Facebook {
     }
   }
 
-  static func getTaggableFriends(limit : QueryLimit,
+  static func getTaggableFriends(limit: QueryLimit,
                                  handler: @escaping EnumerationCallback) {
     enumerateFriends(type: .taggable, limit: limit, cursor: nil,
                      handler: handler)
