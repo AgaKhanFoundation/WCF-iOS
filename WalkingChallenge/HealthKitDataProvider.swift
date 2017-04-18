@@ -31,7 +31,7 @@ class HealthKitDataProvider: PedometerDataProvider {
 
     let query = HKSampleQuery(sampleType: sampleType, predicate: predicate,
                               limit: 0, sortDescriptors: nil) {
-      (query, results, error) in
+      (query, results, _) in
         guard let results = results as? [HKQuantitySample] else {
           // FIXME(compnerd) should we be invoking the completion here?
           completion(0)
