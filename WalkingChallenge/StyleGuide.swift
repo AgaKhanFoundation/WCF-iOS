@@ -90,7 +90,7 @@ extension UILabel {
   convenience init(_ typography: Style.Typography) {
     self.init()
     font = typography.font
-    if (typography == .section) {
+    if typography == .section {
       textColor = Style.Colors.grey
     } else {
       textColor = Style.Colors.black
