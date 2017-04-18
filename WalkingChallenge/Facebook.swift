@@ -23,7 +23,7 @@ private enum FriendType {
 class Facebook {
   typealias EnumerationCallback = (_: Friend) -> Void
 
-  private static func deserialiseFriend(_ json: Dictionary<String, Any>)
+  private static func deserialiseFriend(_ json: [String:Any])
       -> Friend? {
     guard
       let id = json["id"] as? String,
@@ -31,8 +31,8 @@ class Facebook {
       let first_name = json["first_name"] as? String,
       let last_name = json["last_name"] as? String,
 
-      let picture = json["picture"] as? Dictionary<String, Any>,
-      let picture_data = picture["data"] as? Dictionary<String, Any>,
+      let picture = json["picture"] as? [String:Any],
+      let picture_data = picture["data"] as? [String:Any],
       let picture_url = picture_data["url"] as? String
     else {
       return nil
@@ -70,7 +70,7 @@ class Facebook {
         print("error executing GraphQL query: \(String(describing: error))")
         return
       }
-      guard let deserialised = result as? Dictionary<String, Any> else {
+      guard let deserialised = result as? [String:Any] else {
         print("unable to deserialise response \(String(describing: result))")
         return
       }
@@ -78,7 +78,7 @@ class Facebook {
       if let data = deserialised["data"] as? [Any] {
         for serialised in data {
           guard
-            let deserialised = serialised as? Dictionary<String, Any>,
+            let deserialised = serialised as? [String:Any],
             let friend = deserialiseFriend(deserialised)
           else {
             print("unable to deserialise friend \(serialised)")
@@ -90,8 +90,8 @@ class Facebook {
         }
       }
 
-      if let pagination = deserialised["paging"] as? Dictionary<String, Any> {
-        if let cursors = pagination["cursors"] as? Dictionary<String, Any> {
+      if let pagination = deserialised["paging"] as? [String:Any] {
+        if let cursors = pagination["cursors"] as? [String:Any] {
           if let after = cursors["after"] as? String {
             switch limit {
             case .none:
@@ -130,7 +130,7 @@ class Facebook {
           print("unable to execute GraphQL query: \(String(describing: error))")
           return
         }
-        guard let deserialised = result as? Dictionary<String, Any> else {
+        guard let deserialised = result as? [String:Any] else {
           print("unable to deserialise response \(String(describing: result))")
           return
         }
@@ -148,7 +148,7 @@ class Facebook {
           print("unable to execute GraphQL query: \(String(describing: error))")
           return
         }
-        guard let deserialised = result as? Dictionary<String, Any> else {
+        guard let deserialised = result as? [String:Any] else {
           print("unable to deserialise response \(String(describing: result))")
           return
         }
@@ -184,12 +184,12 @@ class Facebook {
           print("unable to execute GraphQL query: \(String(describing: error))")
           return
         }
-        guard let deserialised = result as? Dictionary<String, Any> else {
+        guard let deserialised = result as? [String:Any] else {
           print("unable to deserialise response \(String(describing: result))")
           return
         }
 
-        if let data = deserialised["data"] as? Dictionary<String, Any> {
+        if let data = deserialised["data"] as? [String:Any] {
           if let url = data["url"] as? String {
             completion(URL(string: url))
           }

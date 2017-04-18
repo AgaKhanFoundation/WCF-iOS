@@ -2,7 +2,7 @@
 import SnapKit
 
 class TeamLeaderboardDataSource: LeaderBoardDataSource {
-  var leaders: Array<LeaderBoardEntry> = []
+  var leaders: [LeaderBoardEntry] = []
 
   func reloadData() {
     // TODO(compnerd) fetch information from the backend
@@ -41,4 +41,3 @@ class LeaderboardViewController: UIViewController {
     }
   }
 }
-

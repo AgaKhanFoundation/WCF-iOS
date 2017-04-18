@@ -3,7 +3,7 @@ import UIKit
 import SnapKit
 
 protocol SelectionButtonDataSource {
-  var items: Array<String> { get }
+  var items: [String] { get }
   var selection: Int? { get set }
 }
 
@@ -86,7 +86,7 @@ class SelectionButton: UIButton, SelectionButtonPopoverViewControllerDelegate {
   var dataSource: SelectionButtonDataSource?
   var delegate: SelectionButtonDelegate?
 
-  internal var items: Array<String> {
+  internal var items: [String] {
     get { return (dataSource?.items)! }
   }
 

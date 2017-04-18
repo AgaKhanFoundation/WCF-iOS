@@ -66,7 +66,7 @@ class SupporterView: UIView {
 
 class SupporterDataSource {
   // TODO(compnerd) pull this from the backend
-  var supporters: Array<Supporter> =
+  var supporters: [Supporter] =
       [Supporter(name: "Alpha", pledged: 32),
        Supporter(name: "Beta", pledged: 64),
        Supporter(name: "Gamma", pledged: 128),
@@ -160,7 +160,7 @@ class EventView: UIView {
 
 class EventsDataSource {
   // TODO(compnerd) pull this from the backend
-  let events: Array<Event> = [
+  let events: [Event] = [
       Event(image: nil, name: "Alpha", time: "January 2017", team: "Team",
             raised: 32.0, distance: 1.0),
       Event(image: nil, name: "Beta", time: "February 2017", team: "Team",
@@ -174,7 +174,7 @@ class StatisticsRangeDataSource: SelectionButtonDataSource {
   static let ranges = [Strings.Profile.thisWeek, Strings.Profile.thisMonth,
                        Strings.Profile.thisEvent, Strings.Profile.overall]
 
-  var items: Array<String> = StatisticsRangeDataSource.ranges
+  var items: [String] = StatisticsRangeDataSource.ranges
   var selection: Int? = nil
 }
 
