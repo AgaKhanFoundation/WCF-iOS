@@ -31,6 +31,7 @@
 		269E35291E767AE1000726C2 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35281E767AE1000726C2 /* Collection.swift */; };
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
 		26C657B91E91E41700FD3084 /* APIClient+Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C657B81E91E41700FD3084 /* APIClient+Requests.swift */; };
+		A708D4171EA5BD8B00404B52 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A708D4191EA5BD8B00404B52 /* Localizable.strings */; };
 		ED85D460832E1D261F31B25E /* Pods_WalkingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */; };
 		F02FB49E1E9180CE0097481D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49D1E9180CE0097481D /* Preferences.swift */; };
 		F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */; };
@@ -74,6 +75,8 @@
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		26C657B81E91E41700FD3084 /* APIClient+Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Requests.swift"; sourceTree = "<group>"; };
 		6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkingChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A708D4181EA5BD8B00404B52 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A708D41A1EA5BD9600404B52 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F02FB49D1E9180CE0097481D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedometerDataProvider.swift; sourceTree = "<group>"; };
 		F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitDataProvider.swift; sourceTree = "<group>"; };
@@ -169,6 +172,7 @@
 				269E34D01E765828000726C2 /* Assets.xcassets */,
 				269E34D51E765828000726C2 /* Info.plist */,
 				269E34EE1E7658F2000726C2 /* Launch.storyboard */,
+				A708D4191EA5BD8B00404B52 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -314,6 +318,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 269E34BD1E765828000726C2;
 			productRefGroup = 269E34C71E765828000726C2 /* Products */;
@@ -331,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				269E34D11E765828000726C2 /* Assets.xcassets in Resources */,
+				A708D4171EA5BD8B00404B52 /* Localizable.strings in Resources */,
 				269E34FD1E7658F2000726C2 /* Launch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,11 +432,24 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		A708D4191EA5BD8B00404B52 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A708D4181EA5BD8B00404B52 /* en */,
+				A708D41A1EA5BD9600404B52 /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		269E34E11E765828000726C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -480,6 +499,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

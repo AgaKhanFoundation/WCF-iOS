@@ -77,8 +77,7 @@ extension LeaderBoardCell: ConfigurableUITableViewCell {
     standing.text = "\(info.standing)."
     name.text = info.name
 
-    // TODO(compnerd) localise this properly
-    distance.text = "\(info.distance) miles"
+    distance.text = "\(info.distance) " + NSLocalizedString("WCF_KEY_MILES", comment: "miles key")
 
     let currencyFormatter = NumberFormatter()
     currencyFormatter.numberStyle = .currency

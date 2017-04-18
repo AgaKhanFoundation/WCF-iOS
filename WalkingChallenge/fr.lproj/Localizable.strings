@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  WalkingChallenge
+*/
+
+"WCF_KEY_MILES" = "miles";
+
+"WCF_KEY_PLEDGED" = "Promis";
+
+"WCF_KEY_TEAM" = "équipe";
+
+"WCF_KEY_CURRENT_SUPPORTERS" = "Supporters actuels";
+
+"WCF_KEY_PAST_EVENTS" = "Événements passés";
