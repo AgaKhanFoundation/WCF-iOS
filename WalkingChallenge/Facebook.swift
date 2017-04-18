@@ -174,7 +174,7 @@ class Facebook {
   }
 
   static func profileImage(for fbid: String,
-                           completion: @escaping (_: URL?) -> ()) {
+                           completion: @escaping (_: URL?) -> Void) {
     let request =
       FBSDKGraphRequest(graphPath: "/\(fbid)/picture?type=large&redirect=false",
                         parameters: ["fields" : ""])
