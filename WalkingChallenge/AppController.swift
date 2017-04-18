@@ -79,7 +79,7 @@ extension AppController {
         UITabBarItem(title: Strings.NavBarTitles.profile, image: nil,
                      selectedImage: nil)
 
-    tabBarController.viewControllers = [ leaderboardNVC, teamNVC, profileNVC, ]
+    tabBarController.viewControllers = [ leaderboardNVC, teamNVC, profileNVC ]
   }
 
   private func configureWindow() {
@@ -92,4 +92,3 @@ extension AppController {
     FBSDKAppEvents.activateApp()
   }
 }
-
