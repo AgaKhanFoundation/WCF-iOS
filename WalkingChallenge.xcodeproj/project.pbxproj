@@ -41,6 +41,7 @@
 		F0C6D5091EA2F50A008E3B82 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6D5081EA2F50A008E3B82 /* ConfigurationViewController.swift */; };
 		F0C6D50D1EA3071A008E3B82 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6D50C1EA3071A008E3B82 /* SelectionButton.swift */; };
 		F0C6D50F1EA3DCB2008E3B82 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6D50E1EA3DCB2008E3B82 /* Leaderboard.swift */; };
+		F0CBDA4C1EA5D1BF00BB34F1 /* SupportersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CBDA4B1EA5D1BF00BB34F1 /* SupportersViewController.swift */; };
 		F0E1828A1E80B1DB00665E4F /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E182891E80B1DB00665E4F /* Facebook.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,7 @@
 		F0C6D5081EA2F50A008E3B82 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		F0C6D50C1EA3071A008E3B82 /* SelectionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionButton.swift; path = WalkingChallenge/SelectionButton.swift; sourceTree = "<group>"; };
 		F0C6D50E1EA3DCB2008E3B82 /* Leaderboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Leaderboard.swift; path = WalkingChallenge/Leaderboard.swift; sourceTree = "<group>"; };
+		F0CBDA4B1EA5D1BF00BB34F1 /* SupportersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportersViewController.swift; sourceTree = "<group>"; };
 		F0E182891E80B1DB00665E4F /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
 		FB0F6813102ABF61F968C9BD /* Pods-WalkingChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -192,6 +194,7 @@
 				269E351A1E766B8C000726C2 /* ProfileDataSource.swift */,
 				F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */,
 				F0C6D5081EA2F50A008E3B82 /* ConfigurationViewController.swift */,
+				F0CBDA4B1EA5D1BF00BB34F1 /* SupportersViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				2606948B1E7DD1A200BFED76 /* Date.swift in Sources */,
 				269E35211E7673B6000726C2 /* User.swift in Sources */,
 				269E35071E765C68000726C2 /* LoginViewController.swift in Sources */,
+				F0CBDA4C1EA5D1BF00BB34F1 /* SupportersViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

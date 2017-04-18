@@ -307,6 +307,8 @@ class ProfileViewController: UIViewController {
     }
 
     showSupportButton.setTitle(Strings.Profile.seeMore, for: .normal)
+    showSupportButton.addTarget(self, action: #selector(showSupporters),
+                                for: .touchUpInside)
     showSupportButton.snp.makeConstraints { (ConstraintMaker) in
       ConstraintMaker.top.equalTo(supporter1.snp.bottom)
           .offset(Style.Padding.p8)
@@ -354,6 +356,11 @@ class ProfileViewController: UIViewController {
   func configureApp() {
     let configurationView = ConfigurationViewController()
     navigationController?.pushViewController(configurationView, animated: true)
+  }
+
+  func showSupporters() {
+    let supportersView = SupportersViewController()
+    navigationController?.pushViewController(supportersView, animated: true)
   }
 }
 
