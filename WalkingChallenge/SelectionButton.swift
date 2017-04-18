@@ -52,6 +52,11 @@ extension SelectionButtonPopoverViewController: UITableViewDataSource {
         cell.accessoryType = .checkmark
       }
     }
+
+    if (indexPath.row >= dataSource!.items.count - 1) {
+      cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width)
+    }
+
     cell.textLabel?.text = dataSource?.items[safe: indexPath.row]
     return cell
   }
@@ -98,7 +103,7 @@ class SelectionButton: UIButton {
     popover.sourceView = self
     popover.modalPresentationStyle = .popover
     // TODO(compnerd) calculate this properly
-    popover.preferredContentSize = CGSize(width: 152, height: 175)
+    popover.preferredContentSize = CGSize(width: 152, height: 176)
     popover.popoverPresentationController?.backgroundColor = .white
     popover.popoverPresentationController!.delegate = popover
     delegate?.present(popover, animated: true, completion: nil)
