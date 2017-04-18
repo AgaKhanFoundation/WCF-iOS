@@ -7,9 +7,12 @@ protocol SelectionButtonDataSource {
   var selection: Int? { get set }
 }
 
+internal protocol SelectionButtonPopoverViewControllerDelegate: SelectionButtonDataSource {
+}
+
 class SelectionButtonPopoverViewController: UIViewController {
-  fileprivate var dataSource: SelectionButtonDataSource?
-  fileprivate var sourceView: UIView?
+  internal var delegate: SelectionButtonPopoverViewControllerDelegate?
+  internal var sourceView: UIView?
 
   private let tableView: UITableView = UITableView()
 
@@ -31,7 +34,7 @@ class SelectionButtonPopoverViewController: UIViewController {
 extension SelectionButtonPopoverViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView,
                  didSelectRowAt indexPath: IndexPath) {
-    dataSource?.selection = indexPath.row
+    delegate?.selection = indexPath.row
     presentingViewController?.dismiss(animated: true, completion: nil)
   }
 }
@@ -39,25 +42,25 @@ extension SelectionButtonPopoverViewController: UITableViewDelegate {
 extension SelectionButtonPopoverViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView,
                  numberOfRowsInSection section: Int) -> Int {
-    guard (dataSource != nil) else { return 0 }
-    return dataSource!.items.count
+    guard (delegate != nil) else { return 0 }
+    return delegate!.items.count
   }
 
   func tableView(_ tableView: UITableView,
                  cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "PopoverCell",
                                              for: indexPath)
-    if let selection = dataSource?.selection {
+    if let selection = delegate?.selection {
       if indexPath.row == selection {
         cell.accessoryType = .checkmark
       }
     }
 
-    if (indexPath.row >= dataSource!.items.count - 1) {
+    if (indexPath.row >= delegate!.items.count - 1) {
       cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width)
     }
 
-    cell.textLabel?.text = dataSource?.items[safe: indexPath.row]
+    cell.textLabel?.text = delegate?.items[safe: indexPath.row]
     return cell
   }
 }
@@ -79,12 +82,21 @@ protocol SelectionButtonDelegate {
                animated flag: Bool, completion: (() -> Swift.Void)?)
 }
 
-class SelectionButton: UIButton {
+class SelectionButton: UIButton, SelectionButtonPopoverViewControllerDelegate {
   var dataSource: SelectionButtonDataSource?
   var delegate: SelectionButtonDelegate?
-  var selection: Int? {
-    get { return dataSource?.selection }
-    set { dataSource?.selection = newValue }
+
+  internal var items: Array<String> {
+    get { return (dataSource?.items)! }
+  }
+
+  internal var selection: Int? {
+    didSet {
+      if let value = selection {
+        setTitle(dataSource?.items[safe: value], for: .normal)
+      }
+      dataSource?.selection = selection
+    }
   }
 
   override init(frame: CGRect) {
@@ -99,13 +111,14 @@ class SelectionButton: UIButton {
   @objc
   private func presentPopover() {
     let popover = SelectionButtonPopoverViewController()
-    popover.dataSource = dataSource
+    popover.delegate = self
     popover.sourceView = self
     popover.modalPresentationStyle = .popover
     // TODO(compnerd) calculate this properly
     popover.preferredContentSize = CGSize(width: 152, height: 176)
+    // TODO(compnerd) this should match the background color for the UITableView
     popover.popoverPresentationController?.backgroundColor = .white
-    popover.popoverPresentationController!.delegate = popover
+    popover.popoverPresentationController?.delegate = popover
     delegate?.present(popover, animated: true, completion: nil)
   }
 }
