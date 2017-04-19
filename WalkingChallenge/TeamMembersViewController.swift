@@ -213,23 +213,16 @@ class TeamMembersViewController: UIViewController {
                            for: .touchUpInside)
     inviteButton.snp.makeConstraints { (make) in
       make.top.equalTo(tableView.snp.bottom).offset(Style.Padding.p12)
-      make.bottom.equalToSuperview().inset(Style.Padding.p12)
+      make.bottom.equalTo(bottomLayoutGuide.snp.top).offset(-Style.Padding.p12)
       make.centerX.equalToSuperview()
     }
   }
 
   private func configureNavigation() {
     navigationItem.title = Strings.NavBarTitles.teamMembers
-    navigationItem.leftBarButtonItem =
-        UIBarButtonItem(title: "Done", style: .done, target: self,
-                        action: #selector(dismissView))
   }
 
   func inviteFriends() {
     Facebook.invite(url: "http://www.google.com")
-  }
-
-  func dismissView() {
-    presentingViewController?.dismiss(animated: true, completion: nil)
   }
 }

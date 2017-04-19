@@ -152,9 +152,8 @@ class TeamViewController: UIViewController, SelectionButtonDataSource, LeaderBoa
   }
 
   func showMembers() {
-    let memberListVC = TeamMembersViewController()
-    let memberList = UINavigationController(rootViewController: memberListVC)
-    present(memberList, animated: true, completion: nil)
+    let members = TeamMembersViewController()
+    navigationController?.pushViewController(members, animated: true)
   }
 }
 
