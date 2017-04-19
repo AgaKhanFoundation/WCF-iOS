@@ -30,7 +30,214 @@
 import UIKit
 import SnapKit
 
+class SponsorCell: UITableViewCell, IdentifiedUITableViewCell {
+  static let identifier: String = "SponsorCell"
+
+  internal var picture: UIImageView = UIImageView()
+  internal var name: UILabel = UILabel(.body)
+  internal var tagline: UILabel = UILabel(.caption)
+  internal var donated: UILabel = UILabel(.body)
+  internal var pledged: UILabel = UILabel(.caption)
+
+  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+    initialise()
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  private func initialise() {
+    addSubviews([picture, name, tagline, donated, pledged])
+
+    picture.snp.makeConstraints { (make) in
+      make.top.equalToSuperview().inset(Style.Padding.p12)
+      make.left.equalToSuperview().inset(Style.Padding.p12)
+      make.height.width.equalTo(Style.Size.s56)
+    }
+
+    name.snp.makeConstraints { (make) in
+      make.top.equalToSuperview().inset(Style.Padding.p12)
+      make.left.equalTo(picture.snp.right).offset(Style.Padding.p8)
+    }
+
+    tagline.snp.makeConstraints { (make) in
+      make.top.equalTo(name.snp.bottom)
+      make.left.equalTo(name.snp.left)
+    }
+
+    donated.snp.makeConstraints { (make) in
+      make.top.equalTo(tagline.snp.bottom).offset(Style.Padding.p12)
+      make.left.equalTo(tagline.snp.left)
+    }
+
+    pledged.snp.makeConstraints { (make) in
+      make.top.equalTo(donated.snp.bottom)
+      make.left.equalTo(donated.snp.left)
+    }
+  }
+}
+
+extension SponsorCell: ConfigurableUITableViewCell {
+  func configure(_ data: Any) {
+    guard let info = data as? Sponsor else { return }
+
+    let formatter: NumberFormatter = NumberFormatter()
+    formatter.numberStyle = .currency
+
+    name.text = info.name
+    tagline.text = info.tagline
+    // FIXME(compnerd) calculate this value
+    donated.text = formatter.string(from: NSNumber(value: 0))
+    // TODO(compnerd) localise this properly
+    pledged.text =
+        "Pledged " + formatter.string(from: NSNumber(value: info.rate))! + "/mile"
+  }
+}
+
+fileprivate class SponsorsDataSource: NSObject, UITableViewDataSource {
+  internal var dataSource: SponsorshipDataSource?
+
+  init(_ dataSource: SponsorshipDataSource) {
+    super.init()
+    self.dataSource = dataSource
+  }
+
+  func tableView(_ tableView: UITableView,
+                 numberOfRowsInSection section: Int) -> Int {
+    return dataSource?.sponsors.count ?? 0
+  }
+
+  func tableView(_ tableView: UITableView,
+                 cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard
+      let cell =
+          tableView.dequeueReusableCell(withIdentifier: SponsorCell.identifier,
+                                        for: indexPath)
+              as? ConfigurableUITableViewCell
+      else { return UITableViewCell() }
+
+    if let sponsor = dataSource?.sponsors[safe: indexPath.row] {
+      cell.configure(sponsor)
+    }
+    return cell as? UITableViewCell ?? UITableViewCell()
+  }
+}
+
+fileprivate class SponsorsDelegate: NSObject, UITableViewDelegate {
+  func tableView(_ tableView: UITableView,
+                 heightForRowAt indexPath: IndexPath) -> CGFloat {
+    // FIXME(compnerd) calculate this somehow?
+    return 100.0
+  }
+}
+
+class SupporterCell: UITableViewCell, IdentifiedUITableViewCell {
+  static let identifier: String = "SupporterCell"
+
+  internal var name: UILabel = UILabel(.body)
+  internal var donated: UILabel = UILabel(.body)
+  internal var pledged: UILabel = UILabel(.caption)
+
+  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+    initialise()
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  private func initialise() {
+    addSubviews([name, donated, pledged])
+
+    name.snp.makeConstraints { (make) in
+      make.left.equalToSuperview()
+      make.centerY.equalToSuperview()
+    }
+
+    donated.snp.makeConstraints { (make) in
+      make.top.equalToSuperview()
+      make.bottom.equalTo(name.snp.centerY)
+      make.right.equalToSuperview()
+      make.left.equalTo(pledged.snp.left)
+    }
+
+    pledged.textColor = Style.Colors.grey
+    pledged.snp.makeConstraints { (make) in
+      make.top.equalTo(name.snp.centerY)
+      make.bottom.equalToSuperview()
+      make.right.equalToSuperview()
+    }
+  }
+}
+
+extension SupporterCell: ConfigurableUITableViewCell {
+  func configure(_ data: Any) {
+    guard let info = data as? Supporter else { return }
+
+    let formatter: NumberFormatter = NumberFormatter()
+    formatter.numberStyle = .currency
+
+    name.text = info.name
+    // FIXME(compnerd) calculate this value
+    donated.text = formatter.string(from: NSNumber(value: 0))
+    pledged.text =
+        "Pledged " + formatter.string(from: NSNumber(value: info.pledged))!
+  }
+}
+
+fileprivate class SupportersDataSource: NSObject, UITableViewDataSource {
+  internal var dataSource: SponsorshipDataSource?
+
+  init(_ dataSource: SponsorshipDataSource) {
+    super.init()
+    self.dataSource = dataSource
+  }
+
+  func tableView(_ tableView: UITableView,
+                 numberOfRowsInSection section: Int) -> Int {
+    return dataSource?.supporters.count ?? 0
+  }
+
+  func tableView(_ tableView: UITableView,
+                 cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard
+      let cell =
+          tableView.dequeueReusableCell(withIdentifier: SupporterCell.identifier,
+                                        for: indexPath)
+              as? ConfigurableUITableViewCell
+    else { return UITableViewCell() }
+
+    if let supporter = dataSource?.supporters[safe: indexPath.row] {
+      cell.configure(supporter)
+    }
+    return cell as? UITableViewCell ?? UITableViewCell()
+  }
+}
+
 class SupportersViewController: UIViewController {
+  private var sponsorsDelegate: SponsorsDelegate = SponsorsDelegate()
+
+  private var dataSource: SponsorshipDataSource = SponsorshipDataSource()
+  private var sponsorsDataSource: SponsorsDataSource?
+  private var supportersDataSource: SupportersDataSource?
+
+  private var lblStatus: UILabel = UILabel(.title)
+  private var lblCorporateSponsors: UILabel = UILabel(.section)
+  private var lblCorporateSponsorsSummary: UILabel = UILabel(.caption)
+  private var tblSponsorsTable: UITableView = UITableView()
+  private var lblCurrentSupporters: UILabel = UILabel(.section)
+  private var lblCurrentSupportersSummary: UILabel = UILabel(.caption)
+  private var tblSupportersTable: UITableView = UITableView()
+
+  convenience init() {
+    self.init(nibName: nil, bundle: nil)
+    self.sponsorsDataSource = SponsorsDataSource(self.dataSource)
+    self.supportersDataSource = SupportersDataSource(self.dataSource)
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -39,6 +246,8 @@ class SupportersViewController: UIViewController {
   }
 
   private func configureNavigation() {
+    title = Strings.SupportersAndSponsors.title
+
     navigationController?.navigationBar.barTintColor = Style.Colors.darkGreen
     navigationController?.navigationBar.tintColor = Style.Colors.white
     navigationController?.navigationBar.titleTextAttributes =
@@ -47,5 +256,97 @@ class SupportersViewController: UIViewController {
 
   private func configureView() {
     view.backgroundColor = Style.Colors.white
+
+    view.addSubviews([lblStatus,
+                      lblCorporateSponsors, lblCorporateSponsorsSummary,
+                      tblSponsorsTable,
+                      lblCurrentSupporters, lblCurrentSupportersSummary,
+                      tblSupportersTable])
+
+    let formatter: NumberFormatter = NumberFormatter()
+    formatter.numberStyle = .currency
+
+    // FIXME(compnerd) calculate this as the sum of the sponsorship
+    let sponsored: Float = 22.50
+    let sponsoredText: String = formatter.string(from: NSNumber(value: sponsored))!
+    // FIXME(compnerd) calculate this as the sum of the support
+    let donated: Float = 401.00
+    let donatedText: String = formatter.string(from: NSNumber(value: donated))!
+    // FIXME(compnerd) calculate this
+    let completed = 75
+
+    lblStatus.text =
+        "Great job! You have raised \(sponsoredText) from corporate sponsors and \(donatedText) from your \(dataSource.supporters.count) supporters!"
+    lblStatus.lineBreakMode = .byWordWrapping
+    lblStatus.numberOfLines = 0
+    lblStatus.textAlignment = .justified
+    lblStatus.textColor = Style.Colors.grey
+    lblStatus.snp.makeConstraints { (make) in
+      make.top.equalTo(topLayoutGuide.snp.bottom).offset(Style.Padding.p12)
+      make.left.equalToSuperview().inset(Style.Padding.p12)
+      make.width.equalToSuperview().inset(Style.Padding.p12)
+    }
+
+    lblCorporateSponsors.text =
+        "Corporate Sponsors (\(dataSource.sponsors.count))"
+    lblCorporateSponsors.snp.makeConstraints { (make) in
+      make.top.equalTo(lblStatus.snp.bottom).offset(Style.Padding.p12)
+      make.left.equalToSuperview().inset(Style.Padding.p12)
+    }
+
+    lblCorporateSponsorsSummary.text =
+        "Thanks to the following corporate supporters, you've raised an additional \(sponsoredText)!"
+    lblCorporateSponsorsSummary.lineBreakMode = .byWordWrapping
+    lblCorporateSponsorsSummary.numberOfLines = 0
+    lblCorporateSponsorsSummary.textAlignment = .justified
+    lblCorporateSponsorsSummary.textColor = Style.Colors.grey
+    lblCorporateSponsorsSummary.snp.makeConstraints { (make) in
+      make.top.equalTo(lblCorporateSponsors.snp.bottom).offset(Style.Padding.p8)
+      make.left.equalToSuperview().inset(Style.Padding.p12)
+      make.width.equalToSuperview().inset(Style.Padding.p12)
+    }
+
+    tblSponsorsTable.dataSource = sponsorsDataSource
+    tblSponsorsTable.delegate = sponsorsDelegate
+    tblSponsorsTable.allowsSelection = false
+    tblSponsorsTable.register(SponsorCell.self,
+                              forCellReuseIdentifier: SponsorCell.identifier)
+    tblSponsorsTable.snp.makeConstraints { (make) in
+      make.top.equalTo(lblCorporateSponsorsSummary.snp.bottom)
+          .offset(Style.Padding.p8)
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+      make.height.equalTo(tblSupportersTable.snp.height)
+    }
+
+    lblCurrentSupporters.text = "Current Supporters (\(dataSource.supporters.count))"
+    lblCurrentSupporters.snp.makeConstraints { (make) in
+      make.top.equalTo(tblSponsorsTable.snp.bottom)
+          .offset(Style.Padding.p8)
+      make.left.equalToSuperview().inset(Style.Padding.p12)
+      make.width.equalToSuperview().inset(Style.Padding.p12)
+    }
+
+    lblCurrentSupportersSummary.text =
+        "You have completed \(completed)% of your walking goal and heve raised \(completed)% of the funds pledged by your supporters! Keep it up!"
+    lblCurrentSupportersSummary.lineBreakMode = .byWordWrapping
+    lblCurrentSupportersSummary.numberOfLines = 0
+    lblCurrentSupportersSummary.textAlignment = .justified
+    lblCurrentSupportersSummary.textColor = Style.Colors.grey
+    lblCurrentSupportersSummary.snp.makeConstraints { (make) in
+      make.top.equalTo(lblCurrentSupporters.snp.bottom).offset(Style.Padding.p8)
+      make.left.equalToSuperview().inset(Style.Padding.p12)
+      make.width.equalToSuperview().inset(Style.Padding.p12)
+    }
+
+    tblSupportersTable.dataSource = supportersDataSource
+    tblSupportersTable.allowsSelection = false
+    tblSupportersTable.register(SupporterCell.self,
+                                forCellReuseIdentifier: SupporterCell.identifier)
+    tblSupportersTable.snp.makeConstraints { (make) in
+      make.top.equalTo(lblCurrentSupportersSummary.snp.bottom)
+          .offset(Style.Padding.p8)
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+      make.bottom.equalTo(bottomLayoutGuide.snp.top).offset(Style.Padding.p12)
+    }
   }
 }

@@ -29,11 +29,6 @@
 
 import SnapKit
 
-struct Supporter {
-  let name: String
-  let pledged: Int
-}
-
 class SupporterView: UIView {
   internal var name: UILabel = UILabel(.body)
   internal var donated: UILabel = UILabel(.body)
@@ -90,15 +85,6 @@ class SupporterView: UIView {
     pledged.text =
         "Pledged " + formatter.string(from: NSNumber(value: supporter.pledged))!
   }
-}
-
-class SupporterDataSource {
-  // TODO(compnerd) pull this from the backend
-  var supporters: [Supporter] =
-      [Supporter(name: "Alpha", pledged: 32),
-       Supporter(name: "Beta", pledged: 64),
-       Supporter(name: "Gamma", pledged: 128),
-       Supporter(name: "Delta", pledged: 256)]
 }
 
 struct Event {
@@ -218,7 +204,7 @@ class ProfileViewController: UIViewController {
       StatisticsRangeDataSource()
   var rangeButton = SelectionButton(type: .system)
 
-  let supportersDataSource = SupporterDataSource()
+  let sponsorshipDataSource: SponsorshipDataSource = SponsorshipDataSource()
   let supportersLabel = UILabel(.section)
   let showSupportButton = UIButton(type: .system)
 
@@ -268,9 +254,9 @@ class ProfileViewController: UIViewController {
     title = Strings.NavBarTitles.profile
 
     let supporter0: SupporterView =
-        SupporterView(supporter: supportersDataSource.supporters[0])
+        SupporterView(supporter: sponsorshipDataSource.supporters[0])
     let supporter1: SupporterView =
-        SupporterView(supporter: supportersDataSource.supporters[1])
+        SupporterView(supporter: sponsorshipDataSource.supporters[1])
 
     let event0: EventView = EventView(event: eventsDataSource.events[0])
     let event1: EventView = EventView(event: eventsDataSource.events[1])
@@ -314,7 +300,8 @@ class ProfileViewController: UIViewController {
     }
 
     // TODO(compnerd) localise this properly
-    supportersLabel.text = "Current Supporters (\(supportersDataSource.supporters.count))"
+    supportersLabel.text =
+        "Current Supporters (\(sponsorshipDataSource.supporters.count))"
     supportersLabel.snp.makeConstraints { (make) in
       // FIXME(compenrd) this needs to be based off of the previous row of stats
       make.top.equalTo(rangeButton.snp.bottom)
