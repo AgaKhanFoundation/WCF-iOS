@@ -64,39 +64,43 @@ class APIClient {
     urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
     urlRequest.httpBody = request.paramData
 
-    let task = session.dataTask(with: urlRequest) { [weak self] (data: Data?, urlResponse: URLResponse?, error: Error?) in
-      print("<- \(request.endpoint.rawValue)")
+    let task = session.dataTask(with: urlRequest) {
+      [weak self] (data: Data?, urlResponse: URLResponse?, error: Error?) in
+        print("<- \(request.endpoint.rawValue)")
 
-      guard let httpResponse = urlResponse as? HTTPURLResponse else {
-        print("Error: Response")
-        self?.handle(completion, result: .error(.response))
-        return
-      }
+        guard let httpResponse = urlResponse as? HTTPURLResponse else {
+          print("Error: Response")
+          self?.handle(completion, result: .error(.response))
+          return
+        }
 
-      guard error == nil else {
-        print("Error: \(error.debugDescription)")
-        self?.handle(completion, result: .error(.networking(error)))
-        return
-      }
+        guard error == nil else {
+          print("Error: \(error.debugDescription)")
+          self?.handle(completion, result: .error(.networking(error)))
+          return
+        }
 
-      guard
-        let data = data,
-        let json = (try? JSONSerialization.jsonObject(with: data, options: [])) as? JSON
-      else {
-        print("Error: JSON Parsing")
-        self?.handle(completion, result: .error(.parsing))
-        return
-      }
+        guard
+          let data = data,
+          let json = (try? JSONSerialization.jsonObject(with: data,
+                                                        options: [])) as? JSON
+        else {
+          print("Error: JSON Parsing")
+          self?.handle(completion, result: .error(.parsing))
+          return
+        }
 
-      let response = Response(response: json, request: request, code: httpResponse.statusCode)
+        let response = Response(response: json, request: request,
+                                code: httpResponse.statusCode)
 
-      self?.handle(completion, result: .success(response))
+        self?.handle(completion, result: .success(response))
     }
 
     task.resume()
   }
 
-  private func handle(_ completion: @escaping APIClientResultCompletion, result: Result) {
+  private func handle(_ completion: @escaping APIClientResultCompletion,
+                      result: Result) {
     onMain {
       completion(result)
     }
