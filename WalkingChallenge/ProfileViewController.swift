@@ -235,7 +235,7 @@ class ProfileViewController: UIViewController {
     configureNavigation()
     configureView()
   }
-
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
@@ -265,12 +265,9 @@ class ProfileViewController: UIViewController {
   }
 
   private func configureView() {
-    view.addSubview(scrollView)
+    super.view.addSubview(scrollView)
     scrollView.snp.makeConstraints { (make) in
-      make.top.equalToSuperview()
-      make.bottom.equalToSuperview()
-      make.leading.equalToSuperview()
-      make.trailing.equalToSuperview()
+      make.edges.equalTo(view)
     }
     view.backgroundColor = Style.Colors.white
     title = Strings.NavBarTitles.profile
