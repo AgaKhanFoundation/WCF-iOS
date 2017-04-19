@@ -30,7 +30,7 @@
 import HealthKit
 
 class HealthKitDataProvider: PedometerDataProvider {
-  private typealias HK = HealthKitDataProvider
+  private typealias HealthKit = HealthKitDataProvider
   private static let store = HKHealthStore()
 
   func retrieveStepCountForDateRange(_ interval: DateInterval,
@@ -39,8 +39,8 @@ class HealthKitDataProvider: PedometerDataProvider {
       let stepCount = HKSampleType.quantityType(forIdentifier: .stepCount)
     else { return }
 
-    if HK.store.authorizationStatus(for: stepCount) != .sharingAuthorized {
-      HK.store.requestAuthorization(toShare: nil, read: [stepCount]) {
+    if HealthKit.store.authorizationStatus(for: stepCount) != .sharingAuthorized {
+      HealthKit.store.requestAuthorization(toShare: nil, read: [stepCount]) {
         (success: Bool, error: Error?) in
           guard error == nil && success else {
             print("Error getting HealthKit access: \(String(describing: error))")
@@ -74,6 +74,6 @@ class HealthKitDataProvider: PedometerDataProvider {
         completion(steps)
     }
 
-    HK.store.execute(query)
+    HealthKit.store.execute(query)
   }
 }
