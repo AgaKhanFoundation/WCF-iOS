@@ -134,7 +134,7 @@ class LeaderBoard: UITableView {
 extension LeaderBoard: UITableViewDataSource {
   func tableView(_ tableView: UITableView,
                  numberOfRowsInSection section: Int) -> Int {
-    guard (data != nil) else { return 0 }
+    guard data != nil else { return 0 }
     return data!.leaders.count
   }
 

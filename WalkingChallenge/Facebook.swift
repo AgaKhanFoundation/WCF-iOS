@@ -85,7 +85,7 @@ class Facebook {
       break
     }
 
-    if (cursor != nil) {
+    if cursor != nil {
       params["after"] = cursor!
     }
 

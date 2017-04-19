@@ -241,7 +241,7 @@ class ProfileViewController: UIViewController {
     updateProfile()
     onBackground {
       Facebook.profileImage(for: "me") { [weak self] (url) in
-        guard (url != nil) else { return }
+        guard url != nil else { return }
 
         let data = try? Data(contentsOf: url!)
         onMain { self?.profileImage.image = UIImage(data: data!) }
