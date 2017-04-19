@@ -180,7 +180,7 @@ class Facebook {
           return
         }
 
-        if let location = deserialised["location"] as? Dictionary<String, Any> {
+        if let location = deserialised["location"] as? [String:Any] {
           completion(location["name"] as? String)
         }
     }
