@@ -213,6 +213,7 @@ class ProfileViewController: UIViewController {
   let profileImage = UIImageView()
   let nameLabel = UILabel(.header)
   let teamLabel = UILabel(.title)
+  let scrollView = BaseScrollView()
 
   let statisticsRangeDataSource: StatisticsRangeDataSource =
       StatisticsRangeDataSource()
@@ -248,7 +249,7 @@ class ProfileViewController: UIViewController {
       }
     }
   }
-
+  
   // MARK: - Configure
 
   private func configureNavigation() {
@@ -264,6 +265,13 @@ class ProfileViewController: UIViewController {
   }
 
   private func configureView() {
+    view.addSubview(scrollView)
+    scrollView.snp.makeConstraints { (make) in
+      make.top.equalToSuperview()
+      make.bottom.equalToSuperview()
+      make.leading.equalToSuperview()
+      make.trailing.equalToSuperview()
+    }
     view.backgroundColor = Style.Colors.white
     title = Strings.NavBarTitles.profile
 
@@ -275,7 +283,7 @@ class ProfileViewController: UIViewController {
     let event0: EventView = EventView(event: eventsDataSource.events[0])
     let event1: EventView = EventView(event: eventsDataSource.events[1])
 
-    view.addSubviews([profileImage, nameLabel, teamLabel, rangeButton,
+    scrollView.contentView.addSubviews([profileImage, nameLabel, teamLabel, rangeButton,
                       supportersLabel, supporter0, supporter1, showSupportButton,
                       pastEventsLabel, event0, event1, showEventsButton])
 
@@ -366,6 +374,7 @@ class ProfileViewController: UIViewController {
     showEventsButton.snp.makeConstraints { (make) in
       make.top.equalTo(event1.snp.bottom).offset(Style.Padding.p8)
       make.right.equalToSuperview().inset(Style.Padding.p12)
+      make.bottom.equalTo(scrollView.contentView)
     }
   }
 
