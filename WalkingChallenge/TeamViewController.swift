@@ -166,4 +166,3 @@ extension TeamViewController: ContactPickerViewControllerDelegate {
 
 extension TeamViewController: SelectionButtonDelegate {
 }
-
