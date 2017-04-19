@@ -62,6 +62,10 @@ struct Strings {
     static let title = NSLocalizedString("Select Contacts", comment: "Title for Contact Picker")
   }
 
+  struct SupportersAndSponsors {
+    static let title = NSLocalizedString("Supporters and Sponsors", comment: "Supporters and Sponsors")
+  }
+
   struct NavBarTitles {
     static let team = NSLocalizedString("My Team", comment: "Navigation bar title for team tab")
     static let profile = NSLocalizedString("My Profile", comment: "Navigation bar title for profile tab")
