@@ -85,7 +85,8 @@ extension SelectionButtonPopoverViewController: UITableViewDataSource {
     }
 
     if (indexPath.row >= delegate!.items.count - 1) {
-      cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width)
+      cell.separatorInset =
+          UIEdgeInsets(top: 0, left: 0, bottom: 0, right: cell.bounds.size.width)
     }
 
     cell.textLabel?.text = delegate?.items[safe: indexPath.row]
