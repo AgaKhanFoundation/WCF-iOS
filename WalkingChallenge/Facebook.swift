@@ -75,7 +75,7 @@ class Facebook {
                                        cursor: String?,
                                        handler: @escaping EnumerationCallback) {
     var retrieved = 0
-    var params = [ "fields" : "id, name, first_name, last_name, picture" ]
+    var params = [ "fields": "id, name, first_name, last_name, picture" ]
 
     switch limit {
     case .none:
@@ -150,7 +150,7 @@ class Facebook {
 
   static func getRealName(completion: @escaping (_: String?) -> Void) {
     let request = FBSDKGraphRequest(graphPath: "me",
-                                    parameters: ["fields" : "name"])
+                                    parameters: ["fields": "name"])
     _ = request?.start {
       (_: FBSDKGraphRequestConnection?, result: Any?, error: Error?) in
         guard error == nil else {
@@ -168,7 +168,7 @@ class Facebook {
 
   static func getLocation(completion: @escaping (_: String?) -> Void) {
     let request = FBSDKGraphRequest(graphPath: "me",
-                                    parameters: ["fields" : "location"])
+                                    parameters: ["fields": "location"])
     _ = request?.start {
       (_: FBSDKGraphRequestConnection?, result: Any?, error: Error?) in
         guard error == nil else {
@@ -204,7 +204,7 @@ class Facebook {
                            completion: @escaping (_: URL?) -> Void) {
     let request =
       FBSDKGraphRequest(graphPath: "/\(fbid)/picture?type=large&redirect=false",
-                        parameters: ["fields" : ""])
+                        parameters: ["fields": ""])
     _ = request?.start {
       (_: FBSDKGraphRequestConnection?, result: Any?, error: Error?) in
         guard error == nil else {
