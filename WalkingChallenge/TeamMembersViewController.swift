@@ -163,7 +163,8 @@ extension TeamMembersDataSource: UITableViewDataSource {
     //TODO: Sami fix this using CellInfo pattern
     if let cell = cell as? UITableViewCell {
       if indexPath.row == 0 {
-        cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width)
+        cell.separatorInset =
+            UIEdgeInsets(top: 0, left: 0, bottom: 0, right: cell.bounds.size.width)
       }
 
       return cell
@@ -204,8 +205,8 @@ class TeamMembersViewController: UIViewController {
     }
 
     inviteButton.contentEdgeInsets =
-        UIEdgeInsetsMake(Style.Padding.p8, Style.Padding.p8, Style.Padding.p8,
-                         Style.Padding.p8)
+        UIEdgeInsets(top: Style.Padding.p8, left: Style.Padding.p8,
+                     bottom: Style.Padding.p8, right: Style.Padding.p8)
     inviteButton.layer.borderWidth = 1
     inviteButton.setTitle("Invite Members", for: .normal)
     inviteButton.addTarget(self, action: #selector(inviteFriends),
