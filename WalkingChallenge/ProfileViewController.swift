@@ -339,8 +339,8 @@ class ProfileViewController: UIViewController {
     if eventsDataSource.events.count > kMaxDisplayedEvents {
       view.addSubview(showEventsButton)
       showEventsButton.setTitle(Strings.Profile.seeMore, for: .normal)
-      // showEventsButton.addTarget(self, action: #selector(showEvents),
-      //                            for: .touchUpInside)
+      showEventsButton.addTarget(self, action: #selector(showEvents),
+                                 for: .touchUpInside)
       showEventsButton.snp.makeConstraints { (make) in
         make.top.equalTo(top).offset(Style.Padding.p8)
         make.right.equalToSuperview().inset(Style.Padding.p12)
@@ -379,6 +379,11 @@ class ProfileViewController: UIViewController {
   func showSupporters() {
     let supportersView = SupportersViewController()
     navigationController?.pushViewController(supportersView, animated: true)
+  }
+
+  func showEvents() {
+    let eventsView = EventsViewController()
+    navigationController?.pushViewController(eventsView, animated: true)
   }
 }
 
