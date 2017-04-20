@@ -230,6 +230,48 @@ class ProfileViewController: UIViewController {
       [NSForegroundColorAttributeName: Style.Colors.white]
   }
 
+  private func configureHeaderView(_ top: inout ConstraintRelatableTarget) {
+    view.addSubview(profileImage)
+    profileImage.contentMode = .scaleAspectFill
+    // TODO(compnerd) figure out how to get this value properly
+    profileImage.layer.cornerRadius = Style.Size.s128 / 2.0
+    profileImage.layer.masksToBounds = true
+    profileImage.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p12)
+      make.size.equalTo(Style.Size.s128)
+      make.centerX.equalToSuperview()
+    }
+    top = profileImage.snp.bottom
+
+    view.addSubview(nameLabel)
+    nameLabel.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p12)
+      make.centerX.equalToSuperview()
+    }
+    top = nameLabel.snp.bottom
+
+    view.addSubview(teamLabel)
+    teamLabel.textAlignment = .center
+    teamLabel.textColor = Style.Colors.grey
+    teamLabel.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p12)
+      make.centerX.equalToSuperview()
+    }
+    top = teamLabel.snp.bottom
+  }
+
+  private func configureStatisticsView(_ top: inout ConstraintRelatableTarget) {
+    view.addSubview(rangeButton)
+    rangeButton.dataSource = statisticsRangeDataSource
+    rangeButton.delegate = self
+    rangeButton.selection = UserInfo.profileStatsRange
+    rangeButton.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p12)
+      make.right.equalToSuperview().inset(Style.Padding.p12)
+    }
+    top = rangeButton.snp.bottom
+  }
+
   private func configureSupportersView(_ top: inout ConstraintRelatableTarget) {
     let kMaxDisplayedSupporters: Int = 2
 
@@ -310,43 +352,9 @@ class ProfileViewController: UIViewController {
   private func configureView() {
     view.backgroundColor = Style.Colors.white
 
-    view.addSubviews([profileImage, nameLabel, teamLabel, rangeButton])
-
-    profileImage.contentMode = .scaleAspectFill
-    // TODO(compnerd) figure out how to get this value properly
-    profileImage.layer.cornerRadius = Style.Size.s128 / 2.0
-    profileImage.layer.masksToBounds = true
-    profileImage.snp.makeConstraints { (make) in
-      make.top.equalTo(topLayoutGuide.snp.bottom)
-          .offset(Style.Padding.p12)
-      make.size.equalTo(Style.Size.s128)
-      make.centerX.equalToSuperview()
-    }
-
-    nameLabel.snp.makeConstraints { (make) in
-      make.top.equalTo(profileImage.snp.bottom)
-          .offset(Style.Padding.p12)
-      make.centerX.equalToSuperview()
-    }
-
-    teamLabel.textAlignment = .center
-    teamLabel.textColor = Style.Colors.grey
-    teamLabel.snp.makeConstraints { (make) in
-      make.top.equalTo(nameLabel.snp.bottom)
-          .offset(Style.Padding.p12)
-      make.centerX.equalToSuperview()
-    }
-
-    rangeButton.dataSource = statisticsRangeDataSource
-    rangeButton.delegate = self
-    rangeButton.selection = UserInfo.profileStatsRange
-    rangeButton.snp.makeConstraints { (make) in
-      make.top.equalTo(teamLabel.snp.bottom)
-          .offset(Style.Padding.p12)
-      make.right.equalToSuperview().inset(Style.Padding.p12)
-    }
-
-    var top: ConstraintRelatableTarget = rangeButton.snp.bottom
+    var top: ConstraintRelatableTarget = topLayoutGuide.snp.bottom
+    configureHeaderView(&top)
+    configureStatisticsView(&top)
     configureSupportersView(&top)
     configureEventsView(&top)
   }
