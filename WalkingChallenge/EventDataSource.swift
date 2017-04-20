@@ -38,4 +38,3 @@ class EventsDataSource {
             raised: 128, distance: 3.0)
   ]
 }
-
