@@ -36,6 +36,7 @@
 		F02FB49E1E9180CE0097481D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49D1E9180CE0097481D /* Preferences.swift */; };
 		F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */; };
 		F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */; };
+		F03D77DB1EA83A3000A70230 /* EventDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03D77DA1EA83A3000A70230 /* EventDataSource.swift */; };
 		F09E7DFA1E860CE300AD8CAF /* ContactPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09E7DF91E860CE300AD8CAF /* ContactPickerDataSource.swift */; };
 		F0C6D5051E9DBAE3008E3B82 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6D5041E9DBAE3008E3B82 /* LeaderboardViewController.swift */; };
 		F0C6D5071EA07BF8008E3B82 /* TeamMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6D5061EA07BF8008E3B82 /* TeamMembersViewController.swift */; };
@@ -83,6 +84,7 @@
 		F02FB49D1E9180CE0097481D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedometerDataProvider.swift; sourceTree = "<group>"; };
 		F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitDataProvider.swift; sourceTree = "<group>"; };
+		F03D77DA1EA83A3000A70230 /* EventDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventDataSource.swift; path = WalkingChallenge/EventDataSource.swift; sourceTree = "<group>"; };
 		F09E7DF91E860CE300AD8CAF /* ContactPickerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerDataSource.swift; sourceTree = "<group>"; };
 		F0C6D5041E9DBAE3008E3B82 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		F0C6D5061EA07BF8008E3B82 /* TeamMembersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMembersViewController.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 			children = (
 				269E351A1E766B8C000726C2 /* ProfileDataSource.swift */,
 				F0CBDA4F1EA6FD7200BB34F1 /* SponsorshipDataSource.swift */,
+				F03D77DA1EA83A3000A70230 /* EventDataSource.swift */,
 			);
 			name = "Data Sources";
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				F0CBDA521EA6FF1D00BB34F1 /* Sponsor.swift in Sources */,
 				269E35211E7673B6000726C2 /* User.swift in Sources */,
 				269E35071E765C68000726C2 /* LoginViewController.swift in Sources */,
+				F03D77DB1EA83A3000A70230 /* EventDataSource.swift in Sources */,
 				F0CBDA4C1EA5D1BF00BB34F1 /* SupportersViewController.swift in Sources */,
 				F0CBDA501EA6FD7200BB34F1 /* SponsorshipDataSource.swift in Sources */,
 			);

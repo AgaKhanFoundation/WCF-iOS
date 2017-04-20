@@ -172,18 +172,6 @@ class EventView: UIView {
   }
 }
 
-class EventsDataSource {
-  // TODO(compnerd) pull this from the backend
-  let events: [Event] = [
-      Event(image: nil, name: "Alpha", time: "January 2017", team: "Team",
-            raised: 32.0, distance: 1.0),
-      Event(image: nil, name: "Beta", time: "February 2017", team: "Team",
-            raised: 64.0, distance: 2.0),
-      Event(image: nil, name: "Gamma", time: "March 2017", team: "Team",
-            raised: 128, distance: 3.0)
-  ]
-}
-
 class StatisticsRangeDataSource: SelectionButtonDataSource {
   static let ranges = [Strings.Profile.thisWeek, Strings.Profile.thisMonth,
                        Strings.Profile.thisEvent, Strings.Profile.overall]
