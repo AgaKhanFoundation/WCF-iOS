@@ -31,4 +31,3 @@ struct Supporter {
   let name: String
   let pledged: Float
 }
-

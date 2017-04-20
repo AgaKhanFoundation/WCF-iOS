@@ -37,4 +37,3 @@ struct Event {
   let raised: Float
   let distance: Float
 }
-
