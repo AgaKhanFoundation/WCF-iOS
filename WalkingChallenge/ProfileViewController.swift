@@ -217,6 +217,8 @@ class ProfileViewController: UIViewController {
   // MARK: - Configure
 
   private func configureNavigation() {
+    title = Strings.NavBarTitles.profile
+
     // TODO(compnerd) use the gear icon instead
     navigationItem.rightBarButtonItem =
         UIBarButtonItem(barButtonSystemItem: .compose, target: self,
@@ -228,21 +230,87 @@ class ProfileViewController: UIViewController {
       [NSForegroundColorAttributeName: Style.Colors.white]
   }
 
+  private func configureSupportersView(_ top: inout ConstraintRelatableTarget) {
+    let kMaxDisplayedSupporters: Int = 2
+
+    view.addSubview(supportersLabel)
+    // TODO(compnerd) localise this properly
+    supportersLabel.text =
+        "Current Supporters (\(sponsorshipDataSource.supporters.count))"
+    supportersLabel.snp.makeConstraints { (make) in
+      // FIXME(compenrd) this needs to be based off of the previous row of stats
+      make.top.equalTo(top).offset(Style.Padding.p8)
+      make.left.equalToSuperview().inset(Style.Padding.p12)
+    }
+    top = supportersLabel.snp.bottom
+
+    for supporter in 0..<min(sponsorshipDataSource.supporters.count,
+                             kMaxDisplayedSupporters) {
+      let supporterView: SupporterView =
+          SupporterView(supporter: sponsorshipDataSource.supporters[supporter])
+
+      view.addSubview(supporterView)
+      supporterView.snp.makeConstraints { (make) in
+        make.top.equalTo(top).offset(Style.Padding.p8)
+        make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+      }
+      top = supporterView.snp.bottom
+    }
+
+    if sponsorshipDataSource.supporters.count > kMaxDisplayedSupporters {
+      view.addSubview(showSupportButton)
+      showSupportButton.setTitle(Strings.Profile.seeMore, for: .normal)
+      showSupportButton.addTarget(self, action: #selector(showSupporters),
+                                  for: .touchUpInside)
+      showSupportButton.snp.makeConstraints { (make) in
+        make.top.equalTo(top).offset(Style.Padding.p8)
+        make.right.equalToSuperview().inset(Style.Padding.p12)
+      }
+      top = showSupportButton.snp.bottom
+    }
+  }
+
+  private func configureEventsView(_ top: inout ConstraintRelatableTarget) {
+    let kMaxDisplayedEvents: Int = 2
+
+    view.addSubview(pastEventsLabel)
+    // TODO(compnerd) localise this properly
+    pastEventsLabel.text = "Past Events (\(eventsDataSource.events.count))"
+    pastEventsLabel.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p12)
+      make.left.equalToSuperview().inset(Style.Padding.p12)
+    }
+    top = pastEventsLabel.snp.bottom
+
+    for event in 0..<min(eventsDataSource.events.count, kMaxDisplayedEvents) {
+      let eventView: EventView =
+          EventView(event: eventsDataSource.events[event])
+
+      view.addSubview(eventView)
+      eventView.snp.makeConstraints { (make) in
+        make.top.equalTo(top).offset(Style.Padding.p8)
+        make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+      }
+      top = eventView.snp.bottom
+    }
+
+    if eventsDataSource.events.count > kMaxDisplayedEvents {
+      view.addSubview(showEventsButton)
+      showEventsButton.setTitle(Strings.Profile.seeMore, for: .normal)
+      // showEventsButton.addTarget(self, action: #selector(showEvents),
+      //                            for: .touchUpInside)
+      showEventsButton.snp.makeConstraints { (make) in
+        make.top.equalTo(top).offset(Style.Padding.p8)
+        make.right.equalToSuperview().inset(Style.Padding.p12)
+      }
+      top = showEventsButton.snp.bottom
+    }
+  }
+
   private func configureView() {
     view.backgroundColor = Style.Colors.white
-    title = Strings.NavBarTitles.profile
 
-    let supporter0: SupporterView =
-        SupporterView(supporter: sponsorshipDataSource.supporters[0])
-    let supporter1: SupporterView =
-        SupporterView(supporter: sponsorshipDataSource.supporters[1])
-
-    let event0: EventView = EventView(event: eventsDataSource.events[0])
-    let event1: EventView = EventView(event: eventsDataSource.events[1])
-
-    view.addSubviews([profileImage, nameLabel, teamLabel, rangeButton,
-                      supportersLabel, supporter0, supporter1, showSupportButton,
-                      pastEventsLabel, event0, event1, showEventsButton])
+    view.addSubviews([profileImage, nameLabel, teamLabel, rangeButton])
 
     profileImage.contentMode = .scaleAspectFill
     // TODO(compnerd) figure out how to get this value properly
@@ -278,61 +346,9 @@ class ProfileViewController: UIViewController {
       make.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
-    // TODO(compnerd) localise this properly
-    supportersLabel.text =
-        "Current Supporters (\(sponsorshipDataSource.supporters.count))"
-    supportersLabel.snp.makeConstraints { (make) in
-      // FIXME(compenrd) this needs to be based off of the previous row of stats
-      make.top.equalTo(rangeButton.snp.bottom)
-          .offset(Style.Padding.p8)
-      make.left.equalToSuperview().inset(Style.Padding.p12)
-    }
-
-    supporter0.snp.makeConstraints { (make) in
-      make.top.equalTo(supportersLabel.snp.bottom)
-        .offset(Style.Padding.p8)
-      make.left.right.equalToSuperview().inset(Style.Padding.p12)
-    }
-
-    supporter1.snp.makeConstraints { (make) in
-      make.top.equalTo(supporter0.snp.bottom)
-      make.left.right.equalToSuperview().inset(Style.Padding.p12)
-    }
-
-    showSupportButton.setTitle(Strings.Profile.seeMore, for: .normal)
-    showSupportButton.addTarget(self, action: #selector(showSupporters),
-                                for: .touchUpInside)
-
-    showSupportButton.snp.makeConstraints { (make) in
-      make.top.equalTo(supporter1.snp.bottom)
-          .offset(Style.Padding.p8)
-      make.right.equalToSuperview().inset(Style.Padding.p12)
-    }
-
-    // TODO(compnerd) localise this properly
-    pastEventsLabel.text = "Past Events (\(eventsDataSource.events.count))"
-    pastEventsLabel.snp.makeConstraints { (make) in
-      make.top.equalTo(showSupportButton.snp.bottom)
-          .offset(Style.Padding.p12)
-      make.left.equalToSuperview().inset(Style.Padding.p12)
-    }
-
-    event0.snp.makeConstraints { (make) in
-      make.top.equalTo(pastEventsLabel.snp.bottom)
-          .offset(Style.Padding.p8)
-      make.left.right.equalToSuperview().inset(Style.Padding.p12)
-    }
-
-    event1.snp.makeConstraints { (make) in
-      make.top.equalTo(event0.snp.bottom)
-      make.left.right.equalToSuperview().inset(Style.Padding.p12)
-    }
-
-    showEventsButton.setTitle(Strings.Profile.seeMore, for: .normal)
-    showEventsButton.snp.makeConstraints { (make) in
-      make.top.equalTo(event1.snp.bottom).offset(Style.Padding.p8)
-      make.right.equalToSuperview().inset(Style.Padding.p12)
-    }
+    var top: ConstraintRelatableTarget = rangeButton.snp.bottom
+    configureSupportersView(&top)
+    configureEventsView(&top)
   }
 
   private func updateProfile() {
