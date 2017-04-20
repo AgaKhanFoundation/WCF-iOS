@@ -92,9 +92,9 @@
 		F0C6D50C1EA3071A008E3B82 /* SelectionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionButton.swift; path = WalkingChallenge/SelectionButton.swift; sourceTree = "<group>"; };
 		F0C6D50E1EA3DCB2008E3B82 /* Leaderboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Leaderboard.swift; path = WalkingChallenge/Leaderboard.swift; sourceTree = "<group>"; };
 		F0CBDA4B1EA5D1BF00BB34F1 /* SupportersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportersViewController.swift; sourceTree = "<group>"; };
-		F0CBDA4D1EA6FCAB00BB34F1 /* Supporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Supporter.swift; sourceTree = "<group>"; };
+		F0CBDA4D1EA6FCAB00BB34F1 /* Supporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Supporter.swift; path = WalkingChallenge/Supporter.swift; sourceTree = "<group>"; };
 		F0CBDA4F1EA6FD7200BB34F1 /* SponsorshipDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SponsorshipDataSource.swift; path = WalkingChallenge/SponsorshipDataSource.swift; sourceTree = "<group>"; };
-		F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sponsor.swift; sourceTree = "<group>"; };
+		F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sponsor.swift; path = WalkingChallenge/Sponsor.swift; sourceTree = "<group>"; };
 		F0E182891E80B1DB00665E4F /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
 		FB0F6813102ABF61F968C9BD /* Pods-WalkingChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				F03D77D91EA839D300A70230 /* Data Sources */,
+				F03D77DC1EA83AC900A70230 /* Models */,
 				269E34C81E765828000726C2 /* WalkingChallenge */,
 				269E34C71E765828000726C2 /* Products */,
 				32BEA0F580FBBCEE2DC19561 /* Pods */,
@@ -206,8 +207,6 @@
 				F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */,
 				F0C6D5081EA2F50A008E3B82 /* ConfigurationViewController.swift */,
 				F0CBDA4B1EA5D1BF00BB34F1 /* SupportersViewController.swift */,
-				F0CBDA4D1EA6FCAB00BB34F1 /* Supporter.swift */,
-				F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -285,6 +284,15 @@
 				F03D77DA1EA83A3000A70230 /* EventDataSource.swift */,
 			);
 			name = "Data Sources";
+			sourceTree = "<group>";
+		};
+		F03D77DC1EA83AC900A70230 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F0CBDA4D1EA6FCAB00BB34F1 /* Supporter.swift */,
+				F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		F0C6D5031E9DBABB008E3B82 /* Leaderboard */ = {
