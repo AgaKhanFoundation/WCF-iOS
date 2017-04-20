@@ -87,15 +87,6 @@ class SupporterView: UIView {
   }
 }
 
-struct Event {
-  let image: URL?
-  let name: String
-  let time: String
-  let team: String
-  let raised: Float
-  let distance: Float
-}
-
 class EventView: UIView {
   internal var image: UIImageView = UIImageView()
   internal var name: UILabel = UILabel(.title)
