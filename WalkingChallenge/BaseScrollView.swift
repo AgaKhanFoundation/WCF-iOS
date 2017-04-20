@@ -23,7 +23,7 @@ class BaseScrollView: UIScrollView {
   func confireView() {
     addSubview(contentView)
     contentView.snp.makeConstraints { (make) in
-      make.edges.equalToSuperview()
+      make.edges.equalTo(self)
       make.width.equalToSuperview()
     }
   }

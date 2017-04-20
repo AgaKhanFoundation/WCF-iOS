@@ -289,7 +289,7 @@ class ProfileViewController: UIViewController {
     profileImage.layer.cornerRadius = Style.Size.s128 / 2.0
     profileImage.layer.masksToBounds = true
     profileImage.snp.makeConstraints { (make) in
-      make.top.equalTo(topLayoutGuide.snp.bottom)
+      make.top.equalToSuperview()
           .offset(Style.Padding.p12)
       make.size.equalTo(Style.Size.s128)
       make.centerX.equalToSuperview()
