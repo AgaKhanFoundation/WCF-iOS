@@ -37,6 +37,7 @@
 		F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */; };
 		F03D77DB1EA83A3000A70230 /* EventDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03D77DA1EA83A3000A70230 /* EventDataSource.swift */; };
 		F03D77DE1EA83B0800A70230 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03D77DD1EA83B0800A70230 /* Event.swift */; };
+		F03D77E01EA85BBC00A70230 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03D77DF1EA85BBC00A70230 /* EventsViewController.swift */; };
 		F09E7DFA1E860CE300AD8CAF /* ContactPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09E7DF91E860CE300AD8CAF /* ContactPickerDataSource.swift */; };
 		F0C6D5051E9DBAE3008E3B82 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6D5041E9DBAE3008E3B82 /* LeaderboardViewController.swift */; };
 		F0C6D5071EA07BF8008E3B82 /* TeamMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6D5061EA07BF8008E3B82 /* TeamMembersViewController.swift */; };
@@ -85,6 +86,7 @@
 		F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitDataProvider.swift; sourceTree = "<group>"; };
 		F03D77DA1EA83A3000A70230 /* EventDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventDataSource.swift; path = WalkingChallenge/EventDataSource.swift; sourceTree = "<group>"; };
 		F03D77DD1EA83B0800A70230 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = WalkingChallenge/Event.swift; sourceTree = "<group>"; };
+		F03D77DF1EA85BBC00A70230 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		F09E7DF91E860CE300AD8CAF /* ContactPickerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerDataSource.swift; sourceTree = "<group>"; };
 		F0C6D5041E9DBAE3008E3B82 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		F0C6D5061EA07BF8008E3B82 /* TeamMembersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMembersViewController.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */,
 				F0C6D5081EA2F50A008E3B82 /* ConfigurationViewController.swift */,
 				F0CBDA4B1EA5D1BF00BB34F1 /* SupportersViewController.swift */,
+				F03D77DF1EA85BBC00A70230 /* EventsViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0C6D50F1EA3DCB2008E3B82 /* Leaderboard.swift in Sources */,
+				F03D77E01EA85BBC00A70230 /* EventsViewController.swift in Sources */,
 				260D26771E935BCB004189F8 /* ContactPickerCell.swift in Sources */,
 				269E35091E765F24000726C2 /* UIView.swift in Sources */,
 				F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */,
