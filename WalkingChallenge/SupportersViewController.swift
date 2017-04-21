@@ -315,7 +315,7 @@ class SupportersViewController: UIViewController {
       make.top.equalTo(lblCorporateSponsorsSummary.snp.bottom)
           .offset(Style.Padding.p8)
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
-      make.height.equalTo(tblSupportersTable.snp.height)
+      make.height.equalTo(tblSupportersTable.snp.height).multipliedBy(2)
     }
 
     lblCurrentSupporters.text = "Current Supporters (\(dataSource.supporters.count))"
