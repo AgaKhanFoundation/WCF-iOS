@@ -30,9 +30,34 @@
 import SnapKit
 import FBSDKLoginKit
 
+func setButtonTitle(button: UIButton, title: String) {
+  let content: UITableViewCell = UITableViewCell()
+  content.textLabel?.text = title
+  content.accessoryType = .disclosureIndicator
+  content.isUserInteractionEnabled = false
+
+  button.addSubview(content)
+  content.snp.makeConstraints { (make) in
+    make.edges.equalToSuperview()
+  }
+}
+
 class ConfigurationViewController: UIViewController {
   let logoutButton = FBSDKLoginButton()
-  let deviceLabel = UILabel(.header)
+
+  internal let lblDevice: UILabel = UILabel(.section)
+
+  internal let lblAccountSettings: UILabel = UILabel(.section)
+  internal let btnEditProfile: UIButton = UIButton(type: .system)
+  internal let btnChangeEmailAddress: UIButton = UIButton(type: .system)
+  internal let btnNotificationsAndReminders: UIButton = UIButton(type: .system)
+
+  internal let lblTeams: UILabel = UILabel(.section)
+  internal var btnSwitchTeams: UIButton = UIButton(type: .system)
+
+  internal let lblHelpSupport: UILabel = UILabel(.section)
+  internal let btnFAQs: UIButton = UIButton(type: .system)
+  internal let btnContactUs: UIButton = UIButton(type: .system)
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -42,17 +67,108 @@ class ConfigurationViewController: UIViewController {
   }
 
   private func configureNavigation() {
+    title = Strings.NavBarTitles.configuration
+  }
+
+  private func configureDevice(_ top: inout ConstraintItem) {
+    view.addSubview(lblDevice)
+    lblDevice.text = Strings.Settings.device
+    lblDevice.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p12)
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+    }
+    top = lblDevice.snp.bottom
+  }
+
+  private func configureAccountSettings(_ top: inout ConstraintItem) {
+    view.addSubview(lblAccountSettings)
+    lblAccountSettings.text = Strings.Settings.accountSettings
+    lblAccountSettings.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p12)
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+    }
+    top = lblAccountSettings.snp.bottom
+
+    view.addSubview(btnEditProfile)
+    btnEditProfile.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p8)
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+    }
+    setButtonTitle(button: btnEditProfile, title: Strings.Settings.editProfile)
+    top = btnEditProfile.snp.bottom
+
+    view.addSubview(btnChangeEmailAddress)
+    btnChangeEmailAddress.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p8)
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+    }
+    setButtonTitle(button: btnChangeEmailAddress,
+                   title: Strings.Settings.changeEmailAddress)
+    top = btnChangeEmailAddress.snp.bottom
+
+    view.addSubview(btnNotificationsAndReminders)
+    btnNotificationsAndReminders.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p8)
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+    }
+    setButtonTitle(button: btnNotificationsAndReminders,
+                   title: Strings.Settings.notificationsAndReminders)
+    top = btnNotificationsAndReminders.snp.bottom
+  }
+
+  private func configureTeams(_ top: inout ConstraintItem) {
+    view.addSubview(lblTeams)
+    lblTeams.text = Strings.Settings.teams
+    lblTeams.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p12)
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+    }
+    top = lblTeams.snp.bottom
+
+    view.addSubview(btnSwitchTeams)
+    btnSwitchTeams.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p8)
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+    }
+    setButtonTitle(button: btnSwitchTeams, title: Strings.Settings.changeTeams)
+    top = btnSwitchTeams.snp.bottom
+  }
+
+  private func configureHelpSupport(_ top: inout ConstraintItem) {
+    view.addSubview(lblHelpSupport)
+    lblHelpSupport.text = Strings.Settings.helpAndSupport
+    lblHelpSupport.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p12)
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+    }
+    top = lblHelpSupport.snp.bottom
+
+    view.addSubview(btnFAQs)
+    btnFAQs.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p8)
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+    }
+    setButtonTitle(button: btnFAQs, title: Strings.Settings.faq)
+    top = btnFAQs.snp.bottom
+
+    view.addSubview(btnContactUs)
+    btnContactUs.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p8)
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+    }
+    setButtonTitle(button: btnContactUs, title: Strings.Settings.contactUs)
+    top = btnContactUs.snp.bottom
   }
 
   private func configureView() {
     view.backgroundColor = Style.Colors.white
-    title = Strings.NavBarTitles.configuration
 
-    view.addSubview(deviceLabel)
-    deviceLabel.text = Strings.Configuration.device
-    deviceLabel.snp.makeConstraints { (make) in
-      make.leading.trailing.top.equalToSuperview().inset(Style.Padding.p12)
-    }
+    var top = topLayoutGuide.snp.bottom
+
+    configureDevice(&top)
+    configureAccountSettings(&top)
+    configureTeams(&top)
+    configureHelpSupport(&top)
 
     view.addSubview(logoutButton)
     logoutButton.delegate = self
