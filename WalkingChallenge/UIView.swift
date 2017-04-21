@@ -46,3 +46,19 @@ extension UIViewController {
     present(alert, animated: true, completion: nil)
   }
 }
+
+func makeDisclosureIndicatorButton(title: String?) -> UIButton {
+  let button: UIButton = UIButton(type: .system)
+
+  let content: UITableViewCell = UITableViewCell()
+  content.accessoryType = .disclosureIndicator
+  content.isUserInteractionEnabled = false
+  content.textLabel?.text = title
+
+  button.addSubview(content)
+  content.snp.makeConstraints { (make) in
+    make.edges.equalToSuperview()
+  }
+
+  return button
+}
