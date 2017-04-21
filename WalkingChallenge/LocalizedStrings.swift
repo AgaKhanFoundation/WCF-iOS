@@ -66,6 +66,20 @@ struct Strings {
     static let title = NSLocalizedString("Supporters and Sponsors", comment: "Supporters and Sponsors")
   }
 
+  struct Settings {
+    static let title = NSLocalizedString("Settings", comment: "Settings")
+    static let device = NSLocalizedString("Device", comment: "Device")
+    static let accountSettings = NSLocalizedString("Accounts Settings", comment: "Account Settings")
+    static let editProfile = NSLocalizedString("Edit Profile", comment: "Edit Profile")
+    static let changeEmailAddress = NSLocalizedString("Change Email Address", comment: "Change Email Address")
+    static let notificationsAndReminders = NSLocalizedString("Notifications and Reminders", comment: "Notifications and Reminders")
+    static let teams = NSLocalizedString("Teams", comment: "Teams")
+    static let changeTeams = NSLocalizedString("Change Teams", comment: "Change Teams")
+    static let helpAndSupport = NSLocalizedString("Help & Support", comment: "Help & Support")
+    static let faq = NSLocalizedString("FAQ", comment: "FAQ")
+    static let contactUs = NSLocalizedString("Contact Us", comment: "Contact Us")
+  }
+
   struct PastEvents {
     static let title = NSLocalizedString("Past Events", comment: "Past Events")
   }
