@@ -30,34 +30,28 @@
 import SnapKit
 import FBSDKLoginKit
 
-func setButtonTitle(button: UIButton, title: String) {
-  let content: UITableViewCell = UITableViewCell()
-  content.textLabel?.text = title
-  content.accessoryType = .disclosureIndicator
-  content.isUserInteractionEnabled = false
-
-  button.addSubview(content)
-  content.snp.makeConstraints { (make) in
-    make.edges.equalToSuperview()
-  }
-}
-
 class ConfigurationViewController: UIViewController {
   let logoutButton = FBSDKLoginButton()
 
   internal let lblDevice: UILabel = UILabel(.section)
 
   internal let lblAccountSettings: UILabel = UILabel(.section)
-  internal let btnEditProfile: UIButton = UIButton(type: .system)
-  internal let btnChangeEmailAddress: UIButton = UIButton(type: .system)
-  internal let btnNotificationsAndReminders: UIButton = UIButton(type: .system)
+  internal let btnEditProfile: UIButton =
+      makeDisclosureIndicatorButton(title: Strings.Settings.editProfile)
+  internal let btnChangeEmailAddress: UIButton =
+      makeDisclosureIndicatorButton(title: Strings.Settings.changeEmailAddress)
+  internal let btnNotificationsAndReminders: UIButton =
+      makeDisclosureIndicatorButton(title: Strings.Settings.notificationsAndReminders)
 
   internal let lblTeams: UILabel = UILabel(.section)
-  internal var btnSwitchTeams: UIButton = UIButton(type: .system)
+  internal var btnSwitchTeams: UIButton =
+      makeDisclosureIndicatorButton(title: Strings.Settings.changeTeams)
 
   internal let lblHelpSupport: UILabel = UILabel(.section)
-  internal let btnFAQs: UIButton = UIButton(type: .system)
-  internal let btnContactUs: UIButton = UIButton(type: .system)
+  internal let btnFAQs: UIButton =
+      makeDisclosureIndicatorButton(title: Strings.Settings.faq)
+  internal let btnContactUs: UIButton =
+      makeDisclosureIndicatorButton(title: Strings.Settings.contactUs)
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -94,7 +88,6 @@ class ConfigurationViewController: UIViewController {
       make.top.equalTo(top).offset(Style.Padding.p8)
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
     }
-    setButtonTitle(button: btnEditProfile, title: Strings.Settings.editProfile)
     top = btnEditProfile.snp.bottom
 
     view.addSubview(btnChangeEmailAddress)
@@ -102,8 +95,6 @@ class ConfigurationViewController: UIViewController {
       make.top.equalTo(top).offset(Style.Padding.p8)
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
     }
-    setButtonTitle(button: btnChangeEmailAddress,
-                   title: Strings.Settings.changeEmailAddress)
     top = btnChangeEmailAddress.snp.bottom
 
     view.addSubview(btnNotificationsAndReminders)
@@ -111,8 +102,6 @@ class ConfigurationViewController: UIViewController {
       make.top.equalTo(top).offset(Style.Padding.p8)
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
     }
-    setButtonTitle(button: btnNotificationsAndReminders,
-                   title: Strings.Settings.notificationsAndReminders)
     top = btnNotificationsAndReminders.snp.bottom
   }
 
@@ -130,7 +119,6 @@ class ConfigurationViewController: UIViewController {
       make.top.equalTo(top).offset(Style.Padding.p8)
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
     }
-    setButtonTitle(button: btnSwitchTeams, title: Strings.Settings.changeTeams)
     top = btnSwitchTeams.snp.bottom
   }
 
@@ -148,7 +136,6 @@ class ConfigurationViewController: UIViewController {
       make.top.equalTo(top).offset(Style.Padding.p8)
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
     }
-    setButtonTitle(button: btnFAQs, title: Strings.Settings.faq)
     top = btnFAQs.snp.bottom
 
     view.addSubview(btnContactUs)
@@ -156,7 +143,6 @@ class ConfigurationViewController: UIViewController {
       make.top.equalTo(top).offset(Style.Padding.p8)
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
     }
-    setButtonTitle(button: btnContactUs, title: Strings.Settings.contactUs)
     top = btnContactUs.snp.bottom
   }
 
