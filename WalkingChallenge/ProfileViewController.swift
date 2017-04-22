@@ -150,6 +150,8 @@ class EventView: UIView {
 
   func updateForEvent(_ event: Event) {
     if let url = event.image {
+      // TODO(compnerd) asynchronously load and display the image
+      _ = url
     }
 
     name.text = event.name
