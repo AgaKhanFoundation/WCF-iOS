@@ -141,16 +141,6 @@ fileprivate class PastEventsDataSource: NSObject, UITableViewDataSource {
   }
 }
 
-fileprivate class EventTableDelegate: NSObject, UITableViewDelegate {
-  func tableView(_ tableView: UITableView,
-                 heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return UITableViewAutomaticDimension
-  }
-  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-    return UITableViewAutomaticDimension
-  }
-}
-
 class EventsViewController: UIViewController {
   private var eventsDataSource: EventsDataSource = EventsDataSource()
   private var eventTableDataSource: PastEventsDataSource?
@@ -200,7 +190,8 @@ class EventsViewController: UIViewController {
     view.addSubview(tblEvents)
     tblEvents.allowsSelection = false
     tblEvents.dataSource = eventTableDataSource
-    tblEvents.delegate = EventTableDelegate()
+    tblEvents.estimatedRowHeight = 50 //This is an arbitrary number
+    tblEvents.rowHeight = UITableViewAutomaticDimension
     tblEvents.register(EventCell.self,
                        forCellReuseIdentifier: EventCell.identifier)
     tblEvents.snp.makeConstraints { (make) in

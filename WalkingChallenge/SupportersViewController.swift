@@ -127,16 +127,6 @@ fileprivate class SponsorsDataSource: NSObject, UITableViewDataSource {
   }
 }
 
-fileprivate class SponsorsDelegate: NSObject, UITableViewDelegate {
-  func tableView(_ tableView: UITableView,
-                 heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return UITableViewAutomaticDimension
-  }
-  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-    return UITableViewAutomaticDimension
-  }
-}
-
 class SupporterCell: UITableViewCell, IdentifiedUITableViewCell {
   static let identifier: String = "SupporterCell"
 
@@ -300,8 +290,9 @@ class SupportersViewController: UIViewController {
 
     view.addSubview(tblSponsorsTable)
     tblSponsorsTable.dataSource = sponsorsDataSource
-    tblSponsorsTable.delegate = SponsorsDelegate()
     tblSponsorsTable.allowsSelection = false
+    tblSponsorsTable.estimatedRowHeight = 50 //This is an arbitrary number
+    tblSponsorsTable.rowHeight = UITableViewAutomaticDimension
     tblSponsorsTable.register(SponsorCell.self,
                               forCellReuseIdentifier: SponsorCell.identifier)
     tblSponsorsTable.snp.makeConstraints { (make) in
