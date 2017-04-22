@@ -179,6 +179,7 @@ fileprivate class StatisticsRangeDataSource: SelectionButtonDataSource {
 
 class ProfileViewController: UIViewController {
   let dataSource = ProfileDataSource()
+  private let teamDataSource: TeamDataSource = TeamDataSource()
   fileprivate let statisticsRangeDataSource: StatisticsRangeDataSource =
       StatisticsRangeDataSource()
 
@@ -427,7 +428,7 @@ class ProfileViewController: UIViewController {
       }
 
       self?.nameLabel.text = self?.dataSource.realName
-      self?.teamLabel.text = Team.name
+      self?.teamLabel.text = self?.teamDataSource.myTeam.name
     }
   }
 

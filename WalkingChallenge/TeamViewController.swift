@@ -38,7 +38,20 @@ fileprivate class StatisticsRangeDataSource: SelectionButtonDataSource {
   var selection: Int?
 }
 
+fileprivate class TeamLeaderboardDataSource: LeaderBoardDataSource {
+  private let team: Team
+
+  init(team: Team) {
+    self.team = team
+  }
+
+  var leaders: [LeaderBoardEntry] {
+    return []
+  }
+}
+
 class TeamViewController: UIViewController, LeaderBoardDataSource {
+  private let teamDataSource: TeamDataSource = TeamDataSource()
   fileprivate let statisticsRangeDataSource: StatisticsRangeDataSource =
       StatisticsRangeDataSource()
 
@@ -86,6 +99,8 @@ class TeamViewController: UIViewController, LeaderBoardDataSource {
   }
 
   private func configureTeamHeader(_ top: inout ConstraintRelatableTarget) {
+    let team: Team = teamDataSource.myTeam
+
     // FIXME(compnerd) get this value programatically
     view.addSubview(imgTeamImage)
     imgTeamImage.layer.cornerRadius = Style.Size.s56 / 2
@@ -103,7 +118,7 @@ class TeamViewController: UIViewController, LeaderBoardDataSource {
     imgTeamImage.layer.backgroundColor = Style.Colors.grey.cgColor
 
     view.addSubview(lblTeamName)
-    lblTeamName.text = Team.name
+    lblTeamName.text = team.name
     lblTeamName.snp.makeConstraints { (make) in
       make.bottom.equalTo(imgTeamImage.snp.centerY)
       make.left.equalTo(imgTeamImage.snp.right).offset(Style.Padding.p12)
@@ -111,7 +126,8 @@ class TeamViewController: UIViewController, LeaderBoardDataSource {
 
     // TODO(compnerd) make this localizable
     view.addSubview(btnTeamMembers)
-    btnTeamMembers.setTitle("\(Team.size) Members \u{203a}", for: .normal)
+    btnTeamMembers.setTitle("\(team.members.count) Members \u{203a}",
+                            for: .normal)
     btnTeamMembers.contentHorizontalAlignment = .left
     btnTeamMembers.addTarget(self, action: #selector(showMembers),
                              for: .touchUpInside)
