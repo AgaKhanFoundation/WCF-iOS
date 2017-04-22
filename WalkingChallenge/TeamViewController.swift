@@ -47,6 +47,11 @@ class TeamViewController: UIViewController, LeaderBoardDataSource {
   let btnTeamMembers: UIButton = UIButton(type: .system)
 
   let btnStatisticsRange: SelectionButton = SelectionButton(type: .system)
+  let lblRaisedSymbol: UILabel = UILabel()
+  let lblRaisedAmount: UILabel = UILabel(.header)
+  let lblAcchievementsSymbol: UILabel = UILabel()
+  let lblAcchievements: UILabel = UILabel(.header)
+  let lblAcchievementsUnits: UILabel = UILabel(.caption)
 
   let lblLeaderboardTitle: UILabel = UILabel(.section)
   let tblLeaderboard: LeaderBoard = LeaderBoard()
@@ -126,6 +131,49 @@ class TeamViewController: UIViewController, LeaderBoardDataSource {
       make.right.equalToSuperview().inset(Style.Padding.p12)
     }
     top = btnStatisticsRange.snp.bottom
+
+    view.addSubview(lblRaisedSymbol)
+    lblRaisedSymbol.text =
+        "\(String(describing: Locale.current.currencySymbol!))"
+    lblRaisedSymbol.textColor = Style.Colors.green
+    lblRaisedSymbol.font = UIFont.boldSystemFont(ofSize: 32.0)
+    lblRaisedSymbol.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p8)
+      make.left.equalToSuperview().inset(Style.Padding.p12)
+    }
+    top = lblRaisedSymbol.snp.bottom
+
+    view.addSubview(lblRaisedAmount)
+    // TODO(compnerd) calculate this properly
+    lblRaisedAmount.text = "2073.30"
+    lblRaisedAmount.snp.makeConstraints { (make) in
+      make.centerY.equalTo(lblRaisedSymbol.snp.centerY)
+      make.left.equalTo(lblRaisedSymbol.snp.right).offset(Style.Padding.p8)
+    }
+
+    view.addSubviews([lblAcchievementsSymbol, lblAcchievements,
+                      lblAcchievementsUnits])
+
+    lblAcchievementsSymbol.text = "\u{1f3c6}" // :trophy:
+    lblAcchievementsSymbol.font = UIFont.systemFont(ofSize: 32.0)
+    lblAcchievementsSymbol.snp.makeConstraints { (make) in
+      make.top.equalTo(btnStatisticsRange.snp.bottom).offset(Style.Padding.p8)
+      make.right.equalTo(lblAcchievements.snp.left).offset(-Style.Padding.p8)
+    }
+
+    // TODO(compnerd) calculate this properly
+    lblAcchievements.text = "12/30"
+    lblAcchievements.snp.makeConstraints { (make) in
+      make.top.equalTo(btnStatisticsRange.snp.bottom).offset(Style.Padding.p8)
+      make.right.equalToSuperview().inset(Style.Padding.p12)
+      make.left.equalTo(lblAcchievementsUnits.snp.left)
+    }
+    // FIXME(compnerd) localise this properly
+    lblAcchievementsUnits.text = "milestones"
+    lblAcchievementsUnits.snp.makeConstraints { (make) in
+      make.top.equalTo(lblAcchievements.snp.bottom)
+      make.right.equalToSuperview().inset(Style.Padding.p12)
+    }
   }
 
   private func configureTeamLeaderboard(_ top: inout ConstraintRelatableTarget) {
