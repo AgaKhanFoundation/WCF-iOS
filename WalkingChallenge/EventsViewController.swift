@@ -95,6 +95,10 @@ extension EventCell: ConfigurableUITableViewCell {
       _ = url
     }
 
+    // TODO(compnerd) use a placeholder instead of the filled bordered area
+    picture.layer.borderWidth = 1
+    picture.layer.backgroundColor = Style.Colors.grey.cgColor
+
     name.text = event.name
     // TODO(compnerd) format this
     time.text = event.time
@@ -147,8 +151,6 @@ fileprivate class EventTableDelegate: NSObject, UITableViewDelegate {
 }
 
 class EventsViewController: UIViewController {
-  private weak var eventTableDelegate: EventTableDelegate? = EventTableDelegate()
-
   private var eventsDataSource: EventsDataSource = EventsDataSource()
   private var eventTableDataSource: PastEventsDataSource?
 
@@ -206,7 +208,7 @@ class EventsViewController: UIViewController {
     view.addSubview(tblEvents)
     tblEvents.allowsSelection = false
     tblEvents.dataSource = eventTableDataSource
-    tblEvents.delegate = eventTableDelegate
+    tblEvents.delegate = EventTableDelegate()
     tblEvents.register(EventCell.self,
                        forCellReuseIdentifier: EventCell.identifier)
     tblEvents.snp.makeConstraints { (make) in
