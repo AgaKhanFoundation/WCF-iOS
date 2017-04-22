@@ -108,9 +108,7 @@ extension LeaderBoardCell: ConfigurableUITableViewCell {
     // TODO(compnerd) localise this properly
     distance.text = "\(info.distance) miles"
 
-    let currencyFormatter = NumberFormatter()
-    currencyFormatter.numberStyle = .currency
-    raised.text = currencyFormatter.string(from: NSNumber(value: info.raised))
+    raised.text = DataFormatters.formatCurrency(value: info.raised)
   }
 }
 
