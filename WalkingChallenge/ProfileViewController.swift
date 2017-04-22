@@ -182,6 +182,11 @@ class ProfileViewController: UIViewController {
   let statisticsRangeDataSource: StatisticsRangeDataSource =
       StatisticsRangeDataSource()
   var rangeButton = SelectionButton(type: .system)
+  let lblRaisedSymbol: UILabel = UILabel()
+  let lblRaisedAmount: UILabel = UILabel(.header)
+  let lblStreakSymbol: UILabel = UILabel()
+  let lblStreak: UILabel = UILabel(.header)
+  let lblStreakUnits: UILabel = UILabel(.caption)
 
   let sponsorshipDataSource: SponsorshipDataSource = SponsorshipDataSource()
   let supportersLabel = UILabel(.section)
@@ -270,6 +275,48 @@ class ProfileViewController: UIViewController {
       make.right.equalToSuperview().inset(Style.Padding.p12)
     }
     top = rangeButton.snp.bottom
+
+    view.addSubview(lblRaisedSymbol)
+    lblRaisedSymbol.text =
+        "\(String(describing: Locale.current.currencySymbol!))"
+    lblRaisedSymbol.textColor = Style.Colors.green
+    lblRaisedSymbol.font = UIFont.boldSystemFont(ofSize: 32.0)
+    lblRaisedSymbol.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p8)
+      make.left.equalToSuperview().inset(Style.Padding.p12)
+    }
+    top = lblRaisedSymbol.snp.bottom
+
+    view.addSubview(lblRaisedAmount)
+    // TODO(compnerd) calculate this properly
+    lblRaisedAmount.text = "423.50"
+    lblRaisedAmount.snp.makeConstraints { (make) in
+      make.centerY.equalTo(lblRaisedSymbol.snp.centerY)
+      make.left.equalTo(lblRaisedSymbol.snp.right)
+          .offset(Style.Padding.p8)
+    }
+
+    view.addSubviews([lblStreakSymbol, lblStreak, lblStreakUnits])
+
+    lblStreakSymbol.text = "\u{1f525}" // :fire:
+    lblStreakSymbol.font = UIFont.systemFont(ofSize: 32.0)
+    lblStreakSymbol.snp.makeConstraints { (make) in
+      make.top.equalTo(rangeButton.snp.bottom).offset(Style.Padding.p8)
+      make.right.equalTo(lblStreak.snp.left).offset(-Style.Padding.p8)
+    }
+    // TODO(compnerd) calculate this properly
+    lblStreak.text = "34"
+    lblStreak.snp.makeConstraints { (make) in
+      make.top.equalTo(rangeButton.snp.bottom).offset(Style.Padding.p8)
+      make.right.equalToSuperview().inset(Style.Padding.p12)
+      make.left.equalTo(lblStreakUnits.snp.left)
+    }
+    // FIXME(compnerd) localise this properly
+    lblStreakUnits.text = "days"
+    lblStreakUnits.snp.makeConstraints { (make) in
+      make.top.equalTo(lblStreak.snp.bottom)
+      make.right.equalToSuperview().inset(Style.Padding.p12)
+    }
   }
 
   private func configureSupportersView(_ top: inout ConstraintRelatableTarget) {
