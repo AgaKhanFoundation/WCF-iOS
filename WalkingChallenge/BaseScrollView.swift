@@ -33,15 +33,18 @@ import SnapKit
 
 class BaseScrollView: UIScrollView {
   let contentView = UIView()
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     configureView()
   }
+
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     configureView()
   }
-  func configureView() {
+
+  private func configureView() {
     addSubview(contentView)
     contentView.snp.makeConstraints { (make) in
       make.edges.equalTo(self)

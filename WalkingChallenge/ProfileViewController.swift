@@ -249,7 +249,7 @@ class ProfileViewController: UIViewController {
     profileImage.layer.cornerRadius = Style.Size.s128 / 2.0
     profileImage.layer.masksToBounds = true
     profileImage.snp.makeConstraints { (make) in
-       make.top.equalToSuperview().offset(Style.Padding.p12)
+      make.top.equalTo(top).offset(Style.Padding.p12)
       make.size.equalTo(Style.Size.s128)
       make.centerX.equalToSuperview()
     }
@@ -405,13 +405,14 @@ class ProfileViewController: UIViewController {
   }
 
   private func configureView() {
+    view.backgroundColor = Style.Colors.white
+
     super.view.addSubview(scrollView)
     scrollView.snp.makeConstraints { (make) in
       make.edges.equalTo(view)
     }
-    view.backgroundColor = Style.Colors.white
 
-    var top: ConstraintRelatableTarget = topLayoutGuide.snp.bottom
+    var top: ConstraintRelatableTarget = scrollView.snp.top
     configureHeaderView(&top)
     configureStatisticsView(&top)
     configureSupportersView(&top)
