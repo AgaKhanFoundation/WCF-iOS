@@ -27,23 +27,9 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-class TeamDataSource {
-  var myTeam: Team {
-    // TODO(compnerd) fetch this from the backend
-    return Team(name: "Walk4change",
-                members: [
-                  TeamMember(name: "Member 1", picture: nil),
-                  TeamMember(name: "Member 2", picture: nil),
-                  TeamMember(name: "Member 3", picture: nil),
-                  TeamMember(name: "Member 4", picture: nil),
-                  TeamMember(name: "Member 5", picture: nil),
-                  TeamMember(name: "Member 6", picture: nil),
-                  TeamMember(name: "Member 7", picture: nil)
-                ])
-  }
+import Foundation
 
-  var maxSize: Int {
-    // TODO(compnerd) fetch this from the backend
-    return 11
-  }
+struct TeamMember {
+  let name: String
+  let picture: URL?
 }

@@ -29,11 +29,10 @@
 
 import SnapKit
 
-struct TeamMemberCount: CellInfo {
+struct TeamMemberCountInfo: CellInfo {
   var cellIdentifier: String = TeamMemberCountCell.identifier
 
   var count: Int
-
   init(count: Int) {
     self.count = count
   }
@@ -65,26 +64,24 @@ class TeamMemberCountCell: UITableViewCell, IdentifiedUITableViewCell {
 
 extension TeamMemberCountCell: ConfigurableUITableViewCell {
   func configure(_ data: Any) {
-    guard let info = data as? TeamMemberCount else { return }
+    guard let info = data as? TeamMemberCountInfo else { return }
     // TODO(compnerd) make this localisable
     label.text = "Members (\(info.count))"
   }
 }
 
-struct TeamMember: CellInfo {
+struct TeamMemberInfo: CellInfo {
   var cellIdentifier: String = TeamMemberCell.identifier
 
-  let name: String
-  let picture: URL?
+  let member: TeamMember
 
-  init(name: String, picture: URL? = nil) {
-    self.name = name
-    self.picture = picture
+  init(member: TeamMember) {
+    self.member = member
   }
 }
 
 class TeamMemberCell: UITableViewCell, IdentifiedUITableViewCell {
-  static var identifier: String = "TeamMemberCell"
+  static let identifier: String = "TeamMemberCell"
 
   let pictureView = UIImageView()
   let nameLabel = UILabel(.body)
@@ -123,8 +120,8 @@ class TeamMemberCell: UITableViewCell, IdentifiedUITableViewCell {
 
 extension TeamMemberCell: ConfigurableUITableViewCell {
   func configure(_ data: Any) {
-    guard let info = data as? TeamMember else { return }
-    nameLabel.text = info.name
+    guard let info = data as? TeamMemberInfo else { return }
+    nameLabel.text = info.member.name
   }
 }
 
@@ -135,7 +132,10 @@ class TeamMembersDataSource: NSObject {
 
   init(team: Team) {
     self.team = team
-    self.cells = [TeamMemberCount(count: team.members.count)] + team.members
+    self.cells = [TeamMemberCountInfo(count: team.members.count)]
+    for member in team.members {
+      self.cells.append(TeamMemberInfo(member: member))
+    }
     super.init()
   }
 }
@@ -157,11 +157,13 @@ extension TeamMembersDataSource: UITableViewDataSource {
     else { return UITableViewCell() }
 
     cell.configure(info)
+
     //TODO: Sami fix this using CellInfo pattern
     if let cell = cell as? UITableViewCell {
       if indexPath.row == 0 {
         cell.separatorInset =
-            UIEdgeInsets(top: 0, left: 0, bottom: 0, right: cell.bounds.size.width)
+            UIEdgeInsets(top: 0, left: 0, bottom: 0,
+                         right: cell.bounds.size.width)
       }
 
       return cell
@@ -231,6 +233,7 @@ class TeamMembersViewController: UIViewController {
   }
 
   func inviteFriends() {
+    // TODO(compnerd) use aa app URL
     Facebook.invite(url: "http://www.google.com")
   }
 }
