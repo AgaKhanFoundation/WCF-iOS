@@ -145,7 +145,7 @@ fileprivate class EventTableDelegate: NSObject, UITableViewDelegate {
 }
 
 class EventsViewController: UIViewController {
-  private var eventTableDelegate: EventTableDelegate = EventTableDelegate()
+  private weak var eventTableDelegate: EventTableDelegate? = EventTableDelegate()
 
   private var eventsDataSource: EventsDataSource = EventsDataSource()
   private var eventTableDataSource: PastEventsDataSource?
