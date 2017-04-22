@@ -89,8 +89,7 @@ class TeamViewController: UIViewController, SelectionButtonDataSource, LeaderBoa
     teamImage.layer.borderColor = Style.Colors.grey.cgColor
     teamImage.layer.borderWidth = 1
     teamImage.snp.makeConstraints { (make) in
-      make.top.equalTo(topLayoutGuide.snp.bottom)
-          .offset(Style.Padding.p12)
+      make.top.equalTo(topLayoutGuide.snp.bottom).offset(Style.Padding.p12)
       make.left.equalToSuperview().inset(Style.Padding.p12)
       make.height.width.equalTo(Style.Size.s56)
     }
@@ -99,8 +98,7 @@ class TeamViewController: UIViewController, SelectionButtonDataSource, LeaderBoa
     teamName.textAlignment = .left
     teamName.snp.makeConstraints { (make) in
       make.top.equalTo(teamImage.snp.top)
-      make.left.equalTo(teamImage.snp.right)
-          .offset(Style.Padding.p12)
+      make.left.equalTo(teamImage.snp.right).offset(Style.Padding.p12)
       make.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
@@ -111,8 +109,7 @@ class TeamViewController: UIViewController, SelectionButtonDataSource, LeaderBoa
                           for: .touchUpInside)
     memberCount.snp.makeConstraints { (make) in
       make.top.equalTo(teamName.snp.bottom)
-      make.left.equalTo(teamImage.snp.right)
-          .offset(Style.Padding.p12)
+      make.left.equalTo(teamImage.snp.right).offset(Style.Padding.p12)
       make.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
@@ -120,8 +117,7 @@ class TeamViewController: UIViewController, SelectionButtonDataSource, LeaderBoa
     rangeSelector.delegate = self
     rangeSelector.selection = UserInfo.teamLeaderStatsRange
     rangeSelector.snp.makeConstraints { (make) in
-      make.top.equalTo(memberCount.snp.bottom)
-          .offset(Style.Padding.p24)
+      make.top.equalTo(memberCount.snp.bottom).offset(Style.Padding.p24)
       make.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
@@ -133,12 +129,9 @@ class TeamViewController: UIViewController, SelectionButtonDataSource, LeaderBoa
 
     leaderboard.data = self
     leaderboard.snp.makeConstraints { (make) in
-      make.top.equalTo(leaderboardLabel.snp.bottom)
-          .offset(Style.Padding.p8)
-      make.bottom.equalTo(bottomLayoutGuide.snp.top)
-          .offset(-Style.Padding.p12)
-      make.leading.trailing.equalToSuperview()
-          .inset(Style.Padding.p12)
+      make.top.equalTo(leaderboardLabel.snp.bottom).offset(Style.Padding.p8)
+      make.bottom.equalTo(bottomLayoutGuide.snp.top).offset(-Style.Padding.p12)
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
     }
   }
 
