@@ -50,8 +50,9 @@ fileprivate class TeamLeaderboardDataSource: LeaderBoardDataSource {
   }
 }
 
-class TeamViewController: UIViewController, LeaderBoardDataSource {
+class TeamViewController: UIViewController {
   private let teamDataSource: TeamDataSource = TeamDataSource()
+  fileprivate let leaderboardDataSource: TeamLeaderboardDataSource
   fileprivate let statisticsRangeDataSource: StatisticsRangeDataSource =
       StatisticsRangeDataSource()
 
@@ -69,10 +70,15 @@ class TeamViewController: UIViewController, LeaderBoardDataSource {
   let lblLeaderboardTitle: UILabel = UILabel(.section)
   let tblLeaderboard: LeaderBoard = LeaderBoard()
 
-  // TODO(compnerd) provide a separate dataSource for the leadrboard by sorting
-  // team member entries
-  var leaders: [LeaderBoardEntry] = [
-  ]
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    leaderboardDataSource =
+        TeamLeaderboardDataSource(team: teamDataSource.myTeam)
+    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 
   // MARK: - Lifecycle
 
@@ -202,7 +208,7 @@ class TeamViewController: UIViewController, LeaderBoardDataSource {
     top = lblLeaderboardTitle.snp.bottom
 
     view.addSubview(tblLeaderboard)
-    tblLeaderboard.data = self
+    tblLeaderboard.data = leaderboardDataSource
     tblLeaderboard.snp.makeConstraints { (make) in
       make.top.equalTo(top).offset(Style.Padding.p8)
       make.bottom.equalTo(bottomLayoutGuide.snp.top).offset(-Style.Padding.p12)
