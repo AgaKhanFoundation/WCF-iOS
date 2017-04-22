@@ -57,6 +57,10 @@ class SponsorCell: UITableViewCell, IdentifiedUITableViewCell {
       make.height.width.equalTo(Style.Size.s56)
     }
 
+    // TODO(compnerd) use a placeholder instead of the filled bordered area
+    picture.layer.borderWidth = 1
+    picture.layer.backgroundColor = Style.Colors.grey.cgColor
+
     name.snp.makeConstraints { (make) in
       make.top.equalToSuperview().inset(Style.Padding.p12)
       make.left.equalTo(picture.snp.right).offset(Style.Padding.p8)
