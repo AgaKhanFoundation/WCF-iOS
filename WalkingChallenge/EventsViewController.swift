@@ -108,7 +108,7 @@ extension EventCell: ConfigurableUITableViewCell {
     raised.text = DataFormatters.formatCurrency(value: event.raised)
 
     // TODO(compnerd) properly localise this
-    distance.text = "\(event.distance) miles"
+    distance.text = DataFormatters.formatDistance(value: event.distance)
   }
 }
 
@@ -181,7 +181,9 @@ class EventsViewController: UIViewController {
     view.addSubview(lblStatus)
     // FIXME(compnerd) properly localise this
     lblStatus.text =
-        "Through your participation in \(eventsDataSource.events.count) events, you raised \(DataFormatters.formatCurrency(value: raised)) and walked \(distance) miles!"
+        "Through your participation in \(eventsDataSource.events.count) events, " +
+        "you raised \(DataFormatters.formatCurrency(value: raised)) and walked " +
+        "\(DataFormatters.formatDistance(value: distance))!"
     lblStatus.lineBreakMode = .byWordWrapping
     lblStatus.numberOfLines = 0
     lblStatus.textAlignment = .justified

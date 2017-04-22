@@ -35,4 +35,10 @@ struct DataFormatters {
     formatter.numberStyle = .currency
     return formatter.string(from: NSNumber(value: value)) ?? ""
   }
+
+  static func formatDistance(value: Float) -> String {
+    let formatter: LengthFormatter = LengthFormatter()
+    formatter.unitStyle = .long
+    return formatter.string(fromValue: Double(value), unit: .mile)
+  }
 }

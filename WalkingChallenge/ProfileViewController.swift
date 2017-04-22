@@ -156,11 +156,8 @@ class EventView: UIView {
     time.text = event.time
     // TODO(compnerd) properly localise this
     team.text = "Team: \(event.team)"
-
     raised.text = DataFormatters.formatCurrency(value: event.raised)
-
-    // TODO(compnerd) properly localise this
-    distance.text = "\(event.distance) miles"
+    distance.text = DataFormatters.formatDistance(value: event.distance)
   }
 }
 

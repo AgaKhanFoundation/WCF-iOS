@@ -102,12 +102,10 @@ extension LeaderBoardCell: ConfigurableUITableViewCell {
   func configure(_ data: Any) {
     guard let info = data as? LeaderBoardEntry else { return }
 
+    // FIXME(compnerd) does this need l10n?
     standing.text = "\(info.standing)."
     name.text = info.name
-
-    // TODO(compnerd) localise this properly
-    distance.text = "\(info.distance) miles"
-
+    distance.text = DataFormatters.formatDistance(value: info.distance)
     raised.text = DataFormatters.formatCurrency(value: info.raised)
   }
 }
