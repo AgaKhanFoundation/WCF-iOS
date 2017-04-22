@@ -29,30 +29,32 @@
 
 import SnapKit
 
-class TeamViewController: UIViewController, SelectionButtonDataSource, LeaderBoardDataSource {
-  let teamImage = UIImageView()
-  let teamName = UILabel(.header)
-  let memberCount = UIButton(type: .system)
-
+fileprivate class StatisticsRangeDataSource: SelectionButtonDataSource {
   // TODO(compnerd) should these be the same or different?
-  static let ranges = [Strings.Team.thisWeek, Strings.Team.thisMonth,
-                       Strings.Team.thisEvent, Strings.Team.overall]
-  let rangeSelector = SelectionButton(type: .system)
+  static let ranges = [Strings.Profile.thisWeek, Strings.Profile.thisMonth,
+                       Strings.Profile.thisEvent, Strings.Profile.overall]
 
-  let leaderboardLabel = UILabel(.section)
-  let leaderboard = LeaderBoard()
+  var items: [String] = StatisticsRangeDataSource.ranges
+  var selection: Int?
+}
 
+class TeamViewController: UIViewController, LeaderBoardDataSource {
+  fileprivate let statisticsRangeDataSource: StatisticsRangeDataSource =
+      StatisticsRangeDataSource()
+
+  let imgTeamImage: UIImageView = UIImageView()
+  let lblTeamName: UILabel = UILabel(.header)
+  let btnTeamMembers: UIButton = UIButton(type: .system)
+
+  let btnStatisticsRange: SelectionButton = SelectionButton(type: .system)
+
+  let lblLeaderboardTitle: UILabel = UILabel(.section)
+  let tblLeaderboard: LeaderBoard = LeaderBoard()
+
+  // TODO(compnerd) provide a separate dataSource for the leadrboard by sorting
+  // team member entries
   var leaders: [LeaderBoardEntry] = [
   ]
-
-  var items: [String] = TeamViewController.ranges
-  var selection: Int? {
-    didSet {
-      if let value = selection {
-        rangeSelector.setTitle(TeamViewController.ranges[safe: value], for: .normal)
-      }
-    }
-  }
 
   // MARK: - Lifecycle
 
@@ -66,6 +68,8 @@ class TeamViewController: UIViewController, SelectionButtonDataSource, LeaderBoa
   // MARK: - Configure
 
   private func configureNavigationBar() {
+    title = Strings.NavBarTitles.team
+
     navigationItem.rightBarButtonItem =
         UIBarButtonItem(barButtonSystemItem: .add, target: self,
                         action: #selector(addTapped))
@@ -76,63 +80,80 @@ class TeamViewController: UIViewController, SelectionButtonDataSource, LeaderBoa
       [NSForegroundColorAttributeName: Style.Colors.white]
   }
 
-  private func configureView() {
-    view.backgroundColor = Style.Colors.white
-    title = Strings.NavBarTitles.team
-
-    view.addSubviews([teamImage, teamName, memberCount,
-                      rangeSelector,
-                      leaderboardLabel, leaderboard])
-
-    teamImage.layer.cornerRadius = Style.Size.s56 / 2
-    teamImage.layer.masksToBounds = true
-    teamImage.layer.borderColor = Style.Colors.grey.cgColor
-    teamImage.layer.borderWidth = 1
-    teamImage.snp.makeConstraints { (make) in
-      make.top.equalTo(topLayoutGuide.snp.bottom).offset(Style.Padding.p12)
+  private func configureTeamHeader(_ top: inout ConstraintRelatableTarget) {
+    // FIXME(compnerd) get this value programatically
+    view.addSubview(imgTeamImage)
+    imgTeamImage.layer.cornerRadius = Style.Size.s56 / 2
+    imgTeamImage.layer.masksToBounds = true
+    imgTeamImage.layer.borderColor = Style.Colors.grey.cgColor
+    imgTeamImage.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p12)
       make.left.equalToSuperview().inset(Style.Padding.p12)
       make.height.width.equalTo(Style.Size.s56)
     }
+    top = imgTeamImage.snp.bottom
 
-    teamName.text = Team.name
-    teamName.textAlignment = .left
-    teamName.snp.makeConstraints { (make) in
-      make.top.equalTo(teamImage.snp.top)
-      make.left.equalTo(teamImage.snp.right).offset(Style.Padding.p12)
-      make.right.equalToSuperview().inset(Style.Padding.p12)
+    // TODO(compnerd) use a placeholder instead of the filled bordered area
+    imgTeamImage.layer.borderWidth = 1
+    imgTeamImage.layer.backgroundColor = Style.Colors.grey.cgColor
+
+    view.addSubview(lblTeamName)
+    lblTeamName.text = Team.name
+    lblTeamName.snp.makeConstraints { (make) in
+      make.bottom.equalTo(imgTeamImage.snp.centerY)
+      make.left.equalTo(imgTeamImage.snp.right).offset(Style.Padding.p12)
     }
 
     // TODO(compnerd) make this localizable
-    memberCount.setTitle("\(Team.size) Members \u{203a}", for: .normal)
-    memberCount.contentHorizontalAlignment = .left
-    memberCount.addTarget(self, action: #selector(showMembers),
-                          for: .touchUpInside)
-    memberCount.snp.makeConstraints { (make) in
-      make.top.equalTo(teamName.snp.bottom)
-      make.left.equalTo(teamImage.snp.right).offset(Style.Padding.p12)
+    view.addSubview(btnTeamMembers)
+    btnTeamMembers.setTitle("\(Team.size) Members \u{203a}", for: .normal)
+    btnTeamMembers.contentHorizontalAlignment = .left
+    btnTeamMembers.addTarget(self, action: #selector(showMembers),
+                             for: .touchUpInside)
+    btnTeamMembers.snp.makeConstraints { (make) in
+      make.top.equalTo(imgTeamImage.snp.centerY)
+      make.left.equalTo(imgTeamImage.snp.right).offset(Style.Padding.p12)
+    }
+  }
+
+  private func configureTeamStatistics(_ top: inout ConstraintRelatableTarget) {
+    view.addSubview(btnStatisticsRange)
+    btnStatisticsRange.dataSource = statisticsRangeDataSource
+    btnStatisticsRange.delegate = self
+    btnStatisticsRange.selection = UserInfo.teamLeaderStatsRange
+    btnStatisticsRange.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p24)
       make.right.equalToSuperview().inset(Style.Padding.p12)
     }
+    top = btnStatisticsRange.snp.bottom
+  }
 
-    rangeSelector.dataSource = self
-    rangeSelector.delegate = self
-    rangeSelector.selection = UserInfo.teamLeaderStatsRange
-    rangeSelector.snp.makeConstraints { (make) in
-      make.top.equalTo(memberCount.snp.bottom).offset(Style.Padding.p24)
-      make.right.equalToSuperview().inset(Style.Padding.p12)
-    }
-
-    leaderboardLabel.text = Strings.Team.leaderboard
-    leaderboardLabel.snp.makeConstraints { (make) in
-      make.top.equalTo(rangeSelector.snp.bottom)
+  private func configureTeamLeaderboard(_ top: inout ConstraintRelatableTarget) {
+    view.addSubview(lblLeaderboardTitle)
+    lblLeaderboardTitle.text = Strings.Team.leaderboard
+    lblLeaderboardTitle.snp.makeConstraints { (make) in
+      make.top.equalTo(top)
       make.left.equalToSuperview().inset(Style.Padding.p12)
     }
+    top = lblLeaderboardTitle.snp.bottom
 
-    leaderboard.data = self
-    leaderboard.snp.makeConstraints { (make) in
-      make.top.equalTo(leaderboardLabel.snp.bottom).offset(Style.Padding.p8)
+    view.addSubview(tblLeaderboard)
+    tblLeaderboard.data = self
+    tblLeaderboard.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p8)
       make.bottom.equalTo(bottomLayoutGuide.snp.top).offset(-Style.Padding.p12)
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
     }
+    top = tblLeaderboard.snp.bottom
+  }
+
+  private func configureView() {
+    view.backgroundColor = Style.Colors.white
+
+    var top: ConstraintRelatableTarget = topLayoutGuide.snp.bottom
+    configureTeamHeader(&top)
+    configureTeamStatistics(&top)
+    configureTeamLeaderboard(&top)
   }
 
   // MARK: - Actions
