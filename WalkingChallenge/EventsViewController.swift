@@ -91,6 +91,8 @@ extension EventCell: ConfigurableUITableViewCell {
     guard let event = data as? Event else { return }
 
     if let url = event.image {
+      // TODO(compnerd) asynchronously load and display the image
+      _ = url
     }
 
     name.text = event.name
