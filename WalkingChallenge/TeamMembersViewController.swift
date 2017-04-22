@@ -236,6 +236,6 @@ class TeamMembersViewController: UIViewController {
 
   func inviteFriends() {
     // TODO(compnerd) use aa app URL
-    Facebook.invite(url: "http://www.google.com")
+    Facebook.invite(url: "https://fb.me/263589040713529")
   }
 }
