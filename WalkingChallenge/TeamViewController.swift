@@ -72,13 +72,13 @@ class TeamViewController: UIViewController {
   let lblTeamName: UILabel = UILabel(.header)
   let btnTeamMembers: UIButton = UIButton(type: .system)
 
-  let btnStatisticsRange: SelectionButton = SelectionButton(type: .system)
   let lblRaisedSymbol: UILabel = UILabel()
   let lblRaisedAmount: UILabel = UILabel(.header)
   let lblAcchievementsSymbol: UILabel = UILabel()
   let lblAcchievements: UILabel = UILabel(.header)
   let lblAcchievementsUnits: UILabel = UILabel(.caption)
 
+  let btnStatisticsRange: SelectionButton = SelectionButton(type: .system)
   let lblLeaderboardTitle: UILabel = UILabel(.section)
   let tblLeaderboard: LeaderBoard = LeaderBoard()
 
@@ -156,16 +156,6 @@ class TeamViewController: UIViewController {
   }
 
   private func configureTeamStatistics(_ top: inout ConstraintRelatableTarget) {
-    view.addSubview(btnStatisticsRange)
-    btnStatisticsRange.dataSource = statisticsRangeDataSource
-    btnStatisticsRange.delegate = self
-    btnStatisticsRange.selection = UserInfo.teamLeaderStatsRange
-    btnStatisticsRange.snp.makeConstraints { (make) in
-      make.top.equalTo(top).offset(Style.Padding.p24)
-      make.right.equalToSuperview().inset(Style.Padding.p12)
-    }
-    top = btnStatisticsRange.snp.bottom
-
     view.addSubview(lblRaisedSymbol)
     lblRaisedSymbol.text =
         "\(String(describing: Locale.current.currencySymbol!))"
@@ -175,7 +165,6 @@ class TeamViewController: UIViewController {
       make.top.equalTo(top).offset(Style.Padding.p8)
       make.left.equalToSuperview().inset(Style.Padding.p12)
     }
-    top = lblRaisedSymbol.snp.bottom
 
     view.addSubview(lblRaisedAmount)
     // TODO(compnerd) calculate this properly
@@ -191,14 +180,14 @@ class TeamViewController: UIViewController {
     lblAcchievementsSymbol.text = "\u{1f3c6}" // :trophy:
     lblAcchievementsSymbol.font = UIFont.systemFont(ofSize: 32.0)
     lblAcchievementsSymbol.snp.makeConstraints { (make) in
-      make.top.equalTo(btnStatisticsRange.snp.bottom).offset(Style.Padding.p8)
+      make.top.equalTo(top).offset(Style.Padding.p8)
       make.right.equalTo(lblAcchievements.snp.left).offset(-Style.Padding.p8)
     }
 
     // TODO(compnerd) calculate this properly
     lblAcchievements.text = "12/30"
     lblAcchievements.snp.makeConstraints { (make) in
-      make.top.equalTo(btnStatisticsRange.snp.bottom).offset(Style.Padding.p8)
+      make.top.equalTo(top).offset(Style.Padding.p8)
       make.right.equalToSuperview().inset(Style.Padding.p12)
       make.left.equalTo(lblAcchievementsUnits.snp.left)
     }
@@ -208,9 +197,21 @@ class TeamViewController: UIViewController {
       make.top.equalTo(lblAcchievements.snp.bottom)
       make.right.equalToSuperview().inset(Style.Padding.p12)
     }
+
+    top = lblRaisedSymbol.snp.bottom
   }
 
   private func configureTeamLeaderboard(_ top: inout ConstraintRelatableTarget) {
+    view.addSubview(btnStatisticsRange)
+    btnStatisticsRange.dataSource = statisticsRangeDataSource
+    btnStatisticsRange.delegate = self
+    btnStatisticsRange.selection = UserInfo.teamLeaderStatsRange
+    btnStatisticsRange.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p24)
+      make.right.equalToSuperview().inset(Style.Padding.p12)
+    }
+    top = btnStatisticsRange.snp.bottom
+
     view.addSubview(lblLeaderboardTitle)
     lblLeaderboardTitle.text = Strings.Team.leaderboard
     lblLeaderboardTitle.snp.makeConstraints { (make) in
