@@ -99,8 +99,6 @@ class TeamMemberCell: UITableViewCell, IdentifiedUITableViewCell {
     contentView.addSubviews([pictureView, nameLabel])
     backgroundColor = .clear
 
-    pictureView.layer.borderColor = Style.Colors.grey.cgColor
-    pictureView.layer.borderWidth = 1
     pictureView.layer.cornerRadius = Style.Size.s32 / 2
     pictureView.layer.masksToBounds = true
     pictureView.snp.makeConstraints { (make) in
@@ -108,6 +106,10 @@ class TeamMemberCell: UITableViewCell, IdentifiedUITableViewCell {
       make.left.equalToSuperview().inset(Style.Padding.p12)
       make.centerY.equalToSuperview()
     }
+
+    // TODO(compnerd) use a placeholder instead of the filled bordered area
+    pictureView.layer.borderWidth = 1
+    pictureView.layer.backgroundColor = Style.Colors.grey.cgColor
 
     nameLabel.snp.makeConstraints { (make) in
       make.left.equalTo(pictureView.snp.right)
