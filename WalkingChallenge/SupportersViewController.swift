@@ -79,6 +79,7 @@ class SponsorCell: UITableViewCell, IdentifiedUITableViewCell {
     pledged.snp.makeConstraints { (make) in
       make.top.equalTo(donated.snp.bottom)
       make.left.equalTo(donated.snp.left)
+      make.bottom.equalToSuperview()
     }
   }
 }
@@ -129,8 +130,10 @@ fileprivate class SponsorsDataSource: NSObject, UITableViewDataSource {
 fileprivate class SponsorsDelegate: NSObject, UITableViewDelegate {
   func tableView(_ tableView: UITableView,
                  heightForRowAt indexPath: IndexPath) -> CGFloat {
-    // FIXME(compnerd) calculate this somehow?
-    return 100.0
+    return UITableViewAutomaticDimension
+  }
+  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    return UITableViewAutomaticDimension
   }
 }
 

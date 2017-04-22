@@ -82,6 +82,7 @@ fileprivate class EventCell: UITableViewCell, IdentifiedUITableViewCell {
     distance.snp.makeConstraints { (make) in
       make.top.equalTo(raised.snp.top)
       make.right.equalToSuperview().inset(Style.Padding.p12)
+      make.bottom.equalToSuperview()
     }
   }
 }
@@ -143,8 +144,10 @@ fileprivate class PastEventsDataSource: NSObject, UITableViewDataSource {
 fileprivate class EventTableDelegate: NSObject, UITableViewDelegate {
   func tableView(_ tableView: UITableView,
                  heightForRowAt indexPath: IndexPath) -> CGFloat {
-    // FIXME(compnerd) calculate this somehow?
-    return 112.0
+    return UITableViewAutomaticDimension
+  }
+  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    return UITableViewAutomaticDimension
   }
 }
 
