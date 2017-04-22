@@ -162,7 +162,7 @@
 		269E34C81E765828000726C2 /* WalkingChallenge */ = {
 			isa = PBXGroup;
 			children = (
-				A708D41B1EA6FF5A00404B52 /* Core */,
+				A708D41B1EA6FF5A00404B52 /* Custom Views */,
 				26C5E3601E7DCACF0053DE3E /* WalkingChallenge.entitlements */,
 				269E34E91E7658E6000726C2 /* AppController.swift */,
 				269E352E1E768058000726C2 /* Login */,
@@ -263,12 +263,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A708D41B1EA6FF5A00404B52 /* Core */ = {
+		A708D41B1EA6FF5A00404B52 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
 				A708D41C1EA6FFA900404B52 /* BaseScrollView.swift */,
 			);
-			name = Core;
+			name = "Custom Views";
 			sourceTree = "<group>";
 		};
 		F00B4B2A1E9944D6002A0B29 /* Widgets */ = {

@@ -14,13 +14,13 @@ class BaseScrollView: UIScrollView {
   let contentView = UIView()
   override init(frame: CGRect) {
     super.init(frame: frame)
-    confireView()
+    configureView()
   }
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    confireView()
+    configureView()
   }
-  func confireView() {
+  func configureView() {
     addSubview(contentView)
     contentView.snp.makeConstraints { (make) in
       make.edges.equalTo(self)
