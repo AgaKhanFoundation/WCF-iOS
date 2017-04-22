@@ -207,15 +207,16 @@ class TeamViewController: UIViewController, LeaderBoardDataSource {
   // MARK: - Actions
 
   func addTapped() {
-    let contactPickerVC = ContactPickerViewController()
-    contactPickerVC.delegate = self
-    let picker = UINavigationController(rootViewController: contactPickerVC)
-    present(picker, animated: true, completion: nil)
+    let picker: ContactPickerViewController = ContactPickerViewController()
+    picker.delegate = self
+
+    present(UINavigationController(rootViewController: picker), animated: true,
+            completion: nil)
   }
 
   func showMembers() {
-    let members = TeamMembersViewController()
-    navigationController?.pushViewController(members, animated: true)
+    navigationController?.pushViewController(TeamMembersViewController(),
+                                             animated: true)
   }
 }
 
