@@ -163,7 +163,7 @@ class EventView: UIView {
   }
 }
 
-class StatisticsRangeDataSource: SelectionButtonDataSource {
+fileprivate class StatisticsRangeDataSource: SelectionButtonDataSource {
   static let ranges = [Strings.Profile.thisWeek, Strings.Profile.thisMonth,
                        Strings.Profile.thisEvent, Strings.Profile.overall]
 
@@ -173,14 +173,14 @@ class StatisticsRangeDataSource: SelectionButtonDataSource {
 
 class ProfileViewController: UIViewController {
   let dataSource = ProfileDataSource()
+  fileprivate let statisticsRangeDataSource: StatisticsRangeDataSource =
+      StatisticsRangeDataSource()
 
   // Views
   let profileImage = UIImageView()
   let nameLabel = UILabel(.header)
   let teamLabel = UILabel(.title)
 
-  let statisticsRangeDataSource: StatisticsRangeDataSource =
-      StatisticsRangeDataSource()
   var rangeButton = SelectionButton(type: .system)
   let lblRaisedSymbol: UILabel = UILabel()
   let lblRaisedAmount: UILabel = UILabel(.header)
