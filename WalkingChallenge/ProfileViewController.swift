@@ -115,6 +115,10 @@ class EventView: UIView {
       make.height.width.equalTo(Style.Size.s56)
     }
 
+    // TODO(compnerd) use a placeholder instead of the filled bordered area
+    image.layer.borderWidth = 1
+    image.layer.backgroundColor = Style.Colors.grey.cgColor
+
     name.snp.makeConstraints { (make) in
       make.left.equalTo(image.snp.right).offset(Style.Padding.p8)
       make.top.equalTo(image.snp.top)
