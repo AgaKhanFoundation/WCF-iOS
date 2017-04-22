@@ -76,14 +76,11 @@ class SupporterView: UIView {
 
   func updateForSupporter(_ supporter: Supporter) {
     name.text = supporter.name
-
-    let formatter: NumberFormatter = NumberFormatter()
-    formatter.numberStyle = .currency
-
-    donated.text = formatter.string(from: NSNumber(value: 0))
+    // TODO(compnerd) fetch and model this
+    donated.text = DataFormatters.formatCurrency(value: 0)
     // TODO(compnerd) localise this properly
     pledged.text =
-        "Pledged " + formatter.string(from: NSNumber(value: supporter.pledged))!
+        "Pledged \(DataFormatters.formatCurrency(value: supporter.pledged))"
   }
 }
 
@@ -160,9 +157,7 @@ class EventView: UIView {
     // TODO(compnerd) properly localise this
     team.text = "Team: \(event.team)"
 
-    let formatter: NumberFormatter = NumberFormatter()
-    formatter.numberStyle = .currency
-    raised.text = formatter.string(from: NSNumber(value: event.raised))
+    raised.text = DataFormatters.formatCurrency(value: event.raised)
 
     // TODO(compnerd) properly localise this
     distance.text = "\(event.distance) miles"

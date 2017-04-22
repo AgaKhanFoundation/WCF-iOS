@@ -105,9 +105,7 @@ extension EventCell: ConfigurableUITableViewCell {
     // FIXME(compnerd) properly localise this
     team.text = "Team: \(event.team)"
 
-    let formatter: NumberFormatter = NumberFormatter()
-    formatter.numberStyle = .currency
-    raised.text = formatter.string(from: NSNumber(value: event.raised))
+    raised.text = DataFormatters.formatCurrency(value: event.raised)
 
     // TODO(compnerd) properly localise this
     distance.text = "\(event.distance) miles"
@@ -174,12 +172,8 @@ class EventsViewController: UIViewController {
   }
 
   private func configureStatusView(_ top: inout ConstraintRelatableTarget) {
-    let formatter: NumberFormatter = NumberFormatter()
-    formatter.numberStyle = .currency
-
     // FIXME(compnerd) calculate this as the sum of the sponsorship
     let raised: Float = 1500.00
-    let raisedText: String = formatter.string(from: NSNumber(value: raised))!
 
     // FIXME(compnerd) calculate this
     let distance: Float = 1000.00
@@ -187,7 +181,7 @@ class EventsViewController: UIViewController {
     view.addSubview(lblStatus)
     // FIXME(compnerd) properly localise this
     lblStatus.text =
-        "Through your participation in \(eventsDataSource.events.count) events, you raised \(raisedText) and walked \(distance) miles!"
+        "Through your participation in \(eventsDataSource.events.count) events, you raised \(DataFormatters.formatCurrency(value: raised)) and walked \(distance) miles!"
     lblStatus.lineBreakMode = .byWordWrapping
     lblStatus.numberOfLines = 0
     lblStatus.textAlignment = .justified

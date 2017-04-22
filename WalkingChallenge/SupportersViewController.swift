@@ -87,16 +87,13 @@ extension SponsorCell: ConfigurableUITableViewCell {
   func configure(_ data: Any) {
     guard let info = data as? Sponsor else { return }
 
-    let formatter: NumberFormatter = NumberFormatter()
-    formatter.numberStyle = .currency
-
     name.text = info.name
     tagline.text = info.tagline
     // FIXME(compnerd) calculate this value
-    donated.text = formatter.string(from: NSNumber(value: 0))
+    donated.text = DataFormatters.formatCurrency(value: 0)
     // TODO(compnerd) localise this properly
     pledged.text =
-        "Pledged " + formatter.string(from: NSNumber(value: info.rate))! + "/mile"
+        "Pledged \(DataFormatters.formatCurrency(value: info.rate))/mile"
   }
 }
 
@@ -181,14 +178,11 @@ extension SupporterCell: ConfigurableUITableViewCell {
   func configure(_ data: Any) {
     guard let info = data as? Supporter else { return }
 
-    let formatter: NumberFormatter = NumberFormatter()
-    formatter.numberStyle = .currency
-
     name.text = info.name
     // FIXME(compnerd) calculate this value
-    donated.text = formatter.string(from: NSNumber(value: 0))
+    donated.text = DataFormatters.formatCurrency(value: 0)
     pledged.text =
-        "Pledged " + formatter.string(from: NSNumber(value: info.pledged))!
+        "Pledged \(DataFormatters.formatCurrency(value: info.pledged))"
   }
 }
 
@@ -260,20 +254,16 @@ class SupportersViewController: UIViewController {
                       lblCurrentSupporters, lblCurrentSupportersSummary,
                       tblSupportersTable])
 
-    let formatter: NumberFormatter = NumberFormatter()
-    formatter.numberStyle = .currency
-
     // FIXME(compnerd) calculate this as the sum of the sponsorship
     let sponsored: Float = 22.50
-    let sponsoredText: String = formatter.string(from: NSNumber(value: sponsored))!
     // FIXME(compnerd) calculate this as the sum of the support
     let donated: Float = 401.00
-    let donatedText: String = formatter.string(from: NSNumber(value: donated))!
     // FIXME(compnerd) calculate this
     let completed = 75
 
     lblStatus.text =
-        "Great job! You have raised \(sponsoredText) from corporate sponsors and \(donatedText) from your \(dataSource.supporters.count) supporters!"
+        "Great job! You have raised \(DataFormatters.formatCurrency(value: sponsored)) from corporate sponsors" +
+        "and \(DataFormatters.formatCurrency(value: donated)) from your \(dataSource.supporters.count) supporters!"
     lblStatus.lineBreakMode = .byWordWrapping
     lblStatus.numberOfLines = 0
     lblStatus.textAlignment = .justified
@@ -292,7 +282,7 @@ class SupportersViewController: UIViewController {
     }
 
     lblCorporateSponsorsSummary.text =
-        "Thanks to the following corporate supporters, you've raised an additional \(sponsoredText)!"
+        "Thanks to the following corporate supporters, you've raised an additional \(DataFormatters.formatCurrency(value: sponsored))!"
     lblCorporateSponsorsSummary.lineBreakMode = .byWordWrapping
     lblCorporateSponsorsSummary.numberOfLines = 0
     lblCorporateSponsorsSummary.textAlignment = .justified
