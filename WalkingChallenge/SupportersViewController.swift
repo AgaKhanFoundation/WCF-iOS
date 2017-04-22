@@ -249,11 +249,6 @@ class SupportersViewController: UIViewController {
 
   private func configureNavigation() {
     title = Strings.SupportersAndSponsors.title
-
-    navigationController?.navigationBar.barTintColor = Style.Colors.darkGreen
-    navigationController?.navigationBar.tintColor = Style.Colors.white
-    navigationController?.navigationBar.titleTextAttributes =
-        [NSForegroundColorAttributeName: Style.Colors.white]
   }
 
   private func configureView() {

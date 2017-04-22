@@ -171,11 +171,6 @@ class EventsViewController: UIViewController {
 
   private func configureNavigation() {
     title = Strings.PastEvents.title
-
-    navigationController?.navigationBar.barTintColor = Style.Colors.darkGreen
-    navigationController?.navigationBar.tintColor = Style.Colors.white
-    navigationController?.navigationBar.titleTextAttributes =
-        [NSForegroundColorAttributeName: Style.Colors.white]
   }
 
   private func configureStatusView(_ top: inout ConstraintRelatableTarget) {
