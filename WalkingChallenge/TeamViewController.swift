@@ -46,7 +46,19 @@ fileprivate class TeamLeaderboardDataSource: LeaderBoardDataSource {
   }
 
   var leaders: [LeaderBoardEntry] {
-    return []
+    var standing: Int = 1
+    var result: [LeaderBoardEntry] = []
+
+    // TODO(compnerd) sort members according to distance, ramount raised? magic?
+    for member in team.members {
+      // FIXME(compnerd) model and display distance and amount raised
+      result.append(LeaderBoardEntry(imageURL: member.picture,
+                                     name: member.name, standing: standing,
+                                     distance: 0, raised: 0))
+      standing += 1
+    }
+
+    return result
   }
 }
 
