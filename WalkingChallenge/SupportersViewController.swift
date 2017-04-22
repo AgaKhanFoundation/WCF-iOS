@@ -245,22 +245,13 @@ class SupportersViewController: UIViewController {
     title = Strings.SupportersAndSponsors.title
   }
 
-  private func configureView() {
-    view.backgroundColor = Style.Colors.white
-
-    view.addSubviews([lblStatus,
-                      lblCorporateSponsors, lblCorporateSponsorsSummary,
-                      tblSponsorsTable,
-                      lblCurrentSupporters, lblCurrentSupportersSummary,
-                      tblSupportersTable])
-
+  private func configureStatus(_ top: inout ConstraintRelatableTarget) {
     // FIXME(compnerd) calculate this as the sum of the sponsorship
     let sponsored: Float = 22.50
     // FIXME(compnerd) calculate this as the sum of the support
     let donated: Float = 401.00
-    // FIXME(compnerd) calculate this
-    let completed = 75
 
+    view.addSubview(lblStatus)
     lblStatus.text =
         "Great job! You have raised \(DataFormatters.formatCurrency(value: sponsored)) from corporate sponsors" +
         "and \(DataFormatters.formatCurrency(value: donated)) from your \(dataSource.supporters.count) supporters!"
@@ -269,50 +260,68 @@ class SupportersViewController: UIViewController {
     lblStatus.textAlignment = .justified
     lblStatus.textColor = Style.Colors.grey
     lblStatus.snp.makeConstraints { (make) in
-      make.top.equalTo(topLayoutGuide.snp.bottom).offset(Style.Padding.p12)
+      make.top.equalTo(top).offset(Style.Padding.p12)
       make.left.equalToSuperview().inset(Style.Padding.p12)
       make.width.equalToSuperview().inset(Style.Padding.p12)
     }
+    top = lblStatus.snp.bottom
+  }
 
+  private func configureSponsors(_ top: inout ConstraintRelatableTarget) {
+    // FIXME(compnerd) calculate this as the sum of the sponsorship
+    let sponsored: Float = 22.50
+
+    view.addSubview(lblCorporateSponsors)
     lblCorporateSponsors.text =
         "Corporate Sponsors (\(dataSource.sponsors.count))"
     lblCorporateSponsors.snp.makeConstraints { (make) in
-      make.top.equalTo(lblStatus.snp.bottom).offset(Style.Padding.p12)
+      make.top.equalTo(top).offset(Style.Padding.p12)
       make.left.equalToSuperview().inset(Style.Padding.p12)
     }
+    top = lblCorporateSponsors.snp.bottom
 
+    view.addSubview(lblCorporateSponsorsSummary)
     lblCorporateSponsorsSummary.text =
-        "Thanks to the following corporate supporters, you've raised an additional \(DataFormatters.formatCurrency(value: sponsored))!"
+        "Thanks to the following corporate supporters, you've raised an " +
+        "additional \(DataFormatters.formatCurrency(value: sponsored))!"
     lblCorporateSponsorsSummary.lineBreakMode = .byWordWrapping
     lblCorporateSponsorsSummary.numberOfLines = 0
     lblCorporateSponsorsSummary.textAlignment = .justified
     lblCorporateSponsorsSummary.textColor = Style.Colors.grey
     lblCorporateSponsorsSummary.snp.makeConstraints { (make) in
-      make.top.equalTo(lblCorporateSponsors.snp.bottom).offset(Style.Padding.p8)
+      make.top.equalTo(top).offset(Style.Padding.p8)
       make.left.equalToSuperview().inset(Style.Padding.p12)
       make.width.equalToSuperview().inset(Style.Padding.p12)
     }
+    top = lblCorporateSponsorsSummary.snp.bottom
 
+    view.addSubview(tblSponsorsTable)
     tblSponsorsTable.dataSource = sponsorsDataSource
     tblSponsorsTable.delegate = SponsorsDelegate()
     tblSponsorsTable.allowsSelection = false
     tblSponsorsTable.register(SponsorCell.self,
                               forCellReuseIdentifier: SponsorCell.identifier)
     tblSponsorsTable.snp.makeConstraints { (make) in
-      make.top.equalTo(lblCorporateSponsorsSummary.snp.bottom)
-          .offset(Style.Padding.p8)
+      make.top.equalTo(top).offset(Style.Padding.p8)
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
-      make.height.equalTo(tblSupportersTable.snp.height).multipliedBy(2)
     }
+    top = tblSponsorsTable.snp.bottom
+  }
 
+  private func configureSupporters(_ top: inout ConstraintRelatableTarget) {
+    // FIXME(compnerd) calculate this
+    let completed = 75
+
+    view.addSubview(lblCurrentSupporters)
     lblCurrentSupporters.text = "Current Supporters (\(dataSource.supporters.count))"
     lblCurrentSupporters.snp.makeConstraints { (make) in
-      make.top.equalTo(tblSponsorsTable.snp.bottom)
-          .offset(Style.Padding.p8)
+      make.top.equalTo(top).offset(Style.Padding.p8)
       make.left.equalToSuperview().inset(Style.Padding.p12)
       make.width.equalToSuperview().inset(Style.Padding.p12)
     }
+    top = lblCurrentSupporters.snp.bottom
 
+    view.addSubview(lblCurrentSupportersSummary)
     lblCurrentSupportersSummary.text =
         "You have completed \(completed)% of your walking goal and heve raised \(completed)% of the funds pledged by your supporters! Keep it up!"
     lblCurrentSupportersSummary.lineBreakMode = .byWordWrapping
@@ -320,20 +329,35 @@ class SupportersViewController: UIViewController {
     lblCurrentSupportersSummary.textAlignment = .justified
     lblCurrentSupportersSummary.textColor = Style.Colors.grey
     lblCurrentSupportersSummary.snp.makeConstraints { (make) in
-      make.top.equalTo(lblCurrentSupporters.snp.bottom).offset(Style.Padding.p8)
+      make.top.equalTo(top).offset(Style.Padding.p8)
       make.left.equalToSuperview().inset(Style.Padding.p12)
       make.width.equalToSuperview().inset(Style.Padding.p12)
     }
+    top = lblCurrentSupportersSummary.snp.bottom
 
+    view.addSubview(tblSupportersTable)
     tblSupportersTable.dataSource = supportersDataSource
     tblSupportersTable.allowsSelection = false
     tblSupportersTable.register(SupporterCell.self,
                                 forCellReuseIdentifier: SupporterCell.identifier)
     tblSupportersTable.snp.makeConstraints { (make) in
-      make.top.equalTo(lblCurrentSupportersSummary.snp.bottom)
-          .offset(Style.Padding.p8)
+      make.top.equalTo(top).offset(Style.Padding.p8)
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
       make.bottom.equalTo(bottomLayoutGuide.snp.top).offset(Style.Padding.p12)
+    }
+    top = tblSupportersTable.snp.bottom
+  }
+
+  private func configureView() {
+    view.backgroundColor = Style.Colors.white
+
+    var top: ConstraintRelatableTarget = topLayoutGuide.snp.bottom
+    configureStatus(&top)
+    configureSponsors(&top)
+    configureSupporters(&top)
+
+    tblSponsorsTable.snp.makeConstraints { (make) in
+      make.height.equalTo(tblSupportersTable.snp.height).multipliedBy(2)
     }
   }
 }
