@@ -129,16 +129,13 @@ extension TeamMemberCell: ConfigurableUITableViewCell {
 }
 
 class TeamMembersDataSource: NSObject {
-  // TODO(compnerd) fetch this from the backend
-  let members = [TeamMember(name: "Member 1"), TeamMember(name: "Member 2"),
-                 TeamMember(name: "Member 3"), TeamMember(name: "Member 4"),
-                 TeamMember(name: "Member 5"), TeamMember(name: "Member 6"),
-                 TeamMember(name: "Member 7")]
+  let team: Team
 
   var cells: [CellInfo]
 
-  override init() {
-    self.cells = [TeamMemberCount(count: members.count)] + members
+  init(team: Team) {
+    self.team = team
+    self.cells = [TeamMemberCount(count: team.members.count)] + team.members
     super.init()
   }
 }
@@ -175,10 +172,21 @@ extension TeamMembersDataSource: UITableViewDataSource {
 }
 
 class TeamMembersViewController: UIViewController {
+  let teamDataSource: TeamDataSource = TeamDataSource()
+  let teamMembersDataSource: TeamMembersDataSource
+
   let tableView = UITableView()
   let inviteButton = UIButton(type: .system)
 
-  let teamMembersDataSource = TeamMembersDataSource()
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    self.teamMembersDataSource =
+        TeamMembersDataSource(team: teamDataSource.myTeam)
+    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()

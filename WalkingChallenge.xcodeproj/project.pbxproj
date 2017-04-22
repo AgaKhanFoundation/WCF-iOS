@@ -33,6 +33,7 @@
 		26C657B91E91E41700FD3084 /* APIClient+Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C657B81E91E41700FD3084 /* APIClient+Requests.swift */; };
 		A708D4241EAB1C9E00404B52 /* BaseScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708D4231EAB1C9E00404B52 /* BaseScrollView.swift */; };
 		ED85D460832E1D261F31B25E /* Pods_WalkingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */; };
+		F024EE8C1EABB97700E42ECE /* TeamDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F024EE8B1EABB97700E42ECE /* TeamDataSource.swift */; };
 		F02FB49E1E9180CE0097481D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49D1E9180CE0097481D /* Preferences.swift */; };
 		F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */; };
 		F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */; };
@@ -75,7 +76,7 @@
 		269E35171E7669FB000726C2 /* LocalizedStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
 		269E351A1E766B8C000726C2 /* ProfileDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileDataSource.swift; path = WalkingChallenge/ProfileDataSource.swift; sourceTree = "<group>"; };
 		269E35201E7673B6000726C2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		269E35231E767807000726C2 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		269E35231E767807000726C2 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Team.swift; path = WalkingChallenge/Team.swift; sourceTree = "<group>"; };
 		269E35261E76783B000726C2 /* Cells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		269E35281E767AE1000726C2 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		26C5E3601E7DCACF0053DE3E /* WalkingChallenge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WalkingChallenge.entitlements; sourceTree = "<group>"; };
@@ -83,6 +84,7 @@
 		26C657B81E91E41700FD3084 /* APIClient+Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Requests.swift"; sourceTree = "<group>"; };
 		6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkingChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A708D4231EAB1C9E00404B52 /* BaseScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScrollView.swift; sourceTree = "<group>"; };
+		F024EE8B1EABB97700E42ECE /* TeamDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamDataSource.swift; path = WalkingChallenge/TeamDataSource.swift; sourceTree = "<group>"; };
 		F02FB49D1E9180CE0097481D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedometerDataProvider.swift; sourceTree = "<group>"; };
 		F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitDataProvider.swift; sourceTree = "<group>"; };
@@ -220,7 +222,6 @@
 			isa = PBXGroup;
 			children = (
 				269E35131E7668C1000726C2 /* TeamViewController.swift */,
-				269E35231E767807000726C2 /* Team.swift */,
 				260D26751E935BB2004189F8 /* ContactPicker */,
 				F0C6D5061EA07BF8008E3B82 /* TeamMembersViewController.swift */,
 			);
@@ -287,6 +288,7 @@
 				269E351A1E766B8C000726C2 /* ProfileDataSource.swift */,
 				F0CBDA4F1EA6FD7200BB34F1 /* SponsorshipDataSource.swift */,
 				F03D77DA1EA83A3000A70230 /* EventDataSource.swift */,
+				F024EE8B1EABB97700E42ECE /* TeamDataSource.swift */,
 			);
 			name = "Data Sources";
 			sourceTree = "<group>";
@@ -297,6 +299,7 @@
 				F0CBDA4D1EA6FCAB00BB34F1 /* Supporter.swift */,
 				F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */,
 				F03D77DD1EA83B0800A70230 /* Event.swift */,
+				269E35231E767807000726C2 /* Team.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				260D26791E935D4F004189F8 /* ContactPickerViewController.swift in Sources */,
 				F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */,
 				269E351B1E766B8C000726C2 /* ProfileDataSource.swift in Sources */,
+				F024EE8C1EABB97700E42ECE /* TeamDataSource.swift in Sources */,
 				F03D77DE1EA83B0800A70230 /* Event.swift in Sources */,
 				F0C6D50D1EA3071A008E3B82 /* SelectionButton.swift in Sources */,
 				269E350C1E765F73000726C2 /* StyleGuide.swift in Sources */,

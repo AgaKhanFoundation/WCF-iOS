@@ -27,46 +27,20 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-import SnapKit
-
-fileprivate class TeamLeaderboardDataSource: LeaderBoardDataSource {
-  var leaders: [LeaderBoardEntry] = []
-
-  func reloadData() {
-    // TODO(compnerd) fetch information from the backend
-  }
-}
-
-class LeaderboardViewController: UIViewController {
-  fileprivate let dataSource: TeamLeaderboardDataSource =
-      TeamLeaderboardDataSource()
-  internal let leaderboard: LeaderBoard = LeaderBoard()
-
-  override func viewWillAppear(_ animated: Bool) {
-    dataSource.reloadData()
+class TeamDataSource {
+  var myTeam: Team {
+    // TODO(compnerd) fetch this from the backend
+    return Team(name: "Walk4change",
+                members: [
+                  TeamMember(name: "Member 1"), TeamMember(name: "Member 2"),
+                  TeamMember(name: "Member 3"), TeamMember(name: "Member 4"),
+                  TeamMember(name: "Member 5"), TeamMember(name: "Member 6"),
+                  TeamMember(name: "Member 7")
+                ])
   }
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-    configureNavigation()
-    configureView()
-  }
-
-  private func configureNavigation() {
-    navigationController?.navigationBar.barTintColor = Style.Colors.darkGreen
-    navigationController?.navigationBar.tintColor = Style.Colors.white
-    navigationController?.navigationBar.titleTextAttributes =
-      [NSForegroundColorAttributeName: Style.Colors.white]
-  }
-
-  private func configureView() {
-    view.backgroundColor = Style.Colors.white
-    title = Strings.NavBarTitles.leaderboard
-
-    view.addSubview(leaderboard)
-    leaderboard.snp.makeConstraints { (make) in
-      make.edges.equalToSuperview().inset(Style.Padding.p12)
-    }
+  var maxSize: Int {
+    // TODO(compnerd) fetch this from the backend
+    return 11
   }
 }
