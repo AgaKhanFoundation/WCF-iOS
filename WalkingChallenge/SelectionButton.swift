@@ -30,16 +30,13 @@
 import UIKit
 import SnapKit
 
-protocol SelectionButtonDataSource {
+protocol SelectionButtonDataSource: class {
   var items: [String] { get }
   var selection: Int? { get set }
 }
 
-internal protocol SelectionButtonPopoverViewControllerDelegate: SelectionButtonDataSource {
-}
-
 class SelectionButtonPopoverViewController: UIViewController {
-  internal var delegate: SelectionButtonPopoverViewControllerDelegate?
+  weak var delegate: SelectionButtonDataSource?
   internal var sourceView: UIView?
 
   private let tableView: UITableView = UITableView()
@@ -106,14 +103,14 @@ extension SelectionButtonPopoverViewController: UIPopoverPresentationControllerD
   }
 }
 
-protocol SelectionButtonDelegate {
+protocol SelectionButtonDelegate: class {
   func present(_ viewControllerToPresent: UIViewController,
                animated flag: Bool, completion: (() -> Swift.Void)?)
 }
 
-class SelectionButton: UIButton, SelectionButtonPopoverViewControllerDelegate {
+class SelectionButton: UIButton, SelectionButtonDataSource {
   var dataSource: SelectionButtonDataSource?
-  var delegate: SelectionButtonDelegate?
+  weak var delegate: SelectionButtonDelegate?
 
   internal var items: [String] {
     return (dataSource?.items)!

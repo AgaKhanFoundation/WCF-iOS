@@ -218,8 +218,6 @@ fileprivate class SupportersDataSource: NSObject, UITableViewDataSource {
 }
 
 class SupportersViewController: UIViewController {
-  private var sponsorsDelegate: SponsorsDelegate = SponsorsDelegate()
-
   private var dataSource: SponsorshipDataSource = SponsorshipDataSource()
   private var sponsorsDataSource: SponsorsDataSource?
   private var supportersDataSource: SupportersDataSource?
@@ -307,7 +305,7 @@ class SupportersViewController: UIViewController {
     }
 
     tblSponsorsTable.dataSource = sponsorsDataSource
-    tblSponsorsTable.delegate = sponsorsDelegate
+    tblSponsorsTable.delegate = SponsorsDelegate()
     tblSponsorsTable.allowsSelection = false
     tblSponsorsTable.register(SponsorCell.self,
                               forCellReuseIdentifier: SponsorCell.identifier)
