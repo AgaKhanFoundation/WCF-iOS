@@ -184,6 +184,7 @@ class ProfileViewController: UIViewController {
   var rangeButton = SelectionButton(type: .system)
   let lblRaisedSymbol: UILabel = UILabel()
   let lblRaisedAmount: UILabel = UILabel(.header)
+  let prgProgress: ProgressRing = ProgressRing(radius: 64.0)
   let lblStreakSymbol: UILabel = UILabel()
   let lblStreak: UILabel = UILabel(.header)
   let lblStreakUnits: UILabel = UILabel(.caption)
@@ -274,26 +275,32 @@ class ProfileViewController: UIViewController {
       make.top.equalTo(top).offset(Style.Padding.p12)
       make.right.equalToSuperview().inset(Style.Padding.p12)
     }
-    top = rangeButton.snp.bottom
 
-    scrollView.addSubview(lblRaisedSymbol)
+    scrollView.addSubviews([lblRaisedSymbol, lblRaisedAmount])
+
     lblRaisedSymbol.text =
         "\(String(describing: Locale.current.currencySymbol!))"
     lblRaisedSymbol.textColor = Style.Colors.green
     lblRaisedSymbol.font = UIFont.boldSystemFont(ofSize: 32.0)
     lblRaisedSymbol.snp.makeConstraints { (make) in
-      make.top.equalTo(top).offset(Style.Padding.p8)
+      make.centerY.equalTo(lblRaisedAmount.snp.centerY)
       make.left.equalToSuperview().inset(Style.Padding.p12)
     }
-    top = lblRaisedSymbol.snp.bottom
 
-    scrollView.addSubview(lblRaisedAmount)
     // TODO(compnerd) calculate this properly
     lblRaisedAmount.text = "423.50"
     lblRaisedAmount.snp.makeConstraints { (make) in
       make.centerY.equalTo(lblRaisedSymbol.snp.centerY)
-      make.left.equalTo(lblRaisedSymbol.snp.right)
-          .offset(Style.Padding.p8)
+      make.left.equalTo(lblRaisedSymbol.snp.right).offset(Style.Padding.p8)
+    }
+
+    scrollView.addSubview(prgProgress)
+    prgProgress.summary = ProgressRingSummaryDistance(value: 375.0, max: 500.0)
+    prgProgress.snp.makeConstraints { (make) in
+      make.centerX.equalToSuperview()
+      make.centerY.equalTo(lblRaisedAmount.snp.centerY)
+      make.top.equalTo(rangeButton.snp.bottom).offset(Style.Padding.p8)
+      make.size.equalTo(Style.Size.s128)
     }
 
     scrollView.addSubviews([lblStreakSymbol, lblStreak, lblStreakUnits])
@@ -301,22 +308,25 @@ class ProfileViewController: UIViewController {
     lblStreakSymbol.text = "\u{1f525}" // :fire:
     lblStreakSymbol.font = UIFont.systemFont(ofSize: 32.0)
     lblStreakSymbol.snp.makeConstraints { (make) in
-      make.top.equalTo(rangeButton.snp.bottom).offset(Style.Padding.p8)
+      make.centerY.equalTo(prgProgress.snp.centerY)
       make.right.equalTo(lblStreak.snp.left).offset(-Style.Padding.p8)
     }
     // TODO(compnerd) calculate this properly
     lblStreak.text = "34"
     lblStreak.snp.makeConstraints { (make) in
-      make.top.equalTo(rangeButton.snp.bottom).offset(Style.Padding.p8)
+      make.top.equalTo(lblStreakSymbol.snp.top)
+      make.bottom.equalTo(lblStreakUnits.snp.top)
       make.right.equalToSuperview().inset(Style.Padding.p12)
       make.left.equalTo(lblStreakUnits.snp.left)
     }
     // FIXME(compnerd) localise this properly
     lblStreakUnits.text = "days"
     lblStreakUnits.snp.makeConstraints { (make) in
-      make.top.equalTo(lblStreak.snp.bottom)
+      make.bottom.equalTo(lblStreakSymbol.snp.bottom)
       make.right.equalToSuperview().inset(Style.Padding.p12)
     }
+
+    top = prgProgress.snp.bottom
   }
 
   private func configureSupportersView(_ top: inout ConstraintRelatableTarget) {
@@ -327,8 +337,7 @@ class ProfileViewController: UIViewController {
     supportersLabel.text =
         "Current Supporters (\(sponsorshipDataSource.supporters.count))"
     supportersLabel.snp.makeConstraints { (make) in
-      // FIXME(compenrd) this needs to be based off of the previous row of stats
-      make.top.equalTo(top).offset(Style.Padding.p8)
+      make.top.equalTo(top).offset(Style.Padding.p12)
       make.left.equalToSuperview().inset(Style.Padding.p12)
     }
     top = supportersLabel.snp.bottom

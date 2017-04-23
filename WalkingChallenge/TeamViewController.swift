@@ -74,9 +74,10 @@ class TeamViewController: UIViewController {
 
   let lblRaisedSymbol: UILabel = UILabel()
   let lblRaisedAmount: UILabel = UILabel(.header)
-  let lblAcchievementsSymbol: UILabel = UILabel()
-  let lblAcchievements: UILabel = UILabel(.header)
-  let lblAcchievementsUnits: UILabel = UILabel(.caption)
+  let prgProgress: ProgressRing = ProgressRing(radius: 64.0)
+  let lblAchievementsSymbol: UILabel = UILabel()
+  let lblAchievements: UILabel = UILabel(.header)
+  let lblAchievementsUnits: UILabel = UILabel(.caption)
 
   let btnStatisticsRange: SelectionButton = SelectionButton(type: .system)
   let lblLeaderboardTitle: UILabel = UILabel(.section)
@@ -156,17 +157,17 @@ class TeamViewController: UIViewController {
   }
 
   private func configureTeamStatistics(_ top: inout ConstraintRelatableTarget) {
-    view.addSubview(lblRaisedSymbol)
+    view.addSubviews([lblRaisedSymbol, lblRaisedAmount])
+
     lblRaisedSymbol.text =
         "\(String(describing: Locale.current.currencySymbol!))"
     lblRaisedSymbol.textColor = Style.Colors.green
     lblRaisedSymbol.font = UIFont.boldSystemFont(ofSize: 32.0)
     lblRaisedSymbol.snp.makeConstraints { (make) in
-      make.top.equalTo(top).offset(Style.Padding.p8)
+      make.centerY.equalTo(lblRaisedAmount.snp.centerY)
       make.left.equalToSuperview().inset(Style.Padding.p12)
     }
 
-    view.addSubview(lblRaisedAmount)
     // TODO(compnerd) calculate this properly
     lblRaisedAmount.text = "2073.30"
     lblRaisedAmount.snp.makeConstraints { (make) in
@@ -174,31 +175,41 @@ class TeamViewController: UIViewController {
       make.left.equalTo(lblRaisedSymbol.snp.right).offset(Style.Padding.p8)
     }
 
-    view.addSubviews([lblAcchievementsSymbol, lblAcchievements,
-                      lblAcchievementsUnits])
-
-    lblAcchievementsSymbol.text = "\u{1f3c6}" // :trophy:
-    lblAcchievementsSymbol.font = UIFont.systemFont(ofSize: 32.0)
-    lblAcchievementsSymbol.snp.makeConstraints { (make) in
+    view.addSubview(prgProgress)
+    prgProgress.summary = ProgressRingSummaryDistance(value: 900.0, max: 1200.0)
+    prgProgress.snp.makeConstraints { (make) in
+      make.centerX.equalToSuperview()
+      make.centerY.equalTo(lblRaisedAmount.snp.centerY)
       make.top.equalTo(top).offset(Style.Padding.p8)
-      make.right.equalTo(lblAcchievements.snp.left).offset(-Style.Padding.p8)
+      make.size.equalTo(Style.Size.s128)
+    }
+
+    view.addSubviews([lblAchievementsSymbol, lblAchievements,
+                      lblAchievementsUnits])
+
+    lblAchievementsSymbol.text = "\u{1f3c6}" // :trophy:
+    lblAchievementsSymbol.font = UIFont.systemFont(ofSize: 32.0)
+    lblAchievementsSymbol.snp.makeConstraints { (make) in
+      make.centerY.equalTo(prgProgress.snp.centerY)
+      make.right.equalTo(lblAchievements.snp.left).offset(-Style.Padding.p8)
     }
 
     // TODO(compnerd) calculate this properly
-    lblAcchievements.text = "12/30"
-    lblAcchievements.snp.makeConstraints { (make) in
-      make.top.equalTo(top).offset(Style.Padding.p8)
+    lblAchievements.text = "12/30"
+    lblAchievements.snp.makeConstraints { (make) in
+      make.top.equalTo(lblAchievementsSymbol.snp.top)
+      make.bottom.equalTo(lblAchievementsUnits.snp.top)
       make.right.equalToSuperview().inset(Style.Padding.p12)
-      make.left.equalTo(lblAcchievementsUnits.snp.left)
+      make.left.equalTo(lblAchievementsUnits.snp.left)
     }
     // FIXME(compnerd) localise this properly
-    lblAcchievementsUnits.text = "milestones"
-    lblAcchievementsUnits.snp.makeConstraints { (make) in
-      make.top.equalTo(lblAcchievements.snp.bottom)
+    lblAchievementsUnits.text = "milestones"
+    lblAchievementsUnits.snp.makeConstraints { (make) in
+      make.bottom.equalTo(lblAchievementsSymbol.snp.bottom)
       make.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
-    top = lblRaisedSymbol.snp.bottom
+    top = prgProgress.snp.bottom
   }
 
   private func configureTeamLeaderboard(_ top: inout ConstraintRelatableTarget) {
@@ -207,7 +218,7 @@ class TeamViewController: UIViewController {
     btnStatisticsRange.delegate = self
     btnStatisticsRange.selection = UserInfo.teamLeaderStatsRange
     btnStatisticsRange.snp.makeConstraints { (make) in
-      make.top.equalTo(top).offset(Style.Padding.p24)
+      make.top.equalTo(top).offset(Style.Padding.p8)
       make.right.equalToSuperview().inset(Style.Padding.p12)
     }
     top = btnStatisticsRange.snp.bottom
