@@ -2,12 +2,12 @@
 
 ## Getting Started
 
-- Built using Xcode v8.3
+- Built using Xcode v8.3.2
 - Open `WalkingChallenge.xcworkspace`
 
 ## Adding Dependencies
 
-- Managed by Cocoapods v1.2.0
+- Managed by Cocoapods v1.2.1
 
 ## CI/CD
 
