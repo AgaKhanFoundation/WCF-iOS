@@ -57,11 +57,13 @@ enum Endpoint {
 
   var rawValue: String {
     switch self {
+    case .healthCheck: return ""
     case .teams: return "/teams"
     case .team(let id): return "/teams/\(id)"
     }
   }
 
+  case healthCheck
   case teams
   case team(Int64)
 }
