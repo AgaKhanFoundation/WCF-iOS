@@ -32,8 +32,6 @@ import UIKit
 class APIClient {
 
   static var shared = APIClient()
-
-  private var baseURLString = "" // TODO: Add baseurl in AppConfig
   private let session: URLSession
 
   init() {
@@ -47,7 +45,8 @@ class APIClient {
   func request(_ request: Request, completion: @escaping APIClientResultCompletion) {
     print("-> \(request.endpoint.rawValue)")
 
-    var urlComponents = URLComponents(string: baseURLString)
+    var urlComponents = URLComponents(string: AppConfig.apiBaseURL)
+    urlComponents?.port = AppConfig.apiBaseURLPort
     urlComponents?.path.append("/\(request.endpoint.rawValue)")
     urlComponents?.query = request.queryString
 
