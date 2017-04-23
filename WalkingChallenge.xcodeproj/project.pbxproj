@@ -43,6 +43,7 @@
 		F09E7DFA1E860CE300AD8CAF /* ContactPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09E7DF91E860CE300AD8CAF /* ContactPickerDataSource.swift */; };
 		F0A992D41EABD302001621A6 /* TeamMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A992D31EABD302001621A6 /* TeamMember.swift */; };
 		F0A992D61EABF037001621A6 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A992D51EABF037001621A6 /* Formatters.swift */; };
+		F0A992D81EAC3812001621A6 /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A992D71EAC3812001621A6 /* ProgressRing.swift */; };
 		F0C6D5051E9DBAE3008E3B82 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6D5041E9DBAE3008E3B82 /* LeaderboardViewController.swift */; };
 		F0C6D5071EA07BF8008E3B82 /* TeamMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6D5061EA07BF8008E3B82 /* TeamMembersViewController.swift */; };
 		F0C6D5091EA2F50A008E3B82 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6D5081EA2F50A008E3B82 /* ConfigurationViewController.swift */; };
@@ -96,6 +97,7 @@
 		F09E7DF91E860CE300AD8CAF /* ContactPickerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerDataSource.swift; sourceTree = "<group>"; };
 		F0A992D31EABD302001621A6 /* TeamMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamMember.swift; path = WalkingChallenge/TeamMember.swift; sourceTree = "<group>"; };
 		F0A992D51EABF037001621A6 /* Formatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
+		F0A992D71EAC3812001621A6 /* ProgressRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressRing.swift; path = WalkingChallenge/ProgressRing.swift; sourceTree = "<group>"; };
 		F0C6D5041E9DBAE3008E3B82 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		F0C6D5061EA07BF8008E3B82 /* TeamMembersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMembersViewController.swift; sourceTree = "<group>"; };
 		F0C6D5081EA2F50A008E3B82 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 		F00B4B2A1E9944D6002A0B29 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				F0A992D71EAC3812001621A6 /* ProgressRing.swift */,
 				F0C6D50C1EA3071A008E3B82 /* SelectionButton.swift */,
 				F0C6D50E1EA3DCB2008E3B82 /* Leaderboard.swift */,
 			);
@@ -464,6 +467,7 @@
 			files = (
 				F0A992D41EABD302001621A6 /* TeamMember.swift in Sources */,
 				F0C6D50F1EA3DCB2008E3B82 /* Leaderboard.swift in Sources */,
+				F0A992D81EAC3812001621A6 /* ProgressRing.swift in Sources */,
 				F03D77E01EA85BBC00A70230 /* EventsViewController.swift in Sources */,
 				260D26771E935BCB004189F8 /* ContactPickerCell.swift in Sources */,
 				269E35091E765F24000726C2 /* UIView.swift in Sources */,
