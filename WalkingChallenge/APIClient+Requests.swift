@@ -30,6 +30,11 @@
 import Foundation
 
 extension APIClient {
+  static func getAPIHealthCheck(completion: @escaping APIClientResultCompletion) {
+    let request = Request(endpoint: .healthCheck)
+    APIClient.shared.request(request, completion: completion)
+  }
+
   static func getTeamsRequest(completion: @escaping APIClientResultCompletion) {
     let request = Request(endpoint: .teams)
     APIClient.shared.request(request, completion: completion)
