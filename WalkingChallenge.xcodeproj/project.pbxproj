@@ -10,6 +10,7 @@
 		2606948B1E7DD1A200BFED76 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2606948A1E7DD1A200BFED76 /* Date.swift */; };
 		260D26771E935BCB004189F8 /* ContactPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260D26761E935BCB004189F8 /* ContactPickerCell.swift */; };
 		260D26791E935D4F004189F8 /* ContactPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260D26781E935D4F004189F8 /* ContactPickerViewController.swift */; };
+		262646611EAD6B7200FFEFC1 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262646601EAD6B7200FFEFC1 /* AppConfig.swift */; };
 		2669867B1E91D527004D45B4 /* APIClientHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2669867A1E91D527004D45B4 /* APIClientHelpers.swift */; };
 		26792DD81E91DCB400A7E5BA /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26792DD71E91DCB400A7E5BA /* APIClient.swift */; };
 		269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E34C91E765828000726C2 /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		2606948A1E7DD1A200BFED76 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		260D26761E935BCB004189F8 /* ContactPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerCell.swift; sourceTree = "<group>"; };
 		260D26781E935D4F004189F8 /* ContactPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerViewController.swift; sourceTree = "<group>"; };
+		262646601EAD6B7200FFEFC1 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		2669867A1E91D527004D45B4 /* APIClientHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientHelpers.swift; sourceTree = "<group>"; };
 		26792DD71E91DCB400A7E5BA /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		269E34C61E765828000726C2 /* WalkingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,6 +175,7 @@
 				A708D4221EAB1C8900404B52 /* Custom Views */,
 				26C5E3601E7DCACF0053DE3E /* WalkingChallenge.entitlements */,
 				269E34E91E7658E6000726C2 /* AppController.swift */,
+				262646601EAD6B7200FFEFC1 /* AppConfig.swift */,
 				269E352E1E768058000726C2 /* Login */,
 				F0C6D5031E9DBABB008E3B82 /* Leaderboard */,
 				269E351E1E7671FE000726C2 /* Team */,
@@ -478,6 +481,7 @@
 				269E35141E7668C1000726C2 /* TeamViewController.swift in Sources */,
 				269E35121E76685A000726C2 /* ProfileViewController.swift in Sources */,
 				F0C6D5071EA07BF8008E3B82 /* TeamMembersViewController.swift in Sources */,
+				262646611EAD6B7200FFEFC1 /* AppConfig.swift in Sources */,
 				269E350E1E76664F000726C2 /* Async.swift in Sources */,
 				269E35101E7666EE000726C2 /* Blocks.swift in Sources */,
 				26792DD81E91DCB400A7E5BA /* APIClient.swift in Sources */,
