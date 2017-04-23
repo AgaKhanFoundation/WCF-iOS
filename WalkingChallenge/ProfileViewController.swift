@@ -225,11 +225,7 @@ class ProfileViewController: UIViewController {
   private func configureNavigation() {
     title = Strings.NavBarTitles.profile
 
-    // TODO(compnerd) use the gear icon instead
-    navigationItem.rightBarButtonItem =
-        UIBarButtonItem(barButtonSystemItem: .compose, target: self,
-                        action: #selector(configureApp))
-
+    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: getGearButton())
     navigationController?.navigationBar.barTintColor = Style.Colors.darkGreen
     navigationController?.navigationBar.tintColor = Style.Colors.white
     navigationController?.navigationBar.titleTextAttributes =
@@ -431,6 +427,16 @@ class ProfileViewController: UIViewController {
       self?.nameLabel.text = self?.dataSource.realName
       self?.teamLabel.text = self?.teamDataSource.myTeam.name
     }
+  }
+
+  private func getGearButton() -> UIButton {
+    let gearIconImage = UIImage(named: Strings.Assets.gearIcon)
+    let imgWidth = gearIconImage?.size.width
+    let imgHeight = gearIconImage?.size.height
+    let gearButton = UIButton(frame: CGRect(x: 0, y: 0, width: imgWidth!, height: imgHeight!))
+    gearButton.setBackgroundImage(gearIconImage, for: .normal)
+    gearButton.addTarget(self, action: #selector(configureApp), for: .touchUpInside)
+    return gearButton
   }
 
   func configureApp() {

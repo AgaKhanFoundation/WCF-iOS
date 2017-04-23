@@ -91,4 +91,8 @@ struct Strings {
     static let teamMembers = NSLocalizedString("Team Members", comment: "Team Members")
     static let configuration = NSLocalizedString("Configuration", comment: "Configuration")
   }
+  
+  struct Assets {
+    static let gearIcon = "GearIcon"
+  }
 }
