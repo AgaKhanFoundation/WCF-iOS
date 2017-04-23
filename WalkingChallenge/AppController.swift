@@ -40,6 +40,7 @@ class AppController {
     self.window = window
 
     configureApp()
+    healthCheckServer()
   }
 
   enum ViewController {
@@ -118,5 +119,11 @@ extension AppController {
 
   private func configureAnalytics() {
     AppEventsLogger.activate()
+  }
+
+  fileprivate func healthCheckServer() {
+    APIClient.getAPIHealthCheck { (result: Result) in
+      print(result)
+    }
   }
 }
