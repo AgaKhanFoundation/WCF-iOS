@@ -28,7 +28,7 @@
  **/
 
 import UIKit
-import FBSDKCoreKit
+import FacebookCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -38,7 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
     // TODO: Eventually move this into AppController when other frameworks require setup
-    FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+    SDKApplicationDelegate.shared.application(application,
+                                              didFinishLaunchingWithOptions: launchOptions)
 
     window = UIWindow()
     appController.launch(in: window)
@@ -48,7 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ app: UIApplication, open url: URL,
                    options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-    // TODO: Eventually move this into AppController when other frameworks require setup
-    return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
+    // TODO: Eventually move this into AppController when other frameworks require setupS
+    return SDKApplicationDelegate.shared.application(app, open: url,
+                                                     options: options)
   }
 }

@@ -28,10 +28,10 @@
  **/
 
 import SnapKit
-import FBSDKLoginKit
+import FacebookLogin
 
 class ConfigurationViewController: UIViewController {
-  let logoutButton = FBSDKLoginButton()
+  internal let btnLogout: LoginButton = LoginButton(readPermissions: [])
 
   internal let lblDevice: UILabel = UILabel(.section)
 
@@ -156,23 +156,22 @@ class ConfigurationViewController: UIViewController {
     configureTeams(&top)
     configureHelpSupport(&top)
 
-    view.addSubview(logoutButton)
-    logoutButton.delegate = self
-    logoutButton.snp.makeConstraints { (make) in
+    view.addSubview(btnLogout)
+    btnLogout.delegate = self
+    btnLogout.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
       make.bottom.equalTo(bottomLayoutGuide.snp.top).offset(-Style.Padding.p12)
     }
   }
 }
 
-extension ConfigurationViewController: FBSDKLoginButtonDelegate {
-  func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+extension ConfigurationViewController: LoginButtonDelegate {
+  func loginButtonDidLogOut(_ loginButton: LoginButton) {
     AppController.shared.logout()
   }
 
-  func loginButton(_ loginButton: FBSDKLoginButton!,
-                   didCompleteWith result: FBSDKLoginManagerLoginResult!,
-                   error: Error!) {
+  func loginButtonDidCompleteLogin(_ loginButton: LoginButton,
+                                   result: LoginResult) {
     // Left blank because the user should be logged in when reaching this point
   }
 }

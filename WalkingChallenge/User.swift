@@ -27,11 +27,11 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-import FBSDKCoreKit
+import FacebookCore
 
 // Eventually map this so some local persistence store/keychain
 struct User {
   static var isLoggedIn: Bool {
-    return FBSDKAccessToken.current() != nil
+    return AccessToken.current != nil
   }
 }

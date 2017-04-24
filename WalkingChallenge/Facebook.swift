@@ -70,8 +70,7 @@ class Facebook {
                       lastName: last_name, pictureRawURL: picture_url)
   }
 
-  private static func enumerateFriends(type: FriendType,
-                                       limit: QueryLimit,
+  private static func enumerateFriends(type: FriendType, limit: QueryLimit,
                                        cursor: String?,
                                        handler: @escaping EnumerationCallback) {
     var retrieved = 0
