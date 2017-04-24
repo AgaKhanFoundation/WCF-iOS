@@ -211,8 +211,7 @@ class TeamMembersViewController: UIViewController {
     tableView.register(TeamMemberCell.self,
                        forCellReuseIdentifier: TeamMemberCell.identifier)
     tableView.snp.makeConstraints { (make) in
-      make.leading.trailing.equalToSuperview()
-          .inset(Style.Padding.p12)
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
       make.top.equalToSuperview().inset(Style.Padding.p12)
     }
 

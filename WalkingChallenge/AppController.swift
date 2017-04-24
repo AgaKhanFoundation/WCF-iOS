@@ -28,7 +28,7 @@
  **/
 
 import UIKit
-import FBSDKCoreKit
+import FacebookCore
 
 class AppController {
   static let shared = AppController()
@@ -117,6 +117,6 @@ extension AppController {
   }
 
   private func configureAnalytics() {
-    FBSDKAppEvents.activateApp()
+    AppEventsLogger.activate()
   }
 }

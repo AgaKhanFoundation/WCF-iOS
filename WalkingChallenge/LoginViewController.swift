@@ -28,12 +28,14 @@
  **/
 
 import SnapKit
-import FBSDKLoginKit
+import FacebookLogin
 
 class LoginViewController: UIViewController {
   let titleLabel = UILabel(.header)
   let desciptionLabel = UILabel(.body)
-  let loginButton = FBSDKLoginButton()
+  let btnLogin: LoginButton =
+      LoginButton(readPermissions: [.publicProfile, .email, .userFriends,
+                                    .custom("user_location")])
 
   // MARK: - Lifecycle
 
@@ -41,7 +43,6 @@ class LoginViewController: UIViewController {
     super.viewDidLoad()
 
     configureLabels()
-    configureButton()
     configureView()
   }
 
@@ -55,17 +56,10 @@ class LoginViewController: UIViewController {
     desciptionLabel.textAlignment = .center
   }
 
-  private func configureButton() {
-    loginButton.delegate = self
-    loginButton.readPermissions = [
-      "public_profile", "email", "user_friends", "user_location"
-    ]
-  }
-
   private func configureView() {
     view.backgroundColor = Style.Colors.white
 
-    view.addSubviews([titleLabel, desciptionLabel, loginButton])
+    view.addSubviews([titleLabel, desciptionLabel, btnLogin])
 
     titleLabel.snp.makeConstraints { (make) in
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
@@ -77,30 +71,30 @@ class LoginViewController: UIViewController {
       make.top.equalTo(titleLabel.snp.bottom).offset(Style.Padding.p24)
     }
 
-    loginButton.snp.makeConstraints { (make) in
+    btnLogin.delegate = self
+    btnLogin.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
       make.top.equalTo(desciptionLabel.snp.bottom).offset(Style.Padding.p24)
     }
   }
 }
 
-// MARK: - FBSDKLoginButtonDelegate
-extension LoginViewController: FBSDKLoginButtonDelegate {
-  func loginButton(_ loginButton: FBSDKLoginButton!,
-                   didCompleteWith result: FBSDKLoginManagerLoginResult!,
-                   error: Error!) {
-    guard error == nil else {
-      alert(message: "Error logging in: \(error)", style: .cancel)
-      return
+extension LoginViewController: LoginButtonDelegate {
+  func loginButtonDidCompleteLogin(_ loginButton: LoginButton,
+                                   result: LoginResult) {
+    switch result {
+    case .success(_, _, _):
+      AppController.shared.login()
+      break
+    case .cancelled:
+      break
+    case .failed(let error):
+      alert(message: "Error logging in \(error)", style: .cancel)
+      break
     }
-    guard result.isCancelled == false else {
-      alert(message: "Login Cancelled", style: .default)
-      return
-    }
-    AppController.shared.login()
   }
 
-  func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+  func loginButtonDidLogOut(_ loginButton: LoginButton) {
     // Left blank on purpose since the user shouldn't be logged in on this view
     // controller
   }
