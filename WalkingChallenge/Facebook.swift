@@ -27,8 +27,8 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-import FBSDKCoreKit
-import FBSDKShareKit
+import FacebookCore
+import FacebookShare
 
 struct Friend {
   let fbid: String
@@ -75,7 +75,7 @@ class Facebook {
                                        cursor: String?,
                                        handler: @escaping EnumerationCallback) {
     var retrieved = 0
-    var params = [ "fields": "id, name, first_name, last_name, picture" ]
+    var params = [ "fields" : "id, name, first_name, last_name, picture" ]
 
     switch limit {
     case .none:
@@ -90,49 +90,53 @@ class Facebook {
     }
 
     let path = type == .taggable ? "me/taggable_friends" : "me/friends"
-    let request = FBSDKGraphRequest(graphPath: path, parameters: params)
-    _ = request?.start {
-      (_: FBSDKGraphRequestConnection?, result: Any?, error: Error?) in
-        guard error == nil else {
-          print("error executing GraphQL query: \(String(describing: error))")
-          return
-        }
-        guard let deserialised = result as? [String:Any] else {
-          print("unable to deserialise response \(String(describing: result))")
-          return
-        }
 
-        if let data = deserialised["data"] as? [Any] {
-          for serialised in data {
-            guard
-              let deserialised = serialised as? [String:Any],
-              let friend = deserialiseFriend(deserialised)
-            else {
-              print("unable to deserialise friend \(serialised)")
-              continue
+    let request: GraphRequest =
+        GraphRequest(graphPath: path, parameters: params,
+                     accessToken: AccessToken.current, httpMethod: .GET,
+                     apiVersion: .defaultVersion)
+    request.start { (response, result) in
+      switch result {
+      case .success(let response):
+        if let deserialised = response.dictionaryValue {
+          if let data = deserialised["data"] as? [Any] {
+            for serialised in data {
+              guard
+                let deserialised = serialised as? [String: Any],
+                let friend = deserialiseFriend(deserialised)
+              else {
+                print("unable to deserialise friend \(serialised)")
+                continue
+              }
+
+              handler(friend)
+              retrieved += 1
             }
-
-            handler(friend)
-            retrieved += 1
           }
-        }
 
-        if let pagination = deserialised["paging"] as? [String:Any] {
-          if let cursors = pagination["cursors"] as? [String:Any] {
-            if let after = cursors["after"] as? String {
-              switch limit {
-              case .none:
-                self.enumerateFriends(type: type, limit: .none, cursor: after,
-                                      handler: handler)
-                break
-              case .count(let count):
-                self.enumerateFriends(type: type,
-                                      limit: .count(count - retrieved),
-                                      cursor: after, handler: handler)
+          if let pagination = deserialised["paging"] as? [String:Any] {
+            if let cursors = pagination["cursors"] as? [String:Any] {
+              if let after = cursors["after"] as? String {
+                switch limit {
+                case .none:
+                  self.enumerateFriends(type: type, limit: .none, cursor: after,
+                                        handler: handler)
+                  break
+                case .count(let count):
+                  self.enumerateFriends(type: type,
+                                        limit: .count(count - retrieved),
+                                        cursor: after, handler: handler)
+                  break
+                }
               }
             }
           }
         }
+        break
+      case .failed(let error):
+        print("error executing GraphQL query: \(String(describing: error))")
+        break
+      }
     }
   }
 
@@ -149,78 +153,79 @@ class Facebook {
   }
 
   static func getRealName(completion: @escaping (_: String?) -> Void) {
-    let request = FBSDKGraphRequest(graphPath: "me",
-                                    parameters: ["fields": "name"])
-    _ = request?.start {
-      (_: FBSDKGraphRequestConnection?, result: Any?, error: Error?) in
-        guard error == nil else {
-          print("unable to execute GraphQL query: \(String(describing: error))")
-          return
+    let request: GraphRequest =
+        GraphRequest(graphPath: "me", parameters: ["fields" : "name"],
+                     accessToken: AccessToken.current, httpMethod: .GET,
+                     apiVersion: .defaultVersion)
+    request.start { (response, result) in
+      switch result {
+      case .success(let response):
+        if let deserialised = response.dictionaryValue {
+          if let name = deserialised["name"] as? String {
+            completion(name)
+          }
         }
-        guard let deserialised = result as? [String:Any] else {
-          print("unable to deserialise response \(String(describing: result))")
-          return
-        }
-
-        completion(deserialised["name"] as? String)
+        break
+      case .failed(let error):
+        print("unable to execute GraphQL query \(String(describing: error))")
+        break
+      }
     }
   }
 
   static func getLocation(completion: @escaping (_: String?) -> Void) {
-    let request = FBSDKGraphRequest(graphPath: "me",
-                                    parameters: ["fields": "location"])
-    _ = request?.start {
-      (_: FBSDKGraphRequestConnection?, result: Any?, error: Error?) in
-        guard error == nil else {
-          print("unable to execute GraphQL query: \(String(describing: error))")
-          return
+    let request: GraphRequest =
+        GraphRequest(graphPath: "me", parameters: ["fields" : "location"],
+                     accessToken: AccessToken.current, httpMethod: .GET,
+                     apiVersion: .defaultVersion)
+    request.start { (response, result) in
+      switch result {
+      case .success(let response):
+        if let deserialised = response.dictionaryValue {
+          if let location = deserialised["location"] as? [String:Any] {
+            completion(location["name"] as? String)
+          }
         }
-        guard let deserialised = result as? [String:Any] else {
-          print("unable to deserialise response \(String(describing: result))")
-          return
-        }
-
-        if let location = deserialised["location"] as? [String:Any] {
-          completion(location["name"] as? String)
-        }
+        break
+      case .failed(let error):
+        print("unable to execute GraphQL query: \(String(describing: error))")
+        break
+      }
     }
   }
 
   static func invite(url: String, image: String? = nil) {
-    let invite = FBSDKAppInviteContent()
-    invite.appLinkURL = URL(string: url)!
+    var invite: AppInvite = AppInvite(appLink: URL(string: url)!)
     if let image = image {
-      invite.appInvitePreviewImageURL = URL(string: image)!
+      invite.previewImageURL = URL(string: image)!
     }
 
-    let dialog = FBSDKAppInviteDialog()
-    dialog.content = invite
-    if dialog.canShow() {
-      dialog.show()
-    }
+    let dialog: AppInvite.Dialog = AppInvite.Dialog(invite: invite)
+    try? dialog.show()
   }
 
   static func profileImage(for fbid: String,
                            completion: @escaping (_: URL?) -> Void) {
-    let request =
-      FBSDKGraphRequest(graphPath: "/\(fbid)/picture?type=large&redirect=false",
-                        parameters: ["fields": ""])
-    _ = request?.start {
-      (_: FBSDKGraphRequestConnection?, result: Any?, error: Error?) in
-        guard error == nil else {
-          print("unable to execute GraphQL query: \(String(describing: error))")
-          return
-        }
-        guard let deserialised = result as? [String:Any] else {
-          print("unable to deserialise response \(String(describing: result))")
-          return
-        }
-
-        if let data = deserialised["data"] as? [String:Any] {
-          if let url = data["url"] as? String {
-            completion(URL(string: url))
+    let request: GraphRequest =
+        GraphRequest(graphPath: "/\(fbid)/picture?type=large&redirect=false",
+                     parameters: ["fields" : ""],
+                     accessToken: AccessToken.current, httpMethod: .GET,
+                     apiVersion: .defaultVersion)
+    request.start { (response, result) in
+      switch result {
+      case .success(let response):
+        if let deserialised = response.dictionaryValue {
+          if let data = deserialised["data"] as? [String:Any] {
+            if let url = data["url"] as? String {
+              completion(URL(string: url))
+            }
           }
         }
+        break
+      case .failed(let error):
+        print("unable to execute GraphQL query: \(String(describing: error))")
+        break
+      }
     }
   }
 }
