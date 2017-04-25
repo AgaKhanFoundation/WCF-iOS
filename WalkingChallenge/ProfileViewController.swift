@@ -225,7 +225,7 @@ class ProfileViewController: UIViewController {
   private func configureNavigation() {
     title = Strings.NavBarTitles.profile
 
-    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: getGearButton())
+    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: getGearButton()!)
     navigationController?.navigationBar.barTintColor = Style.Colors.darkGreen
     navigationController?.navigationBar.tintColor = Style.Colors.white
     navigationController?.navigationBar.titleTextAttributes =
@@ -429,14 +429,16 @@ class ProfileViewController: UIViewController {
     }
   }
 
-  private func getGearButton() -> UIButton {
-    let gearIconImage = UIImage(named: Strings.Assets.gearIcon)
-    let imgWidth = gearIconImage?.size.width
-    let imgHeight = gearIconImage?.size.height
-    let gearButton = UIButton(frame: CGRect(x: 0, y: 0, width: imgWidth!, height: imgHeight!))
-    gearButton.setBackgroundImage(gearIconImage, for: .normal)
-    gearButton.addTarget(self, action: #selector(configureApp), for: .touchUpInside)
-    return gearButton
+  private func getGearButton() -> UIButton? {
+    if let image = UIImage(named: Strings.Assets.gearIcon) {
+      let button: UIButton =
+        UIButton(frame: CGRect(x: 0, y: 0, width: image.size.width,
+                               height: image.size.height))
+      button.setBackgroundImage(image, for: .normal)
+      button.addTarget(self, action: #selector(configureApp), for: .touchUpInside)
+      return button
+    }
+    return nil
   }
 
   func configureApp() {
