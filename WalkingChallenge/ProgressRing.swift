@@ -97,7 +97,7 @@ extension ProgressRingSummaryDistance: CustomStringConvertible {
 }
 
 class ProgressRing: UIView {
-  var progressTintColor: UIColor = Style.Colors.grey
+  var progressTintColor: UIColor = #colorLiteral(red: 0.9019607843, green: 0.8980392156, blue: 0.8980392156, alpha: 1) // #e6e5e5
   var trackTintColor: UIColor = Style.Colors.green
   var arcRadius: Float
   var arcWidth: Float = 16.0
