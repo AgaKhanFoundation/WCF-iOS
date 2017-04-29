@@ -49,8 +49,8 @@ class ProgressArcLayer: CAShapeLayer {
     let curve: UIBezierPath =
         UIBezierPath(arcCenter: CGPoint(x: CGFloat(radius), y: CGFloat(radius)),
                      radius: CGFloat(radius - width / 2),
-                     startAngle: CGFloat(-Float.pi / 2),
-                     endAngle: CGFloat(3 * Float.pi / 2), clockwise: true)
+                     startAngle: -CGFloat.pi / 2,
+                     endAngle: 3 * CGFloat.pi / 2, clockwise: true)
 
     fillColor = UIColor.clear.cgColor
     lineCap = kCALineCapSquare
