@@ -36,6 +36,25 @@ struct Friend {
   let firstName: String
   let lastName: String
   let pictureRawURL: String
+
+  init?(json: [String:Any]) {
+    guard
+      let fbid = json["id"] as? String,
+      let displayName = json["name"] as? String,
+      let firstName = json["first_name"] as? String,
+      let lastName = json["last_name"] as? String,
+
+      let picture = json["picture"] as? [String:Any],
+      let picture_data = picture["data"] as? [String:Any],
+      let picture_url = picture_data["url"] as? String
+    else { return nil }
+
+    self.fbid = fbid
+    self.displayName = displayName
+    self.firstName = firstName
+    self.lastName = lastName
+    self.pictureRawURL = picture_url
+  }
 }
 
 enum QueryLimit {
@@ -50,25 +69,6 @@ private enum FriendType {
 
 class Facebook {
   typealias EnumerationCallback = (_: Friend) -> Void
-
-  private static func deserialiseFriend(_ json: [String:Any])
-      -> Friend? {
-    guard
-      let id = json["id"] as? String,
-      let name = json["name"] as? String,
-      let first_name = json["first_name"] as? String,
-      let last_name = json["last_name"] as? String,
-
-      let picture = json["picture"] as? [String:Any],
-      let picture_data = picture["data"] as? [String:Any],
-      let picture_url = picture_data["url"] as? String
-    else {
-      return nil
-    }
-
-    return Friend(fbid: id, displayName: name, firstName: first_name,
-                      lastName: last_name, pictureRawURL: picture_url)
-  }
 
   private static func enumerateFriends(type: FriendType, limit: QueryLimit,
                                        cursor: String?,
@@ -102,7 +102,7 @@ class Facebook {
             for serialised in data {
               guard
                 let deserialised = serialised as? [String: Any],
-                let friend = deserialiseFriend(deserialised)
+                let friend = Friend(json: deserialised)
               else {
                 print("unable to deserialise friend \(serialised)")
                 continue
