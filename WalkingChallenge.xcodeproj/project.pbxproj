@@ -26,6 +26,9 @@
 		269E35291E767AE1000726C2 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35281E767AE1000726C2 /* Collection.swift */; };
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
 		C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */; };
+		26C657B91E91E41700FD3084 /* APIClient+Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C657B81E91E41700FD3084 /* APIClient+Requests.swift */; };
+		A708D4241EAB1C9E00404B52 /* BaseScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708D4231EAB1C9E00404B52 /* BaseScrollView.swift */; };
+		A708D4261EB6A20000404B52 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708D4251EB6A20000404B52 /* SettingsViewController.swift */; };
 		ED85D460832E1D261F31B25E /* Pods_WalkingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */; };
 		F004030F1EBF9DAB005E6F10 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004030E1EBF9DAB005E6F10 /* JSON.swift */; };
 		F00403151EC3EC6F005E6F10 /* AKFCausesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */; };
@@ -89,6 +92,9 @@
 		F004031C1EC52772005E6F10 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		F00524811EE3BD31001C24F0 /* CreateTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTeamViewController.swift; sourceTree = "<group>"; };
 		F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressStepsView.swift; path = WalkingChallenge/ProgressStepsView.swift; sourceTree = "<group>"; };
+		A708D4231EAB1C9E00404B52 /* BaseScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScrollView.swift; sourceTree = "<group>"; };
+		A708D4251EB6A20000404B52 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F024EE8B1EABB97700E42ECE /* TeamDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamDataSource.swift; path = WalkingChallenge/TeamDataSource.swift; sourceTree = "<group>"; };
 		F02FB49D1E9180CE0097481D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedometerDataProvider.swift; sourceTree = "<group>"; };
 		F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitDataProvider.swift; sourceTree = "<group>"; };
@@ -217,6 +223,8 @@
 				F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */,
 				F0C6D5081EA2F50A008E3B82 /* ConfigurationViewController.swift */,
 				F0CBDA4B1EA5D1BF00BB34F1 /* SupportersViewController.swift */,
+				F03D77DF1EA85BBC00A70230 /* EventsViewController.swift */,
+				A708D4251EB6A20000404B52 /* SettingsViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -490,6 +498,9 @@
 				F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */,
 				F004030F1EBF9DAB005E6F10 /* JSON.swift in Sources */,
 				F00403151EC3EC6F005E6F10 /* AKFCausesService.swift in Sources */,
+				269E351B1E766B8C000726C2 /* ProfileDataSource.swift in Sources */,
+				A708D4261EB6A20000404B52 /* SettingsViewController.swift in Sources */,
+				F024EE8C1EABB97700E42ECE /* TeamDataSource.swift in Sources */,
 				F03D77DE1EA83B0800A70230 /* Event.swift in Sources */,
 				F0C6D50D1EA3071A008E3B82 /* SelectionButton.swift in Sources */,
 				269E350C1E765F73000726C2 /* StyleGuide.swift in Sources */,
