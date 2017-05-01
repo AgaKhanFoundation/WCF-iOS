@@ -442,7 +442,7 @@ class ProfileViewController: UIViewController {
   }
 
   func configureApp() {
-    let configurationView = ConfigurationViewController()
+    let configurationView = SettingsViewController()//ConfigurationViewController()
     navigationController?.pushViewController(configurationView, animated: true)
   }
 
