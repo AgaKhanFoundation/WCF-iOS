@@ -32,15 +32,12 @@ import FacebookLogin
 import UIKit
 import SnapKit
 
-fileprivate class FitBitCell: UITableViewCell, IdentifiedUITableViewCell {
-  static let identifier: String = "FitBitCell"
+fileprivate class PedometerCell: UITableViewCell, IdentifiedUITableViewCell {
+  static let identifier: String = "PedometerCell"
 
-  internal var picture: UIImageView = UIImageView()
-  internal var name: UILabel = UILabel(.header)
-  internal var time: UILabel = UILabel(.body)
-  internal var team: UILabel = UILabel(.body)
-  internal var raised: UILabel = UILabel(.body)
-  internal var distance: UILabel = UILabel(.body)
+  internal var devicePicture: UIImageView = UIImageView()
+  internal var deviceName: UILabel = UILabel(.header)
+  internal var deviceDescription: UILabel = UILabel(.body)
 
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -52,39 +49,24 @@ fileprivate class FitBitCell: UITableViewCell, IdentifiedUITableViewCell {
   }
 
   private func initialise() {
-    addSubviews([picture, name, time, team, raised, distance])
+    addSubviews([devicePicture, deviceName, deviceDescription])
 
-    picture.snp.makeConstraints { (make) in
+    devicePicture.snp.makeConstraints { (make) in
       make.top.equalToSuperview().inset(Style.Padding.p12)
       make.left.equalToSuperview().inset(Style.Padding.p12)
       make.size.equalTo(Style.Size.s56)
+      make.bottom.equalToSuperview().inset(Style.Padding.p12)
     }
 
-    name.snp.makeConstraints { (make) in
+    deviceName.snp.makeConstraints { (make) in
       make.top.equalToSuperview().inset(Style.Padding.p12)
-      make.left.equalTo(picture.snp.right).offset(Style.Padding.p8)
+      make.left.equalTo(devicePicture.snp.right).offset(Style.Padding.p8)
     }
 
-    time.textColor = Style.Colors.grey
-    time.snp.makeConstraints { (make) in
-      make.top.equalTo(name.snp.bottom)
-      make.left.equalTo(name.snp.left)
-    }
-
-    team.snp.makeConstraints { (make) in
-      make.top.equalTo(time.snp.bottom).offset(Style.Padding.p12)
-      make.left.equalTo(time.snp.left)
-    }
-
-    raised.snp.makeConstraints { (make) in
-      make.top.equalTo(team.snp.bottom)
-      make.left.equalTo(team.snp.left)
-    }
-
-    distance.snp.makeConstraints { (make) in
-      make.top.equalTo(raised.snp.top)
-      make.right.equalToSuperview().inset(Style.Padding.p12)
-      make.bottom.equalToSuperview()
+    deviceDescription.textColor = Style.Colors.grey
+    deviceDescription.snp.makeConstraints { (make) in
+      make.top.equalTo(deviceName.snp.bottom)
+      make.left.equalTo(deviceName.snp.left)
     }
   }
 }
@@ -94,13 +76,6 @@ private enum TableSection: Int {
   case accountSettings
   case teams
   case helpAndSupport
-}
-
-struct FitBitInfo {
-  let title: String
-  let image: UIImage!
-  let deviceName: String
-  let deviceDescription: String
 }
 
 struct SettingsInfo {
@@ -114,7 +89,7 @@ struct SettingsnValue {
 
 class SettingsSectionDataSource {
 
-  var fitBitInfo: FitBitInfo = FitBitInfo(title: "Tet", image: nil, deviceName: "Test", deviceDescription: "Test")
+  let pedometerSource = UserInfo.pedometerSource
 
   // swiftlint:disable line_length
   var settingsInfo: [SettingsInfo] = [
@@ -136,7 +111,7 @@ fileprivate class SettingsDataSource: NSObject, UITableViewDataSource, UITableVi
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if section == 0 {
+    if section == TableSection.device.rawValue {
       return 1
     } else {
       let configuration = dataSource?.settingsInfo[section - 1]
@@ -153,21 +128,19 @@ fileprivate class SettingsDataSource: NSObject, UITableViewDataSource, UITableVi
     var cell: UITableViewCell
 
     switch indexPath.section {
-    case 0:
+    case TableSection.device.rawValue:
       // swiftlint:disable force_cast
-      let fitBitInfo = dataSource?.fitBitInfo
-      cell = tableView.dequeueReusableCell(withIdentifier: FitBitCell.identifier, for: indexPath)
-      (cell as! FitBitCell).name.text = fitBitInfo?.deviceName
-      (cell as! FitBitCell).distance.text = fitBitInfo?.deviceName
-      (cell as! FitBitCell).time.text = fitBitInfo?.deviceName
-      (cell as! FitBitCell).team.text = fitBitInfo?.deviceName
-      (cell as! FitBitCell).raised.text = fitBitInfo?.deviceName
+      let pedometerSource = dataSource?.pedometerSource
+      cell = tableView.dequeueReusableCell(withIdentifier: PedometerCell.identifier, for: indexPath)
+      (cell as! PedometerCell).deviceName.text = pedometerSource?.rawValue
+      (cell as! PedometerCell).deviceDescription.text = pedometerSource?.rawValue
+      (cell as! PedometerCell).devicePicture.backgroundColor = UIColor.brown
       // swiftlint:enable force_cast
       break
     default:
       let configure = dataSource?.settingsInfo[safe: indexPath.section - 1]
       let justValue = configure?.values[indexPath.row]
-      cell = tableView.dequeueReusableCell(withIdentifier: "testCell", for: indexPath)
+      cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath)
       cell.textLabel?.text = justValue?.configValue
       break
     }
@@ -175,9 +148,8 @@ fileprivate class SettingsDataSource: NSObject, UITableViewDataSource, UITableVi
     return cell
   }
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    if section == 0 {
-      let headerTitle = dataSource?.fitBitInfo
-      return headerTitle?.title
+    if section == TableSection.device.rawValue {
+      return Strings.Settings.device
     } else {
       let headerTitle = dataSource?.settingsInfo[section - 1]
       return headerTitle?.title
@@ -207,9 +179,9 @@ class SettingsViewController: UIViewController, LoginButtonDelegate {
     configurationTableView.rowHeight = UITableViewAutomaticDimension
     configurationTableView.allowsSelection = true
     configurationTableView.register(UITableViewCell.self,
-                                    forCellReuseIdentifier: "testCell")
-    configurationTableView.register(FitBitCell.self,
-                                    forCellReuseIdentifier: FitBitCell.identifier)
+                                    forCellReuseIdentifier: "SettingsCell")
+    configurationTableView.register(PedometerCell.self,
+                                    forCellReuseIdentifier: PedometerCell.identifier)
     view.addSubview(configurationTableView)
     configurationTableView.snp.makeConstraints { (make) in
       make.edges.equalToSuperview()
