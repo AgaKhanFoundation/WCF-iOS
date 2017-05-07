@@ -123,7 +123,14 @@ extension AppController {
 
   fileprivate func healthCheckServer() {
     APIClient.getAPIHealthCheck { (result: Result) in
-      print(result)
+      switch result {
+      case .error(let error):
+        print("error: \(error.localizedDescription)")
+        break
+      case .success(let response):
+        print("response: \(String(describing: response.response))")
+        break
+      }
     }
   }
 }
