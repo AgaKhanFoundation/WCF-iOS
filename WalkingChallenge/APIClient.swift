@@ -67,15 +67,14 @@ class APIClient {
       [weak self] (data: Data?, urlResponse: URLResponse?, error: Error?) in
         print("<- \(request.endpoint.rawValue)")
 
-        guard let httpResponse = urlResponse as? HTTPURLResponse else {
-          print("Error: Response")
-          self?.handle(completion, result: .error(.response))
-          return
-        }
-
         guard error == nil else {
           print("Error: \(error.debugDescription)")
           self?.handle(completion, result: .error(.networking(error)))
+          return
+        }
+
+        guard let httpResponse = urlResponse as? HTTPURLResponse else {
+          self?.handle(completion, result: .error(.response))
           return
         }
 
