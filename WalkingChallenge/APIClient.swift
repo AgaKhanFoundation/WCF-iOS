@@ -72,27 +72,28 @@ class APIClient {
           self?.handle(completion, result: .error(.networking(error)))
           return
         }
-
         guard let httpResponse = urlResponse as? HTTPURLResponse else {
           self?.handle(completion, result: .error(.response))
           return
         }
-
-        if data == nil {
+        guard data != nil else {
+          self?.handle(completion, result: .error(.api(nil)))
+          return
+        }
+        guard let data = String(data: data!, encoding: .utf8) else {
           self?.handle(completion, result: .error(.api(nil)))
           return
         }
 
-        do {
-          if let json = try JSONSerialization.jsonObject(with: data!,
-                                                         options: []) as? JSON {
-            let response = Response(response: json, request: request,
-                                    code: httpResponse.statusCode)
-            self?.handle(completion, result: .success(response))
-          }
-        } catch {
-          print("unable to parse JSON (\(String(describing: String(data: data!, encoding: .utf8)))): \(error.localizedDescription)")
+        switch deserialise(json: data) {
+        case .some(let response):
+          let result: Response = Response(response: response, request: request,
+                                          code: httpResponse.statusCode)
+          self?.handle(completion, result: .success(result))
+          break
+        default:
           self?.handle(completion, result: .error(.parsing))
+          break
         }
     }
 

@@ -31,8 +31,6 @@ import Foundation
 
 // MARK: - Request
 
-typealias JSON = [String: Any]
-
 extension Dictionary {
   func queryParams() -> String {
     var queryParams = [String]()
