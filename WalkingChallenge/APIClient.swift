@@ -30,7 +30,6 @@
 import UIKit
 
 class APIClient {
-
   static var shared = APIClient()
   private let session: URLSession
 
@@ -42,7 +41,8 @@ class APIClient {
 
   typealias APIClientResultCompletion = (Result) -> Void
 
-  func request(_ request: Request, completion: @escaping APIClientResultCompletion) {
+  func request(_ request: Request,
+               completion: @escaping APIClientResultCompletion) {
     print("-> \(request.endpoint.rawValue)")
 
     var urlComponents = URLComponents(string: AppConfig.apiBaseURL)
