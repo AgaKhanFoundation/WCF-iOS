@@ -29,6 +29,7 @@
 
 import SnapKit
 import FacebookLogin
+import FacebookCore
 
 class LoginViewController: UIViewController {
   let titleLabel = UILabel(.header)
@@ -84,6 +85,18 @@ extension LoginViewController: LoginButtonDelegate {
                                    result: LoginResult) {
     switch result {
     case .success(_, _, _):
+      if let fbid = AccessToken.current?.userId {
+        APIClient.createParticipant(fbid: fbid) { (result) in
+          switch result {
+          case .error(let error):
+            print("error: \(error.localizedDescription)")
+            break
+          case .success(let response):
+            print("success: \(response.response)")
+            break
+          }
+        }
+      }
       AppController.shared.login()
       break
     case .cancelled:
