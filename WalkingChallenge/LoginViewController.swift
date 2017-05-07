@@ -93,6 +93,15 @@ extension LoginViewController: LoginButtonDelegate {
             break
           case .success(let response):
             print("success: \(response.response)")
+            switch response.code {
+            case 201:
+              print("created user \(fbid)")
+              break
+            case 409:
+              print("user already exists")
+              break
+            default: break
+            }
             break
           }
         }
