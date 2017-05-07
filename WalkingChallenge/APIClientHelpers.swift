@@ -31,14 +31,14 @@ import Foundation
 
 // MARK: - Request
 
-extension Dictionary {
+extension JSON {
   func queryParams() -> String {
-    var queryParams = [String]()
+    guard let dictionary = self.dictionaryValue else { return "" }
 
-    for (key, value) in self {
+    var queryParams = [String]()
+    for (key, value) in dictionary {
       queryParams.append("\(key)=\(value)")
     }
-
     return queryParams.joined(separator: "&")
   }
 }
@@ -90,7 +90,7 @@ struct Request {
 
   var paramData: Data? {
     guard let params = params else { return nil }
-    return try? JSONSerialization.data(withJSONObject: params, options: [])
+    return params.serialise()
   }
 }
 
