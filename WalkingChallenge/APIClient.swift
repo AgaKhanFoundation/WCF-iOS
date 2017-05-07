@@ -91,7 +91,7 @@ class APIClient {
             self?.handle(completion, result: .success(response))
           }
         } catch {
-          print("unable to parse JSON: \(error.localizedDescription)")
+          print("unable to parse JSON (\(String(describing: String(data: data!, encoding: .utf8)))): \(error.localizedDescription)")
           self?.handle(completion, result: .error(.parsing))
         }
     }
