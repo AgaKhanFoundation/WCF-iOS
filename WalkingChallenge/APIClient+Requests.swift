@@ -37,7 +37,7 @@ extension APIClient {
 
   static func createParticipant(fbid: String,
                                 completion: @escaping APIClientResultCompletion) {
-    let params: JSON = ["fbid" : fbid]
+    let params: JSON = JSON(["fbid" : fbid])!
     let request = Request(endpoint: .participants, method: .post, params: params)
     APIClient.shared.request(request, completion: completion)
   }
@@ -55,14 +55,14 @@ extension APIClient {
 
   static func createTeamRequest(teamName: String,
                                 completion: @escaping APIClientResultCompletion) {
-    let params: JSON = ["name": teamName]
+    let params: JSON = JSON(["name": teamName])!
     let request = Request(endpoint: .teams, method: .post, params: params)
     APIClient.shared.request(request, completion: completion)
   }
 
   static func editTeamRequest(teamID: Int64, teamName: String,
                               completion: @escaping APIClientResultCompletion) {
-    let params: JSON = ["name": teamName]
+    let params: JSON = JSON(["name": teamName])!
     let request = Request(endpoint: .team(teamID), method: .patch, params: params)
     APIClient.shared.request(request, completion: completion)
   }

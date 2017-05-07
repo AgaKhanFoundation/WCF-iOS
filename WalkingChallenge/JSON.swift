@@ -29,17 +29,213 @@
 
 import Foundation
 
-typealias JSON = [String:Any]
+enum JSON {
+case array([JSON])
+case dictionary([String: JSON])
+case null
+case number(Float)
+case string(String)
+}
 
-func deserialise(json: String) -> JSON? {
-  do {
-    guard let json = json.data(using: .utf8) else { return nil }
-    if let deserialised =
-        try JSONSerialization.jsonObject(with: json, options: []) as? JSON {
-      return deserialised
+extension JSON {
+  public init?(_ value: Any) {
+    if let string = value as? String {
+      if string.lowercased() == "null" {
+        self = .null
+        return
+      }
+      self = .string(string)
+      return
     }
-  } catch {
-    print("unable to parse JSON payload `\(json)`: \(error.localizedDescription)")
+    if let number = value as? NSNumber {
+      self = .number(Float(number))
+      return
+    }
+    if let dictionary = value as? [String : Any] {
+      var object: [String:JSON] = [:]
+      for (key, value) in dictionary {
+        object[key] = JSON(value)
+      }
+      self = .dictionary(object)
+      return
+    }
+    if let array = value as? [Any] {
+      self = .array(array.flatMap({ JSON($0) }))
+      return
+    }
+    return nil
   }
-  return nil
+}
+
+extension JSON {
+  public var arrayValue: [JSON]? {
+    switch self {
+    case .array(let value):
+      return value
+    default:
+      return nil
+    }
+  }
+
+  public var boolVaue: Bool? {
+    switch self {
+    case .number(let value):
+      return value != 0
+    case .string(let value):
+      if value.lowercased() == "true" {
+        return true
+      }
+      if value.lowercased() == "false" {
+        return false
+      }
+      fallthrough
+    default:
+      return nil
+    }
+  }
+
+  public var dictionaryValue: [String:JSON]? {
+    switch self {
+    case .dictionary(let value):
+      return value
+    default:
+      return nil
+    }
+  }
+
+  public var floatValue: Float? {
+    switch self {
+    case .number(let value):
+      return value
+    default:
+      return nil
+    }
+  }
+
+  public var intValue: Int? {
+    switch self {
+    case .number(let value):
+      return Int(value)
+    default:
+      return nil
+    }
+  }
+
+  public var stringValue: String? {
+    switch self {
+    case .string(let value):
+      return value
+    default:
+      return nil
+    }
+  }
+
+  public var isNil: Bool {
+    switch self {
+    case .null:
+      return true
+    default:
+      return false
+    }
+  }
+}
+
+extension JSON {
+  public subscript(_ key: String) -> JSON? {
+    switch self {
+    case .dictionary(let dictionary):
+      if let value: JSON = dictionary[key] {
+        return value
+      }
+      fallthrough
+    default:
+      return nil
+    }
+  }
+
+  public subscript(_ index: Int) -> JSON? {
+    switch self {
+    case .array(let array):
+      if let value: JSON = array[safe: index] {
+        return value
+      }
+      fallthrough
+    default:
+      return nil
+    }
+  }
+}
+
+extension JSON: CustomStringConvertible {
+  public var description: String {
+    switch self {
+    case .array(let array):
+      return "[\(String(describing: array))]"
+    case .dictionary(let dictionary):
+      var repr: String = ""
+
+      repr.append("{")
+      for (key, value) in dictionary {
+        repr.append("\"\(key)\":\(value)")
+      }
+      repr.append("}")
+
+      return repr
+    case .null:
+      return "null"
+    case .number(let number):
+      return String(describing: number)
+    case .string(let string):
+      return "\"\(string)\""
+    }
+  }
+}
+
+extension JSON {
+  static func deserialise(_ data: Data) -> JSON? {
+    do {
+      let deserialised =
+          try JSONSerialization.jsonObject(with: data,
+                                           options: [JSONSerialization.ReadingOptions.allowFragments])
+      return JSON(deserialised)
+    } catch {
+      print("unable to read JSON payload `\(String(data: data, encoding: .utf8)!)`: \(error.localizedDescription)")
+    }
+    return nil
+  }
+
+  static func deserialise(_ data: String) -> JSON? {
+    guard let json = data.data(using: .utf8) else { return nil }
+    return deserialise(json)
+  }
+
+  private var foundationTyped: Any? {
+    switch self {
+    case .array(let array):
+      return array.flatMap({ $0.foundationTyped })
+    case .dictionary(let dictionary):
+      var dict: [String:Any] = [:]
+      for (key, value) in dictionary {
+        dict[key] = value.foundationTyped
+      }
+      return dict
+    case .null:
+      return nil
+    case .number(let number):
+      return NSNumber(value: number)
+    case .string(let string):
+      return String(string)
+    }
+  }
+
+  func serialise() -> Data? {
+    do {
+      if let value = self.foundationTyped {
+        return try JSONSerialization.data(withJSONObject: value, options: [])
+      }
+    } catch {
+      print("unable to write JSON payload `\(self)`: \(error.localizedDescription)")
+    }
+    return nil
+  }
 }

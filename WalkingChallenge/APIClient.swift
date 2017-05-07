@@ -80,12 +80,8 @@ class APIClient {
           self?.handle(completion, result: .error(.api(nil)))
           return
         }
-        guard let data = String(data: data!, encoding: .utf8) else {
-          self?.handle(completion, result: .error(.api(nil)))
-          return
-        }
 
-        switch deserialise(json: data) {
+        switch JSON.deserialise(data!) {
         case .some(let response):
           let result: Response = Response(response: response, request: request,
                                           code: httpResponse.statusCode)
