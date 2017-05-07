@@ -37,16 +37,13 @@ struct Friend {
   let lastName: String
   let pictureRawURL: String
 
-  init?(json: [String:Any]) {
+  init?(json: JSON) {
     guard
-      let fbid = json["id"] as? String,
-      let displayName = json["name"] as? String,
-      let firstName = json["first_name"] as? String,
-      let lastName = json["last_name"] as? String,
-
-      let picture = json["picture"] as? [String:Any],
-      let picture_data = picture["data"] as? [String:Any],
-      let picture_url = picture_data["url"] as? String
+      let fbid = json["id"]?.stringValue,
+      let displayName = json["name"]?.stringValue,
+      let firstName = json["first_name"]?.stringValue,
+      let lastName = json["last_name"]?.stringValue,
+      let picture_url = json["picture"]?["data"]?["url"]?.stringValue
     else { return nil }
 
     self.fbid = fbid
@@ -97,37 +94,27 @@ class Facebook {
     request.start { (response, result) in
       switch result {
       case .success(let response):
-        if let deserialised = response.dictionaryValue {
-          if let data = deserialised["data"] as? [Any] {
-            for serialised in data {
-              guard
-                let deserialised = serialised as? [String: Any],
-                let friend = Friend(json: deserialised)
-              else {
-                print("unable to deserialise friend \(serialised)")
-                continue
-              }
-
+        if let deserialised = JSON(response.dictionaryValue!) {
+          for serialised in (deserialised["data"]?.arrayValue)! {
+            if let friend = Friend(json: serialised) {
               handler(friend)
               retrieved += 1
+            } else {
+              print("unable to deserialise friend \(serialised)")
             }
           }
 
-          if let pagination = deserialised["paging"] as? [String:Any] {
-            if let cursors = pagination["cursors"] as? [String:Any] {
-              if let after = cursors["after"] as? String {
-                switch limit {
-                case .none:
-                  self.enumerateFriends(type: type, limit: .none, cursor: after,
-                                        handler: handler)
-                  break
-                case .count(let count):
-                  self.enumerateFriends(type: type,
-                                        limit: .count(count - retrieved),
-                                        cursor: after, handler: handler)
-                  break
-                }
-              }
+          if let after = deserialised["paging"]?["cursors"]?["after"]?.stringValue {
+            switch limit {
+            case .none:
+              self.enumerateFriends(type: type, limit: .none, cursor: after,
+                                    handler: handler)
+              break
+            case .count(let count):
+              self.enumerateFriends(type: type,
+                                    limit: .count(count - retrieved),
+                                    cursor: after, handler: handler)
+              break
             }
           }
         }
@@ -159,10 +146,8 @@ class Facebook {
     request.start { (response, result) in
       switch result {
       case .success(let response):
-        if let deserialised = response.dictionaryValue {
-          if let name = deserialised["name"] as? String {
-            completion(name)
-          }
+        if let deserialised = JSON(response.dictionaryValue!) {
+          completion(deserialised["name"]?.stringValue)
         }
         break
       case .failed(let error):
@@ -180,10 +165,8 @@ class Facebook {
     request.start { (response, result) in
       switch result {
       case .success(let response):
-        if let deserialised = response.dictionaryValue {
-          if let location = deserialised["location"] as? [String:Any] {
-            completion(location["name"] as? String)
-          }
+        if let deserialised = JSON(response.dictionaryValue!) {
+          completion(deserialised["location"]?["name"]?.stringValue)
         }
         break
       case .failed(let error):
@@ -213,11 +196,9 @@ class Facebook {
     request.start { (response, result) in
       switch result {
       case .success(let response):
-        if let deserialised = response.dictionaryValue {
-          if let data = deserialised["data"] as? [String:Any] {
-            if let url = data["url"] as? String {
-              completion(URL(string: url))
-            }
+        if let deserialised = JSON(response.dictionaryValue!) {
+          if let url = deserialised["data"]?["url"]?.stringValue {
+            completion(URL(string: url))
           }
         }
         break
