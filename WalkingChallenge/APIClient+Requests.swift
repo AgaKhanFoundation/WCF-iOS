@@ -35,6 +35,13 @@ extension APIClient {
     APIClient.shared.request(request, completion: completion)
   }
 
+  static func createParticipant(fbid: String,
+                                completion: @escaping APIClientResultCompletion) {
+    let params: JSON = ["fbid" : fbid]
+    let request = Request(endpoint: .participants, method: .post, params: params)
+    APIClient.shared.request(request, completion: completion)
+  }
+
   static func getTeamsRequest(completion: @escaping APIClientResultCompletion) {
     let request = Request(endpoint: .teams)
     APIClient.shared.request(request, completion: completion)
