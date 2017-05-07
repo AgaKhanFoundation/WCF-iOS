@@ -6,7 +6,7 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>ec2-52-34-36-237.us-west-2.compute.amazonaws.com</key>
+			<key>akf-causes.subshell.org</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>
 				<true/>
