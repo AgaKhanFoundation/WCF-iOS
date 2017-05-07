@@ -78,20 +78,22 @@ class APIClient {
           return
         }
 
-        guard
-          let data = data,
-          let json = (try? JSONSerialization.jsonObject(with: data,
-                                                        options: [])) as? JSON
-        else {
-          print("Error: JSON Parsing")
-          self?.handle(completion, result: .error(.parsing))
+        if data == nil {
+          self?.handle(completion, result: .error(.api(nil)))
           return
         }
 
-        let response = Response(response: json, request: request,
-                                code: httpResponse.statusCode)
-
-        self?.handle(completion, result: .success(response))
+        do {
+          if let json = try JSONSerialization.jsonObject(with: data!,
+                                                         options: []) as? JSON {
+            let response = Response(response: json, request: request,
+                                    code: httpResponse.statusCode)
+            self?.handle(completion, result: .success(response))
+          }
+        } catch {
+          print("unable to parse JSON: \(error.localizedDescription)")
+          self?.handle(completion, result: .error(.parsing))
+        }
     }
 
     task.resume()
