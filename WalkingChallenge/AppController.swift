@@ -108,7 +108,7 @@ extension AppController {
         UITabBarItem(title: Strings.NavBarTitles.profile, image: nil,
                      selectedImage: nil)
 
-    tabBarController.viewControllers = [ leaderboardNVC, teamNVC, profileNVC ]
+    tabBarController.viewControllers = [ profileNVC, teamNVC, leaderboardNVC ]
   }
 
   private func configureWindow() {
