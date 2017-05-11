@@ -122,13 +122,12 @@ extension AppController {
   }
 
   fileprivate func healthCheckServer() {
-    APIClient.getAPIHealthCheck { (result: Result) in
+    AKFCausesService.performAPIHealthCheck { (result) in
       switch result {
-      case .error(let error):
-        print("error: \(error.localizedDescription)")
+      case .failed(let error):
+        print("error: \(String(describing: error?.localizedDescription))")
         break
-      case .success(let response):
-        print("response: \(String(describing: response.response))")
+      case .success(_, _):
         break
       }
     }

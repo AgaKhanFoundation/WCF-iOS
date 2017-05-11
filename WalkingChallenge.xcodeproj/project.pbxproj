@@ -10,9 +10,7 @@
 		2606948B1E7DD1A200BFED76 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2606948A1E7DD1A200BFED76 /* Date.swift */; };
 		260D26771E935BCB004189F8 /* ContactPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260D26761E935BCB004189F8 /* ContactPickerCell.swift */; };
 		260D26791E935D4F004189F8 /* ContactPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260D26781E935D4F004189F8 /* ContactPickerViewController.swift */; };
-		262646611EAD6B7200FFEFC1 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262646601EAD6B7200FFEFC1 /* AppConfig.swift */; };
-		2669867B1E91D527004D45B4 /* APIClientHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2669867A1E91D527004D45B4 /* APIClientHelpers.swift */; };
-		26792DD81E91DCB400A7E5BA /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26792DD71E91DCB400A7E5BA /* APIClient.swift */; };
+		26792DD81E91DCB400A7E5BA /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26792DD71E91DCB400A7E5BA /* Service.swift */; };
 		269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E34C91E765828000726C2 /* AppDelegate.swift */; };
 		269E34D11E765828000726C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 269E34D01E765828000726C2 /* Assets.xcassets */; };
 		269E34EC1E7658E6000726C2 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E34E91E7658E6000726C2 /* AppController.swift */; };
@@ -31,10 +29,11 @@
 		269E35271E76783B000726C2 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35261E76783B000726C2 /* Cells.swift */; };
 		269E35291E767AE1000726C2 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35281E767AE1000726C2 /* Collection.swift */; };
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
-		26C657B91E91E41700FD3084 /* APIClient+Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C657B81E91E41700FD3084 /* APIClient+Requests.swift */; };
 		A708D4241EAB1C9E00404B52 /* BaseScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708D4231EAB1C9E00404B52 /* BaseScrollView.swift */; };
 		ED85D460832E1D261F31B25E /* Pods_WalkingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */; };
 		F004030F1EBF9DAB005E6F10 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004030E1EBF9DAB005E6F10 /* JSON.swift */; };
+		F00403151EC3EC6F005E6F10 /* AKFCausesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */; };
+		F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004031C1EC52772005E6F10 /* AppConfig.swift */; };
 		F024EE8C1EABB97700E42ECE /* TeamDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F024EE8B1EABB97700E42ECE /* TeamDataSource.swift */; };
 		F02FB49E1E9180CE0097481D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49D1E9180CE0097481D /* Preferences.swift */; };
 		F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */; };
@@ -63,9 +62,7 @@
 		2606948A1E7DD1A200BFED76 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		260D26761E935BCB004189F8 /* ContactPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerCell.swift; sourceTree = "<group>"; };
 		260D26781E935D4F004189F8 /* ContactPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerViewController.swift; sourceTree = "<group>"; };
-		262646601EAD6B7200FFEFC1 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
-		2669867A1E91D527004D45B4 /* APIClientHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientHelpers.swift; sourceTree = "<group>"; };
-		26792DD71E91DCB400A7E5BA /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		26792DD71E91DCB400A7E5BA /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		269E34C61E765828000726C2 /* WalkingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		269E34C91E765828000726C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		269E34D01E765828000726C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -87,10 +84,11 @@
 		269E35281E767AE1000726C2 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		26C5E3601E7DCACF0053DE3E /* WalkingChallenge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WalkingChallenge.entitlements; sourceTree = "<group>"; };
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		26C657B81E91E41700FD3084 /* APIClient+Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Requests.swift"; sourceTree = "<group>"; };
 		6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkingChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A708D4231EAB1C9E00404B52 /* BaseScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScrollView.swift; sourceTree = "<group>"; };
 		F004030E1EBF9DAB005E6F10 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKFCausesService.swift; sourceTree = "<group>"; };
+		F004031C1EC52772005E6F10 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		F024EE8B1EABB97700E42ECE /* TeamDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamDataSource.swift; path = WalkingChallenge/TeamDataSource.swift; sourceTree = "<group>"; };
 		F02FB49D1E9180CE0097481D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedometerDataProvider.swift; sourceTree = "<group>"; };
@@ -142,10 +140,9 @@
 			isa = PBXGroup;
 			children = (
 				F0E182891E80B1DB00665E4F /* Facebook.swift */,
-				2669867A1E91D527004D45B4 /* APIClientHelpers.swift */,
-				26792DD71E91DCB400A7E5BA /* APIClient.swift */,
-				26C657B81E91E41700FD3084 /* APIClient+Requests.swift */,
+				26792DD71E91DCB400A7E5BA /* Service.swift */,
 				F004030E1EBF9DAB005E6F10 /* JSON.swift */,
+				F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -178,7 +175,6 @@
 				A708D4221EAB1C8900404B52 /* Custom Views */,
 				26C5E3601E7DCACF0053DE3E /* WalkingChallenge.entitlements */,
 				269E34E91E7658E6000726C2 /* AppController.swift */,
-				262646601EAD6B7200FFEFC1 /* AppConfig.swift */,
 				269E352E1E768058000726C2 /* Login */,
 				F0C6D5031E9DBABB008E3B82 /* Leaderboard */,
 				269E351E1E7671FE000726C2 /* Team */,
@@ -199,6 +195,7 @@
 		269E35051E765BBF000726C2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F004031C1EC52772005E6F10 /* AppConfig.swift */,
 				269E34C91E765828000726C2 /* AppDelegate.swift */,
 				269E34D01E765828000726C2 /* Assets.xcassets */,
 				269E34D51E765828000726C2 /* Info.plist */,
@@ -480,19 +477,19 @@
 				F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */,
 				F0A992D61EABF037001621A6 /* Formatters.swift in Sources */,
 				269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */,
-				2669867B1E91D527004D45B4 /* APIClientHelpers.swift in Sources */,
 				269E35141E7668C1000726C2 /* TeamViewController.swift in Sources */,
 				269E35121E76685A000726C2 /* ProfileViewController.swift in Sources */,
 				F0C6D5071EA07BF8008E3B82 /* TeamMembersViewController.swift in Sources */,
-				262646611EAD6B7200FFEFC1 /* AppConfig.swift in Sources */,
 				269E350E1E76664F000726C2 /* Async.swift in Sources */,
+				F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */,
 				269E35101E7666EE000726C2 /* Blocks.swift in Sources */,
-				26792DD81E91DCB400A7E5BA /* APIClient.swift in Sources */,
+				26792DD81E91DCB400A7E5BA /* Service.swift in Sources */,
 				269E35291E767AE1000726C2 /* Collection.swift in Sources */,
 				260D26791E935D4F004189F8 /* ContactPickerViewController.swift in Sources */,
 				F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */,
 				269E351B1E766B8C000726C2 /* ProfileDataSource.swift in Sources */,
 				F004030F1EBF9DAB005E6F10 /* JSON.swift in Sources */,
+				F00403151EC3EC6F005E6F10 /* AKFCausesService.swift in Sources */,
 				F024EE8C1EABB97700E42ECE /* TeamDataSource.swift in Sources */,
 				F03D77DE1EA83B0800A70230 /* Event.swift in Sources */,
 				F0C6D50D1EA3071A008E3B82 /* SelectionButton.swift in Sources */,
@@ -500,7 +497,6 @@
 				F09E7DFA1E860CE300AD8CAF /* ContactPickerDataSource.swift in Sources */,
 				F0E1828A1E80B1DB00665E4F /* Facebook.swift in Sources */,
 				269E35241E767807000726C2 /* Team.swift in Sources */,
-				26C657B91E91E41700FD3084 /* APIClient+Requests.swift in Sources */,
 				A708D4241EAB1C9E00404B52 /* BaseScrollView.swift in Sources */,
 				269E35181E7669FB000726C2 /* LocalizedStrings.swift in Sources */,
 				F0C6D5051E9DBAE3008E3B82 /* LeaderboardViewController.swift in Sources */,

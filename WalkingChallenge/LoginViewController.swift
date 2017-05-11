@@ -86,25 +86,7 @@ extension LoginViewController: LoginButtonDelegate {
     switch result {
     case .success(_, _, _):
       if let fbid = AccessToken.current?.userId {
-        APIClient.createParticipant(fbid: fbid) { (result) in
-          switch result {
-          case .error(let error):
-            print("error: \(error.localizedDescription)")
-            break
-          case .success(let response):
-            print("success: \(response.response)")
-            switch response.code {
-            case 201:
-              print("created user \(fbid)")
-              break
-            case 409:
-              print("user already exists")
-              break
-            default: break
-            }
-            break
-          }
-        }
+        AKFCausesService.createParticipant(fbid: fbid)
       }
       AppController.shared.login()
       break
