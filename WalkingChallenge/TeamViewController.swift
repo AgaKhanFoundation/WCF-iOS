@@ -28,6 +28,7 @@
  **/
 
 import SnapKit
+import FacebookCore
 
 fileprivate class StatisticsRangeDataSource: SelectionButtonDataSource {
   // TODO(compnerd) should these be the same or different?
@@ -63,8 +64,7 @@ fileprivate class TeamLeaderboardDataSource: LeaderBoardDataSource {
 }
 
 class TeamViewController: UIViewController {
-  private let teamDataSource: TeamDataSource = TeamDataSource()
-  fileprivate let leaderboardDataSource: TeamLeaderboardDataSource
+  fileprivate var leaderboardDataSource: TeamLeaderboardDataSource?
   fileprivate let statisticsRangeDataSource: StatisticsRangeDataSource =
       StatisticsRangeDataSource()
 
@@ -84,8 +84,6 @@ class TeamViewController: UIViewController {
   let tblLeaderboard: LeaderBoard = LeaderBoard()
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    leaderboardDataSource =
-        TeamLeaderboardDataSource(team: teamDataSource.myTeam)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
 
@@ -118,8 +116,6 @@ class TeamViewController: UIViewController {
   }
 
   private func configureTeamHeader(_ top: inout ConstraintRelatableTarget) {
-    let team: Team = teamDataSource.myTeam
-
     // FIXME(compnerd) get this value programatically
     view.addSubview(imgTeamImage)
     imgTeamImage.layer.cornerRadius = Style.Size.s56 / 2
@@ -137,16 +133,12 @@ class TeamViewController: UIViewController {
     imgTeamImage.layer.backgroundColor = Style.Colors.grey.cgColor
 
     view.addSubview(lblTeamName)
-    lblTeamName.text = team.name
     lblTeamName.snp.makeConstraints { (make) in
       make.bottom.equalTo(imgTeamImage.snp.centerY)
       make.left.equalTo(imgTeamImage.snp.right).offset(Style.Padding.p12)
     }
 
-    // TODO(compnerd) make this localizable
     view.addSubview(btnTeamMembers)
-    btnTeamMembers.setTitle("\(team.members.count) Members \u{203a}",
-                            for: .normal)
     btnTeamMembers.contentHorizontalAlignment = .left
     btnTeamMembers.addTarget(self, action: #selector(showMembers),
                              for: .touchUpInside)
@@ -248,6 +240,36 @@ class TeamViewController: UIViewController {
     configureTeamHeader(&top)
     configureTeamStatistics(&top)
     configureTeamLeaderboard(&top)
+
+    if let fbid = AccessToken.current?.userId {
+      AKFCausesService.getParticipant(fbid: fbid) { [weak self] (result) in
+        switch result {
+        case .success(_, let body):
+          let participant: Participant? = Participant(json: body!)
+          if let team = participant?.team {
+            AKFCausesService.getTeam(team: team) { (result) in
+              switch result {
+              case .success(_, let body):
+                if let team = Team(json: body!) {
+                  self?.lblTeamName.text = team.name
+                  // TODO(compnerd) make this localizable
+                  self?.btnTeamMembers.setTitle("\(team.members.count) Members \u{203a}", for: .normal)
+                  self?.leaderboardDataSource = TeamLeaderboardDataSource(team: team)
+                }
+                break
+              case .failed(_):
+                print("failed to query team")
+                break
+              }
+            }
+          }
+          break
+        case .failed(_):
+          print("failed to query participant")
+          break
+        }
+      }
+    }
   }
 
   // MARK: - Actions

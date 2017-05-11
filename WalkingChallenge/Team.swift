@@ -32,4 +32,18 @@ import Foundation
 struct Team {
   let name: String
   let members: [TeamMember]
+
+  init(name: String, members: [TeamMember]) {
+    self.name = name
+    self.members = members
+  }
+
+  init?(json: JSON) {
+    guard
+      let name = json["name"]?.stringValue
+    else { return nil }
+
+    self.name = name
+    self.members = []
+  }
 }
