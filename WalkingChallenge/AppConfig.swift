@@ -30,6 +30,6 @@
 import Foundation
 
 struct AppConfig {
-  static let apiBaseURL: String = "http://akf-causes.subshell.org"
-  static let apiBaseURLPort = 80
+  static let server: URLComponents =
+      URLComponents(string: "https://akf-causes.subshell.org")!
 }
