@@ -28,6 +28,7 @@
  **/
 
 import SnapKit
+import FacebookCore
 
 struct TeamMemberCountInfo: CellInfo {
   var cellIdentifier: String = TeamMemberCountCell.identifier
@@ -176,27 +177,44 @@ extension TeamMembersDataSource: UITableViewDataSource {
 }
 
 class TeamMembersViewController: UIViewController {
-  let teamDataSource: TeamDataSource = TeamDataSource()
-  let teamMembersDataSource: TeamMembersDataSource
+  var teamMembersDataSource: TeamMembersDataSource?
 
   let tableView = UITableView()
   let inviteButton = UIButton(type: .system)
-
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    self.teamMembersDataSource =
-        TeamMembersDataSource(team: teamDataSource.myTeam)
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     configureView()
     configureNavigation()
+
+    if let fbid = AccessToken.current?.userId {
+      AKFCausesService.getParticipant(fbid: fbid) { [weak self] (result) in
+        switch result {
+        case .success(_, let body):
+          let participant: Participant? = Participant(json: body!)
+          if let team = participant?.team {
+            AKFCausesService.getTeam(team: team) { (result) in
+              switch result {
+              case .success(_, let body):
+                if let team = Team(json: body!) {
+                  self?.teamMembersDataSource =
+                      TeamMembersDataSource(team: team)
+                }
+                break
+              case .failed(_):
+                print("failed to query team")
+                break
+              }
+            }
+          }
+          break
+        case .failed(_):
+          print("failed to query participant")
+          break
+        }
+      }
+    }
   }
 
   private func configureView() {
