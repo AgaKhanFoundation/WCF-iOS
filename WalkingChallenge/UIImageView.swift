@@ -27,58 +27,28 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-import SnapKit
+import Foundation
 
-struct ContactCellInfo: CellInfo {
-  let cellIdentifier: String = ContactCell.identifier
+import UIKit
 
-  let fbid: String
-  let name: String
-  let picture: String
-  var isSelected: Bool = false
+let cache = NSCache<AnyObject, AnyObject>()
 
-  init(from friend: Friend) {
-    self.fbid = friend.fbid
-    self.name = friend.displayName
-    self.picture = friend.pictureRawURL
-  }
-}
-
-class ContactCell: ConfigurableTableViewCell {
-  static let identifier: String = "ContactCell"
-
-  let picture = UIImageView()
-  let name = UILabel(.body)
-
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
-    initialize()
-  }
-
-  required init?(coder: NSCoder) {
-    super.init(coder: coder)
-    initialize()
-  }
-
-  private func initialize() {
-    contentView.addSubviews([picture, name])
-    backgroundColor = .clear
-
-    picture.snp.makeConstraints { (make) in
-      make.height.width.equalTo(Style.Size.s32)
-      make.left.equalToSuperview().inset(Style.Padding.p12)
+extension UIImageView {
+  public func loadImage(from urlString: String) {
+    if let cached = cache.object(forKey: urlString as AnyObject) as? UIImage {
+      self.image = cached
+      return
     }
-    name.snp.makeConstraints { (make) in
-      make.left.equalTo(picture.snp.right).offset(Style.Padding.p12)
-      make.right.equalToSuperview().inset(Style.Padding.p12)
-      make.height.equalTo(picture.snp.height)
-    }
-  }
 
-  override func configure(cellInfo: CellInfo) {
-    guard let info = cellInfo as? ContactCellInfo else { return }
+    URLSession.shared.dataTask(
+      with: URL(string: urlString)! as URL,
+      completionHandler: { (data, _ response, error) -> Void in
+        guard error == nil, let image = UIImage(data: data!) else { return }
 
-    name.text = info.name
-    picture.loadImage(from: info.picture)
+        onMain {
+          cache.setObject(image, forKey: urlString as AnyObject)
+          self.image = image
+        }
+    }).resume()
   }
 }
