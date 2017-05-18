@@ -82,7 +82,7 @@ extension AppController {
     configureTabBarController()
     configureWindow()
 
-    if User.isLoggedIn {
+    if AccessToken.current != nil {
       transition(to: .tabBar)
     } else {
       transition(to: .login)
