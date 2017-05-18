@@ -417,36 +417,14 @@ class ProfileViewController: UIViewController {
   }
 
   private func updateProfile() {
-    if let fbid = AccessToken.current?.userId {
-      Facebook.getRealName { [weak self] (name) in
-        if let name = name {
-          self?.nameLabel.text = name
-        }
+    Facebook.getRealName { [weak self] (name) in
+      if let name = name {
+        self?.nameLabel.text = name
       }
+    }
 
-      AKFCausesService.getParticipant(fbid: fbid) { [weak self] (result) in
-        switch result {
-        case .success(_, let body):
-          let participant: Participant? = Participant(json: body!)
-          if let team = participant?.team {
-            AKFCausesService.getTeam(team: team) { (result) in
-              switch result {
-              case .success(_, let body):
-                let team: Team? = Team(json: body!)
-                self?.teamLabel.text = team?.name
-                break
-              case .failed(_):
-                print("unable to query team information")
-                break
-              }
-            }
-          }
-          break
-        case .failed(_):
-          print("unable to query participant information")
-          break
-        }
-      }
+    AKFCausesService.getParticipantTeam { [weak self] (team: Team) in
+      self?.teamLabel.text = team.name
     }
   }
 
