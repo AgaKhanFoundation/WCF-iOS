@@ -188,32 +188,8 @@ class TeamMembersViewController: UIViewController {
     configureView()
     configureNavigation()
 
-    if let fbid = AccessToken.current?.userId {
-      AKFCausesService.getParticipant(fbid: fbid) { [weak self] (result) in
-        switch result {
-        case .success(_, let body):
-          let participant: Participant? = Participant(json: body!)
-          if let team = participant?.team {
-            AKFCausesService.getTeam(team: team) { (result) in
-              switch result {
-              case .success(_, let body):
-                if let team = Team(json: body!) {
-                  self?.teamMembersDataSource =
-                      TeamMembersDataSource(team: team)
-                }
-                break
-              case .failed(_):
-                print("failed to query team")
-                break
-              }
-            }
-          }
-          break
-        case .failed(_):
-          print("failed to query participant")
-          break
-        }
-      }
+    AKFCausesService.getParticipantTeam { [weak self] (team: Team) in
+      self?.teamMembersDataSource = TeamMembersDataSource(team: team)
     }
   }
 

@@ -241,34 +241,12 @@ class TeamViewController: UIViewController {
     configureTeamStatistics(&top)
     configureTeamLeaderboard(&top)
 
-    if let fbid = AccessToken.current?.userId {
-      AKFCausesService.getParticipant(fbid: fbid) { [weak self] (result) in
-        switch result {
-        case .success(_, let body):
-          let participant: Participant? = Participant(json: body!)
-          if let team = participant?.team {
-            AKFCausesService.getTeam(team: team) { (result) in
-              switch result {
-              case .success(_, let body):
-                if let team = Team(json: body!) {
-                  self?.lblTeamName.text = team.name
-                  // TODO(compnerd) make this localizable
-                  self?.btnTeamMembers.setTitle("\(team.members.count) Members \u{203a}", for: .normal)
-                  self?.leaderboardDataSource = TeamLeaderboardDataSource(team: team)
-                }
-                break
-              case .failed(_):
-                print("failed to query team")
-                break
-              }
-            }
-          }
-          break
-        case .failed(_):
-          print("failed to query participant")
-          break
-        }
-      }
+    AKFCausesService.getParticipantTeam { [weak self] (team: Team) in
+      self?.lblTeamName.text = team.name
+      // TODO(compnerd) make this localizable
+      self?.btnTeamMembers.setTitle("\(team.members.count) Members \u{203a}",
+                                    for: .normal)
+      self?.leaderboardDataSource = TeamLeaderboardDataSource(team: team)
     }
   }
 
