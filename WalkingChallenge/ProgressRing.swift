@@ -117,6 +117,7 @@ class ProgressRing: UIView {
   private let lblSummary: UILabel = UILabel(.caption)
 
   private var arcLayer: ProgressArcLayer?
+  private var gradientLayer: CAGradientLayer?
 
   public init(radius: Float) {
     // FIXME(compnerd) can this be calculated from `frame.size.width / 2`?
@@ -142,7 +143,18 @@ class ProgressRing: UIView {
 
     arcLayer = ProgressArcLayer(radius: arcRadius, width: arcWidth, value: value,
                                 color: trackTintColor)
-    layer.addSublayer(arcLayer!)
+    //Gradient Layer + Colors
+    let redColor = UIColor.red.cgColor
+    let greenColor = UIColor.green.cgColor
+    let gradientColors = [redColor, greenColor]
+
+    gradientLayer = CAGradientLayer()
+    //gradientLayer.startPoint = CGPoint(x: 0.15, y :0.15)
+    //gradientLayer.endPoint = CGPoint(x: 0.7, y: 0.6)
+    gradientLayer?.colors = gradientColors
+    gradientLayer?.mask = arcLayer
+
+    layer.addSublayer(gradientLayer!)
 
     addSubview(lblValue)
     lblValue.snp.makeConstraints { (make) in
@@ -170,5 +182,9 @@ class ProgressRing: UIView {
     if animated {
       arcLayer?.animateTo(value)
     }
+  }
+  override func layoutSubviews() {
+    super .layoutSubviews()
+    gradientLayer?.frame = self.bounds
   }
 }
