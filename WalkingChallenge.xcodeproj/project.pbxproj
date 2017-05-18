@@ -23,7 +23,6 @@
 		269E35121E76685A000726C2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35111E76685A000726C2 /* ProfileViewController.swift */; };
 		269E35141E7668C1000726C2 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35131E7668C1000726C2 /* TeamViewController.swift */; };
 		269E35181E7669FB000726C2 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35171E7669FB000726C2 /* LocalizedStrings.swift */; };
-		269E35211E7673B6000726C2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35201E7673B6000726C2 /* User.swift */; };
 		269E35241E767807000726C2 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35231E767807000726C2 /* Team.swift */; };
 		269E35271E76783B000726C2 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35261E76783B000726C2 /* Cells.swift */; };
 		269E35291E767AE1000726C2 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35281E767AE1000726C2 /* Collection.swift */; };
@@ -77,7 +76,6 @@
 		269E35111E76685A000726C2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		269E35131E7668C1000726C2 /* TeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
 		269E35171E7669FB000726C2 /* LocalizedStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
-		269E35201E7673B6000726C2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		269E35231E767807000726C2 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Team.swift; path = WalkingChallenge/Team.swift; sourceTree = "<group>"; };
 		269E35261E76783B000726C2 /* Cells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		269E35281E767AE1000726C2 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
@@ -249,7 +247,6 @@
 		269E352E1E768058000726C2 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				269E35201E7673B6000726C2 /* User.swift */,
 				269E35061E765C68000726C2 /* LoginViewController.swift */,
 			);
 			name = Login;
@@ -505,7 +502,6 @@
 				F0CBDA4E1EA6FCAB00BB34F1 /* Supporter.swift in Sources */,
 				2606948B1E7DD1A200BFED76 /* Date.swift in Sources */,
 				F0CBDA521EA6FF1D00BB34F1 /* Sponsor.swift in Sources */,
-				269E35211E7673B6000726C2 /* User.swift in Sources */,
 				269E35071E765C68000726C2 /* LoginViewController.swift in Sources */,
 				F03D77DB1EA83A3000A70230 /* EventDataSource.swift in Sources */,
 				F0CBDA4C1EA5D1BF00BB34F1 /* SupportersViewController.swift in Sources */,
