@@ -32,8 +32,8 @@ import FacebookLogin
 import FacebookCore
 
 class LoginViewController: UIViewController {
-  let titleLabel = UILabel(.header)
-  let desciptionLabel = UILabel(.body)
+  let imgBackground: UIImageView =
+      UIImageView(image: UIImage(imageLiteralResourceName: "splash"))
   let btnLogin: LoginButton =
       LoginButton(readPermissions: [.publicProfile, .email, .userFriends,
                                     .custom("user_location")])
@@ -42,40 +42,27 @@ class LoginViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
-    configureLabels()
     configureView()
   }
 
   // MARK: - Configure
 
-  private func configureLabels() {
-    titleLabel.text = Strings.Login.title
-    desciptionLabel.text = Strings.Login.desciption
-
-    titleLabel.textAlignment = .center
-    desciptionLabel.textAlignment = .center
-  }
-
   private func configureView() {
     view.backgroundColor = Style.Colors.white
 
-    view.addSubviews([titleLabel, desciptionLabel, btnLogin])
+    view.addSubviews([imgBackground, btnLogin])
 
-    titleLabel.snp.makeConstraints { (make) in
-      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
-      make.centerY.equalToSuperview().offset(-Style.Padding.p48)
-    }
-
-    desciptionLabel.snp.makeConstraints { (make) in
-      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
-      make.top.equalTo(titleLabel.snp.bottom).offset(Style.Padding.p24)
+    imgBackground.snp.makeConstraints { (make) in
+      make.top.equalTo(topLayoutGuide.snp.bottom)
+      make.left.equalToSuperview()
+      make.height.equalToSuperview()
+      make.width.equalToSuperview()
     }
 
     btnLogin.delegate = self
     btnLogin.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
-      make.top.equalTo(desciptionLabel.snp.bottom).offset(Style.Padding.p24)
+      make.bottom.equalToSuperview().offset(-Style.Size.s48)
     }
   }
 }
