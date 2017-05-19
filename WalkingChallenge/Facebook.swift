@@ -138,9 +138,10 @@ class Facebook {
                      handler: handler)
   }
 
-  static func getRealName(completion: @escaping (_: String?) -> Void) {
+  static func getRealName(for fbid: String,
+                          completion: @escaping (_: String?) -> Void) {
     let request: GraphRequest =
-        GraphRequest(graphPath: "me", parameters: ["fields" : "name"],
+        GraphRequest(graphPath: fbid, parameters: ["fields" : "name"],
                      accessToken: AccessToken.current, httpMethod: .GET,
                      apiVersion: .defaultVersion)
     request.start { (response, result) in
