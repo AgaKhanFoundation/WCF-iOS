@@ -31,9 +31,9 @@ import Foundation
 
 struct Team {
   let name: String
-  let members: [TeamMember]
+  let members: [Participant]
 
-  init(name: String, members: [TeamMember]) {
+  init(name: String, members: [Participant]) {
     self.name = name
     self.members = members
   }

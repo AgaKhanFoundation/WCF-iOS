@@ -52,10 +52,16 @@ fileprivate class TeamLeaderboardDataSource: LeaderBoardDataSource {
 
     // TODO(compnerd) sort members according to distance, ramount raised? magic?
     for member in team.members {
-      // FIXME(compnerd) model and display distance and amount raised
-      result.append(LeaderBoardEntry(imageURL: member.picture,
-                                     name: member.name, standing: standing,
-                                     distance: 0, raised: 0))
+      Facebook.profileImage(for: member.fbid) { (url: URL?) in
+        Facebook.getRealName(for: member.fbid) { (name: String?) in
+          // FIXME(compnerd) model and display distance and amount raised
+          result.append(LeaderBoardEntry(imageURL: url ?? nil,
+                                         name: name ?? member.fbid,
+                                         standing: standing,
+                                         distance: 0, raised: 0))
+        }
+      }
+
       standing += 1
     }
 

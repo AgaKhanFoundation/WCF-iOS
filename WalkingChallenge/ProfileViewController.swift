@@ -417,7 +417,7 @@ class ProfileViewController: UIViewController {
   }
 
   private func updateProfile() {
-    Facebook.getRealName { [weak self] (name) in
+    Facebook.getRealName(for: "me") { [weak self] (name) in
       if let name = name {
         self?.nameLabel.text = name
       }

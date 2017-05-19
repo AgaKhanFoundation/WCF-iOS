@@ -74,9 +74,9 @@ extension TeamMemberCountCell: ConfigurableUITableViewCell {
 struct TeamMemberInfo: CellInfo {
   var cellIdentifier: String = TeamMemberCell.identifier
 
-  let member: TeamMember
+  let member: Participant
 
-  init(member: TeamMember) {
+  init(member: Participant) {
     self.member = member
   }
 }
@@ -124,7 +124,9 @@ class TeamMemberCell: UITableViewCell, IdentifiedUITableViewCell {
 extension TeamMemberCell: ConfigurableUITableViewCell {
   func configure(_ data: Any) {
     guard let info = data as? TeamMemberInfo else { return }
-    nameLabel.text = info.member.name
+    Facebook.getRealName(for: info.member.fbid) { [weak self] (name) in
+      self?.nameLabel.text = name ?? info.member.fbid
+    }
   }
 }
 
