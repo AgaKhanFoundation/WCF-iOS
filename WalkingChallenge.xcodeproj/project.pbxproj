@@ -37,7 +37,6 @@
 		F02FB49E1E9180CE0097481D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49D1E9180CE0097481D /* Preferences.swift */; };
 		F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */; };
 		F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */; };
-		F03D77DB1EA83A3000A70230 /* EventDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03D77DA1EA83A3000A70230 /* EventDataSource.swift */; };
 		F03D77DE1EA83B0800A70230 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03D77DD1EA83B0800A70230 /* Event.swift */; };
 		F03D77E01EA85BBC00A70230 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03D77DF1EA85BBC00A70230 /* EventsViewController.swift */; };
 		F06254C11ECD5D1700168DD6 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06254C01ECD5D1700168DD6 /* Participant.swift */; };
@@ -90,7 +89,6 @@
 		F02FB49D1E9180CE0097481D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedometerDataProvider.swift; sourceTree = "<group>"; };
 		F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitDataProvider.swift; sourceTree = "<group>"; };
-		F03D77DA1EA83A3000A70230 /* EventDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventDataSource.swift; path = WalkingChallenge/EventDataSource.swift; sourceTree = "<group>"; };
 		F03D77DD1EA83B0800A70230 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = WalkingChallenge/Event.swift; sourceTree = "<group>"; };
 		F03D77DF1EA85BBC00A70230 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		F06254C01ECD5D1700168DD6 /* Participant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Participant.swift; path = WalkingChallenge/Participant.swift; sourceTree = "<group>"; };
@@ -176,6 +174,7 @@
 				F0C6D5031E9DBABB008E3B82 /* Leaderboard */,
 				269E351E1E7671FE000726C2 /* Team */,
 				269E35191E766B74000726C2 /* Profile */,
+				F06254C61ECEC11200168DD6 /* Events */,
 				266986791E91D50E004D45B4 /* Networking */,
 				269E35251E76782D000726C2 /* Protocols */,
 				269E350A1E765F2A000726C2 /* Extensions */,
@@ -221,7 +220,6 @@
 				F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */,
 				F0C6D5081EA2F50A008E3B82 /* ConfigurationViewController.swift */,
 				F0CBDA4B1EA5D1BF00BB34F1 /* SupportersViewController.swift */,
-				F03D77DF1EA85BBC00A70230 /* EventsViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -294,7 +292,6 @@
 			isa = PBXGroup;
 			children = (
 				F0CBDA4F1EA6FD7200BB34F1 /* SponsorshipDataSource.swift */,
-				F03D77DA1EA83A3000A70230 /* EventDataSource.swift */,
 			);
 			name = "Data Sources";
 			sourceTree = "<group>";
@@ -309,6 +306,14 @@
 				269E35231E767807000726C2 /* Team.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		F06254C61ECEC11200168DD6 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				F03D77DF1EA85BBC00A70230 /* EventsViewController.swift */,
+			);
+			name = Events;
 			sourceTree = "<group>";
 		};
 		F0C6D5031E9DBABB008E3B82 /* Leaderboard */ = {
@@ -503,7 +508,6 @@
 				F0CBDA521EA6FF1D00BB34F1 /* Sponsor.swift in Sources */,
 				269E35071E765C68000726C2 /* LoginViewController.swift in Sources */,
 				C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */,
-				F03D77DB1EA83A3000A70230 /* EventDataSource.swift in Sources */,
 				F0CBDA4C1EA5D1BF00BB34F1 /* SupportersViewController.swift in Sources */,
 				F0CBDA501EA6FD7200BB34F1 /* SponsorshipDataSource.swift in Sources */,
 			);

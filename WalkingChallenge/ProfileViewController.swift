@@ -85,83 +85,6 @@ class SupporterView: UIView {
   }
 }
 
-class EventView: UIView {
-  internal var image: UIImageView = UIImageView()
-  internal var name: UILabel = UILabel(.title)
-  internal var time: UILabel = UILabel(.caption)
-  internal var team: UILabel = UILabel(.caption)
-  internal var raised: UILabel = UILabel(.caption)
-  internal var distance: UILabel = UILabel(.caption)
-
-  convenience init(event: Event) {
-    self.init(frame: CGRect.zero)
-    self.configure()
-    self.updateForEvent(event)
-  }
-
-  private func configure() {
-    // FIXME(compnerd) this should inset eeverything by the desired amount, but
-    // doesnt seem to?
-    layoutMargins =
-      UIEdgeInsets(top: Style.Padding.p12, left: Style.Padding.p12,
-                   bottom: Style.Padding.p12, right: Style.Padding.p12)
-
-    addSubviews([image, name, time, team, raised, distance])
-
-    image.snp.makeConstraints { (make) in
-      make.top.left.equalToSuperview()
-      make.height.width.equalTo(Style.Size.s56)
-    }
-
-    // TODO(compnerd) use a placeholder instead of the filled bordered area
-    image.layer.borderWidth = 1
-    image.layer.backgroundColor = Style.Colors.grey.cgColor
-
-    name.snp.makeConstraints { (make) in
-      make.left.equalTo(image.snp.right).offset(Style.Padding.p8)
-      make.top.equalTo(image.snp.top)
-    }
-
-    time.textColor = Style.Colors.grey
-    time.snp.makeConstraints { (make) in
-      make.left.equalTo(image.snp.right).offset(Style.Padding.p8)
-      make.top.equalTo(name.snp.bottom)
-    }
-
-    team.snp.makeConstraints { (make) in
-      make.left.equalTo(image.snp.right).offset(Style.Padding.p8)
-      make.top.equalTo(time.snp.bottom)
-    }
-
-    raised.snp.makeConstraints { (make) in
-      make.top.equalTo(team.snp.bottom)
-      make.bottom.equalToSuperview()
-      make.left.equalTo(team.snp.left)
-    }
-
-    distance.snp.makeConstraints { (make) in
-      make.top.equalTo(team.snp.bottom)
-      make.bottom.equalToSuperview()
-      make.right.equalToSuperview()
-    }
-  }
-
-  func updateForEvent(_ event: Event) {
-    if let url = event.image {
-      // TODO(compnerd) asynchronously load and display the image
-      _ = url
-    }
-
-    name.text = event.name
-    // TODO(compnerd) format this
-    time.text = event.time
-    // TODO(compnerd) properly localise this
-    team.text = "Team: \(event.team)"
-    raised.text = DataFormatters.formatCurrency(value: event.raised)
-    distance.text = DataFormatters.formatDistance(value: event.distance)
-  }
-}
-
 fileprivate class StatisticsRangeDataSource: SelectionButtonDataSource {
   static let ranges = [Strings.Profile.thisWeek, Strings.Profile.thisMonth,
                        Strings.Profile.thisEvent, Strings.Profile.overall]
@@ -191,10 +114,6 @@ class ProfileViewController: UIViewController {
   let sponsorshipDataSource: SponsorshipDataSource = SponsorshipDataSource()
   let supportersLabel = UILabel(.section)
   let showSupportButton = UIButton(type: .system)
-
-  let eventsDataSource = EventsDataSource()
-  let pastEventsLabel = UILabel(.section)
-  let showEventsButton = UIButton(type: .system)
 
   // MARK: - Lifecycle
 
@@ -363,44 +282,6 @@ class ProfileViewController: UIViewController {
     }
   }
 
-  private func configureEventsView(_ top: inout ConstraintRelatableTarget) {
-    let kMaxDisplayedEvents: Int = 2
-
-    scrollView.addSubview(pastEventsLabel)
-    // TODO(compnerd) localise this properly
-    pastEventsLabel.text = "Past Events (\(eventsDataSource.events.count))"
-    pastEventsLabel.snp.makeConstraints { (make) in
-      make.top.equalTo(top).offset(Style.Padding.p12)
-      make.left.equalToSuperview().inset(Style.Padding.p12)
-    }
-    top = pastEventsLabel.snp.bottom
-
-    for event in 0..<min(eventsDataSource.events.count, kMaxDisplayedEvents) {
-      let eventView: EventView =
-          EventView(event: eventsDataSource.events[event])
-
-      scrollView.addSubview(eventView)
-      eventView.snp.makeConstraints { (make) in
-        make.top.equalTo(top).offset(Style.Padding.p8)
-        make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
-      }
-      top = eventView.snp.bottom
-    }
-
-    if eventsDataSource.events.count > kMaxDisplayedEvents {
-      scrollView.addSubview(showEventsButton)
-      showEventsButton.setTitle(Strings.Profile.seeMore, for: .normal)
-      showEventsButton.addTarget(self, action: #selector(showEvents),
-                                 for: .touchUpInside)
-      showEventsButton.snp.makeConstraints { (make) in
-        make.top.equalTo(top).offset(Style.Padding.p8)
-        make.right.equalToSuperview().inset(Style.Padding.p12)
-        make.bottom.equalTo(scrollView.contentView)
-      }
-      top = showEventsButton.snp.bottom
-    }
-  }
-
   private func configureView() {
     view.backgroundColor = Style.Colors.white
 
@@ -413,7 +294,6 @@ class ProfileViewController: UIViewController {
     configureHeaderView(&top)
     configureStatisticsView(&top)
     configureSupportersView(&top)
-    configureEventsView(&top)
   }
 
   private func updateProfile() {
@@ -458,11 +338,6 @@ class ProfileViewController: UIViewController {
   func showSupporters() {
     let supportersView = SupportersViewController()
     navigationController?.pushViewController(supportersView, animated: true)
-  }
-
-  func showEvents() {
-    let eventsView = EventsViewController()
-    navigationController?.pushViewController(eventsView, animated: true)
   }
 }
 

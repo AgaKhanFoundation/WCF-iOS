@@ -31,9 +31,32 @@ import Foundation
 
 struct Event {
   let image: URL?
+  let id: Int
   let name: String
-  let time: String
-  let team: String
-  let raised: Float
-  let distance: Float
+  let start: Date
+  let end: Date
+  let causeId: Int?
+  let causeName: String?
+
+  init?(json: JSON) {
+    guard
+      let id = json["id"]?.intValue,
+      let name = json["name"]?.stringValue,
+      let start_date = json["start_date"]?.stringValue,
+      let end_date = json["end_date"]?.stringValue
+    else { return nil }
+
+    let formatter: DateFormatter = DateFormatter()
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZ"
+
+    self.id = id
+    self.name = name
+    self.start = formatter.date(from: start_date) ?? Date()
+    self.end = formatter.date(from: end_date) ?? Date()
+
+    self.image = nil
+    self.causeId = nil
+    self.causeName = nil
+  }
 }

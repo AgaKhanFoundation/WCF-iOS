@@ -74,6 +74,12 @@ struct Strings {
     static let contactUs = NSLocalizedString("Contact Us", comment: "Contact Us")
   }
 
+  struct Events {
+    static let title = NSLocalizedString("Events", comment: "Events")
+    static let join = NSLocalizedString("Join", comment: "Join")
+    static let openVirtualChallenges = NSLocalizedString("Open Virtual Challenges", comment: "Open Virtual Challenges")
+  }
+
   struct PastEvents {
     static let title = NSLocalizedString("Past Events", comment: "Past Events")
   }
@@ -81,6 +87,7 @@ struct Strings {
   struct NavBarTitles {
     static let team = NSLocalizedString("My Team", comment: "Navigation bar title for team tab")
     static let profile = NSLocalizedString("My Profile", comment: "Navigation bar title for profile tab")
+    static let events = NSLocalizedString("Events", comment: "Events")
     static let leaderboard = NSLocalizedString("Leaderboard", comment: "Navigation bar title for leaderboard")
     static let teamMembers = NSLocalizedString("Team Members", comment: "Team Members")
     static let configuration = NSLocalizedString("Configuration", comment: "Configuration")

@@ -33,12 +33,13 @@ import SnapKit
 fileprivate class EventCell: UITableViewCell, IdentifiedUITableViewCell {
   static let identifier: String = "EventCell"
 
-  internal var picture: UIImageView = UIImageView()
-  internal var name: UILabel = UILabel(.header)
-  internal var time: UILabel = UILabel(.body)
-  internal var team: UILabel = UILabel(.body)
-  internal var raised: UILabel = UILabel(.body)
-  internal var distance: UILabel = UILabel(.body)
+  internal var imgImage: UIImageView = UIImageView()
+  internal var lblEventName: UILabel = UILabel(.header)
+  internal var lblCause: UILabel = UILabel(.body)
+  internal var lblTime: UILabel = UILabel(.body)
+  internal var btnJoin: UIButton = UIButton(type: .system)
+
+  internal var eventID: Int?
 
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -50,39 +51,38 @@ fileprivate class EventCell: UITableViewCell, IdentifiedUITableViewCell {
   }
 
   private func initialise() {
-    addSubviews([picture, name, time, team, raised, distance])
+    addSubviews([imgImage, lblEventName, lblCause, lblTime, btnJoin])
 
-    picture.snp.makeConstraints { (make) in
-      make.top.equalToSuperview().inset(Style.Padding.p12)
-      make.left.equalToSuperview().inset(Style.Padding.p12)
-      make.size.equalTo(Style.Size.s56)
+    imgImage.layer.backgroundColor = Style.Colors.grey.cgColor
+    imgImage.snp.makeConstraints { (make) in
+      make.top.left.bottom.equalToSuperview().inset(Style.Padding.p12)
+      make.width.equalTo(imgImage.snp.height)
     }
 
-    name.snp.makeConstraints { (make) in
-      make.top.equalToSuperview().inset(Style.Padding.p12)
-      make.left.equalTo(picture.snp.right).offset(Style.Padding.p8)
+    lblEventName.snp.makeConstraints { (make) in
+      make.top.equalTo(imgImage.snp.top)
+      make.left.equalTo(imgImage.snp.right).offset(Style.Padding.p12)
+    }
+    lblCause.snp.makeConstraints { (make) in
+      make.top.equalTo(lblEventName.snp.bottom)
+      make.left.equalTo(lblEventName.snp.left)
+    }
+    lblTime.snp.makeConstraints { (make) in
+      make.top.equalTo(lblCause.snp.bottom)
+      make.left.equalTo(lblEventName.snp.left)
     }
 
-    time.textColor = Style.Colors.grey
-    time.snp.makeConstraints { (make) in
-      make.top.equalTo(name.snp.bottom)
-      make.left.equalTo(name.snp.left)
+    btnJoin.setTitle(Strings.Events.join, for: .normal)
+    btnJoin.addTarget(self, action: #selector(join), for: .touchUpInside)
+    btnJoin.snp.makeConstraints { (make) in
+      make.top.equalTo(lblTime.snp.bottom)
+      make.right.bottom.equalToSuperview().inset(Style.Padding.p12)
     }
+  }
 
-    team.snp.makeConstraints { (make) in
-      make.top.equalTo(time.snp.bottom).offset(Style.Padding.p12)
-      make.left.equalTo(time.snp.left)
-    }
-
-    raised.snp.makeConstraints { (make) in
-      make.top.equalTo(team.snp.bottom)
-      make.left.equalTo(team.snp.left)
-    }
-
-    distance.snp.makeConstraints { (make) in
-      make.top.equalTo(raised.snp.top)
-      make.right.equalToSuperview().inset(Style.Padding.p12)
-      make.bottom.equalToSuperview()
+  func join(_ sender: Any) {
+    if let fbid = AccessToken.current?.userId {
+      AKFCausesService.joinEvent(fbid: fbid, eventID: eventID)
     }
   }
 }
@@ -96,62 +96,45 @@ extension EventCell: ConfigurableUITableViewCell {
       _ = url
     }
 
-    // TODO(compnerd) use a placeholder instead of the filled bordered area
-    picture.layer.borderWidth = 1
-    picture.layer.backgroundColor = Style.Colors.grey.cgColor
+    lblEventName.text = event.name
+    lblCause.text = "Cause: \(String(describing: event.causeName))"
+    lblTime.text =
+        DataFormatters.formatDateRange(value: (event.start, event.end))
 
-    name.text = event.name
-    // TODO(compnerd) format this
-    time.text = event.time
-    // FIXME(compnerd) properly localise this
-    team.text = "Team: \(event.team)"
-
-    raised.text = DataFormatters.formatCurrency(value: event.raised)
-
-    // TODO(compnerd) properly localise this
-    distance.text = DataFormatters.formatDistance(value: event.distance)
+    eventID = event.id
   }
 }
 
-fileprivate class PastEventsDataSource: NSObject, UITableViewDataSource {
-  internal var dataSource: EventsDataSource?
+internal class EventsViewTableDataSource: NSObject {
+  var events: [Event] = []
+}
 
-  init(_ dataSource: EventsDataSource) {
-    super.init()
-    self.dataSource = dataSource
+extension EventsViewTableDataSource: UITableViewDataSource {
+  func tableView(_ tableView: UITableView,
+                 numberOfRowsInSection section: Int) -> Int {
+    return events.count
   }
 
   func tableView(_ tableView: UITableView,
-                 numberOfRowsInSection section: Int) -> Int {
-    return dataSource?.events.count ?? 0
-  }
-
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+                 cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard
+      let info = events[safe: indexPath.row],
       let cell =
           tableView.dequeueReusableCell(withIdentifier: EventCell.identifier,
                                         for: indexPath)
               as? ConfigurableUITableViewCell
     else { return UITableViewCell() }
 
-    if let event = dataSource?.events[safe: indexPath.row] {
-      cell.configure(event)
-    }
+    cell.configure(info)
     return cell as? UITableViewCell ?? UITableViewCell()
   }
 }
 
 class EventsViewController: UIViewController {
-  private var eventsDataSource: EventsDataSource = EventsDataSource()
-  private var eventTableDataSource: PastEventsDataSource?
-
-  private var lblStatus: UILabel = UILabel(.title)
-  private var tblEvents: UITableView = UITableView()
-
-  convenience init() {
-    self.init(nibName: nil, bundle: nil)
-    self.eventTableDataSource = PastEventsDataSource(self.eventsDataSource)
-  }
+  internal var lblSectionHeader: UILabel = UILabel(.header)
+  internal var lblSectionDetails: UILabel = UILabel(.title)
+  internal var tblTableView: UITableView = UITableView()
+  internal var events: EventsViewTableDataSource = EventsViewTableDataSource()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -161,54 +144,72 @@ class EventsViewController: UIViewController {
   }
 
   private func configureNavigation() {
-    title = Strings.PastEvents.title
+    title = Strings.Events.title
+
+    navigationController?.navigationBar.barTintColor = Style.Colors.darkGreen
+    navigationController?.navigationBar.tintColor = Style.Colors.white
+    navigationController?.navigationBar.titleTextAttributes =
+      [NSForegroundColorAttributeName: Style.Colors.white]
   }
 
-  private func configureStatusView(_ top: inout ConstraintRelatableTarget) {
-    // FIXME(compnerd) calculate this as the sum of the sponsorship
-    let raised: Float = 1500.00
-
-    // FIXME(compnerd) calculate this
-    let distance: Float = 1000.00
-
-    view.addSubview(lblStatus)
-    // FIXME(compnerd) properly localise this
-    lblStatus.text =
-        "Through your participation in \(eventsDataSource.events.count) events, " +
-        "you raised \(DataFormatters.formatCurrency(value: raised)) and walked " +
-        "\(DataFormatters.formatDistance(value: distance))!"
-    lblStatus.lineBreakMode = .byWordWrapping
-    lblStatus.numberOfLines = 0
-    lblStatus.textAlignment = .justified
-    lblStatus.textColor = Style.Colors.grey
-    lblStatus.snp.makeConstraints { (make) in
+  private func configureHeader(_ top: inout ConstraintRelatableTarget) {
+    view.addSubview(lblSectionHeader)
+    lblSectionHeader.text = Strings.Events.openVirtualChallenges
+    lblSectionHeader.snp.makeConstraints { (make) in
       make.top.equalTo(top).offset(Style.Padding.p12)
-      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+      make.centerX.equalToSuperview()
     }
-    top = lblStatus.snp.bottom
+    top = lblSectionHeader.snp.bottom
+
+    view.addSubview(lblSectionDetails)
+    // TODO(compnerd) make this translatable
+    lblSectionDetails.text = "Join a virtual challenge, supporting a particular cause to help raise funds for Aga Khan Foundation to address that cause."
+    lblSectionDetails.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p12)
+      make.left.right.equalToSuperview().inset(Style.Padding.p12)
+    }
+    top = lblSectionDetails.snp.bottom
   }
 
-  private func configureEventsTable(_ top: inout ConstraintRelatableTarget) {
-    view.addSubview(tblEvents)
-    tblEvents.allowsSelection = false
-    tblEvents.dataSource = eventTableDataSource
-    tblEvents.estimatedRowHeight = 50 //This is an arbitrary number
-    tblEvents.rowHeight = UITableViewAutomaticDimension
-    tblEvents.register(EventCell.self,
-                       forCellReuseIdentifier: EventCell.identifier)
-    tblEvents.snp.makeConstraints { (make) in
-      make.top.equalTo(top).offset(Style.Padding.p8)
-      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
-      make.bottom.equalTo(bottomLayoutGuide.snp.top).offset(Style.Padding.p12)
+  private func configureTableView(_ top: inout ConstraintRelatableTarget) {
+    view.addSubview(tblTableView)
+
+    tblTableView.snp.makeConstraints { (make) in
+      make.top.equalTo(top)
+      make.bottom.left.right.equalToSuperview().inset(Style.Padding.p12)
     }
-    top = tblEvents.snp.bottom
+    top = tblTableView.snp.bottom
   }
 
   private func configureView() {
     view.backgroundColor = Style.Colors.white
 
+    tblTableView.allowsSelection = false
+    tblTableView.dataSource = events
+    tblTableView.estimatedRowHeight = 2
+    tblTableView.rowHeight = UITableViewAutomaticDimension
+    tblTableView.register(EventCell.self,
+                          forCellReuseIdentifier: EventCell.identifier)
+
+    AKFCausesService.getEvents { [weak self] (result) in
+      switch result {
+      case .success(_, let response):
+        guard let response = response?.arrayValue else { return }
+        for event in response {
+          if let event = Event(json: event) {
+            self?.events.events.append(event)
+          }
+        }
+        self?.tblTableView.reloadData()
+        break
+      case .failed(let error):
+        print("unable to get events: \(String (describing: error?.localizedDescription))")
+        return
+      }
+    }
+
     var top: ConstraintRelatableTarget = topLayoutGuide.snp.bottom
-    configureStatusView(&top)
-    configureEventsTable(&top)
+    configureHeader(&top)
+    configureTableView(&top)
   }
 }
