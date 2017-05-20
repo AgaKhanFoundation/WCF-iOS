@@ -41,4 +41,10 @@ struct DataFormatters {
     formatter.unitStyle = .long
     return formatter.string(fromValue: Double(value), unit: .mile)
   }
+
+  static func formatDateRange(value: (start: Date, end: Date)) -> String {
+    let formatter: DateIntervalFormatter = DateIntervalFormatter()
+    formatter.dateTemplate = "MMMMd"
+    return formatter.string(from: value.start, to: value.end)
+  }
 }

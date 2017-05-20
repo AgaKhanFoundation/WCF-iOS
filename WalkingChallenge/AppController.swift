@@ -96,12 +96,6 @@ extension AppController {
         UITabBarItem(title: Strings.NavBarTitles.leaderboard, image: nil,
                      selectedImage: nil)
 
-    let teamNVC =
-        UINavigationController(rootViewController: TeamViewController())
-    teamNVC.tabBarItem =
-        UITabBarItem(title: Strings.NavBarTitles.team, image: nil,
-                     selectedImage: nil)
-
     let profile =
         UINavigationController(rootViewController: ProfileViewController())
     profile.tabBarItem =
@@ -109,7 +103,14 @@ extension AppController {
                      image: UIImage(imageLiteralResourceName: "person"),
                      selectedImage: nil)
 
-    tabBarController.viewControllers = [ profile, teamNVC, leaderboardNVC ]
+    let events =
+        UINavigationController(rootViewController: EventsViewController())
+    events.tabBarItem =
+        UITabBarItem(title: Strings.NavBarTitles.events,
+                     image: UIImage(imageLiteralResourceName: "event"),
+                     selectedImage: nil)
+
+    tabBarController.viewControllers = [ profile, events, leaderboardNVC ]
   }
 
   private func configureWindow() {

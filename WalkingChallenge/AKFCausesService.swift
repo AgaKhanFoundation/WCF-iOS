@@ -32,12 +32,15 @@ import Foundation
 enum AKFCausesEndPoint {
   internal typealias FacebookID = String
   internal typealias TeamID = Int
+  internal typealias EventID = Int
 
   case healthcheck
   case participant(FacebookID)
   case participants
   case team(TeamID)
   case teams
+  case event(EventID)
+  case events
 }
 
 extension AKFCausesEndPoint {
@@ -53,6 +56,10 @@ extension AKFCausesEndPoint {
       return "/teams/\(id)"
     case .teams:
       return "/teams"
+    case .event(let id):
+      return "/events/\(id)"
+    case .events:
+      return "/events"
     }
   }
 }
@@ -94,5 +101,20 @@ class AKFCausesService: Service {
 
   static func performAPIHealthCheck(completion: ServiceRequestCompletion? = nil) {
     shared.request(endpoint: .healthcheck, completion: completion)
+  }
+
+  static func getEvent(event: Int, completion: ServiceRequestCompletion? = nil) {
+    shared.request(endpoint: .event(event), completion: completion)
+  }
+
+  static func getEvents(completion: ServiceRequestCompletion? = nil) {
+    shared.request(endpoint: .events, completion: completion)
+  }
+
+  static func joinEvent(fbid: String, eventID: Int,
+                        commpletion: ServiceRequestCompletion? = nil) {
+    shared.request(.post, endpoint: .participants,
+                   parameters: JSON(["fbid": fbid, "event": eventID]),
+                   completion: commpletion)
   }
 }
