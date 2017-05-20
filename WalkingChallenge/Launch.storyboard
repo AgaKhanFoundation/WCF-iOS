@@ -21,12 +21,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="RhP-6k-bd8">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="RhP-6k-bd8">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright © 2017 AKDN. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="obG-Y5-kRd">
-                                <rect key="frame" x="20" y="626" width="335" height="21"/>
+                                <rect key="frame" x="14" y="606" width="347" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -34,9 +33,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="obG-Y5-kRd" secondAttribute="centerX" id="5cz-MP-9tL"/>
-                            <constraint firstItem="obG-Y5-kRd" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" symbolic="YES" id="SfN-ll-jLj"/>
-                            <constraint firstAttribute="bottom" secondItem="obG-Y5-kRd" secondAttribute="bottom" constant="20" id="Y44-ml-fuU"/>
+                            <constraint firstAttribute="bottom" secondItem="obG-Y5-kRd" secondAttribute="bottom" constant="40" id="08G-YN-vaY"/>
+                            <constraint firstItem="RhP-6k-bd8" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="B2f-7s-kw8"/>
+                            <constraint firstAttribute="trailing" secondItem="RhP-6k-bd8" secondAttribute="trailing" id="b2W-FP-FVP"/>
+                            <constraint firstItem="obG-Y5-kRd" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="fAx-yb-DeN"/>
+                            <constraint firstItem="RhP-6k-bd8" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="oGr-CR-zkA"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="RhP-6k-bd8" secondAttribute="bottom" id="vcp-wu-Hev"/>
                         </constraints>
                     </view>
                 </viewController>
