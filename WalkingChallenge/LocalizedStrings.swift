@@ -30,12 +30,6 @@
 import Foundation
 
 struct Strings {
-  struct Login {
-    static let title = NSLocalizedString("Walking Challenge", comment: "Title for login screen")
-    static let desciption = NSLocalizedString("Please login in via facebook to continue",
-                                              comment: "Description for login screen")
-  }
-
   struct Profile {
     static let thisWeek = NSLocalizedString("This Week", comment: "This Week range")
     static let thisMonth = NSLocalizedString("This Month", comment: "This Month range")
