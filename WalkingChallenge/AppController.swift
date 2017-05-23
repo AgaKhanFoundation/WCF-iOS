@@ -82,10 +82,10 @@ extension AppController {
     configureTabBarController()
     configureWindow()
 
-    if AccessToken.current != nil {
-      transition(to: .tabBar)
-    } else {
+    if Facebook.id.isEmpty {
       transition(to: .login)
+    } else {
+      transition(to: .tabBar)
     }
   }
 

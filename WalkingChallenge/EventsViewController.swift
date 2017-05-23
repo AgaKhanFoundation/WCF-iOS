@@ -82,10 +82,8 @@ fileprivate class EventCell: UITableViewCell, IdentifiedUITableViewCell {
   }
 
   func join(_ sender: Any) {
-    if let fbid = AccessToken.current?.userId {
-      guard let eventID = eventID else { return }
-      AKFCausesService.joinEvent(fbid: fbid, eventID: eventID)
-    }
+    guard let eventID = eventID else { return }
+    AKFCausesService.joinEvent(fbid: Facebook.id, eventID: eventID)
   }
 }
 

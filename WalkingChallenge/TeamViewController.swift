@@ -247,8 +247,7 @@ class TeamViewController: UIViewController {
     configureTeamStatistics(&top)
     configureTeamLeaderboard(&top)
 
-    guard let fbid = AccessToken.current?.userId else { return }
-    AKFCausesService.getParticipant(fbid: fbid) { [weak self] (result) in
+    AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
       switch result {
       case .success(_, let response):
         guard let response = response else { return }
