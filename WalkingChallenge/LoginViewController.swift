@@ -72,9 +72,7 @@ extension LoginViewController: LoginButtonDelegate {
                                    result: LoginResult) {
     switch result {
     case .success(_, _, _):
-      if let fbid = AccessToken.current?.userId {
-        AKFCausesService.createParticipant(fbid: fbid)
-      }
+      AKFCausesService.createParticipant(fbid: Facebook.id)
       AppController.shared.login()
       break
     case .cancelled:

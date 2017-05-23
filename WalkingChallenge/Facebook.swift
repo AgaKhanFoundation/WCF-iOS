@@ -67,6 +67,10 @@ private enum FriendType {
 class Facebook {
   typealias EnumerationCallback = (_: Friend) -> Void
 
+  static var id: String {
+    get { return AccessToken.current?.userId ?? "" }
+  }
+
   private static func enumerateFriends(type: FriendType, limit: QueryLimit,
                                        cursor: String?,
                                        handler: @escaping EnumerationCallback) {
