@@ -247,12 +247,26 @@ class TeamViewController: UIViewController {
     configureTeamStatistics(&top)
     configureTeamLeaderboard(&top)
 
-    AKFCausesService.getParticipantTeam { [weak self] (team: Team) in
-      self?.lblTeamName.text = team.name
-      // TODO(compnerd) make this localizable
-      self?.btnTeamMembers.setTitle("\(team.members.count) Members \u{203a}",
-                                    for: .normal)
-      self?.leaderboardDataSource = TeamLeaderboardDataSource(team: team)
+    guard let fbid = AccessToken.current?.userId else { return }
+    AKFCausesService.getParticipant(fbid: fbid) { [weak self] (result) in
+      switch result {
+      case .success(_, let response):
+        guard let response = response else { return }
+        if let participant = Participant(json: response) {
+          if let team = participant.team {
+            self?.lblTeamName.text = team.name
+            // TODO(compnerd) make this localizable
+            self?.btnTeamMembers.setTitle("\(team.members.count) Members \u{203a}",
+                                          for: .normal)
+            self?.leaderboardDataSource =
+                TeamLeaderboardDataSource(team: team)
+          }
+        }
+        break
+      case .failed(let error):
+        print("unable to get participant \(String(describing: error?.localizedDescription))")
+        break
+      }
     }
   }
 

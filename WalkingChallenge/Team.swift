@@ -30,20 +30,15 @@
 import Foundation
 
 struct Team {
-  let name: String
+  let name: String?
   let members: [Participant]
 
-  init(name: String, members: [Participant]) {
-    self.name = name
-    self.members = members
-  }
-
   init?(json: JSON) {
-    guard
-      let name = json["name"]?.stringValue
-    else { return nil }
-
-    self.name = name
-    self.members = []
+    self.name = json["name"]?.stringValue
+    if let participants = json["participants"]?.arrayValue {
+      self.members = participants.flatMap { Participant(json: $0) }
+    } else {
+      self.members = []
+    }
   }
 }

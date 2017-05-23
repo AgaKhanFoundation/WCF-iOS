@@ -40,7 +40,6 @@
 		F03D77DE1EA83B0800A70230 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03D77DD1EA83B0800A70230 /* Event.swift */; };
 		F03D77E01EA85BBC00A70230 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03D77DF1EA85BBC00A70230 /* EventsViewController.swift */; };
 		F06254C11ECD5D1700168DD6 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06254C01ECD5D1700168DD6 /* Participant.swift */; };
-		F06254C31ECD616600168DD6 /* AKFCausesServiceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06254C21ECD616600168DD6 /* AKFCausesServiceHelpers.swift */; };
 		F09E7DFA1E860CE300AD8CAF /* ContactPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09E7DF91E860CE300AD8CAF /* ContactPickerDataSource.swift */; };
 		F0A992D61EABF037001621A6 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A992D51EABF037001621A6 /* Formatters.swift */; };
 		F0A992D81EAC3812001621A6 /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A992D71EAC3812001621A6 /* ProgressRing.swift */; };
@@ -93,7 +92,6 @@
 		F03D77DD1EA83B0800A70230 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = WalkingChallenge/Event.swift; sourceTree = "<group>"; };
 		F03D77DF1EA85BBC00A70230 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		F06254C01ECD5D1700168DD6 /* Participant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Participant.swift; path = WalkingChallenge/Participant.swift; sourceTree = "<group>"; };
-		F06254C21ECD616600168DD6 /* AKFCausesServiceHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKFCausesServiceHelpers.swift; sourceTree = "<group>"; };
 		F09E7DF91E860CE300AD8CAF /* ContactPickerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerDataSource.swift; sourceTree = "<group>"; };
 		F0A992D51EABF037001621A6 /* Formatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		F0A992D71EAC3812001621A6 /* ProgressRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressRing.swift; path = WalkingChallenge/ProgressRing.swift; sourceTree = "<group>"; };
@@ -136,7 +134,6 @@
 		266986791E91D50E004D45B4 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				F06254C21ECD616600168DD6 /* AKFCausesServiceHelpers.swift */,
 				F0E182891E80B1DB00665E4F /* Facebook.swift */,
 				26792DD71E91DCB400A7E5BA /* Service.swift */,
 				F004030E1EBF9DAB005E6F10 /* JSON.swift */,
@@ -480,7 +477,6 @@
 				F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */,
 				269E35101E7666EE000726C2 /* Blocks.swift in Sources */,
 				26792DD81E91DCB400A7E5BA /* Service.swift in Sources */,
-				F06254C31ECD616600168DD6 /* AKFCausesServiceHelpers.swift in Sources */,
 				269E35291E767AE1000726C2 /* Collection.swift in Sources */,
 				260D26791E935D4F004189F8 /* ContactPickerViewController.swift in Sources */,
 				F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */,
