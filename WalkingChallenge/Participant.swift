@@ -31,9 +31,11 @@ import Foundation
 
 struct Participant {
   let fbid: String
-  let team: Int?
-  let eventId: Int?
-  let preferredCause: Int?
+  let team: Team?
+  let eventID: Int?
+  let eventName: String?
+  let preferredCauseID: Int?
+  let preferredCauseName: String?
 
   init?(json: JSON) {
     guard
@@ -41,8 +43,14 @@ struct Participant {
     else { return nil }
 
     self.fbid = fbid
-    self.team = json["team"]?.intValue
-    self.eventId = json["event_id"]?.intValue
-    self.preferredCause = json["preferred_cause"]?.intValue
+    if let team = json["team"] {
+      self.team = Team(json: team)
+    } else {
+      self.team = nil
+    }
+    self.eventID = json["event_id"]?.intValue
+    self.eventName = json["event"]?.stringValue
+    self.preferredCauseID = json["cause_id"]?.intValue
+    self.preferredCauseName = json["cause"]?.stringValue
   }
 }

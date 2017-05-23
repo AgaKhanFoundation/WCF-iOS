@@ -423,8 +423,18 @@ class ProfileViewController: UIViewController {
       }
     }
 
-    AKFCausesService.getParticipantTeam { [weak self] (team: Team) in
-      self?.teamLabel.text = team.name
+    guard let fbid = AccessToken.current?.userId else { return }
+    AKFCausesService.getParticipant(fbid: fbid) { [weak self] (result) in
+      switch result {
+      case .success(_, let response):
+        guard let response = response else { return }
+        if let participant = Participant(json: response) {
+          self?.teamLabel.text = participant.team?.name
+        }
+      case .failed(let error):
+        print("unable to get participant: \(String(describing: error?.localizedDescription))")
+        break
+      }
     }
   }
 

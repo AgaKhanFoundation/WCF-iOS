@@ -190,8 +190,21 @@ class TeamMembersViewController: UIViewController {
     configureView()
     configureNavigation()
 
-    AKFCausesService.getParticipantTeam { [weak self] (team: Team) in
-      self?.teamMembersDataSource = TeamMembersDataSource(team: team)
+    guard let fbid = AccessToken.current?.userId else { return }
+    AKFCausesService.getParticipant(fbid: fbid) { [weak self] (result) in
+      switch result {
+      case .success(_, let response):
+        guard let response = response else { return }
+        if let participant = Participant(json: response) {
+          if let team = participant.team {
+            self?.teamMembersDataSource = TeamMembersDataSource(team: team)
+          }
+        }
+        break
+      case .failed(let error):
+        print("unable to get participant \(String(describing: error?.localizedDescription))")
+        break
+      }
     }
   }
 
