@@ -28,7 +28,6 @@
  **/
 
 import Foundation
-
 import UIKit
 
 let cache = NSCache<AnyObject, AnyObject>()
@@ -39,11 +38,29 @@ extension UIImageView {
       self.image = cached
       return
     }
+    
+    guard let url = URL(string: urlString) else {
+      print("URL cannot be created from - \(urlString)")
+      return
+    }
 
     URLSession.shared.dataTask(
-      with: URL(string: urlString)! as URL,
-      completionHandler: { (data, _ response, error) -> Void in
-        guard error == nil, let image = UIImage(data: data!) else { return }
+      with: url,
+      completionHandler: { (data, _, error) -> Void in
+        guard error == nil else {
+          print("error downloading image: \(String(describing: error?.localizedDescription))")
+          return
+        }
+        
+        guard let data = data else {
+          print("data cannot be nil")
+          return
+        }
+        
+        guard let image = UIImage(data: data) else {
+          print("error creating UIImage")
+          return
+        }
 
         onMain {
           cache.setObject(image, forKey: urlString as AnyObject)
