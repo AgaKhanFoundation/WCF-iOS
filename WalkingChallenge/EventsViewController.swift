@@ -29,6 +29,7 @@
 
 import UIKit
 import SnapKit
+import FacebookCore
 
 fileprivate class EventCell: UITableViewCell, IdentifiedUITableViewCell {
   static let identifier: String = "EventCell"
@@ -82,6 +83,7 @@ fileprivate class EventCell: UITableViewCell, IdentifiedUITableViewCell {
 
   func join(_ sender: Any) {
     if let fbid = AccessToken.current?.userId {
+      guard let eventID = eventID else { return }
       AKFCausesService.joinEvent(fbid: fbid, eventID: eventID)
     }
   }

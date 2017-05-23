@@ -99,7 +99,6 @@ class ProfileViewController: UIViewController {
 
   // Views
   let profileImage = UIImageView()
-  let scrollView = BaseScrollView()
   let nameLabel = UILabel(.header)
   let teamLabel = UILabel(.title)
 
@@ -151,7 +150,7 @@ class ProfileViewController: UIViewController {
   }
 
   private func configureHeaderView(_ top: inout ConstraintRelatableTarget) {
-    scrollView.addSubview(profileImage)
+    view.addSubview(profileImage)
     profileImage.contentMode = .scaleAspectFill
     // TODO(compnerd) figure out how to get this value properly
     profileImage.layer.cornerRadius = Style.Size.s128 / 2.0
@@ -163,14 +162,14 @@ class ProfileViewController: UIViewController {
     }
     top = profileImage.snp.bottom
 
-    scrollView.addSubview(nameLabel)
+    view.addSubview(nameLabel)
     nameLabel.snp.makeConstraints { (make) in
       make.top.equalTo(top).offset(Style.Padding.p12)
       make.centerX.equalToSuperview()
     }
     top = nameLabel.snp.bottom
 
-    scrollView.addSubview(teamLabel)
+    view.addSubview(teamLabel)
     teamLabel.textAlignment = .center
     teamLabel.textColor = Style.Colors.grey
     teamLabel.snp.makeConstraints { (make) in
@@ -181,7 +180,7 @@ class ProfileViewController: UIViewController {
   }
 
   private func configureStatisticsView(_ top: inout ConstraintRelatableTarget) {
-    scrollView.addSubview(rangeButton)
+    view.addSubview(rangeButton)
     rangeButton.dataSource = statisticsRangeDataSource
     rangeButton.delegate = self
     rangeButton.selection = UserInfo.profileStatsRange
@@ -190,7 +189,7 @@ class ProfileViewController: UIViewController {
       make.right.equalToSuperview().inset(Style.Padding.p12)
     }
 
-    scrollView.addSubviews([lblRaisedSymbol, lblRaisedAmount])
+    view.addSubviews([lblRaisedSymbol, lblRaisedAmount])
 
     lblRaisedSymbol.text =
         "\(String(describing: Locale.current.currencySymbol!))"
@@ -208,7 +207,7 @@ class ProfileViewController: UIViewController {
       make.left.equalTo(lblRaisedSymbol.snp.right).offset(Style.Padding.p8)
     }
 
-    scrollView.addSubview(prgProgress)
+    view.addSubview(prgProgress)
     prgProgress.summary = ProgressRingSummaryDistance(value: 375.0, max: 500.0)
     prgProgress.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
@@ -217,7 +216,7 @@ class ProfileViewController: UIViewController {
       make.size.equalTo(Style.Size.s128)
     }
 
-    scrollView.addSubviews([lblStreakSymbol, lblStreak, lblStreakUnits])
+    view.addSubviews([lblStreakSymbol, lblStreak, lblStreakUnits])
 
     lblStreakSymbol.text = "\u{1f525}" // :fire:
     lblStreakSymbol.font = UIFont.systemFont(ofSize: 32.0)
@@ -246,7 +245,7 @@ class ProfileViewController: UIViewController {
   private func configureSupportersView(_ top: inout ConstraintRelatableTarget) {
     let kMaxDisplayedSupporters: Int = 2
 
-    scrollView.addSubview(supportersLabel)
+    view.addSubview(supportersLabel)
     // TODO(compnerd) localise this properly
     supportersLabel.text =
         "Current Supporters (\(sponsorshipDataSource.supporters.count))"
@@ -261,7 +260,7 @@ class ProfileViewController: UIViewController {
       let supporterView: SupporterView =
           SupporterView(supporter: sponsorshipDataSource.supporters[supporter])
 
-      scrollView.addSubview(supporterView)
+      view.addSubview(supporterView)
       supporterView.snp.makeConstraints { (make) in
         make.top.equalTo(top).offset(Style.Padding.p8)
         make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
@@ -270,7 +269,7 @@ class ProfileViewController: UIViewController {
     }
 
     if sponsorshipDataSource.supporters.count > kMaxDisplayedSupporters {
-      scrollView.addSubview(showSupportButton)
+      view.addSubview(showSupportButton)
       showSupportButton.setTitle(Strings.Profile.seeMore, for: .normal)
       showSupportButton.addTarget(self, action: #selector(showSupporters),
                                   for: .touchUpInside)
@@ -285,12 +284,7 @@ class ProfileViewController: UIViewController {
   private func configureView() {
     view.backgroundColor = Style.Colors.white
 
-    super.view.addSubview(scrollView)
-    scrollView.snp.makeConstraints { (make) in
-      make.edges.equalTo(view)
-    }
-
-    var top: ConstraintRelatableTarget = scrollView.snp.top
+    var top: ConstraintRelatableTarget = topLayoutGuide.snp.bottom
     configureHeaderView(&top)
     configureStatisticsView(&top)
     configureSupportersView(&top)
