@@ -27,11 +27,30 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-import FacebookCore
+import Foundation
 
-// Eventually map this so some local persistence store/keychain
-struct User {
-  static var isLoggedIn: Bool {
-    return AccessToken.current != nil
+struct Participant {
+  let fbid: String
+  let team: Team?
+  let eventID: Int?
+  let eventName: String?
+  let preferredCauseID: Int?
+  let preferredCauseName: String?
+
+  init?(json: JSON) {
+    guard
+      let fbid = json["fbid"]?.stringValue
+    else { return nil }
+
+    self.fbid = fbid
+    if let team = json["team"] {
+      self.team = Team(json: team)
+    } else {
+      self.team = nil
+    }
+    self.eventID = json["event_id"]?.intValue
+    self.eventName = json["event"]?.stringValue
+    self.preferredCauseID = json["cause_id"]?.intValue
+    self.preferredCauseName = json["cause"]?.stringValue
   }
 }

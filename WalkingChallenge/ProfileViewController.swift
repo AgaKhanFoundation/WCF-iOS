@@ -28,6 +28,7 @@
  **/
 
 import SnapKit
+import FacebookCore
 
 class SupporterView: UIView {
   internal var name: UILabel = UILabel(.body)
@@ -170,8 +171,6 @@ fileprivate class StatisticsRangeDataSource: SelectionButtonDataSource {
 }
 
 class ProfileViewController: UIViewController {
-  let dataSource = ProfileDataSource()
-  private let teamDataSource: TeamDataSource = TeamDataSource()
   fileprivate let statisticsRangeDataSource: StatisticsRangeDataSource =
       StatisticsRangeDataSource()
 
@@ -418,14 +417,24 @@ class ProfileViewController: UIViewController {
   }
 
   private func updateProfile() {
-    dataSource.updateProfile { [weak self] (success: Bool) in
-      guard success else {
-        self?.alert(message: "Error loading profile")
-        return
+    Facebook.getRealName(for: "me") { [weak self] (name) in
+      if let name = name {
+        self?.nameLabel.text = name
       }
+    }
 
-      self?.nameLabel.text = self?.dataSource.realName
-      self?.teamLabel.text = self?.teamDataSource.myTeam.name
+    guard let fbid = AccessToken.current?.userId else { return }
+    AKFCausesService.getParticipant(fbid: fbid) { [weak self] (result) in
+      switch result {
+      case .success(_, let response):
+        guard let response = response else { return }
+        if let participant = Participant(json: response) {
+          self?.teamLabel.text = participant.team?.name
+        }
+      case .failed(let error):
+        print("unable to get participant: \(String(describing: error?.localizedDescription))")
+        break
+      }
     }
   }
 

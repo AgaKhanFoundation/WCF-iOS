@@ -67,6 +67,8 @@
 	<array>
 		<string>fbapi</string>
 		<string>fbauth2</string>
+		<string>fbshareextension</string>
+		<string>fb-messenger-api</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
@@ -75,8 +77,8 @@
 	<key>FacebookAppID</key>
 	<string>246679025737864</string>
 	<key>FacebookDisplayName</key>
-	<string>AKF Walking Challenge</string>
+	<string>AKF Causes</string>
 	<key>LSApplicationCategoryType</key>
-	<string></string>
+	<string>public.app-category.lifestyle</string>
 </dict>
 </plist>

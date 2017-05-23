@@ -82,7 +82,7 @@ extension AppController {
     configureTabBarController()
     configureWindow()
 
-    if User.isLoggedIn {
+    if AccessToken.current != nil {
       transition(to: .tabBar)
     } else {
       transition(to: .login)
@@ -102,13 +102,14 @@ extension AppController {
         UITabBarItem(title: Strings.NavBarTitles.team, image: nil,
                      selectedImage: nil)
 
-    let profileNVC =
+    let profile =
         UINavigationController(rootViewController: ProfileViewController())
-    profileNVC.tabBarItem =
-        UITabBarItem(title: Strings.NavBarTitles.profile, image: nil,
+    profile.tabBarItem =
+        UITabBarItem(title: Strings.NavBarTitles.profile,
+                     image: UIImage(imageLiteralResourceName: "person"),
                      selectedImage: nil)
 
-    tabBarController.viewControllers = [ profileNVC, teamNVC, leaderboardNVC ]
+    tabBarController.viewControllers = [ profile, teamNVC, leaderboardNVC ]
   }
 
   private func configureWindow() {
@@ -122,13 +123,12 @@ extension AppController {
   }
 
   fileprivate func healthCheckServer() {
-    APIClient.getAPIHealthCheck { (result: Result) in
+    AKFCausesService.performAPIHealthCheck { (result) in
       switch result {
-      case .error(let error):
-        print("error: \(error.localizedDescription)")
+      case .failed(let error):
+        print("error: \(String(describing: error?.localizedDescription))")
         break
-      case .success(let response):
-        print("response: \(String(describing: response.response))")
+      case .success(_, _):
         break
       }
     }

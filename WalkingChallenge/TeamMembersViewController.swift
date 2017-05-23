@@ -28,6 +28,7 @@
  **/
 
 import SnapKit
+import FacebookCore
 
 struct TeamMemberCountInfo: CellInfo {
   var cellIdentifier: String = TeamMemberCountCell.identifier
@@ -73,9 +74,9 @@ extension TeamMemberCountCell: ConfigurableUITableViewCell {
 struct TeamMemberInfo: CellInfo {
   var cellIdentifier: String = TeamMemberCell.identifier
 
-  let member: TeamMember
+  let member: Participant
 
-  init(member: TeamMember) {
+  init(member: Participant) {
     self.member = member
   }
 }
@@ -123,7 +124,9 @@ class TeamMemberCell: UITableViewCell, IdentifiedUITableViewCell {
 extension TeamMemberCell: ConfigurableUITableViewCell {
   func configure(_ data: Any) {
     guard let info = data as? TeamMemberInfo else { return }
-    nameLabel.text = info.member.name
+    Facebook.getRealName(for: info.member.fbid) { [weak self] (name) in
+      self?.nameLabel.text = name ?? info.member.fbid
+    }
   }
 }
 
@@ -176,27 +179,33 @@ extension TeamMembersDataSource: UITableViewDataSource {
 }
 
 class TeamMembersViewController: UIViewController {
-  let teamDataSource: TeamDataSource = TeamDataSource()
-  let teamMembersDataSource: TeamMembersDataSource
+  var teamMembersDataSource: TeamMembersDataSource?
 
   let tableView = UITableView()
   let inviteButton = UIButton(type: .system)
-
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    self.teamMembersDataSource =
-        TeamMembersDataSource(team: teamDataSource.myTeam)
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     configureView()
     configureNavigation()
+
+    guard let fbid = AccessToken.current?.userId else { return }
+    AKFCausesService.getParticipant(fbid: fbid) { [weak self] (result) in
+      switch result {
+      case .success(_, let response):
+        guard let response = response else { return }
+        if let participant = Participant(json: response) {
+          if let team = participant.team {
+            self?.teamMembersDataSource = TeamMembersDataSource(team: team)
+          }
+        }
+        break
+      case .failed(let error):
+        print("unable to get participant \(String(describing: error?.localizedDescription))")
+        break
+      }
+    }
   }
 
   private func configureView() {
