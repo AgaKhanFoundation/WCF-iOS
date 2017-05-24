@@ -33,8 +33,7 @@ struct Participant {
   let fbid: String
   let team: Team?
   let event: Event?
-  let preferredCauseID: Int?
-  let preferredCauseName: String?
+  let preferredCause: Cause?
 
   init?(json: JSON) {
     guard
@@ -42,6 +41,7 @@ struct Participant {
     else { return nil }
 
     self.fbid = fbid
+
     if let team = json["team"] {
       self.team = Team(json: team)
     } else {
@@ -52,7 +52,10 @@ struct Participant {
     } else {
       self.event = nil
     }
-    self.preferredCauseID = json["cause_id"]?.intValue
-    self.preferredCauseName = json["cause"]?.stringValue
+    if let cause = json["cause"] {
+      self.preferredCause = Cause(json: cause)
+    } else {
+      self.preferredCause = nil
+    }
   }
 }
