@@ -67,15 +67,15 @@ private enum FriendType {
 class Facebook {
   typealias EnumerationCallback = (_: Friend) -> Void
 
-  static var id: String {
-    get { return AccessToken.current?.userId ?? "" }
+  static var id: String {                                                       // swiftlint:disable:this identifier_name line_length
+    return AccessToken.current?.userId ?? ""
   }
 
   private static func enumerateFriends(type: FriendType, limit: QueryLimit,
                                        cursor: String?,
                                        handler: @escaping EnumerationCallback) {
     var retrieved = 0
-    var params = [ "fields" : "id, name, first_name, last_name, picture" ]
+    var params = [ "fields" : "id, name, first_name, last_name, picture" ]      // swiftlint:disable:this colon
 
     switch limit {
     case .none:
@@ -145,7 +145,7 @@ class Facebook {
   static func getRealName(for fbid: String,
                           completion: @escaping (_: String?) -> Void) {
     let request: GraphRequest =
-        GraphRequest(graphPath: fbid, parameters: ["fields" : "name"],
+        GraphRequest(graphPath: fbid, parameters: ["fields" : "name"],          // swiftlint:disable:this colon
                      accessToken: AccessToken.current, httpMethod: .GET,
                      apiVersion: .defaultVersion)
     request.start { (response, result) in
@@ -164,7 +164,7 @@ class Facebook {
 
   static func getLocation(completion: @escaping (_: String?) -> Void) {
     let request: GraphRequest =
-        GraphRequest(graphPath: "me", parameters: ["fields" : "location"],
+        GraphRequest(graphPath: "me", parameters: ["fields" : "location"],      // swiftlint:disable:this colon
                      accessToken: AccessToken.current, httpMethod: .GET,
                      apiVersion: .defaultVersion)
     request.start { (response, result) in
@@ -195,7 +195,7 @@ class Facebook {
                            completion: @escaping (_: URL?) -> Void) {
     let request: GraphRequest =
         GraphRequest(graphPath: "/\(fbid)/picture?type=large&redirect=false",
-                     parameters: ["fields" : ""],
+                     parameters: ["fields" : ""],                               // swiftlint:disable:this colon
                      accessToken: AccessToken.current, httpMethod: .GET,
                      apiVersion: .defaultVersion)
     request.start { (response, result) in

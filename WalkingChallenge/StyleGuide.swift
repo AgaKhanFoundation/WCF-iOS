@@ -54,7 +54,7 @@ struct Style {
   }
 
   struct Padding {
-    static let p8: CGFloat = 8
+    static let p8: CGFloat = 8                                                  // swiftlint:disable:this identifier_name line_length
     static let p12: CGFloat = 12
     static let p16: CGFloat = 16
     static let p24: CGFloat = 24
