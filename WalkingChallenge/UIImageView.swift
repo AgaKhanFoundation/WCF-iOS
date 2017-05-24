@@ -38,7 +38,7 @@ extension UIImageView {
       self.image = cached
       return
     }
-    
+
     guard let url = URL(string: urlString) else {
       print("URL cannot be created from - \(urlString)")
       return
@@ -51,12 +51,12 @@ extension UIImageView {
           print("error downloading image: \(String(describing: error?.localizedDescription))")
           return
         }
-        
+
         guard let data = data else {
           print("data cannot be nil")
           return
         }
-        
+
         guard let image = UIImage(data: data) else {
           print("error creating UIImage")
           return
