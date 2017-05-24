@@ -105,7 +105,7 @@ extension EventCell: ConfigurableUITableViewCell {
     }
 
     lblEventName.text = event.name
-    lblCause.text = "Cause: \(String(describing: event.causeName))"
+    lblCause.text = "Cause: \(event.cause?.name ?? "")"
     lblTime.text =
         DataFormatters.formatDateRange(value: (event.start, event.end))
 
