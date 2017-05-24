@@ -83,7 +83,15 @@ fileprivate class EventCell: UITableViewCell, IdentifiedUITableViewCell {
 
   func join(_ sender: Any) {
     guard let eventID = eventID else { return }
-    AKFCausesService.joinEvent(fbid: Facebook.id, eventID: eventID)
+    AKFCausesService.joinEvent(fbid: Facebook.id, eventID: eventID) { (result) in
+      switch result {
+      case .failed(let error):
+        print("unable to join event: \(String (describing: error?.localizedDescription))")
+        break
+      case .success(_, _):
+        break
+      }
+    }
   }
 }
 
