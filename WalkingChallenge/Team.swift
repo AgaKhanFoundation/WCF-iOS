@@ -30,7 +30,7 @@
 import Foundation
 
 struct Team {
-  let id: Int?
+  let id: Int?                                                                  // swiftlint:disable:this identifier_name line_length
   let name: String?
   let members: [Participant]
 

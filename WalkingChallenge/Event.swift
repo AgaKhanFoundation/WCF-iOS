@@ -32,7 +32,7 @@ import Foundation
 struct Event {
   let image: URL?
 
-  let id: Int?
+  let id: Int?                                                                  // swiftlint:disable:this identifier_name line_length
   let name: String
   let description: String
   let start: Date
