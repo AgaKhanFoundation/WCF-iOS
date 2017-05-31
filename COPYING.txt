@@ -1,0 +1,7 @@
+Assets:
+Event - material.io
+Gear - material.io
+Person - material.io
+AppIcon - Aga Khan Foundation
+Splash - Aga Khan Foundation
+
