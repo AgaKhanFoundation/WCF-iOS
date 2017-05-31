@@ -35,9 +35,9 @@ fileprivate class EventCell: UITableViewCell, IdentifiedUITableViewCell {
   static let identifier: String = "EventCell"
 
   internal var imgImage: UIImageView = UIImageView()
-  internal var lblEventName: UILabel = UILabel(.header)
-  internal var lblCause: UILabel = UILabel(.body)
-  internal var lblTime: UILabel = UILabel(.body)
+  internal var lblEventName: UILabel = UILabel()
+  internal var lblCause: UILabel = UILabel()
+  internal var lblTime: UILabel = UILabel()
   internal var btnJoin: UIButton = UIButton(type: .system)
 
   internal var eventID: Int?
@@ -79,6 +79,12 @@ fileprivate class EventCell: UITableViewCell, IdentifiedUITableViewCell {
       make.top.equalTo(lblTime.snp.bottom)
       make.right.bottom.equalToSuperview().inset(Style.Padding.p12)
     }
+    btnJoin.setTitleColor(Style.Colors.green, for: .normal)
+    btnJoin.layer.borderColor = Style.Colors.green.cgColor
+    btnJoin.layer.borderWidth = 1.0
+    btnJoin.layer.cornerRadius = 4.0
+    btnJoin.contentEdgeInsets =
+        UIEdgeInsets(top: 4.0, left: 12.0, bottom: 4.0, right: 12.0)
   }
 
   func join(_ sender: Any) {
@@ -104,8 +110,13 @@ extension EventCell: ConfigurableUITableViewCell {
       _ = url
     }
 
+    lblEventName.font = UIFont.preferredFont(forTextStyle: .body)
     lblEventName.text = event.name
-    lblCause.text = "Cause: \(event.cause?.name ?? "")"
+
+    lblCause.font = UIFont.preferredFont(forTextStyle: .footnote)
+    lblCause.text = event.cause?.name
+
+    lblTime.font = UIFont.preferredFont(forTextStyle: .caption1)
     lblTime.text =
         DataFormatters.formatDateRange(value: (event.start, event.end))
 
@@ -140,7 +151,7 @@ extension EventsViewTableDataSource: UITableViewDataSource {
 
 class EventsViewController: UIViewController {
   internal var lblSectionHeader: UILabel = UILabel(.header)
-  internal var lblSectionDetails: UILabel = UILabel(.title)
+  internal var lblSectionDetails: UILabel = UILabel()
   internal var tblTableView: UITableView = UITableView()
   internal var events: EventsViewTableDataSource = EventsViewTableDataSource()
 
@@ -163,17 +174,21 @@ class EventsViewController: UIViewController {
   private func configureHeader(_ top: inout ConstraintRelatableTarget) {
     view.addSubview(lblSectionHeader)
     lblSectionHeader.text = Strings.Events.openVirtualChallenges
+    lblSectionHeader.textColor = Style.Colors.grey
     lblSectionHeader.snp.makeConstraints { (make) in
       make.top.equalTo(top).offset(Style.Padding.p12)
-      make.centerX.equalToSuperview()
+      make.left.equalToSuperview().inset(Style.Padding.p12)
     }
     top = lblSectionHeader.snp.bottom
 
     view.addSubview(lblSectionDetails)
     // TODO(compnerd) make this translatable
-    lblSectionDetails.text = "Join a virtual challenge, supporting a particular cause to help raise funds for Aga Khan Foundation to address that cause."
+    lblSectionDetails.text = "Get started by joining a virtual challenge to raise funds for a cause that you are passionate about!"
+    lblSectionDetails.font = UIFont.preferredFont(forTextStyle: .caption1)
+    lblSectionDetails.numberOfLines = -1
+    lblSectionDetails.textAlignment = .justified
     lblSectionDetails.snp.makeConstraints { (make) in
-      make.top.equalTo(top).offset(Style.Padding.p12)
+      make.top.equalTo(top).offset(Style.Padding.p8)
       make.left.right.equalToSuperview().inset(Style.Padding.p12)
     }
     top = lblSectionDetails.snp.bottom
