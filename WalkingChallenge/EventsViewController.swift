@@ -31,6 +31,10 @@ import UIKit
 import SnapKit
 import FacebookCore
 
+protocol EventCellDelegate: class {
+  func join(event: Event)
+}
+
 fileprivate class EventCell: UITableViewCell, IdentifiedUITableViewCell {
   static let identifier: String = "EventCell"
 
@@ -40,7 +44,8 @@ fileprivate class EventCell: UITableViewCell, IdentifiedUITableViewCell {
   internal var lblTime: UILabel = UILabel()
   internal var btnJoin: UIButton = UIButton(type: .system)
 
-  internal var eventID: Int?
+  internal var event: Event?
+  internal weak var delegate: EventCellDelegate?
 
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -88,22 +93,20 @@ fileprivate class EventCell: UITableViewCell, IdentifiedUITableViewCell {
   }
 
   func join(_ sender: Any) {
-    guard let eventID = eventID else { return }
-    AKFCausesService.joinEvent(fbid: Facebook.id, eventID: eventID) { (result) in
-      switch result {
-      case .failed(let error):
-        print("unable to join event: \(String (describing: error?.localizedDescription))")
-        break
-      case .success(_, _):
-        break
-      }
-    }
+    guard
+      let event = event,
+      let delegate = delegate
+    else { return }
+
+    delegate.join(event: event)
   }
 }
 
 extension EventCell: ConfigurableUITableViewCell {
   func configure(_ data: Any) {
-    guard let event = data as? Event else { return }
+    guard
+      let (event, delegate) = data as? (Event, EventCellDelegate)
+    else { return }
 
     if let url = event.image {
       // TODO(compnerd) asynchronously load and display the image
@@ -120,11 +123,13 @@ extension EventCell: ConfigurableUITableViewCell {
     lblTime.text =
         DataFormatters.formatDateRange(value: (event.start, event.end))
 
-    eventID = event.id
+    self.event = event
+    self.delegate = delegate
   }
 }
 
 internal class EventsViewTableDataSource: NSObject {
+  weak var delegate: EventCellDelegate?
   var events: [Event] = []
 }
 
@@ -144,7 +149,7 @@ extension EventsViewTableDataSource: UITableViewDataSource {
               as? ConfigurableUITableViewCell
     else { return UITableViewCell() }
 
-    cell.configure(info)
+    cell.configure((info, delegate))
     return cell as? UITableViewCell ?? UITableViewCell()
   }
 }
@@ -207,6 +212,8 @@ class EventsViewController: UIViewController {
   private func configureView() {
     view.backgroundColor = Style.Colors.white
 
+    events.delegate = self
+
     tblTableView.allowsSelection = false
     tblTableView.dataSource = events
     tblTableView.estimatedRowHeight = 2
@@ -234,5 +241,21 @@ class EventsViewController: UIViewController {
     var top: ConstraintRelatableTarget = topLayoutGuide.snp.bottom
     configureHeader(&top)
     configureTableView(&top)
+  }
+}
+
+extension EventsViewController: EventCellDelegate {
+  func join(event: Event) {
+    guard let eventID = event.id else { return }
+
+    AKFCausesService.joinEvent(fbid: Facebook.id, eventID: eventID) { (result) in
+      switch result {
+      case .failed(let error):
+        print("unable to join event: \(String (describing: error?.localizedDescription))")
+        break
+      case .success(_, _):
+        break
+      }
+    }
   }
 }
