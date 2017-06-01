@@ -80,6 +80,19 @@ struct Strings {
     static let openVirtualChallenges = NSLocalizedString("Open Virtual Challenges", comment: "Open Virtual Challenges")
   }
 
+  struct Event {
+    static let myStats = NSLocalizedString("My Stats", comment: "My Stats")
+    static let supportersSponsors = NSLocalizedString("Supporters/Sponsors", comment: "Supporters/Sponsors")
+    static let createTeam = NSLocalizedString("Create a Team", comment: "Create a Team")
+  }
+
+  struct EventStatistics {
+    static let missingStats = NSLocalizedString("Statistics are not available until the virtual challenge has started.  Check back soon!",
+                                                comment: "Statistics are not available until the virtual challenge has started.  Check back soon!")
+    static let joinTeam = NSLocalizedString("Do your friends already have a team setup?  Ask the team captain to add you to get started!",
+                                            comment: "Do your friends already have a team setup?  Ask the team captain to add you to get started!")
+  }
+
   struct PastEvents {
     static let title = NSLocalizedString("Past Events", comment: "Past Events")
   }
