@@ -78,18 +78,18 @@ fileprivate class EventCell: UITableViewCell, IdentifiedUITableViewCell {
       make.left.equalTo(lblEventName.snp.left)
     }
 
-    btnJoin.setTitle(Strings.Events.join, for: .normal)
     btnJoin.addTarget(self, action: #selector(join), for: .touchUpInside)
-    btnJoin.snp.makeConstraints { (make) in
-      make.top.equalTo(lblTime.snp.bottom)
-      make.right.bottom.equalToSuperview().inset(Style.Padding.p12)
-    }
+    btnJoin.setTitle(Strings.Events.join, for: .normal)
     btnJoin.setTitleColor(Style.Colors.green, for: .normal)
     btnJoin.layer.borderColor = Style.Colors.green.cgColor
     btnJoin.layer.borderWidth = 1.0
     btnJoin.layer.cornerRadius = 4.0
     btnJoin.contentEdgeInsets =
         UIEdgeInsets(top: 4.0, left: 12.0, bottom: 4.0, right: 12.0)
+    btnJoin.snp.makeConstraints { (make) in
+      make.top.equalTo(lblTime.snp.bottom)
+      make.right.bottom.equalToSuperview().inset(Style.Padding.p12)
+    }
   }
 
   func join(_ sender: Any) {
@@ -254,6 +254,8 @@ extension EventsViewController: EventCellDelegate {
         print("unable to join event: \(String (describing: error?.localizedDescription))")
         break
       case .success(_, _):
+        let controller: EventViewController = EventViewController(event: event)
+        self.navigationController?.pushViewController(controller, animated: true)
         break
       }
     }

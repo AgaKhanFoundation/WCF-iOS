@@ -52,6 +52,9 @@
 		F0CBDA4E1EA6FCAB00BB34F1 /* Supporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CBDA4D1EA6FCAB00BB34F1 /* Supporter.swift */; };
 		F0CBDA501EA6FD7200BB34F1 /* SponsorshipDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CBDA4F1EA6FD7200BB34F1 /* SponsorshipDataSource.swift */; };
 		F0CBDA521EA6FF1D00BB34F1 /* Sponsor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */; };
+		F0CF39801EDE4B41006A7462 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF397F1EDE4B41006A7462 /* EventViewController.swift */; };
+		F0CF39821EDE8EDD006A7462 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF39811EDE8EDD006A7462 /* StatisticsViewController.swift */; };
+		F0CF39841EDE8F19006A7462 /* SponsorsSupportersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF39831EDE8F19006A7462 /* SponsorsSupportersViewController.swift */; };
 		F0E1828A1E80B1DB00665E4F /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E182891E80B1DB00665E4F /* Facebook.swift */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +107,9 @@
 		F0CBDA4D1EA6FCAB00BB34F1 /* Supporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Supporter.swift; path = WalkingChallenge/Supporter.swift; sourceTree = "<group>"; };
 		F0CBDA4F1EA6FD7200BB34F1 /* SponsorshipDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SponsorshipDataSource.swift; path = WalkingChallenge/SponsorshipDataSource.swift; sourceTree = "<group>"; };
 		F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sponsor.swift; path = WalkingChallenge/Sponsor.swift; sourceTree = "<group>"; };
+		F0CF397F1EDE4B41006A7462 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		F0CF39811EDE8EDD006A7462 /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		F0CF39831EDE8F19006A7462 /* SponsorsSupportersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SponsorsSupportersViewController.swift; sourceTree = "<group>"; };
 		F0E182891E80B1DB00665E4F /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
 		FB0F6813102ABF61F968C9BD /* Pods-WalkingChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -304,6 +310,9 @@
 			isa = PBXGroup;
 			children = (
 				F03D77DF1EA85BBC00A70230 /* EventsViewController.swift */,
+				F0CF397F1EDE4B41006A7462 /* EventViewController.swift */,
+				F0CF39811EDE8EDD006A7462 /* StatisticsViewController.swift */,
+				F0CF39831EDE8F19006A7462 /* SponsorsSupportersViewController.swift */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -462,6 +471,8 @@
 			files = (
 				F0C6D50F1EA3DCB2008E3B82 /* Leaderboard.swift in Sources */,
 				F0A992D81EAC3812001621A6 /* ProgressRing.swift in Sources */,
+				F0CF39801EDE4B41006A7462 /* EventViewController.swift in Sources */,
+				F0CF39841EDE8F19006A7462 /* SponsorsSupportersViewController.swift in Sources */,
 				F03D77E01EA85BBC00A70230 /* EventsViewController.swift in Sources */,
 				260D26771E935BCB004189F8 /* ContactPickerCell.swift in Sources */,
 				269E35091E765F24000726C2 /* UIView.swift in Sources */,
@@ -486,6 +497,7 @@
 				F03D77DE1EA83B0800A70230 /* Event.swift in Sources */,
 				F0C6D50D1EA3071A008E3B82 /* SelectionButton.swift in Sources */,
 				269E350C1E765F73000726C2 /* StyleGuide.swift in Sources */,
+				F0CF39821EDE8EDD006A7462 /* StatisticsViewController.swift in Sources */,
 				F09E7DFA1E860CE300AD8CAF /* ContactPickerDataSource.swift in Sources */,
 				F0E1828A1E80B1DB00665E4F /* Facebook.swift in Sources */,
 				269E35241E767807000726C2 /* Team.swift in Sources */,
