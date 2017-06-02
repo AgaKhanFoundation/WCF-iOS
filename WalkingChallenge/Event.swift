@@ -49,9 +49,7 @@ struct Event {
       let team_limit = json["team_limit"]?.intValue
     else { return nil }
 
-    let formatter: DateFormatter = DateFormatter()
-    formatter.locale = Locale(identifier: "en_US_POSIX")
-    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZ"
+    let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
 
     self.id = json["id"]?.intValue
     self.name = name
