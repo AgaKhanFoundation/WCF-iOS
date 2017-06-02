@@ -33,6 +33,7 @@ enum AKFCausesEndPoint {
   internal typealias FacebookID = String
   internal typealias TeamID = Int
   internal typealias EventID = Int
+  internal typealias SourceID = Int
 
   case healthcheck
   case participant(FacebookID)
@@ -41,6 +42,8 @@ enum AKFCausesEndPoint {
   case teams
   case event(EventID)
   case events
+  case source(SourceID)
+  case sources
 }
 
 extension AKFCausesEndPoint {
@@ -60,6 +63,10 @@ extension AKFCausesEndPoint {
       return "/events/\(id)"
     case .events:
       return "/events"
+    case .source(let id):
+      return "/sources/\(id)"
+    case .sources:
+      return "/sources"
     }
   }
 }
@@ -111,10 +118,35 @@ class AKFCausesService: Service {
     shared.request(endpoint: .events, completion: completion)
   }
 
+  static func getSource(source: Int, completion: ServiceRequestCompletion? = nil) {
+    shared.request(endpoint: .source(source), completion: completion)
+  }
+
+  static func getSources(completion: ServiceRequestCompletion? = nil) {
+    shared.request(endpoint: .sources, completion: completion)
+  }
+
   static func joinEvent(fbid: String, eventID: Int,
                         commpletion: ServiceRequestCompletion? = nil) {
     shared.request(.patch, endpoint: .participant(fbid),
                    parameters: JSON(["event_id": eventID]),
                    completion: commpletion)
+  }
+}
+
+extension AKFCausesService {
+  static func getSourceByName(source: String, completion: ServiceRequestCompletion? = nil) {
+    getSources { result in
+      switch result {
+      case .failed(let error):
+        shared.callback(completion, result: .failed(error))
+        break
+      case .success(let status, let response):
+        let source: JSON? =
+            response?.arrayValue?.filter { Source(json: $0)?.name == source }.first
+        shared.callback(completion, result: .success(status, source))
+        break
+      }
+    }
   }
 }
