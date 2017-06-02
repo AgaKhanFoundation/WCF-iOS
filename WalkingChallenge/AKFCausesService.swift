@@ -33,6 +33,7 @@ enum AKFCausesEndPoint {
   internal typealias FacebookID = String
   internal typealias TeamID = Int
   internal typealias EventID = Int
+  internal typealias RecordID = Int
   internal typealias SourceID = Int
 
   case healthcheck
@@ -42,6 +43,8 @@ enum AKFCausesEndPoint {
   case teams
   case event(EventID)
   case events
+  case record(RecordID)
+  case records
   case source(SourceID)
   case sources
 }
@@ -63,6 +66,10 @@ extension AKFCausesEndPoint {
       return "/events/\(id)"
     case .events:
       return "/events"
+    case .record(let id):
+      return "/records/\(id)"
+    case .records:
+      return "/records"
     case .source(let id):
       return "/sources/\(id)"
     case .sources:
@@ -116,6 +123,26 @@ class AKFCausesService: Service {
 
   static func getEvents(completion: ServiceRequestCompletion? = nil) {
     shared.request(endpoint: .events, completion: completion)
+  }
+
+  static func getRecord(record: Int, completion: ServiceRequestCompletion? = nil) {
+    shared.request(endpoint: .record(record), completion: completion)
+  }
+
+  static func createRecord(record: Record,
+                           completion: ServiceRequestCompletion? = nil) {
+    guard let source = record.source?.id else {
+      shared.callback(completion, result: .failed(nil))
+      return
+    }
+
+    let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
+    shared.request(.post, endpoint: .records,
+                   parameters: JSON(["date": formatter.string(from: record.date),
+                                     "distance": record.distance,
+                                     "participant_id": record.fbid,
+                                     "source_id": source]),
+                   completion: completion)
   }
 
   static func getSource(source: Int, completion: ServiceRequestCompletion? = nil) {
