@@ -29,39 +29,31 @@
 
 import Foundation
 
-struct Participant {
+struct Record {
+  let id: Int?                                                                  // swiftlint:disable:this identifier_name line_length
+  let date: Date
+  let distance: Int
   let fbid: String
-  let team: Team?
-  let event: Event?
-  let preferredCause: Cause?
-  let records: [Record]
+  let source: Source?
 
   init?(json: JSON) {
     guard
-      let fbid = json["fbid"]?.stringValue
+      let date = json["date"]?.stringValue,
+      let distance = json["distance"]?.intValue,
+      let fbid = json["participant_id"]?.stringValue
     else { return nil }
 
+    let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
+
+    self.id = json["id"]?.intValue
+    self.date = formatter.date(from: date) ?? Date()
+    self.distance = distance
     self.fbid = fbid
 
-    if let team = json["team"] {
-      self.team = Team(json: team)
+    if let source = json["source"] {
+      self.source = Source(json: source)
     } else {
-      self.team = nil
-    }
-    if let event = json["event"] {
-      self.event = Event(json: event)
-    } else {
-      self.event = nil
-    }
-    if let cause = json["cause"] {
-      self.preferredCause = Cause(json: cause)
-    } else {
-      self.preferredCause = nil
-    }
-    if let records = json["records"]?.arrayValue {
-      self.records = records.flatMap { return Record(json: $0) }
-    } else {
-      self.records = []
+      self.source = nil
     }
   }
 }

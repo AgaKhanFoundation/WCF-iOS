@@ -29,39 +29,16 @@
 
 import Foundation
 
-struct Participant {
-  let fbid: String
-  let team: Team?
-  let event: Event?
-  let preferredCause: Cause?
-  let records: [Record]
+struct Source {
+  let id: Int?                                                                  // swiftlint:disable:this identifier_name line_length
+  let name: String
 
   init?(json: JSON) {
     guard
-      let fbid = json["fbid"]?.stringValue
+      let name = json["name"]?.stringValue
     else { return nil }
 
-    self.fbid = fbid
-
-    if let team = json["team"] {
-      self.team = Team(json: team)
-    } else {
-      self.team = nil
-    }
-    if let event = json["event"] {
-      self.event = Event(json: event)
-    } else {
-      self.event = nil
-    }
-    if let cause = json["cause"] {
-      self.preferredCause = Cause(json: cause)
-    } else {
-      self.preferredCause = nil
-    }
-    if let records = json["records"]?.arrayValue {
-      self.records = records.flatMap { return Record(json: $0) }
-    } else {
-      self.records = []
-    }
+    self.id = json["id"]?.intValue
+    self.name = name
   }
 }
