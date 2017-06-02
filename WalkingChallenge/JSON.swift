@@ -173,9 +173,15 @@ extension JSON: CustomStringConvertible {
       return "[\(String(describing: array))]"
     case .dictionary(let dictionary):
       var repr: String = ""
+      var comma: Bool = false
 
       repr.append("{")
       for (key, value) in dictionary {
+        if comma {
+          repr.append(",")
+        } else {
+          comma = true
+        }
         repr.append("\"\(key)\":\(value)")
       }
       repr.append("}")
