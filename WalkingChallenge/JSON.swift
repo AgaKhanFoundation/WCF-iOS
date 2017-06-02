@@ -190,7 +190,10 @@ extension JSON: CustomStringConvertible {
     case .null:
       return "null"
     case .number(let number):
-      return String(describing: number)
+      let formatter: NumberFormatter = NumberFormatter()
+      formatter.numberStyle = .decimal
+      formatter.minimumFractionDigits = 0
+      return formatter.string(from: NSNumber(value: number)) ?? ""
     case .string(let string):
       return "\"\(string)\""
     }
