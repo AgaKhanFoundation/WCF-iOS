@@ -83,13 +83,11 @@ struct Strings {
   struct Event {
     static let myStats = NSLocalizedString("My Stats", comment: "My Stats")
     static let mySupporters = NSLocalizedString("My Supporters", comment: "My Supporters")
-    static let createTeam = NSLocalizedString("Create a Team", comment: "Create a Team")
+    static let createTeam = NSLocalizedString("Create a New Team", comment: "Create a New Team")
   }
 
   struct EventStatistics {
-    static let missingStats = NSLocalizedString("Statistics are not available until the virtual challenge has started.  Check back soon!",
-                                                comment: "Statistics are not available until the virtual challenge has started.  Check back soon!")
-    static let joinTeam = NSLocalizedString("Do your friends already have a team setup?  Ask the team captain to add you to get started!",
+    static let joinTeam = NSLocalizedString("Do your friends already have a team set up?  Ask the team captain to add you to get started!",
                                             comment: "Do your friends already have a team setup?  Ask the team captain to add you to get started!")
   }
 
