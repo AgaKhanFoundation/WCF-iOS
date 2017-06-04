@@ -36,7 +36,7 @@ class EventViewController: UIViewController {
   var tbrToolBar: UIToolbar = UIToolbar()
   var segSegments: UISegmentedControl =
       UISegmentedControl(items: [Strings.Event.myStats,
-                                 Strings.Event.supportersSponsors])
+                                 Strings.Event.mySupporters])
   var viewControllers: [UIViewController] = []
   weak var currentViewController: UIViewController?
 

@@ -82,7 +82,7 @@ struct Strings {
 
   struct Event {
     static let myStats = NSLocalizedString("My Stats", comment: "My Stats")
-    static let supportersSponsors = NSLocalizedString("Supporters/Sponsors", comment: "Supporters/Sponsors")
+    static let mySupporters = NSLocalizedString("My Supporters", comment: "My Supporters")
     static let createTeam = NSLocalizedString("Create a Team", comment: "Create a Team")
   }
 
