@@ -34,7 +34,9 @@ import SnapKit
 class StatisticsViewController: UIViewController {
   var event: Event?
   var imgMapView: UIImageView = UIImageView()
-  var lblMissingStats: UILabel = UILabel()
+  var lblStarting: UILabel = UILabel()
+  var lblStartingDate: UILabel = UILabel()
+  var lblCreateTeam: UILabel = UILabel()
   var btnCreateTeam: UIButton = UIButton(type: .system)
   var lblJoinTeam: UILabel = UILabel()
 
@@ -53,6 +55,7 @@ class StatisticsViewController: UIViewController {
 
     var top: ConstraintRelatableTarget = topLayoutGuide.snp.bottom
     configureMap(&top)
+    configureStart(&top)
     configureCreation(&top)
   }
 
@@ -62,21 +65,48 @@ class StatisticsViewController: UIViewController {
     imgMapView.snp.makeConstraints { (make) in
       make.top.equalTo(top).offset(Style.Padding.p12)
       make.left.right.equalToSuperview().inset(Style.Padding.p12)
-      make.height.equalToSuperview().dividedBy(2)
+      make.height.equalToSuperview().dividedBy(3)
     }
     top = imgMapView.snp.bottom
   }
 
-  private func configureCreation(_ top: inout ConstraintRelatableTarget) {
-    lblMissingStats.text = Strings.EventStatistics.missingStats
-    lblMissingStats.numberOfLines = -1
-    lblMissingStats.textAlignment = .justified
-    view.addSubview(lblMissingStats)
-    lblMissingStats.snp.makeConstraints { (make) in
+  private func configureStart(_ top: inout ConstraintRelatableTarget) {
+    view.addSubview(lblStarting)
+    // TODO(compnerd) make this translatable
+    lblStarting.text = "This challenge will be starting on"
+    lblStarting.textAlignment = .center
+    lblStarting.snp.makeConstraints { (make) in
       make.top.equalTo(top).offset(Style.Padding.p12)
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
     }
-    top = lblMissingStats.snp.bottom
+    top = lblStarting.snp.bottom
+
+    let formatter: DateFormatter = DateFormatter()
+    formatter.dateStyle = .long
+
+    view.addSubview(lblStartingDate)
+    lblStartingDate.textAlignment = .center
+    lblStartingDate.font = UIFont.systemFont(ofSize: 24.0)
+    lblStartingDate.text = formatter.string(from: event?.start ?? Date())
+    lblStartingDate.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p8)
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+    }
+    top = lblStartingDate.snp.bottom
+  }
+
+  private func configureCreation(_ top: inout ConstraintRelatableTarget) {
+    // TODO(compnerd) make this translatable
+    lblCreateTeam.text = "Multiply your support for \(event?.cause?.name.lowercased() ?? "") by creating a team and walking with friends!"
+    lblCreateTeam.numberOfLines = -1
+    lblCreateTeam.textAlignment = .justified
+    view.addSubview(lblCreateTeam)
+    lblCreateTeam.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p32)
+      make.left.right.equalToSuperview().inset(Style.Padding.p12)
+      make.centerX.equalToSuperview()
+    }
+    top = lblCreateTeam.snp.bottom
 
     btnCreateTeam.setTitle(Strings.Event.createTeam, for: .normal)
     btnCreateTeam.setTitleColor(Style.Colors.green, for: .normal)
@@ -84,7 +114,7 @@ class StatisticsViewController: UIViewController {
     btnCreateTeam.layer.borderWidth = 1.0
     btnCreateTeam.layer.cornerRadius = 4.0
     btnCreateTeam.contentEdgeInsets =
-        UIEdgeInsets(top: 4.0, left: 12.0, bottom: 4.0, right: 12.0)
+        UIEdgeInsets(top: 8.0, left: 24.0, bottom: 8.0, right: 24.0)
     view.addSubview(btnCreateTeam)
     btnCreateTeam.snp.makeConstraints { (make) in
       make.top.equalTo(top).offset(Style.Padding.p12)
