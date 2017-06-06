@@ -31,13 +31,14 @@ import Foundation
 import UIKit
 import SnapKit
 
-protocol CreateTeamDelegate: class {
+@objc protocol CreateTeamDelegate: class {
   func moveForward()
   func moveBackward()
-  func dismiss()
+  func cancel()
 }
 
 class NameTeamViewController: UIViewController {
+  let btnDismiss: UIButton = UIButton(type: .system)
   let lblTitle: UILabel = UILabel()
   let txtName: UITextField = UITextField()
   let uvwBorder: UIView = UIView()
@@ -54,8 +55,23 @@ class NameTeamViewController: UIViewController {
     view.backgroundColor = Style.Colors.white
 
     var top: ConstraintRelatableTarget = topLayoutGuide.snp.bottom
+    configureDismiss(&top)
     configureForm(&top)
     configureNext(&top)
+  }
+
+  private func configureDismiss(_ top: inout ConstraintRelatableTarget) {
+    view.addSubview(btnDismiss)
+    btnDismiss.addTarget(delegate, action: #selector(CreateTeamDelegate.cancel),
+                         for: .touchUpInside)
+    btnDismiss.setTitleColor(Style.Colors.grey, for: .normal)
+    btnDismiss.setImage(UIImage.init(imageLiteralResourceName: "clear"),
+                        for: .normal)
+    btnDismiss.snp.makeConstraints { (make) in
+      make.top.equalToSuperview().inset(Style.Padding.p24)
+      make.right.equalToSuperview().inset(Style.Padding.p12)
+    }
+    top = btnDismiss.snp.bottom
   }
 
   private func configureForm(_ top: inout ConstraintRelatableTarget) {
@@ -91,7 +107,9 @@ class NameTeamViewController: UIViewController {
 
   private func configureNext(_ top: inout ConstraintRelatableTarget) {
     view.addSubview(btnNext)
-    btnNext.addTarget(self, action: #selector(moveForward), for: .touchUpInside)
+    btnNext.addTarget(delegate,
+                      action: #selector(CreateTeamDelegate.moveForward),
+                      for: .touchUpInside)
     btnNext.setTitle(Strings.CreateTeam.next, for: .normal)
     btnNext.setTitleColor(Style.Colors.green, for: .normal)
     btnNext.setTitleColor(Style.Colors.grey, for: .disabled)
@@ -102,12 +120,8 @@ class NameTeamViewController: UIViewController {
     btnNext.layer.borderWidth = 1.0
     btnNext.layer.cornerRadius = 4.0
     btnNext.snp.makeConstraints { (make) in
-      make.bottom.right.equalToSuperview().inset(Style.Padding.p12)
+      make.bottom.right.equalToSuperview().inset(Style.Padding.p24)
     }
-  }
-
-  func moveForward(_ sender: Any) {
-    delegate?.moveForward()
   }
 }
 
@@ -137,6 +151,7 @@ extension NameTeamViewController: UITextFieldDelegate {
 }
 
 class AddFriendsViewController: UIViewController {
+  let btnDismiss: UIButton = UIButton(type: .system)
   let btnNext: UIButton = UIButton(type: .system)
 
   weak var delegate: CreateTeamDelegate?
@@ -150,8 +165,23 @@ class AddFriendsViewController: UIViewController {
     view.backgroundColor = Style.Colors.white
 
     var top: ConstraintRelatableTarget = topLayoutGuide.snp.bottom
+    configureDismiss(&top)
     configureForm(&top)
     configureNext(&top)
+  }
+
+  private func configureDismiss(_ top: inout ConstraintRelatableTarget) {
+    view.addSubview(btnDismiss)
+    btnDismiss.addTarget(delegate, action: #selector(CreateTeamDelegate.cancel),
+                         for: .touchUpInside)
+    btnDismiss.setTitleColor(Style.Colors.grey, for: .normal)
+    btnDismiss.setImage(UIImage.init(imageLiteralResourceName: "clear"),
+                        for: .normal)
+    btnDismiss.snp.makeConstraints { (make) in
+      make.top.equalToSuperview().inset(Style.Padding.p24)
+      make.right.equalToSuperview().inset(Style.Padding.p12)
+    }
+    top = btnDismiss.snp.bottom
   }
 
   private func configureForm(_ top: inout ConstraintRelatableTarget) {
@@ -159,7 +189,9 @@ class AddFriendsViewController: UIViewController {
 
   private func configureNext(_ top: inout ConstraintRelatableTarget) {
     view.addSubview(btnNext)
-    btnNext.addTarget(self, action: #selector(moveForward), for: .touchUpInside)
+    btnNext.addTarget(delegate,
+                      action: #selector(CreateTeamDelegate.moveForward),
+                      for: .touchUpInside)
     btnNext.setTitle(Strings.CreateTeam.next, for: .normal)
     btnNext.setTitleColor(Style.Colors.green, for: .normal)
     btnNext.setTitleColor(Style.Colors.grey, for: .disabled)
@@ -172,10 +204,6 @@ class AddFriendsViewController: UIViewController {
     btnNext.snp.makeConstraints { (make) in
       make.bottom.right.equalToSuperview().inset(Style.Padding.p12)
     }
-  }
-
-  func moveForward(_ sender: Any) {
-    delegate?.moveForward()
   }
 }
 
@@ -222,6 +250,7 @@ extension CreateTeamViewController: CreateTeamDelegate {
     }
   }
 
-  func dismiss() {
+  func cancel() {
+    dismiss(animated: true, completion: nil)
   }
 }
