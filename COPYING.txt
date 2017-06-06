@@ -1,4 +1,5 @@
 Assets:
+Clear - material.io
 Event - material.io
 Gear - material.io
 Person - material.io
