@@ -370,7 +370,7 @@
 				TargetAttributes = {
 					269E34C51E765828000726C2 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = DVZQHUVU8F;
+						DevelopmentTeam = 6SQ8F32998;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -630,10 +630,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WalkingChallenge/WalkingChallenge.entitlements;
-				DEVELOPMENT_TEAM = DVZQHUVU8F;
+				DEVELOPMENT_TEAM = 6SQ8F32998;
 				INFOPLIST_FILE = WalkingChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.akdn.WalkingChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akf.WalkingChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -647,10 +647,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WalkingChallenge/WalkingChallenge.entitlements;
-				DEVELOPMENT_TEAM = DVZQHUVU8F;
+				DEVELOPMENT_TEAM = 6SQ8F32998;
 				INFOPLIST_FILE = WalkingChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.akdn.WalkingChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akf.WalkingChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
