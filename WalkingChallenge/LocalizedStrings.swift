@@ -91,6 +91,11 @@ struct Strings {
                                             comment: "Do your friends already have a team setup?  Ask the team captain to add you to get started!")
   }
 
+  struct CreateTeam {
+    static let nameYourTeam = NSLocalizedString("Name your team", comment: "Name your team")
+    static let next = NSLocalizedString("Next", comment: "Next")
+  }
+
   struct PastEvents {
     static let title = NSLocalizedString("Past Events", comment: "Past Events")
   }
