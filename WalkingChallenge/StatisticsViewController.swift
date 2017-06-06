@@ -108,6 +108,8 @@ class StatisticsViewController: UIViewController {
     }
     top = lblCreateTeam.snp.bottom
 
+    btnCreateTeam.addTarget(self, action: #selector(createTeam),
+                            for: .touchUpInside)
     btnCreateTeam.setTitle(Strings.Event.createTeam, for: .normal)
     btnCreateTeam.setTitleColor(Style.Colors.green, for: .normal)
     btnCreateTeam.layer.borderColor = Style.Colors.green.cgColor
@@ -131,5 +133,10 @@ class StatisticsViewController: UIViewController {
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
     }
     top = lblJoinTeam.snp.bottom
+  }
+
+  func createTeam(_ sender: Any) {
+    let controller: CreateTeamViewController = CreateTeamViewController()
+    present(controller, animated: true, completion: nil)
   }
 }
