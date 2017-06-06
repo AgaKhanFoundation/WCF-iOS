@@ -66,16 +66,6 @@ class EventViewController: UIViewController {
     configureToolbar(&top)
   }
 
-  private func findHairline() -> UIImageView? {
-    let navigationBar = navigationController?.navigationBar
-    return navigationBar?.subviews
-        .flatMap { $0.subviews }
-        .flatMap { $0 as? UIImageView }
-        .filter { $0.bounds.size.width == navigationBar?.bounds.size.width }
-        .filter { $0.bounds.size.height <= 2 }
-        .first
-  }
-
   private func configureToolbar(_ top: inout ConstraintRelatableTarget) {
     tbrToolBar.delegate = self
     tbrToolBar.barTintColor = Style.Colors.darkGreen
@@ -96,7 +86,14 @@ class EventViewController: UIViewController {
       make.centerX.centerY.equalToSuperview()
     }
 
-    findHairline()?.isHidden = true
+    // find the separator and hide it
+    let navigationBar = navigationController?.navigationBar
+    navigationBar?.subviews
+      .flatMap { $0.subviews }
+      .flatMap { $0 as? UIImageView }
+      .filter { $0.bounds.size.width == navigationBar?.bounds.size.width }
+      .filter { $0.bounds.size.height <= 2 }
+      .first?.isHidden = true
   }
 
   func segmentChanged(_ sender: Any) {
