@@ -72,9 +72,11 @@ class StatisticsViewController: UIViewController {
 
   private func configureStart(_ top: inout ConstraintRelatableTarget) {
     view.addSubview(lblStarting)
+    lblStarting.font = UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
+    lblStarting.textAlignment = .center
     // TODO(compnerd) make this translatable
     lblStarting.text = "This challenge will be starting on"
-    lblStarting.textAlignment = .center
+    lblStarting.textColor = Style.Colors.grey
     lblStarting.snp.makeConstraints { (make) in
       make.top.equalTo(top).offset(Style.Padding.p12)
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
@@ -85,21 +87,24 @@ class StatisticsViewController: UIViewController {
     formatter.dateStyle = .long
 
     view.addSubview(lblStartingDate)
+    lblStartingDate.font = UIFont.boldSystemFont(ofSize: 24.0)
     lblStartingDate.textAlignment = .center
-    lblStartingDate.font = UIFont.systemFont(ofSize: 24.0)
     lblStartingDate.text = formatter.string(from: event?.start ?? Date())
+    lblStartingDate.textColor = Style.Colors.grey
     lblStartingDate.snp.makeConstraints { (make) in
-      make.top.equalTo(top).offset(Style.Padding.p8)
+      make.top.equalTo(top).offset(4.0)
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
     }
     top = lblStartingDate.snp.bottom
   }
 
   private func configureCreation(_ top: inout ConstraintRelatableTarget) {
+    lblCreateTeam.font = UIFont.boldSystemFont(ofSize: 14.0)
     // TODO(compnerd) make this translatable
     lblCreateTeam.text = "Multiply your support for \(event?.cause?.name.lowercased() ?? "") by creating a team and walking with friends!"
     lblCreateTeam.numberOfLines = -1
     lblCreateTeam.textAlignment = .justified
+    lblCreateTeam.textColor = Style.Colors.grey
     view.addSubview(lblCreateTeam)
     lblCreateTeam.snp.makeConstraints { (make) in
       make.top.equalTo(top).offset(Style.Padding.p32)
@@ -124,9 +129,11 @@ class StatisticsViewController: UIViewController {
     }
     top = btnCreateTeam.snp.bottom
 
+    lblJoinTeam.font = UIFont.boldSystemFont(ofSize: 12.0)
     lblJoinTeam.text = Strings.EventStatistics.joinTeam
     lblJoinTeam.numberOfLines = -1
     lblJoinTeam.textAlignment = .justified
+    lblJoinTeam.textColor = Style.Colors.grey
     view.addSubview(lblJoinTeam)
     lblJoinTeam.snp.makeConstraints { (make) in
       make.top.equalTo(top).offset(Style.Padding.p12)
