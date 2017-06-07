@@ -110,10 +110,6 @@ class ProfileViewController: UIViewController {
   let lblStreak: UILabel = UILabel(.header)
   let lblStreakUnits: UILabel = UILabel(.caption)
 
-  let sponsorshipDataSource: SponsorshipDataSource = SponsorshipDataSource()
-  let supportersLabel = UILabel(.section)
-  let showSupportButton = UIButton(type: .system)
-
   // MARK: - Lifecycle
 
   override func viewDidLoad() {
@@ -242,52 +238,12 @@ class ProfileViewController: UIViewController {
     top = prgProgress.snp.bottom
   }
 
-  private func configureSupportersView(_ top: inout ConstraintRelatableTarget) {
-    let kMaxDisplayedSupporters: Int = 2
-
-    view.addSubview(supportersLabel)
-    // TODO(compnerd) localise this properly
-    supportersLabel.text =
-        "Current Supporters (\(sponsorshipDataSource.supporters.count))"
-    supportersLabel.snp.makeConstraints { (make) in
-      make.top.equalTo(top).offset(Style.Padding.p12)
-      make.left.equalToSuperview().inset(Style.Padding.p12)
-    }
-    top = supportersLabel.snp.bottom
-
-    for supporter in 0..<min(sponsorshipDataSource.supporters.count,
-                             kMaxDisplayedSupporters) {
-      let supporterView: SupporterView =
-          SupporterView(supporter: sponsorshipDataSource.supporters[supporter])
-
-      view.addSubview(supporterView)
-      supporterView.snp.makeConstraints { (make) in
-        make.top.equalTo(top).offset(Style.Padding.p8)
-        make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
-      }
-      top = supporterView.snp.bottom
-    }
-
-    if sponsorshipDataSource.supporters.count > kMaxDisplayedSupporters {
-      view.addSubview(showSupportButton)
-      showSupportButton.setTitle(Strings.Profile.seeMore, for: .normal)
-      showSupportButton.addTarget(self, action: #selector(showSupporters),
-                                  for: .touchUpInside)
-      showSupportButton.snp.makeConstraints { (make) in
-        make.top.equalTo(top).offset(Style.Padding.p8)
-        make.right.equalToSuperview().inset(Style.Padding.p12)
-      }
-      top = showSupportButton.snp.bottom
-    }
-  }
-
   private func configureView() {
     view.backgroundColor = Style.Colors.white
 
     var top: ConstraintRelatableTarget = topLayoutGuide.snp.bottom
     configureHeaderView(&top)
     configureStatisticsView(&top)
-    configureSupportersView(&top)
   }
 
   private func updateProfile() {
@@ -326,11 +282,6 @@ class ProfileViewController: UIViewController {
   func configureApp() {
     let configurationView = ConfigurationViewController()
     navigationController?.pushViewController(configurationView, animated: true)
-  }
-
-  func showSupporters() {
-    let supportersView = SupportersViewController()
-    navigationController?.pushViewController(supportersView, animated: true)
   }
 }
 
