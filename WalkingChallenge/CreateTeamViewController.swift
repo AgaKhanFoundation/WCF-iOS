@@ -79,11 +79,13 @@ class NameTeamViewController: UIViewController {
   private func configureProgress(_ top: inout ConstraintRelatableTarget) {
     view.addSubview(prgProgress)
     prgProgress.axis = .horizontal
+    prgProgress.progress = 1
     prgProgress.snp.makeConstraints { (make) in
       make.top.equalTo(top).offset(Style.Padding.p64)
       make.height.equalTo(prgProgress.diameter)
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p48)
     }
+    top = prgProgress.snp.bottom
   }
 
   private func configureForm(_ top: inout ConstraintRelatableTarget) {
@@ -164,6 +166,7 @@ extension NameTeamViewController: UITextFieldDelegate {
 
 class AddFriendsViewController: UIViewController {
   let btnDismiss: UIButton = UIButton(type: .system)
+  let prgProgress: ProgressStepsView = ProgressStepsView(withSteps: 4)
   let btnNext: UIButton = UIButton(type: .system)
 
   weak var delegate: CreateTeamDelegate?
@@ -178,6 +181,7 @@ class AddFriendsViewController: UIViewController {
 
     var top: ConstraintRelatableTarget = topLayoutGuide.snp.bottom
     configureDismiss(&top)
+    configureProgress(&top)
     configureForm(&top)
     configureNext(&top)
   }
@@ -194,6 +198,18 @@ class AddFriendsViewController: UIViewController {
       make.right.equalToSuperview().inset(Style.Padding.p12)
     }
     top = btnDismiss.snp.bottom
+  }
+
+  private func configureProgress(_ top: inout ConstraintRelatableTarget) {
+    view.addSubview(prgProgress)
+    prgProgress.axis = .horizontal
+    prgProgress.progress = 2
+    prgProgress.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p64)
+      make.height.equalTo(prgProgress.diameter)
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p48)
+    }
+    top = prgProgress.snp.bottom
   }
 
   private func configureForm(_ top: inout ConstraintRelatableTarget) {
