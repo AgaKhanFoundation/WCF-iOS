@@ -39,6 +39,7 @@ import SnapKit
 
 class NameTeamViewController: UIViewController {
   let btnDismiss: UIButton = UIButton(type: .system)
+  let prgProgress: ProgressStepsView = ProgressStepsView(withSteps: 4)
   let lblTitle: UILabel = UILabel()
   let txtName: UITextField = UITextField()
   let uvwBorder: UIView = UIView()
@@ -56,6 +57,7 @@ class NameTeamViewController: UIViewController {
 
     var top: ConstraintRelatableTarget = topLayoutGuide.snp.bottom
     configureDismiss(&top)
+    configureProgress(&top)
     configureForm(&top)
     configureNext(&top)
   }
@@ -72,6 +74,16 @@ class NameTeamViewController: UIViewController {
       make.right.equalToSuperview().inset(Style.Padding.p12)
     }
     top = btnDismiss.snp.bottom
+  }
+
+  private func configureProgress(_ top: inout ConstraintRelatableTarget) {
+    view.addSubview(prgProgress)
+    prgProgress.axis = .horizontal
+    prgProgress.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p64)
+      make.height.equalTo(prgProgress.diameter)
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p48)
+    }
   }
 
   private func configureForm(_ top: inout ConstraintRelatableTarget) {
