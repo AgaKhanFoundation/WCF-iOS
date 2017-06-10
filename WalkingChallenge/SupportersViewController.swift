@@ -30,9 +30,7 @@
 import UIKit
 import SnapKit
 
-class SponsorCell: UITableViewCell, IdentifiedUITableViewCell {
-  static let identifier: String = "SponsorCell"
-
+class SponsorCell: UITableViewCell {
   internal var picture: UIImageView = UIImageView()
   internal var name: UILabel = UILabel(.body)
   internal var tagline: UILabel = UILabel(.caption)
@@ -85,6 +83,8 @@ class SponsorCell: UITableViewCell, IdentifiedUITableViewCell {
 }
 
 extension SponsorCell: ConfigurableUITableViewCell {
+  static let identifier: String = "SponsorCell"
+
   func configure(_ data: Any) {
     guard let info = data as? Sponsor else { return }
 
@@ -127,9 +127,7 @@ fileprivate class SponsorsDataSource: NSObject, UITableViewDataSource {
   }
 }
 
-class SupporterCell: UITableViewCell, IdentifiedUITableViewCell {
-  static let identifier: String = "SupporterCell"
-
+class SupporterCell: UITableViewCell {
   internal var name: UILabel = UILabel(.body)
   internal var donated: UILabel = UILabel(.body)
   internal var pledged: UILabel = UILabel(.caption)
@@ -168,6 +166,8 @@ class SupporterCell: UITableViewCell, IdentifiedUITableViewCell {
 }
 
 extension SupporterCell: ConfigurableUITableViewCell {
+  static let identifier: String = "SupporterCell"
+
   func configure(_ data: Any) {
     guard let info = data as? Supporter else { return }
 
@@ -293,8 +293,7 @@ class SupportersViewController: UIViewController {
     tblSponsorsTable.allowsSelection = false
     tblSponsorsTable.estimatedRowHeight = 50 //This is an arbitrary number
     tblSponsorsTable.rowHeight = UITableViewAutomaticDimension
-    tblSponsorsTable.register(SponsorCell.self,
-                              forCellReuseIdentifier: SponsorCell.identifier)
+    tblSponsorsTable.register(SponsorCell.self)
     tblSponsorsTable.snp.makeConstraints { (make) in
       make.top.equalTo(top).offset(Style.Padding.p8)
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
@@ -332,8 +331,7 @@ class SupportersViewController: UIViewController {
     view.addSubview(tblSupportersTable)
     tblSupportersTable.dataSource = supportersDataSource
     tblSupportersTable.allowsSelection = false
-    tblSupportersTable.register(SupporterCell.self,
-                                forCellReuseIdentifier: SupporterCell.identifier)
+    tblSupportersTable.register(SupporterCell.self)
     tblSupportersTable.snp.makeConstraints { (make) in
       make.top.equalTo(top).offset(Style.Padding.p8)
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)

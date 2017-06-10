@@ -35,9 +35,7 @@ protocol EventCellDelegate: class {
   func join(event: Event)
 }
 
-fileprivate class EventCell: UITableViewCell, IdentifiedUITableViewCell {
-  static let identifier: String = "EventCell"
-
+fileprivate class EventCell: UITableViewCell {
   internal var imgImage: UIImageView = UIImageView()
   internal var lblEventName: UILabel = UILabel()
   internal var lblCause: UILabel = UILabel()
@@ -103,6 +101,8 @@ fileprivate class EventCell: UITableViewCell, IdentifiedUITableViewCell {
 }
 
 extension EventCell: ConfigurableUITableViewCell {
+  static let identifier: String = "EventCell"
+
   func configure(_ data: Any) {
     guard
       let (event, delegate) = data as? (Event, EventCellDelegate)
@@ -218,8 +218,7 @@ class EventsViewController: UIViewController {
     tblTableView.dataSource = events
     tblTableView.estimatedRowHeight = 2
     tblTableView.rowHeight = UITableViewAutomaticDimension
-    tblTableView.register(EventCell.self,
-                          forCellReuseIdentifier: EventCell.identifier)
+    tblTableView.register(EventCell.self)
 
     AKFCausesService.getEvents { [weak self] (result) in
       switch result {

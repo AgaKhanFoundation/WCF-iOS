@@ -29,12 +29,16 @@
 
 import UIKit
 
-protocol IdentifiedUITableViewCell {
+protocol ConfigurableUITableViewCell {
   static var identifier: String { get }
+  func configure(_: Any)
 }
 
-protocol ConfigurableUITableViewCell {
-  func configure(_: Any)
+extension UITableView {
+  func register<T: ConfigurableUITableViewCell>(_ type: T.Type)
+      where T: UITableViewCell {
+    register(type, forCellReuseIdentifier: type.identifier)
+  }
 }
 
 protocol CellInfo {

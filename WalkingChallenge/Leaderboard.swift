@@ -38,9 +38,7 @@ struct LeaderBoardEntry {
   let raised: Float
 }
 
-class LeaderBoardCell: UITableViewCell, IdentifiedUITableViewCell {
-  static var identifier: String = "LeaderBoardCell"
-
+class LeaderBoardCell: UITableViewCell {
   internal var standing: UILabel = UILabel(.header)
   internal var picture: UIImageView = UIImageView()
   internal var name: UILabel = UILabel(.body)
@@ -99,6 +97,8 @@ class LeaderBoardCell: UITableViewCell, IdentifiedUITableViewCell {
 }
 
 extension LeaderBoardCell: ConfigurableUITableViewCell {
+  static let identifier: String = "LeaderBoardCell"
+
   func configure(_ data: Any) {
     guard let info = data as? LeaderBoardEntry else { return }
 
@@ -122,8 +122,7 @@ class LeaderBoard: UITableView {
     self.allowsSelection = false
     self.dataSource = self
     self.separatorStyle = .none
-    self.register(LeaderBoardCell.self,
-                  forCellReuseIdentifier: LeaderBoardCell.identifier)
+    self.register(LeaderBoardCell.self)
   }
 }
 

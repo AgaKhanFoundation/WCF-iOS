@@ -39,9 +39,7 @@ struct TeamMemberCountInfo: CellInfo {
   }
 }
 
-class TeamMemberCountCell: UITableViewCell, IdentifiedUITableViewCell {
-  static var identifier: String = "TeamMemberCountCell"
-
+class TeamMemberCountCell: UITableViewCell {
   let label: UILabel = UILabel(.header)
 
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -64,6 +62,8 @@ class TeamMemberCountCell: UITableViewCell, IdentifiedUITableViewCell {
 }
 
 extension TeamMemberCountCell: ConfigurableUITableViewCell {
+  static let identifier: String = "TeamMemberCountCell"
+
   func configure(_ data: Any) {
     guard let info = data as? TeamMemberCountInfo else { return }
     // TODO(compnerd) make this localisable
@@ -81,9 +81,7 @@ struct TeamMemberInfo: CellInfo {
   }
 }
 
-class TeamMemberCell: UITableViewCell, IdentifiedUITableViewCell {
-  static let identifier: String = "TeamMemberCell"
-
+class TeamMemberCell: UITableViewCell {
   let pictureView = UIImageView()
   let nameLabel = UILabel(.body)
 
@@ -122,6 +120,8 @@ class TeamMemberCell: UITableViewCell, IdentifiedUITableViewCell {
 }
 
 extension TeamMemberCell: ConfigurableUITableViewCell {
+  static let identifier: String = "TeamMemberCell"
+
   func configure(_ data: Any) {
     guard let info = data as? TeamMemberInfo else { return }
     Facebook.getRealName(for: info.member.fbid) { [weak self] (name) in
@@ -214,10 +214,8 @@ class TeamMembersViewController: UIViewController {
 
     tableView.allowsSelection = false
     tableView.dataSource = teamMembersDataSource
-    tableView.register(TeamMemberCountCell.self,
-                       forCellReuseIdentifier: TeamMemberCountCell.identifier)
-    tableView.register(TeamMemberCell.self,
-                       forCellReuseIdentifier: TeamMemberCell.identifier)
+    tableView.register(TeamMemberCountCell.self)
+    tableView.register(TeamMemberCell.self)
     tableView.snp.makeConstraints { (make) in
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
       make.top.equalToSuperview().inset(Style.Padding.p12)
