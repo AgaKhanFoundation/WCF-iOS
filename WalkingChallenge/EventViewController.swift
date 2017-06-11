@@ -45,7 +45,7 @@ class EventViewController: UIViewController {
 
     self.event = event
     self.viewControllers = [StatisticsViewController(event: event),
-                            SponsorsSupportsViewController(event: event)]
+                            SponsorsSupportersViewController(event: event)]
   }
 
   override func viewDidLoad() {
