@@ -93,6 +93,11 @@ struct Strings {
 
   struct CreateTeam {
     static let nameYourTeam = NSLocalizedString("Name your team", comment: "Name your team")
+    static let addTeamMembers = NSLocalizedString("Add team members to your team", comment: "Add team members to your team")
+    static let yourAppFriends = NSLocalizedString("Below are your friends who already joined the app.",
+                                                  comment: "Below are your friends who already joined the app")
+    static let missingFriends = NSLocalizedString("Don't see one of your friends in this list?",
+                                                  comment: "Don't see one of your friends in this list?")
     static let next = NSLocalizedString("Next", comment: "Next")
   }
 

@@ -37,32 +37,29 @@ import SnapKit
   func cancel()
 }
 
-class NameTeamViewController: UIViewController {
-  let btnDismiss: UIButton = UIButton(type: .system)
-  let prgProgress: ProgressStepsView = ProgressStepsView(withSteps: 4)
-  let lblTitle: UILabel = UILabel()
-  let txtName: UITextField = UITextField()
-  let uvwBorder: UIView = UIView()
-  let btnNext: UIButton = UIButton(type: .system)
+class FormViewController: UIViewController {
+  internal let btnDismiss: UIButton = UIButton(type: .system)
+  internal let prgProgress: ProgressStepsView = ProgressStepsView(withSteps: 4)
+  internal let btnNext: UIButton = UIButton(type: .system)
 
-  weak var delegate: CreateTeamDelegate?
+  internal weak var delegate: CreateTeamDelegate?
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    configureView()
+    initialise()
   }
 
-  private func configureView() {
+  internal func initialise() {
     view.backgroundColor = Style.Colors.white
 
     var top: ConstraintRelatableTarget = topLayoutGuide.snp.bottom
     configureDismiss(&top)
     configureProgress(&top)
-    configureForm(&top)
     configureNext(&top)
+    configureForm(&top)
   }
 
-  private func configureDismiss(_ top: inout ConstraintRelatableTarget) {
+  internal func configureDismiss(_ top: inout ConstraintRelatableTarget) {
     view.addSubview(btnDismiss)
     btnDismiss.addTarget(delegate, action: #selector(CreateTeamDelegate.cancel),
                          for: .touchUpInside)
@@ -76,10 +73,9 @@ class NameTeamViewController: UIViewController {
     top = btnDismiss.snp.bottom
   }
 
-  private func configureProgress(_ top: inout ConstraintRelatableTarget) {
+  internal func configureProgress(_ top: inout ConstraintRelatableTarget) {
     view.addSubview(prgProgress)
     prgProgress.axis = .horizontal
-    prgProgress.progress = 1
     prgProgress.snp.makeConstraints { (make) in
       make.top.equalTo(top).offset(Style.Padding.p64)
       make.height.equalTo(prgProgress.diameter)
@@ -88,7 +84,38 @@ class NameTeamViewController: UIViewController {
     top = prgProgress.snp.bottom
   }
 
-  private func configureForm(_ top: inout ConstraintRelatableTarget) {
+  internal func configureForm(_ top: inout ConstraintRelatableTarget) {
+    fatalError()
+  }
+
+  internal func configureNext(_ top: inout ConstraintRelatableTarget) {
+    view.addSubview(btnNext)
+    btnNext.addTarget(delegate,
+                      action: #selector(CreateTeamDelegate.moveForward),
+                      for: .touchUpInside)
+    btnNext.setTitle(Strings.CreateTeam.next, for: .normal)
+    btnNext.setTitleColor(Style.Colors.green, for: .normal)
+    btnNext.setTitleColor(Style.Colors.grey, for: .disabled)
+    btnNext.contentEdgeInsets =
+      UIEdgeInsets(top: 4.0, left: 12.0, bottom: 4.0, right: 12.0)
+    btnNext.isEnabled = false
+    btnNext.layer.borderColor = Style.Colors.grey.cgColor
+    btnNext.layer.borderWidth = 1.0
+    btnNext.layer.cornerRadius = 4.0
+    btnNext.snp.makeConstraints { (make) in
+      make.bottom.right.equalToSuperview().inset(Style.Padding.p24)
+    }
+  }
+}
+
+class NameTeamViewController: FormViewController {
+  let lblTitle: UILabel = UILabel()
+  let txtName: UITextField = UITextField()
+  let uvwBorder: UIView = UIView()
+
+  override func configureForm(_ top: inout ConstraintRelatableTarget) {
+    prgProgress.progress = 1
+
     lblTitle.text = Strings.CreateTeam.nameYourTeam
     lblTitle.textColor = Style.Colors.grey
     lblTitle.font = UIFont.boldSystemFont(ofSize: 18.0)
@@ -118,25 +145,6 @@ class NameTeamViewController: UIViewController {
                              width: txtName.frame.width, height: 1.0)
     txtName.addSubview(uvwBorder)
   }
-
-  private func configureNext(_ top: inout ConstraintRelatableTarget) {
-    view.addSubview(btnNext)
-    btnNext.addTarget(delegate,
-                      action: #selector(CreateTeamDelegate.moveForward),
-                      for: .touchUpInside)
-    btnNext.setTitle(Strings.CreateTeam.next, for: .normal)
-    btnNext.setTitleColor(Style.Colors.green, for: .normal)
-    btnNext.setTitleColor(Style.Colors.grey, for: .disabled)
-    btnNext.contentEdgeInsets =
-      UIEdgeInsets(top: 4.0, left: 12.0, bottom: 4.0, right: 12.0)
-    btnNext.isEnabled = false
-    btnNext.layer.borderColor = Style.Colors.grey.cgColor
-    btnNext.layer.borderWidth = 1.0
-    btnNext.layer.cornerRadius = 4.0
-    btnNext.snp.makeConstraints { (make) in
-      make.bottom.right.equalToSuperview().inset(Style.Padding.p24)
-    }
-  }
 }
 
 extension NameTeamViewController: UITextFieldDelegate {
@@ -164,74 +172,68 @@ extension NameTeamViewController: UITextFieldDelegate {
   }
 }
 
-class AddFriendsViewController: UIViewController {
-  let btnDismiss: UIButton = UIButton(type: .system)
-  let prgProgress: ProgressStepsView = ProgressStepsView(withSteps: 4)
-  let btnNext: UIButton = UIButton(type: .system)
+class AddFriendsViewController: FormViewController {
+  let lblAddFriends: UILabel = UILabel()
+  let lblAppFriends: UILabel = UILabel()
+  let lblMissing: UILabel = UILabel()
+  let lblSpots: UILabel = UILabel()
+  let tblFriends: UITableView = UITableView()
 
-  weak var delegate: CreateTeamDelegate?
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    configureView()
-  }
-
-  private func configureView() {
-    view.backgroundColor = Style.Colors.white
-
-    var top: ConstraintRelatableTarget = topLayoutGuide.snp.bottom
-    configureDismiss(&top)
-    configureProgress(&top)
-    configureForm(&top)
-    configureNext(&top)
-  }
-
-  private func configureDismiss(_ top: inout ConstraintRelatableTarget) {
-    view.addSubview(btnDismiss)
-    btnDismiss.addTarget(delegate, action: #selector(CreateTeamDelegate.cancel),
-                         for: .touchUpInside)
-    btnDismiss.setTitleColor(Style.Colors.grey, for: .normal)
-    btnDismiss.setImage(UIImage.init(imageLiteralResourceName: "clear"),
-                        for: .normal)
-    btnDismiss.snp.makeConstraints { (make) in
-      make.top.equalToSuperview().inset(Style.Padding.p24)
-      make.right.equalToSuperview().inset(Style.Padding.p12)
-    }
-    top = btnDismiss.snp.bottom
-  }
-
-  private func configureProgress(_ top: inout ConstraintRelatableTarget) {
-    view.addSubview(prgProgress)
-    prgProgress.axis = .horizontal
+  override func configureForm(_ top: inout ConstraintRelatableTarget) {
     prgProgress.progress = 2
-    prgProgress.snp.makeConstraints { (make) in
-      make.top.equalTo(top).offset(Style.Padding.p64)
-      make.height.equalTo(prgProgress.diameter)
-      make.leading.trailing.equalToSuperview().inset(Style.Padding.p48)
-    }
-    top = prgProgress.snp.bottom
-  }
 
-  private func configureForm(_ top: inout ConstraintRelatableTarget) {
-  }
+    lblAddFriends.text = Strings.CreateTeam.addTeamMembers
+    lblAddFriends.textColor = Style.Colors.grey
+    lblAddFriends.font = UIFont.boldSystemFont(ofSize: 18.0)
 
-  private func configureNext(_ top: inout ConstraintRelatableTarget) {
-    view.addSubview(btnNext)
-    btnNext.addTarget(delegate,
-                      action: #selector(CreateTeamDelegate.moveForward),
-                      for: .touchUpInside)
-    btnNext.setTitle(Strings.CreateTeam.next, for: .normal)
-    btnNext.setTitleColor(Style.Colors.green, for: .normal)
-    btnNext.setTitleColor(Style.Colors.grey, for: .disabled)
-    btnNext.contentEdgeInsets =
-      UIEdgeInsets(top: 4.0, left: 12.0, bottom: 4.0, right: 12.0)
-    btnNext.isEnabled = false
-    btnNext.layer.borderColor = Style.Colors.grey.cgColor
-    btnNext.layer.borderWidth = 1.0
-    btnNext.layer.cornerRadius = 4.0
-    btnNext.snp.makeConstraints { (make) in
-      make.bottom.right.equalToSuperview().inset(Style.Padding.p12)
+    view.addSubview(lblAddFriends)
+    lblAddFriends.snp.makeConstraints { (make) in
+      make.top.equalTo(prgProgress.snp.bottom).offset(Style.Padding.p24)
+      make.centerX.equalToSuperview()
     }
+    top = lblAddFriends.snp.bottom
+
+    lblAppFriends.text = Strings.CreateTeam.yourAppFriends
+    lblAppFriends.textColor = Style.Colors.grey
+    lblAppFriends.font = UIFont.boldSystemFont(ofSize: 14.0)
+
+    view.addSubview(lblAppFriends)
+    lblAppFriends.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p12)
+      make.centerX.equalToSuperview()
+    }
+    top = lblAppFriends.snp.bottom
+
+    lblMissing.text = Strings.CreateTeam.missingFriends
+    lblMissing.textColor = Style.Colors.grey
+    lblMissing.font = UIFont.boldSystemFont(ofSize: 12.0)
+
+    view.addSubview(lblMissing)
+    lblMissing.snp.makeConstraints { (make) in
+      make.top.equalTo(top)
+      make.centerX.equalToSuperview()
+    }
+    top = lblMissing.snp.bottom
+
+    // TODO(compnerd) make this localizable
+    lblSpots.text = "You have 10 spots left on your team"
+    lblSpots.textColor = Style.Colors.lightGreen
+    lblSpots.font = UIFont.boldSystemFont(ofSize: 14.0)
+
+    view.addSubview(lblSpots)
+    lblSpots.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p12)
+      make.centerX.equalToSuperview()
+    }
+    top = lblSpots.snp.bottom
+
+    view.addSubview(tblFriends)
+    tblFriends.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p12)
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+      make.bottom.equalTo(btnNext.snp.top).offset(-Style.Padding.p12)
+    }
+    top = tblFriends.snp.bottom
   }
 }
 
