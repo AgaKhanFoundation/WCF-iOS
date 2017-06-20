@@ -109,8 +109,23 @@ class AKFCausesService: Service {
     shared.request(endpoint: .participant(fbid), completion: completion)
   }
 
+  static func createTeam(name: String, completion: ServiceRequestCompletion? = nil) {
+    shared.request(.post, endpoint: .teams, parameters: JSON(["name": name]),
+                   completion: completion)
+  }
+
+  static func deleteTeam(team: Int, completion: ServiceRequestCompletion? = nil) {
+    shared.request(.delete, endpoint: .team(team), completion: completion)
+  }
+
   static func getTeam(team: Int, completion: ServiceRequestCompletion? = nil) {
     shared.request(endpoint: .team(team), completion: completion)
+  }
+
+  static func joinTeam(fbid: String, team: Int,
+                       completion: ServiceRequestCompletion? = nil) {
+    shared.request(.patch, endpoint: .participant(fbid),
+                   parameters: JSON(["team_id": team]), completion: completion)
   }
 
   static func performAPIHealthCheck(completion: ServiceRequestCompletion? = nil) {
