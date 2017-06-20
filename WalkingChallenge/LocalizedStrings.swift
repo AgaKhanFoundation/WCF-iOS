@@ -78,6 +78,7 @@ struct Strings {
     static let title = NSLocalizedString("Events", comment: "Events")
     static let join = NSLocalizedString("Join", comment: "Join")
     static let openVirtualChallenges = NSLocalizedString("Open Virtual Challenges", comment: "Open Virtual Challenges")
+    static let myEvents = NSLocalizedString("My Events", comment: "My Events")
   }
 
   struct Event {
