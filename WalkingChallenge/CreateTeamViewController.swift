@@ -34,6 +34,9 @@ import SnapKit
 protocol CreateTeamDelegate: class {
   func moveForward()
   func cancel()
+
+  func createTeam(name: String)
+  func addTeamMembers(members: [String])
 }
 
 class FormViewController: UIViewController {
@@ -159,7 +162,9 @@ class NameTeamViewController: FormViewController {
   }
 
   override func moveForward(_ sender: UIButton) {
-    // TODO(compnerd) create team
+    if let name = txtName.text {
+      delegate?.createTeam(name: name)
+    }
     super.moveForward(sender)
   }
 }
@@ -275,7 +280,7 @@ class AddFriendsViewController: FormViewController {
   var friends: FriendDataSource = FriendDataSource()
 
   private func fetchData() {
-    Facebook.getTaggableFriends(limit: .none) { (friend) in
+    Facebook.getUserFriends(limit: .none) { (friend) in
       self.friends.friends.append(friend)
       self.tblFriends.reloadData()
     }
@@ -371,7 +376,7 @@ class AddFriendsViewController: FormViewController {
   }
 
   override func moveForward(_ sender: UIButton) {
-    // TODO(compnerd) add selected friends to team
+    delegate?.addTeamMembers(members: Array(friends.selected))
     super.moveForward(sender)
   }
 }
@@ -417,6 +422,7 @@ class CreateTeamViewController: UIViewController {
   internal var controllers: [UIViewController] = []
   internal var index: Int = -1
   internal var event: Event?
+  internal var team: Team?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -434,7 +440,10 @@ class CreateTeamViewController: UIViewController {
     step1.delegate = self
     step1.event = event
 
-    controllers = [step0, step1]
+    // TODO(compnerd) figure out the final screen
+    let step2 = UIViewController()
+
+    controllers = [step0, step1, step2]
     moveForward()
   }
 }
@@ -458,7 +467,49 @@ extension CreateTeamViewController: CreateTeamDelegate {
   }
 
   func cancel() {
-    // TODO(compnerd) delete team
+    if let team = team?.id {
+      AKFCausesService.deleteTeam(team: team) { (result) in
+        switch result {
+        case .failed(let error):
+          print("unable to delete team: \(String(describing: error?.localizedDescription))")
+          break
+        case .success(_, _):
+          break
+        }
+      }
+    }
     dismiss(animated: true, completion: nil)
+  }
+
+  func createTeam(name: String) {
+    guard !name.isEmpty else { return }
+
+    AKFCausesService.createTeam(name: name) { (result) in
+      switch result {
+      case .failed(let error):
+        print("unable to create team: \(String(describing: error?.localizedDescription))")
+        break
+      case .success(_, let response):
+        guard let response = response else { return }
+        self.team = Team(json: response)
+        break
+      }
+    }
+  }
+
+  func addTeamMembers(members: [String]) {
+    guard let team = team?.id else { return }
+
+    for member in [Facebook.id] + members {
+      AKFCausesService.joinTeam(fbid: member, team: team) { (result) in
+        switch result {
+        case .failed(let error):
+          print("unable to add \(member) to \(String(describing: self.team?.name)): \(String(describing: error?.localizedDescription))")
+          break
+        case .success(_, _):
+          break
+        }
+      }
+    }
   }
 }
