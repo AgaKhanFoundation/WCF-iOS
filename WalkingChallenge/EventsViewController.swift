@@ -32,7 +32,10 @@ import SnapKit
 import FacebookCore
 
 protocol EventCellDelegate: class {
+  var isJoined: Bool { get }
+
   func join(event: Event)
+  func showEventDetails(event: Event)
 }
 
 fileprivate class EventCell: UITableViewCell {
@@ -123,6 +126,11 @@ extension EventCell: ConfigurableUITableViewCell {
     lblTime.text =
         DataFormatters.formatDateRange(value: (event.start, event.end))
 
+    btnJoin.isHidden = delegate.isJoined
+    if delegate.isJoined {
+      accessoryType = .disclosureIndicator
+    }
+
     self.event = event
     self.delegate = delegate
   }
@@ -160,6 +168,54 @@ class EventsViewController: UIViewController {
   internal var tblTableView: UITableView = UITableView()
   internal var events: EventsViewTableDataSource = EventsViewTableDataSource()
 
+  internal var participant: Participant?
+
+  private func fetchEvents() {
+    AKFCausesService.getEvents { [weak self] (result) in
+      switch result {
+      case .success(_, let response):
+        guard let response = response?.arrayValue else { return }
+        for event in response {
+          if let event = Event(json: event) {
+            self?.events.events.append(event)
+          }
+        }
+        self?.tblTableView.reloadData()
+        break
+      case .failed(let error):
+        print("unable to get events: \(String (describing: error?.localizedDescription))")
+        return
+      }
+    }
+  }
+
+  private func fetchPartcipantAndEvents() {
+    AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
+      switch result {
+      case .success(_, let response):
+        guard let response = response else { return }
+        self?.participant = Participant(json: response)
+        if let event = self?.participant?.event {
+          self?.events.events.append(event)
+        } else {
+          self?.fetchEvents()
+        }
+        self?.configureView()
+        self?.tblTableView.reloadData()
+        break
+      case .failed(let error):
+        print("unable to get participant: \(String(describing: error?.localizedDescription))")
+        self?.fetchEvents()
+        break
+      }
+    }
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    events.events.removeAll()
+    fetchPartcipantAndEvents()
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -176,7 +232,10 @@ class EventsViewController: UIViewController {
       [NSForegroundColorAttributeName: Style.Colors.white]
   }
 
-  private func configureHeader(_ top: inout ConstraintRelatableTarget) {
+  private func configureOpenHeader(_ top: inout ConstraintRelatableTarget) {
+    lblSectionHeader.removeFromSuperview()
+    lblSectionDetails.removeFromSuperview()
+
     view.addSubview(lblSectionHeader)
     lblSectionHeader.text = Strings.Events.openVirtualChallenges
     lblSectionHeader.textColor = Style.Colors.grey
@@ -199,6 +258,28 @@ class EventsViewController: UIViewController {
     top = lblSectionDetails.snp.bottom
   }
 
+  private func configureJoinedHeader(_ top: inout ConstraintRelatableTarget) {
+    lblSectionHeader.removeFromSuperview()
+    lblSectionDetails.removeFromSuperview()
+
+    view.addSubview(lblSectionHeader)
+    lblSectionHeader.text = Strings.Events.myEvents
+    lblSectionHeader.textColor = Style.Colors.grey
+    lblSectionHeader.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p12)
+      make.leading.equalToSuperview().inset(Style.Padding.p12)
+    }
+    top = lblSectionHeader.snp.bottom
+  }
+
+  private func configureHeader(_ top: inout ConstraintRelatableTarget) {
+    if participant?.event != nil {
+      configureJoinedHeader(&top)
+    } else {
+      configureOpenHeader(&top)
+    }
+  }
+
   private func configureTableView(_ top: inout ConstraintRelatableTarget) {
     view.addSubview(tblTableView)
 
@@ -214,28 +295,11 @@ class EventsViewController: UIViewController {
 
     events.delegate = self
 
-    tblTableView.allowsSelection = false
     tblTableView.dataSource = events
+    tblTableView.delegate = self
     tblTableView.estimatedRowHeight = 2
     tblTableView.rowHeight = UITableViewAutomaticDimension
     tblTableView.register(EventCell.self)
-
-    AKFCausesService.getEvents { [weak self] (result) in
-      switch result {
-      case .success(_, let response):
-        guard let response = response?.arrayValue else { return }
-        for event in response {
-          if let event = Event(json: event) {
-            self?.events.events.append(event)
-          }
-        }
-        self?.tblTableView.reloadData()
-        break
-      case .failed(let error):
-        print("unable to get events: \(String (describing: error?.localizedDescription))")
-        return
-      }
-    }
 
     var top: ConstraintRelatableTarget = topLayoutGuide.snp.bottom
     configureHeader(&top)
@@ -243,7 +307,21 @@ class EventsViewController: UIViewController {
   }
 }
 
+extension EventsViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView,
+                 didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: false)
+    if let event = events.events[safe: indexPath.row] {
+      self.showEventDetails(event: event)
+    }
+  }
+}
+
 extension EventsViewController: EventCellDelegate {
+  var isJoined: Bool {
+    return participant?.event != nil
+  }
+
   func join(event: Event) {
     guard let eventID = event.id else { return }
 
@@ -253,10 +331,14 @@ extension EventsViewController: EventCellDelegate {
         print("unable to join event: \(String (describing: error?.localizedDescription))")
         break
       case .success(_, _):
-        let controller: EventViewController = EventViewController(event: event)
-        self.navigationController?.pushViewController(controller, animated: true)
+        self.showEventDetails(event: event)
         break
       }
     }
+  }
+
+  func showEventDetails(event: Event) {
+    let controller: EventViewController = EventViewController(event: event)
+    self.navigationController?.pushViewController(controller, animated: true)
   }
 }
