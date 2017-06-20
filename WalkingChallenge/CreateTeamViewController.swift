@@ -31,17 +31,17 @@ import Foundation
 import UIKit
 import SnapKit
 
-@objc protocol CreateTeamDelegate: class {
+protocol CreateTeamDelegate: class {
   func moveForward()
-  func moveBackward()
   func cancel()
 }
 
 class FormViewController: UIViewController {
   internal let btnDismiss: UIButton = UIButton(type: .system)
-  internal let prgProgress: ProgressStepsView = ProgressStepsView(withSteps: 4)
+  internal let prgProgress: ProgressStepsView = ProgressStepsView(withSteps: 3)
   internal let btnNext: UIButton = UIButton(type: .system)
 
+  internal var event: Event?
   internal weak var delegate: CreateTeamDelegate?
 
   override func viewDidLoad() {
@@ -61,7 +61,7 @@ class FormViewController: UIViewController {
 
   internal func configureDismiss(_ top: inout ConstraintRelatableTarget) {
     view.addSubview(btnDismiss)
-    btnDismiss.addTarget(delegate, action: #selector(CreateTeamDelegate.cancel),
+    btnDismiss.addTarget(self, action: #selector(cancel(_:)),
                          for: .touchUpInside)
     btnDismiss.setTitleColor(Style.Colors.grey, for: .normal)
     btnDismiss.setImage(UIImage.init(imageLiteralResourceName: "clear"),
@@ -90,14 +90,13 @@ class FormViewController: UIViewController {
 
   internal func configureNext(_ top: inout ConstraintRelatableTarget) {
     view.addSubview(btnNext)
-    btnNext.addTarget(delegate,
-                      action: #selector(CreateTeamDelegate.moveForward),
+    btnNext.addTarget(self, action: #selector(moveForward(_:)),
                       for: .touchUpInside)
     btnNext.setTitle(Strings.CreateTeam.next, for: .normal)
     btnNext.setTitleColor(Style.Colors.green, for: .normal)
     btnNext.setTitleColor(Style.Colors.grey, for: .disabled)
     btnNext.contentEdgeInsets =
-      UIEdgeInsets(top: 4.0, left: 12.0, bottom: 4.0, right: 12.0)
+        UIEdgeInsets(top: 4.0, left: 12.0, bottom: 4.0, right: 12.0)
     btnNext.isEnabled = false
     btnNext.layer.borderColor = Style.Colors.grey.cgColor
     btnNext.layer.borderWidth = 1.0
@@ -106,12 +105,25 @@ class FormViewController: UIViewController {
       make.bottom.right.equalToSuperview().inset(Style.Padding.p24)
     }
   }
+
+  func cancel(_ sender: UIButton) {
+    delegate?.cancel()
+  }
+
+  func moveForward(_ sender: UIButton) {
+    delegate?.moveForward()
+  }
 }
 
 class NameTeamViewController: FormViewController {
   let lblTitle: UILabel = UILabel()
   let txtName: UITextField = UITextField()
   let uvwBorder: UIView = UIView()
+
+  convenience init(delegate: CreateTeamDelegate?) {
+    self.init(nibName: nil, bundle: nil)
+    self.delegate = delegate
+  }
 
   override func configureForm(_ top: inout ConstraintRelatableTarget) {
     prgProgress.progress = 1
@@ -145,6 +157,11 @@ class NameTeamViewController: FormViewController {
                              width: txtName.frame.width, height: 1.0)
     txtName.addSubview(uvwBorder)
   }
+
+  override func moveForward(_ sender: UIButton) {
+    // TODO(compnerd) create team
+    super.moveForward(sender)
+  }
 }
 
 extension NameTeamViewController: UITextFieldDelegate {
@@ -172,6 +189,82 @@ extension NameTeamViewController: UITextFieldDelegate {
   }
 }
 
+class FriendDataSource: NSObject {
+  var friends: [Friend] = []
+  var filteredFriends: [Friend]?
+  var selected: Set<String> = []
+  var filter: String? {
+    didSet {
+      guard let filter = filter else {
+        filteredFriends = nil
+        return
+      }
+
+      filteredFriends = self.friends.filter {
+        $0.displayName.lowercased().contains(filter.lowercased())
+      }
+    }
+  }
+
+  subscript(indexPath: IndexPath) -> Friend? {
+    if filteredFriends != nil {
+      return filteredFriends?[safe: indexPath.row]
+    }
+    return friends[safe: indexPath.row]
+  }
+}
+
+class FriendCell: UITableViewCell {
+}
+
+extension FriendCell: ConfigurableUITableViewCell {
+  static let identifier: String = "FriendCell"
+
+  func configure(_ data: Any) {
+    guard let friend = data as? Friend else { return }
+    textLabel?.text = friend.displayName
+    imageView?.loadImage(from: friend.pictureRawURL)
+  }
+}
+
+extension FriendDataSource: UITableViewDataSource {
+  func tableView(_ tableView: UITableView,
+                 numberOfRowsInSection section: Int) -> Int {
+    return filteredFriends != nil ? (filteredFriends?.count)! : friends.count
+  }
+
+  func tableView(_ tableView: UITableView,
+                 cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard
+        let cell =
+            tableView.dequeueReusableCell(withIdentifier: FriendCell.identifier,
+                                          for: indexPath)
+              as? FriendCell
+    else { return UITableViewCell() }
+
+    if let friend = self[indexPath] {
+      cell.configure(friend)
+      if selected.contains(friend.fbid) {
+        cell.accessoryType = .checkmark
+        cell.isSelected = true
+      } else {
+        cell.accessoryType = .none
+        cell.isSelected = false
+      }
+    }
+
+    return cell
+  }
+
+  func updateSelection(for friend: Friend, selected: Bool) {
+    if selected {
+      self.selected.insert(friend.fbid)
+    } else {
+      self.selected.remove(friend.fbid)
+    }
+  }
+}
+
 class AddFriendsViewController: FormViewController {
   let lblAddFriends: UILabel = UILabel()
   let lblAppFriends: UILabel = UILabel()
@@ -179,8 +272,57 @@ class AddFriendsViewController: FormViewController {
   let lblSpots: UILabel = UILabel()
   let tblFriends: UITableView = UITableView()
 
+  var friends: FriendDataSource = FriendDataSource()
+
+  private func fetchData() {
+    Facebook.getTaggableFriends(limit: .none) { (friend) in
+      self.friends.friends.append(friend)
+      self.tblFriends.reloadData()
+    }
+  }
+
+  private func configureFriendList(_ top: inout ConstraintRelatableTarget) {
+    let sbrSearch: UISearchBar =
+        UISearchBar(frame: CGRect(x: 0, y: 0, width: tblFriends.frame.width,
+                                  height: 44))
+    sbrSearch.delegate = self
+
+    tblFriends.allowsMultipleSelection = true
+    tblFriends.dataSource = friends
+    tblFriends.delegate = self
+    tblFriends.tableHeaderView = sbrSearch
+    tblFriends.register(FriendCell.self)
+    view.addSubview(tblFriends)
+    tblFriends.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p12)
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+      make.bottom.equalTo(btnNext.snp.top).offset(-Style.Padding.p12)
+    }
+    top = tblFriends.snp.bottom
+  }
+
+  internal func renderSpots() {
+    let count = (event?.teamLimit ?? 0) - friends.selected.count - 1
+    // TODO(compnerd) make this localizable
+    if count == 0 {
+      lblSpots.text = "Your team is full."
+      lblSpots.textColor = .red
+    } else {
+      lblSpots.text = "You have \(count) spots left on your team."
+      if count <= 3 {
+        lblSpots.textColor = Style.Colors.yellow
+      } else {
+        lblSpots.textColor = Style.Colors.lightGreen
+      }
+    }
+  }
+
   override func configureForm(_ top: inout ConstraintRelatableTarget) {
+    fetchData()
+
     prgProgress.progress = 2
+    btnNext.isEnabled = true
+    btnNext.layer.borderColor = Style.Colors.green.cgColor
 
     lblAddFriends.text = Strings.CreateTeam.addTeamMembers
     lblAddFriends.textColor = Style.Colors.grey
@@ -215,9 +357,7 @@ class AddFriendsViewController: FormViewController {
     }
     top = lblMissing.snp.bottom
 
-    // TODO(compnerd) make this localizable
-    lblSpots.text = "You have 10 spots left on your team"
-    lblSpots.textColor = Style.Colors.lightGreen
+    renderSpots()
     lblSpots.font = UIFont.boldSystemFont(ofSize: 14.0)
 
     view.addSubview(lblSpots)
@@ -227,19 +367,56 @@ class AddFriendsViewController: FormViewController {
     }
     top = lblSpots.snp.bottom
 
-    view.addSubview(tblFriends)
-    tblFriends.snp.makeConstraints { (make) in
-      make.top.equalTo(top).offset(Style.Padding.p12)
-      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
-      make.bottom.equalTo(btnNext.snp.top).offset(-Style.Padding.p12)
-    }
-    top = tblFriends.snp.bottom
+    configureFriendList(&top)
+  }
+
+  override func moveForward(_ sender: UIButton) {
+    // TODO(compnerd) add selected friends to team
+    super.moveForward(sender)
   }
 }
 
-class CreateTeamViewController: UIPageViewController {
+extension AddFriendsViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView,
+                 didSelectRowAt indexPath: IndexPath) {
+    guard friends.selected.count < (event?.teamLimit ?? 0) - 1 else {
+      tableView.deselectRow(at: indexPath, animated: false)
+      return
+    }
+
+    if let friend = friends[indexPath] {
+      tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+      friends.updateSelection(for: friend, selected: true)
+      renderSpots()
+    }
+  }
+
+  func tableView(_ tableView: UITableView,
+                 didDeselectRowAt indexPath: IndexPath) {
+    if let friend = friends[indexPath] {
+      tableView.cellForRow(at: indexPath)?.accessoryType = .none
+      friends.updateSelection(for: friend, selected: false)
+      renderSpots()
+    }
+  }
+}
+
+extension AddFriendsViewController: UISearchBarDelegate {
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    friends.filter = searchText.isEmpty ? nil : searchText
+    tblFriends.reloadData()
+  }
+
+  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    friends.filter = nil
+    tblFriends.reloadData()
+  }
+}
+
+class CreateTeamViewController: UIViewController {
   internal var controllers: [UIViewController] = []
   internal var index: Int = -1
+  internal var event: Event?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -251,9 +428,11 @@ class CreateTeamViewController: UIPageViewController {
 
     let step0 = NameTeamViewController()
     step0.delegate = self
+    step0.event = event
 
     let step1 = AddFriendsViewController()
     step1.delegate = self
+    step1.event = event
 
     controllers = [step0, step1]
     moveForward()
@@ -261,26 +440,25 @@ class CreateTeamViewController: UIPageViewController {
 }
 
 extension CreateTeamViewController: CreateTeamDelegate {
-  func moveBackward() {
-  }
-
   func moveForward() {
+    // FIXME(compnerd) should we just dismiss in the else?
+    guard let newController = controllers[safe: index + 1] else { return }
+
     if let prevController = controllers[safe: index] {
       prevController.willMove(toParentViewController: nil)
       prevController.view.removeFromSuperview()
     }
 
-    if let newController = controllers[safe: index + 1] {
-      newController.willMove(toParentViewController: self)
-      view.addSubview(newController.view)
-      addChildViewController(newController)
-      newController.didMove(toParentViewController: self)
+    newController.willMove(toParentViewController: self)
+    view.addSubview(newController.view)
+    addChildViewController(newController)
+    newController.didMove(toParentViewController: self)
 
-      index += 1
-    }
+    index += 1
   }
 
   func cancel() {
+    // TODO(compnerd) delete team
     dismiss(animated: true, completion: nil)
   }
 }

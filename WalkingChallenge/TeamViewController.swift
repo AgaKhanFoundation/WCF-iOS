@@ -272,22 +272,11 @@ class TeamViewController: UIViewController {
   // MARK: - Actions
 
   func addTapped() {
-    let picker: ContactPickerViewController = ContactPickerViewController()
-    picker.delegate = self
-
-    present(UINavigationController(rootViewController: picker), animated: true,
-            completion: nil)
   }
 
   func showMembers() {
     navigationController?.pushViewController(TeamMembersViewController(),
                                              animated: true)
-  }
-}
-
-extension TeamViewController: ContactPickerViewControllerDelegate {
-  func contactPickerSelected(friends: [String]) {
-    print(friends)
   }
 }
 

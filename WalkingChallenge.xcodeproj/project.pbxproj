@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2606948B1E7DD1A200BFED76 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2606948A1E7DD1A200BFED76 /* Date.swift */; };
-		260D26771E935BCB004189F8 /* ContactPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260D26761E935BCB004189F8 /* ContactPickerCell.swift */; };
-		260D26791E935D4F004189F8 /* ContactPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260D26781E935D4F004189F8 /* ContactPickerViewController.swift */; };
 		26792DD81E91DCB400A7E5BA /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26792DD71E91DCB400A7E5BA /* Service.swift */; };
 		269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E34C91E765828000726C2 /* AppDelegate.swift */; };
 		269E34D11E765828000726C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 269E34D01E765828000726C2 /* Assets.xcassets */; };
@@ -42,7 +40,6 @@
 		F03D77E01EA85BBC00A70230 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03D77DF1EA85BBC00A70230 /* EventsViewController.swift */; };
 		F06254C11ECD5D1700168DD6 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06254C01ECD5D1700168DD6 /* Participant.swift */; };
 		F0681D271ED53CA70029278E /* Cause.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0681D261ED53CA70029278E /* Cause.swift */; };
-		F09E7DFA1E860CE300AD8CAF /* ContactPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09E7DF91E860CE300AD8CAF /* ContactPickerDataSource.swift */; };
 		F0A992D61EABF037001621A6 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A992D51EABF037001621A6 /* Formatters.swift */; };
 		F0A992D81EAC3812001621A6 /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A992D71EAC3812001621A6 /* ProgressRing.swift */; };
 		F0C6D5051E9DBAE3008E3B82 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6D5041E9DBAE3008E3B82 /* LeaderboardViewController.swift */; };
@@ -65,8 +62,6 @@
 /* Begin PBXFileReference section */
 		00596233B5D00EAEF7957964 /* Pods-WalkingChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.debug.xcconfig"; sourceTree = "<group>"; };
 		2606948A1E7DD1A200BFED76 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		260D26761E935BCB004189F8 /* ContactPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerCell.swift; sourceTree = "<group>"; };
-		260D26781E935D4F004189F8 /* ContactPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerViewController.swift; sourceTree = "<group>"; };
 		26792DD71E91DCB400A7E5BA /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		269E34C61E765828000726C2 /* WalkingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		269E34C91E765828000726C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,7 +96,6 @@
 		F03D77DF1EA85BBC00A70230 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		F06254C01ECD5D1700168DD6 /* Participant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Participant.swift; path = WalkingChallenge/Participant.swift; sourceTree = "<group>"; };
 		F0681D261ED53CA70029278E /* Cause.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Cause.swift; path = WalkingChallenge/Cause.swift; sourceTree = "<group>"; };
-		F09E7DF91E860CE300AD8CAF /* ContactPickerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerDataSource.swift; sourceTree = "<group>"; };
 		F0A992D51EABF037001621A6 /* Formatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		F0A992D71EAC3812001621A6 /* ProgressRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressRing.swift; path = WalkingChallenge/ProgressRing.swift; sourceTree = "<group>"; };
 		F0C6D5041E9DBAE3008E3B82 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
@@ -135,16 +129,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		260D26751E935BB2004189F8 /* ContactPicker */ = {
-			isa = PBXGroup;
-			children = (
-				F09E7DF91E860CE300AD8CAF /* ContactPickerDataSource.swift */,
-				260D26781E935D4F004189F8 /* ContactPickerViewController.swift */,
-				260D26761E935BCB004189F8 /* ContactPickerCell.swift */,
-			);
-			name = ContactPicker;
-			sourceTree = "<group>";
-		};
 		266986791E91D50E004D45B4 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,7 +225,6 @@
 			isa = PBXGroup;
 			children = (
 				269E35131E7668C1000726C2 /* TeamViewController.swift */,
-				260D26751E935BB2004189F8 /* ContactPicker */,
 				F0C6D5061EA07BF8008E3B82 /* TeamMembersViewController.swift */,
 			);
 			name = Team;
@@ -486,7 +469,6 @@
 				F0CF39801EDE4B41006A7462 /* EventViewController.swift in Sources */,
 				F0CF39841EDE8F19006A7462 /* SponsorsSupportersViewController.swift in Sources */,
 				F03D77E01EA85BBC00A70230 /* EventsViewController.swift in Sources */,
-				260D26771E935BCB004189F8 /* ContactPickerCell.swift in Sources */,
 				269E35091E765F24000726C2 /* UIView.swift in Sources */,
 				F0681D271ED53CA70029278E /* Cause.swift in Sources */,
 				F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */,
@@ -503,7 +485,6 @@
 				269E35101E7666EE000726C2 /* Blocks.swift in Sources */,
 				26792DD81E91DCB400A7E5BA /* Service.swift in Sources */,
 				269E35291E767AE1000726C2 /* Collection.swift in Sources */,
-				260D26791E935D4F004189F8 /* ContactPickerViewController.swift in Sources */,
 				F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */,
 				F00524821EE3BD31001C24F0 /* CreateTeamViewController.swift in Sources */,
 				F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */,
@@ -513,7 +494,6 @@
 				F0C6D50D1EA3071A008E3B82 /* SelectionButton.swift in Sources */,
 				269E350C1E765F73000726C2 /* StyleGuide.swift in Sources */,
 				F0CF39821EDE8EDD006A7462 /* StatisticsViewController.swift in Sources */,
-				F09E7DFA1E860CE300AD8CAF /* ContactPickerDataSource.swift in Sources */,
 				F0E1828A1E80B1DB00665E4F /* Facebook.swift in Sources */,
 				269E35241E767807000726C2 /* Team.swift in Sources */,
 				269E35181E7669FB000726C2 /* LocalizedStrings.swift in Sources */,
