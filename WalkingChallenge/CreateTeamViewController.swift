@@ -235,7 +235,7 @@ extension FriendCell: ConfigurableUITableViewCell {
 extension FriendDataSource: UITableViewDataSource {
   func tableView(_ tableView: UITableView,
                  numberOfRowsInSection section: Int) -> Int {
-    return filteredFriends != nil ? (filteredFriends?.count)! : friends.count
+    return filteredFriends?.count ?? friends.count
   }
 
   func tableView(_ tableView: UITableView,
