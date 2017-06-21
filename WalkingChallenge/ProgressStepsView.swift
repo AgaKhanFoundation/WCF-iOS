@@ -33,7 +33,7 @@ import SnapKit
 
 class ProgressStepsView: UIView {
   internal let stkStackView: UIStackView = UIStackView()
-  internal let uvwBar: UIView = UIView()
+  internal var segments: [UIView] = []
 
   var axis: UILayoutConstraintAxis = .horizontal {
     didSet { stkStackView.axis = axis }
@@ -53,15 +53,6 @@ class ProgressStepsView: UIView {
   init(withSteps: Int) {
     steps = withSteps
     super.init(frame: CGRect.zero)
-
-    addSubview(uvwBar)
-    uvwBar.layer.borderColor = Style.Colors.grey.cgColor
-    uvwBar.layer.borderWidth = 3.0
-    uvwBar.snp.makeConstraints { (make) in
-      make.height.equalTo(3.0)
-      make.centerY.equalToSuperview()
-      make.leading.trailing.equalToSuperview()
-    }
 
     addSubview(stkStackView)
     stkStackView.alignment = .leading
@@ -83,6 +74,10 @@ class ProgressStepsView: UIView {
       view.removeFromSuperview()
       stkStackView.removeArrangedSubview(view)
     }
+    for segment in segments {
+      segment.removeFromSuperview()
+    }
+    segments.removeAll()
 
     for step in 1...count {
       let view: UILabel = UILabel()
@@ -99,18 +94,49 @@ class ProgressStepsView: UIView {
       view.textAlignment = .center
       view.textColor = Style.Colors.grey
 
+      let last = stkStackView.subviews.last
+
       stkStackView.addArrangedSubview(view)
+
+      if let last = last {
+        let segment: UIView = UIView()
+        segment.layer.borderWidth = 3.0
+        segment.layer.borderColor = Style.Colors.grey.cgColor
+        addSubview(segment)
+        segment.snp.makeConstraints { (make) in
+          make.height.equalTo(3.0)
+          make.centerY.equalToSuperview()
+          make.left.equalTo(last.snp.centerX)
+          make.right.equalTo(view.snp.centerX)
+        }
+        segments.append(segment)
+      }
+
+      bringSubview(toFront: stkStackView)
     }
   }
 
   private func setProgress(_ steps: Int) {
-    for step in 0..<steps {
+    for step in 0..<(steps - 1) {
       guard
         let view = stkStackView.arrangedSubviews[safe: step] as? UILabel
-        else { return }
+      else { return }
 
-      view.layer.borderColor = Style.Colors.green.cgColor
-      view.textColor = Style.Colors.green
+      view.layer.borderColor = Style.Colors.lightGreen.cgColor
+      view.textColor = Style.Colors.lightGreen
+
+      segments[safe: step - 1]?.layer.borderColor =
+          Style.Colors.lightGreen.cgColor
     }
+
+    segments[safe: steps - 2]?.layer.borderColor =
+        Style.Colors.lightGreen.cgColor
+
+    guard
+      let view = stkStackView.arrangedSubviews[safe: steps - 1] as? UILabel
+    else { return }
+
+    view.layer.borderColor = Style.Colors.green.cgColor
+    view.textColor = Style.Colors.green
   }
 }
