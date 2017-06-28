@@ -130,6 +130,7 @@ extension AppController {
         print("error: \(String(describing: error?.localizedDescription))")
         break
       case .success(_, _):
+        print("healthCheckServer -> success")
         break
       }
     }
