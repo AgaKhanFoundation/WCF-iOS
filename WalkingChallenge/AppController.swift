@@ -41,6 +41,7 @@ class AppController {
 
     configureApp()
     healthCheckServer()
+    uploadHealthKitData()
   }
 
   enum ViewController {
@@ -130,9 +131,45 @@ extension AppController {
         print("error: \(String(describing: error?.localizedDescription))")
         break
       case .success(_, _):
-        print("healthCheckServer -> success")
         break
       }
     }
   }
+
+  fileprivate func uploadHealthKitData() {
+    AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+      switch result {
+      case .success(_, let response):
+        guard let response = response else { return }
+        let participant = Participant(json: response)
+        let lastDate = participant?.lastRecordDate() ?? Date.init(timeIntervalSince1970: 0)
+          let dateInterval = DateInterval.init(start: lastDate, end: Date())
+          let provider = HealthKitDataProvider.init()
+          provider.retrieveStepCountForDateRange(dateInterval, { (distance) in
+            var sourceDict:[String:Any] = Dictionary()
+            sourceDict["id"] = 1
+            sourceDict["name"] = "healthKit"
+            let sourceJSON = JSON(sourceDict)
+            let source = Source.init(json: sourceJSON!)
+            
+            var recordDict:[String:Any] = Dictionary()
+            recordDict["date"] = Date()
+            recordDict["distance"] = distance
+            recordDict["participant_id"] = Facebook.id
+            recordDict["source"] = source
+            let recordJSON = JSON(recordDict)
+            let record = Record.init(json: recordJSON!)
+            
+            if let record = record {
+              AKFCausesService.createRecord(record: record)
+            }
+          })
+        break
+      case .failed(let error):
+        print("unable to get participant: \(String(describing: error?.localizedDescription))")
+        break
+      }
+    }
+  }
+ 
 }

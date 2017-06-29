@@ -64,4 +64,12 @@ struct Participant {
       self.records = []
     }
   }
+  
+  func lastRecordDate() -> Date? {
+    if records.count > 0 {
+      return records.sorted(by: { $0.date.compare($1.date) == .orderedDescending})[0].date
+    }
+
+    return nil
+  }
 }

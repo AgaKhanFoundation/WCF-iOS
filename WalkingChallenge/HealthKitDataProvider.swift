@@ -36,11 +36,11 @@ class HealthKitDataProvider: PedometerDataProvider {
   func retrieveStepCountForDateRange(_ interval: DateInterval,
                                      _ completion: @escaping PedometerCallback) {
     guard
-      let stepCount = HKSampleType.quantityType(forIdentifier: .stepCount)
+      let distance = HKSampleType.quantityType(forIdentifier: .distanceWalkingRunning)
     else { return }
 
-    if HealthKit.store.authorizationStatus(for: stepCount) != .sharingAuthorized {
-      HealthKit.store.requestAuthorization(toShare: nil, read: [stepCount]) {
+    if HealthKit.store.authorizationStatus(for: distance) != .sharingAuthorized {
+      HealthKit.store.requestAuthorization(toShare: nil, read: [distance]) {
         (success: Bool, error: Error?) in
           guard error == nil && success else {
             print("Error getting HealthKit access: \(String(describing: error))")
@@ -49,7 +49,7 @@ class HealthKitDataProvider: PedometerDataProvider {
       }
     }
 
-    query(sampleType: stepCount, interval: interval, completion: completion)
+    query(sampleType: distance, interval: interval, completion: completion)
   }
 
   private func query(sampleType: HKSampleType, interval: DateInterval,
