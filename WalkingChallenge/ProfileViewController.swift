@@ -30,61 +30,6 @@
 import SnapKit
 import FacebookCore
 
-class SupporterView: UIView {
-  internal var name: UILabel = UILabel(.body)
-  internal var donated: UILabel = UILabel(.body)
-  internal var pledged: UILabel = UILabel(.caption)
-
-  convenience init(supporter: Supporter) {
-    self.init(frame: CGRect.zero)
-    self.configure()
-    self.updateForSupporter(supporter)
-  }
-
-  convenience init() {
-    self.init(frame: CGRect.zero)
-    self.configure()
-  }
-
-  private func configure() {
-    // FIXME(compnerd) this should inset eeverything by the desired amount, but
-    // doesnt seem to?
-    layoutMargins =
-        UIEdgeInsets(top: Style.Padding.p12, left: Style.Padding.p12,
-                     bottom: Style.Padding.p12, right: Style.Padding.p12)
-
-    addSubviews([name, donated, pledged])
-
-    name.snp.makeConstraints { (make) in
-      make.left.equalToSuperview()
-      make.centerY.equalToSuperview()
-    }
-
-    donated.snp.makeConstraints { (make) in
-      make.top.equalToSuperview()
-      make.bottom.equalTo(name.snp.centerY)
-      make.right.equalToSuperview()
-      make.left.equalTo(pledged.snp.left)
-    }
-
-    pledged.textColor = Style.Colors.grey
-    pledged.snp.makeConstraints { (make) in
-      make.top.equalTo(name.snp.centerY)
-      make.bottom.equalToSuperview()
-      make.right.equalToSuperview()
-    }
-  }
-
-  func updateForSupporter(_ supporter: Supporter) {
-    name.text = supporter.name
-    // TODO(compnerd) fetch and model this
-    donated.text = DataFormatters.formatCurrency(value: 0)
-    // TODO(compnerd) localise this properly
-    pledged.text =
-        "Pledged \(DataFormatters.formatCurrency(value: supporter.pledged))"
-  }
-}
-
 fileprivate class StatisticsRangeDataSource: SelectionButtonDataSource {
   static let ranges = [Strings.Profile.thisWeek, Strings.Profile.thisMonth,
                        Strings.Profile.thisEvent, Strings.Profile.overall]
