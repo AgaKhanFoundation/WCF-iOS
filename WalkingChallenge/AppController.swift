@@ -127,7 +127,13 @@ extension AppController {
     AKFCausesService.performAPIHealthCheck { (result) in
       switch result {
       case .failed(let error):
-        print("error: \(String(describing: error?.localizedDescription))")
+        /*
+        self.transition(to: .login)
+        if let view = self.window?.rootViewController {
+          view.alert(message: "Unable to access AKF Causes at this time.  Please try again later.\n\n\(error?.localizedDescription ?? "")")
+        }
+        */
+        _ = error
         break
       case .success(_, _):
         break

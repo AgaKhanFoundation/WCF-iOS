@@ -80,47 +80,44 @@ class ProgressArcLayer: CAShapeLayer {
   }
 }
 
-protocol ProgressRingSummary: CustomStringConvertible {
-  var value: Float { get }
-  var max: Float { get }
+protocol ProgressRingSummary {
+  var value: Int { get }
+  var max: Int { get }
+  var units: String { get }
 }
 
 struct ProgressRingSummaryDistance: ProgressRingSummary {
-  var value: Float
-  var max: Float
-}
-
-extension ProgressRingSummaryDistance: CustomStringConvertible {
-  var description: String {
-    return "out of\n\(DataFormatters.formatDistance(value: max))"
-  }
+  var value: Int
+  var max: Int
+  var units: String
 }
 
 class ProgressRing: UIView {
   var progressTintColor: UIColor = #colorLiteral(red: 0.9019607843, green: 0.8980392156, blue: 0.8980392156, alpha: 1) // #e6e5e5
   var trackTintColor: UIColor = Style.Colors.green
   var arcRadius: Float
-  var arcWidth: Float = 16.0
+  var arcWidth: Float
 
   var summary: ProgressRingSummary? {
     didSet {
       if let summary = summary {
-        lblValue.text = String(describing: summary.value)
-        lblSummary.text = String(describing: summary)
-        setProgress(summary.value / summary.max, animated: true)
+        lblValue.text = "\(summary.value)/\(summary.max)"
+        lblUnits.text = summary.units
+        setProgress(Float(summary.value) / Float(summary.max), animated: true)
       }
     }
   }
   var progress: Float = 0.0
 
-  private let lblValue: UILabel = UILabel(.header)
-  private let lblSummary: UILabel = UILabel(.caption)
+  private let lblValue: UILabel = UILabel(.caption)
+  private let lblUnits: UILabel = UILabel(.caption)
 
   private var arcLayer: ProgressArcLayer?
 
-  public init(radius: Float) {
+  public init(radius: Float, width: Float) {
     // FIXME(compnerd) can this be calculated from `frame.size.width / 2`?
     self.arcRadius = radius
+    self.arcWidth = width
     super.init(frame: CGRect.zero)
     self.initialise()
   }
@@ -137,7 +134,7 @@ class ProgressRing: UIView {
 
     var value: Float = progress
     if let summary = summary {
-      value = summary.value / summary.max
+      value = Float(summary.value) / Float(summary.max)
     }
 
     arcLayer = ProgressArcLayer(radius: arcRadius, width: arcWidth, value: value,
@@ -150,16 +147,16 @@ class ProgressRing: UIView {
       make.centerX.equalToSuperview()
     }
 
-    addSubview(lblSummary)
-    lblSummary.snp.makeConstraints { (make) in
+    addSubview(lblUnits)
+    lblUnits.snp.makeConstraints { (make) in
       make.top.equalTo(self.snp.centerY)
       make.centerX.equalToSuperview()
     }
-    lblSummary.textAlignment = .center
+    lblUnits.textAlignment = .center
 
     if let summary = summary {
       lblValue.text = String(describing: summary.value)
-      lblSummary.text = String(describing: summary)
+      lblUnits.text = String(describing: summary)
     }
 
     setProgress(value, animated: true)
