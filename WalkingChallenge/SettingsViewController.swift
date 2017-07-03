@@ -32,7 +32,7 @@ import FacebookLogin
 import UIKit
 import SnapKit
 
-fileprivate class PedometerCell: UITableViewCell, IdentifiedUITableViewCell {
+fileprivate class PedometerCell: UITableViewCell {
   static let identifier: String = "PedometerCell"
 
   internal var devicePicture: UIImageView = UIImageView()
@@ -72,7 +72,7 @@ fileprivate class PedometerCell: UITableViewCell, IdentifiedUITableViewCell {
 }
 
 private enum TableSection: Int {
-  case device = 0
+  case device
   case accountSettings
   case teams
   case helpAndSupport
@@ -80,31 +80,32 @@ private enum TableSection: Int {
 
 struct SettingsInfo {
   let title: String
-  let values: [SettingsnValue]
+  let values: [SettingsValue]
 }
 
-struct SettingsnValue {
+struct SettingsValue {
   let configValue: String
 }
 
 class SettingsSectionDataSource {
-
   let pedometerSource = UserInfo.pedometerSource
-
   // swiftlint:disable line_length
   var settingsInfo: [SettingsInfo] = [
     SettingsInfo(title: Strings.Settings.accountSettings,
-                  values: [SettingsnValue.init(configValue: Strings.Settings.editProfile),SettingsnValue.init(configValue: Strings.Settings.changeEmailAddress),SettingsnValue.init(configValue: Strings.Settings.notificationsAndReminders)]),
-    SettingsInfo(title: Strings.Settings.teams, values: [SettingsnValue.init(configValue: Strings.Settings.changeTeams)]),
-    SettingsInfo(title: Strings.Settings.helpAndSupport, values: [SettingsnValue.init(configValue: Strings.Settings.faq),SettingsnValue.init(configValue: Strings.Settings.contactUs)])
+                  values: [
+                    SettingsValue.init(configValue: Strings.Settings.editProfile),
+                    SettingsValue.init(configValue: Strings.Settings.changeEmailAddress),
+                    SettingsValue.init(configValue: Strings.Settings.notificationsAndReminders)]),
+                    SettingsInfo(title: Strings.Settings.teams, values: [SettingsValue.init(configValue: Strings.Settings.changeTeams)]),
+                    SettingsInfo(title: Strings.Settings.helpAndSupport,
+                                 values: [SettingsValue.init(configValue: Strings.Settings.faq),
+                                          SettingsValue.init(configValue: Strings.Settings.contactUs)])
     ]
   // swiftlint:enable Line Length
 }
 
 fileprivate class SettingsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
-
   internal var dataSource: SettingsSectionDataSource?
-
   override init() {
     super.init()
     self.dataSource = SettingsSectionDataSource()
@@ -129,13 +130,13 @@ fileprivate class SettingsDataSource: NSObject, UITableViewDataSource, UITableVi
 
     switch indexPath.section {
     case TableSection.device.rawValue:
-      // swiftlint:disable force_cast
       let pedometerSource = dataSource?.pedometerSource
       cell = tableView.dequeueReusableCell(withIdentifier: PedometerCell.identifier, for: indexPath)
-      (cell as! PedometerCell).deviceName.text = pedometerSource?.rawValue
-      (cell as! PedometerCell).deviceDescription.text = pedometerSource?.rawValue
-      (cell as! PedometerCell).devicePicture.backgroundColor = UIColor.brown
-      // swiftlint:enable force_cast
+      if let cell = cell as? PedometerCell {
+        cell.deviceName.text = pedometerSource?.rawValue
+        cell.deviceDescription.text = pedometerSource?.rawValue
+        cell.devicePicture.backgroundColor = UIColor.brown
+      }
       break
     default:
       let configure = dataSource?.settingsInfo[safe: indexPath.section - 1]
@@ -159,7 +160,7 @@ fileprivate class SettingsDataSource: NSObject, UITableViewDataSource, UITableVi
 
 class SettingsViewController: UIViewController, LoginButtonDelegate {
   fileprivate var configDataSource = SettingsDataSource()
-  private var configurationTableView: UITableView = UITableView(frame: CGRect.zero, style:UITableViewStyle.grouped)
+  private var configurationTableView: UITableView = UITableView(frame: CGRect.zero, style: UITableViewStyle.grouped)
   internal let btnLogout: LoginButton = LoginButton(readPermissions: [])
 
   override func viewDidLoad() {
@@ -175,7 +176,7 @@ class SettingsViewController: UIViewController, LoginButtonDelegate {
   private func configureSettingsTableView() {
     configurationTableView.dataSource = configDataSource
     configurationTableView.delegate = configDataSource
-    configurationTableView.estimatedRowHeight = 50 //This is an arbitrary number
+    configurationTableView.estimatedRowHeight = 50
     configurationTableView.rowHeight = UITableViewAutomaticDimension
     configurationTableView.allowsSelection = true
     configurationTableView.register(UITableViewCell.self,
@@ -194,6 +195,7 @@ class SettingsViewController: UIViewController, LoginButtonDelegate {
       make.right.equalToSuperview().offset(-Style.Padding.p8)
     }
   }
+
   func loginButtonDidLogOut(_ loginButton: LoginButton) {
     AppController.shared.logout()
   }

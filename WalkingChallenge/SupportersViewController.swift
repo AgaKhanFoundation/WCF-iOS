@@ -291,7 +291,7 @@ class SupportersViewController: UIViewController {
     view.addSubview(tblSponsorsTable)
     tblSponsorsTable.dataSource = sponsorsDataSource
     tblSponsorsTable.allowsSelection = false
-    tblSponsorsTable.estimatedRowHeight = 50 //This is an arbitrary number
+    tblSponsorsTable.estimatedRowHeight = 50
     tblSponsorsTable.rowHeight = UITableViewAutomaticDimension
     tblSponsorsTable.register(SponsorCell.self)
     tblSponsorsTable.snp.makeConstraints { (make) in
