@@ -80,7 +80,7 @@ class TeamViewController: UIViewController {
 
   let lblRaisedSymbol: UILabel = UILabel()
   let lblRaisedAmount: UILabel = UILabel(.header)
-  let prgProgress: ProgressRing = ProgressRing(radius: 64.0)
+  let prgProgress: ProgressRing = ProgressRing(radius: 64.0, width: 16.0)
   let lblAchievementsSymbol: UILabel = UILabel()
   let lblAchievements: UILabel = UILabel(.header)
   let lblAchievementsUnits: UILabel = UILabel(.caption)
@@ -174,7 +174,8 @@ class TeamViewController: UIViewController {
     }
 
     view.addSubview(prgProgress)
-    prgProgress.summary = ProgressRingSummaryDistance(value: 900.0, max: 1200.0)
+    prgProgress.summary =
+        ProgressRingSummaryDistance(value: 900, max: 1200, units: "miles")
     prgProgress.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
       make.centerY.equalTo(lblRaisedAmount.snp.centerY)

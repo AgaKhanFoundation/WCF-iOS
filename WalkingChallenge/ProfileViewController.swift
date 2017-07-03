@@ -30,61 +30,6 @@
 import SnapKit
 import FacebookCore
 
-class SupporterView: UIView {
-  internal var name: UILabel = UILabel(.body)
-  internal var donated: UILabel = UILabel(.body)
-  internal var pledged: UILabel = UILabel(.caption)
-
-  convenience init(supporter: Supporter) {
-    self.init(frame: CGRect.zero)
-    self.configure()
-    self.updateForSupporter(supporter)
-  }
-
-  convenience init() {
-    self.init(frame: CGRect.zero)
-    self.configure()
-  }
-
-  private func configure() {
-    // FIXME(compnerd) this should inset eeverything by the desired amount, but
-    // doesnt seem to?
-    layoutMargins =
-        UIEdgeInsets(top: Style.Padding.p12, left: Style.Padding.p12,
-                     bottom: Style.Padding.p12, right: Style.Padding.p12)
-
-    addSubviews([name, donated, pledged])
-
-    name.snp.makeConstraints { (make) in
-      make.left.equalToSuperview()
-      make.centerY.equalToSuperview()
-    }
-
-    donated.snp.makeConstraints { (make) in
-      make.top.equalToSuperview()
-      make.bottom.equalTo(name.snp.centerY)
-      make.right.equalToSuperview()
-      make.left.equalTo(pledged.snp.left)
-    }
-
-    pledged.textColor = Style.Colors.grey
-    pledged.snp.makeConstraints { (make) in
-      make.top.equalTo(name.snp.centerY)
-      make.bottom.equalToSuperview()
-      make.right.equalToSuperview()
-    }
-  }
-
-  func updateForSupporter(_ supporter: Supporter) {
-    name.text = supporter.name
-    // TODO(compnerd) fetch and model this
-    donated.text = DataFormatters.formatCurrency(value: 0)
-    // TODO(compnerd) localise this properly
-    pledged.text =
-        "Pledged \(DataFormatters.formatCurrency(value: supporter.pledged))"
-  }
-}
-
 fileprivate class StatisticsRangeDataSource: SelectionButtonDataSource {
   static let ranges = [Strings.Profile.thisWeek, Strings.Profile.thisMonth,
                        Strings.Profile.thisEvent, Strings.Profile.overall]
@@ -93,24 +38,150 @@ fileprivate class StatisticsRangeDataSource: SelectionButtonDataSource {
   var selection: Int?
 }
 
+class Badge: UIView {
+  var lblTitle: UILabel = UILabel()
+
+  init(withTitle title: String) {
+    super.init(frame: CGRect.zero)
+
+    lblTitle.font = UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize)
+    lblTitle.text = title
+    lblTitle.textAlignment = .center
+    lblTitle.textColor = Style.Colors.grey
+
+    addSubview(lblTitle)
+    lblTitle.snp.makeConstraints { (make) in
+      make.leading.trailing.equalToSuperview()
+      make.top.equalToSuperview()
+    }
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+}
+
+class AmountRaisedBadge: Badge {
+  let lblIcon: UILabel = UILabel()
+  let lblAmount: UILabel = UILabel()
+
+  var value: Float = 0.0 {
+    didSet { lblAmount.text = DataFormatters.formatCurrency(value: value) }
+  }
+
+  init() {
+    super.init(withTitle: "Funds Raised")
+    initialize()
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  private func initialize() {
+    lblIcon.font = UIFont.boldSystemFont(ofSize: 48.0)
+    lblIcon.text = Locale.current.currencySymbol
+    lblIcon.textAlignment = .center
+    lblIcon.textColor = Style.Colors.green
+    addSubview(lblIcon)
+    lblIcon.snp.makeConstraints { (make) in
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+      make.top.equalTo(lblTitle.snp.bottom).offset(Style.Padding.p12)
+    }
+
+    lblAmount.font = UIFont.preferredFont(forTextStyle: .headline)
+    lblAmount.text = DataFormatters.formatCurrency(value: value)
+    lblAmount.textAlignment = .center
+    lblAmount.textColor = Style.Colors.grey
+    addSubview(lblAmount)
+    lblAmount.snp.makeConstraints { (make) in
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+      make.top.equalTo(lblIcon.snp.bottom)
+    }
+  }
+}
+
+class MilesWalkedBadge: Badge {
+  let prgProgress: ProgressRing = ProgressRing(radius: 38.0, width: 8.0)
+
+  var value: Float = 0.0 {
+    didSet { prgProgress.setProgress(value, animated: true) }
+  }
+
+  init() {
+    super.init(withTitle: "Miles Walked")
+    initialize()
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  private func initialize() {
+    prgProgress.summary =
+        ProgressRingSummaryDistance(value: 0, max: 0, units: "miles")
+    addSubview(prgProgress)
+    prgProgress.snp.makeConstraints { (make) in
+      make.centerX.equalToSuperview()
+      make.top.equalTo(lblTitle.snp.bottom).offset(Style.Padding.p12)
+      make.size.equalTo(76.0)
+    }
+  }
+}
+
+class StreakBadge: Badge {
+  let lblIcon: UILabel = UILabel()
+  let lblStreak: UILabel = UILabel()
+
+  var value: Int = 0 {
+    didSet { lblStreak.text = String(describing: value) }
+  }
+
+  init() {
+    super.init(withTitle: "Streak")
+    initialize()
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  private func initialize() {
+    lblIcon.font = UIFont.boldSystemFont(ofSize: 48.0)
+    lblIcon.text = "\u{1f525}" // :fire:
+    lblIcon.textAlignment = .center
+    addSubview(lblIcon)
+    lblIcon.snp.makeConstraints { (make) in
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+      make.top.equalTo(lblTitle.snp.bottom).offset(Style.Padding.p12)
+    }
+
+    lblStreak.font = UIFont.preferredFont(forTextStyle: .headline)
+    lblStreak.text = String(describing: 0)
+    lblStreak.textAlignment = .center
+    lblStreak.textColor = Style.Colors.grey
+    addSubview(lblStreak)
+    lblStreak.snp.makeConstraints { (make) in
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+      make.top.equalTo(lblIcon.snp.bottom)
+    }
+  }
+}
+
 class ProfileViewController: UIViewController {
   fileprivate let statisticsRangeDataSource: StatisticsRangeDataSource =
       StatisticsRangeDataSource()
 
-  // Views
-  let profileImage = UIImageView()
-  let nameLabel = UILabel(.header)
-  let teamLabel = UILabel(.title)
+  let imgProfile: UIImageView = UIImageView()
+  let lblRealName: UILabel = UILabel()
+  let lblTeamName: UILabel = UILabel()
 
-  var rangeButton = SelectionButton(type: .system)
-  let lblRaisedSymbol: UILabel = UILabel()
-  let lblRaisedAmount: UILabel = UILabel(.header)
-  let prgProgress: ProgressRing = ProgressRing(radius: 64.0)
-  let lblStreakSymbol: UILabel = UILabel()
-  let lblStreak: UILabel = UILabel(.header)
-  let lblStreakUnits: UILabel = UILabel(.caption)
+  let lblDashboard: UILabel = UILabel()
+  let cboRange: SelectionButton = SelectionButton(type: .system)
+  let stkStatistics: UIStackView = UIStackView()
 
-  // MARK: - Lifecycle
+  let lblSponsors: UILabel = UILabel()
+  let stkSupporters: UIStackView = UIStackView()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -125,10 +196,10 @@ class ProfileViewController: UIViewController {
     updateProfile()
     onBackground {
       Facebook.profileImage(for: "me") { [weak self] (url) in
-        guard url != nil else { return }
-
-        let data = try? Data(contentsOf: url!)
-        onMain { self?.profileImage.image = UIImage(data: data!) }
+        guard let url = url else { return }
+        if let data = try? Data(contentsOf: url) {
+          onMain { self?.imgProfile.image = UIImage(data: data) }
+        }
       }
     }
   }
@@ -146,96 +217,98 @@ class ProfileViewController: UIViewController {
   }
 
   private func configureHeaderView(_ top: inout ConstraintRelatableTarget) {
-    view.addSubview(profileImage)
-    profileImage.contentMode = .scaleAspectFill
+    imgProfile.contentMode = .scaleAspectFill
     // TODO(compnerd) figure out how to get this value properly
-    profileImage.layer.cornerRadius = Style.Size.s128 / 2.0
-    profileImage.layer.masksToBounds = true
-    profileImage.snp.makeConstraints { (make) in
+    imgProfile.layer.cornerRadius = Style.Size.s128 / 2.0
+    imgProfile.layer.masksToBounds = true
+
+    view.addSubview(imgProfile)
+    imgProfile.snp.makeConstraints { (make) in
       make.top.equalTo(top).offset(Style.Padding.p12)
       make.size.equalTo(Style.Size.s128)
       make.centerX.equalToSuperview()
     }
-    top = profileImage.snp.bottom
+    top = imgProfile.snp.bottom
 
-    view.addSubview(nameLabel)
-    nameLabel.snp.makeConstraints { (make) in
+    lblRealName.font = UIFont.preferredFont(forTextStyle: .headline)
+    lblRealName.textColor = Style.Colors.grey
+    view.addSubview(lblRealName)
+    lblRealName.snp.makeConstraints { (make) in
       make.top.equalTo(top).offset(Style.Padding.p12)
       make.centerX.equalToSuperview()
     }
-    top = nameLabel.snp.bottom
+    top = lblRealName.snp.bottom
 
-    view.addSubview(teamLabel)
-    teamLabel.textAlignment = .center
-    teamLabel.textColor = Style.Colors.grey
-    teamLabel.snp.makeConstraints { (make) in
+    lblTeamName.font = UIFont.preferredFont(forTextStyle: .callout)
+    lblTeamName.textColor = Style.Colors.grey
+    view.addSubview(lblTeamName)
+    lblTeamName.snp.makeConstraints { (make) in
       make.top.equalTo(top).offset(Style.Padding.p12)
       make.centerX.equalToSuperview()
     }
-    top = teamLabel.snp.bottom
+    top = lblTeamName.snp.bottom
   }
 
   private func configureStatisticsView(_ top: inout ConstraintRelatableTarget) {
-    view.addSubview(rangeButton)
-    rangeButton.dataSource = statisticsRangeDataSource
-    rangeButton.delegate = self
-    rangeButton.selection = UserInfo.profileStatsRange
-    rangeButton.snp.makeConstraints { (make) in
+    lblDashboard.font = UIFont.preferredFont(forTextStyle: .headline)
+    lblDashboard.text = Strings.Profile.dashboard
+    lblDashboard.textColor = Style.Colors.grey
+    view.addSubview(lblDashboard)
+    lblDashboard.snp.makeConstraints { (make) in
       make.top.equalTo(top).offset(Style.Padding.p12)
-      make.right.equalToSuperview().inset(Style.Padding.p12)
-    }
-
-    view.addSubviews([lblRaisedSymbol, lblRaisedAmount])
-
-    lblRaisedSymbol.text =
-        "\(String(describing: Locale.current.currencySymbol!))"
-    lblRaisedSymbol.textColor = Style.Colors.green
-    lblRaisedSymbol.font = UIFont.boldSystemFont(ofSize: 32.0)
-    lblRaisedSymbol.snp.makeConstraints { (make) in
-      make.centerY.equalTo(lblRaisedAmount.snp.centerY)
       make.left.equalToSuperview().inset(Style.Padding.p12)
     }
+    top = lblDashboard.snp.bottom
 
-    // TODO(compnerd) calculate this properly
-    lblRaisedAmount.text = "423.50"
-    lblRaisedAmount.snp.makeConstraints { (make) in
-      make.centerY.equalTo(lblRaisedSymbol.snp.centerY)
-      make.left.equalTo(lblRaisedSymbol.snp.right).offset(Style.Padding.p8)
-    }
-
-    view.addSubview(prgProgress)
-    prgProgress.summary = ProgressRingSummaryDistance(value: 375.0, max: 500.0)
-    prgProgress.snp.makeConstraints { (make) in
-      make.centerX.equalToSuperview()
-      make.centerY.equalTo(lblRaisedAmount.snp.centerY)
-      make.top.equalTo(rangeButton.snp.bottom).offset(Style.Padding.p8)
-      make.size.equalTo(Style.Size.s128)
-    }
-
-    view.addSubviews([lblStreakSymbol, lblStreak, lblStreakUnits])
-
-    lblStreakSymbol.text = "\u{1f525}" // :fire:
-    lblStreakSymbol.font = UIFont.systemFont(ofSize: 32.0)
-    lblStreakSymbol.snp.makeConstraints { (make) in
-      make.centerY.equalTo(prgProgress.snp.centerY)
-      make.right.equalTo(lblStreak.snp.left).offset(-Style.Padding.p8)
-    }
-    // TODO(compnerd) calculate this properly
-    lblStreak.text = "34"
-    lblStreak.snp.makeConstraints { (make) in
-      make.top.equalTo(lblStreakSymbol.snp.top)
-      make.bottom.equalTo(lblStreakUnits.snp.top)
-      make.right.equalToSuperview().inset(Style.Padding.p12)
-      make.left.equalTo(lblStreakUnits.snp.left)
-    }
-    // FIXME(compnerd) localise this properly
-    lblStreakUnits.text = "days"
-    lblStreakUnits.snp.makeConstraints { (make) in
-      make.bottom.equalTo(lblStreakSymbol.snp.bottom)
+    cboRange.dataSource = statisticsRangeDataSource
+    cboRange.delegate = self
+    cboRange.selection = UserInfo.profileStatsRange
+    view.addSubview(cboRange)
+    cboRange.snp.makeConstraints { (make) in
+      make.top.equalTo(lblDashboard.snp.top)
       make.right.equalToSuperview().inset(Style.Padding.p12)
     }
+    top = lblDashboard.snp.bottom
 
-    top = prgProgress.snp.bottom
+    stkStatistics.alignment = .lastBaseline
+    stkStatistics.axis = .horizontal
+    stkStatistics.spacing = Style.Padding.p12
+    view.addSubview(stkStatistics)
+    stkStatistics.snp.makeConstraints { (make) in
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+      make.top.equalTo(top).offset(Style.Padding.p12)
+    }
+    top = stkStatistics.snp.bottom
+
+    // TODO(compnerd) hold references to the badges to update the values
+    stkStatistics.addArrangedSubview(AmountRaisedBadge())
+    stkStatistics.addArrangedSubview(MilesWalkedBadge())
+    stkStatistics.addArrangedSubview(StreakBadge())
+  }
+
+  private func configureSponsorsView(_ top: inout ConstraintRelatableTarget) {
+    lblSponsors.font = UIFont.preferredFont(forTextStyle: .headline)
+    lblSponsors.text = Strings.Profile.sponsors
+    lblSponsors.textColor = Style.Colors.grey
+    view.addSubview(lblSponsors)
+    lblSponsors.snp.makeConstraints { (make) in
+      make.top.equalTo(top).offset(Style.Padding.p12)
+      make.left.equalToSuperview().inset(Style.Padding.p12)
+    }
+    top = lblSponsors.snp.bottom
+
+    let scrollView: UIScrollView = UIScrollView()
+    scrollView.addSubview(stkSupporters)
+    stkSupporters.snp.makeConstraints { (make) in
+      make.leading.trailing.equalToSuperview()
+    }
+    view.addSubview(scrollView)
+    scrollView.snp.makeConstraints { (make) in
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p12)
+      make.top.equalTo(top)
+      make.bottom.equalTo(bottomLayoutGuide.snp.top).offset(-Style.Padding.p12)
+      make.height.equalTo(stkStatistics.snp.height)
+    }
   }
 
   private func configureView() {
@@ -244,12 +317,13 @@ class ProfileViewController: UIViewController {
     var top: ConstraintRelatableTarget = topLayoutGuide.snp.bottom
     configureHeaderView(&top)
     configureStatisticsView(&top)
+    configureSponsorsView(&top)
   }
 
   private func updateProfile() {
     Facebook.getRealName(for: "me") { [weak self] (name) in
       if let name = name {
-        self?.nameLabel.text = name
+        self?.lblRealName.text = name
       }
     }
 
@@ -257,9 +331,11 @@ class ProfileViewController: UIViewController {
       switch result {
       case .success(_, let response):
         guard let response = response else { return }
-        if let participant = Participant(json: response) {
-          self?.teamLabel.text = participant.team?.name
-        }
+        guard let participant = Participant(json: response) else { return }
+
+        self?.lblTeamName.text = participant.team?.name
+
+        break
       case .failed(let error):
         print("unable to get participant: \(String(describing: error?.localizedDescription))")
         break
