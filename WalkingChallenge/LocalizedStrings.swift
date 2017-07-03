@@ -35,9 +35,8 @@ struct Strings {
     static let thisMonth = NSLocalizedString("This Month", comment: "This Month range")
     static let thisEvent = NSLocalizedString("This Event", comment: "This Event range")
     static let overall = NSLocalizedString("Overall", comment: "Overall Range")
-    static let supporters = NSLocalizedString("Supporters", comment: "Title for Supporters")
-    static let seeMore = NSLocalizedString("See More \u{203a}", comment: "Show More")
-    static let pastEvents = NSLocalizedString("Past Events", comment: "Past Evvents")
+    static let dashboard = NSLocalizedString("Dashboard", comment: "Dashboard")
+    static let sponsors = NSLocalizedString("Sponsors", comment: "Sponsors")
   }
 
   struct Team {
