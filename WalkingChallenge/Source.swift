@@ -28,27 +28,17 @@
  **/
 
 import Foundation
-import UIKit
-import SnapKit
 
-class BaseScrollView: UIScrollView {
-  let contentView = UIView()
+struct Source {
+  let id: Int?                                                                  // swiftlint:disable:this identifier_name line_length
+  let name: String
 
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-    configureView()
-  }
+  init?(json: JSON) {
+    guard
+      let name = json["name"]?.stringValue
+    else { return nil }
 
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-    configureView()
-  }
-
-  private func configureView() {
-    addSubview(contentView)
-    contentView.snp.makeConstraints { (make) in
-      make.edges.equalTo(self)
-      make.width.equalToSuperview()
-    }
+    self.id = json["id"]?.intValue
+    self.name = name
   }
 }

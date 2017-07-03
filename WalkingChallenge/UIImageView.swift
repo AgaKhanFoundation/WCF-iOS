@@ -28,28 +28,44 @@
  **/
 
 import Foundation
+import UIKit
 
-class ProfileDataSource {
-  var realName: String = ""
-  var dataProvider: PedometerDataProvider?
+let cache = NSCache<AnyObject, AnyObject>()
 
-  init() {
-    if let dataSource = UserInfo.pedometerSource {
-      switch dataSource {
-      case .healthKit:
-        dataProvider = HealthKitDataProvider()
-      }
+extension UIImageView {
+  public func loadImage(from urlString: String) {
+    if let cached = cache.object(forKey: urlString as AnyObject) as? UIImage {
+      self.image = cached
+      return
     }
-  }
 
-  func updateProfile(completion: @escaping SuccessBlock) {
-    Facebook.getRealName { [weak self] (name) in
-      guard name != nil else { return }
-      self?.realName = name!
-
-      onMain {
-        completion(true)
-      }
+    guard let url = URL(string: urlString) else {
+      print("URL cannot be created from - \(urlString)")
+      return
     }
+
+    URLSession.shared.dataTask(
+      with: url,
+      completionHandler: { (data, _, error) -> Void in
+        guard error == nil else {
+          print("error downloading image: \(String(describing: error?.localizedDescription))")
+          return
+        }
+
+        guard let data = data else {
+          print("data cannot be nil")
+          return
+        }
+
+        guard let image = UIImage(data: data) else {
+          print("error creating UIImage")
+          return
+        }
+
+        onMain {
+          cache.setObject(image, forKey: urlString as AnyObject)
+          self.image = image
+        }
+    }).resume()
   }
 }

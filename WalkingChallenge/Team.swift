@@ -30,6 +30,22 @@
 import Foundation
 
 struct Team {
-  let name: String
-  let members: [TeamMember]
+  let id: Int?                                                                  // swiftlint:disable:this identifier_name line_length
+  let name: String?
+  let members: [Participant]
+
+  init?(json: JSON) {
+    guard
+      let name = json["name"]?.stringValue
+    else { return nil }
+
+    self.id = json["id"]?.intValue
+    self.name = name
+
+    if let participants = json["participants"]?.arrayValue {
+      self.members = participants.flatMap { Participant(json: $0) }
+    } else {
+      self.members = []
+    }
+  }
 }

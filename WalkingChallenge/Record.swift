@@ -29,7 +29,31 @@
 
 import Foundation
 
-struct TeamMember {
-  let name: String
-  let picture: URL?
+struct Record {
+  let id: Int?                                                                  // swiftlint:disable:this identifier_name line_length
+  let date: Date
+  let distance: Int
+  let fbid: String
+  let source: Source?
+
+  init?(json: JSON) {
+    guard
+      let date = json["date"]?.stringValue,
+      let distance = json["distance"]?.intValue,
+      let fbid = json["participant_id"]?.stringValue
+    else { return nil }
+
+    let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
+
+    self.id = json["id"]?.intValue
+    self.date = formatter.date(from: date) ?? Date()
+    self.distance = distance
+    self.fbid = fbid
+
+    if let source = json["source"] {
+      self.source = Source(json: source)
+    } else {
+      self.source = nil
+    }
+  }
 }

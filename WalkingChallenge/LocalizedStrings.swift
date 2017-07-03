@@ -30,12 +30,6 @@
 import Foundation
 
 struct Strings {
-  struct Login {
-    static let title = NSLocalizedString("Walking Challenge", comment: "Title for login screen")
-    static let desciption = NSLocalizedString("Please login in via facebook to continue",
-                                              comment: "Description for login screen")
-  }
-
   struct Profile {
     static let thisWeek = NSLocalizedString("This Week", comment: "This Week range")
     static let thisMonth = NSLocalizedString("This Month", comment: "This Month range")
@@ -80,6 +74,34 @@ struct Strings {
     static let contactUs = NSLocalizedString("Contact Us", comment: "Contact Us")
   }
 
+  struct Events {
+    static let title = NSLocalizedString("Events", comment: "Events")
+    static let join = NSLocalizedString("Join", comment: "Join")
+    static let openVirtualChallenges = NSLocalizedString("Open Virtual Challenges", comment: "Open Virtual Challenges")
+    static let myEvents = NSLocalizedString("My Events", comment: "My Events")
+  }
+
+  struct Event {
+    static let myStats = NSLocalizedString("My Stats", comment: "My Stats")
+    static let mySupporters = NSLocalizedString("My Supporters", comment: "My Supporters")
+    static let createTeam = NSLocalizedString("Create a New Team", comment: "Create a New Team")
+  }
+
+  struct EventStatistics {
+    static let joinTeam = NSLocalizedString("Do your friends already have a team set up?  Ask the team captain to add you to get started!",
+                                            comment: "Do your friends already have a team setup?  Ask the team captain to add you to get started!")
+  }
+
+  struct CreateTeam {
+    static let nameYourTeam = NSLocalizedString("Name your team", comment: "Name your team")
+    static let addTeamMembers = NSLocalizedString("Add team members to your team", comment: "Add team members to your team")
+    static let yourAppFriends = NSLocalizedString("Below are your friends who already joined the app.",
+                                                  comment: "Below are your friends who already joined the app")
+    static let missingFriends = NSLocalizedString("Don't see one of your friends in this list?",
+                                                  comment: "Don't see one of your friends in this list?")
+    static let next = NSLocalizedString("Next", comment: "Next")
+  }
+
   struct PastEvents {
     static let title = NSLocalizedString("Past Events", comment: "Past Events")
   }
@@ -87,11 +109,12 @@ struct Strings {
   struct NavBarTitles {
     static let team = NSLocalizedString("My Team", comment: "Navigation bar title for team tab")
     static let profile = NSLocalizedString("My Profile", comment: "Navigation bar title for profile tab")
+    static let events = NSLocalizedString("Events", comment: "Events")
     static let leaderboard = NSLocalizedString("Leaderboard", comment: "Navigation bar title for leaderboard")
     static let teamMembers = NSLocalizedString("Team Members", comment: "Team Members")
     static let configuration = NSLocalizedString("Configuration", comment: "Configuration")
   }
-  
+
   struct Assets {
     static let gearIcon = "GearIcon"
   }

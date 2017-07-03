@@ -28,6 +28,7 @@
  **/
 
 import SnapKit
+import FacebookCore
 
 fileprivate class StatisticsRangeDataSource: SelectionButtonDataSource {
   // TODO(compnerd) should these be the same or different?
@@ -51,10 +52,16 @@ fileprivate class TeamLeaderboardDataSource: LeaderBoardDataSource {
 
     // TODO(compnerd) sort members according to distance, ramount raised? magic?
     for member in team.members {
-      // FIXME(compnerd) model and display distance and amount raised
-      result.append(LeaderBoardEntry(imageURL: member.picture,
-                                     name: member.name, standing: standing,
-                                     distance: 0, raised: 0))
+      Facebook.profileImage(for: member.fbid) { (url: URL?) in
+        Facebook.getRealName(for: member.fbid) { (name: String?) in
+          // FIXME(compnerd) model and display distance and amount raised
+          result.append(LeaderBoardEntry(imageURL: url ?? nil,
+                                         name: name ?? member.fbid,
+                                         standing: standing,
+                                         distance: 0, raised: 0))
+        }
+      }
+
       standing += 1
     }
 
@@ -63,8 +70,7 @@ fileprivate class TeamLeaderboardDataSource: LeaderBoardDataSource {
 }
 
 class TeamViewController: UIViewController {
-  private let teamDataSource: TeamDataSource = TeamDataSource()
-  fileprivate let leaderboardDataSource: TeamLeaderboardDataSource
+  fileprivate var leaderboardDataSource: TeamLeaderboardDataSource?
   fileprivate let statisticsRangeDataSource: StatisticsRangeDataSource =
       StatisticsRangeDataSource()
 
@@ -84,8 +90,6 @@ class TeamViewController: UIViewController {
   let tblLeaderboard: LeaderBoard = LeaderBoard()
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    leaderboardDataSource =
-        TeamLeaderboardDataSource(team: teamDataSource.myTeam)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
 
@@ -118,8 +122,6 @@ class TeamViewController: UIViewController {
   }
 
   private func configureTeamHeader(_ top: inout ConstraintRelatableTarget) {
-    let team: Team = teamDataSource.myTeam
-
     // FIXME(compnerd) get this value programatically
     view.addSubview(imgTeamImage)
     imgTeamImage.layer.cornerRadius = Style.Size.s56 / 2
@@ -137,16 +139,12 @@ class TeamViewController: UIViewController {
     imgTeamImage.layer.backgroundColor = Style.Colors.grey.cgColor
 
     view.addSubview(lblTeamName)
-    lblTeamName.text = team.name
     lblTeamName.snp.makeConstraints { (make) in
       make.bottom.equalTo(imgTeamImage.snp.centerY)
       make.left.equalTo(imgTeamImage.snp.right).offset(Style.Padding.p12)
     }
 
-    // TODO(compnerd) make this localizable
     view.addSubview(btnTeamMembers)
-    btnTeamMembers.setTitle("\(team.members.count) Members \u{203a}",
-                            for: .normal)
     btnTeamMembers.contentHorizontalAlignment = .left
     btnTeamMembers.addTarget(self, action: #selector(showMembers),
                              for: .touchUpInside)
@@ -248,27 +246,37 @@ class TeamViewController: UIViewController {
     configureTeamHeader(&top)
     configureTeamStatistics(&top)
     configureTeamLeaderboard(&top)
+
+    AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
+      switch result {
+      case .success(_, let response):
+        guard let response = response else { return }
+        if let participant = Participant(json: response) {
+          if let team = participant.team {
+            self?.lblTeamName.text = team.name
+            // TODO(compnerd) make this localizable
+            self?.btnTeamMembers.setTitle("\(team.members.count) Members \u{203a}",
+                                          for: .normal)
+            self?.leaderboardDataSource =
+                TeamLeaderboardDataSource(team: team)
+          }
+        }
+        break
+      case .failed(let error):
+        print("unable to get participant \(String(describing: error?.localizedDescription))")
+        break
+      }
+    }
   }
 
   // MARK: - Actions
 
   func addTapped() {
-    let picker: ContactPickerViewController = ContactPickerViewController()
-    picker.delegate = self
-
-    present(UINavigationController(rootViewController: picker), animated: true,
-            completion: nil)
   }
 
   func showMembers() {
     navigationController?.pushViewController(TeamMembersViewController(),
                                              animated: true)
-  }
-}
-
-extension TeamViewController: ContactPickerViewControllerDelegate {
-  func contactPickerSelected(friends: [String]) {
-    print(friends)
   }
 }
 

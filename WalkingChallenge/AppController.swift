@@ -82,10 +82,10 @@ extension AppController {
     configureTabBarController()
     configureWindow()
 
-    if User.isLoggedIn {
-      transition(to: .tabBar)
-    } else {
+    if Facebook.id.isEmpty {
       transition(to: .login)
+    } else {
+      transition(to: .tabBar)
     }
   }
 
@@ -96,19 +96,21 @@ extension AppController {
         UITabBarItem(title: Strings.NavBarTitles.leaderboard, image: nil,
                      selectedImage: nil)
 
-    let teamNVC =
-        UINavigationController(rootViewController: TeamViewController())
-    teamNVC.tabBarItem =
-        UITabBarItem(title: Strings.NavBarTitles.team, image: nil,
-                     selectedImage: nil)
-
-    let profileNVC =
+    let profile =
         UINavigationController(rootViewController: ProfileViewController())
-    profileNVC.tabBarItem =
-        UITabBarItem(title: Strings.NavBarTitles.profile, image: nil,
+    profile.tabBarItem =
+        UITabBarItem(title: Strings.NavBarTitles.profile,
+                     image: UIImage(imageLiteralResourceName: "person"),
                      selectedImage: nil)
 
-    tabBarController.viewControllers = [ leaderboardNVC, teamNVC, profileNVC ]
+    let events =
+        UINavigationController(rootViewController: EventsViewController())
+    events.tabBarItem =
+        UITabBarItem(title: Strings.NavBarTitles.events,
+                     image: UIImage(imageLiteralResourceName: "event"),
+                     selectedImage: nil)
+
+    tabBarController.viewControllers = [ profile, events, leaderboardNVC ]
   }
 
   private func configureWindow() {
@@ -122,8 +124,14 @@ extension AppController {
   }
 
   fileprivate func healthCheckServer() {
-    APIClient.getAPIHealthCheck { (result: Result) in
-      print(result)
+    AKFCausesService.performAPIHealthCheck { (result) in
+      switch result {
+      case .failed(let error):
+        print("error: \(String(describing: error?.localizedDescription))")
+        break
+      case .success(_, _):
+        break
+      }
     }
   }
 }
