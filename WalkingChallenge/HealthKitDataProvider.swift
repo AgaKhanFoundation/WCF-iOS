@@ -66,12 +66,12 @@ class HealthKitDataProvider: PedometerDataProvider {
           return
         }
 
-        var steps = 0
+        var distance = 0
         for result in results {
-          steps += Int(result.quantity.doubleValue(for: .count()))
+          distance += Int(result.quantity.doubleValue(for: .count()))
         }
 
-        completion(steps)
+        completion(distance)
     }
 
     HealthKit.store.execute(query)

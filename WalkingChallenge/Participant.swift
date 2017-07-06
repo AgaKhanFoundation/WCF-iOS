@@ -35,7 +35,6 @@ struct Participant {
   let event: Event?
   let preferredCause: Cause?
   let records: [Record]
-
   init?(json: JSON) {
     guard
       let fbid = json["fbid"]?.stringValue
@@ -64,12 +63,10 @@ struct Participant {
       self.records = []
     }
   }
-  
-  func lastRecordDate() -> Date? {
-    if records.count > 0 {
-      return records.sorted(by: { $0.date.compare($1.date) == .orderedDescending})[0].date
-    }
+}
 
-    return nil
+extension Participant {
+  var sortedRecords: [Record] {
+    return records.sorted(by: { $0.date.compare($1.date) == .orderedDescending })
   }
 }

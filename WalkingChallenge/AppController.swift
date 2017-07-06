@@ -32,6 +32,7 @@ import FacebookCore
 
 class AppController {
   static let shared = AppController()
+  let queue = OperationQueue()
 
   var window: UIWindow?
   var tabBarController = UITabBarController()
@@ -41,7 +42,7 @@ class AppController {
 
     configureApp()
     healthCheckServer()
-    uploadHealthKitData()
+    uploadHKRecord()
   }
 
   enum ViewController {
@@ -136,40 +137,37 @@ extension AppController {
     }
   }
 
-  fileprivate func uploadHealthKitData() {
-    AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
-      switch result {
-      case .success(_, let response):
-        guard let response = response else { return }
-        let participant = Participant(json: response)
-        let lastDate = participant?.lastRecordDate() ?? Date.init(timeIntervalSince1970: 0)
-          let dateInterval = DateInterval.init(start: lastDate, end: Date())
-          let provider = HealthKitDataProvider.init()
-          provider.retrieveStepCountForDateRange(dateInterval, { (distance) in
-            var sourceDict:[String:Any] = Dictionary()
-            sourceDict["id"] = 1
-            sourceDict["name"] = "healthKit"
-            let sourceJSON = JSON(sourceDict)
-            let source = Source.init(json: sourceJSON!)
-            
-            var recordDict:[String:Any] = Dictionary()
-            recordDict["date"] = Date()
-            recordDict["distance"] = distance
-            recordDict["participant_id"] = Facebook.id
-            recordDict["source"] = source
-            let recordJSON = JSON(recordDict)
-            let record = Record.init(json: recordJSON!)
-            
-            if let record = record {
-              AKFCausesService.createRecord(record: record)
+  fileprivate func uploadHKRecord() {
+    queue.addOperation {
+      AKFCausesService.getSourceByName(source: "HealthKit") { result in
+        switch result {
+        case .failed(_):
+          break
+        case .success(_, let response):
+          guard let response = response else { return }
+          guard let source = Source(json: response) else { return }
+          AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+            switch result {
+            case .failed(_):
+              break
+            case .success(_, let response):
+              guard let response = response else { return }
+              guard let participant = Participant(json: response) else { return }
+              let interval: DateInterval =
+                DateInterval(start:
+                  participant.sortedRecords[safe: 0]?.date ?? Date(timeIntervalSince1970: 0), end: Date())
+              let provider: HealthKitDataProvider = HealthKitDataProvider()
+              provider.retrieveStepCountForDateRange(interval) { distance in
+                guard distance > 0 else { return }
+                let record = Record(date: Date(), distance: distance, fbid: Facebook.id, source: source)
+                AKFCausesService.createRecord(record: record)
+              }
+              break
             }
-          })
-        break
-      case .failed(let error):
-        print("unable to get participant: \(String(describing: error?.localizedDescription))")
-        break
+          }
+          break
+        }
       }
     }
   }
- 
 }
