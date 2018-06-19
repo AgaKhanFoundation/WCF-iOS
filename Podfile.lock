@@ -1,50 +1,62 @@
 PODS:
-  - Bolts (1.8.4):
-    - Bolts/AppLinks (= 1.8.4)
-    - Bolts/Tasks (= 1.8.4)
-  - Bolts/AppLinks (1.8.4):
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
-  - Bolts/Tasks (1.8.4)
-  - FacebookCore (0.2.0):
+  - Bolts/Tasks (1.9.0)
+  - FacebookCore (0.3.0):
     - Bolts (~> 1.8)
-    - FBSDKCoreKit (~> 4.15)
-  - FacebookLogin (0.2.0):
+    - FBSDKCoreKit (~> 4.27)
+  - FacebookLogin (0.3.0):
     - Bolts (~> 1.8)
-    - FacebookCore (~> 0.2)
-    - FBSDKCoreKit (~> 4.15)
-    - FBSDKLoginKit (~> 4.15)
-  - FacebookShare (0.2.0):
+    - FacebookCore (~> 0.3)
+    - FBSDKCoreKit (~> 4.27)
+    - FBSDKLoginKit (~> 4.27)
+  - FacebookShare (0.3.0):
     - Bolts (~> 1.8)
-    - FacebookCore (~> 0.2)
-    - FBSDKCoreKit (~> 4.15)
-    - FBSDKShareKit (~> 4.15)
-  - FBSDKCoreKit (4.22.0):
+    - FacebookCore (~> 0.3)
+    - FBSDKCoreKit (~> 4.27)
+    - FBSDKShareKit (~> 4.27)
+  - FBSDKCoreKit (4.32.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.22.0):
+  - FBSDKLoginKit (4.32.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.22.0):
-    - FBSDKCoreKit
-  - SnapKit (3.2.0)
-  - SwiftLint (0.18.1)
+  - FBSDKShareKit (4.32.0):
+    - FBSDKCoreKit (~> 4.32.0)
+  - SnapKit (4.0.0)
+  - SwiftLint (0.25.1)
 
 DEPENDENCIES:
-  - FacebookCore (~> 0.2.0)
-  - FacebookLogin (~> 0.2.0)
-  - FacebookShare (~> 0.2.0)
-  - SnapKit (~> 3.2.0)
-  - SwiftLint (~> 0.18.1)
+  - FacebookCore (~> 0.3.0)
+  - FacebookLogin (~> 0.3.0)
+  - FacebookShare (~> 0.3.0)
+  - SnapKit (~> 4.0.0)
+  - SwiftLint (~> 0.25.1)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Bolts
+    - FacebookCore
+    - FacebookLogin
+    - FacebookShare
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - FBSDKShareKit
+    - SnapKit
+    - SwiftLint
 
 SPEC CHECKSUMS:
-  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
-  FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
-  FacebookShare: 8e9ee8ea06505e6a1d3d719b0cc63e840fb8aaeb
-  FBSDKCoreKit: c693bad19feb225469eeff14452ba364522ee48b
-  FBSDKLoginKit: 1fa529fc622d7b32ebeaffbecd377180833c6d30
-  FBSDKShareKit: 21ab3c8d173f4fa20c47c1061f3a9fac5950b5fa
-  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
-  SwiftLint: b467d08f5b25dc3b3cfed243d8e1b74b91714c67
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  FacebookCore: 3ffa190a3f1f96cec0e44d3fc221bc322c595ffa
+  FacebookLogin: 0af839ea858faef99550d16596b87b4a8e8906e6
+  FacebookShare: 0469964297ebd75f052be2c5083389a4208e82b7
+  FBSDKCoreKit: 55d7f2ac45d9c4b9b6119f4e43900fe84b9b7b1b
+  FBSDKLoginKit: 32ac05c2a59952c363c2e85aafa8f73ba93bcbad
+  FBSDKShareKit: 658780d0d108b8ad590a54afb5ac1427bdc8de28
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
 
-PODFILE CHECKSUM: 83298874e91acfc5d751c9acba5ad33d86fb25d3
+PODFILE CHECKSUM: 380cfbcb6cec1ffadb95c99c759a029fde92794b
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.5.0

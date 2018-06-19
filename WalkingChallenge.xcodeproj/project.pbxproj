@@ -29,7 +29,7 @@
 		ED85D460832E1D261F31B25E /* Pods_WalkingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */; };
 		F004030F1EBF9DAB005E6F10 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004030E1EBF9DAB005E6F10 /* JSON.swift */; };
 		F00403151EC3EC6F005E6F10 /* AKFCausesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */; };
-		F00403191EC3FB7D005E6F10 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		F00403191EC3FB7D005E6F10 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004031C1EC52772005E6F10 /* AppConfig.swift */; };
 		F00524821EE3BD31001C24F0 /* CreateTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00524811EE3BD31001C24F0 /* CreateTeamViewController.swift */; };
 		F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */; };
@@ -332,7 +332,6 @@
 				269E34C31E765828000726C2 /* Frameworks */,
 				269E34C41E765828000726C2 /* Resources */,
 				65FAF8F474BBD7BA376F8E48 /* [CP] Embed Pods Frameworks */,
-				35FF4ACCB1F0D8178ECC045D /* [CP] Copy Pods Resources */,
 				26AFC9E21EA6508C002E6D2A /* SwiftLint */,
 			);
 			buildRules = (
@@ -404,13 +403,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WalkingChallenge-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		26AFC9E21EA6508C002E6D2A /* SwiftLint */ = {
@@ -427,30 +429,32 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
-		35FF4ACCB1F0D8178ECC045D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		65FAF8F474BBD7BA376F8E48 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -473,7 +477,7 @@
 				F0681D271ED53CA70029278E /* Cause.swift in Sources */,
 				F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */,
 				F06254C11ECD5D1700168DD6 /* Participant.swift in Sources */,
-				F00403191EC3FB7D005E6F10 /* (null) in Sources */,
+				F00403191EC3FB7D005E6F10 /* BuildFile in Sources */,
 				F0A992D61EABF037001621A6 /* Formatters.swift in Sources */,
 				F0CF39861EE0E903006A7462 /* Record.swift in Sources */,
 				269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */,
