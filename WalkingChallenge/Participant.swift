@@ -59,7 +59,7 @@ struct Participant {
       self.preferredCause = nil
     }
     if let records = json["records"]?.arrayValue {
-      self.records = records.flatMap { return Record(json: $0) }
+      self.records = records.compactMap { return Record(json: $0) }
     } else {
       self.records = []
     }

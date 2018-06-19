@@ -43,7 +43,7 @@ struct Team {
     self.name = name
 
     if let participants = json["participants"]?.arrayValue {
-      self.members = participants.flatMap { Participant(json: $0) }
+      self.members = participants.compactMap { Participant(json: $0) }
     } else {
       self.members = []
     }
