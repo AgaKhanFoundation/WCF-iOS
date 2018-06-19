@@ -84,7 +84,6 @@ extension LoginViewController: LoginButtonDelegate {
   }
 
   func loginButtonDidLogOut(_ loginButton: LoginButton) {
-    // Left blank on purpose since the user shouldn't be logged in on this view
-    // controller
+    fatalError("user logged in without a session?")
   }
 }
