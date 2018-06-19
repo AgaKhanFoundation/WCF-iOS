@@ -142,7 +142,7 @@ class StatisticsViewController: UIViewController {
     top = lblJoinTeam.snp.bottom
   }
 
-  func createTeam(_ sender: Any) {
+  @objc func createTeam(_ sender: Any) {
     let controller: CreateTeamViewController = CreateTeamViewController()
     controller.event = event
     present(controller, animated: true, completion: nil)

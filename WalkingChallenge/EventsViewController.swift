@@ -93,7 +93,7 @@ fileprivate class EventCell: UITableViewCell {
     }
   }
 
-  func join(_ sender: Any) {
+  @objc func join(_ sender: Any) {
     guard
       let event = event,
       let delegate = delegate

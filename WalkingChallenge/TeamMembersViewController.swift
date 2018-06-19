@@ -239,7 +239,7 @@ class TeamMembersViewController: UIViewController {
     navigationItem.title = Strings.NavBarTitles.teamMembers
   }
 
-  func inviteFriends() {
+  @objc func inviteFriends() {
     // TODO(compnerd) use aa app URL
     Facebook.invite(url: "https://fb.me/263589040713529")
   }

@@ -96,7 +96,7 @@ class EventViewController: UIViewController {
       .first?.isHidden = true
   }
 
-  func segmentChanged(_ sender: Any) {
+  @objc func segmentChanged(_ sender: Any) {
     currentViewController?.willMove(toParentViewController: nil)
     currentViewController?.view.removeFromSuperview()
     currentViewController?.removeFromParentViewController()
