@@ -60,7 +60,7 @@ extension JSON {
       return
     }
     if let array = value as? [Any] {
-      self = .array(array.flatMap({ JSON($0) }))
+      self = .array(array.compactMap({ JSON($0) }))
       return
     }
     return nil
@@ -221,7 +221,7 @@ extension JSON {
   private var foundationTyped: Any? {
     switch self {
     case .array(let array):
-      return array.flatMap({ $0.foundationTyped })
+      return array.compactMap({ $0.foundationTyped })
     case .dictionary(let dictionary):
       var dict: [String:Any] = [:]
       for (key, value) in dictionary {
