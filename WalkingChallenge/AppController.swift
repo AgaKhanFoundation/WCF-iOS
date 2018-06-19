@@ -32,6 +32,7 @@ import FacebookCore
 
 class AppController {
   static let shared = AppController()
+  let queue = OperationQueue()
 
   var window: UIWindow?
   var tabBarController = UITabBarController()
@@ -41,6 +42,7 @@ class AppController {
 
     configureApp()
     healthCheckServer()
+    uploadHKRecord()
   }
 
   enum ViewController {
@@ -137,6 +139,40 @@ extension AppController {
         break
       case .success(_, _):
         break
+      }
+    }
+  }
+
+  fileprivate func uploadHKRecord() {
+    queue.addOperation {
+      AKFCausesService.getSourceByName(source: "HealthKit") { result in
+        switch result {
+        case .failed(_):
+          break
+        case .success(_, let response):
+          guard let response = response else { return }
+          guard let source = Source(json: response) else { return }
+          AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+            switch result {
+            case .failed(_):
+              break
+            case .success(_, let response):
+              guard let response = response else { return }
+              guard let participant = Participant(json: response) else { return }
+              let interval: DateInterval =
+                DateInterval(start:
+                  participant.sortedRecords[safe: 0]?.date ?? Date(timeIntervalSince1970: 0), end: Date())
+              let provider: HealthKitDataProvider = HealthKitDataProvider()
+              provider.retrieveStepCountForDateRange(interval) { distance in
+                guard distance > 0 else { return }
+                let record = Record(date: Date(), distance: distance, fbid: Facebook.id, source: source)
+                AKFCausesService.createRecord(record: record)
+              }
+              break
+            }
+          }
+          break
+        }
       }
     }
   }

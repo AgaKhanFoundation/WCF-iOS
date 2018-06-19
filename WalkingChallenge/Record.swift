@@ -36,6 +36,13 @@ struct Record {
   let fbid: String
   let source: Source?
 
+  init(date: Date, distance: Int, fbid: String, source: Source? = nil) {
+    self.id = nil
+    self.date = date
+    self.distance = distance
+    self.fbid = fbid
+    self.source = source
+  }
   init?(json: JSON) {
     guard
       let date = json["date"]?.stringValue,

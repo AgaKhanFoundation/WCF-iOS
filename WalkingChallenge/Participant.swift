@@ -35,7 +35,6 @@ struct Participant {
   let event: Event?
   let preferredCause: Cause?
   let records: [Record]
-
   init?(json: JSON) {
     guard
       let fbid = json["fbid"]?.stringValue
@@ -63,5 +62,11 @@ struct Participant {
     } else {
       self.records = []
     }
+  }
+}
+
+extension Participant {
+  var sortedRecords: [Record] {
+    return records.sorted(by: { $0.date.compare($1.date) == .orderedDescending })
   }
 }
