@@ -118,7 +118,7 @@ class TeamViewController: UIViewController {
     navigationController?.navigationBar.barTintColor = Style.Colors.darkGreen
     navigationController?.navigationBar.tintColor = Style.Colors.white
     navigationController?.navigationBar.titleTextAttributes =
-      [NSForegroundColorAttributeName: Style.Colors.white]
+      [.foregroundColor: Style.Colors.white]
   }
 
   private func configureTeamHeader(_ top: inout ConstraintRelatableTarget) {
