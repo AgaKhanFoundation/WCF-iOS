@@ -272,10 +272,10 @@ class TeamViewController: UIViewController {
 
   // MARK: - Actions
 
-  func addTapped() {
+  @objc func addTapped() {
   }
 
-  func showMembers() {
+  @objc func showMembers() {
     navigationController?.pushViewController(TeamMembersViewController(),
                                              animated: true)
   }

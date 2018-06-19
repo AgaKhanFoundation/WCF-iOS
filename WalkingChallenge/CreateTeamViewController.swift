@@ -109,11 +109,11 @@ class FormViewController: UIViewController {
     }
   }
 
-  func cancel(_ sender: UIButton) {
+  @objc func cancel(_ sender: UIButton) {
     delegate?.cancel()
   }
 
-  func moveForward(_ sender: UIButton) {
+  @objc func moveForward(_ sender: UIButton) {
     delegate?.moveForward()
   }
 }
