@@ -43,14 +43,14 @@ struct Friend {
       let displayName = json["name"]?.stringValue,
       let firstName = json["first_name"]?.stringValue,
       let lastName = json["last_name"]?.stringValue,
-      let picture_url = json["picture"]?["data"]?["url"]?.stringValue
+      let pictureURL = json["picture"]?["data"]?["url"]?.stringValue
     else { return nil }
 
     self.fbid = fbid
     self.displayName = displayName
     self.firstName = firstName
     self.lastName = lastName
-    self.pictureRawURL = picture_url
+    self.pictureRawURL = pictureURL
   }
 }
 
