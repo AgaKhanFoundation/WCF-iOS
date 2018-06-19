@@ -44,9 +44,9 @@ struct Event {
     guard
       let name = json["name"]?.stringValue,
       let description = json["description"]?.stringValue,
-      let start_date = json["start_date"]?.stringValue,
-      let end_date = json["end_date"]?.stringValue,
-      let team_limit = json["team_limit"]?.intValue
+      let startDate = json["start_date"]?.stringValue,
+      let endDate = json["end_date"]?.stringValue,
+      let teamLimit = json["team_limit"]?.intValue
     else { return nil }
 
     let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
@@ -54,9 +54,9 @@ struct Event {
     self.id = json["id"]?.intValue
     self.name = name
     self.description = description
-    self.start = formatter.date(from: start_date) ?? Date()
-    self.end = formatter.date(from: end_date) ?? Date()
-    self.teamLimit = team_limit
+    self.start = formatter.date(from: startDate) ?? Date()
+    self.end = formatter.date(from: endDate) ?? Date()
+    self.teamLimit = teamLimit
 
     if let cause = json["cause"] {
       self.cause = Cause(json: cause)
