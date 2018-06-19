@@ -48,7 +48,7 @@ extension JSON {
       return
     }
     if let number = value as? NSNumber {
-      self = .number(Float(number))
+      self = .number(Float(truncating: number))
       return
     }
     if let dictionary = value as? [String : Any] {
