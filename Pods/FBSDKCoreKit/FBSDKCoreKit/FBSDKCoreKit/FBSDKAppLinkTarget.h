@@ -18,34 +18,28 @@
 
 #import <Foundation/Foundation.h>
 
-@class FBSDKURLConnection;
+NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^FBSDKURLConnectionHandler)(FBSDKURLConnection *connection,
-                                          NSError *error,
-                                          NSURLResponse *response,
-                                          NSData *responseData);
+/*!
+ Represents a target defined in App Link metadata, consisting of at least
+ a URL, and optionally an App Store ID and name.
+ */
+@interface FBSDKAppLinkTarget : NSObject
 
-@protocol FBSDKURLConnectionDelegate <NSObject>
+/*! Creates a FBSDKAppLinkTarget with the given app site and target URL. */
++ (instancetype)appLinkTargetWithURL:(NSURL *)url
+                          appStoreId:(nullable NSString *)appStoreId
+                             appName:(NSString *)appName;
 
-@optional
+/*! The URL prefix for this app link target */
+@property (nonatomic, strong, readonly) NSURL *URL;
 
-- (void)facebookURLConnection:(FBSDKURLConnection *)connection
-              didSendBodyData:(NSInteger)bytesWritten
-            totalBytesWritten:(NSInteger)totalBytesWritten
-    totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite;
+/*! The app ID for the app store */
+@property (nonatomic, copy, readonly, nullable) NSString *appStoreId;
 
-@end
-
-@interface FBSDKURLConnection : NSObject
-
-- (FBSDKURLConnection *)initWithRequest:(NSURLRequest *)request
-                      completionHandler:(FBSDKURLConnectionHandler)handler
-NS_DESIGNATED_INITIALIZER;
-
-@property (nonatomic, weak) id<FBSDKURLConnectionDelegate> delegate;
-
-- (void)cancel;
-- (void)start;
-- (void)setDelegateQueue:(NSOperationQueue *)queue;
+/*! The name of the app */
+@property (nonatomic, copy, readonly) NSString *appName;
 
 @end
+
+NS_ASSUME_NONNULL_END
