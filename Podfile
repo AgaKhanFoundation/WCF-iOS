@@ -3,9 +3,9 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'WalkingChallenge' do
-  pod 'FacebookCore', '~> 0.3.0'
-  pod 'FacebookLogin', '~> 0.3.0'
-  pod 'FacebookShare', '~> 0.3.0'
+  pod 'FacebookCore', '~> 0.5.0'
+  pod 'FacebookLogin', '~> 0.5.0'
+  pod 'FacebookShare', '~> 0.5.0'
   pod 'SnapKit', '~> 4.0.0'
-  pod 'SwiftLint', '~> 0.25.1'
+  pod 'SwiftLint', '~> 0.29.2'
 end
