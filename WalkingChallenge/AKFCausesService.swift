@@ -30,22 +30,16 @@
 import Foundation
 
 enum AKFCausesEndPoint {
-  internal typealias FacebookID = String
-  internal typealias TeamID = Int
-  internal typealias EventID = Int
-  internal typealias RecordID = Int
-  internal typealias SourceID = Int
-
   case healthcheck
-  case participant(FacebookID)
+  case participant(fbId: String)
   case participants
-  case team(TeamID)
+  case team(teamId: Int)
   case teams
-  case event(EventID)
+  case event(eventId: Int)
   case events
-  case record(RecordID)
+  case record(recordId: Int)
   case records
-  case source(SourceID)
+  case source(sourceId: Int)
   case sources
 }
 
@@ -58,20 +52,20 @@ extension AKFCausesEndPoint {
       return "/participants/\(fbid)"
     case .participants:
       return "/participants"
-    case .team(let id):
-      return "/teams/\(id)"
+    case .team(let teamId):
+      return "/teams/\(teamId)"
     case .teams:
       return "/teams"
-    case .event(let id):
-      return "/events/\(id)"
+    case .event(let eventId):
+      return "/events/\(eventId)"
     case .events:
       return "/events"
-    case .record(let id):
-      return "/records/\(id)"
+    case .record(let recordId):
+      return "/records/\(recordId)"
     case .records:
       return "/records"
-    case .source(let id):
-      return "/sources/\(id)"
+    case .source(let sourceId):
+      return "/sources/\(sourceId)"
     case .sources:
       return "/sources"
     }
@@ -106,7 +100,7 @@ class AKFCausesService: Service {
 
   static func getParticipant(fbid: String,
                              completion: ServiceRequestCompletion? = nil) {
-    shared.request(endpoint: .participant(fbid), completion: completion)
+    shared.request(endpoint: .participant(fbId: fbid), completion: completion)
   }
 
   static func createTeam(name: String, completion: ServiceRequestCompletion? = nil) {
@@ -115,16 +109,16 @@ class AKFCausesService: Service {
   }
 
   static func deleteTeam(team: Int, completion: ServiceRequestCompletion? = nil) {
-    shared.request(.delete, endpoint: .team(team), completion: completion)
+    shared.request(.delete, endpoint: .team(teamId: team), completion: completion)
   }
 
   static func getTeam(team: Int, completion: ServiceRequestCompletion? = nil) {
-    shared.request(endpoint: .team(team), completion: completion)
+    shared.request(endpoint: .team(teamId: team), completion: completion)
   }
 
   static func joinTeam(fbid: String, team: Int,
                        completion: ServiceRequestCompletion? = nil) {
-    shared.request(.patch, endpoint: .participant(fbid),
+    shared.request(.patch, endpoint: .participant(fbId: fbid),
                    parameters: JSON(["team_id": team]), completion: completion)
   }
 
@@ -133,7 +127,7 @@ class AKFCausesService: Service {
   }
 
   static func getEvent(event: Int, completion: ServiceRequestCompletion? = nil) {
-    shared.request(endpoint: .event(event), completion: completion)
+    shared.request(endpoint: .event(eventId: event), completion: completion)
   }
 
   static func getEvents(completion: ServiceRequestCompletion? = nil) {
@@ -141,7 +135,7 @@ class AKFCausesService: Service {
   }
 
   static func getRecord(record: Int, completion: ServiceRequestCompletion? = nil) {
-    shared.request(endpoint: .record(record), completion: completion)
+    shared.request(endpoint: .record(recordId: record), completion: completion)
   }
 
   static func createRecord(record: Record,
@@ -161,7 +155,7 @@ class AKFCausesService: Service {
   }
 
   static func getSource(source: Int, completion: ServiceRequestCompletion? = nil) {
-    shared.request(endpoint: .source(source), completion: completion)
+    shared.request(endpoint: .source(sourceId: source), completion: completion)
   }
 
   static func getSources(completion: ServiceRequestCompletion? = nil) {
@@ -170,7 +164,7 @@ class AKFCausesService: Service {
 
   static func joinEvent(fbid: String, eventID: Int,
                         commpletion: ServiceRequestCompletion? = nil) {
-    shared.request(.patch, endpoint: .participant(fbid),
+    shared.request(.patch, endpoint: .participant(fbId: fbid),
                    parameters: JSON(["event_id": eventID]),
                    completion: commpletion)
   }
@@ -186,7 +180,7 @@ extension AKFCausesService {
       case .success(let status, let response):
         let source: JSON? =
             response?.arrayValue?.filter { Source(json: $0)?.name == source }.first
-        shared.callback(completion, result: .success(status, source))
+        shared.callback(completion, result: .success(statusCode: status, response: source))
         break
       }
     }

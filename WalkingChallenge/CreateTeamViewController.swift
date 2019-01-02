@@ -175,7 +175,7 @@ extension NameTeamViewController: UITextFieldDelegate {
   }
 
   func textFieldDidEndEditing(_ textField: UITextField,
-                              reason: UITextFieldDidEndEditingReason) {
+                              reason: UITextField.DidEndEditingReason) {
     uvwBorder.backgroundColor = Style.Colors.grey
   }
 
@@ -454,14 +454,14 @@ extension CreateTeamViewController: CreateTeamDelegate {
     guard let newController = controllers[safe: index + 1] else { return }
 
     if let prevController = controllers[safe: index] {
-      prevController.willMove(toParentViewController: nil)
+      prevController.willMove(toParent: nil)
       prevController.view.removeFromSuperview()
     }
 
-    newController.willMove(toParentViewController: self)
+    newController.willMove(toParent: self)
     view.addSubview(newController.view)
-    addChildViewController(newController)
-    newController.didMove(toParentViewController: self)
+    addChild(newController)
+    newController.didMove(toParent: self)
 
     index += 1
   }
@@ -488,11 +488,9 @@ extension CreateTeamViewController: CreateTeamDelegate {
       switch result {
       case .failed(let error):
         print("unable to create team: \(String(describing: error?.localizedDescription))")
-        break
       case .success(_, let response):
         guard let response = response else { return }
         self.team = Team(json: response)
-        break
       }
     }
   }
@@ -505,7 +503,6 @@ extension CreateTeamViewController: CreateTeamDelegate {
         switch result {
         case .failed(let error):
           print("unable to add \(member) to \(String(describing: self.team?.name)): \(String(describing: error?.localizedDescription))")
-          break
         case .success(_, _):
           break
         }

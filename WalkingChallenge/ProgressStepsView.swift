@@ -35,7 +35,7 @@ class ProgressStepsView: UIView {
   internal let stkStackView: UIStackView = UIStackView()
   internal var segments: [UIView] = []
 
-  var axis: UILayoutConstraintAxis = .horizontal {
+  var axis: NSLayoutConstraint.Axis = .horizontal {
     didSet { stkStackView.axis = axis }
   }
   var diameter: CGFloat = 40.0
@@ -112,7 +112,7 @@ class ProgressStepsView: UIView {
         segments.append(segment)
       }
 
-      bringSubview(toFront: stkStackView)
+      bringSubviewToFront(stkStackView)
     }
   }
 

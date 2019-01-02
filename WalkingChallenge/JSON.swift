@@ -51,7 +51,7 @@ extension JSON {
       self = .number(Float(truncating: number))
       return
     }
-    if let dictionary = value as? [String : Any] {
+    if let dictionary = value as? [String: Any] {
       var object: [String:JSON] = [:]
       for (key, value) in dictionary {
         object[key] = JSON(value)

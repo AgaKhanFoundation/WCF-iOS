@@ -43,7 +43,7 @@ case supporter(Supporter?)
 class SectionHeaderCell: UITableViewCell {
   internal var lblSectionHeader: UILabel = UILabel()
 
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     initialise()
   }
@@ -81,7 +81,7 @@ class ContributorCell: UITableViewCell {
   internal var lblDonated: UILabel = UILabel()
   internal var lblPledged: UILabel = UILabel()
 
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     initialise()
   }
@@ -120,10 +120,8 @@ extension ContributorCell: ConfigurableUITableViewCell {
     switch contributor {
     case .sponsor(let sponsor):
       lblContributor.text = "\(sponsor?.name ?? "")"
-      break
     case .supporter(let supporter):
       lblContributor.text = "\(supporter?.name ?? "")"
-      break
     }
   }
 }

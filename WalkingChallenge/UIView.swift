@@ -39,7 +39,7 @@ extension UIView {
 
 extension UIViewController {
   func alert(message: String, title: String = "Error",
-             style: UIAlertActionStyle = .default) {
+             style: UIAlertAction.Style = .default) {
     let alert = UIAlertController(title: title, message: message,
                                   preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "OK", style: style, handler: nil))

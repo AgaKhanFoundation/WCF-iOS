@@ -71,15 +71,13 @@ extension LoginViewController: LoginButtonDelegate {
   func loginButtonDidCompleteLogin(_ loginButton: LoginButton,
                                    result: LoginResult) {
     switch result {
-    case .success(_, _, _):
+    case .success:
       AKFCausesService.createParticipant(fbid: Facebook.id)
       AppController.shared.login()
-      break
     case .cancelled:
       break
     case .failed(let error):
       alert(message: "Error logging in \(error)", style: .cancel)
-      break
     }
   }
 
