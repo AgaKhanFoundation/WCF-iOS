@@ -37,7 +37,7 @@ class SponsorCell: UITableViewCell {
   internal var donated: UILabel = UILabel(.body)
   internal var pledged: UILabel = UILabel(.caption)
 
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     initialise()
   }
@@ -132,7 +132,7 @@ class SupporterCell: UITableViewCell {
   internal var donated: UILabel = UILabel(.body)
   internal var pledged: UILabel = UILabel(.caption)
 
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     initialise()
   }
@@ -292,7 +292,7 @@ class SupportersViewController: UIViewController {
     tblSponsorsTable.dataSource = sponsorsDataSource
     tblSponsorsTable.allowsSelection = false
     tblSponsorsTable.estimatedRowHeight = 50 //This is an arbitrary number
-    tblSponsorsTable.rowHeight = UITableViewAutomaticDimension
+    tblSponsorsTable.rowHeight = UITableView.automaticDimension
     tblSponsorsTable.register(SponsorCell.self)
     tblSponsorsTable.snp.makeConstraints { (make) in
       make.top.equalTo(top).offset(Style.Padding.p8)

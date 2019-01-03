@@ -42,7 +42,7 @@ struct TeamMemberCountInfo: CellInfo {
 class TeamMemberCountCell: UITableViewCell {
   let label: UILabel = UILabel(.header)
 
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     initialise()
   }
@@ -85,7 +85,7 @@ class TeamMemberCell: UITableViewCell {
   let pictureView = UIImageView()
   let nameLabel = UILabel(.body)
 
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     initialise()
   }
@@ -199,10 +199,8 @@ class TeamMembersViewController: UIViewController {
             self?.teamMembersDataSource = TeamMembersDataSource(team: team)
           }
         }
-        break
       case .failed(let error):
         print("unable to get participant \(String(describing: error?.localizedDescription))")
-        break
       }
     }
   }

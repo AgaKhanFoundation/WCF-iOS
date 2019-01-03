@@ -262,10 +262,8 @@ class TeamViewController: UIViewController {
                 TeamLeaderboardDataSource(team: team)
           }
         }
-        break
       case .failed(let error):
         print("unable to get participant \(String(describing: error?.localizedDescription))")
-        break
       }
     }
   }

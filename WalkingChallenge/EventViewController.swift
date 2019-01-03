@@ -97,23 +97,23 @@ class EventViewController: UIViewController {
   }
 
   @objc func segmentChanged(_ sender: Any) {
-    currentViewController?.willMove(toParentViewController: nil)
+    currentViewController?.willMove(toParent: nil)
     currentViewController?.view.removeFromSuperview()
-    currentViewController?.removeFromParentViewController()
+    currentViewController?.removeFromParent()
 
     currentViewController =
         viewControllers[safe: segSegments.selectedSegmentIndex]
 
     guard let currentViewController = currentViewController else { return }
 
-    addChildViewController(currentViewController)
+    addChild(currentViewController)
     view.addSubview(currentViewController.view)
     currentViewController.view.snp.makeConstraints { (make) in
       make.top.equalTo(tbrToolBar.snp.bottom)
       make.leading.trailing.bottom.equalToSuperview()
     }
     currentViewController.view.layoutIfNeeded()
-    currentViewController.didMove(toParentViewController: self)
+    currentViewController.didMove(toParent: self)
   }
 }
 

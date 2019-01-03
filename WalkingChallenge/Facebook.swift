@@ -82,7 +82,6 @@ class Facebook {
       break
     case .count(let count):
       params["limit"] = String(count)
-      break
     }
 
     if cursor != nil {
@@ -113,19 +112,15 @@ class Facebook {
             case .none:
               self.enumerateFriends(type: type, limit: .none, cursor: after,
                                     handler: handler)
-              break
             case .count(let count):
               self.enumerateFriends(type: type,
                                     limit: .count(count - retrieved),
                                     cursor: after, handler: handler)
-              break
             }
           }
         }
-        break
       case .failed(let error):
         print("error executing GraphQL query: \(String(describing: error))")
-        break
       }
     }
   }
@@ -154,10 +149,8 @@ class Facebook {
         if let deserialised = JSON(response.dictionaryValue!) {
           completion(deserialised["name"]?.stringValue)
         }
-        break
       case .failed(let error):
         print("unable to execute GraphQL query \(String(describing: error))")
-        break
       }
     }
   }
@@ -173,10 +166,8 @@ class Facebook {
         if let deserialised = JSON(response.dictionaryValue!) {
           completion(deserialised["location"]?["name"]?.stringValue)
         }
-        break
       case .failed(let error):
         print("unable to execute GraphQL query: \(String(describing: error))")
-        break
       }
     }
   }
@@ -206,10 +197,8 @@ class Facebook {
             completion(URL(string: url))
           }
         }
-        break
       case .failed(let error):
         print("unable to execute GraphQL query: \(String(describing: error))")
-        break
       }
     }
   }

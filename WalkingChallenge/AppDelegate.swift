@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     // TODO: Eventually move this into AppController when other frameworks require setup
     SDKApplicationDelegate.shared.application(application,
                                               didFinishLaunchingWithOptions: launchOptions)
@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   func application(_ app: UIApplication, open url: URL,
-                   options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+                   options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
     // TODO: Eventually move this into AppController when other frameworks require setupS
     return SDKApplicationDelegate.shared.application(app, open: url,
                                                      options: options)

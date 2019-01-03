@@ -1,4 +1,4 @@
-// Copyright (c) 2016-present, Facebook, Inc. All rights reserved.
+// Copyright (c) 2014-present, Facebook, Inc. All rights reserved.
 //
 // You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
 // copy, modify, and distribute this software in source code or binary form for use
@@ -16,12 +16,29 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import Foundation
+#import <Foundation/Foundation.h>
 
-// Taken from FBSDKShareDefines.h
+typedef NS_OPTIONS(int, FBSDKCodelessMatchBitmaskField)
+{
+  FBSDKCodelessMatchBitmaskFieldID = 1,
+  FBSDKCodelessMatchBitmaskFieldText = 1 << 1,
+  FBSDKCodelessMatchBitmaskFieldTag = 1 << 2,
+  FBSDKCodelessMatchBitmaskFieldDescription = 1 << 3,
+  FBSDKCodelessMatchBitmaskFieldHint = 1 << 4
+};
 
-enum ShareResultKeys: String {
-  case CompletionGesture = "completionGesture"
-  case DidComplete = "didComplete"
-  case PostId = "postId"
-}
+@interface FBSDKCodelessPathComponent : NSObject
+
+@property (nonatomic, copy, readonly) NSString *className;
+@property (nonatomic, copy, readonly) NSString *text;
+@property (nonatomic, copy, readonly) NSString *hint;
+@property (nonatomic, copy, readonly) NSString *desc; // description
+@property (nonatomic, readonly) int index;
+@property (nonatomic, readonly) int tag;
+@property (nonatomic, readonly) int section;
+@property (nonatomic, readonly) int row;
+@property (nonatomic, readonly) int matchBitmask;
+
+- (instancetype)initWithJSON:(NSDictionary*)dict;
+
+@end

@@ -48,7 +48,7 @@ fileprivate class EventCell: UITableViewCell {
   internal var event: Event?
   internal weak var delegate: EventCellDelegate?
 
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     initialise()
   }
@@ -298,7 +298,7 @@ class EventsViewController: UIViewController {
     tblTableView.dataSource = events
     tblTableView.delegate = self
     tblTableView.estimatedRowHeight = 2
-    tblTableView.rowHeight = UITableViewAutomaticDimension
+    tblTableView.rowHeight = UITableView.automaticDimension
     tblTableView.register(EventCell.self)
 
     var top: ConstraintRelatableTarget = topLayoutGuide.snp.bottom
@@ -329,10 +329,8 @@ extension EventsViewController: EventCellDelegate {
       switch result {
       case .failed(let error):
         print("unable to join event: \(String (describing: error?.localizedDescription))")
-        break
       case .success(_, _):
         self.showEventDetails(event: event)
-        break
       }
     }
   }

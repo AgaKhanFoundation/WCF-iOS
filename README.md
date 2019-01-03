@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-- Built using Xcode v8.3.2
+- Built using Xcode v10.1 on Swift 4.2.1
 - Open `WalkingChallenge.xcworkspace`
 
 ## Adding Dependencies

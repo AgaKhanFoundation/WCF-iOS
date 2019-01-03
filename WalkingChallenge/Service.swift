@@ -42,8 +42,8 @@ enum ServiceRequestResult {
   internal typealias HTTPStatusCode = Int
   internal typealias Response = JSON?
 
-  case success(HTTPStatusCode, Response)
-  case failed(Error?)
+  case success(statusCode: HTTPStatusCode, response: Response)
+  case failed(_ error: Error?)
 }
 
 class Service {
@@ -85,11 +85,9 @@ class Service {
 
         switch JSON.deserialise(data!) {
         case .some(let response):
-          self.callback(completion, result: .success(http.statusCode, response))
-          break
+          self.callback(completion, result: .success(statusCode: http.statusCode, response: response))
         default:
           self.callback(completion, result: .failed(nil))
-          break
         }
     }
 

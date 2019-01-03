@@ -16,14 +16,14 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+import FBSDKShareKit
 import Foundation
 import UIKit
-import FBSDKShareKit
 
 /**
  A photo for sharing.
  */
-public struct Photo {
+public struct Photo: Equatable {
   ///  If the photo is resident in memory, this method supplies the data.
   public var image: UIImage?
 
@@ -42,7 +42,7 @@ public struct Photo {
   /**
    Conveniece method to Create a `Photo` with an image.
 
-   - parameter image:         The image to create with.
+   - parameter image: The image to create with.
    - parameter userGenerated: Whether or not this image was user generated.
    */
   public init(image: UIImage, userGenerated: Bool) {
@@ -53,20 +53,22 @@ public struct Photo {
   /**
    Conveniece method to Create a `Photo` with an image.
 
-   - parameter url:           The image URL to create with.
+   - parameter url: The image URL to create with.
    - parameter userGenerated: Whether or not this image was user generated.
    */
   public init(url: URL, userGenerated: Bool) {
     self.url = url
     self.isUserGenerated = userGenerated
   }
-}
 
-extension Photo {
+  // MARK: Internal
   internal var sdkPhotoRepresentation: FBSDKSharePhoto {
     let photo = FBSDKSharePhoto()
-    photo.image = image
-    photo.imageURL = url
+    if let image = image {
+        photo.image = image
+    } else if let imageURL = url {
+        photo.imageURL = imageURL
+    }
     photo.isUserGenerated = isUserGenerated
     photo.caption = caption
 
@@ -79,9 +81,9 @@ extension Photo {
     self.isUserGenerated = sdkPhoto.isUserGenerated
     self.caption = sdkPhoto.caption
   }
-}
 
-extension Photo: Equatable {
+  // MARK: Equatable
+
   /**
    Compare to photos for equality.
 

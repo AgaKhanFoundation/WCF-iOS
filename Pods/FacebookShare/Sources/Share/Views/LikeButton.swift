@@ -16,8 +16,8 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import Foundation
 import FBSDKShareKit
+import Foundation
 
 /**
  A button to like an object.
@@ -27,9 +27,11 @@ import FBSDKShareKit
  currentAccessToken has "publish_actions" permission and the object is an Open Graph object, then the like can happen
  seamlessly without the fast-app-switch.
  */
+
+@available(*, deprecated, message: "FBSDKLikeButton is deprecated")
 public class LikeButton: UIView {
 
-  fileprivate var sdkLikeButton: FBSDKLikeButton
+  private var sdkLikeButton: FBSDKLikeButton
 
   /// If `true`, a sound is played when the reciever is toggled.
   public var isSoundEnabled: Bool {
@@ -56,7 +58,7 @@ public class LikeButton: UIView {
   /**
    Create a new LikeButton with a given frame and object.
 
-   - parameter frame:   The frame to initialize with.
+   - parameter frame: The frame to initialize with.
    - parameter object: The object to like.
    */
   public init(frame: CGRect? = nil, object: LikableObject) {
@@ -86,7 +88,7 @@ public class LikeButton: UIView {
   /**
    Performs logic for laying out subviews.
    */
-  public override func layoutSubviews() {
+  override public func layoutSubviews() {
     super.layoutSubviews()
 
     sdkLikeButton.frame = CGRect(origin: .zero, size: bounds.size)
@@ -95,7 +97,7 @@ public class LikeButton: UIView {
   /**
    Resizes and moves the receiver view so it just encloses its subviews.
    */
-  public override func sizeToFit() {
+  override public func sizeToFit() {
     bounds.size = sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
   }
 
@@ -106,7 +108,7 @@ public class LikeButton: UIView {
 
    - returns: A new size that fits the receiver’s subviews.
    */
-  public override func sizeThatFits(_ size: CGSize) -> CGSize {
+  override public func sizeThatFits(_ size: CGSize) -> CGSize {
     return sdkLikeButton.sizeThatFits(size)
   }
 
@@ -115,7 +117,7 @@ public class LikeButton: UIView {
 
    - returns: A size indicating the natural size for the receiving view based on its intrinsic properties.
    */
-  public override var intrinsicContentSize: CGSize {
+  override public var intrinsicContentSize: CGSize {
     return sdkLikeButton.intrinsicContentSize
   }
 }

@@ -127,6 +127,7 @@ extension AppController {
     AKFCausesService.performAPIHealthCheck { (result) in
       switch result {
       case .failed(let error):
+        //TODO: Launch Blocker -- Add error handling
         /*
         self.transition(to: .login)
         if let view = self.window?.rootViewController {
@@ -134,8 +135,7 @@ extension AppController {
         }
         */
         _ = error
-        break
-      case .success(_, _):
+      case .success:
         break
       }
     }

@@ -53,7 +53,7 @@ class ProgressArcLayer: CAShapeLayer {
                      endAngle: 3 * CGFloat.pi / 2, clockwise: true)
 
     fillColor = UIColor.clear.cgColor
-    lineCap = kCALineCapSquare
+    lineCap = CAShapeLayerLineCap.square
     lineWidth = CGFloat(width)
     path = curve.cgPath
     strokeColor = color.cgColor
@@ -73,7 +73,7 @@ class ProgressArcLayer: CAShapeLayer {
     animation.toValue = value
     animation.duration = CFTimeInterval(3.6)
     animation.timingFunction =
-        CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+      CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
     add(animation, forKey: "strokeEnd")
 
     strokeEnd = CGFloat(value)
