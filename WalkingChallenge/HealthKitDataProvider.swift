@@ -37,19 +37,26 @@ class HealthKitDataProvider: PedometerDataProvider {
                                      _ completion: @escaping PedometerCallback) {
     guard
       let stepCount = HKSampleType.quantityType(forIdentifier: .stepCount)
-    else { return }
-
-    if HealthKit.store.authorizationStatus(for: stepCount) != .sharingAuthorized {
-      HealthKit.store.requestAuthorization(toShare: nil, read: [stepCount]) {
-        (success: Bool, error: Error?) in
-          guard error == nil && success else {
-            print("Error getting HealthKit access: \(String(describing: error))")
-            return
-          }
-      }
+    else {
+      completion(.error(.quantityType))
+      return
     }
 
-    query(sampleType: stepCount, interval: interval, completion: completion)
+    switch HealthKit.store.authorizationStatus(for: stepCount) {
+    case .notDetermined:
+      HealthKit.store.requestAuthorization(toShare: [stepCount], read: [stepCount]) { (success: Bool, error: Error?) in
+        guard success, error == nil else {
+          print("Error getting HealthKit access: \(String(describing: error))")
+          completion(.error(.sharingNotAuthorized))
+          return
+        }
+        self.query(sampleType: stepCount, interval: interval, completion: completion)
+      }
+    case .sharingDenied:
+      completion(.error(.sharingDenied))
+    case .sharingAuthorized:
+      query(sampleType: stepCount, interval: interval, completion: completion)
+    }
   }
 
   private func query(sampleType: HKSampleType, interval: DateInterval,
@@ -61,8 +68,7 @@ class HealthKitDataProvider: PedometerDataProvider {
                               limit: 0, sortDescriptors: nil) {
       (_, results, _) in
         guard let results = results as? [HKQuantitySample] else {
-          // FIXME(compnerd) should we be invoking the completion here?
-          completion(0)
+          completion(.error(.resultsNotPresent))
           return
         }
 
@@ -71,7 +77,7 @@ class HealthKitDataProvider: PedometerDataProvider {
           steps += Int(result.quantity.doubleValue(for: .count()))
         }
 
-        completion(steps)
+        completion(.success(steps))
     }
 
     HealthKit.store.execute(query)
