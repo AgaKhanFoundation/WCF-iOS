@@ -33,3 +33,4 @@ import Foundation
 
 typealias GenericBlock = () -> Void
 typealias SuccessBlock = (Bool) -> Void
+typealias ReturnBlock<T> = (T) -> Void
