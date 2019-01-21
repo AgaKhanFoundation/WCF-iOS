@@ -201,6 +201,17 @@ class ProfileViewController: UIViewController {
           onMain { self?.imgProfile.image = UIImage(data: data) }
         }
       }
+
+      let oneDay: TimeInterval = 60 * 60 * 24
+      let interval = DateInterval(start: Date().startOfDay, duration: oneDay)
+      HealthKitDataProvider().retrieveStepCountForDateRange(interval, { (result) in
+        switch result {
+        case .error(let error):
+          print(error)
+        case .success(let steps):
+          print(steps)
+        }
+      })
     }
   }
 
