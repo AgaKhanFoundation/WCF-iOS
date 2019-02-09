@@ -76,14 +76,14 @@ class Service {
           self.callback(completion, result: .failed(nil))
           return
         }
-        guard data != nil else {
+        guard let data = data else {
           self.callback(completion, result: .failed(nil))
           return
         }
 
-        print("-> [\(http.statusCode)] \(String(data: data!, encoding: .utf8)!)")
+        print("-> [\(http.statusCode)] \(String(data: data, encoding: .utf8)!)")
 
-        switch JSON.deserialise(data!) {
+        switch JSON.deserialise(data) {
         case .some(let response):
           self.callback(completion, result: .success(statusCode: http.statusCode, response: response))
         default:
