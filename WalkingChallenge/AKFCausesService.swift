@@ -176,12 +176,11 @@ extension AKFCausesService {
       switch result {
       case .failed(let error):
         shared.callback(completion, result: .failed(error))
-        break
+
       case .success(let status, let response):
         let source: JSON? =
             response?.arrayValue?.filter { Source(json: $0)?.name == source }.first
         shared.callback(completion, result: .success(statusCode: status, response: source))
-        break
       }
     }
   }

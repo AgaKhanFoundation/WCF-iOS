@@ -29,7 +29,7 @@
 
 import SnapKit
 
-fileprivate class TeamLeaderboardDataSource: LeaderBoardDataSource {
+private class TeamLeaderboardDataSource: LeaderBoardDataSource {
   var leaders: [LeaderBoardEntry] = []
 
   func reloadData() {

@@ -30,7 +30,7 @@
 import SnapKit
 import FacebookCore
 
-fileprivate class StatisticsRangeDataSource: SelectionButtonDataSource {
+private class StatisticsRangeDataSource: SelectionButtonDataSource {
   static let ranges = [Strings.Profile.thisWeek, Strings.Profile.thisMonth,
                        Strings.Profile.thisEvent, Strings.Profile.overall]
 
@@ -335,10 +335,8 @@ class ProfileViewController: UIViewController {
 
         self?.lblTeamName.text = participant.team?.name
 
-        break
       case .failed(let error):
         print("unable to get participant: \(String(describing: error?.localizedDescription))")
-        break
       }
     }
   }

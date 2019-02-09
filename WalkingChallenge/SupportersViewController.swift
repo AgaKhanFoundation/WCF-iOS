@@ -98,7 +98,7 @@ extension SponsorCell: ConfigurableUITableViewCell {
   }
 }
 
-fileprivate class SponsorsDataSource: NSObject, UITableViewDataSource {
+private class SponsorsDataSource: NSObject, UITableViewDataSource {
   internal var dataSource: SponsorshipDataSource?
 
   init(_ dataSource: SponsorshipDataSource) {
@@ -179,7 +179,7 @@ extension SupporterCell: ConfigurableUITableViewCell {
   }
 }
 
-fileprivate class SupportersDataSource: NSObject, UITableViewDataSource {
+private class SupportersDataSource: NSObject, UITableViewDataSource {
   internal var dataSource: SponsorshipDataSource?
 
   init(_ dataSource: SponsorshipDataSource) {

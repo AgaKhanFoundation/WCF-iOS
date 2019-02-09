@@ -472,8 +472,8 @@ extension CreateTeamViewController: CreateTeamDelegate {
         switch result {
         case .failed(let error):
           print("unable to delete team: \(String(describing: error?.localizedDescription))")
-          break
-        case .success(_, _):
+
+        case .success:
           break
         }
       }
@@ -488,6 +488,7 @@ extension CreateTeamViewController: CreateTeamDelegate {
       switch result {
       case .failed(let error):
         print("unable to create team: \(String(describing: error?.localizedDescription))")
+
       case .success(_, let response):
         guard let response = response else { return }
         self.team = Team(json: response)
@@ -503,7 +504,8 @@ extension CreateTeamViewController: CreateTeamDelegate {
         switch result {
         case .failed(let error):
           print("unable to add \(member) to \(String(describing: self.team?.name)): \(String(describing: error?.localizedDescription))")
-        case .success(_, _):
+
+        case .success:
           break
         }
       }

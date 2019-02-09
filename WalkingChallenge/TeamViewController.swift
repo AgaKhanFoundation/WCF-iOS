@@ -30,7 +30,7 @@
 import SnapKit
 import FacebookCore
 
-fileprivate class StatisticsRangeDataSource: SelectionButtonDataSource {
+private class StatisticsRangeDataSource: SelectionButtonDataSource {
   // TODO(compnerd) should these be the same or different?
   static let ranges = [Strings.Profile.thisWeek, Strings.Profile.thisMonth,
                        Strings.Profile.thisEvent, Strings.Profile.overall]
@@ -39,7 +39,7 @@ fileprivate class StatisticsRangeDataSource: SelectionButtonDataSource {
   var selection: Int?
 }
 
-fileprivate class TeamLeaderboardDataSource: LeaderBoardDataSource {
+private class TeamLeaderboardDataSource: LeaderBoardDataSource {
   private let team: Team
 
   init(team: Team) {

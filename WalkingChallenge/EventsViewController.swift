@@ -38,7 +38,7 @@ protocol EventCellDelegate: class {
   func showEventDetails(event: Event)
 }
 
-fileprivate class EventCell: UITableViewCell {
+private class EventCell: UITableViewCell {
   internal var imgImage: UIImageView = UIImageView()
   internal var lblEventName: UILabel = UILabel()
   internal var lblCause: UILabel = UILabel()
@@ -181,7 +181,7 @@ class EventsViewController: UIViewController {
           }
         }
         self?.tblTableView.reloadData()
-        break
+
       case .failed(let error):
         print("unable to get events: \(String (describing: error?.localizedDescription))")
         return
@@ -202,11 +202,10 @@ class EventsViewController: UIViewController {
         }
         self?.configureView()
         self?.tblTableView.reloadData()
-        break
+
       case .failed(let error):
         print("unable to get participant: \(String(describing: error?.localizedDescription))")
         self?.fetchEvents()
-        break
       }
     }
   }
@@ -329,7 +328,8 @@ extension EventsViewController: EventCellDelegate {
       switch result {
       case .failed(let error):
         print("unable to join event: \(String (describing: error?.localizedDescription))")
-      case .success(_, _):
+
+      case .success:
         self.showEventDetails(event: event)
       }
     }
