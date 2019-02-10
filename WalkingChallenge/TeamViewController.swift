@@ -75,18 +75,18 @@ class TeamViewController: UIViewController {
       StatisticsRangeDataSource()
 
   let imgTeamImage: UIImageView = UIImageView()
-  let lblTeamName: UILabel = UILabel(.header)
+  let lblTeamName: UILabel = UILabel(typography: .header)
   let btnTeamMembers: UIButton = UIButton(type: .system)
 
   let lblRaisedSymbol: UILabel = UILabel()
-  let lblRaisedAmount: UILabel = UILabel(.header)
+  let lblRaisedAmount: UILabel = UILabel(typography: .header)
   let prgProgress: ProgressRing = ProgressRing(radius: 64.0, width: 16.0)
   let lblAchievementsSymbol: UILabel = UILabel()
-  let lblAchievements: UILabel = UILabel(.header)
-  let lblAchievementsUnits: UILabel = UILabel(.caption)
+  let lblAchievements: UILabel = UILabel(typography: .header)
+  let lblAchievementsUnits: UILabel = UILabel(typography: .caption)
 
   let btnStatisticsRange: SelectionButton = SelectionButton(type: .system)
-  let lblLeaderboardTitle: UILabel = UILabel(.section)
+  let lblLeaderboardTitle: UILabel = UILabel(typography: .section)
   let tblLeaderboard: LeaderBoard = LeaderBoard()
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

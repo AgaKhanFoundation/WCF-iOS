@@ -34,23 +34,37 @@ class AppController {
   static let shared = AppController()
 
   var window: UIWindow?
-  var tabBarController = UITabBarController()
+  var navigation: UITabBarController = Navigation()
 
   func launch(in window: UIWindow?) {
     self.window = window
 
-    configureApp()
+    // Setup Telemetry
+    AppEventsLogger.activate()
+
+    // Setup Window
+    window?.frame = UIScreen.main.bounds
+    window?.rootViewController = UIViewController()
+    window?.makeKeyAndVisible()
+
+    // Select Default View
+    if Facebook.id.isEmpty {
+      transition(to: .login)
+    } else {
+      transition(to: .navigation)
+    }
+
     healthCheckServer()
   }
 
   enum ViewController {
     case login
-    case tabBar
+    case navigation
 
     var viewController: UIViewController {
       switch self {
       case .login: return LoginViewController()
-      case .tabBar: return AppController.shared.tabBarController
+      case .navigation: return AppController.shared.navigation
       }
     }
   }
@@ -67,74 +81,27 @@ class AppController {
   }
 
   func login() {
-    transition(to: .tabBar)
+    transition(to: .navigation)
   }
 
   func logout() {
     transition(to: .login)
   }
-}
 
-// MARK: - Configuration
-extension AppController {
-  fileprivate func configureApp() {
-    configureAnalytics()
-    configureTabBarController()
-    configureWindow()
-
-    if Facebook.id.isEmpty {
-      transition(to: .login)
-    } else {
-      transition(to: .tabBar)
-    }
-  }
-
-  private func configureTabBarController() {
-    let leaderboardNVC =
-        UINavigationController(rootViewController: LeaderboardViewController())
-    leaderboardNVC.tabBarItem =
-        UITabBarItem(title: Strings.NavBarTitles.leaderboard, image: nil,
-                     selectedImage: nil)
-
-    let profile =
-        UINavigationController(rootViewController: ProfileViewController())
-    profile.tabBarItem =
-        UITabBarItem(title: Strings.NavBarTitles.profile,
-                     image: UIImage(imageLiteralResourceName: "person"),
-                     selectedImage: nil)
-
-    let events =
-        UINavigationController(rootViewController: EventsViewController())
-    events.tabBarItem =
-        UITabBarItem(title: Strings.NavBarTitles.events,
-                     image: UIImage(imageLiteralResourceName: "event"),
-                     selectedImage: nil)
-
-    tabBarController.viewControllers = [ profile, events, leaderboardNVC ]
-  }
-
-  private func configureWindow() {
-    window?.frame = UIScreen.main.bounds
-    window?.rootViewController = UIViewController()
-    window?.makeKeyAndVisible()
-  }
-
-  private func configureAnalytics() {
-    AppEventsLogger.activate()
-  }
-
-  fileprivate func healthCheckServer() {
+  private func healthCheckServer() {
     AKFCausesService.performAPIHealthCheck { (result) in
       switch result {
       case .failed(let error):
-        //TODO: Launch Blocker -- Add error handling
-        /*
+        // TODO: Launch Blocker -- Add error handling
+#if false
         self.transition(to: .login)
         if let view = self.window?.rootViewController {
-          view.alert(message: "Unable to access AKF Causes at this time.  Please try again later.\n\n\(error?.localizedDescription ?? "")")
+          view.alert(message: Strings.Application.unableToConnect)
         }
-        */
+#else
         _ = error
+#endif
+
       case .success:
         break
       }

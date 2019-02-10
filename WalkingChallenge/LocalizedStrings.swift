@@ -30,6 +30,64 @@
 import Foundation
 
 struct Strings {
+  struct Application {
+    static let unableToConnect: String =
+        NSLocalizedString("Unable to access AKF Causes at this time.  Please try again later.",
+                          comment: "Unable to access AKF Causes at this time.  Please try again later.")
+  }
+
+  struct Navigation {
+    static let dashboard: String =
+        NSLocalizedString("Dashboard", comment: "Dashboard")
+  }
+
+  struct Dashboard {
+    static let title: String =
+        NSLocalizedString("Dashboard", comment: "Dashboard")
+  }
+
+  struct ProfileCard {
+    static let challengeTimeline: String =
+        NSLocalizedString("Challenge Timeline", comment: "Challenge Timeline")
+
+    static let team: String =
+        NSLocalizedString("Team:", comment: "Team:")
+  }
+
+  struct ActivityCard {
+    static let title: String =
+        NSLocalizedString("Your Miles Walked", comment: "Your Miles Walked")
+
+    static let joinChallenge: String =
+        NSLocalizedString("Join Challenge", comment: "Join Challenge")
+
+    static let daily: String =
+        NSLocalizedString("Daily", comment: "Daily")
+    static let weekly: String =
+        NSLocalizedString("Weekly", comment: "Weekly")
+    static let total: String =
+        NSLocalizedString("Total", comment: "Total")
+  }
+
+  struct FundraisingCard {
+    static let title: String =
+        NSLocalizedString("Fundraising Progress",
+                          comment: "Fundraising Progress")
+
+    static let inviteSupporters: String =
+        NSLocalizedString("Invite Supporters", comment: "Invite Supporters")
+    static let viewSupporters: String =
+      NSLocalizedString("View Supporters \u{203a}", comment: "View Suppoters >")
+  }
+
+  struct ChallengeCard {
+    static let title: String =
+        NSLocalizedString("Challenge Progress", comment: "Challenge Progress")
+    static let joinChallenge: String =
+        NSLocalizedString("Join Challenge", comment: "Join Challenge")
+  }
+
+
   struct Profile {
     static let thisWeek = NSLocalizedString("This Week", comment: "This Week range")
     static let thisMonth = NSLocalizedString("This Month", comment: "This Month range")
@@ -115,6 +173,8 @@ struct Strings {
   }
 
   struct Assets {
+    static let gear = "GearIcon"
+
     static let gearIcon = "GearIcon"
   }
 }

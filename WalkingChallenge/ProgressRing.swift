@@ -109,8 +109,8 @@ class ProgressRing: UIView {
   }
   var progress: Float = 0.0
 
-  private let lblValue: UILabel = UILabel(.caption)
-  private let lblUnits: UILabel = UILabel(.caption)
+  private let lblValue: UILabel = UILabel(typography: .caption)
+  private let lblUnits: UILabel = UILabel(typography: .caption)
 
   private var arcLayer: ProgressArcLayer?
 

@@ -33,9 +33,9 @@ import FacebookLogin
 class ConfigurationViewController: UIViewController {
   internal let btnLogout: LoginButton = LoginButton(readPermissions: [])
 
-  internal let lblDevice: UILabel = UILabel(.section)
+  internal let lblDevice: UILabel = UILabel(typography: .section)
 
-  internal let lblAccountSettings: UILabel = UILabel(.section)
+  internal let lblAccountSettings: UILabel = UILabel(typography: .section)
   internal let btnEditProfile: UIButton =
       makeDisclosureIndicatorButton(title: Strings.Settings.editProfile)
   internal let btnChangeEmailAddress: UIButton =
@@ -43,11 +43,11 @@ class ConfigurationViewController: UIViewController {
   internal let btnNotificationsAndReminders: UIButton =
       makeDisclosureIndicatorButton(title: Strings.Settings.notificationsAndReminders)
 
-  internal let lblTeams: UILabel = UILabel(.section)
+  internal let lblTeams: UILabel = UILabel(typography: .section)
   internal var btnSwitchTeams: UIButton =
       makeDisclosureIndicatorButton(title: Strings.Settings.changeTeams)
 
-  internal let lblHelpSupport: UILabel = UILabel(.section)
+  internal let lblHelpSupport: UILabel = UILabel(typography: .section)
   internal let btnFAQs: UIButton =
       makeDisclosureIndicatorButton(title: Strings.Settings.faq)
   internal let btnContactUs: UIButton =

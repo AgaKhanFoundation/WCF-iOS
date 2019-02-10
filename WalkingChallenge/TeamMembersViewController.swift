@@ -40,7 +40,7 @@ struct TeamMemberCountInfo: CellInfo {
 }
 
 class TeamMemberCountCell: UITableViewCell {
-  let label: UILabel = UILabel(.header)
+  let label: UILabel = UILabel(typography: .header)
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -83,7 +83,7 @@ struct TeamMemberInfo: CellInfo {
 
 class TeamMemberCell: UITableViewCell {
   let pictureView = UIImageView()
-  let nameLabel = UILabel(.body)
+  let nameLabel = UILabel(typography: .body)
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
