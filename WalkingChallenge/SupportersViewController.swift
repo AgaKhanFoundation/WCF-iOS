@@ -32,10 +32,10 @@ import SnapKit
 
 class SponsorCell: UITableViewCell {
   internal var picture: UIImageView = UIImageView()
-  internal var name: UILabel = UILabel(.body)
-  internal var tagline: UILabel = UILabel(.caption)
-  internal var donated: UILabel = UILabel(.body)
-  internal var pledged: UILabel = UILabel(.caption)
+  internal var name: UILabel = UILabel(typography: .body)
+  internal var tagline: UILabel = UILabel(typography: .caption)
+  internal var donated: UILabel = UILabel(typography: .body)
+  internal var pledged: UILabel = UILabel(typography: .caption)
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -128,9 +128,9 @@ private class SponsorsDataSource: NSObject, UITableViewDataSource {
 }
 
 class SupporterCell: UITableViewCell {
-  internal var name: UILabel = UILabel(.body)
-  internal var donated: UILabel = UILabel(.body)
-  internal var pledged: UILabel = UILabel(.caption)
+  internal var name: UILabel = UILabel(typography: .body)
+  internal var donated: UILabel = UILabel(typography: .body)
+  internal var pledged: UILabel = UILabel(typography: .caption)
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -213,12 +213,12 @@ class SupportersViewController: UIViewController {
   private var sponsorsDataSource: SponsorsDataSource?
   private var supportersDataSource: SupportersDataSource?
 
-  private var lblStatus: UILabel = UILabel(.title)
-  private var lblCorporateSponsors: UILabel = UILabel(.section)
-  private var lblCorporateSponsorsSummary: UILabel = UILabel(.caption)
+  private var lblStatus: UILabel = UILabel(typography: .title)
+  private var lblCorporateSponsors: UILabel = UILabel(typography: .section)
+  private var lblCorporateSponsorsSummary: UILabel = UILabel(typography: .caption)
   private var tblSponsorsTable: UITableView = UITableView()
-  private var lblCurrentSupporters: UILabel = UILabel(.section)
-  private var lblCurrentSupportersSummary: UILabel = UILabel(.caption)
+  private var lblCurrentSupporters: UILabel = UILabel(typography: .section)
+  private var lblCurrentSupportersSummary: UILabel = UILabel(typography: .caption)
   private var tblSupportersTable: UITableView = UITableView()
 
   convenience init() {

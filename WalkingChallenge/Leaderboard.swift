@@ -39,11 +39,11 @@ struct LeaderBoardEntry {
 }
 
 class LeaderBoardCell: UITableViewCell {
-  internal var standing: UILabel = UILabel(.header)
+  internal var standing: UILabel = UILabel(typography: .header)
   internal var picture: UIImageView = UIImageView()
-  internal var name: UILabel = UILabel(.body)
-  internal var distance: UILabel = UILabel(.body)
-  internal var raised: UILabel = UILabel(.body)
+  internal var name: UILabel = UILabel(typography: .body)
+  internal var distance: UILabel = UILabel(typography: .body)
+  internal var raised: UILabel = UILabel(typography: .body)
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)

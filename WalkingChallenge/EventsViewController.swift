@@ -163,7 +163,7 @@ extension EventsViewTableDataSource: UITableViewDataSource {
 }
 
 class EventsViewController: UIViewController {
-  internal var lblSectionHeader: UILabel = UILabel(.header)
+  internal var lblSectionHeader: UILabel = UILabel(typography: .header)
   internal var lblSectionDetails: UILabel = UILabel()
   internal var tblTableView: UITableView = UITableView()
   internal var events: EventsViewTableDataSource = EventsViewTableDataSource()
