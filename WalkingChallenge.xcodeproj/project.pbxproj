@@ -57,6 +57,7 @@
 		F0CF39841EDE8F19006A7462 /* SponsorsSupportersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF39831EDE8F19006A7462 /* SponsorsSupportersViewController.swift */; };
 		F0CF39861EE0E903006A7462 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF39851EE0E903006A7462 /* Record.swift */; };
 		F0CF39881EE0EA98006A7462 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF39871EE0EA98006A7462 /* Source.swift */; };
+		F0D16A3C2218AD810081440C /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D16A3B2218AD810081440C /* Challenge.swift */; };
 		F0E1828A1E80B1DB00665E4F /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E182891E80B1DB00665E4F /* Facebook.swift */; };
 		F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F8EDCD220F865200321A6D /* Dashboard.swift */; };
 		F0F8EDD12210C65C00321A6D /* CardViewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F8EDD02210C65C00321A6D /* CardViewSupport.swift */; };
@@ -120,6 +121,7 @@
 		F0CF39831EDE8F19006A7462 /* SponsorsSupportersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SponsorsSupportersViewController.swift; sourceTree = "<group>"; };
 		F0CF39851EE0E903006A7462 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Record.swift; path = WalkingChallenge/Record.swift; sourceTree = "<group>"; };
 		F0CF39871EE0EA98006A7462 /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Source.swift; path = WalkingChallenge/Source.swift; sourceTree = "<group>"; };
+		F0D16A3B2218AD810081440C /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		F0E182891E80B1DB00665E4F /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
 		F0F8EDCD220F865200321A6D /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		F0F8EDD02210C65C00321A6D /* CardViewSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewSupport.swift; sourceTree = "<group>"; };
@@ -182,8 +184,9 @@
 				26C5E3601E7DCACF0053DE3E /* WalkingChallenge.entitlements */,
 				269E34E91E7658E6000726C2 /* AppController.swift */,
 				F0A0A5FD2210EC3600F20315 /* Navigation.swift */,
-				F0F8EDCF2210C62700321A6D /* Dashboard */,
 				269E352E1E768058000726C2 /* Login */,
+				F0F8EDCF2210C62700321A6D /* Dashboard */,
+				F0D16A3A2218AD530081440C /* Challenge */,
 				F0C6D5031E9DBABB008E3B82 /* Leaderboard */,
 				269E351E1E7671FE000726C2 /* Team */,
 				269E35191E766B74000726C2 /* Profile */,
@@ -334,6 +337,14 @@
 				F0C6D5041E9DBAE3008E3B82 /* LeaderboardViewController.swift */,
 			);
 			name = Leaderboard;
+			sourceTree = "<group>";
+		};
+		F0D16A3A2218AD530081440C /* Challenge */ = {
+			isa = PBXGroup;
+			children = (
+				F0D16A3B2218AD810081440C /* Challenge.swift */,
+			);
+			path = Challenge;
 			sourceTree = "<group>";
 		};
 		F0F8EDCF2210C62700321A6D /* Dashboard */ = {
@@ -498,6 +509,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0C6D50F1EA3DCB2008E3B82 /* Leaderboard.swift in Sources */,
+				F0D16A3C2218AD810081440C /* Challenge.swift in Sources */,
 				F0A992D81EAC3812001621A6 /* ProgressRing.swift in Sources */,
 				F0F8EDD12210C65C00321A6D /* CardViewSupport.swift in Sources */,
 				F0CF39801EDE4B41006A7462 /* EventViewController.swift in Sources */,

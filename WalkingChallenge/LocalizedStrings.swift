@@ -39,6 +39,8 @@ struct Strings {
   struct Navigation {
     static let dashboard: String =
         NSLocalizedString("Dashboard", comment: "Dashboard")
+    static let challenge: String =
+        NSLocalizedString("Challenge", comment: "Challenge")
   }
 
   struct Dashboard {
