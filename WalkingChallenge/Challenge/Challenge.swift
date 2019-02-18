@@ -30,26 +30,5 @@
 import UIKit
 import Foundation
 
-class Navigation: UITabBarController {
-  private let dashboard: UINavigationController =
-      UINavigationController(rootViewController: Dashboard())
-  private let challenge: UINavigationController =
-    UINavigationController(rootViewController: Challenge())
-
-  init() {
-    super.init(nibName: nil, bundle: nil)
-
-    dashboard.tabBarItem =
-        UITabBarItem(title: Strings.Navigation.dashboard, image: nil,
-                     selectedImage: nil)
-    challenge.tabBarItem =
-        UITabBarItem(title: Strings.Navigation.challenge, image: nil,
-                     selectedImage: nil)
-
-    self.viewControllers = [dashboard, challenge]
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+class Challenge: UIViewController {
 }
