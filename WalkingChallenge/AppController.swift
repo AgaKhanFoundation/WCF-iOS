@@ -91,16 +91,12 @@ class AppController {
   private func healthCheckServer() {
     AKFCausesService.performAPIHealthCheck { (result) in
       switch result {
-      case .failed(let error):
+      case .failed:
         // TODO: Launch Blocker -- Add error handling
-#if false
         self.transition(to: .login)
         if let view = self.window?.rootViewController {
           view.alert(message: Strings.Application.unableToConnect)
         }
-#else
-        _ = error
-#endif
 
       case .success:
         break
