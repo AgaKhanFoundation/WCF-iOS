@@ -31,5 +31,5 @@ import Foundation
 
 struct AppConfig {
   static let server: URLComponents =
-      URLComponents(string: "https://akf-causes.subshell.org")!
+      URLComponents(string: "http://40.121.10.181")! // "https://akf-causes.subshell.org")!
 }
