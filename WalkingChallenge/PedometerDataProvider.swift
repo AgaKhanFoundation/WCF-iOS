@@ -29,8 +29,18 @@
 
 import Foundation
 
+enum PedometerDataProviderError: Error {
+  case quantityType
+  case resultsNotPresent
+  case sharingDenied
+  case sharingNotAuthorized
+}
+
 protocol PedometerDataProvider {
-  typealias PedometerCallback = (_ steps: Int) -> Void
-  func retrieveStepCountForDateRange(_ interval: DateInterval,
-                                     _ completion: @escaping PedometerCallback)
+  typealias Error = PedometerDataProviderError
+
+  func retrieveStepCount(forInterval interval: DateInterval,
+                         _ completion: @escaping (Result<Int, PedometerDataProvider.Error>) -> Void)
+  func retrieveDistance(forInterval interval: DateInterval,
+                        _ completion: @escaping (Result<Int, PedometerDataProvider.Error>) -> Void)
 }
