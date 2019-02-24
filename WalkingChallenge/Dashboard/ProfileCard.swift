@@ -71,7 +71,7 @@ class ProfileCardView: StylizedCardView {
 
     layoutPersonalDetails()
 
-    eltSeparator.backgroundColor = .gray
+    eltSeparator.backgroundColor = #colorLiteral(red: 0.8941176470, green: 0.8941176470, blue: 0.8941176470, alpha: 1.0000000000)
     eltSeparator.snp.makeConstraints {
       $0.top.equalTo(lblTeam.snp.bottom).offset(Style.Padding.p8)
       $0.left.equalTo(lblTeamLabel.snp.left)

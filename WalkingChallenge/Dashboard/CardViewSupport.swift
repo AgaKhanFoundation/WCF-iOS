@@ -63,16 +63,15 @@ class CardViewCell: UITableViewCell {
   private func initialise() {
     guard let view = self as? StylizedCardView else { return }
 
-    self.layer.cornerRadius = Style.Size.s16
+    self.contentView.backgroundColor = .white
+    self.contentView.layer.cornerRadius = Style.Size.s8
 
-    self.layer.borderColor = Style.Colors.FoundationGrey.cgColor
-    self.layer.borderWidth = 1.0
-
-    self.layer.shadowColor = Style.Colors.FoundationGrey.cgColor
-    self.layer.shadowOpacity = 0.75
-    self.layer.shadowOffset =
-        CGSize(width: Style.Size.s8, height: Style.Size.s8)
-    self.layer.shadowRadius = 4.0
+    self.backgroundColor = .clear
+    self.layer.masksToBounds = false
+    self.layer.shadowColor = #colorLiteral(red: 0.8431372549, green: 0.8431372549, blue: 0.8431372549, alpha: 1.0000000000)
+    self.layer.shadowOffset = .zero
+    self.layer.shadowOpacity = 0.5
+    self.layer.shadowRadius = Style.Size.s8
 
     view.layout()
   }

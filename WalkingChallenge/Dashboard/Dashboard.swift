@@ -39,28 +39,30 @@ class Dashboard: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    self.navigationController?.navigationBar.barTintColor = UIColor.white
+    self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9647058823, green: 0.9725490196, blue: 0.9803921568, alpha: 1.0000000000)
     self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
 
     layout()
   }
 
   private func layout() {
-    view.backgroundColor = Style.Colors.white
+    view.backgroundColor = #colorLiteral(red: 0.9647058823, green: 0.9725490196, blue: 0.9803921568, alpha: 1.0000000000)
 
     lblTitle.text = Strings.Dashboard.title
     lblTitle.textColor = .black
+    lblTitle.backgroundColor = .clear
 
     view.addSubview(lblTitle)
     lblTitle.snp.makeConstraints {
       $0.top.equalTo(topLayoutGuide.snp.bottom)
-      $0.left.right.equalToSuperview().inset(Style.Padding.p16)
+      $0.left.right.equalToSuperview().inset(Style.Padding.p24)
     }
 
     tblCards.allowsSelection = false
-    tblCards.separatorStyle = .none
+    tblCards.backgroundColor = #colorLiteral(red: 0.9647058823, green: 0.9725490196, blue: 0.9803921568, alpha: 1.0000000000)
     tblCards.dataSource = self
     tblCards.delegate = self
+    tblCards.separatorStyle = .none
 
     tblCards.register(ProfileCardView.self)
     tblCards.register(ActivityCardView.self)
@@ -71,7 +73,7 @@ class Dashboard: UIViewController {
     tblCards.snp.makeConstraints {
       $0.top.equalTo(lblTitle.snp.bottom).offset(Style.Padding.p16)
       $0.bottom.equalToSuperview().inset(Style.Padding.p16)
-      $0.left.right.equalToSuperview().inset(Style.Padding.p16)
+      $0.left.right.equalToSuperview().inset(Style.Padding.p24)
     }
 
     arrCards.append(ProfileCard())
@@ -117,5 +119,13 @@ extension Dashboard: UITableViewDelegate {
   func tableView(_ tableView: UITableView,
                  viewForHeaderInSection section: Int) -> UIView? {
     return UIView(frame: .zero)
+  }
+
+  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
+                 forRowAt indexPath: IndexPath) {
+    cell.contentView.layer.masksToBounds = true
+    cell.layer.shadowPath =
+        UIBezierPath(roundedRect: cell.bounds,
+                     cornerRadius: cell.contentView.layer.cornerRadius).cgPath
   }
 }
