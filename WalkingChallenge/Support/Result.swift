@@ -1,5 +1,5 @@
 /**
- * Copyright © 2017 Aga Khan Foundation
+ * Copyright © 2019 Aga Khan Foundation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,20 +27,7 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-import Foundation
-
-enum PedometerDataProviderError: Error {
-  case quantityType
-  case resultsNotPresent
-  case sharingDenied
-  case sharingNotAuthorized
-}
-
-protocol PedometerDataProvider {
-  typealias Error = PedometerDataProviderError
-
-  func retrieveStepCount(forInterval interval: DateInterval,
-                         _ completion: @escaping (Result<Int, PedometerDataProvider.Error>) -> Void)
-  func retrieveDistance(forInterval interval: DateInterval,
-                        _ completion: @escaping (Result<Int, PedometerDataProvider.Error>) -> Void)
+public enum Result<Success, Failure: Error> {
+  case success(Success)
+  case failure(Failure)
 }
