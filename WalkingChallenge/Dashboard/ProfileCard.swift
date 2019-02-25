@@ -100,6 +100,7 @@ class ProfileCardView: StylizedCardView {
       $0.top.equalTo(lblChallenge.snp.bottom).offset(Style.Padding.p2)
       $0.left.equalTo(lblChallenge.snp.left)
     }
+    lblTeamLabel.setContentHuggingPriority(.required, for: .horizontal)
 
     lblTeam.snp.makeConstraints {
       $0.top.equalTo(lblChallenge.snp.bottom).offset(Style.Padding.p2)
