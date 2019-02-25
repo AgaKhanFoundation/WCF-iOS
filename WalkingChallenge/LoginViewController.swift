@@ -53,7 +53,7 @@ class LoginViewController: UIViewController {
     view.addSubviews([imgBackground, btnLogin])
 
     imgBackground.snp.makeConstraints { (make) in
-      make.top.equalTo(topLayoutGuide.snp.bottom)
+      make.top.equalToSuperview()
       make.left.equalToSuperview()
       make.height.equalToSuperview()
       make.width.equalToSuperview()
