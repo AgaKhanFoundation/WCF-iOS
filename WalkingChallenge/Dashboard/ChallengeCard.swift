@@ -32,7 +32,7 @@ import SnapKit
 import Foundation
 
 class ChallengeCardView: StylizedCardView {
-  private var lblTitle: UILabel = UILabel(frame: .zero)
+  private var lblTitle: UILabel = UILabel(typography: .bodyBold)
   private var lblDistance: UILabel = UILabel(frame: .zero)
   private var prgDistance: UIProgressView =
       UIProgressView(progressViewStyle: .default)

@@ -32,7 +32,7 @@ import SnapKit
 import Foundation
 
 class FundraisingCardView: StylizedCardView {
-  private var lblTitle: UILabel = UILabel(frame: .zero)
+  private var lblTitle: UILabel = UILabel(typography: .bodyBold)
   private var prgProgress: UIProgressView =
       UIProgressView(progressViewStyle: .default)
   private var lblProgress: UILabel = UILabel(frame: .zero)
@@ -41,8 +41,6 @@ class FundraisingCardView: StylizedCardView {
 
   internal func layout() {
     lblTitle.text = Strings.FundraisingCard.title
-    lblTitle.textColor = .black
-    lblTitle.font = lblTitle.font.withSize(16)
     addSubview(lblTitle)
     lblTitle.snp.makeConstraints {
       $0.left.equalToSuperview().inset(Style.Padding.p16)

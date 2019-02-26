@@ -34,13 +34,13 @@ import Foundation
 class ProfileCardView: StylizedCardView {
   private var btnGear: UIButton = UIButton(frame: .zero)
   private var imgImage: UIImageView = UIImageView(frame: .zero)
-  private var lblName: UILabel = UILabel(frame: .zero)
-  private var lblChallenge: UILabel = UILabel(frame: .zero)
-  private var lblTeamLabel: UILabel = UILabel(frame: .zero)
-  private var lblTeam: UILabel = UILabel(frame: .zero)
+  private var lblName: UILabel = UILabel(typography: .bodyBold)
+  private var lblChallenge: UILabel = UILabel(typography: .smallRegular)
+  private var lblTeamLabel: UILabel = UILabel(typography: .smallRegular)
+  private var lblTeam: UILabel = UILabel(typography: .smallRegular)
   private var eltSeparator: UIView = UIView(frame: .zero)
-  private var lblChallengeTimelineLabel: UILabel = UILabel(frame: .zero)
-  private var lblChallengeTimeline: UILabel = UILabel(frame: .zero)
+  private var lblChallengeTimelineLabel: UILabel = UILabel(typography: .smallBold)
+  private var lblChallengeTimeline: UILabel = UILabel(typography: .smallRegular)
 
   func layout() {
     addSubviews([btnGear, imgImage, lblName, lblChallenge, lblTeamLabel,
@@ -87,12 +87,14 @@ class ProfileCardView: StylizedCardView {
       $0.right.equalToSuperview().inset(Style.Padding.p16)
     }
 
+    lblChallenge.textColor = Style.Colors.grey
     lblChallenge.snp.makeConstraints {
       $0.top.equalTo(lblName.snp.bottom).offset(Style.Padding.p2)
       $0.left.equalTo(lblName.snp.left)
       $0.right.equalTo(lblName.snp.right)
     }
 
+    lblTeamLabel.textColor = Style.Colors.grey
     lblTeamLabel.text = Strings.ProfileCard.team
     lblTeamLabel.snp.makeConstraints {
       $0.top.equalTo(lblChallenge.snp.bottom).offset(Style.Padding.p2)
@@ -100,6 +102,7 @@ class ProfileCardView: StylizedCardView {
     }
     lblTeamLabel.setContentHuggingPriority(.required, for: .horizontal)
 
+    lblTeam.textColor = Style.Colors.grey
     lblTeam.snp.makeConstraints {
       $0.top.equalTo(lblChallenge.snp.bottom).offset(Style.Padding.p2)
       $0.left.equalTo(lblTeamLabel.snp.right).offset(Style.Padding.p2)
@@ -108,6 +111,7 @@ class ProfileCardView: StylizedCardView {
   }
 
   private func layoutChallengeDetails() {
+    lblChallengeTimelineLabel.textColor = Style.Colors.grey
     lblChallengeTimelineLabel.text = Strings.ProfileCard.challengeTimeline
     lblChallengeTimelineLabel.snp.makeConstraints {
       $0.top.equalTo(eltSeparator.snp.bottom).offset(Style.Padding.p8)
@@ -115,6 +119,7 @@ class ProfileCardView: StylizedCardView {
       $0.right.equalTo(lblTeam.snp.right)
     }
 
+    lblChallengeTimeline.textColor = Style.Colors.grey
     lblChallengeTimeline.snp.makeConstraints {
       $0.top.equalTo(lblChallengeTimelineLabel.snp.bottom)
         .offset(Style.Padding.p2)

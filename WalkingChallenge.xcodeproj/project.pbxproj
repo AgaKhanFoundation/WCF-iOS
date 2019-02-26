@@ -272,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				269E350D1E76664F000726C2 /* Async.swift */,
+				F0F8EDD02210C65C00321A6D /* CardViewSupport.swift */,
 				269E35281E767AE1000726C2 /* Collection.swift */,
 				2606948A1E7DD1A200BFED76 /* Date.swift */,
 				F0A992D51EABF037001621A6 /* Formatters.swift */,
@@ -310,7 +311,6 @@
 			isa = PBXGroup;
 			children = (
 				F0F8EDD42210C71600321A6D /* ActivityCard.swift */,
-				F0F8EDD02210C65C00321A6D /* CardViewSupport.swift */,
 				F0F8EDD82210C7FA00321A6D /* ChallengeCard.swift */,
 				F0F8EDCD220F865200321A6D /* Dashboard.swift */,
 				F0F8EDD62210C7C700321A6D /* FundraisingCard.swift */,

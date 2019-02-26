@@ -54,9 +54,12 @@ struct Style {
   enum Typography {
     case headerTitle
     case title
-    case subtitle
-    case body
-    case smallText
+    case subtitleRegular
+    case subtitleBold
+    case bodyRegular
+    case bodyBold
+    case smallRegular
+    case smallBold
     case footnote
 
     case onboarding
@@ -67,12 +70,18 @@ struct Style {
         return UIFont.boldSystemFont(ofSize: 32)
       case .title:
         return UIFont.boldSystemFont(ofSize: 20)
-      case .subtitle:
+      case .subtitleRegular:
         return UIFont.systemFont(ofSize: 16)
-      case .body:
+      case .subtitleBold:
+        return UIFont.systemFont(ofSize: 16, weight: .bold)
+      case .bodyRegular:
         return UIFont.systemFont(ofSize: 16)
-      case .smallText:
+      case .bodyBold:
+        return UIFont.systemFont(ofSize: 16, weight: .bold)
+      case .smallRegular:
         return UIFont.systemFont(ofSize: 14)
+      case .smallBold:
+        return UIFont.systemFont(ofSize: 14, weight: .bold)
       case .footnote:
         return UIFont.systemFont(ofSize: 12)
       case .onboarding:

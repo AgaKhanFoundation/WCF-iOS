@@ -45,13 +45,13 @@ class ActivityCardView: StylizedCardView {
     var selection: Int?
   }
 
-  private var lblTitle: UILabel = UILabel(typography: .title)
+  private var lblTitle: UILabel = UILabel(typography: .bodyBold)
   private var cboRange: SelectionButton = SelectionButton(type: .system)
   private let btnPrevious: UIButton = UIButton(type: .system)
   private let prgProgressRing: ProgressRing =
-    ProgressRing(radius: 64.0, width: 16.0)
+      ProgressRing(radius: 64.0, width: 16.0)
   private let btnNext: UIButton = UIButton(type: .system)
-  private let lblDaysUntil: UILabel = UILabel(typography: .smallText)
+  private let lblDaysUntil: UILabel = UILabel(typography: .smallRegular)
   private let lblDate: UILabel = UILabel(frame: .zero)
   private let btnJoinChallenge: UIButton = UIButton(type: .system)
 
@@ -86,7 +86,6 @@ class ActivityCardView: StylizedCardView {
 
   private func layoutHeader() {
     lblTitle.text = Strings.ActivityCard.title
-    lblTitle.font = lblTitle.font.withSize(16)
     lblTitle.snp.makeConstraints {
       $0.left.equalToSuperview().inset(Style.Padding.p16)
       $0.top.equalToSuperview().inset(Style.Padding.p16)
