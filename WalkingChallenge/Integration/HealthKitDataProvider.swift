@@ -30,7 +30,7 @@
 import HealthKit
 
 class HealthKitDataProvider: PedometerDataProvider {
-  private let HK: HKHealthStore = HKHealthStore()
+  private let HK: HKHealthStore = HKHealthStore()                               // swiftlint:disable:this identifier_name line_length
 
   func retrieveStepCount(forInterval interval: DateInterval,
                          _ completion: @escaping (Result<Int, PedometerDataProvider.Error>) -> Void) {

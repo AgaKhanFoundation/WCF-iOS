@@ -35,8 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   let appController = AppController.shared
   var window: UIWindow?
 
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+  func application(_ application: UIApplication,                                // swiftlint:disable:next colon
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey:Any]?) -> Bool {
     // TODO: Eventually move this into AppController when other frameworks require setup
     SDKApplicationDelegate.shared.application(application,
                                               didFinishLaunchingWithOptions: launchOptions)
@@ -48,8 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   func application(_ app: UIApplication, open url: URL,
-                   options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-    // TODO: Eventually move this into AppController when other frameworks require setupS
+                   options: [UIApplication.OpenURLOptionsKey:Any]) -> Bool {    // swiftlint:disable:this colon line_length
+    // TODO: Eventually move this into AppController when other frameworks require setup
     return SDKApplicationDelegate.shared.application(app, open: url,
                                                      options: options)
   }
