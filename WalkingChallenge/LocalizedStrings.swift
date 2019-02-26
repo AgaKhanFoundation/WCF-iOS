@@ -41,6 +41,10 @@ struct Strings {
         NSLocalizedString("Dashboard", comment: "Dashboard")
     static let challenge: String =
         NSLocalizedString("Challenge", comment: "Challenge")
+    static let leaderboard: String =
+        NSLocalizedString("Leaderboard", comment: "Leaderboard")
+    static let notifications: String =
+        NSLocalizedString("Notifications", comment: "Notifications")
   }
 
   struct Dashboard {

@@ -46,6 +46,8 @@
 		F0D16A3C2218AD810081440C /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D16A3B2218AD810081440C /* Challenge.swift */; };
 		F0DE162C221F8DD900FF17C9 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DE162B221F8DD900FF17C9 /* Result.swift */; };
 		F0E1828A1E80B1DB00665E4F /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E182891E80B1DB00665E4F /* Facebook.swift */; };
+		F0E6878F22251B7800454340 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6878E22251B7800454340 /* Leaderboard.swift */; };
+		F0E6879222251C0600454340 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6879122251C0600454340 /* Notifications.swift */; };
 		F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F8EDCD220F865200321A6D /* Dashboard.swift */; };
 		F0F8EDD12210C65C00321A6D /* CardViewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F8EDD02210C65C00321A6D /* CardViewSupport.swift */; };
 		F0F8EDD32210C68E00321A6D /* ProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F8EDD22210C68E00321A6D /* ProfileCard.swift */; };
@@ -97,6 +99,8 @@
 		F0D16A3B2218AD810081440C /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		F0DE162B221F8DD900FF17C9 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		F0E182891E80B1DB00665E4F /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
+		F0E6878E22251B7800454340 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
+		F0E6879122251C0600454340 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		F0F8EDCD220F865200321A6D /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		F0F8EDD02210C65C00321A6D /* CardViewSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewSupport.swift; sourceTree = "<group>"; };
 		F0F8EDD22210C68E00321A6D /* ProfileCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCard.swift; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 				269E352E1E768058000726C2 /* Login */,
 				F0F8EDCF2210C62700321A6D /* Dashboard */,
 				F0D16A3A2218AD530081440C /* Challenge */,
+				F0E6878D22251B4700454340 /* Leaderboard */,
+				F0E6879022251BEE00454340 /* Notifications */,
 				F0E6878C2225154700454340 /* Integration */,
 				F0DE162A221F8DBA00FF17C9 /* Support */,
 				266986791E91D50E004D45B4 /* Networking */,
@@ -282,6 +288,22 @@
 				F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */,
 			);
 			path = Integration;
+			sourceTree = "<group>";
+		};
+		F0E6878D22251B4700454340 /* Leaderboard */ = {
+			isa = PBXGroup;
+			children = (
+				F0E6878E22251B7800454340 /* Leaderboard.swift */,
+			);
+			path = Leaderboard;
+			sourceTree = "<group>";
+		};
+		F0E6879022251BEE00454340 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				F0E6879122251C0600454340 /* Notifications.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		F0F8EDCF2210C62700321A6D /* Dashboard */ = {
@@ -447,6 +469,7 @@
 			files = (
 				F0D16A3C2218AD810081440C /* Challenge.swift in Sources */,
 				F0A992D81EAC3812001621A6 /* ProgressRing.swift in Sources */,
+				F0E6879222251C0600454340 /* Notifications.swift in Sources */,
 				F0F8EDD12210C65C00321A6D /* CardViewSupport.swift in Sources */,
 				269E35091E765F24000726C2 /* UIView.swift in Sources */,
 				F0681D271ED53CA70029278E /* Cause.swift in Sources */,
@@ -476,6 +499,7 @@
 				269E35241E767807000726C2 /* Team.swift in Sources */,
 				269E35181E7669FB000726C2 /* LocalizedStrings.swift in Sources */,
 				F0F8EDD92210C7FA00321A6D /* ChallengeCard.swift in Sources */,
+				F0E6878F22251B7800454340 /* Leaderboard.swift in Sources */,
 				269E34EC1E7658E6000726C2 /* AppController.swift in Sources */,
 				F02FB49E1E9180CE0097481D /* Preferences.swift in Sources */,
 				F0CBDA4E1EA6FCAB00BB34F1 /* Supporter.swift in Sources */,

@@ -30,36 +30,5 @@
 import UIKit
 import Foundation
 
-class Navigation: UITabBarController {
-  private let dashboard: UINavigationController =
-      UINavigationController(rootViewController: Dashboard())
-  private let challenge: UINavigationController =
-      UINavigationController(rootViewController: Challenge())
-  private let leaderboard: UINavigationController =
-      UINavigationController(rootViewController: Leaderboard())
-  private let notifications: UINavigationController =
-      UINavigationController(rootViewController: Notifications())
-
-  init() {
-    super.init(nibName: nil, bundle: nil)
-
-    self.dashboard.tabBarItem =
-        UITabBarItem(title: Strings.Navigation.dashboard, image: nil,
-                     selectedImage: nil)
-    self.challenge.tabBarItem =
-        UITabBarItem(title: Strings.Navigation.challenge, image: nil,
-                     selectedImage: nil)
-    self.leaderboard.tabBarItem =
-        UITabBarItem(title: Strings.Navigation.leaderboard, image: nil,
-                     selectedImage: nil)
-    self.notifications.tabBarItem =
-        UITabBarItem(title: Strings.Navigation.notifications, image: nil,
-                     selectedImage: nil)
-
-    self.viewControllers = [dashboard, challenge, leaderboard, notifications]
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+class Notifications: UIViewController {
 }
