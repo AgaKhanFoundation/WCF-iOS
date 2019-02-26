@@ -45,13 +45,13 @@ class ActivityCardView: StylizedCardView {
     var selection: Int?
   }
 
-  private var lblTitle: UILabel = UILabel(typography: .card)
+  private var lblTitle: UILabel = UILabel(typography: .title)
   private var cboRange: SelectionButton = SelectionButton(type: .system)
   private let btnPrevious: UIButton = UIButton(type: .system)
   private let prgProgressRing: ProgressRing =
     ProgressRing(radius: 64.0, width: 16.0)
   private let btnNext: UIButton = UIButton(type: .system)
-  private let lblDaysUntil: UILabel = UILabel(typography: .subtext)
+  private let lblDaysUntil: UILabel = UILabel(typography: .smallText)
   private let lblDate: UILabel = UILabel(frame: .zero)
   private let btnJoinChallenge: UIButton = UIButton(type: .system)
 

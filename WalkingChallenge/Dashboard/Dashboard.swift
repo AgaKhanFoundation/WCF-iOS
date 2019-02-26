@@ -32,7 +32,7 @@ import SnapKit
 import Foundation
 
 class Dashboard: UIViewController {
-  private let lblTitle: UILabel = UILabel(typography: .tab)
+  private let lblTitle: UILabel = UILabel(typography: .headerTitle)
   private let tblCards: UITableView = UITableView(frame: .zero)
   private var arrCards: [Card] = []
 

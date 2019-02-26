@@ -31,19 +31,13 @@ import UIKit
 
 struct Style {
   struct Colors {
-    // Primary
-    static let green = #colorLiteral(red: 0.0000000000, green: 0.6941176470, blue: 0.2509803921, alpha: 1)      // #00b140
-    static let grey = #colorLiteral(red: 0.3450980392, green: 0.3450980392, blue: 0.3568627450, alpha: 1)       // #58585b
-
-    // Secondary
-    static let gold = #colorLiteral(red: 0.7333333333, green: 0.6196078431, blue: 0.1843137254, alpha: 1)       // #bb9e2f
-    static let yellow = #colorLiteral(red: 1.0000000000, green: 0.7843137254, blue: 0.2705882352, alpha: 1)     // #ffc845
-    static let lightGreen = #colorLiteral(red: 0.5843137254, green: 0.7568627450, blue: 0.1215686274, alpha: 1) // #95c11f
-    static let darkGreen = #colorLiteral(red: 0.0156862745, green: 0.4156862745, blue: 0.2196078431, alpha: 1)  // #045a38
-
     // Standard
+    static let black = #colorLiteral(red: 0.2000000000, green: 0.2000000000, blue: 0.2000000000, alpha: 1)      // #333333
+    static let blue = #colorLiteral(red: 0.0509803921, green: 0.4549019607, blue: 0.8901960784, alpha: 1)       // #0d74e3
+    static let green = #colorLiteral(red: 0.0000000000, green: 0.6588235294, blue: 0.3647058823, alpha: 1)      // #00a85d
+    static let grey = #colorLiteral(red: 0.4980392156, green: 0.4980392156, blue: 0.4980392156, alpha: 1)       // #7f7f7f
+    static let red = #colorLiteral(red: 0.8078431372, green: 0.0000000000, blue: 0.3450980392, alpha: 1)        // #ce0058
     static let white = #colorLiteral(red: 1.0000000000, green: 1.0000000000, blue: 1.0000000000, alpha: 1)      // #ffffff
-    static let black = #colorLiteral(red: 0.0000000000, green: 0.0000000000, blue: 0.0000000000, alpha: 1)      // #000000
 
     // New Colours
     static let FoundationGreen = #colorLiteral(red: 0.0000000000, green: 0.6588235294, blue: 0.3647058823, alpha: 1)      // #00a85d
@@ -55,6 +49,36 @@ struct Style {
 
     static let FoundationGrey = #colorLiteral(red: 0.0784313725, green: 0.0784313725, blue: 0.0784313725, alpha: 1)       // #333333
     static let Silver = #colorLiteral(red: 0.4980392156, green: 0.4980392156, blue: 0.4980392156, alpha: 1)               // #7f7f7f
+  }
+
+  enum Typography {
+    case headerTitle
+    case title
+    case subtitle
+    case body
+    case smallText
+    case footnote
+
+    case onboarding
+
+    var font: UIFont? {
+      switch self {
+      case .headerTitle:
+        return UIFont.boldSystemFont(ofSize: 32)
+      case .title:
+        return UIFont.boldSystemFont(ofSize: 20)
+      case .subtitle:
+        return UIFont.systemFont(ofSize: 16)
+      case .body:
+        return UIFont.systemFont(ofSize: 16)
+      case .smallText:
+        return UIFont.systemFont(ofSize: 14)
+      case .footnote:
+        return UIFont.systemFont(ofSize: 12)
+      case .onboarding:
+        return UIFont.systemFont(ofSize: 24)
+      }
+    }
   }
 
   struct Size {
@@ -80,62 +104,18 @@ struct Style {
     static let p48: CGFloat = 48
     static let p64: CGFloat = 64
   }
-
-  // TODO: Update this based on style guide from UX/UI person
-  enum Typography {
-    case tab
-    case card
-    case subtext
-    case text
-
-    case title
-    case header
-    case body
-    case button
-    case section
-    case caption
-
-    var font: UIFont? {
-      switch self {
-      case .tab:
-        return UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title1)
-                                      .fontDescriptor
-                                      .withSymbolicTraits(.traitBold)!,
-                      size: 0)
-      case .card:
-        return UIFont(descriptor: UIFont.preferredFont(forTextStyle: .title2)
-                                      .fontDescriptor
-                                      .withSymbolicTraits(.traitBold)!,
-                      size: 0)
-      case .text:
-        return UIFont(descriptor: UIFont.preferredFont(forTextStyle: .callout)
-                                      .fontDescriptor,
-                      size: 0)
-      case .subtext:
-        return UIFont(descriptor: UIFont.preferredFont(forTextStyle: .footnote)
-                                      .fontDescriptor,
-                      size: 0)
-
-
-      case .title: return UIFont.preferredFont(forTextStyle: .subheadline)
-      case .header: return UIFont.preferredFont(forTextStyle: .headline)
-      case .body: return UIFont.preferredFont(forTextStyle: .body)
-      case .button: return UIFont.preferredFont(forTextStyle: .callout)
-      case .section: return UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
-      case .caption: return UIFont.preferredFont(forTextStyle: .caption1)
-      }
-    }
-  }
 }
 
 extension UILabel {
   convenience init(typography: Style.Typography) {
     self.init()
-    font = typography.font
-    if typography == .section {
-      textColor = Style.Colors.grey
-    } else {
-      textColor = Style.Colors.black
+    self.font = typography.font
+    switch typography {
+    case .footnote:
+      self.textColor = Style.Colors.red
+    case .onboarding:
+      self.textColor = Style.Colors.green
+    default: break
     }
     numberOfLines = 0
   }

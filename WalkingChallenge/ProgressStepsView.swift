@@ -122,15 +122,13 @@ class ProgressStepsView: UIView {
         let view = stkStackView.arrangedSubviews[safe: step] as? UILabel
       else { return }
 
-      view.layer.borderColor = Style.Colors.lightGreen.cgColor
-      view.textColor = Style.Colors.lightGreen
+      view.layer.borderColor = Style.Colors.green.cgColor
+      view.textColor = Style.Colors.green
 
-      segments[safe: step - 1]?.layer.borderColor =
-          Style.Colors.lightGreen.cgColor
+      segments[safe: step - 1]?.layer.borderColor = Style.Colors.green.cgColor
     }
 
-    segments[safe: steps - 2]?.layer.borderColor =
-        Style.Colors.lightGreen.cgColor
+    segments[safe: steps - 2]?.layer.borderColor = Style.Colors.green.cgColor
 
     guard
       let view = stkStackView.arrangedSubviews[safe: steps - 1] as? UILabel
