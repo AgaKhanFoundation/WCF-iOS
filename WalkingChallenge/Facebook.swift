@@ -71,72 +71,6 @@ class Facebook {
     return AccessToken.current?.userId ?? ""
   }
 
-  private static func enumerateFriends(type: FriendType, limit: QueryLimit,
-                                       cursor: String?,
-                                       handler: @escaping EnumerationCallback) {
-    var retrieved = 0
-    var params = [ "fields" : "id, name, first_name, last_name, picture" ]      // swiftlint:disable:this colon
-
-    switch limit {
-    case .none:
-      break
-    case .count(let count):
-      params["limit"] = String(count)
-    }
-
-    if cursor != nil {
-      params["after"] = cursor!
-    }
-
-    let path = type == .taggable ? "me/taggable_friends" : "me/friends"
-
-    let request: GraphRequest =
-        GraphRequest(graphPath: path, parameters: params,
-                     accessToken: AccessToken.current, httpMethod: .GET,
-                     apiVersion: .defaultVersion)
-    request.start { (response, result) in
-      switch result {
-      case .success(let response):
-        if let deserialised = JSON(response.dictionaryValue!) {
-          for serialised in (deserialised["data"]?.arrayValue)! {
-            if let friend = Friend(json: serialised) {
-              handler(friend)
-              retrieved += 1
-            } else {
-              print("unable to deserialise friend \(serialised)")
-            }
-          }
-
-          if let after = deserialised["paging"]?["cursors"]?["after"]?.stringValue {
-            switch limit {
-            case .none:
-              self.enumerateFriends(type: type, limit: .none, cursor: after,
-                                    handler: handler)
-            case .count(let count):
-              self.enumerateFriends(type: type,
-                                    limit: .count(count - retrieved),
-                                    cursor: after, handler: handler)
-            }
-          }
-        }
-      case .failed(let error):
-        print("error executing GraphQL query: \(String(describing: error))")
-      }
-    }
-  }
-
-  static func getTaggableFriends(limit: QueryLimit,
-                                 handler: @escaping EnumerationCallback) {
-    enumerateFriends(type: .taggable, limit: limit, cursor: nil,
-                     handler: handler)
-  }
-
-  static func getUserFriends(limit: QueryLimit,
-                             handler: @escaping EnumerationCallback) {
-    enumerateFriends(type: .appUsers, limit: limit, cursor: nil,
-                     handler: handler)
-  }
-
   static func getRealName(for fbid: String,
                           completion: @escaping (_: String?) -> Void) {
     let request: GraphRequest =
@@ -170,16 +104,6 @@ class Facebook {
         print("unable to execute GraphQL query: \(String(describing: error))")
       }
     }
-  }
-
-  static func invite(url: String, image: String? = nil) {
-    var invite: AppInvite = AppInvite(appLink: URL(string: url)!)
-    if let image = image {
-      invite.previewImageURL = URL(string: image)!
-    }
-
-    let dialog: AppInvite.Dialog = AppInvite.Dialog(invite: invite)
-    try? dialog.show()
   }
 
   static func profileImage(for fbid: String,
