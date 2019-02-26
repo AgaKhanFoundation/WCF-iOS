@@ -44,17 +44,21 @@ class Navigation: UITabBarController {
     super.init(nibName: nil, bundle: nil)
 
     self.dashboard.tabBarItem =
-        UITabBarItem(title: Strings.Navigation.dashboard, image: nil,
-                     selectedImage: nil)
+        UITabBarItem(title: Strings.Navigation.dashboard,
+                     image: #imageLiteral(resourceName: Assets.DashboardUnselected),
+                     selectedImage: #imageLiteral(resourceName: Assets.DashboardSelected))
     self.challenge.tabBarItem =
-        UITabBarItem(title: Strings.Navigation.challenge, image: nil,
-                     selectedImage: nil)
+        UITabBarItem(title: Strings.Navigation.challenge,
+                     image: #imageLiteral(resourceName: Assets.ChallengeUnselected),
+                     selectedImage: #imageLiteral(resourceName: Assets.ChallengeSelected))
     self.leaderboard.tabBarItem =
-        UITabBarItem(title: Strings.Navigation.leaderboard, image: nil,
-                     selectedImage: nil)
+        UITabBarItem(title: Strings.Navigation.leaderboard,
+                     image: #imageLiteral(resourceName: Assets.LeaderboardUnselected),
+                     selectedImage: #imageLiteral(resourceName: Assets.LeaderboardSelected))
     self.notifications.tabBarItem =
-        UITabBarItem(title: Strings.Navigation.notifications, image: nil,
-                     selectedImage: nil)
+        UITabBarItem(title: Strings.Navigation.notifications,
+                     image: #imageLiteral(resourceName: Assets.NotificationsUnselected),
+                     selectedImage: #imageLiteral(resourceName: Assets.NotificationsSelected))
 
     self.viewControllers = [dashboard, challenge, leaderboard, notifications]
   }

@@ -47,9 +47,7 @@ class ProfileCardView: StylizedCardView {
                  lblTeam, eltSeparator, lblChallengeTimelineLabel,
                  lblChallengeTimeline])
 
-    guard let gear = UIImage(named: Strings.Assets.gear) else {
-      fatalError("missing asset \(Strings.Assets.gear)")
-    }
+    let gear: UIImage = #imageLiteral(resourceName: Assets.gear)
     btnGear.frame =
         CGRect(x: 0, y: 0, width: gear.size.width, height: gear.size.height)
     btnGear.setBackgroundImage(gear, for: .normal)

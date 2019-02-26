@@ -92,10 +92,17 @@ struct Strings {
     static let joinChallenge: String =
         NSLocalizedString("Join Challenge", comment: "Join Challenge")
   }
+}
 
-  struct Assets {
-    static let gear = "GearIcon"
+struct Assets {
+  static let gear = "GearIcon"
 
-    static let gearIcon = "GearIcon"
-  }
+  static let DashboardSelected = "dashboard-selected"
+  static let DashboardUnselected = "dashboard-unselected"
+  static let ChallengeSelected = "challenge-selected"
+  static let ChallengeUnselected = "challenge-unselected"
+  static let LeaderboardSelected = "leaderboard-selected"
+  static let LeaderboardUnselected = "leaderboard-unselected"
+  static let NotificationsSelected = "notifications-selected"
+  static let NotificationsUnselected = "notifications-unselected"
 }
