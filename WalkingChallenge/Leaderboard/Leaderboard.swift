@@ -31,4 +31,171 @@ import UIKit
 import Foundation
 
 class Leaderboard: UIViewController {
+  var teams: [Team] = [] // dependency injection, for fetching teams
+  var filters = ["Miles", "Money Raised", "Alphabetical (A-Z)", "Alphabetical (Z-A)"]
+  var selectedFilter = "Miles" // initial filter is miles
+  var currentTeam: Team? // the team that the user is in
+  var tblView: UITableView!
+  var toolBar: UIToolbar!
+  var textField: UITextField!
+  var picker: UIPickerView!
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setupLeaderboard()
+    setupTableView()
+    fetchData()
+  }
+  func setupLeaderboard() {
+    self.view.backgroundColor = .white
+    title = "Leaderboard"
+  }
+  func setupTableView() {
+    let width = view.bounds.width
+    let height = view.bounds.height
+    tblView = UITableView(frame: CGRect(x: 0, y: 20, width: width, height: height), style: .plain)
+    tblView.backgroundColor = .white
+    tblView.delegate = self
+    tblView.dataSource = self
+    tblView.register(LeaderboardCell.self, forCellReuseIdentifier: "LeaderboardCell")
+    tblView.register(TeamRankCell.self, forCellReuseIdentifier: "TeamRankCell")
+    tblView.register(PickerCell.self, forCellReuseIdentifier: "LeaderboardPickerCell")
+    view.addSubview(tblView)
+  }
+  func fetchData() {
+    // initial filter is distance teams = teams.sorted {$0.distance < $1.distance}
+    DispatchQueue.main.async {
+      self.tblView.reloadData()
+    }
+  }
+  func setupToolBar() {
+    toolBar = UIToolbar()
+    toolBar.sizeToFit()
+    let leftButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "leftArrow"), style: .plain, target: self, action: #selector(movePickerToLeft))
+    let rightButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "rightArrow"), style: .plain, target: self, action: #selector(movePickerToRight))
+    let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+    let doneButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissPicker))
+    toolBar.setItems([leftButtonItem, rightButtonItem, flexSpace, doneButtonItem], animated: false)
+  }
+  @objc func movePickerToLeft() {
+    let row = picker.selectedRow(inComponent: 0)
+    if row > 0 {
+      picker.selectRow(row - 1, inComponent: 0, animated: true)
+      self.pickerView(picker, didSelectRow: row - 1, inComponent: 0)
+    }
+  }
+  @objc func movePickerToRight() {
+    let row = picker.selectedRow(inComponent: 0)
+    if row < filters.count - 1 {
+      picker.selectRow(row + 1, inComponent: 0, animated: true)
+      self.pickerView(picker, didSelectRow: row + 1, inComponent: 0)
+    }
+  }
+  @objc func dismissPicker() {
+    picker.selectRow(picker.selectedRow(inComponent: 0), inComponent: 0, animated: true)
+    self.pickerView(picker, didSelectRow: picker.selectedRow(inComponent: 0), inComponent: 0)
+    textField.endEditing(true)
+    DispatchQueue.main.async {
+      self.tblView.reloadData()
+    }
+  }
+}
+
+extension Leaderboard: UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
+  func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    return 1
+  }
+  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    return filters.count
+  }
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    return filters[row]
+  }
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    switch row {
+    case 0:
+      print("Sort by Miles")
+      // sort by miles -> teams = teams.sorted {$0.distance > $1.distance}
+    case 1:
+      print("Sort by Amount Raised")
+      // sort by amount raised -> teams = teams.sorted {$0.amountRaised > $1.amountRaised}
+    case 2:
+      // sort by alphabetical a-z
+      teams = teams.sorted(by: { (first, second) -> Bool in
+        guard let firstName = first.name, let secondName = second.name else { return false }
+        return firstName < secondName
+      })
+    default:
+      // sort by alphabetical z-a
+      teams = teams.sorted(by: { (first, second) -> Bool in
+        guard let firstName = first.name, let secondName = second.name else { return false }
+        return firstName > secondName
+      })
+    }
+    DispatchQueue.main.async { [unowned self] in
+      self.selectedFilter = self.filters[row]
+    }
+  }
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    if indexPath.row == 0 {
+      return 100
+    } else if indexPath.row == 1 {
+      return 50
+    } else {
+      return 75
+    }
+  }
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return teams.count + 2
+  }
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if indexPath.row == 0 {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "TeamRankCell", for: indexPath) as? TeamRankCell
+      cell?.teamRank.text = "Your Team Rank"
+      /* Once a team has an amount raised and miles
+        cell.amountRaised.text = "$" + currentTeam.amountRaised.string
+        cell.totalMiles.text = currentTeam.distance.string + " mi"
+        if let placeInLeaderboard = teams.firstIndex(where: { $0 == currentTeam}) {
+          cell.ranking.text = "\(placeInLeaderboard + 1)."
+        } else {
+          cell.ranking.text = "0."
+        }
+      */
+      cell?.amountRaised.text = "$0.00"
+      cell?.totalMiles.text = "0.00 mi"
+      cell?.teamName.text = currentTeam?.name ?? "My Team"
+      cell?.ranking.text = "0."
+
+      return cell ?? UITableViewCell(style: .default, reuseIdentifier: "TeamRankCell")
+    } else if indexPath.row == 1 {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "LeaderboardPickerCell", for: indexPath) as? PickerCell
+      cell?.leaderboard.text = "Leaderboard"
+      cell?.dropDownTextField.dropDownMenu.delegate = self
+      cell?.dropDownTextField.dropDownMenu.dataSource = self
+      cell?.dropDownTextField.text = selectedFilter
+      picker = cell?.dropDownTextField.dropDownMenu
+      setupToolBar()
+      textField = cell?.dropDownTextField
+      cell?.dropDownTextField.inputAccessoryView = toolBar
+      return cell ?? UITableViewCell(style: .default, reuseIdentifier: "LeaderboardPickerCell")
+    } else {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "LeaderboardCell", for: indexPath) as? LeaderboardCell
+      /* Once a team has an amount raised and miles
+        cell.amountRaised.text = "$" + teams[indexPath.row - 2].amountRaised.string
+        cell.totalMiles.text = teams[indexPath.row - 2].distance.string + " mi"
+        cell.teamName.text = "\(teams[indexPath.row - 2].name)"
+        cell.ranking.text = "\(indexPath.row - 1)."
+        return cell
+      */
+      cell?.amountRaised.text = "$0.00"
+      cell?.totalMiles.text = "0.00 mi"
+      cell?.ranking.text = "0."
+      return cell ?? UITableViewCell(style: .default, reuseIdentifier: "LeaderboardCell")
+    }
+  }
+}
+
+extension Double {
+  var string: String {
+    return String(format: "%.2f", self)
+  }
 }
