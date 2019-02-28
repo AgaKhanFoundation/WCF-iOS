@@ -71,7 +71,7 @@
 		269E350B1E765F73000726C2 /* StyleGuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
 		269E350D1E76664F000726C2 /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
 		269E35171E7669FB000726C2 /* LocalizedStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
-		269E35231E767807000726C2 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Team.swift; path = WalkingChallenge/Team.swift; sourceTree = "<group>"; };
+		269E35231E767807000726C2 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		269E35281E767AE1000726C2 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		26C5E3601E7DCACF0053DE3E /* WalkingChallenge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WalkingChallenge.entitlements; sourceTree = "<group>"; };
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -84,18 +84,18 @@
 		F02FB49D1E9180CE0097481D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedometerDataProvider.swift; sourceTree = "<group>"; };
 		F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitDataProvider.swift; sourceTree = "<group>"; };
-		F03D77DD1EA83B0800A70230 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = WalkingChallenge/Event.swift; sourceTree = "<group>"; };
-		F06254C01ECD5D1700168DD6 /* Participant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Participant.swift; path = WalkingChallenge/Participant.swift; sourceTree = "<group>"; };
-		F0681D261ED53CA70029278E /* Cause.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Cause.swift; path = WalkingChallenge/Cause.swift; sourceTree = "<group>"; };
+		F03D77DD1EA83B0800A70230 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		F06254C01ECD5D1700168DD6 /* Participant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
+		F0681D261ED53CA70029278E /* Cause.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cause.swift; sourceTree = "<group>"; };
 		F0A0A5FD2210EC3600F20315 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		F0A992D51EABF037001621A6 /* Formatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		F0A992D71EAC3812001621A6 /* ProgressRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressRing.swift; path = WalkingChallenge/ProgressRing.swift; sourceTree = "<group>"; };
 		F0C6D50C1EA3071A008E3B82 /* SelectionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionButton.swift; path = WalkingChallenge/SelectionButton.swift; sourceTree = "<group>"; };
-		F0CBDA4D1EA6FCAB00BB34F1 /* Supporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Supporter.swift; path = WalkingChallenge/Supporter.swift; sourceTree = "<group>"; };
+		F0CBDA4D1EA6FCAB00BB34F1 /* Supporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Supporter.swift; sourceTree = "<group>"; };
 		F0CBDA4F1EA6FD7200BB34F1 /* SponsorshipDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SponsorshipDataSource.swift; path = WalkingChallenge/SponsorshipDataSource.swift; sourceTree = "<group>"; };
-		F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sponsor.swift; path = WalkingChallenge/Sponsor.swift; sourceTree = "<group>"; };
-		F0CF39851EE0E903006A7462 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Record.swift; path = WalkingChallenge/Record.swift; sourceTree = "<group>"; };
-		F0CF39871EE0EA98006A7462 /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Source.swift; path = WalkingChallenge/Source.swift; sourceTree = "<group>"; };
+		F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sponsor.swift; sourceTree = "<group>"; };
+		F0CF39851EE0E903006A7462 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		F0CF39871EE0EA98006A7462 /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		F0D16A3B2218AD810081440C /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		F0DE162B221F8DD900FF17C9 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		F0E182891E80B1DB00665E4F /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
@@ -138,7 +138,6 @@
 			isa = PBXGroup;
 			children = (
 				F03D77D91EA839D300A70230 /* Data Sources */,
-				F03D77DC1EA83AC900A70230 /* Models */,
 				269E34C81E765828000726C2 /* WalkingChallenge */,
 				269E34C71E765828000726C2 /* Products */,
 				32BEA0F580FBBCEE2DC19561 /* Pods */,
@@ -159,6 +158,7 @@
 		269E34C81E765828000726C2 /* WalkingChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				F058BD8322276F54006C7F20 /* Models */,
 				26C5E3601E7DCACF0053DE3E /* WalkingChallenge.entitlements */,
 				269E34E91E7658E6000726C2 /* AppController.swift */,
 				F0A0A5FD2210EC3600F20315 /* Navigation.swift */,
@@ -245,19 +245,19 @@
 			name = "Data Sources";
 			sourceTree = "<group>";
 		};
-		F03D77DC1EA83AC900A70230 /* Models */ = {
+		F058BD8322276F54006C7F20 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F06254C01ECD5D1700168DD6 /* Participant.swift */,
-				F0CBDA4D1EA6FCAB00BB34F1 /* Supporter.swift */,
-				F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */,
-				F03D77DD1EA83B0800A70230 /* Event.swift */,
-				269E35231E767807000726C2 /* Team.swift */,
 				F0681D261ED53CA70029278E /* Cause.swift */,
+				F03D77DD1EA83B0800A70230 /* Event.swift */,
+				F06254C01ECD5D1700168DD6 /* Participant.swift */,
 				F0CF39851EE0E903006A7462 /* Record.swift */,
 				F0CF39871EE0EA98006A7462 /* Source.swift */,
+				F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */,
+				F0CBDA4D1EA6FCAB00BB34F1 /* Supporter.swift */,
+				269E35231E767807000726C2 /* Team.swift */,
 			);
-			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		F0D16A3A2218AD530081440C /* Challenge */ = {
