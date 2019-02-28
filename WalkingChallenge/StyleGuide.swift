@@ -59,6 +59,7 @@ struct Style {
     case bodyRegular
     case bodyBold
     case smallRegular
+    case smallRegularBlue
     case smallBold
     case footnote
 
@@ -79,6 +80,8 @@ struct Style {
       case .bodyBold:
         return UIFont.systemFont(ofSize: 16, weight: .bold)
       case .smallRegular:
+        return UIFont.systemFont(ofSize: 14)
+      case .smallRegularBlue:
         return UIFont.systemFont(ofSize: 14)
       case .smallBold:
         return UIFont.systemFont(ofSize: 14, weight: .bold)
@@ -120,11 +123,14 @@ extension UILabel {
     self.init()
     self.font = typography.font
     switch typography {
+    case .smallRegularBlue:
+      self.textColor = Style.Colors.blue
     case .footnote:
       self.textColor = Style.Colors.red
     case .onboarding:
       self.textColor = Style.Colors.green
-    default: break
+    default:
+      self.textColor = Style.Colors.black
     }
     numberOfLines = 0
   }
