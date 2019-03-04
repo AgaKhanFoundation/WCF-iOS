@@ -64,6 +64,7 @@ class Leaderboard: UIViewController {
   func fetchData() {
     // fetch data
     // sort Data using miles
+    sortByMiles()
     DispatchQueue.main.async {
       self.tblView.reloadData()
     }
@@ -108,7 +109,7 @@ class Leaderboard: UIViewController {
     // TODO: Once we get sponsorship info
   }
   func sortByName(backwards: Bool) {
-    if(backwards) {
+    if backwards {
       teams = teams.sorted(by: { (first, second) -> Bool in
         guard let firstName = first.name, let secondName = second.name else { return false }
         return firstName > secondName
@@ -121,7 +122,6 @@ class Leaderboard: UIViewController {
     }
   }
 }
-
 extension Leaderboard: UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
@@ -229,4 +229,3 @@ extension Team {
     return sum
   }
 }
-
