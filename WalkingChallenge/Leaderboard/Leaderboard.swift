@@ -62,7 +62,8 @@ class Leaderboard: UIViewController {
     view.addSubview(tblView)
   }
   func fetchData() {
-    // initial filter is distance teams = teams.sorted {$0.distance < $1.distance}
+    // fetch data
+    // sort Data using miles
     DispatchQueue.main.async {
       self.tblView.reloadData()
     }
@@ -98,6 +99,27 @@ class Leaderboard: UIViewController {
       self.tblView.reloadData()
     }
   }
+  func sortByMiles() {
+    teams = teams.sorted(by: { (first, second) -> Bool in
+      return first.calculatetotalDistance() > second.calculatetotalDistance()
+    })
+  }
+  func sortByAmount() {
+    // TODO: Once we get sponsorship info
+  }
+  func sortByName(backwards: Bool) {
+    if(backwards) {
+      teams = teams.sorted(by: { (first, second) -> Bool in
+        guard let firstName = first.name, let secondName = second.name else { return false }
+        return firstName > secondName
+      })
+    } else {
+      teams = teams.sorted(by: { (first, second) -> Bool in
+        guard let firstName = first.name, let secondName = second.name else { return false }
+        return firstName < secondName
+      })
+    }
+  }
 }
 
 extension Leaderboard: UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
@@ -113,23 +135,19 @@ extension Leaderboard: UITableViewDelegate, UITableViewDataSource, UIPickerViewD
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     switch row {
     case 0:
-      print("Sort by Miles")
-      // sort by miles -> teams = teams.sorted {$0.distance > $1.distance}
+      // sort by miles
+      sortByMiles()
     case 1:
-      print("Sort by Amount Raised")
-      // sort by amount raised -> teams = teams.sorted {$0.amountRaised > $1.amountRaised}
+      // sort by amount raised
+      sortByAmount()
     case 2:
       // sort by alphabetical a-z
-      teams = teams.sorted(by: { (first, second) -> Bool in
-        guard let firstName = first.name, let secondName = second.name else { return false }
-        return firstName < secondName
-      })
+      sortByName(backwards: false)
+
     default:
       // sort by alphabetical z-a
-      teams = teams.sorted(by: { (first, second) -> Bool in
-        guard let firstName = first.name, let secondName = second.name else { return false }
-        return firstName > secondName
-      })
+      sortByName(backwards: true)
+
     }
     DispatchQueue.main.async { [unowned self] in
       self.selectedFilter = self.filters[row]
@@ -180,8 +198,8 @@ extension Leaderboard: UITableViewDelegate, UITableViewDataSource, UIPickerViewD
     } else {
       let cell = tableView.dequeueReusableCell(withIdentifier: "LeaderboardCell", for: indexPath) as? LeaderboardCell
       /* Once a team has an amount raised and miles
-        cell.amountRaised.text = "$" + teams[indexPath.row - 2].amountRaised.string
-        cell.totalMiles.text = teams[indexPath.row - 2].distance.string + " mi"
+        cell.amountRaised.text = "$" + teams[indexPath.row - 2].calculateAmountRaised().string
+        cell.totalMiles.text = teams[indexPath.row - 2].calculateTotalDistance().string + " mi"
         cell.teamName.text = "\(teams[indexPath.row - 2].name)"
         cell.ranking.text = "\(indexPath.row - 1)."
         return cell
@@ -199,3 +217,16 @@ extension Double {
     return String(format: "%.2f", self)
   }
 }
+
+extension Team {
+  func calculatetotalDistance() -> Int {
+    var sum = 0
+    for team in members {
+      for record in team.records {
+        sum += record.distance
+      }
+    }
+    return sum
+  }
+}
+
