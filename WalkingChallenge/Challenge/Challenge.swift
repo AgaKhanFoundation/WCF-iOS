@@ -34,7 +34,7 @@ class Challenge: UIViewController {
   private let lblTitle: UILabel = UILabel(typography: .headerTitle)
   private let btnSettings: UIButton = UIButton(type: .system)
   private let tblCards: UITableView = UITableView(frame: .zero)
-  private var arrCards: [JourneyCardMiles] = []
+  private var arrCards: [JourneyCard] = []
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -48,7 +48,7 @@ class Challenge: UIViewController {
   private func layout() {
     view.backgroundColor = #colorLiteral(red: 0.9647058823, green: 0.9725490196, blue: 0.9803921568, alpha: 1.0000000000)
 
-    lblTitle.attributedText = self.getTitle(Strings.Challenge.title, subTitle: "\n\(Strings.Challenge.subTitle)")
+    lblTitle.text = Strings.Challenge.title
     lblTitle.textColor = .black
 
     view.addSubview(lblTitle)
@@ -70,11 +70,8 @@ class Challenge: UIViewController {
     tblCards.dataSource = self
     tblCards.delegate = self
     tblCards.separatorStyle = .none
-    tblCards.estimatedRowHeight = 44
-    tblCards.rowHeight = UITableView.automaticDimension
 
-    tblCards.register(JourneyMilesCardView.self)
-    tblCards.register(MilestoneDetailCardView.self)
+    tblCards.register(JourneyCardView.self)
 
     view.addSubview(tblCards)
     tblCards.snp.makeConstraints {
@@ -83,40 +80,20 @@ class Challenge: UIViewController {
       $0.left.right.equalToSuperview().inset(Style.Padding.p16)
     }
 
-    arrCards.append(JourneyCardMiles())
+    arrCards.append(JourneyCard())
 
     tblCards.reloadData()
-  }
-
-  private func getTitle(_ title: String, subTitle: String) -> NSMutableAttributedString {
-
-    let paragraphStyle = NSMutableParagraphStyle()
-    paragraphStyle.lineSpacing = 4
-
-    let titleFont = [NSAttributedString.Key.font: Style.Typography.headerTitle.font!, .paragraphStyle: paragraphStyle]
-    let subFont = [NSAttributedString.Key.font: Style.Typography.smallRegular.font!, .paragraphStyle: paragraphStyle]
-    let titleAttr = NSMutableAttributedString(string: title, attributes: titleFont)
-    let subTitleAttr = NSMutableAttributedString(string: "\(subTitle)", attributes: subFont)
-
-    let combination = NSMutableAttributedString()
-    combination.append(titleAttr)
-    combination.append(subTitleAttr)
-    return combination
   }
 }
 
 extension Challenge: UITableViewDataSource {
+  func tableView(_ tableView: UITableView,
+                 numberOfRowsInSection section: Int) -> Int {
+    return 1
+  }
 
   func numberOfSections(in tableView: UITableView) -> Int {
     return arrCards.count
-  }
-
-  func tableView(_ tableView: UITableView,
-                 numberOfRowsInSection section: Int) -> Int {
-    if arrCards[section].expand == true {
-      return arrCards[section].miles.count + 1
-    }
-    return 1
   }
 
   func tableView(_ tableView: UITableView,
@@ -125,52 +102,30 @@ extension Challenge: UITableViewDataSource {
       return UITableViewCell()
     }
 
-    if indexPath.row == 0 {
-      let cell: UITableViewCell =
-        tableView.dequeueReusableCell(withIdentifier: card.renderer,
-                                      for: indexPath)
-      guard let view = cell as? JourneyMilesCardView else { return UITableViewCell() }
-      view.render(card)
-
-      view.showMileStone = {
-        self.arrCards[indexPath.section].expandMile(true)
-        tableView.reloadSections([0], with: .none)
-      }
-
-      return cell
-    } else {
-      let miles = card.miles[indexPath.row - 1]
-
-      let cell: UITableViewCell =
-        tableView.dequeueReusableCell(withIdentifier: miles.renderer,
-                                      for: indexPath)
-      guard let view = cell as? MilestoneDetailCardView else { return UITableViewCell() }
-      view.render(miles)
-
-      view.hideFirstLayer(indexPath.row == 1)
-      view.showLastRoundedCorner(indexPath.row == card.miles.count)
-
-      return cell
-    }
+    let cell: UITableViewCell =
+      tableView.dequeueReusableCell(withIdentifier: card.renderer,
+                                    for: indexPath)
+    guard let view = cell as? JourneyCardView else { return UITableViewCell() }
+    view.render(card)
+    return cell
   }
 }
-
 extension Challenge: UITableViewDelegate {
-//  func tableView(_ tableView: UITableView,
-//                 heightForHeaderInSection section: Int) -> CGFloat {
-//    return 0
-//  }
-//
-//  func tableView(_ tableView: UITableView,
-//                 viewForHeaderInSection section: Int) -> UIView? {
-//    return UIView(frame: .zero)
-//  }
+  func tableView(_ tableView: UITableView,
+                 heightForHeaderInSection section: Int) -> CGFloat {
+    return Style.Padding.p16
+  }
+
+  func tableView(_ tableView: UITableView,
+                 viewForHeaderInSection section: Int) -> UIView? {
+    return UIView(frame: .zero)
+  }
 
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
                  forRowAt indexPath: IndexPath) {
-//    cell.contentView.layer.masksToBounds = true
-//    cell.layer.shadowPath =
-//      UIBezierPath(roundedRect: cell.bounds,
-//                   cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+    cell.contentView.layer.masksToBounds = true
+    cell.layer.shadowPath =
+      UIBezierPath(roundedRect: cell.bounds,
+                   cornerRadius: cell.contentView.layer.cornerRadius).cgPath
   }
 }
