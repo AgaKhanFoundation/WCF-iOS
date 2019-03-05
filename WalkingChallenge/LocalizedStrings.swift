@@ -92,6 +92,13 @@ struct Strings {
     static let joinChallenge: String =
         NSLocalizedString("Join Challenge", comment: "Join Challenge")
   }
+
+  struct Challenge {
+    static let title: String =
+      NSLocalizedString("My Challenge", comment: "My Challenge")
+    static let subTitle: String =
+      NSLocalizedString("There are 52 days left in this challenge", comment: "There are 52 days left in this challenge")
+  }
 }
 
 struct Assets {

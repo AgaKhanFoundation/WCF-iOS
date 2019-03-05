@@ -31,4 +31,101 @@ import UIKit
 import Foundation
 
 class Challenge: UIViewController {
+  private let lblTitle: UILabel = UILabel(typography: .headerTitle)
+  private let btnSettings: UIButton = UIButton(type: .system)
+  private let tblCards: UITableView = UITableView(frame: .zero)
+  private var arrCards: [JourneyCard] = []
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9647058823, green: 0.9725490196, blue: 0.9803921568, alpha: 1.0000000000)
+    self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+
+    layout()
+  }
+
+  private func layout() {
+    view.backgroundColor = #colorLiteral(red: 0.9647058823, green: 0.9725490196, blue: 0.9803921568, alpha: 1.0000000000)
+
+    lblTitle.text = Strings.Challenge.title
+    lblTitle.textColor = .black
+
+    view.addSubview(lblTitle)
+    lblTitle.snp.makeConstraints {
+      $0.top.equalTo(topLayoutGuide.snp.bottom)
+      $0.left.right.equalToSuperview().inset(Style.Padding.p16)
+    }
+
+    btnSettings.setImage(UIImage(named: "GearIcon"), for: .normal)
+
+    view.addSubview(btnSettings)
+    btnSettings.snp.makeConstraints {
+      $0.top.equalTo(topLayoutGuide.snp.bottom)
+      $0.right.right.equalToSuperview().inset(Style.Padding.p16)
+    }
+
+    tblCards.allowsSelection = false
+    tblCards.backgroundColor = #colorLiteral(red: 0.9647058823, green: 0.9725490196, blue: 0.9803921568, alpha: 1.0000000000)
+    tblCards.dataSource = self
+    tblCards.delegate = self
+    tblCards.separatorStyle = .none
+
+    tblCards.register(JourneyCardView.self)
+
+    view.addSubview(tblCards)
+    tblCards.snp.makeConstraints {
+      $0.top.equalTo(lblTitle.snp.bottom).offset(Style.Padding.p16)
+      $0.bottom.equalToSuperview().inset(Style.Padding.p16)
+      $0.left.right.equalToSuperview().inset(Style.Padding.p16)
+    }
+
+    arrCards.append(JourneyCard())
+
+    tblCards.reloadData()
+  }
+}
+
+extension Challenge: UITableViewDataSource {
+  func tableView(_ tableView: UITableView,
+                 numberOfRowsInSection section: Int) -> Int {
+    return 1
+  }
+
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return arrCards.count
+  }
+
+  func tableView(_ tableView: UITableView,
+                 cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let card = arrCards[safe: indexPath.section] else {
+      return UITableViewCell()
+    }
+
+    let cell: UITableViewCell =
+      tableView.dequeueReusableCell(withIdentifier: card.renderer,
+                                    for: indexPath)
+    guard let view = cell as? JourneyCardView else { return UITableViewCell() }
+    view.render(card)
+    return cell
+  }
+}
+extension Challenge: UITableViewDelegate {
+  func tableView(_ tableView: UITableView,
+                 heightForHeaderInSection section: Int) -> CGFloat {
+    return Style.Padding.p16
+  }
+
+  func tableView(_ tableView: UITableView,
+                 viewForHeaderInSection section: Int) -> UIView? {
+    return UIView(frame: .zero)
+  }
+
+  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
+                 forRowAt indexPath: IndexPath) {
+    cell.contentView.layer.masksToBounds = true
+    cell.layer.shadowPath =
+      UIBezierPath(roundedRect: cell.bounds,
+                   cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+  }
 }
