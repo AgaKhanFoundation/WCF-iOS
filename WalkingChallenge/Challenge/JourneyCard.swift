@@ -27,6 +27,7 @@ class JourneyCardViewCell: UITableViewCell {
     guard let view = self as? StylizedJourneyView else { return }
 
     self.contentView.backgroundColor = .white
+
 //    self.contentView.layer.cornerRadius = Style.Size.s8
     self.backgroundColor = .clear
     self.layer.masksToBounds = false

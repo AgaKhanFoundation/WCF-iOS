@@ -136,7 +136,6 @@ Click continue for a quick tour of the app.
         NSLocalizedString("Join Challenge", comment: "Join Challenge")
   }
 
-
   struct Notifications {
     static let title: String =
         NSLocalizedString("Notifications", comment: "Notifications")
@@ -151,6 +150,7 @@ Click continue for a quick tour of the app.
     static let subTitle: String =
       NSLocalizedString("There are 52 days left in this challenge", comment: "There are 52 days left in this challenge")
   }
+}
 
 
 struct Assets {
