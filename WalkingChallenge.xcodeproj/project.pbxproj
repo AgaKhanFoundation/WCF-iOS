@@ -31,6 +31,7 @@
 		F02FB49E1E9180CE0097481D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49D1E9180CE0097481D /* Preferences.swift */; };
 		F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */; };
 		F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */; };
+		F0320B6E222F678500EABAD6 /* SegmentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0320B6D222F678500EABAD6 /* SegmentedView.swift */; };
 		F03D77DE1EA83B0800A70230 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03D77DD1EA83B0800A70230 /* Event.swift */; };
 		F06254C11ECD5D1700168DD6 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06254C01ECD5D1700168DD6 /* Participant.swift */; };
 		F0681D271ED53CA70029278E /* Cause.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0681D261ED53CA70029278E /* Cause.swift */; };
@@ -80,17 +81,18 @@
 		F004030E1EBF9DAB005E6F10 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKFCausesService.swift; sourceTree = "<group>"; };
 		F004031C1EC52772005E6F10 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
-		F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressStepsView.swift; path = WalkingChallenge/ProgressStepsView.swift; sourceTree = "<group>"; };
+		F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressStepsView.swift; sourceTree = "<group>"; };
 		F02FB49D1E9180CE0097481D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedometerDataProvider.swift; sourceTree = "<group>"; };
 		F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitDataProvider.swift; sourceTree = "<group>"; };
+		F0320B6D222F678500EABAD6 /* SegmentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedView.swift; sourceTree = "<group>"; };
 		F03D77DD1EA83B0800A70230 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		F06254C01ECD5D1700168DD6 /* Participant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
 		F0681D261ED53CA70029278E /* Cause.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cause.swift; sourceTree = "<group>"; };
 		F0A0A5FD2210EC3600F20315 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		F0A992D51EABF037001621A6 /* Formatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
-		F0A992D71EAC3812001621A6 /* ProgressRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressRing.swift; path = WalkingChallenge/ProgressRing.swift; sourceTree = "<group>"; };
-		F0C6D50C1EA3071A008E3B82 /* SelectionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionButton.swift; path = WalkingChallenge/SelectionButton.swift; sourceTree = "<group>"; };
+		F0A992D71EAC3812001621A6 /* ProgressRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressRing.swift; sourceTree = "<group>"; };
+		F0C6D50C1EA3071A008E3B82 /* SelectionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionButton.swift; sourceTree = "<group>"; };
 		F0CBDA4D1EA6FCAB00BB34F1 /* Supporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Supporter.swift; sourceTree = "<group>"; };
 		F0CBDA4F1EA6FD7200BB34F1 /* SponsorshipDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SponsorshipDataSource.swift; path = WalkingChallenge/SponsorshipDataSource.swift; sourceTree = "<group>"; };
 		F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sponsor.swift; sourceTree = "<group>"; };
@@ -169,9 +171,9 @@
 				F0E6879022251BEE00454340 /* Notifications */,
 				F0E6878C2225154700454340 /* Integration */,
 				F0DE162A221F8DBA00FF17C9 /* Support */,
+				F0320B6B222F671F00EABAD6 /* Widgets */,
 				266986791E91D50E004D45B4 /* Networking */,
 				269E35251E76782D000726C2 /* Protocols */,
-				F00B4B2A1E9944D6002A0B29 /* Widgets */,
 				269E35051E765BBF000726C2 /* Supporting Files */,
 				269E350B1E765F73000726C2 /* StyleGuide.swift */,
 				269E35171E7669FB000726C2 /* LocalizedStrings.swift */,
@@ -226,15 +228,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F00B4B2A1E9944D6002A0B29 /* Widgets */ = {
+		F0320B6B222F671F00EABAD6 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
 				F0A992D71EAC3812001621A6 /* ProgressRing.swift */,
 				F0C6D50C1EA3071A008E3B82 /* SelectionButton.swift */,
 				F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */,
+				F0320B6D222F678500EABAD6 /* SegmentedView.swift */,
 			);
-			name = Widgets;
-			path = ..;
+			path = Widgets;
 			sourceTree = "<group>";
 		};
 		F03D77D91EA839D300A70230 /* Data Sources */ = {
@@ -480,6 +482,7 @@
 				F0A992D61EABF037001621A6 /* Formatters.swift in Sources */,
 				F0CF39861EE0E903006A7462 /* Record.swift in Sources */,
 				F0F8EDD52210C71600321A6D /* ActivityCard.swift in Sources */,
+				F0320B6E222F678500EABAD6 /* SegmentedView.swift in Sources */,
 				269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */,
 				269E350E1E76664F000726C2 /* Async.swift in Sources */,
 				F0DE162C221F8DD900FF17C9 /* Result.swift in Sources */,
