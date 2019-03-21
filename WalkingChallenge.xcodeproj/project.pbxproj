@@ -20,7 +20,7 @@
 		269E35181E7669FB000726C2 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35171E7669FB000726C2 /* LocalizedStrings.swift */; };
 		269E35241E767807000726C2 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35231E767807000726C2 /* Team.swift */; };
 		269E35291E767AE1000726C2 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35281E767AE1000726C2 /* Collection.swift */; };
-		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
+		8F8092B9224420180030FCBA /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F8092B8224420180030FCBA /* HealthKit.framework */; };
 		C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */; };
 		ED85D460832E1D261F31B25E /* Pods_WalkingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */; };
 		F004030F1EBF9DAB005E6F10 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004030E1EBF9DAB005E6F10 /* JSON.swift */; };
@@ -74,8 +74,8 @@
 		269E35231E767807000726C2 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		269E35281E767AE1000726C2 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		26C5E3601E7DCACF0053DE3E /* WalkingChallenge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WalkingChallenge.entitlements; sourceTree = "<group>"; };
-		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkingChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F8092B8224420180030FCBA /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		F004030E1EBF9DAB005E6F10 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKFCausesService.swift; sourceTree = "<group>"; };
@@ -116,7 +116,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED85D460832E1D261F31B25E /* Pods_WalkingChallenge.framework in Frameworks */,
-				26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */,
+				8F8092B9224420180030FCBA /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,7 +220,7 @@
 		71A05532D1340D55ABD0E4B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				26C5E3611E7DCAF70053DE3E /* HealthKit.framework */,
+				8F8092B8224420180030FCBA /* HealthKit.framework */,
 				6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */,
 			);
 			name = Frameworks;
@@ -633,7 +633,7 @@
 				DEVELOPMENT_TEAM = 45YATE627L;
 				INFOPLIST_FILE = WalkingChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.akf.WalkingChalleng;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akf.WalkingChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -650,7 +650,7 @@
 				DEVELOPMENT_TEAM = 45YATE627L;
 				INFOPLIST_FILE = WalkingChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.akf.WalkingChalleng;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akf.WalkingChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};
