@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,36 +18,44 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="RhP-6k-bd8">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" image="Aga Khan Foundation LOGO_raster" translatesAutoresizingMaskIntoConstraints="NO" id="IU1-63-VQT">
+                                <rect key="frame" x="44" y="160" width="327" height="179"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="179" id="wD3-FK-AAk"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2017 AKDN. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="obG-Y5-kRd">
-                                <rect key="frame" x="19" y="606" width="338" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steps4Change" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfe-el-kVe">
+                                <rect key="frame" x="105" y="360" width="205" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="205" id="TtT-IP-ebC"/>
+                                    <constraint firstAttribute="height" constant="33" id="ync-5P-NHf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.6588235294" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="obG-Y5-kRd" secondAttribute="bottom" constant="40" id="08G-YN-vaY"/>
-                            <constraint firstItem="RhP-6k-bd8" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="B2f-7s-kw8"/>
-                            <constraint firstAttribute="trailing" secondItem="RhP-6k-bd8" secondAttribute="trailing" id="b2W-FP-FVP"/>
-                            <constraint firstItem="obG-Y5-kRd" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="fAx-yb-DeN"/>
-                            <constraint firstItem="RhP-6k-bd8" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="oGr-CR-zkA"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="RhP-6k-bd8" secondAttribute="bottom" id="vcp-wu-Hev"/>
+                            <constraint firstItem="IU1-63-VQT" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="116" id="5Jn-nx-ivh"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="jfe-el-kVe" secondAttribute="bottom" constant="469" id="9Wk-sc-nQB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IU1-63-VQT" secondAttribute="trailing" constant="23" id="RRt-cu-AHY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jfe-el-kVe" secondAttribute="trailing" constant="84" id="cTo-g0-ipT"/>
+                            <constraint firstItem="IU1-63-VQT" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="24" id="iVm-M3-zJA"/>
+                            <constraint firstItem="jfe-el-kVe" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="85" id="lKE-om-0IF"/>
+                            <constraint firstItem="jfe-el-kVe" firstAttribute="top" secondItem="IU1-63-VQT" secondAttribute="bottom" constant="21" id="xFw-VY-vwY"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+            <point key="canvasLocation" x="49.275362318840585" y="372.99107142857139"/>
         </scene>
     </scenes>
     <resources>
-        <image name="splash" width="375" height="667"/>
+        <image name="Aga Khan Foundation LOGO_raster" width="396.25" height="261"/>
     </resources>
 </document>
