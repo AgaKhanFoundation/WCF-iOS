@@ -56,17 +56,31 @@ class Notifications: UIViewController {
     }
 
     self.tableView.dataSource = self
+    self.tableView.delegate = self
+    self.tableView.register(NotificationTableViewCell.self, forCellReuseIdentifier: "cell")
     self.tableView.tableFooterView = UIView()
   }
 }
 
 extension Notifications: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 1
+    //TODO: update with data
+    return 3
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = UITableViewCell()
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell",
+                                                   for: indexPath) as? NotificationTableViewCell else {
+      return UITableViewCell()
+    }
+
     return cell
+  }
+}
+
+extension Notifications: UITableViewDelegate {
+
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 100.0
   }
 }
