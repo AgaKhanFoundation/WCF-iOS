@@ -29,6 +29,44 @@
 
 import UIKit
 import Foundation
+import SnapKit
 
 class Notifications: UIViewController {
+
+  lazy var tableView = UITableView()
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    self.setupViews()
+    self.tableViewSetup()
+  }
+
+  private func setupViews() {
+    self.title = Strings.Navigation.notifications
+  }
+
+  private func tableViewSetup() {
+    self.view.addSubview(self.tableView)
+    self.tableView.snp.makeConstraints { (make) in
+      make.top.equalTo(self.topLayoutGuide.snp.bottom)
+      make.left.equalTo(self.view)
+      make.right.equalTo(self.view)
+      make.bottom.equalTo(self.bottomLayoutGuide.snp.top)
+    }
+
+    self.tableView.dataSource = self
+    self.tableView.tableFooterView = UIView()
+  }
+}
+
+extension Notifications: UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 1
+  }
+
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = UITableViewCell()
+    return cell
+  }
 }
