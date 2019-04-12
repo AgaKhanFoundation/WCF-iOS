@@ -92,6 +92,13 @@ struct Strings {
     static let joinChallenge: String =
         NSLocalizedString("Join Challenge", comment: "Join Challenge")
   }
+  
+  struct NotificationsView {
+    static let notificationCellTitleLabelPlaceholderText: String =
+        NSLocalizedString("FirstName LastName has joined your team!", comment: "Placeholder text for notification cell title label")
+    static let notificationCellDateLabelPlaceholderText: String =
+        NSLocalizedString("01/01/2000", comment: "Placeholder text for notification cell date label. Y2K 🤘")
+  }
 }
 
 struct Assets {
