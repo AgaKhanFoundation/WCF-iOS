@@ -93,7 +93,7 @@ struct Strings {
         NSLocalizedString("Join Challenge", comment: "Join Challenge")
   }
   
-  struct NotificationsView {
+  struct Notifications {
     static let notificationCellTitleLabelPlaceholderText: String =
         NSLocalizedString("FirstName LastName has joined your team!", comment: "Placeholder text for notification cell title label")
     static let notificationCellDateLabelPlaceholderText: String =
