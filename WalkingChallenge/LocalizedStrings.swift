@@ -94,6 +94,8 @@ struct Strings {
   }
   
   struct Notifications {
+    static let title =
+      NSLocalizedString("Notifications", comment: "Notification title")
     static let notificationCellTitleLabelPlaceholderText: String =
         NSLocalizedString("FirstName LastName has joined your team!", comment: "Placeholder text for notification cell title label")
     static let notificationCellDateLabelPlaceholderText: String =

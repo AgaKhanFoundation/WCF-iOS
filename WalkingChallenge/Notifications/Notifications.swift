@@ -33,7 +33,8 @@ import SnapKit
 
 class Notifications: UIViewController {
 
-  lazy var tableView = UITableView()
+  private let tableView = UITableView()
+  private let lblTitle: UILabel = UILabel(typography: .headerTitle)
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -43,22 +44,39 @@ class Notifications: UIViewController {
   }
 
   private func setupViews() {
-    self.title = Strings.Navigation.notifications
+    self.view.backgroundColor = #colorLiteral(red: 0.9647058823, green: 0.9725490196, blue: 0.9803921568, alpha: 1.0000000000)
+    self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9647058823, green: 0.9725490196, blue: 0.9803921568, alpha: 1.0000000000)
+    self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+
+    self.lblTitle.text = Strings.Notifications.title
+    self.lblTitle.textColor = .black
+    self.lblTitle.backgroundColor = .clear
+
+    self.view.addSubview(self.lblTitle)
+    self.lblTitle.snp.makeConstraints { (make) in
+      make.top.equalTo(self.topLayoutGuide.snp.bottom)
+      make.left.right.equalToSuperview().inset(Style.Padding.p24)
+    }
   }
 
   private func tableViewSetup() {
     self.view.addSubview(self.tableView)
     self.tableView.snp.makeConstraints { (make) in
-      make.top.equalTo(self.topLayoutGuide.snp.bottom)
-      make.left.equalTo(self.view)
-      make.right.equalTo(self.view)
-      make.bottom.equalTo(self.bottomLayoutGuide.snp.top)
+      make.top.equalTo(self.lblTitle.snp.bottom).offset(Style.Padding.p16)
+      make.bottom.equalToSuperview().inset(Style.Padding.p16)
+      make.left.right.equalToSuperview().inset(Style.Padding.p24)
     }
 
     self.tableView.dataSource = self
     self.tableView.delegate = self
     self.tableView.register(NotificationTableViewCell.self, forCellReuseIdentifier: "cell")
-    self.tableView.tableFooterView = UIView()
+    self.tableView.separatorStyle = .none
+    self.tableView.layer.cornerRadius = Style.Size.s8
+    self.tableView.layer.masksToBounds = false
+    self.tableView.layer.shadowColor = #colorLiteral(red: 0.8431372549, green: 0.8431372549, blue: 0.8431372549, alpha: 1.0000000000)
+    self.tableView.layer.shadowOffset = .zero
+    self.tableView.layer.shadowOpacity = 0.5
+    self.tableView.layer.shadowRadius = Style.Size.s8
   }
 }
 
