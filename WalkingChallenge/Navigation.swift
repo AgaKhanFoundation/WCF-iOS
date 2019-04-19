@@ -61,6 +61,9 @@ class Navigation: UITabBarController {
                      selectedImage: #imageLiteral(resourceName: Assets.NotificationsSelected))
 
     self.viewControllers = [dashboard, challenge, leaderboard, notifications]
+
+    //TODO: Add logic to only show when unread notifications
+    self.notifications.tabBarController?.tabBar.items?.last?.badgeValue = ""
   }
 
   required init?(coder aDecoder: NSCoder) {

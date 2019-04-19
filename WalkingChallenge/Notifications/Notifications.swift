@@ -35,12 +35,15 @@ class Notifications: UIViewController {
 
   private let tableView = UITableView()
   private let lblTitle: UILabel = UILabel(typography: .headerTitle)
+  private let noNotificationsView = UIView()
+  private let noNotificationsLabel = UILabel(typography: .subtitleRegular)
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     self.setupViews()
     self.tableViewSetup()
+//    self.noNotificationsViewSetup()
   }
 
   private func setupViews() {
@@ -77,6 +80,29 @@ class Notifications: UIViewController {
     self.tableView.layer.shadowOffset = .zero
     self.tableView.layer.shadowOpacity = 0.5
     self.tableView.layer.shadowRadius = Style.Size.s8
+  }
+
+  private func noNotificationsViewSetup() {
+    self.view.addSubview(self.noNotificationsView)
+    self.noNotificationsView.backgroundColor = .red
+    self.noNotificationsView.layer.cornerRadius = Style.Size.s8
+    self.noNotificationsView.layer.masksToBounds = false
+    self.noNotificationsView.layer.shadowColor = #colorLiteral(red: 0.8431372549, green: 0.8431372549, blue: 0.8431372549, alpha: 1.0000000000)
+    self.noNotificationsView.layer.shadowOffset = .zero
+    self.noNotificationsView.layer.shadowOpacity = 0.5
+    self.noNotificationsView.layer.shadowRadius = Style.Size.s8
+    self.noNotificationsView.snp.makeConstraints { (make) in
+      make.top.equalTo(self.lblTitle.snp.bottom).offset(Style.Padding.p16)
+      make.bottom.equalToSuperview().inset(Style.Padding.p16)
+      make.left.right.equalToSuperview().inset(Style.Padding.p24)
+    }
+
+    self.noNotificationsLabel.text = Strings.Notifications.noNotificationsLabelText
+    self.noNotificationsView.addSubview(self.noNotificationsLabel)
+    self.noNotificationsLabel.snp.makeConstraints { (make) in
+      make.top.equalTo(self.noNotificationsView).offset(Style.Padding.p16)
+      make.left.right.equalToSuperview().inset(Style.Padding.p24)
+    }
   }
 }
 

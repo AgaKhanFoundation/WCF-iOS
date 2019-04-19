@@ -100,6 +100,8 @@ struct Strings {
         NSLocalizedString("FirstName LastName has joined your team!", comment: "Placeholder text for notification cell title label")
     static let notificationCellDateLabelPlaceholderText: String =
         NSLocalizedString("01/01/2000", comment: "Placeholder text for notification cell date label. Y2K 🤘")
+    static let noNotificationsLabelText: String =
+        NSLocalizedString("You don't have any notifications right now.", comment: "No notifications label text")
   }
 }
 
