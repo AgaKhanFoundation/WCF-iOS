@@ -32,13 +32,15 @@ class JourneyCardView: StylizedJourneyView {
       $0.centerX.equalToSuperview()
     }
 
-    layoutPersonalDetails()
+    layoutPersonalDetails(false) // Toggle this to show and hide image
     layoutChallengeDetails()
   }
 
-  private func layoutPersonalDetails() {
+  private func layoutPersonalDetails(_ imageRequired: Bool) {
+    imgImage.isHidden = !imageRequired
+
     lblName.snp.makeConstraints {
-      $0.top.equalTo(imgImage.snp.bottom).offset(Style.Padding.p16)
+      $0.top.equalTo(imageRequired ? imgImage.snp.bottom : imgImage.snp.top).offset(Style.Padding.p16)
       $0.left.equalToSuperview().inset(Style.Padding.p16)
       $0.right.equalToSuperview().inset(Style.Padding.p16)
     }
