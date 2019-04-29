@@ -32,6 +32,8 @@ import UIKit
 
 class Onboarding : UIPageViewController {                                       // swiftlint:disable:this colon
   private var pages: [UIViewController] = [
+    OnboardingCreateTeam(),
+    OnboardingJourney(),
   ]
   private var control: UIPageControl = UIPageControl(frame: .zero)
   private var btnContinue: UIButton = UIButton(type: .roundedRect)
