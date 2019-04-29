@@ -31,9 +31,17 @@ import Foundation
 
 struct Strings {
   struct Application {
+    static let name: String = "steps4change"
+
     static let unableToConnect: String =
         NSLocalizedString("Unable to access AKF Causes at this time.  Please try again later.",
                           comment: "Unable to access AKF Causes at this time.  Please try again later.")
+  }
+
+  struct Login {
+    static let conditions: String =
+        NSLocalizedString("Terms and Conditions Apply",
+                          comment: "Terms and Conditions Apply")
   }
 
   struct Navigation {
@@ -96,6 +104,8 @@ struct Strings {
 
 struct Assets {
   static let gear = "GearIcon"
+
+  static let LoginPeople = "login-couple"
 
   static let DashboardSelected = "dashboard-selected"
   static let DashboardUnselected = "dashboard-unselected"

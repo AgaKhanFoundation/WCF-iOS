@@ -88,7 +88,7 @@ struct Style {
       case .footnote:
         return UIFont.systemFont(ofSize: 12)
       case .onboarding:
-        return UIFont.systemFont(ofSize: 24)
+        return UIFont.systemFont(ofSize: 24, weight: .bold)
       }
     }
   }
@@ -96,6 +96,7 @@ struct Style {
   struct Size {
     static let s8: CGFloat = 8                                                  // swiftlint:disable:this identifier_name line_length
     static let s16: CGFloat = 16
+    static let s24: CGFloat = 24
     static let s32: CGFloat = 32
     static let s40: CGFloat = 40
     static let s48: CGFloat = 48

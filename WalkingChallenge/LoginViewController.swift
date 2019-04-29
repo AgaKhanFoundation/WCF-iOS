@@ -32,37 +32,57 @@ import FacebookLogin
 import FacebookCore
 
 class LoginViewController: UIViewController {
-  let imgBackground: UIImageView =
-      UIImageView(image: UIImage(imageLiteralResourceName: "splash"))
+  let imgLogo: UIImageView =
+    UIImageView(image: nil)
+  let lblTitle: UILabel = UILabel(typography: .onboarding)
+  let imgImage: UIImageView =
+      UIImageView(image: UIImage(imageLiteralResourceName: Assets.LoginPeople))
   let btnLogin: LoginButton =
-      LoginButton(readPermissions: [.publicProfile, .email, .userFriends,
-                                    .custom("user_location")])
-
-  // MARK: - Lifecycle
+    LoginButton(readPermissions: [.publicProfile, .custom("user_location")])
+  let lblTermsAndConditions: UILabel = UILabel(typography: .footnote)
 
   override func viewDidLoad() {
     super.viewDidLoad()
     configureView()
   }
 
-  // MARK: - Configure
-
   private func configureView() {
     view.backgroundColor = Style.Colors.white
 
-    view.addSubviews([imgBackground, btnLogin])
+    view.addSubviews([imgLogo, lblTitle, imgImage, btnLogin,
+                      lblTermsAndConditions])
 
-    imgBackground.snp.makeConstraints { (make) in
-      make.top.equalToSuperview()
-      make.left.equalToSuperview()
-      make.height.equalToSuperview()
-      make.width.equalToSuperview()
+    imgLogo.snp.makeConstraints { (make) in
+      make.centerX.equalToSuperview()
+      make.top.equalToSuperview().offset(Style.Size.s24)
+    }
+
+    lblTitle.text = Strings.Application.name
+    lblTitle.snp.makeConstraints { (make) in
+      make.centerX.equalToSuperview()
+      make.top.equalTo(imgLogo.snp.bottom).offset(Style.Size.s16)
+    }
+
+    imgImage.contentMode = .scaleAspectFit
+    imgImage.snp.makeConstraints { (make) in
+      make.left.equalToSuperview().offset(Style.Size.s32)
+      make.right.equalToSuperview().inset(Style.Size.s32)
+      make.top.equalTo(lblTitle).offset(Style.Size.s56)
+      make.bottom.equalTo(btnLogin).inset(Style.Size.s56)
     }
 
     btnLogin.delegate = self
     btnLogin.snp.makeConstraints { (make) in
+      make.left.equalToSuperview().offset(Style.Size.s40)
+      make.right.equalToSuperview().inset(Style.Size.s40)
+      make.height.equalTo(Style.Size.s48)
+    }
+
+    lblTermsAndConditions.text = Strings.Login.conditions
+    lblTermsAndConditions.textColor = Style.Colors.grey
+    lblTermsAndConditions.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
-      make.bottom.equalToSuperview().offset(-Style.Size.s48)
+      make.bottom.equalToSuperview().inset(Style.Size.s32)
     }
   }
 }
