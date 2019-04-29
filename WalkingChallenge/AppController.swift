@@ -85,7 +85,11 @@ class AppController {
   }
 
   func login() {
-    transition(to: .navigation)
+    if !UserInfo.onboardingComplete {
+      transition(to: .onboarding)
+    } else {
+      transition(to: .navigation)
+    }
   }
 
   func logout() {
