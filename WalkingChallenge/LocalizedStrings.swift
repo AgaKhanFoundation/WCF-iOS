@@ -44,6 +44,25 @@ struct Strings {
                           comment: "Terms and Conditions Apply")
   }
 
+  struct Welcome {
+    static let title: String =
+        NSLocalizedString("Welcome to Steps for Change!",
+                          comment: "Welcome to Steps for Change!")
+    static let thanks: String =
+        NSLocalizedString("""
+Thanks for registering!
+Click continue for a quick tour of the app.
+""",
+                          comment: """
+Thanks for registering!
+Click continue for a quick tour of the app.
+""")
+    static let `continue`: String =
+        NSLocalizedString("Continue", comment: "Continue")
+    static let skip: String =
+        NSLocalizedString("Skip", comment: "Skip")
+  }
+
   struct Navigation {
     static let dashboard: String =
         NSLocalizedString("Dashboard", comment: "Dashboard")
