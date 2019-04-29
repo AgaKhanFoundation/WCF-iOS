@@ -34,6 +34,7 @@ class Onboarding : UIPageViewController {                                       
   private var pages: [UIViewController] = [
     OnboardingCreateTeam(),
     OnboardingJourney(),
+    OnboardingDashboard(),                                                      // swiftlint:disable:this trailing_comma
   ]
   private var control: UIPageControl = UIPageControl(frame: .zero)
   private var btnContinue: UIButton = UIButton(type: .roundedRect)

@@ -70,8 +70,13 @@ Click continue for a quick tour of the app.
     static let journey: String =
         NSLocalizedString("Complete a challenge while reaching milestones",
                           comment: "Complete a challenge while reaching milestones")
+    static let dashboard: String =
+        NSLocalizedString("Track your progress using the dashboard",
+                          comment: "Track your progress using the dashboard")
     static let `continue`: String =
         NSLocalizedString("Continue", comment: "Continue")
+    static let begin: String =
+        NSLocalizedString("Let's Begin!", comment: "Let's Begin!")
   }
 
   struct Navigation {
@@ -139,6 +144,7 @@ struct Assets {
 
   static let CreateTeam = "create-team"
   static let Journey = "journey"
+  static let Dashboard = "dashboard"
 
   static let DashboardSelected = "dashboard-selected"
   static let DashboardUnselected = "dashboard-unselected"
