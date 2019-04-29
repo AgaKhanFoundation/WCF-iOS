@@ -63,6 +63,14 @@ Click continue for a quick tour of the app.
         NSLocalizedString("Skip", comment: "Skip")
   }
 
+  struct Onboarding {
+    static let createTeam: String =
+        NSLocalizedString("Create a team or join an existing team",
+                          comment: "Create a team or join an existing team")
+    static let `continue`: String =
+        NSLocalizedString("Continue", comment: "Continue")
+  }
+
   struct Navigation {
     static let dashboard: String =
         NSLocalizedString("Dashboard", comment: "Dashboard")
