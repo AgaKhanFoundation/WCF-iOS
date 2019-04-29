@@ -111,6 +111,7 @@ class Onboarding : UIPageViewController {                                       
 
     // complete
     if index == self.pages.count - 1 {
+      UserInfo.onboardingComplete = true
       AppController.shared.transition(to: .navigation)
       return
     }
@@ -130,6 +131,7 @@ class Onboarding : UIPageViewController {                                       
 
   @objc
   func skip(sender: UIButton!) {
+    UserInfo.onboardingComplete = true
     AppController.shared.transition(to: .navigation)
   }
 }
