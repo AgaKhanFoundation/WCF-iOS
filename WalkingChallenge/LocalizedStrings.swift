@@ -67,6 +67,9 @@ Click continue for a quick tour of the app.
     static let createTeam: String =
         NSLocalizedString("Create a team or join an existing team",
                           comment: "Create a team or join an existing team")
+    static let journey: String =
+        NSLocalizedString("Complete a challenge while reaching milestones",
+                          comment: "Complete a challenge while reaching milestones")
     static let `continue`: String =
         NSLocalizedString("Continue", comment: "Continue")
   }
@@ -133,6 +136,9 @@ struct Assets {
   static let gear = "GearIcon"
 
   static let LoginPeople = "login-couple"
+
+  static let CreateTeam = "create-team"
+  static let Journey = "journey"
 
   static let DashboardSelected = "dashboard-selected"
   static let DashboardUnselected = "dashboard-unselected"
