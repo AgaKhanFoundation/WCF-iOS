@@ -106,7 +106,7 @@ extension Notifications: UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell",
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: NotificationTableViewCell.CellIdentifier,
                                                    for: indexPath) as? NotificationTableViewCell else {
       return UITableViewCell()
     }
