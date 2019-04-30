@@ -41,8 +41,8 @@ class Notifications: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    self.view.backgroundColor = #colorLiteral(red: 0.9647058823, green: 0.9725490196, blue: 0.9803921568, alpha: 1.0000000000)
-    self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9647058823, green: 0.9725490196, blue: 0.9803921568, alpha: 1.0000000000)
+    self.view.backgroundColor = Style.Colors.white
+    self.navigationController?.navigationBar.barTintColor = Style.Colors.white
     self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
 
     self.lblTitle.text = Strings.Notifications.title
@@ -69,7 +69,7 @@ class Notifications: UIViewController {
     self.tableView.separatorStyle = .none
     self.tableView.layer.cornerRadius = Style.Size.s8
     self.tableView.layer.masksToBounds = false
-    self.tableView.layer.shadowColor = #colorLiteral(red: 0.8431372549, green: 0.8431372549, blue: 0.8431372549, alpha: 1.0000000000)
+    self.tableView.layer.shadowColor = Style.Colors.white.cgColor
     self.tableView.layer.shadowOffset = .zero
     self.tableView.layer.shadowOpacity = 0.5
     self.tableView.layer.shadowRadius = Style.Size.s8
@@ -80,7 +80,7 @@ class Notifications: UIViewController {
     self.noNotificationsView.backgroundColor = .red
     self.noNotificationsView.layer.cornerRadius = Style.Size.s8
     self.noNotificationsView.layer.masksToBounds = false
-    self.noNotificationsView.layer.shadowColor = #colorLiteral(red: 0.8431372549, green: 0.8431372549, blue: 0.8431372549, alpha: 1.0000000000)
+    self.noNotificationsView.layer.shadowColor = Style.Colors.white.cgColor
     self.noNotificationsView.layer.shadowOffset = .zero
     self.noNotificationsView.layer.shadowOpacity = 0.5
     self.noNotificationsView.layer.shadowRadius = Style.Size.s8
