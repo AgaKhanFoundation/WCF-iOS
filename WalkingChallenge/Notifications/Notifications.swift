@@ -64,7 +64,8 @@ class Notifications: UIViewController {
 
     self.tableView.dataSource = self
     self.tableView.delegate = self
-    self.tableView.register(NotificationTableViewCell.self, forCellReuseIdentifier: "cell")
+    self.tableView.register(NotificationTableViewCell.self,
+                            forCellReuseIdentifier: NotificationTableViewCell.CellIdentifier)
     self.tableView.separatorStyle = .none
     self.tableView.layer.cornerRadius = Style.Size.s8
     self.tableView.layer.masksToBounds = false

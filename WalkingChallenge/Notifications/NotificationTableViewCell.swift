@@ -11,6 +11,8 @@ import UIKit
 import SnapKit
 
 class NotificationTableViewCell: UITableViewCell {
+  
+  static let CellIdentifier = "NotificationCell"
 
   lazy var notificationInfoLabel = UILabel()
   lazy var notificationDateLabel = UILabel()
