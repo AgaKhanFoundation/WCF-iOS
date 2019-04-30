@@ -143,3 +143,12 @@ extension UITextField {
     textColor = Style.Colors.black
   }
 }
+
+extension CALayer {
+  func renderShadow() {
+    self.shadowColor = Style.Colors.white.cgColor
+    self.shadowOffset = .zero
+    self.shadowOpacity = 0.5
+    self.shadowRadius = Style.Size.s8
+  }
+}

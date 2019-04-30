@@ -69,10 +69,7 @@ class Notifications: UIViewController {
     self.tableView.separatorStyle = .none
     self.tableView.layer.cornerRadius = Style.Size.s8
     self.tableView.layer.masksToBounds = false
-    self.tableView.layer.shadowColor = Style.Colors.white.cgColor
-    self.tableView.layer.shadowOffset = .zero
-    self.tableView.layer.shadowOpacity = 0.5
-    self.tableView.layer.shadowRadius = Style.Size.s8
+    self.tableView.layer.renderShadow()
   }
 
   private func noNotificationsViewSetup() {

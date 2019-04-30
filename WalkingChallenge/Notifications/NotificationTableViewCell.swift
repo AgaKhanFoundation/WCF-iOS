@@ -22,10 +22,7 @@ class NotificationTableViewCell: UITableViewCell {
 
     self.backgroundColor = UIColor(red: 0/255.0, green: 168/255.0, blue: 93/255.0, alpha: 0.07351600000000003)
     self.layer.masksToBounds = false
-    self.layer.shadowColor = Style.Colors.white.cgColor
-    self.layer.shadowOffset = .zero
-    self.layer.shadowOpacity = 0.5
-    self.layer.shadowRadius = Style.Size.s8
+    self.layer.renderShadow()
 
     self.addSubview(self.notificationInfoLabel)
     self.addSubview(self.notificationDateLabel)
