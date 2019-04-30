@@ -44,24 +44,24 @@ class Notifications: UIViewController {
     self.view.backgroundColor = #colorLiteral(red: 0.9647058823, green: 0.9725490196, blue: 0.9803921568, alpha: 1.0000000000)
     self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9647058823, green: 0.9725490196, blue: 0.9803921568, alpha: 1.0000000000)
     self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
-    
+
     self.lblTitle.text = Strings.Notifications.title
     self.lblTitle.textColor = .black
     self.lblTitle.backgroundColor = .clear
-    
+
     self.view.addSubview(self.lblTitle)
     self.lblTitle.snp.makeConstraints { (make) in
       make.top.equalTo(self.topLayoutGuide.snp.bottom)
       make.left.right.equalToSuperview().inset(Style.Padding.p24)
     }
-    
+
     self.view.addSubview(self.tableView)
     self.tableView.snp.makeConstraints { (make) in
       make.top.equalTo(self.lblTitle.snp.bottom).offset(Style.Padding.p16)
       make.bottom.equalToSuperview().inset(Style.Padding.p16)
       make.left.right.equalToSuperview().inset(Style.Padding.p24)
     }
-    
+
     self.tableView.dataSource = self
     self.tableView.delegate = self
     self.tableView.register(NotificationTableViewCell.self, forCellReuseIdentifier: "cell")
@@ -101,7 +101,7 @@ class Notifications: UIViewController {
 extension Notifications: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     //TODO: update with data
-    return 3
+    return 1
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
