@@ -11,7 +11,7 @@ import UIKit
 import SnapKit
 
 class NotificationTableViewCell: UITableViewCell {
-  
+
   static let CellIdentifier = "NotificationCell"
 
   lazy var notificationInfoLabel = UILabel()
@@ -22,7 +22,7 @@ class NotificationTableViewCell: UITableViewCell {
 
     self.backgroundColor = UIColor(red: 0/255.0, green: 168/255.0, blue: 93/255.0, alpha: 0.07351600000000003)
     self.layer.masksToBounds = false
-    self.layer.shadowColor = #colorLiteral(red: 0.8431372549, green: 0.8431372549, blue: 0.8431372549, alpha: 1.0000000000)
+    self.layer.shadowColor = Style.Colors.white.cgColor
     self.layer.shadowOffset = .zero
     self.layer.shadowOpacity = 0.5
     self.layer.shadowRadius = Style.Size.s8
