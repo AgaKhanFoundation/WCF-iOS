@@ -59,11 +59,15 @@ class AppController {
 
   enum ViewController {
     case login
+    case welcome
+    case onboarding
     case navigation
 
     var viewController: UIViewController {
       switch self {
       case .login: return LoginViewController()
+      case .welcome: return WelcomeViewController()
+      case .onboarding: return Onboarding()
       case .navigation: return AppController.shared.navigation
       }
     }
@@ -81,7 +85,11 @@ class AppController {
   }
 
   func login() {
-    transition(to: .navigation)
+    if !UserInfo.onboardingComplete {
+      transition(to: .onboarding)
+    } else {
+      transition(to: .navigation)
+    }
   }
 
   func logout() {

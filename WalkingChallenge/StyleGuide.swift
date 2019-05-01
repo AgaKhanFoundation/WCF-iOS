@@ -88,7 +88,7 @@ struct Style {
       case .footnote:
         return UIFont.systemFont(ofSize: 12)
       case .onboarding:
-        return UIFont.systemFont(ofSize: 24)
+        return UIFont.systemFont(ofSize: 24, weight: .bold)
       }
     }
   }
@@ -96,10 +96,12 @@ struct Style {
   struct Size {
     static let s8: CGFloat = 8                                                  // swiftlint:disable:this identifier_name line_length
     static let s16: CGFloat = 16
+    static let s24: CGFloat = 24
     static let s32: CGFloat = 32
     static let s40: CGFloat = 40
     static let s48: CGFloat = 48
     static let s56: CGFloat = 56
+    static let s64: CGFloat = 64
     static let s96: CGFloat = 96
     static let s128: CGFloat = 128
   }
@@ -119,7 +121,7 @@ struct Style {
 }
 
 extension UILabel {
-  convenience init(typography: Style.Typography) {
+  convenience init(typography: Style.Typography, color: UIColor? = nil) {
     self.init()
     self.font = typography.font
     switch typography {
@@ -132,14 +134,20 @@ extension UILabel {
     default:
       self.textColor = Style.Colors.black
     }
+    if let color = color {
+      self.textColor = color
+    }
     numberOfLines = 0
   }
 }
 
 extension UITextField {
-  convenience init(_ typography: Style.Typography) {
+  convenience init(_ typography: Style.Typography, color: UIColor? = nil) {
     self.init()
     font = typography.font
     textColor = Style.Colors.black
+    if let color = color {
+      textColor = color
+    }
   }
 }

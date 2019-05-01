@@ -27,49 +27,39 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-import Foundation
+import SnapKit
+import UIKit
 
-struct UserInfo {
-  private static let defaults = UserDefaults.standard
+class OnboardingJourney : UIViewController {                                    // swiftlint:disable:this colon
+  private var lblJourney: UILabel =
+    UILabel(typography: .headerTitle, color: Style.Colors.green)
+  private var imgJourney: UIImageView =
+    UIImageView(image: UIImage(imageLiteralResourceName: Assets.Journey))
 
-  // Add new keys to store to UserDefaults here
-  private static let pedometerKey = "UserInfo.Keys.Pedometer"
-  private static let profileStatsRangeKey = "UserInfo.Keys.ProfileStatsRange"
-  private static let teamLeaderStatsRangeKey =
-      "UserInfo.Keys.TeamLeaderboardStatsRange"
-  private static let OnboardingCompleteKey: String =
-      "UserInfo.Keys.OnboardingComplete"
-
-  enum Pedometer: String {
-    case healthKit = "UserInfo.Pedometer.HealthKit"
-    // case fitbit
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    layout()
   }
 
-  static var pedometerSource: Pedometer? {
-    get {
-      guard
-        let pedometerRaw = defaults.string(forKey: pedometerKey)
-      else { return nil }
-      return Pedometer(rawValue: pedometerRaw)
+  private func layout() {
+    self.view.backgroundColor = .white
+
+    self.view.addSubviews([lblJourney, imgJourney])
+
+    lblJourney.text = Strings.Onboarding.journey
+    lblJourney.snp.makeConstraints { (make) in
+      make.top.equalToSuperview().offset(Style.Padding.p64)
+      make.left.equalToSuperview().offset(Style.Padding.p24)
+      make.right.equalToSuperview().inset(Style.Padding.p24)
     }
-    set {
-      guard let newValue = newValue else { return }
-      defaults.set(newValue.rawValue, forKey: pedometerKey)
+
+    imgJourney.contentMode = .scaleAspectFit
+    imgJourney.snp.makeConstraints { (make) in
+      make.left.right.equalToSuperview()
+
+      // TODO(compnerd) figure out how to reference the page control
+      // This should have bottom snapped to 72px from the top of the pageControl
+      make.top.equalToSuperview().offset(238)
     }
-  }
-
-  static var profileStatsRange: Int {
-    get { return defaults.integer(forKey: profileStatsRangeKey) } // 0 returned by default if none set
-    set { defaults.set(newValue, forKey: profileStatsRangeKey) }
-  }
-
-  static var teamLeaderStatsRange: Int {
-    get { return defaults.integer(forKey: teamLeaderStatsRangeKey) }
-    set { defaults.set(newValue, forKey: teamLeaderStatsRangeKey) }
-  }
-
-  public static var onboardingComplete: Bool {
-    get { return defaults.bool(forKey: OnboardingCompleteKey) }
-    set { defaults.set(newValue, forKey: OnboardingCompleteKey) }
   }
 }

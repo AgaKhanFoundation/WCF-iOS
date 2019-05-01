@@ -31,9 +31,52 @@ import Foundation
 
 struct Strings {
   struct Application {
+    static let name: String = "steps4change"
+
     static let unableToConnect: String =
         NSLocalizedString("Unable to access AKF Causes at this time.  Please try again later.",
                           comment: "Unable to access AKF Causes at this time.  Please try again later.")
+  }
+
+  struct Login {
+    static let conditions: String =
+        NSLocalizedString("Terms and Conditions Apply",
+                          comment: "Terms and Conditions Apply")
+  }
+
+  struct Welcome {
+    static let title: String =
+        NSLocalizedString("Welcome to Steps for Change!",
+                          comment: "Welcome to Steps for Change!")
+    static let thanks: String =
+        NSLocalizedString("""
+Thanks for registering!
+Click continue for a quick tour of the app.
+""",
+                          comment: """
+Thanks for registering!
+Click continue for a quick tour of the app.
+""")
+    static let `continue`: String =
+        NSLocalizedString("Continue", comment: "Continue")
+    static let skip: String =
+        NSLocalizedString("Skip", comment: "Skip")
+  }
+
+  struct Onboarding {
+    static let createTeam: String =
+        NSLocalizedString("Create a team or join an existing team",
+                          comment: "Create a team or join an existing team")
+    static let journey: String =
+        NSLocalizedString("Complete a challenge while reaching milestones",
+                          comment: "Complete a challenge while reaching milestones")
+    static let dashboard: String =
+        NSLocalizedString("Track your progress using the dashboard",
+                          comment: "Track your progress using the dashboard")
+    static let `continue`: String =
+        NSLocalizedString("Continue", comment: "Continue")
+    static let begin: String =
+        NSLocalizedString("Let's Begin!", comment: "Let's Begin!")
   }
 
   struct Navigation {
@@ -96,6 +139,12 @@ struct Strings {
 
 struct Assets {
   static let gear = "GearIcon"
+
+  static let LoginPeople = "login-couple"
+
+  static let CreateTeam = "create-team"
+  static let Journey = "journey"
+  static let Dashboard = "dashboard"
 
   static let DashboardSelected = "dashboard-selected"
   static let DashboardUnselected = "dashboard-unselected"
