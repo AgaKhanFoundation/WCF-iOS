@@ -31,7 +31,7 @@ import Foundation
 
 struct Strings {
   struct Application {
-    static let name: String = "steps4change"
+    static let name: String = "Steps4Change"
 
     static let unableToConnect: String =
         NSLocalizedString("Unable to access AKF Causes at this time.  Please try again later.",
