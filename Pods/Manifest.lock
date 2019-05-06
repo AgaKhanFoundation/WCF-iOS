@@ -1,4 +1,12 @@
 PODS:
+  - AppCenter (1.14.0):
+    - AppCenter/Analytics (= 1.14.0)
+    - AppCenter/Crashes (= 1.14.0)
+  - AppCenter/Analytics (1.14.0):
+    - AppCenter/Core
+  - AppCenter/Core (1.14.0)
+  - AppCenter/Crashes (1.14.0):
+    - AppCenter/Core
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -28,6 +36,7 @@ PODS:
   - SwiftLint (0.29.2)
 
 DEPENDENCIES:
+  - AppCenter
   - FacebookCore (~> 0.5.0)
   - FacebookLogin (~> 0.5.0)
   - FacebookShare (~> 0.5.0)
@@ -39,6 +48,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AppCenter
     - Bolts
     - FacebookCore
     - FacebookLogin
@@ -50,6 +60,7 @@ SPEC REPOS:
     - SwiftLint
 
 SPEC CHECKSUMS:
+  AppCenter: 02c5efe08d3bbab5421ae41d5f7aa7238906b817
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   FacebookCore: 74288d0add931d361b1596beae787ab72c438249
   FacebookLogin: ebcf34714a1cb9f0759d9f071cfb01ed500996cf
@@ -60,6 +71,6 @@ SPEC CHECKSUMS:
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftLint: 47df60bdea6e7e902b193b6596db8683aafd86a3
 
-PODFILE CHECKSUM: 7d6cf6658e5e9f92a5e8e9e002c8b5bd36f148e4
+PODFILE CHECKSUM: 6e05c4af693efe3b172079407b2e89b8e6963cc9
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1

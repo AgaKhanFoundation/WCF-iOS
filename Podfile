@@ -11,4 +11,5 @@ target 'WalkingChallenge' do
   pod 'FBSDKShareKit', '~> 4.39.1'
   pod 'SnapKit', '~> 4.2.0'
   pod 'SwiftLint', '~> 0.29.2'
+pod 'AppCenter'
 end
