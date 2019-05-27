@@ -49,8 +49,8 @@ class Challenge: UIViewController {
   private func layout() {
     view.backgroundColor = #colorLiteral(red: 0.9647058823, green: 0.9725490196, blue: 0.9803921568, alpha: 1.0000000000)
 
-
     lblTitle.text = Strings.Challenge.title
+
     lblTitle.textColor = .black
 
     view.addSubview(lblTitle)
@@ -72,13 +72,15 @@ class Challenge: UIViewController {
     tblCards.dataSource = self
     tblCards.delegate = self
     tblCards.separatorStyle = .none
+    tblCards.estimatedRowHeight = 44
+    tblCards.rowHeight = UITableView.automaticDimension
+
 
     tblCards.estimatedRowHeight = 44
     tblCards.rowHeight = UITableView.automaticDimension
 
     tblCards.register(JourneyMilesCardView.self)
     tblCards.register(MilestoneDetailCardView.self)
-
 
     tblCards.register(JourneyCardView.self)
 
@@ -161,22 +163,29 @@ extension Challenge: UITableViewDataSource {
   }
 }
 
+
 extension Challenge: UITableViewDelegate {
   func tableView(_ tableView: UITableView,
                  heightForHeaderInSection section: Int) -> CGFloat {
     return Style.Padding.p16
   }
 
-  func tableView(_ tableView: UITableView,
-                 viewForHeaderInSection section: Int) -> UIView? {
-    return UIView(frame: .zero)
-  }
+extension Challenge: UITableViewDelegate {
+//  func tableView(_ tableView: UITableView,
+//                 heightForHeaderInSection section: Int) -> CGFloat {
+//    return 0
+//  }
+//
+//  func tableView(_ tableView: UITableView,
+//                 viewForHeaderInSection section: Int) -> UIView? {
+//    return UIView(frame: .zero)
+//  }
 
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
                  forRowAt indexPath: IndexPath) {
-    cell.contentView.layer.masksToBounds = true
-    cell.layer.shadowPath =
-      UIBezierPath(roundedRect: cell.bounds,
-                   cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+//    cell.contentView.layer.masksToBounds = true
+//    cell.layer.shadowPath =
+//      UIBezierPath(roundedRect: cell.bounds,
+//                   cornerRadius: cell.contentView.layer.cornerRadius).cgPath
   }
 }
