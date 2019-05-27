@@ -96,13 +96,12 @@ struct Strings {
   struct Notifications {
     static let title =
       NSLocalizedString("Notifications", comment: "Notifications")
-    static let notificationCellTitleLabelPlaceholderText: String =
-        NSLocalizedString("FirstName LastName has joined your team!",
-                          comment: "Placeholder text for notification cell title label")
-    static let notificationCellDateLabelPlaceholderText: String =
-        NSLocalizedString("01/01/2000", comment: "Placeholder text for notification cell date label. Y2K 🤘")
+    static let notificationCellTitleLabelPlaceholderTextFormat: String =
+        NSLocalizedString("%@ %@ has joined your team!",
+                          comment: "FirstName LastName has joined your team!")
     static let noNotificationsLabelText: String =
-        NSLocalizedString("You don't have any notifications right now.", comment: "You don't have any notifications right now.")
+        NSLocalizedString("You don't have any notifications right now.",
+                          comment: "You don't have any notifications right now.")
   }
 }
 

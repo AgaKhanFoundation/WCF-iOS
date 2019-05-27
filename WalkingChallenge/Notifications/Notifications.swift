@@ -33,10 +33,10 @@ import SnapKit
 
 class Notifications: UIViewController {
 
-  private let tableView = UITableView()
+  private let tableView: UITableView = UITableView()
   private let lblTitle: UILabel = UILabel(typography: .headerTitle)
-  private let noNotificationsView = UIView()
-  private let noNotificationsLabel = UILabel(typography: .subtitleRegular)
+  private let noNotificationsView: UIView = UIView()
+  private let noNotificationsLabel: UILabel = UILabel(typography: .subtitleRegular)
 
   override func viewDidLoad() {
     super.viewDidLoad()

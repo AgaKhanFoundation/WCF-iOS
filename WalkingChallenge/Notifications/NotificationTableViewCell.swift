@@ -12,15 +12,15 @@ import SnapKit
 
 class NotificationTableViewCell: UITableViewCell {
 
-  static let CellIdentifier = "NotificationCell"
+  static let CellIdentifier: String = "NotificationCell"
 
-  lazy var notificationInfoLabel = UILabel()
-  lazy var notificationDateLabel = UILabel()
+  lazy var notificationInfoLabel: UILabel = UILabel()
+  lazy var notificationDateLabel: UILabel = UILabel()
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-    self.backgroundColor = UIColor(red: 0/255.0, green: 168/255.0, blue: 93/255.0, alpha: 0.07351600000000003)
+    self.backgroundColor = Style.Colors.DeepTurquoise.withAlphaComponent(0.0735)
     self.layer.masksToBounds = false
     self.layer.renderShadow()
 
@@ -40,7 +40,10 @@ class NotificationTableViewCell: UITableViewCell {
       make.left.right.equalToSuperview().inset(Style.Padding.p24)
     }
 
-    self.notificationInfoLabel.text = "FirstName LastName has joined your team!"
+    //TODO: Placeholder, use name from data
+    self.notificationInfoLabel.text = String(format: Strings.Notifications.notificationCellTitleLabelPlaceholderTextFormat,
+                                             arguments: ["FirstName", "LastName"])
+    //TODO: Placeholder for now, use date (w/ formatter) from data
     self.notificationDateLabel.text = "01/01/2000"
   }
 
