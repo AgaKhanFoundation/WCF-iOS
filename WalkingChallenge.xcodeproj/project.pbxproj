@@ -21,8 +21,10 @@
 		269E35241E767807000726C2 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35231E767807000726C2 /* Team.swift */; };
 		269E35291E767AE1000726C2 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35281E767AE1000726C2 /* Collection.swift */; };
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
-		423E5354222A6A0B00D2B31F /* JournedCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423E5352222A6A0A00D2B31F /* JournedCardView.swift */; };
+		423E5354222A6A0B00D2B31F /* JourneyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423E5352222A6A0A00D2B31F /* JourneyCardView.swift */; };
 		423E5355222A6A0B00D2B31F /* JourneyCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423E5353222A6A0A00D2B31F /* JourneyCard.swift */; };
+		4260B5E32284B7BC00DF9AFC /* JourneyMilesCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4260B5E22284B7BC00DF9AFC /* JourneyMilesCardView.swift */; };
+		426CC5C422874C0500B89189 /* MilestoneDetailCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426CC5C322874C0500B89189 /* MilestoneDetailCardView.swift */; };
 		C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */; };
 		ED85D460832E1D261F31B25E /* Pods_WalkingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */; };
 		F004030F1EBF9DAB005E6F10 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004030E1EBF9DAB005E6F10 /* JSON.swift */; };
@@ -83,8 +85,10 @@
 		269E35281E767AE1000726C2 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		26C5E3601E7DCACF0053DE3E /* WalkingChallenge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WalkingChallenge.entitlements; sourceTree = "<group>"; };
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		423E5352222A6A0A00D2B31F /* JournedCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournedCardView.swift; sourceTree = "<group>"; };
+		423E5352222A6A0A00D2B31F /* JourneyCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyCardView.swift; sourceTree = "<group>"; };
 		423E5353222A6A0A00D2B31F /* JourneyCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyCard.swift; sourceTree = "<group>"; };
+		4260B5E22284B7BC00DF9AFC /* JourneyMilesCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyMilesCardView.swift; sourceTree = "<group>"; };
+		426CC5C322874C0500B89189 /* MilestoneDetailCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneDetailCardView.swift; sourceTree = "<group>"; };
 		6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkingChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		F004030E1EBF9DAB005E6F10 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
@@ -292,7 +296,9 @@
 		F0D16A3A2218AD530081440C /* Challenge */ = {
 			isa = PBXGroup;
 			children = (
-				423E5352222A6A0A00D2B31F /* JournedCardView.swift */,
+				426CC5C322874C0500B89189 /* MilestoneDetailCardView.swift */,
+				4260B5E22284B7BC00DF9AFC /* JourneyMilesCardView.swift */,
+				423E5352222A6A0A00D2B31F /* JourneyCardView.swift */,
 				423E5353222A6A0A00D2B31F /* JourneyCard.swift */,
 				F0D16A3B2218AD810081440C /* Challenge.swift */,
 			);
@@ -512,7 +518,7 @@
 				F00403191EC3FB7D005E6F10 /* (null) in Sources */,
 				F0A992D61EABF037001621A6 /* Formatters.swift in Sources */,
 				F0CF39861EE0E903006A7462 /* Record.swift in Sources */,
-				423E5354222A6A0B00D2B31F /* JournedCardView.swift in Sources */,
+				423E5354222A6A0B00D2B31F /* JourneyCardView.swift in Sources */,
 				F0F8EDD52210C71600321A6D /* ActivityCard.swift in Sources */,
 				F017B6952276C9C60023E84B /* OnboardingJourney.swift in Sources */,
 				F0320B6E222F678500EABAD6 /* SegmentedView.swift in Sources */,
