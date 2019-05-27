@@ -143,7 +143,7 @@ Click continue for a quick tour of the app.
     static let youHaveNoNotifications: String =
         NSLocalizedString("You don't have any notifications right now.",
                           comment: "You don't have any notifications right now.")
-
+  }
   struct Challenge {
     static let title: String =
       NSLocalizedString("My Challenge", comment: "My Challenge")
