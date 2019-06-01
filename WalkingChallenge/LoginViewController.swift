@@ -33,7 +33,8 @@ import FacebookCore
 
 class LoginViewController: UIViewController {
   let imgLogo: UIImageView =
-    UIImageView(image: nil)
+      UIImageView(image: UIImage(cgImage: UIImage(imageLiteralResourceName: Assets.AKFLogo).cgImage!,
+                                 scale: 4.0, orientation: .up))
   let lblTitle: UILabel = UILabel(typography: .onboarding)
   let imgImage: UIImageView =
       UIImageView(image: UIImage(imageLiteralResourceName: Assets.LoginPeople))
@@ -54,7 +55,7 @@ class LoginViewController: UIViewController {
 
     imgLogo.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
-      make.top.equalToSuperview().offset(Style.Size.s24)
+      make.top.equalTo(topLayoutGuide.snp.bottom).offset(Style.Size.s24)
     }
 
     lblTitle.text = Strings.Application.name

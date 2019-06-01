@@ -140,6 +140,8 @@ Click continue for a quick tour of the app.
 struct Assets {
   static let gear = "GearIcon"
 
+  static let AKFLogo = "AKFLogo"
+
   static let LoginPeople = "login-couple"
 
   static let CreateTeam = "create-team"
