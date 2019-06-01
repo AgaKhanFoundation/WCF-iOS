@@ -135,6 +135,14 @@ Click continue for a quick tour of the app.
     static let joinChallenge: String =
         NSLocalizedString("Join Challenge", comment: "Join Challenge")
   }
+
+  struct Notifications {
+    static let title: String =
+        NSLocalizedString("Notifications", comment: "Notifications")
+    static let youHaveNoNotifications: String =
+        NSLocalizedString("You don't have any notifications right now.",
+                          comment: "You don't have any notifications right now.")
+  }
 }
 
 struct Assets {
