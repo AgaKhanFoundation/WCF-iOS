@@ -18,28 +18,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Aga Khan Foundation LOGO_raster (1)" translatesAutoresizingMaskIntoConstraints="NO" id="GVo-Na-0lA">
-                                <rect key="frame" x="40" y="204" width="335" height="198.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="GVo-Na-0lA" secondAttribute="height" multiplier="307:182" id="0Jv-bu-ieC"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AKFLogo" id="c03-Jk-WXf">
+                                <rect key="frame" x="57" y="165" width="297" height="176"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="steps4change_screenshot" translatesAutoresizingMaskIntoConstraints="NO" id="wwb-2N-AOZ">
-                                <rect key="frame" x="104" y="403" width="207" height="81.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="wwb-2N-AOZ" secondAttribute="height" multiplier="181:71" id="vDr-ua-jxK"/>
-                                </constraints>
-                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Steps4Change" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grs-mV-WSz">
+                                <rect key="frame" x="110" y="349" width="190" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="26"/>
+                                <color key="textColor" red="0.0" green="0.6588235294" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="GVo-Na-0lA" firstAttribute="top" secondItem="QQI-Km-sVK" secondAttribute="top" constant="160" id="Axw-Vk-NOI"/>
-                            <constraint firstItem="wwb-2N-AOZ" firstAttribute="top" secondItem="GVo-Na-0lA" secondAttribute="bottom" constant="0.5" id="RZc-SD-kdz"/>
-                            <constraint firstItem="GVo-Na-0lA" firstAttribute="leading" secondItem="QQI-Km-sVK" secondAttribute="leading" constant="40" id="d7b-hL-zdT"/>
-                            <constraint firstItem="QQI-Km-sVK" firstAttribute="trailing" secondItem="GVo-Na-0lA" secondAttribute="trailing" constant="39" id="rq0-ks-wGg"/>
-                            <constraint firstItem="QQI-Km-sVK" firstAttribute="trailing" secondItem="wwb-2N-AOZ" secondAttribute="trailing" constant="103" id="xIj-RY-vdv"/>
-                            <constraint firstItem="wwb-2N-AOZ" firstAttribute="leading" secondItem="QQI-Km-sVK" secondAttribute="leading" constant="104" id="z97-tk-h2g"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="QQI-Km-sVK"/>
                     </view>
                 </viewController>
@@ -49,7 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Aga Khan Foundation LOGO_raster (1)" width="792.5" height="522"/>
-        <image name="steps4change_screenshot" width="88" height="16"/>
+        <image name="AKFLogo" width="595" height="353"/>
     </resources>
 </document>
