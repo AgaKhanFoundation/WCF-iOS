@@ -59,14 +59,12 @@ class AppController {
 
   enum ViewController {
     case login
-    case welcome
     case onboarding
     case navigation
 
     var viewController: UIViewController {
       switch self {
       case .login: return LoginViewController()
-      case .welcome: return WelcomeViewController()
       case .onboarding: return Onboarding()
       case .navigation: return AppController.shared.navigation
       }

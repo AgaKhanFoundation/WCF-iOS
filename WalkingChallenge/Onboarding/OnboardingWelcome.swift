@@ -30,27 +30,23 @@
 import SnapKit
 import UIKit
 
-class WelcomeViewController : UIViewController {                                // swiftlint:disable:this colon
+class OnboardingWelcome : UIViewController {                                    // swiftlint:disable:this colon
   private let lblTitle: UILabel =
       UILabel(typography: .headerTitle)
   private let imgImage: UIImageView =
       UIImageView(image: UIImage(imageLiteralResourceName: Assets.LoginPeople))
   private let lblThanks: UILabel =
       UILabel(typography: .bodyRegular, color: Style.Colors.green)
-  private let btnContinue: UIButton =
-      UIButton(type: .roundedRect)
-  private let btnSkip: UIButton =
-      UIButton(type: .system)
 
   override func viewDidLoad() {
     super.viewDidLoad()
     layout()
   }
 
-  private func layout() {                                                       // swiftlint:disable:this function_body_length line_length
+  private func layout() {
     self.view.backgroundColor = .white
 
-    self.view.addSubviews([lblTitle, imgImage, lblThanks, btnContinue, btnSkip])
+    self.view.addSubviews([lblTitle, imgImage, lblThanks])
 
     lblTitle.text = Strings.Welcome.title
     lblTitle.textColor = Style.Colors.green
@@ -75,44 +71,5 @@ class WelcomeViewController : UIViewController {                                
       make.centerX.equalToSuperview()
       make.top.equalTo(imgImage.snp.bottom).offset(Style.Size.s48)
     }
-
-    btnContinue.layer.borderColor = Style.Colors.green.cgColor
-    btnContinue.layer.borderWidth = 1
-    btnContinue.layer.cornerRadius = 4
-    btnContinue.setTitle(Strings.Welcome.continue, for: .normal)
-    btnContinue.setTitleColor(Style.Colors.green, for: .normal)
-    btnContinue.titleLabel?.font = Style.Typography.subtitleBold.font
-    btnContinue.snp.makeConstraints { (make) in
-      make.left.equalToSuperview().offset(Style.Size.s32)
-      make.right.equalToSuperview().inset(Style.Size.s32)
-      make.height.equalTo(Style.Size.s40)
-    }
-    btnContinue.addTarget(self, action: #selector(`continue`),
-                          for: .touchUpInside)
-
-    let attributes: [NSAttributedString.Key:Any] = [                            // swiftlint:disable:this colon
-      .underlineStyle:NSUnderlineStyle.single.rawValue,                         // swiftlint:disable:this colon
-      .foregroundColor:Style.Colors.black,                                      // swiftlint:disable:this colon
-      .font:Style.Typography.smallRegular.font!                                 // swiftlint:disable:this colon
-    ]
-    btnSkip.setAttributedTitle(NSAttributedString(string: Strings.Welcome.skip,
-                                                  attributes: attributes),
-                               for: .normal)
-    btnSkip.snp.makeConstraints { (make) in
-      make.top.equalTo(btnContinue.snp.bottom).offset(Style.Size.s16)
-      make.bottom.equalToSuperview().inset(Style.Size.s48)
-      make.centerX.equalToSuperview()
-    }
-    btnSkip.addTarget(self, action: #selector(skip), for: .touchUpInside)
-  }
-
-  @objc
-  func skip(sender: UIButton!) {
-    AppController.shared.transition(to: .navigation)
-  }
-
-  @objc
-  func `continue`(sender: UIButton!) {
-    AppController.shared.transition(to: .onboarding)
   }
 }

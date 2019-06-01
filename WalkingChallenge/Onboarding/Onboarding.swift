@@ -32,6 +32,7 @@ import UIKit
 
 class Onboarding : UIPageViewController {                                       // swiftlint:disable:this colon
   private var pages: [UIViewController] = [
+    OnboardingWelcome(),
     OnboardingCreateTeam(),
     OnboardingJourney(),
     OnboardingDashboard(),                                                      // swiftlint:disable:this trailing_comma

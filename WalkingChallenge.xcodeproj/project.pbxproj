@@ -25,10 +25,10 @@
 		ED85D460832E1D261F31B25E /* Pods_WalkingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */; };
 		F004030F1EBF9DAB005E6F10 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004030E1EBF9DAB005E6F10 /* JSON.swift */; };
 		F00403151EC3EC6F005E6F10 /* AKFCausesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */; };
-		F00403191EC3FB7D005E6F10 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		F00403191EC3FB7D005E6F10 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004031C1EC52772005E6F10 /* AppConfig.swift */; };
 		F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */; };
-		F017B68E227686A60023E84B /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017B68D227686A60023E84B /* Welcome.swift */; };
+		F017B68E227686A60023E84B /* OnboardingWelcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017B68D227686A60023E84B /* OnboardingWelcome.swift */; };
 		F017B691227699440023E84B /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017B690227699440023E84B /* Onboarding.swift */; };
 		F017B6932276B99A0023E84B /* OnboardingCreateTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017B6922276B99A0023E84B /* OnboardingCreateTeam.swift */; };
 		F017B6952276C9C60023E84B /* OnboardingJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017B6942276C9C60023E84B /* OnboardingJourney.swift */; };
@@ -87,7 +87,7 @@
 		F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKFCausesService.swift; sourceTree = "<group>"; };
 		F004031C1EC52772005E6F10 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressStepsView.swift; sourceTree = "<group>"; };
-		F017B68D227686A60023E84B /* Welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
+		F017B68D227686A60023E84B /* OnboardingWelcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWelcome.swift; sourceTree = "<group>"; };
 		F017B690227699440023E84B /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		F017B6922276B99A0023E84B /* OnboardingCreateTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCreateTeam.swift; sourceTree = "<group>"; };
 		F017B6942276C9C60023E84B /* OnboardingJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingJourney.swift; sourceTree = "<group>"; };
@@ -217,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				269E35061E765C68000726C2 /* LoginViewController.swift */,
-				F017B68D227686A60023E84B /* Welcome.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -244,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				F017B690227699440023E84B /* Onboarding.swift */,
+				F017B68D227686A60023E84B /* OnboardingWelcome.swift */,
 				F017B6922276B99A0023E84B /* OnboardingCreateTeam.swift */,
 				F017B6942276C9C60023E84B /* OnboardingJourney.swift */,
 				F017B6962276D0C60023E84B /* OnboardingDashboard.swift */,
@@ -494,7 +494,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0D16A3C2218AD810081440C /* Challenge.swift in Sources */,
-				F017B68E227686A60023E84B /* Welcome.swift in Sources */,
+				F017B68E227686A60023E84B /* OnboardingWelcome.swift in Sources */,
 				F0A992D81EAC3812001621A6 /* ProgressRing.swift in Sources */,
 				F0E6879222251C0600454340 /* Notifications.swift in Sources */,
 				F0F8EDD12210C65C00321A6D /* CardViewSupport.swift in Sources */,
@@ -503,7 +503,7 @@
 				F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */,
 				F06254C11ECD5D1700168DD6 /* Participant.swift in Sources */,
 				F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */,
-				F00403191EC3FB7D005E6F10 /* BuildFile in Sources */,
+				F00403191EC3FB7D005E6F10 /* (null) in Sources */,
 				F0A992D61EABF037001621A6 /* Formatters.swift in Sources */,
 				F0CF39861EE0E903006A7462 /* Record.swift in Sources */,
 				F0F8EDD52210C71600321A6D /* ActivityCard.swift in Sources */,
