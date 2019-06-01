@@ -68,10 +68,7 @@ class CardViewCell: UITableViewCell {
 
     self.backgroundColor = .clear
     self.layer.masksToBounds = false
-    self.layer.shadowColor = #colorLiteral(red: 0.8431372549, green: 0.8431372549, blue: 0.8431372549, alpha: 1.0000000000)
-    self.layer.shadowOffset = .zero
-    self.layer.shadowOpacity = 0.5
-    self.layer.shadowRadius = Style.Size.s8
+    self.layer.addShadow()
 
     view.layout()
   }
