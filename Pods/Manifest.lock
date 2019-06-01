@@ -1,11 +1,11 @@
 PODS:
-  - AppCenter (1.14.0):
-    - AppCenter/Analytics (= 1.14.0)
-    - AppCenter/Crashes (= 1.14.0)
-  - AppCenter/Analytics (1.14.0):
+  - AppCenter (2.0.1):
+    - AppCenter/Analytics (= 2.0.1)
+    - AppCenter/Crashes (= 2.0.1)
+  - AppCenter/Analytics (2.0.1):
     - AppCenter/Core
-  - AppCenter/Core (1.14.0)
-  - AppCenter/Crashes (1.14.0):
+  - AppCenter/Core (2.0.1)
+  - AppCenter/Crashes (2.0.1):
     - AppCenter/Core
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
@@ -33,7 +33,7 @@ PODS:
   - FBSDKShareKit (4.39.1):
     - FBSDKCoreKit
   - SnapKit (4.2.0)
-  - SwiftLint (0.29.2)
+  - SwiftLint (0.29.4)
 
 DEPENDENCIES:
   - AppCenter
@@ -60,7 +60,7 @@ SPEC REPOS:
     - SwiftLint
 
 SPEC CHECKSUMS:
-  AppCenter: 02c5efe08d3bbab5421ae41d5f7aa7238906b817
+  AppCenter: 6a5ff2fd007b53431259fdd74f91eb3d0dfea3d1
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   FacebookCore: 74288d0add931d361b1596beae787ab72c438249
   FacebookLogin: ebcf34714a1cb9f0759d9f071cfb01ed500996cf
@@ -69,7 +69,7 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: c3079d9a4db27c492287b1eed7a4272b28cf8a59
   FBSDKShareKit: 27d7b982e7b1f4638da2f2b1ab6eba5afc6b5888
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  SwiftLint: 47df60bdea6e7e902b193b6596db8683aafd86a3
+  SwiftLint: 73f2ecfd0f6d812c8cb9a73c00fe809bc2504585
 
 PODFILE CHECKSUM: 6e05c4af693efe3b172079407b2e89b8e6963cc9
 
