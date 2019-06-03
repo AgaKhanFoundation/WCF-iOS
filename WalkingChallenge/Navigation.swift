@@ -60,6 +60,9 @@ class Navigation: UITabBarController {
                      image: #imageLiteral(resourceName: Assets.NotificationsUnselected),
                      selectedImage: #imageLiteral(resourceName: Assets.NotificationsSelected))
 
+    // FIXME(compnerd) enumerate the notifications
+    self.notifications.tabBarItem.badgeValue = "0"
+
     self.viewControllers = [dashboard, challenge, leaderboard, notifications]
   }
 
