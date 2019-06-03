@@ -53,10 +53,15 @@ class Onboarding : UIPageViewController {                                       
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    layout()
+
+    dataSource = self
+    delegate = self
     setViewControllers([pages.first!], direction: .forward, animated: true,
                        completion: nil)
 
-    layout()
+    control.currentPage = 1
+    control.numberOfPages = pages.count
   }
 
   private func layout() {
@@ -64,9 +69,7 @@ class Onboarding : UIPageViewController {                                       
 
     self.view.addSubviews([control, btnContinue, btnSkip])
 
-    control.currentPage = 1
     control.currentPageIndicatorTintColor = Style.Colors.green
-    control.numberOfPages = pages.count
     control.pageIndicatorTintColor = Style.Colors.grey
     control.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
@@ -104,30 +107,18 @@ class Onboarding : UIPageViewController {                                       
 
   @objc
   func `continue`(sender: UIButton!) {
-    guard let viewController = self.viewControllers?.first,
-      let index = self.pages.firstIndex(of: viewController),
-    index < self.pages.count else {
-        return
-    }
-
-    // complete
-    if index == self.pages.count - 1 {
-      UserInfo.onboardingComplete = true
+    guard let current = self.viewControllers?.first else { return }
+    guard let next =
+        dataSource?.pageViewController(self, viewControllerAfter: current) else {
       AppController.shared.transition(to: .navigation)
       return
     }
 
-    // continue
-    setViewControllers([self.pages[index + 1]], direction: .forward,
-                       animated: true, completion: nil)
-    control.currentPage = index + 1
-
-    if index + 1 == pages.count - 1 {
-      self.btnSkip.isHidden = true
-      self.btnContinue.setTitle(Strings.Onboarding.begin, for: .normal)
-      self.btnContinue.setTitleColor(Style.Colors.white, for: .normal)
-      self.btnContinue.backgroundColor = Style.Colors.green
-    }
+    setViewControllers([next], direction: .forward, animated: true,
+                       completion: nil)
+    delegate?.pageViewController?(self, didFinishAnimating: true,
+                                  previousViewControllers: [current],
+                                  transitionCompleted: true)
   }
 
   @objc
@@ -168,5 +159,37 @@ extension Onboarding : UIPageViewControllerDataSource {                         
       return 0
     }
     return index
+  }
+}
+
+extension Onboarding : UIPageViewControllerDelegate {
+  func pageViewController(_ pageViewController: UIPageViewController,
+                          didFinishAnimating finished: Bool,
+                          previousViewControllers: [UIViewController],
+                          transitionCompleted completed: Bool) {
+    guard let index = pageViewController.dataSource?.presentationIndex?(for: pageViewController) else { return }
+    guard let count = pageViewController.dataSource?.presentationCount?(for: pageViewController) else { return }
+
+    self.control.currentPage = index
+
+    switch index {
+    case count - 1: // last screen
+      btnSkip.isHidden = true
+
+      btnContinue.setTitle(Strings.Onboarding.begin, for: .normal)
+      btnContinue.setTitleColor(Style.Colors.white, for: .normal)
+      btnContinue.backgroundColor = Style.Colors.green
+
+    case count: // complete
+      UserInfo.onboardingComplete = true
+      fallthrough
+
+    default:
+      btnSkip.isHidden = false
+
+      btnContinue.setTitle(Strings.Onboarding.continue, for: .normal)
+      btnContinue.setTitleColor(Style.Colors.green, for: .normal)
+      btnContinue.backgroundColor = Style.Colors.white
+    }
   }
 }
