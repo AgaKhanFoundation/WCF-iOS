@@ -18,19 +18,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AKFLogo" id="c03-Jk-WXf">
-                                <rect key="frame" x="57" y="165" width="297" height="176"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="steps4change logo" translatesAutoresizingMaskIntoConstraints="NO" id="3f6-Bt-ve1">
+                                <rect key="frame" x="112" y="349" width="191" height="76"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3f6-Bt-ve1" secondAttribute="height" multiplier="191:76" id="ORc-3q-cTr"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Steps4Change" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grs-mV-WSz">
-                                <rect key="frame" x="110" y="349" width="190" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="26"/>
-                                <color key="textColor" red="0.0" green="0.6588235294" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AKFLogo" translatesAutoresizingMaskIntoConstraints="NO" id="bM7-I6-gjx">
+                                <rect key="frame" x="62" y="152" width="291" height="201"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="201" id="0KT-p9-lz0"/>
+                                    <constraint firstAttribute="width" constant="291" id="14w-cy-nqV"/>
+                                    <constraint firstAttribute="width" secondItem="bM7-I6-gjx" secondAttribute="height" multiplier="97:67" id="txT-ZC-45G"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bM7-I6-gjx" firstAttribute="top" secondItem="QQI-Km-sVK" secondAttribute="top" constant="108" id="3ce-lo-5tS"/>
+                            <constraint firstItem="3f6-Bt-ve1" firstAttribute="top" secondItem="QQI-Km-sVK" secondAttribute="top" constant="305" id="7aK-z7-hQB"/>
+                            <constraint firstItem="QQI-Km-sVK" firstAttribute="trailing" secondItem="3f6-Bt-ve1" secondAttribute="trailing" constant="111" id="QH0-8s-zyr"/>
+                            <constraint firstItem="QQI-Km-sVK" firstAttribute="bottom" secondItem="3f6-Bt-ve1" secondAttribute="bottom" constant="437" id="SfZ-DN-4wP"/>
+                            <constraint firstItem="3f6-Bt-ve1" firstAttribute="leading" secondItem="QQI-Km-sVK" secondAttribute="leading" constant="112" id="T6A-SM-DAz"/>
+                            <constraint firstItem="bM7-I6-gjx" firstAttribute="leading" secondItem="QQI-Km-sVK" secondAttribute="leading" constant="62" id="jMA-Yt-NL3"/>
+                            <constraint firstItem="QQI-Km-sVK" firstAttribute="trailing" secondItem="bM7-I6-gjx" secondAttribute="trailing" constant="61" id="wcV-Qf-esG"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="QQI-Km-sVK"/>
                     </view>
                 </viewController>
@@ -41,5 +53,6 @@
     </scenes>
     <resources>
         <image name="AKFLogo" width="595" height="353"/>
+        <image name="steps4change logo" width="168" height="33"/>
     </resources>
 </document>
