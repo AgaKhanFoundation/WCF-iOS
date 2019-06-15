@@ -136,23 +136,23 @@ Click continue for a quick tour of the app.
         NSLocalizedString("Join Challenge", comment: "Join Challenge")
   }
 
+<<<<<<< HEAD
   struct Notifications {
     static let title: String =
         NSLocalizedString("Notifications", comment: "Notifications")
     static let youHaveNoNotifications: String =
         NSLocalizedString("You don't have any notifications right now.",
                           comment: "You don't have any notifications right now.")
-    }
-
+=======
   struct Challenge {
     static let title: String =
       NSLocalizedString("My Challenge", comment: "My Challenge")
     static let subTitle: String =
       NSLocalizedString("There are 52 days left in this challenge", comment: "There are 52 days left in this challenge")
+>>>>>>> Challenge First Cell UI designed
   }
 }
 
-}
 struct Assets {
   static let gear = "GearIcon"
 
