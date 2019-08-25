@@ -46,12 +46,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     window = UIWindow()
     appController.launch(in: window)
-    
-    MSAppCenter.start("9ca54e4e-20df-425a-bfe6-b72d0daad2da", withServices:[
+
+    MSAppCenter.start("9ca54e4e-20df-425a-bfe6-b72d0daad2da", withServices: [
       MSAnalytics.self,
       MSCrashes.self
-      ])
-    MSAppCenter.start("9ca54e4e-20df-425a-bfe6-b72d0daad2da", withServices:[ MSAnalytics.self, MSCrashes.self ])
+    ])
+    MSAppCenter.start("9ca54e4e-20df-425a-bfe6-b72d0daad2da", withServices: [
+      MSAnalytics.self,
+      MSCrashes.self
+    ])
 
     return true
   }
