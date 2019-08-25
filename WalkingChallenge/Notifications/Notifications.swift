@@ -31,7 +31,7 @@ import UIKit
 import Foundation
 import SnapKit
 
-class NotificationView : UITableViewCell {
+class NotificationView: UITableViewCell {
   static let identifier: String = "NotificationCell"
 
   private var lblMessage: UILabel =

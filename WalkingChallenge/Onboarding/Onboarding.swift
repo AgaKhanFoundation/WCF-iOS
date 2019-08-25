@@ -162,7 +162,7 @@ extension Onboarding : UIPageViewControllerDataSource {                         
   }
 }
 
-extension Onboarding : UIPageViewControllerDelegate {
+extension Onboarding: UIPageViewControllerDelegate {
   func pageViewController(_ pageViewController: UIPageViewController,
                           didFinishAnimating finished: Bool,
                           previousViewControllers: [UIViewController],
