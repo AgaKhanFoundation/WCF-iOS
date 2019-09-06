@@ -28,10 +28,6 @@
  **/
 
 import UIKit
-import FacebookCore
-import AppCenter
-import AppCenterAnalytics
-import AppCenterCrashes
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -40,29 +36,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication,                                // swiftlint:disable:next colon
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey:Any]?) -> Bool {
-    // TODO: Eventually move this into AppController when other frameworks require setup
-    SDKApplicationDelegate.shared.application(application,
-                                              didFinishLaunchingWithOptions: launchOptions)
-
+    
     window = UIWindow()
-    appController.launch(in: window)
-
-    MSAppCenter.start("9ca54e4e-20df-425a-bfe6-b72d0daad2da", withServices: [
-      MSAnalytics.self,
-      MSCrashes.self
-    ])
-    MSAppCenter.start("9ca54e4e-20df-425a-bfe6-b72d0daad2da", withServices: [
-      MSAnalytics.self,
-      MSCrashes.self
-    ])
+    appController.launch(application, with: launchOptions, in: window)
 
     return true
   }
 
   func application(_ app: UIApplication, open url: URL,
                    options: [UIApplication.OpenURLOptionsKey:Any]) -> Bool {    // swiftlint:disable:this colon line_length
-    // TODO: Eventually move this into AppController when other frameworks require setup
-    return SDKApplicationDelegate.shared.application(app, open: url,
-                                                     options: options)
+    return appController.can(app, open: url, with: options)
   }
 }
