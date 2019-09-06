@@ -47,11 +47,9 @@ class ProfileCardView: StylizedCardView {
                  lblTeam, eltSeparator, lblChallengeTimelineLabel,
                  lblChallengeTimeline])
 
-    let gear: UIImage = #imageLiteral(resourceName: Assets.gear)
-    btnGear.frame =
-        CGRect(x: 0, y: 0, width: gear.size.width, height: gear.size.height)
-    btnGear.setBackgroundImage(gear, for: .normal)
+    btnGear.setBackgroundImage(Assets.gear.image, for: .normal)
     btnGear.snp.makeConstraints {
+      $0.height.width.equalTo(Style.defaultIconSize)
       $0.right.equalToSuperview().inset(Style.Padding.p8)
       $0.top.equalToSuperview().offset(Style.Padding.p8)
     }

@@ -33,11 +33,11 @@ import FacebookCore
 
 class LoginViewController: UIViewController {
   let imgLogo: UIImageView =
-      UIImageView(image: UIImage(cgImage: UIImage(imageLiteralResourceName: Assets.AKFLogo).cgImage!,
+      UIImageView(image: UIImage(cgImage: Assets.AKFLogo.image!.cgImage!,
                                  scale: 4.0, orientation: .up))
   let lblTitle: UILabel = UILabel(typography: .onboarding)
   let imgImage: UIImageView =
-      UIImageView(image: UIImage(imageLiteralResourceName: Assets.LoginPeople))
+      UIImageView(image: Assets.LoginPeople.image)
   let btnLogin: LoginButton =
     LoginButton(readPermissions: [.publicProfile, .custom("user_location")])
   let lblTermsAndConditions: UILabel = UILabel(typography: .footnote)

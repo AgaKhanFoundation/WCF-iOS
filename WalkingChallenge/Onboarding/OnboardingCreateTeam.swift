@@ -34,7 +34,7 @@ class OnboardingCreateTeam : UIViewController {                                 
   private var lblCreateTeam: UILabel =
       UILabel(typography: .headerTitle, color: Style.Colors.green)
   private var imgCreateTeam: UIImageView =
-      UIImageView(image: UIImage(imageLiteralResourceName: Assets.CreateTeam))
+      UIImageView(image: Assets.CreateTeam.image)
 
   override func viewDidLoad() {
     super.viewDidLoad()
