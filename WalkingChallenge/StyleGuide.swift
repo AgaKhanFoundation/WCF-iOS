@@ -30,6 +30,8 @@
 import UIKit
 
 struct Style {
+  static let defaultIconSize: CGFloat = 24
+  
   struct Colors {
     // Standard
     static let black = #colorLiteral(red: 0.2000000000, green: 0.2000000000, blue: 0.2000000000, alpha: 1)      // #333333
