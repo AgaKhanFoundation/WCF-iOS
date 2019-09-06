@@ -154,20 +154,20 @@ enum Assets: String {
   case AKFLogo = "AKFLogo"
   
   // Onboarding
-  case LoginPeople = "login-couple"
-  case CreateTeam = "create-team"
-  case Journey = "journey"
-  case Dashboard = "dashboard"
+  case onboardingLoginPeople = "login-couple"
+  case onboardingCreateTeam = "create-team"
+  case onboardingJourney = "journey"
+  case onboardingDashboard = "dashboard"
   
   // Tab Bar
-  case DashboardSelected = "tabbar-dashboard-selected"
-  case DashboardUnselected = "tabbar-dashboard-unselected"
-  case ChallengeSelected = "tabbar-challenge-selected"
-  case ChallengeUnselected = "tabbar-challenge-unselected"
-  case LeaderboardSelected = "tabbar-leaderboard-selected"
-  case LeaderboardUnselected = "tabbar-leaderboard-unselected"
-  case NotificationsSelected = "tabbar-notifications-selected"
-  case NotificationsUnselected = "tabbar-notifications-unselected"
+  case tabbarDashboardSelected = "tabbar-dashboard-selected"
+  case tabbarDashboardUnselected = "tabbar-dashboard-unselected"
+  case tabbarChallengeSelected = "tabbar-challenge-selected"
+  case tabbarChallengeUnselected = "tabbar-challenge-unselected"
+  case tabbarLeaderboardSelected = "tabbar-leaderboard-selected"
+  case tabbarLeaderboardUnselected = "tabbar-leaderboard-unselected"
+  case tabbarNotificationsSelected = "tabbar-notifications-selected"
+  case tabbarNotificationsUnselected = "tabbar-notifications-unselected"
   
   var image: UIImage? {
     return UIImage(named: self.rawValue)

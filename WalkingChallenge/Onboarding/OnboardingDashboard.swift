@@ -34,7 +34,7 @@ class OnboardingDashboard : UIViewController {                                  
   private var lblDashboard: UILabel =
     UILabel(typography: .headerTitle, color: Style.Colors.green)
   private var imgDashboard: UIImageView =
-    UIImageView(image: Assets.Dashboard.image)
+    UIImageView(image: Assets.onboardingDashboard.image)
 
   override func viewDidLoad() {
     super.viewDidLoad()
