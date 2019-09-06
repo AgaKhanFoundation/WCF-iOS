@@ -28,6 +28,7 @@
  **/
 
 import Foundation
+import UIKit
 
 struct Strings {
   struct Application {
@@ -145,23 +146,30 @@ Click continue for a quick tour of the app.
   }
 }
 
-struct Assets {
-  static let gear = "GearIcon"
-
-  static let AKFLogo = "AKFLogo"
-
-  static let LoginPeople = "login-couple"
-
-  static let CreateTeam = "create-team"
-  static let Journey = "journey"
-  static let Dashboard = "dashboard"
-
-  static let DashboardSelected = "dashboard-selected"
-  static let DashboardUnselected = "dashboard-unselected"
-  static let ChallengeSelected = "challenge-selected"
-  static let ChallengeUnselected = "challenge-unselected"
-  static let LeaderboardSelected = "leaderboard-selected"
-  static let LeaderboardUnselected = "leaderboard-unselected"
-  static let NotificationsSelected = "notifications-selected"
-  static let NotificationsUnselected = "notifications-unselected"
+enum Assets: String {
+  // UI
+  case gear = "GearIcon"
+  
+  // Logos
+  case AKFLogo = "AKFLogo"
+  
+  // Onboarding
+  case LoginPeople = "login-couple"
+  case CreateTeam = "create-team"
+  case Journey = "journey"
+  case Dashboard = "dashboard"
+  
+  // Tab Bar
+  case DashboardSelected = "tabbar-dashboard-selected"
+  case DashboardUnselected = "tabbar-dashboard-unselected"
+  case ChallengeSelected = "tabbar-challenge-selected"
+  case ChallengeUnselected = "tabbar-challenge-unselected"
+  case LeaderboardSelected = "tabbar-leaderboard-selected"
+  case LeaderboardUnselected = "tabbar-leaderboard-unselected"
+  case NotificationsSelected = "tabbar-notifications-selected"
+  case NotificationsUnselected = "tabbar-notifications-unselected"
+  
+  var image: UIImage? {
+    return UIImage(named: self.rawValue)
+  }
 }

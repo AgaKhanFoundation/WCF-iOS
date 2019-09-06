@@ -45,20 +45,20 @@ class Navigation: UITabBarController {
 
     self.dashboard.tabBarItem =
         UITabBarItem(title: Strings.Navigation.dashboard,
-                     image: #imageLiteral(resourceName: Assets.DashboardUnselected),
-                     selectedImage: #imageLiteral(resourceName: Assets.DashboardSelected))
+                     image: Assets.DashboardUnselected.image,
+                     selectedImage: Assets.DashboardSelected.image)
     self.challenge.tabBarItem =
         UITabBarItem(title: Strings.Navigation.challenge,
-                     image: #imageLiteral(resourceName: Assets.ChallengeUnselected),
-                     selectedImage: #imageLiteral(resourceName: Assets.ChallengeSelected))
+                     image: Assets.ChallengeUnselected.image,
+                     selectedImage: Assets.ChallengeSelected.image)
     self.leaderboard.tabBarItem =
         UITabBarItem(title: Strings.Navigation.leaderboard,
-                     image: #imageLiteral(resourceName: Assets.LeaderboardUnselected),
-                     selectedImage: #imageLiteral(resourceName: Assets.LeaderboardSelected))
+                     image: Assets.LeaderboardUnselected.image,
+                     selectedImage: Assets.LeaderboardSelected.image)
     self.notifications.tabBarItem =
         UITabBarItem(title: Strings.Navigation.notifications,
-                     image: #imageLiteral(resourceName: Assets.NotificationsUnselected),
-                     selectedImage: #imageLiteral(resourceName: Assets.NotificationsSelected))
+                     image: Assets.NotificationsUnselected.image,
+                     selectedImage: Assets.NotificationsSelected.image)
 
     // FIXME(compnerd) enumerate the notifications
     self.notifications.tabBarItem.badgeValue = "0"
