@@ -101,7 +101,7 @@ class Notifications: UIViewController {
     label.text = Strings.Notifications.youHaveNoNotifications
 
     let image: UIImageView =
-      UIImageView(image: UIImage(cgImage: Assets.NotificationsUnselected.image!.cgImage!,
+      UIImageView(image: UIImage(cgImage: Assets.tabbarNotificationsUnselected.image!.cgImage!,
                                  scale: 0.75, orientation: .up))
 
     uvwNotificationsBackground.addSubview(image)

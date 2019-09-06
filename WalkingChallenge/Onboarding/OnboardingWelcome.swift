@@ -34,7 +34,7 @@ class OnboardingWelcome : UIViewController {                                    
   private let lblTitle: UILabel =
       UILabel(typography: .headerTitle)
   private let imgImage: UIImageView =
-      UIImageView(image: Assets.LoginPeople.image)
+      UIImageView(image: Assets.onboardingLoginPeople.image)
   private let lblThanks: UILabel =
       UILabel(typography: .bodyRegular, color: Style.Colors.green)
 

@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
                                  scale: 4.0, orientation: .up))
   let lblTitle: UILabel = UILabel(typography: .onboarding)
   let imgImage: UIImageView =
-      UIImageView(image: Assets.LoginPeople.image)
+      UIImageView(image: Assets.onboardingLoginPeople.image)
   let btnLogin: LoginButton =
     LoginButton(readPermissions: [.publicProfile, .custom("user_location")])
   let lblTermsAndConditions: UILabel = UILabel(typography: .footnote)

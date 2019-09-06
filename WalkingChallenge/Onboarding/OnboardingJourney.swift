@@ -34,7 +34,7 @@ class OnboardingJourney : UIViewController {                                    
   private var lblJourney: UILabel =
     UILabel(typography: .headerTitle, color: Style.Colors.green)
   private var imgJourney: UIImageView =
-    UIImageView(image: Assets.Journey.image)
+    UIImageView(image: Assets.onboardingJourney.image)
 
   override func viewDidLoad() {
     super.viewDidLoad()
