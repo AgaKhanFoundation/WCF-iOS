@@ -29,37 +29,14 @@
 
 import UIKit
 
-extension UITableView {
-  func configure<V>(with viewController: V) where V: UITableViewDataSource & UITableViewDelegate {
-    backgroundColor = WalkingChallenge.Style.Colors.Background
-    estimatedRowHeight = WalkingChallenge.Style.Padding.p40
-    rowHeight = UITableView.automaticDimension
-    separatorStyle = .none
-    delegate = viewController
-    dataSource = viewController
-    registerAllCells()
+class ViewController: UIViewController {
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    configureView()
   }
   
-  func registerAllCells() {
-    register(EmptyCell.self, forCellReuseIdentifier: EmptyCell.identifier)
-  }
-  
-  func reloadOnMain() {
-    onMain {
-      self.reloadData()
-    }
-  }
-  
-  func dequeueAndConfigureReusableCell(dataSource: TableViewDataSource?, indexPath: IndexPath) -> ConfigurableTableViewCell {
-    guard
-      let cellContext = dataSource?.cell(for: indexPath),
-      let cell = dequeueReusableCell(withIdentifier: cellContext.cellIdentifier, for: indexPath) as? ConfigurableTableViewCell
-    else {
-      print("Trying to dequeue a cell that was not registered")
-      return EmptyCell()
-    }
-    
-    cell.configure(context: cellContext)
-    return cell
+  func configureView() {
+    view.backgroundColor = Style.Colors.Background
+    // Override point for subclasses
   }
 }
