@@ -42,6 +42,10 @@ extension UITableView {
   
   func registerAllCells() {
     register(EmptyCell.self, forCellReuseIdentifier: EmptyCell.identifier)
+    register(DisclosureCell.self, forCellReuseIdentifier: DisclosureCell.identifier)
+    register(InfoCell.self, forCellReuseIdentifier: InfoCell.identifier)
+    register(ProfileCardCell.self, forCellReuseIdentifier: ProfileCardCell.identifier)
+    register(EmptyActivityCell.self, forCellReuseIdentifier: EmptyActivityCell.identifier)
   }
   
   func reloadOnMain() {
