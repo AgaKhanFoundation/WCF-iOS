@@ -36,6 +36,5 @@ class NavigationController: UINavigationController {
     navigationBar.tintColor = Style.Colors.Background
     navigationBar.isTranslucent = true
     navigationBar.setValue(true, forKey: "hidesShadow")
-    navigationItem.largeTitleDisplayMode = .automatic
   }
 }

@@ -42,6 +42,8 @@ class TableViewCell: UITableViewCell {
   }
   
   func commonInit() {
+    backgroundColor = nil
+    selectionStyle = .none
     // Override point for subclasses
   }
 }
