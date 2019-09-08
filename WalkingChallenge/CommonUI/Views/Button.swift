@@ -31,6 +31,43 @@ import UIKit
 import SnapKit
 
 class Button: UIButton {
+  enum ButtonStyle {
+    case primary
+    case secondary
+    case disabled
+    case destructive
+    
+    var titleColor: UIColor {
+      switch self {
+      case .primary, .disabled, .destructive:
+        return Style.Colors.white
+      case .secondary:
+        return Style.Colors.FoundationGreen
+      }
+    }
+    
+    var backgroundColor: UIColor {
+      switch self {
+      case .primary:
+        return Style.Colors.FoundationGreen
+      case .secondary:
+        return Style.Colors.white
+      case .disabled:
+        return Style.Colors.Silver
+      case .destructive:
+        return Style.Colors.Destructive
+      }
+    }
+  }
+  
+  var style: ButtonStyle = .primary
+  
+  convenience init(style: ButtonStyle) {
+    self.init()
+    self.style = style
+    commonInit()
+  }
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     commonInit()
@@ -48,10 +85,10 @@ class Button: UIButton {
   }
   
   func commonInit() {
-    setBackgroundImage(UIImage(color: Style.Colors.FoundationGreen), for: .normal)
-    setBackgroundImage(UIImage(color: Style.Colors.VerdantGreen), for: .highlighted)
-    setBackgroundImage(UIImage(color: Style.Colors.VerdantGreen), for: .selected)
-    setTitleColor(Style.Colors.white, for: .normal)
+    setBackgroundImage(UIImage(color: style.backgroundColor), for: .normal)
+    setBackgroundImage(UIImage(color: style.backgroundColor.average(with: .black, scale: 0.1)), for: .highlighted)
+    setBackgroundImage(UIImage(color: style.backgroundColor.average(with: .black, scale: 0.1)), for: .selected)
+    setTitleColor(style.titleColor, for: .normal)
     layer.cornerRadius = 4
     layer.masksToBounds = true
     setTitle(currentTitle, for: .normal)
