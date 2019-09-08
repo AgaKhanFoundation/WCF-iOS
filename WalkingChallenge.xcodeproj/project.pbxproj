@@ -16,8 +16,11 @@
 		260BF59A2324CFA6005F0882 /* EmptyActivityCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5992324CFA6005F0882 /* EmptyActivityCardCell.swift */; };
 		260BF5A12324D0BE005F0882 /* DisclosureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5A02324D0BE005F0882 /* DisclosureCell.swift */; };
 		260BF5A32324D4B7005F0882 /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5A22324D4B7005F0882 /* InfoCell.swift */; };
-		260BF5A52324D914005F0882 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5A42324D914005F0882 /* ActionButton.swift */; };
+		260BF5A52324D914005F0882 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5A42324D914005F0882 /* Button.swift */; };
 		260BF5A72324D99A005F0882 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5A62324D99A005F0882 /* UIImage.swift */; };
+		260BF5A92324F7D1005F0882 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5A82324F7D1005F0882 /* UIColor.swift */; };
+		260BF5AB2324F805005F0882 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5AA2324F805005F0882 /* CGFloat.swift */; };
+		260BF5AD2324FBD8005F0882 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5AC2324FBD8005F0882 /* UIBarButtonItem.swift */; };
 		2622C09023249A4B0092B145 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C08F23249A4B0092B145 /* UIRefreshControl.swift */; };
 		2622C09223249CA10092B145 /* EmptyTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C09123249CA10092B145 /* EmptyTableViewDataSource.swift */; };
 		2622C09423249D680092B145 /* DashboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C09323249D680092B145 /* DashboardDataSource.swift */; };
@@ -96,8 +99,11 @@
 		260BF5992324CFA6005F0882 /* EmptyActivityCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyActivityCardCell.swift; sourceTree = "<group>"; };
 		260BF5A02324D0BE005F0882 /* DisclosureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureCell.swift; sourceTree = "<group>"; };
 		260BF5A22324D4B7005F0882 /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
-		260BF5A42324D914005F0882 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		260BF5A42324D914005F0882 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		260BF5A62324D99A005F0882 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		260BF5A82324F7D1005F0882 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		260BF5AA2324F805005F0882 /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
+		260BF5AC2324FBD8005F0882 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		2622C08F23249A4B0092B145 /* UIRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
 		2622C09123249CA10092B145 /* EmptyTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewDataSource.swift; sourceTree = "<group>"; };
 		2622C09323249D680092B145 /* DashboardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardDataSource.swift; sourceTree = "<group>"; };
@@ -187,7 +193,7 @@
 				260BF58F2324B28D005F0882 /* CardView.swift */,
 				260BF5912324B2C6005F0882 /* View.swift */,
 				260BF5962324C023005F0882 /* CellDisclosureView.swift */,
-				260BF5A42324D914005F0882 /* ActionButton.swift */,
+				260BF5A42324D914005F0882 /* Button.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -421,6 +427,9 @@
 				2622C08F23249A4B0092B145 /* UIRefreshControl.swift */,
 				260BF58B2324B17D005F0882 /* CALayer.swift */,
 				260BF5A62324D99A005F0882 /* UIImage.swift */,
+				260BF5A82324F7D1005F0882 /* UIColor.swift */,
+				260BF5AA2324F805005F0882 /* CGFloat.swift */,
+				260BF5AC2324FBD8005F0882 /* UIBarButtonItem.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -617,6 +626,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0D16A3C2218AD810081440C /* Challenge.swift in Sources */,
+				260BF5AD2324FBD8005F0882 /* UIBarButtonItem.swift in Sources */,
 				F017B68E227686A60023E84B /* OnboardingWelcome.swift in Sources */,
 				F0A992D81EAC3812001621A6 /* ProgressRing.swift in Sources */,
 				F0E6879222251C0600454340 /* Notifications.swift in Sources */,
@@ -649,6 +659,7 @@
 				F0DE162C221F8DD900FF17C9 /* Result.swift in Sources */,
 				F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */,
 				26792DD81E91DCB400A7E5BA /* Service.swift in Sources */,
+				260BF5A92324F7D1005F0882 /* UIColor.swift in Sources */,
 				260BF5A72324D99A005F0882 /* UIImage.swift in Sources */,
 				269E35291E767AE1000726C2 /* Collection.swift in Sources */,
 				F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */,
@@ -666,7 +677,8 @@
 				F0E1828A1E80B1DB00665E4F /* Facebook.swift in Sources */,
 				269E35241E767807000726C2 /* Team.swift in Sources */,
 				260BF5972324C023005F0882 /* CellDisclosureView.swift in Sources */,
-				260BF5A52324D914005F0882 /* ActionButton.swift in Sources */,
+				260BF5A52324D914005F0882 /* Button.swift in Sources */,
+				260BF5AB2324F805005F0882 /* CGFloat.swift in Sources */,
 				269E35181E7669FB000726C2 /* LocalizedStrings.swift in Sources */,
 				F0F8EDD92210C7FA00321A6D /* ChallengeCard.swift in Sources */,
 				F0E6878F22251B7800454340 /* Leaderboard.swift in Sources */,
