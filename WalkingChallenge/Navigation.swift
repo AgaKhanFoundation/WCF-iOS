@@ -32,7 +32,9 @@ import Foundation
 
 class Navigation: UITabBarController {
   private let dashboard: UINavigationController =
-      UINavigationController(rootViewController: Dashboard())
+      NavigationController(rootVC: DashboardViewController())
+//  private let dashboard: UINavigationController =
+//      UINavigationController(rootViewController: Dashboard())
   private let challenge: UINavigationController =
       UINavigationController(rootViewController: Challenge())
   private let leaderboard: UINavigationController =
