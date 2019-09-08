@@ -58,7 +58,6 @@ class ProfileCardCell: ConfigurableTableViewCell {
     super.commonInit()
     
     disclosureView.delegate = self
-    profileImageView.layer.cornerRadius = Style.Size.s96 / 2
     profileImageView.clipsToBounds = true
     
     contentView.addSubview(cardView) {
@@ -86,6 +85,12 @@ class ProfileCardCell: ConfigurableTableViewCell {
       $0.top.bottom.trailing.equalTo(layoutGuide).inset(Style.Padding.p32)
       $0.leading.equalTo(profileImageView.snp.trailing).offset(Style.Padding.p32)
     }
+  }
+  
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    
+    profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
   }
   
   func configure(context: CellContext) {
