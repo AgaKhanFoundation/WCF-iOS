@@ -27,39 +27,12 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-import UIKit
+import Foundation
 
-extension UITableView {
-  func configure<V>(with viewController: V) where V: UITableViewDataSource & UITableViewDelegate {
-    backgroundColor = WalkingChallenge.Style.Colors.Background
-    estimatedRowHeight = WalkingChallenge.Style.Padding.p40
-    rowHeight = UITableView.automaticDimension
-    separatorStyle = .none
-    delegate = viewController
-    dataSource = viewController
-    registerAllCells()
-  }
+class EmptyTableViewDataSource: TableViewDataSource {
+  var cells = [[CellContext]]()
   
-  func registerAllCells() {
-    register(EmptyCell.self, forCellReuseIdentifier: EmptyCell.identifier)
-  }
-  
-  func reloadOnMain() {
-    onMain {
-      self.reloadData()
-    }
-  }
-  
-  func dequeueAndConfigureReusableCell(dataSource: TableViewDataSource?, indexPath: IndexPath) -> ConfigurableTableViewCell {
-    guard
-      let cellContext = dataSource?.cell(for: indexPath),
-      let cell = dequeueReusableCell(withIdentifier: cellContext.cellIdentifier, for: indexPath) as? ConfigurableTableViewCell
-    else {
-      print("Trying to dequeue a cell that was not registered")
-      return EmptyCell()
-    }
-    
-    cell.configure(context: cellContext)
-    return cell
+  func configureCells() {
+    // Left blank on purpose
   }
 }
