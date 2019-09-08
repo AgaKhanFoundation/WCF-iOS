@@ -29,21 +29,11 @@
 
 import UIKit
 
-class DashboardViewController: TableViewController {
+class SettingsViewController: TableViewController {
   override func commonInit() {
     super.commonInit()
     
-    title = Strings.Dashboard.title
-    dataSource = DashboardDataSource()
-    navigationItem.rightBarButtonItem = UIBarButtonItem(
-      image: Assets.gear.image,
-      style: .plain,
-      target: self,
-      action: #selector(settingsButtonTapped))
-  }
-  
-  @objc
-  func settingsButtonTapped() {
-    navigationController?.pushViewController(SettingsViewController(), animated: true)
+    title = "Settings"
+    dataSource = SettingsDataSource()
   }
 }
