@@ -27,23 +27,22 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-import UIKit
+import Foundation
 
-class DashboardViewController: TableViewController {
-  override func commonInit() {
-    super.commonInit()
-    
-    title = Strings.Dashboard.title
-    dataSource = DashboardDataSource()
-    navigationItem.rightBarButtonItem = UIBarButtonItem(
-      image: Assets.gear.image,
-      style: .plain,
-      target: self,
-      action: #selector(settingsButtonTapped))
-  }
+class SettingsDataSource: TableViewDataSource {
+  var cells: [[CellContext]] = []
   
-  @objc
-  func settingsButtonTapped() {
-    navigationController?.pushViewController(SettingsViewController(), animated: true)
+  private var isTeamLead = true
+  
+  func configureCells() {
+    cells = [[
+      SettingsProfileCellContext(
+        image: nil,
+        name: "Sami Suteria",
+        teamName: "World Walkers",
+        membership: "Team Lead"),
+      SettingsTitleCellContext(title: "Personal"),
+      SettingsTitleCellContext(title: "Team")
+      ]]
   }
 }

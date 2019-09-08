@@ -20,7 +20,11 @@
 		260BF5A72324D99A005F0882 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5A62324D99A005F0882 /* UIImage.swift */; };
 		260BF5A92324F7D1005F0882 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5A82324F7D1005F0882 /* UIColor.swift */; };
 		260BF5AB2324F805005F0882 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5AA2324F805005F0882 /* CGFloat.swift */; };
-		260BF5AD2324FBD8005F0882 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5AC2324FBD8005F0882 /* UIBarButtonItem.swift */; };
+		260BF5B02324FD31005F0882 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5AF2324FD31005F0882 /* SettingsViewController.swift */; };
+		260BF5B22324FD37005F0882 /* SettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5B12324FD37005F0882 /* SettingsDataSource.swift */; };
+		260BF5B52324FE32005F0882 /* SettingsProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5B42324FE32005F0882 /* SettingsProfileCell.swift */; };
+		260BF5B7232502A9005F0882 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5B6232502A9005F0882 /* UIStackView.swift */; };
+		260BF5B923250414005F0882 /* SettingsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5B823250414005F0882 /* SettingsTitleCell.swift */; };
 		2622C09023249A4B0092B145 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C08F23249A4B0092B145 /* UIRefreshControl.swift */; };
 		2622C09223249CA10092B145 /* EmptyTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C09123249CA10092B145 /* EmptyTableViewDataSource.swift */; };
 		2622C09423249D680092B145 /* DashboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C09323249D680092B145 /* DashboardDataSource.swift */; };
@@ -103,7 +107,11 @@
 		260BF5A62324D99A005F0882 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		260BF5A82324F7D1005F0882 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		260BF5AA2324F805005F0882 /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
-		260BF5AC2324FBD8005F0882 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
+		260BF5AF2324FD31005F0882 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		260BF5B12324FD37005F0882 /* SettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDataSource.swift; sourceTree = "<group>"; };
+		260BF5B42324FE32005F0882 /* SettingsProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileCell.swift; sourceTree = "<group>"; };
+		260BF5B6232502A9005F0882 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
+		260BF5B823250414005F0882 /* SettingsTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTitleCell.swift; sourceTree = "<group>"; };
 		2622C08F23249A4B0092B145 /* UIRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
 		2622C09123249CA10092B145 /* EmptyTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewDataSource.swift; sourceTree = "<group>"; };
 		2622C09323249D680092B145 /* DashboardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardDataSource.swift; sourceTree = "<group>"; };
@@ -217,6 +225,25 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		260BF5AE2324FD24005F0882 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				260BF5B32324FE23005F0882 /* Cells */,
+				260BF5AF2324FD31005F0882 /* SettingsViewController.swift */,
+				260BF5B12324FD37005F0882 /* SettingsDataSource.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		260BF5B32324FE23005F0882 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				260BF5B42324FE32005F0882 /* SettingsProfileCell.swift */,
+				260BF5B823250414005F0882 /* SettingsTitleCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		2622C0972324ADE70092B145 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +300,7 @@
 		269E34C81E765828000726C2 /* WalkingChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				260BF5AE2324FD24005F0882 /* Settings */,
 				260BF5982324C939005F0882 /* DashboardV2 */,
 				26FE2443232228D300E01B9B /* CommonUI */,
 				F058BD8322276F54006C7F20 /* Models */,
@@ -429,7 +457,7 @@
 				260BF5A62324D99A005F0882 /* UIImage.swift */,
 				260BF5A82324F7D1005F0882 /* UIColor.swift */,
 				260BF5AA2324F805005F0882 /* CGFloat.swift */,
-				260BF5AC2324FBD8005F0882 /* UIBarButtonItem.swift */,
+				260BF5B6232502A9005F0882 /* UIStackView.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -626,8 +654,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0D16A3C2218AD810081440C /* Challenge.swift in Sources */,
-				260BF5AD2324FBD8005F0882 /* UIBarButtonItem.swift in Sources */,
 				F017B68E227686A60023E84B /* OnboardingWelcome.swift in Sources */,
+				260BF5B22324FD37005F0882 /* SettingsDataSource.swift in Sources */,
 				F0A992D81EAC3812001621A6 /* ProgressRing.swift in Sources */,
 				F0E6879222251C0600454340 /* Notifications.swift in Sources */,
 				F0F8EDD12210C65C00321A6D /* CardViewSupport.swift in Sources */,
@@ -662,12 +690,15 @@
 				260BF5A92324F7D1005F0882 /* UIColor.swift in Sources */,
 				260BF5A72324D99A005F0882 /* UIImage.swift in Sources */,
 				269E35291E767AE1000726C2 /* Collection.swift in Sources */,
+				260BF5B7232502A9005F0882 /* UIStackView.swift in Sources */,
 				F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */,
 				F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */,
 				26FE24532322332D00E01B9B /* UITableView.swift in Sources */,
 				F004030F1EBF9DAB005E6F10 /* JSON.swift in Sources */,
 				F00403151EC3EC6F005E6F10 /* AKFCausesService.swift in Sources */,
+				260BF5B923250414005F0882 /* SettingsTitleCell.swift in Sources */,
 				F0F8EDD32210C68E00321A6D /* ProfileCard.swift in Sources */,
+				260BF5B02324FD31005F0882 /* SettingsViewController.swift in Sources */,
 				F0A0A5FE2210EC3600F20315 /* Navigation.swift in Sources */,
 				F03D77DE1EA83B0800A70230 /* Event.swift in Sources */,
 				F0C6D50D1EA3071A008E3B82 /* SelectionButton.swift in Sources */,
@@ -677,6 +708,7 @@
 				F0E1828A1E80B1DB00665E4F /* Facebook.swift in Sources */,
 				269E35241E767807000726C2 /* Team.swift in Sources */,
 				260BF5972324C023005F0882 /* CellDisclosureView.swift in Sources */,
+				260BF5B52324FE32005F0882 /* SettingsProfileCell.swift in Sources */,
 				260BF5A52324D914005F0882 /* Button.swift in Sources */,
 				260BF5AB2324F805005F0882 /* CGFloat.swift in Sources */,
 				269E35181E7669FB000726C2 /* LocalizedStrings.swift in Sources */,
