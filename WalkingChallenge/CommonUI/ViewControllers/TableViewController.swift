@@ -61,17 +61,24 @@ class TableViewController: ViewController {
     refresh()
   }
   
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    // Bug related to https://github.com/lionheart/openradar-mirror/issues/20208
+    tableView.refreshControl = refreshControl
+  }
+  
   override func configureView() {
     super.configureView()
+    
+    extendedLayoutIncludesOpaqueBars = true
+    refreshControl.tintColor = Style.Colors.black
+    refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     
     tableView.configure(with: self)
     view.addSubview(tableView) {
       $0.edges.equalTo(view.safeAreaLayoutGuide)
     }
-    
-    refreshControl.tintColor = Style.Colors.black
-    refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-    tableView.backgroundView = refreshControl
   }
   
   // MARK: - Actions
@@ -79,9 +86,11 @@ class TableViewController: ViewController {
   @objc
   func refresh() {
     refreshControl.beginRefreshing()
-    dataSource?.reload {
-      self.refreshControl.endRefreshingOnMain()
-      self.tableView.reloadOnMain()
+    dataSource?.reload { [weak self] in
+      onMain {
+        self?.refreshControl.endRefreshing()
+        self?.tableView.reloadData()
+      }
     }
   }
 }
