@@ -149,6 +149,7 @@ Click continue for a quick tour of the app.
 enum Assets: String {
   // UI
   case gear = "GearIcon"
+  case disclosure = "BlueBackButton"
   
   // Logos
   case AKFLogo = "AKFLogo"
@@ -170,6 +171,11 @@ enum Assets: String {
   case tabbarNotificationsUnselected = "tabbar-notifications-unselected"
   
   var image: UIImage? {
-    return UIImage(named: self.rawValue)
+    switch self {
+    case .disclosure:
+      return UIImage(named: self.rawValue)?.withHorizontallyFlippedOrientation()
+    default:
+      return UIImage(named: self.rawValue)
+    }
   }
 }
