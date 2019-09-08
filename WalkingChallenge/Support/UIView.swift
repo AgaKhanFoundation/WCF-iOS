@@ -28,12 +28,18 @@
  **/
 
 import UIKit
+import SnapKit
 
 extension UIView {
   func addSubviews(_ views: [UIView]) {
     for view in views {
       addSubview(view)
     }
+  }
+  
+  func addSubview(_ view: UIView, _ constraintsClosure: PassBlock<ConstraintMaker>) {
+    addSubview(view)
+    view.snp.makeConstraints(constraintsClosure)
   }
 }
 
