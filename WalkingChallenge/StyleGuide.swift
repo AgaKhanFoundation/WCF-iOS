@@ -51,6 +51,7 @@ struct Style {
 
     static let FoundationGrey = #colorLiteral(red: 0.0784313725, green: 0.0784313725, blue: 0.0784313725, alpha: 1)       // #333333
     static let Silver = #colorLiteral(red: 0.4980392156, green: 0.4980392156, blue: 0.4980392156, alpha: 1)               // #7f7f7f
+    static let Background = #colorLiteral(red: 0.9647058824, green: 0.9725490196, blue: 0.9803921569, alpha: 1)           // #F6F8FA
   }
 
   enum Typography {
