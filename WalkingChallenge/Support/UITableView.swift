@@ -48,6 +48,7 @@ extension UITableView {
     register(EmptyActivityCell.self, forCellReuseIdentifier: EmptyActivityCell.identifier)
     register(SettingsProfileCell.self, forCellReuseIdentifier: SettingsProfileCell.identifier)
     register(SettingsTitleCell.self, forCellReuseIdentifier: SettingsTitleCell.identifier)
+    register(SettingsDisclosureCell.self, forCellReuseIdentifier: SettingsDisclosureCell.identifier)
   }
   
   func reloadOnMain() {

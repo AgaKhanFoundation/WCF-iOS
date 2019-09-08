@@ -30,6 +30,7 @@
 		2622C09423249D680092B145 /* DashboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C09323249D680092B145 /* DashboardDataSource.swift */; };
 		2622C0962324A0490092B145 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C0952324A0490092B145 /* TableViewCell.swift */; };
 		26792DD81E91DCB400A7E5BA /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26792DD71E91DCB400A7E5BA /* Service.swift */; };
+		267FAE282325C1660014222D /* SettingsDisclosureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267FAE272325C1660014222D /* SettingsDisclosureCell.swift */; };
 		269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E34C91E765828000726C2 /* AppDelegate.swift */; };
 		269E34D11E765828000726C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 269E34D01E765828000726C2 /* Assets.xcassets */; };
 		269E34EC1E7658E6000726C2 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E34E91E7658E6000726C2 /* AppController.swift */; };
@@ -117,6 +118,7 @@
 		2622C09323249D680092B145 /* DashboardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardDataSource.swift; sourceTree = "<group>"; };
 		2622C0952324A0490092B145 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		26792DD71E91DCB400A7E5BA /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		267FAE272325C1660014222D /* SettingsDisclosureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDisclosureCell.swift; sourceTree = "<group>"; };
 		269E34C61E765828000726C2 /* WalkingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		269E34C91E765828000726C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		269E34D01E765828000726C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 			children = (
 				260BF5B42324FE32005F0882 /* SettingsProfileCell.swift */,
 				260BF5B823250414005F0882 /* SettingsTitleCell.swift */,
+				267FAE272325C1660014222D /* SettingsDisclosureCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -300,27 +303,27 @@
 		269E34C81E765828000726C2 /* WalkingChallenge */ = {
 			isa = PBXGroup;
 			children = (
-				260BF5AE2324FD24005F0882 /* Settings */,
-				260BF5982324C939005F0882 /* DashboardV2 */,
-				26FE2443232228D300E01B9B /* CommonUI */,
-				F058BD8322276F54006C7F20 /* Models */,
 				269E34E91E7658E6000726C2 /* AppController.swift */,
-				F0A0A5FD2210EC3600F20315 /* Navigation.swift */,
-				269E352E1E768058000726C2 /* Login */,
-				F017B68F227699240023E84B /* Onboarding */,
-				F0F8EDCF2210C62700321A6D /* Dashboard */,
-				F0D16A3A2218AD530081440C /* Challenge */,
-				F0E6878D22251B4700454340 /* Leaderboard */,
-				F0E6879022251BEE00454340 /* Notifications */,
-				F0E6878C2225154700454340 /* Integration */,
-				F0DE162A221F8DBA00FF17C9 /* Support */,
-				F0320B6B222F671F00EABAD6 /* Widgets */,
-				266986791E91D50E004D45B4 /* Networking */,
-				269E35251E76782D000726C2 /* Protocols */,
-				269E35051E765BBF000726C2 /* Supporting Files */,
-				269E350B1E765F73000726C2 /* StyleGuide.swift */,
 				269E35171E7669FB000726C2 /* LocalizedStrings.swift */,
+				F0A0A5FD2210EC3600F20315 /* Navigation.swift */,
 				F02FB49D1E9180CE0097481D /* Preferences.swift */,
+				269E350B1E765F73000726C2 /* StyleGuide.swift */,
+				F0D16A3A2218AD530081440C /* Challenge */,
+				26FE2443232228D300E01B9B /* CommonUI */,
+				F0F8EDCF2210C62700321A6D /* Dashboard */,
+				260BF5982324C939005F0882 /* DashboardV2 */,
+				F0E6878C2225154700454340 /* Integration */,
+				F0E6878D22251B4700454340 /* Leaderboard */,
+				269E352E1E768058000726C2 /* Login */,
+				F058BD8322276F54006C7F20 /* Models */,
+				266986791E91D50E004D45B4 /* Networking */,
+				F0E6879022251BEE00454340 /* Notifications */,
+				F017B68F227699240023E84B /* Onboarding */,
+				269E35251E76782D000726C2 /* Protocols */,
+				260BF5AE2324FD24005F0882 /* Settings */,
+				F0DE162A221F8DBA00FF17C9 /* Support */,
+				269E35051E765BBF000726C2 /* Supporting Files */,
+				F0320B6B222F671F00EABAD6 /* Widgets */,
 			);
 			path = WalkingChallenge;
 			sourceTree = "<group>";
@@ -658,6 +661,7 @@
 				260BF5B22324FD37005F0882 /* SettingsDataSource.swift in Sources */,
 				F0A992D81EAC3812001621A6 /* ProgressRing.swift in Sources */,
 				F0E6879222251C0600454340 /* Notifications.swift in Sources */,
+				267FAE282325C1660014222D /* SettingsDisclosureCell.swift in Sources */,
 				F0F8EDD12210C65C00321A6D /* CardViewSupport.swift in Sources */,
 				260BF5A32324D4B7005F0882 /* InfoCell.swift in Sources */,
 				269E35091E765F24000726C2 /* UIView.swift in Sources */,
