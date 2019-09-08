@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		2606948B1E7DD1A200BFED76 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2606948A1E7DD1A200BFED76 /* Date.swift */; };
+		260BF58C2324B17D005F0882 /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF58B2324B17D005F0882 /* CALayer.swift */; };
+		260BF5902324B28D005F0882 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF58F2324B28D005F0882 /* CardView.swift */; };
+		260BF5922324B2C6005F0882 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5912324B2C6005F0882 /* View.swift */; };
+		260BF5952324B3FC005F0882 /* ProfileCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5942324B3FC005F0882 /* ProfileCardCell.swift */; };
+		260BF5972324C023005F0882 /* CellDisclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5962324C023005F0882 /* CellDisclosureView.swift */; };
+		260BF59A2324CFA6005F0882 /* EmptyActivityCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5992324CFA6005F0882 /* EmptyActivityCardCell.swift */; };
+		260BF5A12324D0BE005F0882 /* DisclosureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5A02324D0BE005F0882 /* DisclosureCell.swift */; };
+		260BF5A32324D4B7005F0882 /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5A22324D4B7005F0882 /* InfoCell.swift */; };
+		260BF5A52324D914005F0882 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5A42324D914005F0882 /* ActionButton.swift */; };
+		260BF5A72324D99A005F0882 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5A62324D99A005F0882 /* UIImage.swift */; };
+		2622C09023249A4B0092B145 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C08F23249A4B0092B145 /* UIRefreshControl.swift */; };
+		2622C09223249CA10092B145 /* EmptyTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C09123249CA10092B145 /* EmptyTableViewDataSource.swift */; };
+		2622C09423249D680092B145 /* DashboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C09323249D680092B145 /* DashboardDataSource.swift */; };
+		2622C0962324A0490092B145 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C0952324A0490092B145 /* TableViewCell.swift */; };
 		26792DD81E91DCB400A7E5BA /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26792DD71E91DCB400A7E5BA /* Service.swift */; };
 		269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E34C91E765828000726C2 /* AppDelegate.swift */; };
 		269E34D11E765828000726C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 269E34D01E765828000726C2 /* Assets.xcassets */; };
@@ -21,11 +35,20 @@
 		269E35241E767807000726C2 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35231E767807000726C2 /* Team.swift */; };
 		269E35291E767AE1000726C2 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35281E767AE1000726C2 /* Collection.swift */; };
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
+		26FE2445232228E600E01B9B /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2444232228E600E01B9B /* NavigationController.swift */; };
+		26FE24472322295300E01B9B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE24462322295300E01B9B /* ViewController.swift */; };
+		26FE244923222B6400E01B9B /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE244823222B6400E01B9B /* DashboardViewController.swift */; };
+		26FE244B23222DF400E01B9B /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE244A23222DF400E01B9B /* Cells.swift */; };
+		26FE244D23222E8500E01B9B /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE244C23222E8500E01B9B /* Context.swift */; };
+		26FE244F23222FBF00E01B9B /* Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE244E23222FBF00E01B9B /* Blocks.swift */; };
+		26FE2451232231FB00E01B9B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2450232231FB00E01B9B /* TableViewController.swift */; };
+		26FE24532322332D00E01B9B /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE24522322332D00E01B9B /* UITableView.swift */; };
+		26FE2455232234A300E01B9B /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2454232234A300E01B9B /* EmptyCell.swift */; };
 		C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */; };
 		ED85D460832E1D261F31B25E /* Pods_WalkingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */; };
 		F004030F1EBF9DAB005E6F10 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004030E1EBF9DAB005E6F10 /* JSON.swift */; };
 		F00403151EC3EC6F005E6F10 /* AKFCausesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */; };
-		F00403191EC3FB7D005E6F10 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		F00403191EC3FB7D005E6F10 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004031C1EC52772005E6F10 /* AppConfig.swift */; };
 		F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */; };
 		F017B68E227686A60023E84B /* OnboardingWelcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017B68D227686A60023E84B /* OnboardingWelcome.swift */; };
@@ -65,6 +88,20 @@
 /* Begin PBXFileReference section */
 		00596233B5D00EAEF7957964 /* Pods-WalkingChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.debug.xcconfig"; sourceTree = "<group>"; };
 		2606948A1E7DD1A200BFED76 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		260BF58B2324B17D005F0882 /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
+		260BF58F2324B28D005F0882 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		260BF5912324B2C6005F0882 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		260BF5942324B3FC005F0882 /* ProfileCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardCell.swift; sourceTree = "<group>"; };
+		260BF5962324C023005F0882 /* CellDisclosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDisclosureView.swift; sourceTree = "<group>"; };
+		260BF5992324CFA6005F0882 /* EmptyActivityCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyActivityCardCell.swift; sourceTree = "<group>"; };
+		260BF5A02324D0BE005F0882 /* DisclosureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureCell.swift; sourceTree = "<group>"; };
+		260BF5A22324D4B7005F0882 /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
+		260BF5A42324D914005F0882 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		260BF5A62324D99A005F0882 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		2622C08F23249A4B0092B145 /* UIRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
+		2622C09123249CA10092B145 /* EmptyTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewDataSource.swift; sourceTree = "<group>"; };
+		2622C09323249D680092B145 /* DashboardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardDataSource.swift; sourceTree = "<group>"; };
+		2622C0952324A0490092B145 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		26792DD71E91DCB400A7E5BA /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		269E34C61E765828000726C2 /* WalkingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		269E34C91E765828000726C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +118,15 @@
 		269E35281E767AE1000726C2 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		26C5E3601E7DCACF0053DE3E /* WalkingChallenge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WalkingChallenge.entitlements; sourceTree = "<group>"; };
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		26FE2444232228E600E01B9B /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		26FE24462322295300E01B9B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		26FE244823222B6400E01B9B /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		26FE244A23222DF400E01B9B /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
+		26FE244C23222E8500E01B9B /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		26FE244E23222FBF00E01B9B /* Blocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blocks.swift; sourceTree = "<group>"; };
+		26FE2450232231FB00E01B9B /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		26FE24522322332D00E01B9B /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		26FE2454232234A300E01B9B /* EmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCell.swift; sourceTree = "<group>"; };
 		6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkingChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		F004030E1EBF9DAB005E6F10 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
@@ -135,6 +181,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		260BF5932324B307005F0882 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				260BF58F2324B28D005F0882 /* CardView.swift */,
+				260BF5912324B2C6005F0882 /* View.swift */,
+				260BF5962324C023005F0882 /* CellDisclosureView.swift */,
+				260BF5A42324D914005F0882 /* ActionButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		260BF5982324C939005F0882 /* DashboardV2 */ = {
+			isa = PBXGroup;
+			children = (
+				260BF59F2324CFCE005F0882 /* Cells */,
+				26FE244823222B6400E01B9B /* DashboardViewController.swift */,
+				2622C09323249D680092B145 /* DashboardDataSource.swift */,
+			);
+			path = DashboardV2;
+			sourceTree = "<group>";
+		};
+		260BF59F2324CFCE005F0882 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				260BF5992324CFA6005F0882 /* EmptyActivityCardCell.swift */,
+				260BF5942324B3FC005F0882 /* ProfileCardCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		2622C0972324ADE70092B145 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				26FE2454232234A300E01B9B /* EmptyCell.swift */,
+				2622C0952324A0490092B145 /* TableViewCell.swift */,
+				260BF5A02324D0BE005F0882 /* DisclosureCell.swift */,
+				260BF5A22324D4B7005F0882 /* InfoCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		2622C0982324ADFD0092B145 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				26FE2444232228E600E01B9B /* NavigationController.swift */,
+				26FE2450232231FB00E01B9B /* TableViewController.swift */,
+				26FE24462322295300E01B9B /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		266986791E91D50E004D45B4 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +267,8 @@
 		269E34C81E765828000726C2 /* WalkingChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				260BF5982324C939005F0882 /* DashboardV2 */,
+				26FE2443232228D300E01B9B /* CommonUI */,
 				F058BD8322276F54006C7F20 /* Models */,
 				269E34E91E7658E6000726C2 /* AppController.swift */,
 				F0A0A5FD2210EC3600F20315 /* Navigation.swift */,
@@ -209,6 +308,8 @@
 			isa = PBXGroup;
 			children = (
 				F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */,
+				26FE244A23222DF400E01B9B /* Cells.swift */,
+				26FE244C23222E8500E01B9B /* Context.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -219,6 +320,17 @@
 				269E35061E765C68000726C2 /* LoginViewController.swift */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		26FE2443232228D300E01B9B /* CommonUI */ = {
+			isa = PBXGroup;
+			children = (
+				2622C09123249CA10092B145 /* EmptyTableViewDataSource.swift */,
+				2622C0972324ADE70092B145 /* Cells */,
+				2622C0982324ADFD0092B145 /* ViewControllers */,
+				260BF5932324B307005F0882 /* Views */,
+			);
+			path = CommonUI;
 			sourceTree = "<group>";
 		};
 		32BEA0F580FBBCEE2DC19561 /* Pods */ = {
@@ -297,6 +409,7 @@
 			isa = PBXGroup;
 			children = (
 				269E350D1E76664F000726C2 /* Async.swift */,
+				26FE244E23222FBF00E01B9B /* Blocks.swift */,
 				F0F8EDD02210C65C00321A6D /* CardViewSupport.swift */,
 				269E35281E767AE1000726C2 /* Collection.swift */,
 				2606948A1E7DD1A200BFED76 /* Date.swift */,
@@ -304,6 +417,10 @@
 				F0DE162B221F8DD900FF17C9 /* Result.swift */,
 				C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */,
 				269E35081E765F24000726C2 /* UIView.swift */,
+				26FE24522322332D00E01B9B /* UITableView.swift */,
+				2622C08F23249A4B0092B145 /* UIRefreshControl.swift */,
+				260BF58B2324B17D005F0882 /* CALayer.swift */,
+				260BF5A62324D99A005F0882 /* UIImage.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -504,15 +621,27 @@
 				F0A992D81EAC3812001621A6 /* ProgressRing.swift in Sources */,
 				F0E6879222251C0600454340 /* Notifications.swift in Sources */,
 				F0F8EDD12210C65C00321A6D /* CardViewSupport.swift in Sources */,
+				260BF5A32324D4B7005F0882 /* InfoCell.swift in Sources */,
 				269E35091E765F24000726C2 /* UIView.swift in Sources */,
+				2622C09223249CA10092B145 /* EmptyTableViewDataSource.swift in Sources */,
 				F0681D271ED53CA70029278E /* Cause.swift in Sources */,
+				26FE2455232234A300E01B9B /* EmptyCell.swift in Sources */,
+				26FE244923222B6400E01B9B /* DashboardViewController.swift in Sources */,
+				26FE2445232228E600E01B9B /* NavigationController.swift in Sources */,
 				F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */,
+				26FE24472322295300E01B9B /* ViewController.swift in Sources */,
 				F06254C11ECD5D1700168DD6 /* Participant.swift in Sources */,
 				F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */,
-				F00403191EC3FB7D005E6F10 /* BuildFile in Sources */,
+				F00403191EC3FB7D005E6F10 /* (null) in Sources */,
 				F0A992D61EABF037001621A6 /* Formatters.swift in Sources */,
+				2622C09023249A4B0092B145 /* UIRefreshControl.swift in Sources */,
+				26FE244D23222E8500E01B9B /* Context.swift in Sources */,
 				F0CF39861EE0E903006A7462 /* Record.swift in Sources */,
+				260BF59A2324CFA6005F0882 /* EmptyActivityCardCell.swift in Sources */,
+				260BF5A12324D0BE005F0882 /* DisclosureCell.swift in Sources */,
+				26FE244F23222FBF00E01B9B /* Blocks.swift in Sources */,
 				F0F8EDD52210C71600321A6D /* ActivityCard.swift in Sources */,
+				2622C09423249D680092B145 /* DashboardDataSource.swift in Sources */,
 				F017B6952276C9C60023E84B /* OnboardingJourney.swift in Sources */,
 				F0320B6E222F678500EABAD6 /* SegmentedView.swift in Sources */,
 				269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */,
@@ -520,26 +649,36 @@
 				F0DE162C221F8DD900FF17C9 /* Result.swift in Sources */,
 				F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */,
 				26792DD81E91DCB400A7E5BA /* Service.swift in Sources */,
+				260BF5A72324D99A005F0882 /* UIImage.swift in Sources */,
 				269E35291E767AE1000726C2 /* Collection.swift in Sources */,
 				F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */,
 				F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */,
+				26FE24532322332D00E01B9B /* UITableView.swift in Sources */,
 				F004030F1EBF9DAB005E6F10 /* JSON.swift in Sources */,
 				F00403151EC3EC6F005E6F10 /* AKFCausesService.swift in Sources */,
 				F0F8EDD32210C68E00321A6D /* ProfileCard.swift in Sources */,
 				F0A0A5FE2210EC3600F20315 /* Navigation.swift in Sources */,
 				F03D77DE1EA83B0800A70230 /* Event.swift in Sources */,
 				F0C6D50D1EA3071A008E3B82 /* SelectionButton.swift in Sources */,
+				260BF58C2324B17D005F0882 /* CALayer.swift in Sources */,
+				26FE244B23222DF400E01B9B /* Cells.swift in Sources */,
 				269E350C1E765F73000726C2 /* StyleGuide.swift in Sources */,
 				F0E1828A1E80B1DB00665E4F /* Facebook.swift in Sources */,
 				269E35241E767807000726C2 /* Team.swift in Sources */,
+				260BF5972324C023005F0882 /* CellDisclosureView.swift in Sources */,
+				260BF5A52324D914005F0882 /* ActionButton.swift in Sources */,
 				269E35181E7669FB000726C2 /* LocalizedStrings.swift in Sources */,
 				F0F8EDD92210C7FA00321A6D /* ChallengeCard.swift in Sources */,
 				F0E6878F22251B7800454340 /* Leaderboard.swift in Sources */,
 				269E34EC1E7658E6000726C2 /* AppController.swift in Sources */,
+				26FE2451232231FB00E01B9B /* TableViewController.swift in Sources */,
 				F02FB49E1E9180CE0097481D /* Preferences.swift in Sources */,
 				F0CBDA4E1EA6FCAB00BB34F1 /* Supporter.swift in Sources */,
+				260BF5922324B2C6005F0882 /* View.swift in Sources */,
 				2606948B1E7DD1A200BFED76 /* Date.swift in Sources */,
 				F017B6932276B99A0023E84B /* OnboardingCreateTeam.swift in Sources */,
+				260BF5952324B3FC005F0882 /* ProfileCardCell.swift in Sources */,
+				2622C0962324A0490092B145 /* TableViewCell.swift in Sources */,
 				F017B6972276D0C60023E84B /* OnboardingDashboard.swift in Sources */,
 				F0F8EDD72210C7C700321A6D /* FundraisingCard.swift in Sources */,
 				F0CBDA521EA6FF1D00BB34F1 /* Sponsor.swift in Sources */,
@@ -547,6 +686,7 @@
 				F017B691227699440023E84B /* Onboarding.swift in Sources */,
 				F0CF39881EE0EA98006A7462 /* Source.swift in Sources */,
 				C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */,
+				260BF5902324B28D005F0882 /* CardView.swift in Sources */,
 				F0CBDA501EA6FD7200BB34F1 /* SponsorshipDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
