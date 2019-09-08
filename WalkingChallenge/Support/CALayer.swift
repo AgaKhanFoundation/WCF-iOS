@@ -28,48 +28,20 @@
  **/
 
 import UIKit
-import SnapKit
 
-extension UIView {
-  func addSubviews(_ views: [UIView]) {
-    for view in views {
-      addSubview(view)
+extension CALayer {
+  // swiftlint:disable:next identifier_name
+  func applySketchShadow(color: UIColor = Style.Colors.Shadow, alpha: Float = 0.5, x: CGFloat = 0, y: CGFloat = 0, blur: CGFloat = 6, spread: CGFloat = 0) {
+    shadowColor = color.cgColor
+    shadowOpacity = alpha
+    shadowOffset = CGSize(width: x, height: y)
+    shadowRadius = blur / 2.0
+    if spread == 0 {
+      shadowPath = nil
+    } else {
+      let dx = -spread
+      let rect = bounds.insetBy(dx: dx, dy: dx)
+      shadowPath = UIBezierPath(rect: rect).cgPath
     }
   }
-  
-  func addSubview(_ view: UIView, _ constraintsClosure: PassBlock<ConstraintMaker>) {
-    addSubview(view)
-    view.snp.makeConstraints(constraintsClosure)
-  }
-  
-  func addLayoutGuide(layoutGuide: UILayoutGuide, _ constraintsClosure: PassBlock<ConstraintMaker>) {
-    addLayoutGuide(layoutGuide)
-    layoutGuide.snp.makeConstraints(constraintsClosure)
-  }
-}
-
-extension UIViewController {
-  func alert(message: String, title: String = "Error",
-             style: UIAlertAction.Style = .default) {
-    let alert = UIAlertController(title: title, message: message,
-                                  preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "OK", style: style, handler: nil))
-    present(alert, animated: true, completion: nil)
-  }
-}
-
-func makeDisclosureIndicatorButton(title: String?) -> UIButton {
-  let button: UIButton = UIButton(type: .system)
-
-  let content: UITableViewCell = UITableViewCell()
-  content.accessoryType = .disclosureIndicator
-  content.isUserInteractionEnabled = false
-  content.textLabel?.text = title
-
-  button.addSubview(content)
-  content.snp.makeConstraints { (make) in
-    make.edges.equalToSuperview()
-  }
-
-  return button
 }
