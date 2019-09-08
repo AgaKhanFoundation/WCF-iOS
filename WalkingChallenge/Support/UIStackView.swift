@@ -1,5 +1,5 @@
 /**
- * Copyright © 2017 Aga Khan Foundation
+ * Copyright © 2019 Aga Khan Foundation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,9 +29,8 @@
 
 import UIKit
 
-extension UIBarButtonItem {
-  convenience init(image: UIImage?, target: Any?, action: Selector?, tintColor: UIColor = .black) {
-    self.init(image: image, style: .plain, target: target, action: action)
-    self.tintColor = tintColor
+extension UIStackView {
+  func addArrangedSubviews(_ views: UIView...) {
+    views.forEach { addArrangedSubview($0) }
   }
 }
