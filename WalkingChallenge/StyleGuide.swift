@@ -48,12 +48,14 @@ struct Style {
     static let EarthyGold = UIColor(named: "EarthyGold")!
     static let SpringGreen = UIColor(named: "SpringGreen")!
     static let VerdantGreen = UIColor(named: "VerdantGreen")!
-
+    
+    // UI
     static let FoundationGrey = UIColor(named: "FoundationGrey")!
     static let Silver = UIColor(named: "Silver")!
     static let Background = UIColor(named: "Background")!
     static let Shadow = UIColor(named: "Shadow")!
     static let Seperator = UIColor(named: "Seperator")!
+    static let Destructive = UIColor(named: "Destructive")!
   }
 
   enum Typography {
