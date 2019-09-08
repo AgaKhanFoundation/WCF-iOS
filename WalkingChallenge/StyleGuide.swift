@@ -34,24 +34,26 @@ struct Style {
   
   struct Colors {
     // Standard
-    static let black = #colorLiteral(red: 0.2000000000, green: 0.2000000000, blue: 0.2000000000, alpha: 1)      // #333333
-    static let blue = #colorLiteral(red: 0.0509803921, green: 0.4549019607, blue: 0.8901960784, alpha: 1)       // #0d74e3
-    static let green = #colorLiteral(red: 0.0000000000, green: 0.6588235294, blue: 0.3647058823, alpha: 1)      // #00a85d
-    static let grey = #colorLiteral(red: 0.4980392156, green: 0.4980392156, blue: 0.4980392156, alpha: 1)       // #7f7f7f
-    static let red = #colorLiteral(red: 0.8078431372, green: 0.0000000000, blue: 0.3450980392, alpha: 1)        // #ce0058
-    static let white = #colorLiteral(red: 1.0000000000, green: 1.0000000000, blue: 1.0000000000, alpha: 1)      // #ffffff
+    static let black = UIColor(named: "black")!
+    static let blue = UIColor(named: "blue")!
+    static let green = UIColor(named: "green")!
+    static let grey = UIColor(named: "grey")!
+    static let red = UIColor(named: "red")!
+    static let white = UIColor(named: "white")!
 
     // New Colours
-    static let FoundationGreen = #colorLiteral(red: 0.0000000000, green: 0.6588235294, blue: 0.3647058823, alpha: 1)      // #00a85d
-    static let RubineRed = #colorLiteral(red: 0.8078431372, green: 0.0000000000, blue: 0.3450980392, alpha: 1)            // #ce0058
-    static let DeepTurquoise = #colorLiteral(red: 0.0862745098, green: 0.4941176470, blue: 0.5372549019, alpha: 1)        // #177e89
-    static let EarthyGold = #colorLiteral(red: 0.8078431372, green: 0.0000000000, blue: 0.3450980392, alpha: 1)           // #bfa548
-    static let SpringGreen = #colorLiteral(red: 0.5960784313, green: 0.8313725490, blue: 0.3058823529, alpha: 1)          // #98d44e
-    static let VerdantGreen = #colorLiteral(red: 0.1098039215, green: 0.4862745098, blue: 0.3294117647, alpha: 1)         // #1c7c54
+    static let FoundationGreen = UIColor(named: "FoundationGreen")!
+    static let RubineRed = UIColor(named: "RubineRed")!
+    static let DeepTurquoise = UIColor(named: "DeepTurquoise")!
+    static let EarthyGold = UIColor(named: "EarthyGold")!
+    static let SpringGreen = UIColor(named: "SpringGreen")!
+    static let VerdantGreen = UIColor(named: "VerdantGreen")!
 
-    static let FoundationGrey = #colorLiteral(red: 0.0784313725, green: 0.0784313725, blue: 0.0784313725, alpha: 1)       // #333333
-    static let Silver = #colorLiteral(red: 0.4980392156, green: 0.4980392156, blue: 0.4980392156, alpha: 1)               // #7f7f7f
-    static let Background = #colorLiteral(red: 0.9647058824, green: 0.9725490196, blue: 0.9803921569, alpha: 1)           // #F6F8FA
+    static let FoundationGrey = UIColor(named: "FoundationGrey")!
+    static let Silver = UIColor(named: "Silver")!
+    static let Background = UIColor(named: "Background")!
+    static let Shadow = UIColor(named: "Shadow")!
+    static let Seperator = UIColor(named: "Seperator")!
   }
 
   enum Typography {
