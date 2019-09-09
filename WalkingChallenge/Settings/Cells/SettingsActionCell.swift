@@ -27,45 +27,46 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-import Foundation
+import UIKit
 
-class SettingsDataSource: TableViewDataSource {
-  var cells: [[CellContext]] = []
+protocol SettingsActionCellDelegate: class {
+  func settingsActionCellTapped(context: Context?)
+}
+
+struct SettingsActionCellContext: CellContext {
+  let cellIdentifier: String = SettingsActionCell.identifier
+  let title: String
+  let context: Context?
+}
+
+class SettingsActionCell: ConfigurableTableViewCell {
+  static let identifier = "SettingsActionCell"
   
-  private var isTeamLead = true
+  private let button = Button(style: .primary)
+  private var context: Context?
   
-  func configureCells() {
-    cells = [[
-      SettingsProfileCellContext(
-        image: nil,
-        name: "Sami Suteria",
-        teamName: "World Walkers",
-        membership: "Team Lead"),
-      SettingsTitleCellContext(
-        title: "Personal"),
-      SettingsDisclosureCellContext(
-        title: "Personal Mile Commitment",
-        body: "Mile commitment cannot be changed once the challenge has started.",
-        value: "500 mi"),
-      SettingsSwitchCellContext(
-        title: "Push Notifications",
-        isSwitchEnabled: true),
-      SettingsDisclosureCellContext(
-        title: "Connected apps & devices",
-        isLastItem: true),
-      SettingsTitleCellContext(
-        title: "Team"),
-      SettingsDisclosureCellContext(
-        title: "View team"),
-      SettingsSwitchCellContext(
-        title: "Team visibility",
-        body: "Your team is discoverable.\nAny participant can find and join your team.",
-        switchLabel: "Public",
-        isSwitchEnabled: true,
-        isLastItem: true),
-      SettingsActionCellContext(
-        title: "Logout",
-        context: nil)
-      ]]
+  weak var delegate: SettingsActionCellDelegate?
+  
+  override func commonInit() {
+    super.commonInit()
+    
+    contentView.addSubview(button) {
+      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p48)
+      $0.top.bottom.equalToSuperview().inset(Style.Padding.p32)
+    }
+  }
+  
+  func configure(context: CellContext) {
+    guard let context = context as? SettingsActionCellContext else { return }
+    
+    button.title = context.title
+    self.context = context.context
+  }
+  
+  // MARK: - Actions
+  
+  @objc
+  func buttonTapped() {
+    delegate?.settingsActionCellTapped(context: context)
   }
 }

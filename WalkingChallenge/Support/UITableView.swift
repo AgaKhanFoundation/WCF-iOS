@@ -50,6 +50,7 @@ extension UITableView {
     register(SettingsTitleCell.self, forCellReuseIdentifier: SettingsTitleCell.identifier)
     register(SettingsDisclosureCell.self, forCellReuseIdentifier: SettingsDisclosureCell.identifier)
     register(SettingsSwitchCell.self, forCellReuseIdentifier: SettingsSwitchCell.identifier)
+    register(SettingsActionCell.self, forCellReuseIdentifier: SettingsActionCell.identifier)
   }
   
   func reloadOnMain() {
