@@ -41,14 +41,28 @@ class SettingsDataSource: TableViewDataSource {
         name: "Sami Suteria",
         teamName: "World Walkers",
         membership: "Team Lead"),
-      SettingsTitleCellContext(title: "Personal"),
+      SettingsTitleCellContext(
+        title: "Personal"),
       SettingsDisclosureCellContext(
         title: "Personal Mile Commitment",
         body: "Mile commitment cannot be changed once the challenge has started.",
         value: "500 mi"),
-      SettingsDisclosureCellContext(title: "Connected apps & devices", isLastItem: true),
-      SettingsTitleCellContext(title: "Team"),
-      SettingsDisclosureCellContext(title: "View team")
+      SettingsSwitchCellContext(
+        title: "Push Notifications",
+        isSwitchEnabled: true),
+      SettingsDisclosureCellContext(
+        title: "Connected apps & devices",
+        isLastItem: true),
+      SettingsTitleCellContext(
+        title: "Team"),
+      SettingsDisclosureCellContext(
+        title: "View team"),
+      SettingsSwitchCellContext(
+        title: "Team visibility",
+        body: "Your team is discoverable.\nAny participant can find and join your team.",
+        switchLabel: "Public",
+        isSwitchEnabled: true,
+        isLastItem: true)
       ]]
   }
 }
