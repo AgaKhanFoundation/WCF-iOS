@@ -36,4 +36,12 @@ class SettingsViewController: TableViewController {
     title = "Settings"
     dataSource = SettingsDataSource()
   }
+  
+  override func handle(context: Context) {
+    guard let context = context as? SettingsDataSource.SettingsContext else { return }
+    switch context {
+    case .viewTeam:
+      navigationController?.pushViewController(TeamSettingsViewController(), animated: true)
+    }
+  }
 }
