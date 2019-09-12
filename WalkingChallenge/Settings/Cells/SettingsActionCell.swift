@@ -36,7 +36,14 @@ protocol SettingsActionCellDelegate: class {
 struct SettingsActionCellContext: CellContext {
   let cellIdentifier: String = SettingsActionCell.identifier
   let title: String
+  let buttonStyle: Button.ButtonStyle
   let context: Context?
+  
+  init(title: String, buttonStyle: Button.ButtonStyle = .primary, context: Context? = nil) {
+    self.title = title
+    self.buttonStyle = buttonStyle
+    self.context = context
+  }
 }
 
 class SettingsActionCell: ConfigurableTableViewCell {
@@ -52,13 +59,15 @@ class SettingsActionCell: ConfigurableTableViewCell {
     
     contentView.addSubview(button) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p48)
-      $0.top.bottom.equalToSuperview().inset(Style.Padding.p32)
+      $0.top.equalToSuperview().inset(Style.Padding.p32)
+      $0.bottom.equalToSuperview().inset(Style.Padding.p16)
     }
   }
   
   func configure(context: CellContext) {
     guard let context = context as? SettingsActionCellContext else { return }
     
+    button.style = context.buttonStyle
     button.title = context.title
     self.context = context.context
   }

@@ -65,6 +65,10 @@ class SettingsDataSource: TableViewDataSource {
         isLastItem: true),
       SettingsActionCellContext(
         title: "Logout",
+        context: nil),
+      SettingsActionCellContext(
+        title: "Delete Account",
+        buttonStyle: .plain,
         context: nil)
       ]]
   }
