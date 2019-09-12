@@ -32,6 +32,10 @@ import Foundation
 class SettingsDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
   
+  enum SettingsContext: Context {
+    case viewTeam
+  }
+  
   private var isTeamLead = true
   
   func configureCells() {
@@ -56,7 +60,8 @@ class SettingsDataSource: TableViewDataSource {
       SettingsTitleCellContext(
         title: "Team"),
       SettingsDisclosureCellContext(
-        title: "View team"),
+        title: "View team",
+        context: SettingsContext.viewTeam),
       SettingsSwitchCellContext(
         title: "Team visibility",
         body: "Your team is discoverable.\nAny participant can find and join your team.",
