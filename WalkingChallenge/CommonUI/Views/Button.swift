@@ -36,6 +36,7 @@ class Button: UIButton {
     case secondary
     case disabled
     case destructive
+    case plain
     
     var titleColor: UIColor {
       switch self {
@@ -43,6 +44,8 @@ class Button: UIButton {
         return Style.Colors.white
       case .secondary:
         return Style.Colors.FoundationGreen
+      case .plain:
+        return Style.Colors.blue
       }
     }
     
@@ -56,11 +59,15 @@ class Button: UIButton {
         return Style.Colors.Silver
       case .destructive:
         return Style.Colors.Destructive
+      case .plain:
+        return .clear
       }
     }
   }
   
-  var style: ButtonStyle = .primary
+  var style: ButtonStyle = .primary {
+    didSet { updateColors() }
+  }
   
   convenience init(style: ButtonStyle) {
     self.init()
@@ -85,10 +92,7 @@ class Button: UIButton {
   }
   
   func commonInit() {
-    setBackgroundImage(UIImage(color: style.backgroundColor), for: .normal)
-    setBackgroundImage(UIImage(color: style.backgroundColor.average(with: .black, scale: 0.1)), for: .highlighted)
-    setBackgroundImage(UIImage(color: style.backgroundColor.average(with: .black, scale: 0.1)), for: .selected)
-    setTitleColor(style.titleColor, for: .normal)
+    updateColors()
     layer.cornerRadius = 4
     layer.masksToBounds = true
     setTitle(currentTitle, for: .normal)
@@ -106,5 +110,12 @@ class Button: UIButton {
     // this is to center the title in the actual button
     // descender is the part under the font for lowercase and is a negative number
     titleEdgeInsets = UIEdgeInsets(top: -buttonFont.descender / 2, left: 0, bottom: 0, right: 0)
+  }
+  
+  private func updateColors() {
+    setBackgroundImage(UIImage(color: style.backgroundColor), for: .normal)
+    setBackgroundImage(UIImage(color: style.backgroundColor.average(with: .black, scale: 0.1)), for: .highlighted)
+    setBackgroundImage(UIImage(color: style.backgroundColor.average(with: .black, scale: 0.1)), for: .selected)
+    setTitleColor(style.titleColor, for: .normal)
   }
 }
