@@ -93,6 +93,10 @@ class TableViewController: ViewController {
       }
     }
   }
+  
+  func handle(context: Context) {
+    // Override point for subclasses
+  }
 }
 
 extension TableViewController: UITableViewDelegate, UITableViewDataSource {
@@ -114,5 +118,11 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
     return heights[indexPath] ?? Style.Padding.p40
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+    guard let context = (tableView.cellForRow(at: indexPath) as? Contextable)?.context else { return }
+    handle(context: context)
   }
 }
