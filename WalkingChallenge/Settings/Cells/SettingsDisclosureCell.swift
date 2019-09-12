@@ -36,17 +36,19 @@ struct SettingsDisclosureCellContext: CellContext {
   let value: String?
   let isDisclosureHidden: Bool
   let isLastItem: Bool
+  let context: Context?
   
-  init(title: String, body: String? = nil, value: String? = nil, isDisclosureHidden: Bool = false, isLastItem: Bool = false) {
+  init(title: String, body: String? = nil, value: String? = nil, isDisclosureHidden: Bool = false, isLastItem: Bool = false, context: Context? = nil) {
     self.title = title
     self.body = body
     self.value = value
     self.isDisclosureHidden = isDisclosureHidden
     self.isLastItem = isLastItem
+    self.context = context
   }
 }
 
-class SettingsDisclosureCell: ConfigurableTableViewCell {
+class SettingsDisclosureCell: ConfigurableTableViewCell, Contextable {
   static let identifier = "SettingsDisclosureCell"
   
   private let titleLabel = UILabel(typography: .bodyRegular)
@@ -54,6 +56,7 @@ class SettingsDisclosureCell: ConfigurableTableViewCell {
   private let valueLabel = UILabel(typography: .subtitleRegular)
   private let disclosureImageView = UIImageView(image: Assets.disclosure.image)
   private let seperatorView = UIView()
+  var context: Context?
   
   override func commonInit() {
     super.commonInit()
@@ -106,5 +109,6 @@ class SettingsDisclosureCell: ConfigurableTableViewCell {
     valueLabel.text = context.value
     disclosureImageView.isHidden = context.isDisclosureHidden
     seperatorView.isHidden = context.isLastItem
+    self.context = context.context
   }
 }
