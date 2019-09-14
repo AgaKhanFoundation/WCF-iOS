@@ -36,7 +36,7 @@ class DashboardDataSource: TableViewDataSource {
   private var image: UIImage?
 
   func reload(completion: @escaping GenericBlock) {
-    configureCells()
+    configure()
     completion()
 
     onBackground { [weak self] in
@@ -48,7 +48,7 @@ class DashboardDataSource: TableViewDataSource {
         else { return }
 
         self?.image = image
-        self?.configureCells()
+        self?.configure()
         completion()
       }
     }
@@ -56,13 +56,13 @@ class DashboardDataSource: TableViewDataSource {
     onBackground { [weak self] in
       Facebook.getRealName(for: "me") { (name) in
         self?.name = name ?? "Could not load"
-        self?.configureCells()
+        self?.configure()
         completion()
       }
     }
   }
 
-  func configureCells() {
+  func configure() {
     cells = [[
       ProfileCardCellContext(
         image: image,
