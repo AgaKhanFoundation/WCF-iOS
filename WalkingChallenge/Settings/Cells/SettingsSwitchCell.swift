@@ -30,7 +30,7 @@
 import UIKit
 
 protocol SettingsSwitchCellDelegate: class {
-  func settingsSwitchToggled(newValue: Bool, context: Context?)
+  func settingsSwitchToggled(toggled: Bool, context: Context?)
 }
 
 struct SettingsSwitchCellContext: CellContext {
@@ -125,6 +125,6 @@ class SettingsSwitchCell: ConfigurableTableViewCell {
 
   @objc
   func switchToggled() {
-    delegate?.settingsSwitchToggled(newValue: switchControl.isOn, context: context)
+    delegate?.settingsSwitchToggled(toggled: switchControl.isOn, context: context)
   }
 }
