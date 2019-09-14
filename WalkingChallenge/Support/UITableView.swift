@@ -58,11 +58,14 @@ extension UITableView {
       self.reloadData()
     }
   }
-  func dequeueAndConfigureReusableCell(dataSource: TableViewDataSource?, indexPath: IndexPath) -> ConfigurableTableViewCell {
 
+  func dequeueAndConfigureReusableCell(dataSource: TableViewDataSource?,
+                                       indexPath: IndexPath) -> ConfigurableTableViewCell {
     guard
       let cellContext = dataSource?.cell(for: indexPath),
-      let cell = dequeueReusableCell(withIdentifier: cellContext.cellIdentifier, for: indexPath) as? ConfigurableTableViewCell
+      let cell = dequeueReusableCell(
+        withIdentifier: cellContext.cellIdentifier,
+        for: indexPath) as? ConfigurableTableViewCell
     else {
       print("Trying to dequeue a cell that was not registered")
       return EmptyCell()

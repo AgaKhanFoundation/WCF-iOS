@@ -37,8 +37,13 @@ struct SettingsDisclosureCellContext: CellContext {
   let isDisclosureHidden: Bool
   let isLastItem: Bool
   let context: Context?
-  init(title: String, body: String? = nil, value: String? = nil, isDisclosureHidden: Bool = false, isLastItem: Bool = false, context: Context? = nil) {
 
+  init(title: String,
+       body: String? = nil,
+       value: String? = nil,
+       isDisclosureHidden: Bool = false,
+       isLastItem: Bool = false,
+       context: Context? = nil) {
     self.title = title
     self.body = body
     self.value = value
