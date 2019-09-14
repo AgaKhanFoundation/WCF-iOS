@@ -41,8 +41,13 @@ struct SettingsSwitchCellContext: CellContext {
   let isSwitchEnabled: Bool
   let isLastItem: Bool
   let context: Context?
-  init(title: String, body: String? = nil, switchLabel: String? = nil, isSwitchEnabled: Bool, isLastItem: Bool = false, context: Context? = nil) {
 
+  init(title: String,
+       body: String? = nil,
+       switchLabel: String? = nil,
+       isSwitchEnabled: Bool,
+       isLastItem: Bool = false,
+       context: Context? = nil) {
     self.title = title
     self.body = body
     self.switchLabel = switchLabel

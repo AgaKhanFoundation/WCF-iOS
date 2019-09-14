@@ -30,8 +30,12 @@
 import UIKit
 
 extension CALayer {
-  // swiftlint:disable:next identifier_name
-  func applySketchShadow(color: UIColor = Style.Colors.Shadow, alpha: Float = 0.5, x: CGFloat = 0, y: CGFloat = 0, blur: CGFloat = 6, spread: CGFloat = 0) {
+  func applySketchShadow(color: UIColor = Style.Colors.Shadow,
+                         alpha: Float = 0.5,
+                         x: CGFloat = 0, // swiftlint:disable:this identifier_name
+                         y: CGFloat = 0, // swiftlint:disable:this identifier_name
+                         blur: CGFloat = 6,
+                         spread: CGFloat = 0) {
     shadowColor = color.cgColor
     shadowOpacity = alpha
     shadowOffset = CGSize(width: x, height: y)
@@ -39,8 +43,7 @@ extension CALayer {
     if spread == 0 {
       shadowPath = nil
     } else {
-      let dx = -spread
-      let rect = bounds.insetBy(dx: dx, dy: dx)
+      let rect = bounds.insetBy(dx: -spread, dy: -spread)
       shadowPath = UIBezierPath(rect: rect).cgPath
     }
   }
