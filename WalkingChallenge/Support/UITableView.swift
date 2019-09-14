@@ -67,7 +67,7 @@ extension UITableView {
         withIdentifier: cellContext.identifier,
         for: indexPath) as? ConfigurableTableViewCell
     else {
-      print("Trying to dequeue a cell that was not registered")
+      assertionFailure("Trying to dequeue a cell that was not registered")
       return EmptyCell()
     }
 
