@@ -42,7 +42,7 @@ typealias ConfigurableCollectionViewCell = ConfigurableCell & UICollectionViewCe
 
 protocol ListDataSource {
   var cells: [[CellContext]] { get set }
-  func reload(completion: @escaping GenericBlock)
+  func reload(completion: @escaping () -> Void)
   func configure()
   func cell(for indexPath: IndexPath) -> CellContext?
   func numberOfSections() -> Int
@@ -50,7 +50,7 @@ protocol ListDataSource {
 }
 
 extension ListDataSource {
-  func reload(completion: @escaping GenericBlock) {
+  func reload(completion: @escaping () -> Void) {
     configure()
     completion()
   }
