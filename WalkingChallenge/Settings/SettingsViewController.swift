@@ -33,7 +33,7 @@ class SettingsViewController: TableViewController {
   override func commonInit() {
     super.commonInit()
 
-    title = "Settings"
+    title = Strings.Settings.title
     dataSource = SettingsDataSource()
   }
 
