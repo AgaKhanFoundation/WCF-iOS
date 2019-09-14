@@ -150,16 +150,16 @@ enum Assets: String {
   // UI
   case gear = "GearIcon"
   case disclosure = "BlueBackButton"
-  
+
   // Logos
   case AKFLogo = "AKFLogo"
-  
+
   // Onboarding
   case onboardingLoginPeople = "login-couple"
   case onboardingCreateTeam = "create-team"
   case onboardingJourney = "journey"
   case onboardingDashboard = "dashboard"
-  
+
   // Tab Bar
   case tabbarDashboardSelected = "tabbar-dashboard-selected"
   case tabbarDashboardUnselected = "tabbar-dashboard-unselected"
@@ -169,7 +169,7 @@ enum Assets: String {
   case tabbarLeaderboardUnselected = "tabbar-leaderboard-unselected"
   case tabbarNotificationsSelected = "tabbar-notifications-selected"
   case tabbarNotificationsUnselected = "tabbar-notifications-unselected"
-  
+
   var image: UIImage? {
     switch self {
     case .disclosure:

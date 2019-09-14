@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     configureView()
   }
-  
+
   func configureView() {
     view.backgroundColor = Style.Colors.Background
     // Override point for subclasses

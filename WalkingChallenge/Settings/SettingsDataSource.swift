@@ -31,13 +31,13 @@ import Foundation
 
 class SettingsDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
-  
+
   enum SettingsContext: Context {
     case viewTeam
   }
-  
+
   private var isTeamLead = true
-  
+
   func configureCells() {
     cells = [[
       SettingsProfileCellContext(

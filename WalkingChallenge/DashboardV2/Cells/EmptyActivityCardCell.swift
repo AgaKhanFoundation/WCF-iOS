@@ -43,56 +43,56 @@ struct EmptyActivityCellContext: CellContext {
 
 class EmptyActivityCell: ConfigurableTableViewCell {
   static let identifier = "EmptyActivityCell"
-  
+
   private let cardView = CardViewV2()
   private let titleLabel = UILabel(typography: .title)
   private let emptyActivityImageView = UIImageView(image: Assets.onboardingDashboard.image)
   private let bodyLabel = UILabel(typography: .bodyRegular)
   private let button = Button()
-  
+
   weak var delegate: EmptyActivityCellDelegate?
-  
+
   override func commonInit() {
     super.commonInit()
-    
+
     emptyActivityImageView.contentMode = .scaleAspectFit
     button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-    
+
     contentView.addSubview(cardView) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)
       $0.top.bottom.equalToSuperview().inset(Style.Padding.p12)
     }
-    
+
     cardView.addSubview(titleLabel) {
       $0.top.equalToSuperview().inset(Style.Padding.p32)
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
     }
-    
+
     cardView.addSubview(emptyActivityImageView) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p64)
       $0.top.equalTo(titleLabel.snp.bottom).offset(Style.Padding.p8)
     }
-    
+
     cardView.addSubview(bodyLabel) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
       $0.top.equalTo(emptyActivityImageView.snp.bottom).offset(Style.Padding.p16)
     }
-    
+
     cardView.addSubview(button) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
       $0.top.equalTo(bodyLabel.snp.bottom).offset(Style.Padding.p16)
       $0.bottom.equalToSuperview().inset(Style.Padding.p32)
     }
   }
-  
+
   func configure(context: CellContext) {
     guard let context = context as? EmptyActivityCellContext else { return }
-    
+
     titleLabel.text = context.title
     bodyLabel.text = context.body
     button.title = context.ctaTitle
   }
-  
+
   @objc
   func buttonTapped() {
     delegate?.emptyActivityCellConnectTapped()

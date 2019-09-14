@@ -36,21 +36,21 @@ struct SettingsTitleCellContext: CellContext {
 
 class SettingsTitleCell: ConfigurableTableViewCell {
   static let identifier = "SettingsTitleCell"
-  
+
   private let titleLabel = UILabel(typography: .title)
-  
+
   override func commonInit() {
     super.commonInit()
-    
+
     contentView.addSubview(titleLabel) {
       $0.top.equalToSuperview().inset(Style.Padding.p48)
       $0.leading.trailing.bottom.equalToSuperview().inset(Style.Padding.p32)
     }
   }
-  
+
   func configure(context: CellContext) {
     guard let context = context as? SettingsTitleCellContext else { return }
-    
+
     titleLabel.text = context.title
   }
 }

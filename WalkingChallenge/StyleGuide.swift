@@ -31,7 +31,7 @@ import UIKit
 
 struct Style {
   static let defaultIconSize: CGFloat = 24
-  
+
   struct Colors {
     // Standard
     static let black = UIColor(named: "black")!
@@ -48,7 +48,7 @@ struct Style {
     static let EarthyGold = UIColor(named: "EarthyGold")!
     static let SpringGreen = UIColor(named: "SpringGreen")!
     static let VerdantGreen = UIColor(named: "VerdantGreen")!
-    
+
     // UI
     static let FoundationGrey = UIColor(named: "FoundationGrey")!
     static let Silver = UIColor(named: "Silver")!

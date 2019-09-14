@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication,                                // swiftlint:disable:next colon
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey:Any]?) -> Bool {
-    
+
     window = UIWindow()
     appController.launch(application, with: launchOptions, in: window)
 

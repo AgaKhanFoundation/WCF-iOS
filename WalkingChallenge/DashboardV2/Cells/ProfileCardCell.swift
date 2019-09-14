@@ -46,56 +46,56 @@ struct ProfileCardCellContext: CellContext {
 
 class ProfileCardCell: ConfigurableTableViewCell {
   static let identifier = "ProfileCardCell"
-  
+
   private let cardView = CardViewV2()
   private let profileImageView = UIImageView()
   private let profileView = ProfileView()
   private let disclosureView = CellDisclosureView()
-  
+
   weak var delegate: ProfileCardCellDelegate?
-  
+
   override func commonInit() {
     super.commonInit()
-    
+
     disclosureView.delegate = self
     profileImageView.clipsToBounds = true
-    
+
     contentView.addSubview(cardView) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)
       $0.top.bottom.equalToSuperview().inset(Style.Padding.p12)
     }
-    
+
     cardView.addSubview(disclosureView) {
       $0.leading.trailing.bottom.equalToSuperview()
     }
-    
+
     let layoutGuide = UILayoutGuide()
     cardView.addLayoutGuide(layoutGuide: layoutGuide) {
       $0.top.leading.trailing.equalToSuperview()
       $0.bottom.equalTo(disclosureView.snp.top)
     }
-    
+
     cardView.addSubview(profileImageView) {
       $0.height.width.equalTo(Style.Size.s96)
       $0.centerY.equalTo(layoutGuide)
       $0.leading.equalToSuperview().inset(Style.Padding.p32)
     }
-    
+
     cardView.addSubview(profileView) {
       $0.top.bottom.trailing.equalTo(layoutGuide).inset(Style.Padding.p32)
       $0.leading.equalTo(profileImageView.snp.trailing).offset(Style.Padding.p32)
     }
   }
-  
+
   override func layoutSubviews() {
     super.layoutSubviews()
-    
+
     profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
   }
-  
+
   func configure(context: CellContext) {
     guard let context = context as? ProfileCardCellContext else { return }
-    
+
     profileImageView.image = context.image
     profileView.configure(context: context)
     disclosureView.configure(context: CellDisclosureContext(label: context.disclosureLabel))
@@ -113,30 +113,30 @@ class ProfileView: View {
   private let teamNameLabel = UILabel(typography: .smallRegular)
   private let eventNameLabel = UILabel(typography: .smallBold)
   private let eventTimelineLabel = UILabel(typography: .smallRegular)
-  
+
   override func commonInit() {
     super.commonInit()
-    
+
     addSubview(nameLabel) {
       $0.leading.trailing.top.equalToSuperview()
     }
-    
+
     addSubview(teamNameLabel) {
       $0.leading.trailing.equalToSuperview()
       $0.top.equalTo(nameLabel.snp.bottom)
     }
-    
+
     addSubview(eventNameLabel) {
       $0.leading.trailing.equalToSuperview()
       $0.top.equalTo(teamNameLabel.snp.bottom).offset(Style.Padding.p8)
     }
-    
+
     addSubview(eventTimelineLabel) {
       $0.leading.trailing.bottom.equalToSuperview()
       $0.top.equalTo(eventNameLabel.snp.bottom)
     }
   }
-  
+
   func configure(context: ProfileCardCellContext) {
     nameLabel.text = context.name
     teamNameLabel.text = context.teamName

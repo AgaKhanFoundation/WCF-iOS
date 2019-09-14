@@ -39,43 +39,43 @@ struct SettingsProfileCellContext: CellContext {
 
 class SettingsProfileCell: ConfigurableTableViewCell {
   static let identifier = "SettingsProfileCell"
-  
+
   private let profileImageView = UIImageView()
   private let nameLabel = UILabel(typography: .title)
   private let teamNameLabel = UILabel(typography: .smallRegular)
   private let membershipLabel = UILabel(typography: .smallRegular)
-  
+
   override func commonInit() {
     super.commonInit()
-    
+
     profileImageView.clipsToBounds = true
     contentView.backgroundColor = Style.Colors.white
-    
+
     contentView.addSubview(profileImageView) {
       $0.height.width.equalTo(Style.Size.s64)
       $0.centerY.equalToSuperview()
       $0.leading.equalToSuperview().inset(Style.Padding.p32)
     }
-    
+
     let stackView = UIStackView()
     stackView.axis = .vertical
     stackView.addArrangedSubviews(nameLabel, teamNameLabel, membershipLabel)
-    
+
     contentView.addSubview(stackView) {
       $0.top.bottom.trailing.equalToSuperview().inset(Style.Padding.p16)
       $0.leading.equalTo(profileImageView.snp.trailing).offset(Style.Padding.p32)
     }
   }
-  
+
   override func layoutSubviews() {
     super.layoutSubviews()
-    
+
     profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
   }
-  
+
   func configure(context: CellContext) {
     guard let context = context as? SettingsProfileCellContext else { return }
-    
+
     nameLabel.text = context.name
     teamNameLabel.text = context.teamName
     membershipLabel.text = context.membership

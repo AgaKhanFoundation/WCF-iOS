@@ -35,37 +35,35 @@ extension UIColor {
    scale can be a number between 0 to 1 otherwise the start or end color is returned respectively
    */
   static func averageColor(start: UIColor, end: UIColor, scale: CGFloat = 0.5) -> UIColor {
-    
+
     guard scale > 0 else { return start }
     guard scale < 1 else { return end }
-    
+
     guard
       let sComp = start.componentsRGBA,
       let eComp = end.componentsRGBA
       else { return start }
-    
+
     let red = CGFloat.scaledAverage(x: sComp.red, y: eComp.red, scale: scale)
     let green = CGFloat.scaledAverage(x: sComp.green, y: eComp.green, scale: scale)
     let blue = CGFloat.scaledAverage(x: sComp.blue, y: eComp.blue, scale: scale)
     let alpha = CGFloat.scaledAverage(x: sComp.alpha, y: eComp.alpha, scale: scale)
-    
+
     return UIColor(red: red, green: green, blue: blue, alpha: alpha)
   }
-  
+
   func average(with other: UIColor, scale: CGFloat = 0.5) -> UIColor {
     return .averageColor(start: self, end: other, scale: scale)
   }
-  
+
   // swiftlint:disable large_tuple
   var componentsRGBA: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)? {
-    
     var (red, green, blue, alpha) = (CGFloat(0.0), CGFloat(0.0), CGFloat(0.0), CGFloat(0.0))
-    
+
     guard getRed(&red, green: &green, blue: &blue, alpha: &alpha) else { return nil }
-    
     return (red, green, blue, alpha)
   }
-  
+
   /**
    Init a color with a hex value
    Format: 0xXXXXXX

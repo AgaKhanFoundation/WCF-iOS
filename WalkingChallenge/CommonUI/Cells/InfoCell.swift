@@ -38,34 +38,33 @@ struct InfoCellContext: CellContext {
 
 class InfoCell: ConfigurableTableViewCell {
   static let identifier = "InfoCell"
-  
+
   private let cardView = CardViewV2()
   private let titleLabel = UILabel(typography: .title)
   private let bodyLabel = UILabel(typography: .bodyRegular)
-  
+
   override func commonInit() {
     super.commonInit()
-    
+
     contentView.addSubview(cardView) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)
       $0.top.bottom.equalToSuperview().inset(Style.Padding.p12)
     }
-    
+
     cardView.addSubview(titleLabel) {
       $0.top.equalToSuperview().inset(Style.Padding.p32)
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
     }
-    
+
     cardView.addSubview(bodyLabel) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
       $0.top.equalTo(titleLabel.snp.bottom).offset(Style.Padding.p32)
       $0.bottom.equalToSuperview().inset(Style.Padding.p32)
     }
   }
-  
+
   func configure(context: CellContext) {
     guard let context = context as? InfoCellContext else { return }
-    
     titleLabel.text = context.title
     bodyLabel.text = context.body
   }

@@ -38,7 +38,7 @@ struct SettingsActionCellContext: CellContext {
   let title: String
   let buttonStyle: Button.ButtonStyle
   let context: Context?
-  
+
   init(title: String, buttonStyle: Button.ButtonStyle = .primary, context: Context? = nil) {
     self.title = title
     self.buttonStyle = buttonStyle
@@ -48,32 +48,32 @@ struct SettingsActionCellContext: CellContext {
 
 class SettingsActionCell: ConfigurableTableViewCell {
   static let identifier = "SettingsActionCell"
-  
+
   private let button = Button(style: .primary)
   private var context: Context?
-  
+
   weak var delegate: SettingsActionCellDelegate?
-  
+
   override func commonInit() {
     super.commonInit()
-    
+
     contentView.addSubview(button) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p48)
       $0.top.equalToSuperview().inset(Style.Padding.p32)
       $0.bottom.equalToSuperview().inset(Style.Padding.p16)
     }
   }
-  
+
   func configure(context: CellContext) {
     guard let context = context as? SettingsActionCellContext else { return }
-    
+
     button.style = context.buttonStyle
     button.title = context.title
     self.context = context.context
   }
-  
+
   // MARK: - Actions
-  
+
   @objc
   func buttonTapped() {
     delegate?.settingsActionCellTapped(context: context)
