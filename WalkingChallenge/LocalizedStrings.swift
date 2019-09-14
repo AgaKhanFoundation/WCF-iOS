@@ -32,7 +32,7 @@ import UIKit
 
 struct Strings {
   struct Application {
-    static let name: String = "Steps4Change"
+    static let name: String = "Steps4Impact"
 
     static let unableToConnect: String =
         NSLocalizedString("Unable to access AKF Causes at this time.  Please try again later.",
