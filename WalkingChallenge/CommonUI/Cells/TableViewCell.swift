@@ -1,5 +1,5 @@
 /**
- * Copyright © 2017 Aga Khan Foundation
+ * Copyright © 2019 Aga Khan Foundation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
