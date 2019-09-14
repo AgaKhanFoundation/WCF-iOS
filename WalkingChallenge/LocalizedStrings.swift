@@ -144,12 +144,12 @@ Click continue for a quick tour of the app.
         NSLocalizedString("You don't have any notifications right now.",
                           comment: "You don't have any notifications right now.")
   }
-  
+
   struct Settings {
     static let title: String =
       NSLocalizedString("Settings", comment: "Settings screen title")
   }
-  
+
   struct TeamSettings {
     static let title: String =
       NSLocalizedString("Team", comment: "Team settings screen title")
