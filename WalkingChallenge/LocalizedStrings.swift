@@ -144,6 +144,18 @@ Click continue for a quick tour of the app.
         NSLocalizedString("You don't have any notifications right now.",
                           comment: "You don't have any notifications right now.")
   }
+  
+  struct Settings {
+    static let title: String =
+      NSLocalizedString("Settings", comment: "Settings screen title")
+  }
+  
+  struct TeamSettings {
+    static let title: String =
+      NSLocalizedString("Team", comment: "Team settings screen title")
+    static let edit: String =
+      NSLocalizedString("Edit", comment: "Team settings edit button in navigation bar")
+  }
 }
 
 enum Assets: String {

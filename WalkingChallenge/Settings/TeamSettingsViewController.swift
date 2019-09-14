@@ -33,10 +33,10 @@ class TeamSettingsViewController: TableViewController {
   override func commonInit() {
     super.commonInit()
 
-    title = "Team"
+    title = Strings.TeamSettings.title
     dataSource = TeamSettingsDataSource()
     navigationItem.rightBarButtonItem = UIBarButtonItem(
-      title: "Edit",
+      title: Strings.TeamSettings.edit,
       style: .plain,
       target: self,
       action: #selector(editTapped))
