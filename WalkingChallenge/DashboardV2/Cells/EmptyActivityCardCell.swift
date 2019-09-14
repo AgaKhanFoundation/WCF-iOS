@@ -35,7 +35,7 @@ protocol EmptyActivityCellDelegate: class {
 }
 
 struct EmptyActivityCellContext: CellContext {
-  let cellIdentifier: String = EmptyActivityCell.identifier
+  let identifier: String = EmptyActivityCell.identifier
   let title: String
   let body: String
   let ctaTitle: String

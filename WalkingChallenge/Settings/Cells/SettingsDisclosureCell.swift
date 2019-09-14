@@ -30,7 +30,7 @@
 import UIKit
 
 struct SettingsDisclosureCellContext: CellContext {
-  let cellIdentifier: String = SettingsDisclosureCell.identifier
+  let identifier: String = SettingsDisclosureCell.identifier
   let title: String
   let body: String?
   let value: String?

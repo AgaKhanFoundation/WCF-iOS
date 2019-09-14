@@ -31,7 +31,7 @@ import UIKit
 import SnapKit
 
 struct InfoCellContext: CellContext {
-  let cellIdentifier: String = InfoCell.identifier
+  let identifier: String = InfoCell.identifier
   let title: String
   let body: String?
 }

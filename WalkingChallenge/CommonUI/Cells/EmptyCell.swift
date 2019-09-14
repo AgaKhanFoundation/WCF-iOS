@@ -30,7 +30,7 @@
 import UIKit
 
 struct EmptyCellContext: CellContext {
-  let cellIdentifier: String = EmptyCell.identifier
+  let identifier: String = EmptyCell.identifier
 }
 
 class EmptyCell: ConfigurableTableViewCell {

@@ -30,7 +30,7 @@
 import UIKit
 
 protocol CellContext: Context {
-  var cellIdentifier: String { get }
+  var identifier: String { get }
 }
 
 protocol ConfigurableCell: class {

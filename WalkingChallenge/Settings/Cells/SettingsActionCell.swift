@@ -34,7 +34,7 @@ protocol SettingsActionCellDelegate: class {
 }
 
 struct SettingsActionCellContext: CellContext {
-  let cellIdentifier: String = SettingsActionCell.identifier
+  let identifier: String = SettingsActionCell.identifier
   let title: String
   let buttonStyle: Button.ButtonStyle
   let context: Context?

@@ -30,7 +30,7 @@
 import UIKit
 
 struct SettingsProfileCellContext: CellContext {
-  let cellIdentifier: String = SettingsProfileCell.identifier
+  let identifier: String = SettingsProfileCell.identifier
   let image: UIImage?
   let name: String
   let teamName: String

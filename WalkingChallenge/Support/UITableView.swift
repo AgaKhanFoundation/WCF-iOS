@@ -64,7 +64,7 @@ extension UITableView {
     guard
       let cellContext = dataSource?.cell(for: indexPath),
       let cell = dequeueReusableCell(
-        withIdentifier: cellContext.cellIdentifier,
+        withIdentifier: cellContext.identifier,
         for: indexPath) as? ConfigurableTableViewCell
     else {
       print("Trying to dequeue a cell that was not registered")
