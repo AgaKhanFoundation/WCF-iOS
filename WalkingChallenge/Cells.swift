@@ -54,11 +54,11 @@ extension ListDataSource {
     configureCells()
     completion()
   }
-  
+
   func numberOfSections() -> Int {
     return cells.count
   }
-  
+
   func numberOfItems(in section: Int) -> Int {
     return cells[safe: section]?.count ?? 0
   }

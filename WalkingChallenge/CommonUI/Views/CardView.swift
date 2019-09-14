@@ -32,7 +32,6 @@ import UIKit
 class CardViewV2: View {
   override func commonInit() {
     super.commonInit()
-    
     backgroundColor = Style.Colors.white
     layer.cornerRadius = Style.Size.s8
     layer.applySketchShadow()

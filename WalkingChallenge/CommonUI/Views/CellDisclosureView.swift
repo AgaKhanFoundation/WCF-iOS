@@ -41,36 +41,35 @@ class CellDisclosureView: View {
   private let seperatorLineView = UIView()
   private let label = UILabel(typography: .smallRegularBlue)
   private let disclosureImageView = UIImageView(image: Assets.disclosure.image)
-  
+
   weak var delegate: CellDisclosureViewDelegate?
-  
+
   override func commonInit() {
     addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewTapped)))
-    
     seperatorLineView.backgroundColor = Style.Colors.Seperator
-      
+
     addSubview(seperatorLineView) {
       $0.leading.trailing.top.equalToSuperview()
       $0.height.equalTo(1)
     }
-    
+
     addSubview(disclosureImageView) {
       $0.centerY.equalToSuperview()
       $0.trailing.equalToSuperview().inset(Style.Padding.p16)
       $0.height.equalTo(16)
       $0.width.equalTo(10)
     }
-    
+
     addSubview(label) {
       $0.top.bottom.leading.equalToSuperview().inset(Style.Padding.p16)
       $0.trailing.equalTo(disclosureImageView.snp.leading).offset(-Style.Padding.p16)
     }
   }
-  
+
   func configure(context: CellDisclosureContext) {
     label.text = context.label
   }
-  
+
   @objc
   func viewTapped() {
     delegate?.cellDisclosureTapped()

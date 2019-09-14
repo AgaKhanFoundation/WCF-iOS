@@ -30,17 +30,16 @@
 import UIKit
 
 class TableViewCell: UITableViewCell {
-  
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     commonInit()
   }
-  
+
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     commonInit()
   }
-  
+
   func commonInit() {
     backgroundColor = nil
     selectionStyle = .none

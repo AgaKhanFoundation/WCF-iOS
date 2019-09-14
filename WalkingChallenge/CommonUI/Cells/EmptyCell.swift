@@ -35,11 +35,11 @@ struct EmptyCellContext: CellContext {
 
 class EmptyCell: ConfigurableTableViewCell {
   static let identifier = "EmptyCell"
-  
+
   override func commonInit() {
     backgroundColor = nil
   }
-  
+
   func configure(context: CellContext) {
     // Left blank on purpose
   }

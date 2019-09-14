@@ -31,58 +31,55 @@ import UIKit
 
 class TableViewController: ViewController {
   var dataSource: TableViewDataSource? = EmptyTableViewDataSource()
-  
+
   // Views
   private let tableView = UITableView()
   private let refreshControl = UIRefreshControl()
-  
+
   // Cached Heights
   var heights = [IndexPath: CGFloat]()
-  
+
   // MARK: - Init
   init() {
     super.init(nibName: nil, bundle: nil)
     commonInit()
   }
-  
+
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     commonInit()
   }
-  
+
   func commonInit() {
     // Override point for subclasses
   }
-  
+
   // MARK: - Configure
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     refresh()
   }
-  
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    
     // Bug related to https://github.com/lionheart/openradar-mirror/issues/20208
     tableView.refreshControl = refreshControl
   }
-  
+
   override func configureView() {
     super.configureView()
-    
     extendedLayoutIncludesOpaqueBars = true
     refreshControl.tintColor = Style.Colors.black
     refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-    
     tableView.configure(with: self)
     view.addSubview(tableView) {
       $0.edges.equalTo(view.safeAreaLayoutGuide)
     }
   }
-  
+
   // MARK: - Actions
-  
+
   @objc
   func refresh() {
     refreshControl.beginRefreshing()
@@ -93,7 +90,7 @@ class TableViewController: ViewController {
       }
     }
   }
-  
+
   func handle(context: Context) {
     // Override point for subclasses
   }
@@ -103,23 +100,23 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
   func numberOfSections(in tableView: UITableView) -> Int {
     return dataSource?.numberOfSections() ?? 0
   }
-  
+
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return dataSource?.numberOfItems(in: section) ?? 0
   }
-  
+
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     return tableView.dequeueAndConfigureReusableCell(dataSource: dataSource, indexPath: indexPath)
   }
-  
+
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     heights[indexPath] = cell.frame.height
   }
-  
+
   func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
     return heights[indexPath] ?? Style.Padding.p40
   }
-  
+
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
     guard let context = (tableView.cellForRow(at: indexPath) as? Contextable)?.context else { return }

@@ -36,12 +36,12 @@ extension UIView {
       addSubview(view)
     }
   }
-  
+
   func addSubview(_ view: UIView, _ constraintsClosure: PassBlock<ConstraintMaker>) {
     addSubview(view)
     view.snp.makeConstraints(constraintsClosure)
   }
-  
+
   func addLayoutGuide(layoutGuide: UILayoutGuide, _ constraintsClosure: PassBlock<ConstraintMaker>) {
     addLayoutGuide(layoutGuide)
     layoutGuide.snp.makeConstraints(constraintsClosure)

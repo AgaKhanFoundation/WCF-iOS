@@ -32,7 +32,7 @@ import UIKit
 class TeamSettingsViewController: TableViewController {
   override func commonInit() {
     super.commonInit()
-    
+
     title = "Team"
     dataSource = TeamSettingsDataSource()
     navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -41,7 +41,7 @@ class TeamSettingsViewController: TableViewController {
       target: self,
       action: #selector(editTapped))
   }
-  
+
   @objc
   func editTapped() {
     // TODO

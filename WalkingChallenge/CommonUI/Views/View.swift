@@ -34,12 +34,12 @@ class View: UIView {
     super.init(frame: frame)
     commonInit()
   }
-  
+
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     commonInit()
   }
-  
+
   func commonInit() {
     // Override point for subclasses
   }

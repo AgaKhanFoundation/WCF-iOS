@@ -39,7 +39,7 @@ extension UITableView {
     dataSource = viewController
     registerAllCells()
   }
-  
+
   func registerAllCells() {
     register(EmptyCell.self, forCellReuseIdentifier: EmptyCell.identifier)
     register(DisclosureCell.self, forCellReuseIdentifier: DisclosureCell.identifier)
@@ -52,14 +52,14 @@ extension UITableView {
     register(SettingsSwitchCell.self, forCellReuseIdentifier: SettingsSwitchCell.identifier)
     register(SettingsActionCell.self, forCellReuseIdentifier: SettingsActionCell.identifier)
   }
-  
+
   func reloadOnMain() {
     onMain {
       self.reloadData()
     }
   }
-  
   func dequeueAndConfigureReusableCell(dataSource: TableViewDataSource?, indexPath: IndexPath) -> ConfigurableTableViewCell {
+
     guard
       let cellContext = dataSource?.cell(for: indexPath),
       let cell = dequeueReusableCell(withIdentifier: cellContext.cellIdentifier, for: indexPath) as? ConfigurableTableViewCell
@@ -67,7 +67,7 @@ extension UITableView {
       print("Trying to dequeue a cell that was not registered")
       return EmptyCell()
     }
-    
+
     cell.configure(context: cellContext)
     return cell
   }

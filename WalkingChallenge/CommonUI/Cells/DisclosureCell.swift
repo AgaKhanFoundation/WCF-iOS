@@ -44,44 +44,44 @@ struct DisclosureCellContext: CellContext {
 
 class DisclosureCell: ConfigurableTableViewCell {
   static let identifier = "DisclosureCell"
-  
+
   private let cardView = CardViewV2()
   private let titleLabel = UILabel(typography: .title)
   private let bodyLabel = UILabel(typography: .bodyRegular)
   private let disclosureView = CellDisclosureView()
   private var context: Context?
-  
+
   weak var delegate: DisclosureCellDelegate?
-  
+
   override func commonInit() {
     super.commonInit()
-    
+
     disclosureView.delegate = self
-    
+
     contentView.addSubview(cardView) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)
       $0.top.bottom.equalToSuperview().inset(Style.Padding.p12)
     }
-    
+
     cardView.addSubview(titleLabel) {
       $0.top.equalToSuperview().inset(Style.Padding.p32)
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
     }
-    
+
     cardView.addSubview(disclosureView) {
       $0.leading.trailing.bottom.equalToSuperview()
     }
-    
+
     cardView.addSubview(bodyLabel) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
       $0.top.equalTo(titleLabel.snp.bottom).offset(Style.Padding.p32)
       $0.bottom.equalTo(disclosureView.snp.top).offset(-Style.Padding.p32)
     }
   }
-  
+
   func configure(context: CellContext) {
     guard let context = context as? DisclosureCellContext else { return }
-    
+
     titleLabel.text = context.title
     bodyLabel.text = context.body
     disclosureView.configure(context: CellDisclosureContext(label: context.disclosureTitle))

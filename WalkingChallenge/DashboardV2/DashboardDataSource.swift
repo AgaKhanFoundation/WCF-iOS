@@ -31,14 +31,14 @@ import UIKit
 
 class DashboardDataSource: TableViewDataSource {
   var cells = [[CellContext]]()
-  
+
   private var name: String?
   private var image: UIImage?
-  
+
   func reload(completion: @escaping GenericBlock) {
     configureCells()
     completion()
-    
+
     onBackground { [weak self] in
       Facebook.profileImage(for: "me") { (url) in
         guard
@@ -46,13 +46,13 @@ class DashboardDataSource: TableViewDataSource {
           let data = try? Data(contentsOf: url),
           let image = UIImage(data: data)
         else { return }
-        
+
         self?.image = image
         self?.configureCells()
         completion()
       }
     }
-    
+
     onBackground { [weak self] in
       Facebook.getRealName(for: "me") { (name) in
         self?.name = name ?? "Could not load"
@@ -61,7 +61,7 @@ class DashboardDataSource: TableViewDataSource {
       }
     }
   }
-  
+
   func configureCells() {
     cells = [[
       ProfileCardCellContext(

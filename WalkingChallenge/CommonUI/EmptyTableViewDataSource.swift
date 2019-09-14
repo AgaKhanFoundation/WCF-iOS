@@ -31,7 +31,7 @@ import Foundation
 
 class EmptyTableViewDataSource: TableViewDataSource {
   var cells = [[CellContext]]()
-  
+
   func configureCells() {
     // Left blank on purpose
   }

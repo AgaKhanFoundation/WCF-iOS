@@ -41,8 +41,8 @@ struct SettingsSwitchCellContext: CellContext {
   let isSwitchEnabled: Bool
   let isLastItem: Bool
   let context: Context?
-  
   init(title: String, body: String? = nil, switchLabel: String? = nil, isSwitchEnabled: Bool, isLastItem: Bool = false, context: Context? = nil) {
+
     self.title = title
     self.body = body
     self.switchLabel = switchLabel
@@ -54,60 +54,60 @@ struct SettingsSwitchCellContext: CellContext {
 
 class SettingsSwitchCell: ConfigurableTableViewCell {
   static let identifier = "SettingsSwitchCell"
-  
+
   private let titleLabel = UILabel(typography: .bodyRegular)
   private let bodyLabel = UILabel(typography: .smallRegular)
   private let switchLabel = UILabel(typography: .bodyRegular)
   private let switchControl = UISwitch()
   private let seperatorView = UIView()
   private var context: Context?
-  
+
   weak var delegate: SettingsSwitchCellDelegate?
-  
+
   override func commonInit() {
     super.commonInit()
-    
+
     backgroundColor = Style.Colors.white
     switchLabel.textAlignment = .right
     seperatorView.backgroundColor = Style.Colors.Seperator
-    
+
     let layoutGuide = UILayoutGuide()
     contentView.addLayoutGuide(layoutGuide: layoutGuide) {
       $0.top.bottom.equalToSuperview().inset(Style.Padding.p16)
       $0.leading.equalToSuperview().inset(Style.Padding.p32)
       $0.width.equalToSuperview().multipliedBy(0.6)
     }
-    
+
     contentView.addSubview(titleLabel) {
       $0.leading.trailing.top.equalTo(layoutGuide)
     }
-    
+
     contentView.addSubview(bodyLabel) {
       $0.leading.trailing.bottom.equalTo(layoutGuide)
       $0.top.equalTo(titleLabel.snp.bottom)
     }
-    
+
     contentView.addSubview(switchControl) {
       $0.top.equalToSuperview().inset(Style.Padding.p8)
       $0.trailing.equalToSuperview().inset(Style.Padding.p32)
     }
-    
+
     contentView.addSubview(switchLabel) {
       $0.leading.equalTo(layoutGuide.snp.trailing)
       $0.trailing.equalTo(switchControl.snp.leading).offset(-Style.Padding.p8)
       $0.top.equalToSuperview().inset(Style.Padding.p16)
     }
-    
+
     contentView.addSubview(seperatorView) {
       $0.height.equalTo(1)
       $0.bottom.equalToSuperview()
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
     }
   }
-  
+
   func configure(context: CellContext) {
     guard let context = context as? SettingsSwitchCellContext else { return }
-    
+
     titleLabel.text = context.title
     bodyLabel.text = context.body
     switchLabel.text = context.switchLabel
@@ -115,9 +115,9 @@ class SettingsSwitchCell: ConfigurableTableViewCell {
     seperatorView.isHidden = context.isLastItem
     self.context = context.context
   }
-  
+
   // MARK: - Actions
-  
+
   @objc
   func switchToggled() {
     delegate?.settingsSwitchToggled(newValue: switchControl.isOn, context: context)

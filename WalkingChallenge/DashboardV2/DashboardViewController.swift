@@ -32,7 +32,7 @@ import UIKit
 class DashboardViewController: TableViewController {
   override func commonInit() {
     super.commonInit()
-    
+
     title = Strings.Dashboard.title
     dataSource = DashboardDataSource()
     navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -41,7 +41,7 @@ class DashboardViewController: TableViewController {
       target: self,
       action: #selector(settingsButtonTapped))
   }
-  
+
   @objc
   func settingsButtonTapped() {
     navigationController?.pushViewController(SettingsViewController(), animated: true)

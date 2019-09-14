@@ -38,22 +38,22 @@ class AppController {
 
   var window: UIWindow?
   var navigation: UITabBarController = Navigation()
-  
+
   func launch(_ app: UIApplication, with options: [UIApplication.LaunchOptionsKey: Any]?, in window: UIWindow?) {
     self.window = window
-    
+
     // Facebook SDK Setup
     SDKApplicationDelegate.shared.application(app, didFinishLaunchingWithOptions: options)
-    
+
     // AppCenter Setup
     MSAppCenter.start(AppConfig.appCenterSecret, withServices: [
       MSAnalytics.self,
       MSCrashes.self
     ])
-    
+
     // Setup Telemetry
     AppEventsLogger.activate()
-    
+
     // Setup Window
     window?.frame = UIScreen.main.bounds
     window?.rootViewController = UIViewController()
@@ -68,7 +68,7 @@ class AppController {
 
     healthCheckServer()
   }
-  
+
   func can(_ app: UIApplication, open url: URL, with options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
     return SDKApplicationDelegate.shared.application(app, open: url, options: options)
   }
