@@ -35,7 +35,7 @@ protocol DisclosureCellDelegate: class {
 }
 
 struct DisclosureCellContext: CellContext {
-  let cellIdentifier: String = DisclosureCell.identifier
+  let identifier: String = DisclosureCell.identifier
   let title: String
   let body: String?
   let disclosureTitle: String

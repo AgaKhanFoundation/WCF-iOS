@@ -34,7 +34,7 @@ protocol SettingsSwitchCellDelegate: class {
 }
 
 struct SettingsSwitchCellContext: CellContext {
-  let cellIdentifier: String = SettingsSwitchCell.identifier
+  let identifier: String = SettingsSwitchCell.identifier
   let title: String
   let body: String?
   let switchLabel: String?

@@ -35,7 +35,7 @@ protocol ProfileCardCellDelegate: class {
 }
 
 struct ProfileCardCellContext: CellContext {
-  let cellIdentifier: String = ProfileCardCell.identifier
+  let identifier: String = ProfileCardCell.identifier
   let image: UIImage?
   let name: String
   let teamName: String
