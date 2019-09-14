@@ -35,7 +35,7 @@ class DashboardDataSource: TableViewDataSource {
   private var name: String?
   private var image: UIImage?
 
-  func reload(completion: @escaping GenericBlock) {
+  func reload(completion: @escaping () -> Void) {
     configure()
     completion()
 

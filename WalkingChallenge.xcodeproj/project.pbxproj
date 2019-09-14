@@ -52,7 +52,6 @@
 		26FE244923222B6400E01B9B /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE244823222B6400E01B9B /* DashboardViewController.swift */; };
 		26FE244B23222DF400E01B9B /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE244A23222DF400E01B9B /* Cells.swift */; };
 		26FE244D23222E8500E01B9B /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE244C23222E8500E01B9B /* Context.swift */; };
-		26FE244F23222FBF00E01B9B /* Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE244E23222FBF00E01B9B /* Blocks.swift */; };
 		26FE2451232231FB00E01B9B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2450232231FB00E01B9B /* TableViewController.swift */; };
 		26FE24532322332D00E01B9B /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE24522322332D00E01B9B /* UITableView.swift */; };
 		26FE2455232234A300E01B9B /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2454232234A300E01B9B /* EmptyCell.swift */; };
@@ -147,7 +146,6 @@
 		26FE244823222B6400E01B9B /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		26FE244A23222DF400E01B9B /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		26FE244C23222E8500E01B9B /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
-		26FE244E23222FBF00E01B9B /* Blocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blocks.swift; sourceTree = "<group>"; };
 		26FE2450232231FB00E01B9B /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		26FE24522322332D00E01B9B /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		26FE2454232234A300E01B9B /* EmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCell.swift; sourceTree = "<group>"; };
@@ -458,7 +456,6 @@
 			isa = PBXGroup;
 			children = (
 				269E350D1E76664F000726C2 /* Async.swift */,
-				26FE244E23222FBF00E01B9B /* Blocks.swift */,
 				F0F8EDD02210C65C00321A6D /* CardViewSupport.swift */,
 				269E35281E767AE1000726C2 /* Collection.swift */,
 				2606948A1E7DD1A200BFED76 /* Date.swift */,
@@ -693,7 +690,6 @@
 				F0CF39861EE0E903006A7462 /* Record.swift in Sources */,
 				260BF59A2324CFA6005F0882 /* EmptyActivityCardCell.swift in Sources */,
 				260BF5A12324D0BE005F0882 /* DisclosureCell.swift in Sources */,
-				26FE244F23222FBF00E01B9B /* Blocks.swift in Sources */,
 				F0F8EDD52210C71600321A6D /* ActivityCard.swift in Sources */,
 				2622C09423249D680092B145 /* DashboardDataSource.swift in Sources */,
 				267FAE2E2325CF590014222D /* SettingsActionCell.swift in Sources */,
