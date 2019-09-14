@@ -38,7 +38,7 @@ class SettingsDataSource: TableViewDataSource {
 
   private var isTeamLead = true
 
-  func configureCells() {
+  func configure() {
     cells = [[
       SettingsProfileCellContext(
         image: nil,

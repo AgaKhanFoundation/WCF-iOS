@@ -32,7 +32,7 @@ import Foundation
 class TeamSettingsDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
 
-  func configureCells() {
+  func configure() {
 
   }
 }
