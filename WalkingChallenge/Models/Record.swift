@@ -36,8 +36,9 @@ struct Record {
   let fbid: String
   let source: Source?
 
-  init?(json: JSON) {
+  init?(json: JSON?) {
     guard
+      let json = json,
       let date = json["date"]?.stringValue,
       let distance = json["distance"]?.intValue,
       let fbid = json["participant_id"]?.stringValue
