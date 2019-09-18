@@ -95,7 +95,7 @@ Click continue for a quick tour of the app.
     static let title: String =
         NSLocalizedString("Dashboard", comment: "Dashboard")
   }
-  
+
   struct Badges {
     static let title: String =
       NSLocalizedString("Badges", comment: "Badges")
@@ -134,13 +134,13 @@ Click continue for a quick tour of the app.
     static let viewSupporters: String =
       NSLocalizedString("View Supporters \u{203a}", comment: "View Suppoters >")
   }
-  
+
   struct Challenge {
     static let title: String =
       NSLocalizedString("Challenge", comment: "Challenge")
   }
-  
-  static let Leaderboard {
+
+  struct Leaderboard {
     static let title: String =
       NSLocalizedString("Leaderboard", comment: "Leaderboard")
   }

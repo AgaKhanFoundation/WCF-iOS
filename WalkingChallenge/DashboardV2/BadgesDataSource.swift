@@ -31,8 +31,8 @@ import Foundation
 
 class BadgesDataSource: TableViewDataSource {
   var cells = [[CellContext]]()
-  
+
   func configure() {
-    
+
   }
 }

@@ -32,7 +32,7 @@ import UIKit
 class BadgesViewController: TableViewController {
   override func commonInit() {
     super.commonInit()
-    
+
     title = Strings.Badges.title
     dataSource = BadgesDataSource()
   }
