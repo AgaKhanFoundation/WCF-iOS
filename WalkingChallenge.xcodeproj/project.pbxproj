@@ -31,6 +31,9 @@
 		2622C0962324A0490092B145 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C0952324A0490092B145 /* TableViewCell.swift */; };
 		263EF52E232A105C00A00414 /* TeamSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263EF52D232A105C00A00414 /* TeamSettingsViewController.swift */; };
 		263EF530232A106400A00414 /* TeamSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263EF52F232A106400A00414 /* TeamSettingsDataSource.swift */; };
+		2676B3C42331D45000CB0A31 /* AlertModalAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C32331D45000CB0A31 /* AlertModalAnimations.swift */; };
+		2676B3C62331DA1500CB0A31 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C52331DA1500CB0A31 /* AlertViewController.swift */; };
+		2676B3C82331E1B400CB0A31 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C72331E1B400CB0A31 /* ActionButton.swift */; };
 		26792DD81E91DCB400A7E5BA /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26792DD71E91DCB400A7E5BA /* Service.swift */; };
 		267FAE282325C1660014222D /* SettingsDisclosureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267FAE272325C1660014222D /* SettingsDisclosureCell.swift */; };
 		267FAE2A2325C9210014222D /* SettingsSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267FAE292325C9210014222D /* SettingsSwitchCell.swift */; };
@@ -122,6 +125,9 @@
 		2622C0952324A0490092B145 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		263EF52D232A105C00A00414 /* TeamSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsViewController.swift; sourceTree = "<group>"; };
 		263EF52F232A106400A00414 /* TeamSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsDataSource.swift; sourceTree = "<group>"; };
+		2676B3C32331D45000CB0A31 /* AlertModalAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalAnimations.swift; sourceTree = "<group>"; };
+		2676B3C52331DA1500CB0A31 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		2676B3C72331E1B400CB0A31 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		26792DD71E91DCB400A7E5BA /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		267FAE272325C1660014222D /* SettingsDisclosureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDisclosureCell.swift; sourceTree = "<group>"; };
 		267FAE292325C9210014222D /* SettingsSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSwitchCell.swift; sourceTree = "<group>"; };
@@ -210,6 +216,7 @@
 				260BF5912324B2C6005F0882 /* View.swift */,
 				260BF5962324C023005F0882 /* CellDisclosureView.swift */,
 				260BF5A42324D914005F0882 /* Button.swift */,
+				2676B3C72331E1B400CB0A31 /* ActionButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -274,6 +281,7 @@
 				26FE2444232228E600E01B9B /* NavigationController.swift */,
 				26FE2450232231FB00E01B9B /* TableViewController.swift */,
 				26FE24462322295300E01B9B /* ViewController.swift */,
+				2676B3C52331DA1500CB0A31 /* AlertViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -287,6 +295,14 @@
 				F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */,
 			);
 			name = Networking;
+			sourceTree = "<group>";
+		};
+		2676B3C22331D42B00CB0A31 /* Animators */ = {
+			isa = PBXGroup;
+			children = (
+				2676B3C32331D45000CB0A31 /* AlertModalAnimations.swift */,
+			);
+			path = Animators;
 			sourceTree = "<group>";
 		};
 		269E34BD1E765828000726C2 = {
@@ -318,6 +334,7 @@
 				F0A0A5FD2210EC3600F20315 /* Navigation.swift */,
 				F02FB49D1E9180CE0097481D /* Preferences.swift */,
 				269E350B1E765F73000726C2 /* StyleGuide.swift */,
+				2676B3C22331D42B00CB0A31 /* Animators */,
 				F0D16A3A2218AD530081440C /* Challenge */,
 				26FE2443232228D300E01B9B /* CommonUI */,
 				F0F8EDCF2210C62700321A6D /* Dashboard */,
@@ -673,6 +690,7 @@
 				267FAE282325C1660014222D /* SettingsDisclosureCell.swift in Sources */,
 				F0F8EDD12210C65C00321A6D /* CardViewSupport.swift in Sources */,
 				260BF5A32324D4B7005F0882 /* InfoCell.swift in Sources */,
+				2676B3C62331DA1500CB0A31 /* AlertViewController.swift in Sources */,
 				269E35091E765F24000726C2 /* UIView.swift in Sources */,
 				2622C09223249CA10092B145 /* EmptyTableViewDataSource.swift in Sources */,
 				F0681D271ED53CA70029278E /* Cause.swift in Sources */,
@@ -695,6 +713,7 @@
 				267FAE2E2325CF590014222D /* SettingsActionCell.swift in Sources */,
 				F017B6952276C9C60023E84B /* OnboardingJourney.swift in Sources */,
 				F0320B6E222F678500EABAD6 /* SegmentedView.swift in Sources */,
+				2676B3C82331E1B400CB0A31 /* ActionButton.swift in Sources */,
 				269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */,
 				269E350E1E76664F000726C2 /* Async.swift in Sources */,
 				F0DE162C221F8DD900FF17C9 /* Result.swift in Sources */,
@@ -723,6 +742,7 @@
 				269E35241E767807000726C2 /* Team.swift in Sources */,
 				260BF5972324C023005F0882 /* CellDisclosureView.swift in Sources */,
 				260BF5B52324FE32005F0882 /* SettingsProfileCell.swift in Sources */,
+				2676B3C42331D45000CB0A31 /* AlertModalAnimations.swift in Sources */,
 				260BF5A52324D914005F0882 /* Button.swift in Sources */,
 				260BF5AB2324F805005F0882 /* CGFloat.swift in Sources */,
 				269E35181E7669FB000726C2 /* LocalizedStrings.swift in Sources */,
