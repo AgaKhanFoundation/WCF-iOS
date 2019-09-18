@@ -32,6 +32,8 @@
 		263EF52E232A105C00A00414 /* TeamSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263EF52D232A105C00A00414 /* TeamSettingsViewController.swift */; };
 		263EF530232A106400A00414 /* TeamSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263EF52F232A106400A00414 /* TeamSettingsDataSource.swift */; };
 		265DE5642332BDAA009DDA5A /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5632332BDAA009DDA5A /* WebImageView.swift */; };
+		265DE5662332D663009DDA5A /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5652332D663009DDA5A /* BadgesViewController.swift */; };
+		265DE5682332D66E009DDA5A /* BadgesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5672332D66E009DDA5A /* BadgesDataSource.swift */; };
 		2676B3C42331D45000CB0A31 /* AlertModalAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C32331D45000CB0A31 /* AlertModalAnimations.swift */; };
 		2676B3C62331DA1500CB0A31 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C52331DA1500CB0A31 /* AlertViewController.swift */; };
 		2676B3C82331E1B400CB0A31 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C72331E1B400CB0A31 /* ActionButton.swift */; };
@@ -129,6 +131,8 @@
 		263EF52D232A105C00A00414 /* TeamSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsViewController.swift; sourceTree = "<group>"; };
 		263EF52F232A106400A00414 /* TeamSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsDataSource.swift; sourceTree = "<group>"; };
 		265DE5632332BDAA009DDA5A /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
+		265DE5652332D663009DDA5A /* BadgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
+		265DE5672332D66E009DDA5A /* BadgesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesDataSource.swift; sourceTree = "<group>"; };
 		2676B3C32331D45000CB0A31 /* AlertModalAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalAnimations.swift; sourceTree = "<group>"; };
 		2676B3C52331DA1500CB0A31 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		2676B3C72331E1B400CB0A31 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
@@ -234,6 +238,8 @@
 				260BF59F2324CFCE005F0882 /* Cells */,
 				26FE244823222B6400E01B9B /* DashboardViewController.swift */,
 				2622C09323249D680092B145 /* DashboardDataSource.swift */,
+				265DE5652332D663009DDA5A /* BadgesViewController.swift */,
+				265DE5672332D66E009DDA5A /* BadgesDataSource.swift */,
 			);
 			path = DashboardV2;
 			sourceTree = "<group>";
@@ -744,6 +750,7 @@
 				F0F8EDD32210C68E00321A6D /* ProfileCard.swift in Sources */,
 				260BF5B02324FD31005F0882 /* SettingsViewController.swift in Sources */,
 				F0A0A5FE2210EC3600F20315 /* Navigation.swift in Sources */,
+				265DE5682332D66E009DDA5A /* BadgesDataSource.swift in Sources */,
 				F03D77DE1EA83B0800A70230 /* Event.swift in Sources */,
 				F0C6D50D1EA3071A008E3B82 /* SelectionButton.swift in Sources */,
 				263EF52E232A105C00A00414 /* TeamSettingsViewController.swift in Sources */,
@@ -757,6 +764,7 @@
 				2676B3C42331D45000CB0A31 /* AlertModalAnimations.swift in Sources */,
 				260BF5A52324D914005F0882 /* Button.swift in Sources */,
 				260BF5AB2324F805005F0882 /* CGFloat.swift in Sources */,
+				265DE5662332D663009DDA5A /* BadgesViewController.swift in Sources */,
 				269E35181E7669FB000726C2 /* LocalizedStrings.swift in Sources */,
 				F0F8EDD92210C7FA00321A6D /* ChallengeCard.swift in Sources */,
 				2676B3CA2331F18B00CB0A31 /* TeamSettingsHeaderCell.swift in Sources */,

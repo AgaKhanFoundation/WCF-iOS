@@ -29,35 +29,11 @@
 
 import UIKit
 
-class DashboardViewController: TableViewController {
+class BadgesViewController: TableViewController {
   override func commonInit() {
     super.commonInit()
-
-    title = Strings.Dashboard.title
-    dataSource = DashboardDataSource()
-    navigationItem.rightBarButtonItem = UIBarButtonItem(
-      image: Assets.gear.image,
-      style: .plain,
-      target: self,
-      action: #selector(settingsButtonTapped))
-  }
-  
-  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    if let cell = cell as? ProfileCardCell {
-      cell.delegate = self
-    }
-  }
-  
-  // MARK: - Actions
-
-  @objc
-  func settingsButtonTapped() {
-    navigationController?.pushViewController(SettingsViewController(), animated: true)
-  }
-}
-
-extension DashboardViewController: ProfileCardCellDelegate {
-  func profileDisclosureTapped() {
-    navigationController?.pushViewController(BadgesViewController(), animated: true)
+    
+    title = Strings.Badges.title
+    dataSource = BadgesDataSource()
   }
 }
