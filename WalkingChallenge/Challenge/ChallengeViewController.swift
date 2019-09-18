@@ -30,5 +30,11 @@
 import UIKit
 import Foundation
 
-class Leaderboard: UIViewController {
+class ChallengeViewController: TableViewController {
+  override func commonInit() {
+    super.commonInit()
+    
+    title = Strings.Challenge.title
+    dataSource = ChallengeDataSource()
+  }
 }

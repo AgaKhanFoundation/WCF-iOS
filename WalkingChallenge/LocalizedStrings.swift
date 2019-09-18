@@ -134,6 +134,16 @@ Click continue for a quick tour of the app.
     static let viewSupporters: String =
       NSLocalizedString("View Supporters \u{203a}", comment: "View Suppoters >")
   }
+  
+  struct Challenge {
+    static let title: String =
+      NSLocalizedString("Challenge", comment: "Challenge")
+  }
+  
+  static let Leaderboard {
+    static let title: String =
+      NSLocalizedString("Leaderboard", comment: "Leaderboard")
+  }
 
   struct ChallengeCard {
     static let title: String =
