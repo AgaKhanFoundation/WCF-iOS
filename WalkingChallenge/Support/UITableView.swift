@@ -51,6 +51,8 @@ extension UITableView {
     register(SettingsDisclosureCell.self, forCellReuseIdentifier: SettingsDisclosureCell.identifier)
     register(SettingsSwitchCell.self, forCellReuseIdentifier: SettingsSwitchCell.identifier)
     register(SettingsActionCell.self, forCellReuseIdentifier: SettingsActionCell.identifier)
+    register(TeamSettingsHeaderCell.self, forCellReuseIdentifier: TeamSettingsHeaderCell.identifier)
+    register(TeamSettingsMemberCell.self, forCellReuseIdentifier: TeamSettingsMemberCell.identifier)
   }
 
   func reloadOnMain() {

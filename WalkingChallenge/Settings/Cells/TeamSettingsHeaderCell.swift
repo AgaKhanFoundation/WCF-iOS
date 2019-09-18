@@ -27,28 +27,39 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-import Foundation
+import UIKit
 
-class TeamSettingsDataSource: TableViewDataSource {
-  var cells: [[CellContext]] = []
+struct TeamSettingsHeaderCellContext: CellContext {
+  let identifier: String = TeamSettingsHeaderCell.identifier
+  let team: String
+  let event: String
+}
 
-  func configure() {
-    cells = [[
-      TeamSettingsHeaderCellContext(team: "World Walkers", event: "AFK Spring 2019"),
-      SettingsTitleCellContext(title: "Team Members"),
-      TeamSettingsMemberCellContext(count: 4, imageURL: nil, name: "Sarah Bhamani"),
-      TeamSettingsMemberCellContext(count: 4, imageURL: nil, name: "Sarah Bhamani"),
-      TeamSettingsMemberCellContext(count: 4, imageURL: nil, name: "Sarah Bhamani"),
-      TeamSettingsMemberCellContext(count: 4, imageURL: nil, name: "Sarah Bhamani"),
-      TeamSettingsMemberCellContext(count: 5, imageURL: nil, name: "Sarah Bhamani", isLastItem: true),
-      SettingsActionCellContext(
-        title: "Invite 5 new team members",
-        buttonStyle: .plain,
-        context: nil),
-      SettingsActionCellContext(
-        title: "Delete Team",
-        buttonStyle: .destructive,
-        context: nil)
-    ]]
+class TeamSettingsHeaderCell: ConfigurableTableViewCell {
+  static let identifier = "TeamSettingsHeaderCell"
+
+  private let teamLabel = UILabel(typography: .title)
+  private let eventLabel = UILabel(typography: .bodyRegular)
+
+  override func commonInit() {
+    super.commonInit()
+    backgroundColor = Style.Colors.white
+    teamLabel.textAlignment = .center
+    eventLabel.textAlignment = .center
+
+    contentView.addSubview(teamLabel) {
+      $0.leading.trailing.top.equalToSuperview().inset(Style.Padding.p32)
+    }
+
+    contentView.addSubview(eventLabel) {
+      $0.top.equalTo(teamLabel.snp.bottom).offset(Style.Padding.p8)
+      $0.leading.trailing.bottom.equalToSuperview().inset(Style.Padding.p32)
+    }
+  }
+
+  func configure(context: CellContext) {
+    guard let context = context as? TeamSettingsHeaderCellContext else { return }
+    teamLabel.text = context.team
+    eventLabel.text = context.event
   }
 }
