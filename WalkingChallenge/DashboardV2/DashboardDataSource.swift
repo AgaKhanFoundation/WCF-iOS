@@ -32,7 +32,7 @@ import UIKit
 class DashboardDataSource: TableViewDataSource {
   var cells = [[CellContext]]()
 
-  private var name: String?
+  private var name: String = ""
   private var imageURL: URL?
 
   func reload(completion: @escaping () -> Void) {
@@ -47,9 +47,7 @@ class DashboardDataSource: TableViewDataSource {
         self?.configure()
         completion()
       }
-    }
-
-    onBackground { [weak self] in
+      
       Facebook.getRealName(for: "me") { (name) in
         self?.name = name ?? "Could not load"
         self?.configure()
@@ -62,7 +60,7 @@ class DashboardDataSource: TableViewDataSource {
     cells = [[
       ProfileCardCellContext(
         imageURL: imageURL,
-        name: name ?? "Loading...",
+        name: name,
         teamName: "Team: Global Walkers",
         eventName: "AKF Spring 2019",
         eventTimeline: "Current Challenge",

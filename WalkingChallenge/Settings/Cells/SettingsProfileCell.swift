@@ -31,7 +31,7 @@ import UIKit
 
 struct SettingsProfileCellContext: CellContext {
   let identifier: String = SettingsProfileCell.identifier
-  let image: UIImage?
+  let imageURL: URL?
   let name: String
   let teamName: String
   let membership: String
@@ -40,7 +40,7 @@ struct SettingsProfileCellContext: CellContext {
 class SettingsProfileCell: ConfigurableTableViewCell {
   static let identifier = "SettingsProfileCell"
 
-  private let profileImageView = UIImageView()
+  private let profileImageView = WebImageView()
   private let nameLabel = UILabel(typography: .title)
   private let teamNameLabel = UILabel(typography: .smallRegular)
   private let membershipLabel = UILabel(typography: .smallRegular)
@@ -69,8 +69,12 @@ class SettingsProfileCell: ConfigurableTableViewCell {
 
   override func layoutSubviews() {
     super.layoutSubviews()
-
     profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
+  }
+
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    profileImageView.stopLoading()
   }
 
   func configure(context: CellContext) {
@@ -79,5 +83,6 @@ class SettingsProfileCell: ConfigurableTableViewCell {
     nameLabel.text = context.name
     teamNameLabel.text = context.teamName
     membershipLabel.text = context.membership
+    profileImageView.fadeInImage(imageURL: context.imageURL, placeHolderImage: Assets.placeholder.image)
   }
 }
