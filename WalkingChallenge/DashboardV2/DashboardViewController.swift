@@ -41,13 +41,13 @@ class DashboardViewController: TableViewController {
       target: self,
       action: #selector(settingsButtonTapped))
   }
-  
+
   override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     if let cell = cell as? ProfileCardCell {
       cell.delegate = self
     }
   }
-  
+
   // MARK: - Actions
 
   @objc

@@ -44,12 +44,12 @@ enum ServiceRequestResult {
 
   case success(statusCode: HTTPStatusCode, response: Response)
   case failed(_ error: Error?)
-  
+
   var response: Response {
     switch self {
     case .success(statusCode: _, response: let response):
       return response
-    case .failed(_):
+    case .failed:
       return nil
     }
   }

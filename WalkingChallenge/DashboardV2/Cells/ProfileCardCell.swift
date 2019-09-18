@@ -93,7 +93,7 @@ class ProfileCardCell: ConfigurableTableViewCell {
 
     profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
   }
-  
+
   override func prepareForReuse() {
     super.prepareForReuse()
     profileImageView.stopLoading()

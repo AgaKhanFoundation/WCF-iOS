@@ -37,7 +37,7 @@ class SettingsViewController: TableViewController {
     title = Strings.Settings.title
     dataSource = SettingsDataSource()
   }
-  
+
   override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     if let cell = cell as? SettingsActionCell {
       cell.delegate = self
@@ -64,7 +64,7 @@ class SettingsViewController: TableViewController {
       }
     }
   }
-  
+
   func logout() {
     let loginManager = LoginManager()
     loginManager.logOut()

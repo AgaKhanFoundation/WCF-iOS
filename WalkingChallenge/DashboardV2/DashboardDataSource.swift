@@ -47,7 +47,7 @@ class DashboardDataSource: TableViewDataSource {
         self?.configure()
         completion()
       }
-      
+
       Facebook.getRealName(for: "me") { (name) in
         self?.name = name ?? "Could not load"
         self?.configure()

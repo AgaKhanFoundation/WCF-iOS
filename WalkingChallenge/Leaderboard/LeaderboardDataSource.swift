@@ -31,8 +31,8 @@ import Foundation
 
 class LeaderboardDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
-  
+
   func configure() {
-    
+
   }
 }

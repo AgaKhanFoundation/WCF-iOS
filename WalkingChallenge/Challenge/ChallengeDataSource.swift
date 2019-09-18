@@ -31,8 +31,8 @@ import Foundation
 
 class ChallengeDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
-  
+
   func configure() {
-    
+
   }
 }

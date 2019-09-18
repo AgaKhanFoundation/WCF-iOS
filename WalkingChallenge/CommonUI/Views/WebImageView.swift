@@ -35,7 +35,7 @@ class WebImageView: UIImageView {
     if placeHolderImage == nil {
       alpha = 0.0
     }
-
+    // swiftlint:disable:next line_length
     let completion: SDExternalCompletionBlock = { [weak self] (image: UIImage?, error: Error?, cacheType: SDImageCacheType, url: URL?) in
       if cacheType == .none {
         self?.alpha = 0.0

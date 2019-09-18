@@ -33,7 +33,7 @@ import Foundation
 class ChallengeViewController: TableViewController {
   override func commonInit() {
     super.commonInit()
-    
+
     title = Strings.Challenge.title
     dataSource = ChallengeDataSource()
   }
