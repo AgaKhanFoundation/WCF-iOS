@@ -34,6 +34,8 @@ class SettingsDataSource: TableViewDataSource {
 
   enum SettingsContext: Context {
     case viewTeam
+    case logout
+    case deleteAccount
   }
 
   private var isTeamLead = true
@@ -93,11 +95,17 @@ class SettingsDataSource: TableViewDataSource {
         isLastItem: true),
       SettingsActionCellContext(
         title: "Logout",
-        context: nil),
+        context: SettingsContext.logout),
       SettingsActionCellContext(
         title: "Delete Account",
         buttonStyle: .plain,
-        context: nil)
+        context: SettingsContext.deleteAccount)
       ]]
+  }
+  
+  func deleteAccount(completion: @escaping () -> Void) {
+    AKFCausesService.deleteParticipant(fbid: Facebook.id) { (result) in
+      completion()
+    }
   }
 }
