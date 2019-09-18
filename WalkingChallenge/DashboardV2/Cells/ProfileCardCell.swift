@@ -29,6 +29,7 @@
 
 import UIKit
 import SnapKit
+import SDWebImage
 
 protocol ProfileCardCellDelegate: class {
   func profileDisclosureTapped()
@@ -36,7 +37,7 @@ protocol ProfileCardCellDelegate: class {
 
 struct ProfileCardCellContext: CellContext {
   let identifier: String = ProfileCardCell.identifier
-  let image: UIImage?
+  let imageURL: URL?
   let name: String
   let teamName: String
   let eventName: String
@@ -48,7 +49,7 @@ class ProfileCardCell: ConfigurableTableViewCell {
   static let identifier = "ProfileCardCell"
 
   private let cardView = CardViewV2()
-  private let profileImageView = UIImageView()
+  private let profileImageView = WebImageView()
   private let profileView = ProfileView()
   private let disclosureView = CellDisclosureView()
 
@@ -92,11 +93,15 @@ class ProfileCardCell: ConfigurableTableViewCell {
 
     profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
   }
+  
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    profileImageView.stopLoading()
+  }
 
   func configure(context: CellContext) {
     guard let context = context as? ProfileCardCellContext else { return }
-
-    profileImageView.image = context.image
+    profileImageView.fadeInImage(imageURL: context.imageURL, placeHolderImage: Assets.placeholder.image)
     profileView.configure(context: context)
     disclosureView.configure(context: CellDisclosureContext(label: context.disclosureLabel))
   }

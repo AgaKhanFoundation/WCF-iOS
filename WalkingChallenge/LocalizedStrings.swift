@@ -182,10 +182,14 @@ enum Assets: String {
   case tabbarNotificationsSelected = "tabbar-notifications-selected"
   case tabbarNotificationsUnselected = "tabbar-notifications-unselected"
 
+  case placeholder
+
   var image: UIImage? {
     switch self {
     case .disclosure:
       return UIImage(named: self.rawValue)?.withHorizontallyFlippedOrientation()
+    case .placeholder:
+      return UIImage(color: Style.Colors.FoundationGreen)
     default:
       return UIImage(named: self.rawValue)
     }

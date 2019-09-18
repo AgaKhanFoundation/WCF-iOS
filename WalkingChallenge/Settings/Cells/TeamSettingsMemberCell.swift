@@ -50,7 +50,7 @@ class TeamSettingsMemberCell: ConfigurableTableViewCell, Contextable {
   static let identifier = "TeamSettingsMemberCell"
 
   private let countLabel = UILabel(typography: .bodyRegular)
-  private let profileImageView = UIImageView(image: UIImage(color: Style.Colors.FoundationGreen))
+  private let profileImageView = UIImageView(image: Assets.placeholder.image)
   private let nameLabel = UILabel(typography: .bodyRegular)
   private let seperatorView = UIView()
   var context: Context?
