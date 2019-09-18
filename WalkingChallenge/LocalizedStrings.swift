@@ -95,6 +95,11 @@ Click continue for a quick tour of the app.
     static let title: String =
         NSLocalizedString("Dashboard", comment: "Dashboard")
   }
+  
+  struct Badges {
+    static let title: String =
+      NSLocalizedString("Badges", comment: "Badges")
+  }
 
   struct ProfileCard {
     static let challengeTimeline: String =
