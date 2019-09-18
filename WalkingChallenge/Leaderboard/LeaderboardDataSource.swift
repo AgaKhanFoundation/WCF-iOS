@@ -27,8 +27,12 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-import UIKit
 import Foundation
 
-class Challenge: UIViewController {
+class LeaderboardDataSource: TableViewDataSource {
+  var cells: [[CellContext]] = []
+  
+  func configure() {
+    
+  }
 }

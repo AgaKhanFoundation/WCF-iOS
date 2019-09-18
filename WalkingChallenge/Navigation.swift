@@ -33,12 +33,10 @@ import Foundation
 class Navigation: UITabBarController {
   private let dashboard: UINavigationController =
       NavigationController(rootVC: DashboardViewController())
-//  private let dashboard: UINavigationController =
-//      UINavigationController(rootViewController: Dashboard())
   private let challenge: UINavigationController =
-      UINavigationController(rootViewController: Challenge())
+      NavigationController(rootVC: ChallengeViewController())
   private let leaderboard: UINavigationController =
-      UINavigationController(rootViewController: Leaderboard())
+      NavigationController(rootVC: LeaderboardViewController())
   private let notifications: UINavigationController =
       UINavigationController(rootViewController: Notifications())
 
