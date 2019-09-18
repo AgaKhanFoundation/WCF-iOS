@@ -56,6 +56,7 @@ class SettingsActionCell: ConfigurableTableViewCell {
 
   override func commonInit() {
     super.commonInit()
+    button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
 
     contentView.addSubview(button) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p48)
