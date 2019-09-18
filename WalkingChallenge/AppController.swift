@@ -80,7 +80,10 @@ class AppController {
 
     var viewController: UIViewController {
       switch self {
-      case .login: return LoginViewController()
+      case .login:
+        // Rebuild navigation so data is wiped on logout
+        AppController.shared.navigation = Navigation()
+        return LoginViewController()
       case .onboarding: return Onboarding()
       case .navigation: return AppController.shared.navigation
       }
