@@ -33,7 +33,7 @@ class DashboardDataSource: TableViewDataSource {
   var cells = [[CellContext]]()
 
   private var name: String?
-  private var image: UIImage?
+  private var imageURL: URL?
 
   func reload(completion: @escaping () -> Void) {
     configure()
@@ -41,13 +41,9 @@ class DashboardDataSource: TableViewDataSource {
 
     onBackground { [weak self] in
       Facebook.profileImage(for: "me") { (url) in
-        guard
-          let url = url,
-          let data = try? Data(contentsOf: url),
-          let image = UIImage(data: data)
-        else { return }
+        guard let url = url else { return }
 
-        self?.image = image
+        self?.imageURL = url
         self?.configure()
         completion()
       }
@@ -65,7 +61,7 @@ class DashboardDataSource: TableViewDataSource {
   func configure() {
     cells = [[
       ProfileCardCellContext(
-        image: image,
+        imageURL: imageURL,
         name: name ?? "Loading...",
         teamName: "Team: Global Walkers",
         eventName: "AKF Spring 2019",
