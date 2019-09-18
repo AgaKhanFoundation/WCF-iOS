@@ -110,6 +110,19 @@ class AppController {
     transition(to: .login)
   }
 
+  // Disable the following rule because something needs to keep a reference to the delegate
+  // swiftlint:disable weak_delegate
+  var alertDelegate: AlertModalTransitioningDelegate?
+
+  func present(alert: AlertViewController, in viewController: UIViewController, completion: (() -> Void)?) {
+    alertDelegate = AlertModalTransitioningDelegate()
+
+    alert.modalPresentationStyle = .custom
+    alert.transitioningDelegate = alertDelegate
+
+    viewController.present(alert, animated: true, completion: completion)
+  }
+
   private func healthCheckServer() {
     AKFCausesService.performAPIHealthCheck { (result) in
       switch result {
