@@ -127,12 +127,13 @@ class AppController {
     AKFCausesService.performAPIHealthCheck { (result) in
       switch result {
       case .failed:
-        // TODO: Launch Blocker -- Add error handling
         self.transition(to: .login)
         if let view = self.window?.rootViewController {
-          view.alert(message: Strings.Application.unableToConnect)
+          let alert = AlertViewController()
+          alert.title = Strings.Application.unableToConnect
+          alert.add(.okay())
+          self.present(alert: alert, in: view, completion: nil)
         }
-
       case .success:
         break
       }
