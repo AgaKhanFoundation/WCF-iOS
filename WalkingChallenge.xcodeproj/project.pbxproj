@@ -64,7 +64,7 @@
 		ED85D460832E1D261F31B25E /* Pods_WalkingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */; };
 		F004030F1EBF9DAB005E6F10 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004030E1EBF9DAB005E6F10 /* JSON.swift */; };
 		F00403151EC3EC6F005E6F10 /* AKFCausesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */; };
-		F00403191EC3FB7D005E6F10 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		F00403191EC3FB7D005E6F10 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004031C1EC52772005E6F10 /* AppConfig.swift */; };
 		F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */; };
 		F017B68E227686A60023E84B /* OnboardingWelcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017B68D227686A60023E84B /* OnboardingWelcome.swift */; };
@@ -659,6 +659,7 @@
 				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -673,6 +674,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -707,7 +709,7 @@
 				26FE24472322295300E01B9B /* ViewController.swift in Sources */,
 				F06254C11ECD5D1700168DD6 /* Participant.swift in Sources */,
 				F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */,
-				F00403191EC3FB7D005E6F10 /* (null) in Sources */,
+				F00403191EC3FB7D005E6F10 /* BuildFile in Sources */,
 				F0A992D61EABF037001621A6 /* Formatters.swift in Sources */,
 				2622C09023249A4B0092B145 /* UIRefreshControl.swift in Sources */,
 				26FE244D23222E8500E01B9B /* Context.swift in Sources */,
