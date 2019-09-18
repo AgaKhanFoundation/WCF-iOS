@@ -28,6 +28,7 @@
  **/
 
 import UIKit
+import FacebookLogin
 
 class SettingsViewController: TableViewController {
   override func commonInit() {
@@ -36,12 +37,44 @@ class SettingsViewController: TableViewController {
     title = Strings.Settings.title
     dataSource = SettingsDataSource()
   }
+  
+  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    if let cell = cell as? SettingsActionCell {
+      cell.delegate = self
+    }
+  }
 
   override func handle(context: Context) {
     guard let context = context as? SettingsDataSource.SettingsContext else { return }
     switch context {
     case .viewTeam:
       navigationController?.pushViewController(TeamSettingsViewController(), animated: true)
+    case .logout:
+      logout()
+    case .deleteAccount:
+      guard let dataSource = dataSource as? SettingsDataSource else { return }
+      let alert = AlertViewController()
+      alert.title = "Deleting Account"
+      alert.isDismissable = false
+      AppController.shared.present(alert: alert, in: self) {
+        dataSource.deleteAccount { [weak self] in
+          self?.logout()
+          alert.dismiss(animated: true, completion: nil)
+        }
+      }
     }
+  }
+  
+  func logout() {
+    let loginManager = LoginManager()
+    loginManager.logOut()
+    AppController.shared.transition(to: .login)
+  }
+}
+
+extension SettingsViewController: SettingsActionCellDelegate {
+  func settingsActionCellTapped(context: Context?) {
+    guard let context = context else { return }
+    handle(context: context)
   }
 }
