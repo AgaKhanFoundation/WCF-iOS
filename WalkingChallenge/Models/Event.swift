@@ -40,8 +40,9 @@ struct Event {
   let teamLimit: Int
   let cause: Cause?
 
-  init?(json: JSON) {
+  init?(json: JSON?) {
     guard
+      let json = json,
       let name = json["name"]?.stringValue,
       let description = json["description"]?.stringValue,
       let startDate = json["start_date"]?.stringValue,

@@ -33,7 +33,8 @@ struct Cause {
   let id: Int?                                                                  // swiftlint:disable:this identifier_name line_length
   let name: String
 
-  init?(json: JSON) {
+  init?(json: JSON?) {
+    guard let json = json else { return nil }
     guard
       let name = json["name"]?.stringValue
     else { return nil }

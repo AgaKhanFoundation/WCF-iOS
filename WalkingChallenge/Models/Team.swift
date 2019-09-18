@@ -34,8 +34,9 @@ struct Team {
   let name: String?
   let members: [Participant]
 
-  init?(json: JSON) {
+  init?(json: JSON?) {
     guard
+      let json = json,
       let name = json["name"]?.stringValue
     else { return nil }
 
