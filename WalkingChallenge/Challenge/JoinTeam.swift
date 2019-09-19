@@ -32,8 +32,8 @@ import UIKit
 class JoinTeamViewController: TableViewController {
   override func commonInit() {
     super.commonInit()
-    
-    title = "Join a Team"
+
+    title = Strings.Challenge.JoinTeam.title
     dataSource = JoinTeamDataSource()
     navigationItem.leftBarButtonItem = UIBarButtonItem(
       image: Assets.close.image,
@@ -41,7 +41,7 @@ class JoinTeamViewController: TableViewController {
       target: self,
       action: #selector(closeButtonTapped))
   }
-  
+
   @objc
   func closeButtonTapped() {
     dismiss(animated: true, completion: nil)
@@ -50,9 +50,9 @@ class JoinTeamViewController: TableViewController {
 
 class JoinTeamDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
-  
+
   private var teams: [Team] = []
-  
+
   func reload(completion: @escaping () -> Void) {
     AKFCausesService.getTeams { [weak self] (result) in
       guard let rawTeams = result.response?.arrayValue else { return }

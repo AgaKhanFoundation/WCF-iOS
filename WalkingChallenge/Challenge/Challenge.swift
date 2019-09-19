@@ -37,7 +37,7 @@ class ChallengeViewController: TableViewController {
     title = Strings.Challenge.title
     dataSource = ChallengeDataSource()
   }
-  
+
   override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
     if let cell = cell as? TeamNeededCell {
@@ -50,7 +50,7 @@ extension ChallengeViewController: TeamNeededCellDelegate {
   func teamNeededCellPrimaryTapped() {
     present(NavigationController(rootVC: CreateTeamViewController()), animated: true, completion: nil)
   }
-  
+
   func teamNeededCellSecondaryTapped() {
     present(NavigationController(rootVC: JoinTeamViewController()), animated: true, completion: nil)
   }
@@ -58,14 +58,14 @@ extension ChallengeViewController: TeamNeededCellDelegate {
 
 class ChallengeDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
-  
+
   func configure() {
     cells = [[
       TeamNeededCellContext(
-        title: "You will need a Team",
-        body: "Participating in a challenge is always more fun with friends",
-        primaryButtonTitle: "Create a New Team",
-        secondaryButtonTitle: "Join an Existing Team")
+        title: Strings.Challenge.TeamNeededCard.title,
+        body: Strings.Challenge.TeamNeededCard.body,
+        primaryButtonTitle: Strings.Challenge.TeamNeededCard.primaryButton,
+        secondaryButtonTitle: Strings.Challenge.TeamNeededCard.secondaryButton)
       ]]
   }
 }

@@ -32,8 +32,8 @@ import UIKit
 class CreateTeamViewController: TableViewController {
   override func commonInit() {
     super.commonInit()
-    
-    title = "Create a Team"
+
+    title = Strings.Challenge.CreateTeam.title
     dataSource = CreateTeamDataSource()
     navigationItem.leftBarButtonItem = UIBarButtonItem(
       image: Assets.close.image,
@@ -41,7 +41,7 @@ class CreateTeamViewController: TableViewController {
       target: self,
       action: #selector(closeButtonTapped))
   }
-  
+
   @objc
   func closeButtonTapped() {
     dismiss(animated: true, completion: nil)
@@ -50,8 +50,8 @@ class CreateTeamViewController: TableViewController {
 
 class CreateTeamDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
-  
+
   func configure() {
-    
+
   }
 }

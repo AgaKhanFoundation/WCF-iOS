@@ -45,71 +45,71 @@ struct TeamNeededCellContext: CellContext {
 
 class TeamNeededCell: ConfigurableTableViewCell {
   static let identifier = "TeamNeededCell"
-  
+
   private let cardView = CardViewV2()
   private let teamNeededImageView = UIImageView(image: Assets.onboardingCreateTeam.image)
   private let titleLabel = UILabel(typography: .title)
   private let bodyLabel = UILabel(typography: .bodyRegular)
   private let primaryButton = Button(style: .primary)
   private let secondaryButton = Button(style: .secondary)
-  
+
   weak var delegate: TeamNeededCellDelegate?
-  
+
   override func commonInit() {
     super.commonInit()
-    
+
     teamNeededImageView.contentMode = .scaleAspectFit
     primaryButton.addTarget(self, action: #selector(primaryButtonTapped), for: .touchUpInside)
     secondaryButton.addTarget(self, action: #selector(secondaryButtonTapped), for: .touchUpInside)
-    
+
     contentView.addSubview(cardView) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)
       $0.top.bottom.equalToSuperview().inset(Style.Padding.p12)
     }
-    
+
     cardView.addSubview(teamNeededImageView) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p64)
       $0.top.equalToSuperview().inset(Style.Padding.p8)
     }
-    
+
     cardView.addSubview(titleLabel) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
       $0.top.equalTo(teamNeededImageView.snp.bottom).offset(Style.Padding.p16)
     }
-    
+
     cardView.addSubview(bodyLabel) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
       $0.top.equalTo(titleLabel.snp.bottom).offset(Style.Padding.p8)
     }
-    
+
     cardView.addSubview(primaryButton) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
       $0.top.equalTo(bodyLabel.snp.bottom).offset(Style.Padding.p16)
     }
-    
+
     cardView.addSubview(secondaryButton) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
       $0.top.equalTo(primaryButton.snp.bottom).offset(Style.Padding.p16)
       $0.bottom.equalToSuperview().inset(Style.Padding.p32)
     }
   }
-  
+
   func configure(context: CellContext) {
     guard let context = context as? TeamNeededCellContext else { return }
-    
+
     titleLabel.text = context.title
     bodyLabel.text = context.body
     primaryButton.title = context.primaryButtonTitle
     secondaryButton.title = context.secondaryButtonTitle
   }
-  
+
   // MARK: - Actions
-  
+
   @objc
   func primaryButtonTapped() {
     delegate?.teamNeededCellPrimaryTapped()
   }
-  
+
   @objc
   func secondaryButtonTapped() {
     delegate?.teamNeededCellSecondaryTapped()
