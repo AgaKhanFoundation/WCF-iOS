@@ -94,6 +94,8 @@ Click continue for a quick tour of the app.
   struct Dashboard {
     static let title: String =
         NSLocalizedString("Dashboard", comment: "Dashboard")
+    static let badges: String =
+      NSLocalizedString("View Badges", comment: "View Badges")
   }
 
   struct Badges {
