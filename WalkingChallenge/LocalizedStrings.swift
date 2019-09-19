@@ -140,6 +140,27 @@ Click continue for a quick tour of the app.
   struct Challenge {
     static let title: String =
       NSLocalizedString("Challenge", comment: "Challenge")
+
+    struct CreateTeam { // swiftlint:disable:this nesting
+      static let title: String =
+        NSLocalizedString("Create a Team", comment: "Create a Team")
+    }
+
+    struct JoinTeam { // swiftlint:disable:this nesting
+      static let title: String =
+        NSLocalizedString("Join a Team", comment: "Join a Team")
+    }
+
+    struct TeamNeededCard { // swiftlint:disable:this nesting
+      static let title: String =
+        NSLocalizedString("You will need a Team", comment: "TeamNeededCard Title")
+      static let body: String =
+        NSLocalizedString("Participating in a challenge is always more fun with friends", comment: "TeamNeededCard Body") // swiftlint:disable:this line_length
+      static let primaryButton: String =
+        NSLocalizedString("Create a New Team", comment: "TeamNeededCard PrimaryButton")
+      static let secondaryButton: String =
+        NSLocalizedString("Join an Existing Team", comment: "TeamNeededCard SecondaryButton")
+    }
   }
 
   struct Leaderboard {
@@ -165,6 +186,8 @@ Click continue for a quick tour of the app.
   struct Settings {
     static let title: String =
       NSLocalizedString("Settings", comment: "Settings screen title")
+    static let delete: String =
+      NSLocalizedString("Delete Account", comment: "Delete Account")
   }
 
   struct TeamSettings {

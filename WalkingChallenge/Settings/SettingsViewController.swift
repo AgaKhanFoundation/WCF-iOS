@@ -55,7 +55,7 @@ class SettingsViewController: TableViewController {
     case .deleteAccount:
       guard let dataSource = dataSource as? SettingsDataSource else { return }
       let alert = AlertViewController()
-      alert.title = "Deleting Account"
+      alert.title = Strings.Settings.delete
       alert.isDismissable = false
       AppController.shared.present(alert: alert, in: self) {
         dataSource.deleteAccount { [weak self] in

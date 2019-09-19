@@ -116,7 +116,7 @@ class AKFCausesService: Service {
   static func deleteTeam(team: Int, completion: ServiceRequestCompletion? = nil) {
     shared.request(.delete, endpoint: .team(teamId: team), completion: completion)
   }
-  
+
   static func getTeams(completion: ServiceRequestCompletion? = nil) {
     shared.request(endpoint: .teams, completion: completion)
   }

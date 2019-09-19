@@ -35,19 +35,17 @@ struct JoinTeamCellContext: CellContext {
 
 class JoinTeamCell: ConfigurableTableViewCell {
   static let identifier = "JoinTeamCell"
-  
+
   private let teamNameLabel = UILabel(typography: .bodyRegular)
   private let availableLabel = UILabel(typography: .subtitleRegular)
   private let seperatorView = UIView()
-  
+
   override func commonInit() {
     super.commonInit()
     backgroundColor = Style.Colors.white
   }
-  
+
   func configure(context: CellContext) {
-    guard let context = context as? JoinTeamCellContext else { return }
-    
-    
+
   }
 }

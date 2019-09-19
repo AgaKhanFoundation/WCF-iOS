@@ -52,7 +52,7 @@ class DashboardDataSource: TableViewDataSource {
       }
 
       Facebook.getRealName(for: "me") { (name) in
-        self?.name = name ?? "Could not load"
+        self?.name = name ?? "<Facebook Error>"
         self?.configure()
         completion()
       }
