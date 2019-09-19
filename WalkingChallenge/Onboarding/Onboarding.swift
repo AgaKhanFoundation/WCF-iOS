@@ -73,6 +73,7 @@ class Onboarding : UIPageViewController {                                       
     control.pageIndicatorTintColor = Style.Colors.grey
     control.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
+      make.centerY.equalToSuperview().multipliedBy(1.5)
     }
 
     btnContinue.layer.borderColor = Style.Colors.green.cgColor
@@ -99,7 +100,6 @@ class Onboarding : UIPageViewController {                                       
                                for: .normal)
     btnSkip.snp.makeConstraints { (make) in
       make.top.equalTo(btnContinue.snp.bottom).offset(Style.Size.s16)
-      make.bottom.equalToSuperview().inset(Style.Size.s48)
       make.centerX.equalToSuperview()
     }
     btnSkip.addTarget(self, action: #selector(skip), for: .touchUpInside)
