@@ -56,6 +56,20 @@ class DashboardDataSource: TableViewDataSource {
         self?.configure()
         completion()
       }
+
+      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+        guard let participant = Participant(json: result.response) else { return }
+        self?.eventName = participant.event?.name ?? " "
+        self?.teamName = participant.team?.name ?? " "
+
+        guard
+          let start = participant.event?.start,
+          let end = participant.event?.end
+        else { return }
+
+        self?.eventTimeline =
+            DataFormatters.formatDateRange(value: (start: start, end: end))
+      }
     }
   }
 
