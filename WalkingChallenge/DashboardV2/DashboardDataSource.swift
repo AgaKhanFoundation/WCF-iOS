@@ -62,13 +62,11 @@ class DashboardDataSource: TableViewDataSource {
         self?.eventName = participant.event?.name ?? " "
         self?.teamName = participant.team?.name ?? " "
 
-        guard
-          let start = participant.event?.start,
-          let end = participant.event?.end
-        else { return }
-
-        self?.eventTimeline =
-            DataFormatters.formatDateRange(value: (start: start, end: end))
+        if let event = participant.event {
+          self?.eventTimeline =
+            DataFormatters.formatDateRange(value: (start: event.teamFormationPhase.start,
+                                                   end: event.challengePhase.end))
+        }
       }
     }
   }

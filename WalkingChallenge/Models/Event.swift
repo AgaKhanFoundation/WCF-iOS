@@ -30,13 +30,18 @@
 import Foundation
 
 struct Event {
+  struct DateRange {
+    let start: Date
+    let end: Date
+  }
+
   let image: URL?
 
   let id: Int?                                                                  // swiftlint:disable:this identifier_name line_length
   let name: String
   let description: String
-  let start: Date
-  let end: Date
+  let challengePhase: DateRange
+  let teamFormationPhase: DateRange
   let teamLimit: Int
   let cause: Cause?
 
@@ -47,7 +52,9 @@ struct Event {
       let description = json["description"]?.stringValue,
       let startDate = json["start_date"]?.stringValue,
       let endDate = json["end_date"]?.stringValue,
-      let teamLimit = json["team_limit"]?.intValue
+      let teamLimit = json["team_limit"]?.intValue,
+      let teamBuildingStart = json["team_building_start"]?.stringValue,
+      let teamBuildingEnd = json["team_building_end"]?.stringValue
     else { return nil }
 
     let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
@@ -59,8 +66,12 @@ struct Event {
     self.id = json["id"]?.intValue
     self.name = name
     self.description = description
-    self.start = formatter.date(from: startDate) ?? Date()
-    self.end = formatter.date(from: endDate) ?? Date()
+    self.challengePhase =
+        DateRange(start: formatter.date(from: startDate) ?? Date(),
+                  end: formatter.date(from: endDate) ?? Date())
+    self.teamFormationPhase =
+        DateRange(start: formatter.date(from: teamBuildingStart) ?? Date(),
+                  end: formatter.date(from: teamBuildingEnd) ?? Date())
     self.teamLimit = teamLimit
 
     if let cause = json["cause"] {
