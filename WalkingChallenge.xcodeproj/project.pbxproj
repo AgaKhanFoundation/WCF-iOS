@@ -195,6 +195,7 @@
 		F06254C01ECD5D1700168DD6 /* Participant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
 		F0681D261ED53CA70029278E /* Cause.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cause.swift; sourceTree = "<group>"; };
 		F078D9D42333EC3000EF0BAD /* AKFLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKFLogin.swift; sourceTree = "<group>"; };
+		F078D9D62334354000EF0BAD /* steps4impact.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = steps4impact.entitlements; sourceTree = "<group>"; };
 		F0A0A5FD2210EC3600F20315 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		F0A992D51EABF037001621A6 /* Formatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		F0A992D71EAC3812001621A6 /* ProgressRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressRing.swift; sourceTree = "<group>"; };
@@ -344,6 +345,7 @@
 		269E34BD1E765828000726C2 = {
 			isa = PBXGroup;
 			children = (
+				F078D9D62334354000EF0BAD /* steps4impact.entitlements */,
 				F03D77D91EA839D300A70230 /* Data Sources */,
 				269E34C81E765828000726C2 /* WalkingChallenge */,
 				269E34C71E765828000726C2 /* Products */,
@@ -951,7 +953,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "WalkingChallenge/Supporting Files/WalkingChallenge.entitlements";
+				CODE_SIGN_ENTITLEMENTS = steps4impact.entitlements;
 				DEVELOPMENT_TEAM = 6SQ8F32998;
 				INFOPLIST_FILE = WalkingChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -968,7 +970,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "WalkingChallenge/Supporting Files/WalkingChallenge.entitlements";
+				CODE_SIGN_ENTITLEMENTS = steps4impact.entitlements;
 				DEVELOPMENT_TEAM = 6SQ8F32998;
 				INFOPLIST_FILE = WalkingChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
