@@ -51,6 +51,10 @@ struct Event {
     else { return nil }
 
     let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
+    formatter.formatOptions = [
+      .withInternetDateTime,
+      .withFractionalSeconds
+    ]
 
     self.id = json["id"]?.intValue
     self.name = name
