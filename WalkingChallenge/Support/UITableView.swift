@@ -53,6 +53,7 @@ extension UITableView {
     register(SettingsActionCell.self, forCellReuseIdentifier: SettingsActionCell.identifier)
     register(TeamSettingsHeaderCell.self, forCellReuseIdentifier: TeamSettingsHeaderCell.identifier)
     register(TeamSettingsMemberCell.self, forCellReuseIdentifier: TeamSettingsMemberCell.identifier)
+    register(TeamNeededCell.self, forCellReuseIdentifier: TeamNeededCell.identifier)
   }
 
   func reloadOnMain() {
