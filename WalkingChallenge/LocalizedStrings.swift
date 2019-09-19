@@ -97,7 +97,7 @@ Click continue for a quick tour of the app.
     static let badges: String =
       NSLocalizedString("View Badges", comment: "View Badges")
 
-    struct Activity {
+    struct Activity {                                                            // swiftlint:disable:this nesting
       static let title: String =
           NSLocalizedString("Activity", comment: "Activity")
       static let disconnected: String =
@@ -108,7 +108,7 @@ Click continue for a quick tour of the app.
                             comment: "Connect an App or Device")
     }
 
-    struct ChallengeProgress {
+    struct ChallengeProgress {                                                   // swiftlint:disable:this nesting
       static let title: String =
           NSLocalizedString("Challenge Progress", comment: "Challenge Progress")
       static let unavailable: String =
@@ -116,7 +116,7 @@ Click continue for a quick tour of the app.
                             comment: "No data available. You will be able to see your team's progress once the challenge has started")
     }
 
-    struct FundrasingProgress {
+    struct FundrasingProgress {                                                  // swiftlint:disable:this nesting
       static let title: String =
           NSLocalizedString("Fundraising Progress",
                             comment: "Fundraising Progress")
