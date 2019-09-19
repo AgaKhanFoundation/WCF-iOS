@@ -44,7 +44,8 @@ struct DataFormatters {
 
   static func formatDateRange(value: (start: Date, end: Date)) -> String {
     let formatter: DateIntervalFormatter = DateIntervalFormatter()
-    formatter.dateTemplate = "MMMMd"
+    formatter.dateStyle = .medium
+    formatter.timeStyle = .none
     return formatter.string(from: value.start, to: value.end)
   }
 }
