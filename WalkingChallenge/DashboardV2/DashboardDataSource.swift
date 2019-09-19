@@ -69,16 +69,16 @@ class DashboardDataSource: TableViewDataSource {
         eventTimeline: eventTimeline,
         disclosureLabel: Strings.Dashboard.badges),
       EmptyActivityCellContext(
-        title: "Activity",
-        body: "No activity yet. You will need to connect a fitness tracker to track your miles",
-        ctaTitle: "Connect an App or Device"),
+        title: Strings.Dashboard.Activity.title,
+        body: Strings.Dashboard.Activity.disconnected,
+        ctaTitle: Strings.Dashboard.Activity.connect),
       InfoCellContext(
-        title: "Challenge Progress",
-        body: "No data available. You will be able to see your team's progress once the challenge has started"),
+        title: Strings.Dashboard.ChallengeProgress.title,
+        body: Strings.Dashboard.ChallengeProgress.unavailable),
       DisclosureCellContext(
-        title: "Fundraising Progress",
-        body: "No data available. You will be able to see your progress once the challenge has started.",
-        disclosureTitle: "Invite supporters to pledge",
+        title: Strings.Dashboard.FundrasingProgress.title,
+        body: Strings.Dashboard.FundrasingProgress.unavailable,
+        disclosureTitle: Strings.Dashboard.FundrasingProgress.invite,
         context: nil)
     ]]
   }

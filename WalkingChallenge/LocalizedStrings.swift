@@ -96,6 +96,37 @@ Click continue for a quick tour of the app.
         NSLocalizedString("Dashboard", comment: "Dashboard")
     static let badges: String =
       NSLocalizedString("View Badges", comment: "View Badges")
+
+    struct Activity {
+      static let title: String =
+          NSLocalizedString("Activity", comment: "Activity")
+      static let disconnected: String =
+          NSLocalizedString("No activity yet. You will need to connect a fitness tracker to track your miles",
+                            comment: "No activity yet. You will need to connect a fitness tracker to track your miles")
+      static let connect: String =
+          NSLocalizedString("Connect an App or Device",
+                            comment: "Connect an App or Device")
+    }
+
+    struct ChallengeProgress {
+      static let title: String =
+          NSLocalizedString("Challenge Progress", comment: "Challenge Progress")
+      static let unavailable: String =
+          NSLocalizedString("No data available. You will be able to see your team's progress once the challenge has started",
+                            comment: "No data available. You will be able to see your team's progress once the challenge has started")
+    }
+
+    struct FundrasingProgress {
+      static let title: String =
+          NSLocalizedString("Fundraising Progress",
+                            comment: "Fundraising Progress")
+      static let unavailable: String =
+          NSLocalizedString("No data available. You will be able to see your progress once the challenge has started.",
+                            comment: "No data available. You will be able to see your progress once the challenge has started.")
+      static let invite: String =
+          NSLocalizedString("Invite supporters to pledge",
+                            comment: "Invite supporters to pledge")
+    }
   }
 
   struct Badges {
