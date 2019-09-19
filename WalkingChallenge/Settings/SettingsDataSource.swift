@@ -102,9 +102,9 @@ class SettingsDataSource: TableViewDataSource {
         context: SettingsContext.deleteAccount)
       ]]
   }
-  
+
   func deleteAccount(completion: @escaping () -> Void) {
-    AKFCausesService.deleteParticipant(fbid: Facebook.id) { (result) in
+    AKFCausesService.deleteParticipant(fbid: Facebook.id) { (_) in
       completion()
     }
   }
