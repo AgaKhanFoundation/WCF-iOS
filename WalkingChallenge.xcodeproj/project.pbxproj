@@ -34,8 +34,11 @@
 		265DE5642332BDAA009DDA5A /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5632332BDAA009DDA5A /* WebImageView.swift */; };
 		265DE5662332D663009DDA5A /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5652332D663009DDA5A /* BadgesViewController.swift */; };
 		265DE5682332D66E009DDA5A /* BadgesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5672332D66E009DDA5A /* BadgesDataSource.swift */; };
-		265DE56A2332E2E5009DDA5A /* ChallengeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5692332E2E5009DDA5A /* ChallengeDataSource.swift */; };
 		265DE56C2332E492009DDA5A /* LeaderboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE56B2332E492009DDA5A /* LeaderboardDataSource.swift */; };
+		265DE56F2332F645009DDA5A /* TeamNeededCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE56E2332F645009DDA5A /* TeamNeededCell.swift */; };
+		265DE5712332FB38009DDA5A /* CreateTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5702332FB38009DDA5A /* CreateTeam.swift */; };
+		265DE5732332FBA9009DDA5A /* JoinTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5722332FBA9009DDA5A /* JoinTeam.swift */; };
+		265DE5752333015F009DDA5A /* JoinTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5742333015F009DDA5A /* JoinTeamCell.swift */; };
 		2676B3C42331D45000CB0A31 /* AlertModalAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C32331D45000CB0A31 /* AlertModalAnimations.swift */; };
 		2676B3C62331DA1500CB0A31 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C52331DA1500CB0A31 /* AlertViewController.swift */; };
 		2676B3C82331E1B400CB0A31 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C72331E1B400CB0A31 /* ActionButton.swift */; };
@@ -93,7 +96,7 @@
 		F0CBDA521EA6FF1D00BB34F1 /* Sponsor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */; };
 		F0CF39861EE0E903006A7462 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF39851EE0E903006A7462 /* Record.swift */; };
 		F0CF39881EE0EA98006A7462 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF39871EE0EA98006A7462 /* Source.swift */; };
-		F0D16A3C2218AD810081440C /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D16A3B2218AD810081440C /* ChallengeViewController.swift */; };
+		F0D16A3C2218AD810081440C /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D16A3B2218AD810081440C /* Challenge.swift */; };
 		F0DE162C221F8DD900FF17C9 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DE162B221F8DD900FF17C9 /* Result.swift */; };
 		F0E1828A1E80B1DB00665E4F /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E182891E80B1DB00665E4F /* Facebook.swift */; };
 		F0E6878F22251B7800454340 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6878E22251B7800454340 /* LeaderboardViewController.swift */; };
@@ -135,8 +138,11 @@
 		265DE5632332BDAA009DDA5A /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
 		265DE5652332D663009DDA5A /* BadgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
 		265DE5672332D66E009DDA5A /* BadgesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesDataSource.swift; sourceTree = "<group>"; };
-		265DE5692332E2E5009DDA5A /* ChallengeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDataSource.swift; sourceTree = "<group>"; };
 		265DE56B2332E492009DDA5A /* LeaderboardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardDataSource.swift; sourceTree = "<group>"; };
+		265DE56E2332F645009DDA5A /* TeamNeededCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamNeededCell.swift; sourceTree = "<group>"; };
+		265DE5702332FB38009DDA5A /* CreateTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeam.swift; sourceTree = "<group>"; };
+		265DE5722332FBA9009DDA5A /* JoinTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeam.swift; sourceTree = "<group>"; };
+		265DE5742333015F009DDA5A /* JoinTeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamCell.swift; sourceTree = "<group>"; };
 		2676B3C32331D45000CB0A31 /* AlertModalAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalAnimations.swift; sourceTree = "<group>"; };
 		2676B3C52331DA1500CB0A31 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		2676B3C72331E1B400CB0A31 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
@@ -196,7 +202,7 @@
 		F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sponsor.swift; sourceTree = "<group>"; };
 		F0CF39851EE0E903006A7462 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		F0CF39871EE0EA98006A7462 /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
-		F0D16A3B2218AD810081440C /* ChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewController.swift; sourceTree = "<group>"; };
+		F0D16A3B2218AD810081440C /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		F0DE162B221F8DD900FF17C9 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		F0E182891E80B1DB00665E4F /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
 		F0E6878E22251B7800454340 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
@@ -303,6 +309,15 @@
 				2676B3C52331DA1500CB0A31 /* AlertViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		265DE56D2332F633009DDA5A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				265DE56E2332F645009DDA5A /* TeamNeededCell.swift */,
+				265DE5742333015F009DDA5A /* JoinTeamCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		266986791E91D50E004D45B4 /* Networking */ = {
@@ -483,8 +498,10 @@
 		F0D16A3A2218AD530081440C /* Challenge */ = {
 			isa = PBXGroup;
 			children = (
-				F0D16A3B2218AD810081440C /* ChallengeViewController.swift */,
-				265DE5692332E2E5009DDA5A /* ChallengeDataSource.swift */,
+				265DE56D2332F633009DDA5A /* Cells */,
+				F0D16A3B2218AD810081440C /* Challenge.swift */,
+				265DE5702332FB38009DDA5A /* CreateTeam.swift */,
+				265DE5722332FBA9009DDA5A /* JoinTeam.swift */,
 			);
 			path = Challenge;
 			sourceTree = "<group>";
@@ -705,7 +722,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0D16A3C2218AD810081440C /* ChallengeViewController.swift in Sources */,
+				F0D16A3C2218AD810081440C /* Challenge.swift in Sources */,
 				F017B68E227686A60023E84B /* OnboardingWelcome.swift in Sources */,
 				260BF5B22324FD37005F0882 /* SettingsDataSource.swift in Sources */,
 				F0A992D81EAC3812001621A6 /* ProgressRing.swift in Sources */,
@@ -736,16 +753,18 @@
 				2622C09423249D680092B145 /* DashboardDataSource.swift in Sources */,
 				267FAE2E2325CF590014222D /* SettingsActionCell.swift in Sources */,
 				F017B6952276C9C60023E84B /* OnboardingJourney.swift in Sources */,
-				265DE56A2332E2E5009DDA5A /* ChallengeDataSource.swift in Sources */,
+				265DE5732332FBA9009DDA5A /* JoinTeam.swift in Sources */,
 				F0320B6E222F678500EABAD6 /* SegmentedView.swift in Sources */,
 				2676B3C82331E1B400CB0A31 /* ActionButton.swift in Sources */,
 				269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */,
 				269E350E1E76664F000726C2 /* Async.swift in Sources */,
+				265DE5752333015F009DDA5A /* JoinTeamCell.swift in Sources */,
 				F0DE162C221F8DD900FF17C9 /* Result.swift in Sources */,
 				F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */,
 				26792DD81E91DCB400A7E5BA /* Service.swift in Sources */,
 				260BF5A92324F7D1005F0882 /* UIColor.swift in Sources */,
 				260BF5A72324D99A005F0882 /* UIImage.swift in Sources */,
+				265DE56F2332F645009DDA5A /* TeamNeededCell.swift in Sources */,
 				2676B3CC2331F3D400CB0A31 /* TeamSettingsMemberCell.swift in Sources */,
 				269E35291E767AE1000726C2 /* Collection.swift in Sources */,
 				260BF5B7232502A9005F0882 /* UIStackView.swift in Sources */,
@@ -753,6 +772,7 @@
 				F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */,
 				26FE24532322332D00E01B9B /* UITableView.swift in Sources */,
 				F004030F1EBF9DAB005E6F10 /* JSON.swift in Sources */,
+				265DE5712332FB38009DDA5A /* CreateTeam.swift in Sources */,
 				F00403151EC3EC6F005E6F10 /* AKFCausesService.swift in Sources */,
 				260BF5B923250414005F0882 /* SettingsTitleCell.swift in Sources */,
 				F0F8EDD32210C68E00321A6D /* ProfileCard.swift in Sources */,
