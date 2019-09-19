@@ -27,12 +27,45 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
+import UIKit
 import Foundation
+
+class ChallengeViewController: TableViewController {
+  override func commonInit() {
+    super.commonInit()
+
+    title = Strings.Challenge.title
+    dataSource = ChallengeDataSource()
+  }
+  
+  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
+    if let cell = cell as? TeamNeededCell {
+      cell.delegate = self
+    }
+  }
+}
+
+extension ChallengeViewController: TeamNeededCellDelegate {
+  func teamNeededCellPrimaryTapped() {
+    present(NavigationController(rootVC: CreateTeamViewController()), animated: true, completion: nil)
+  }
+  
+  func teamNeededCellSecondaryTapped() {
+    present(NavigationController(rootVC: JoinTeamViewController()), animated: true, completion: nil)
+  }
+}
 
 class ChallengeDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
-
+  
   func configure() {
-
+    cells = [[
+      TeamNeededCellContext(
+        title: "You will need a Team",
+        body: "Participating in a challenge is always more fun with friends",
+        primaryButtonTitle: "Create a New Team",
+        secondaryButtonTitle: "Join an Existing Team")
+      ]]
   }
 }
