@@ -40,36 +40,44 @@ class SettingsDataSource: TableViewDataSource {
 
   private var isTeamLead = true
   private var imageURL: URL?
-  private var name: String = ""
-  
+  private var name: String = " "
+  private var isOnTeam: Bool = false
+  private var teamName: String = " "
+  private var teamMembership: String = " "
+
   func reload(completion: @escaping () -> Void) {
     configure()
     completion()
-    
+
     onBackground { [weak self] in
       Facebook.profileImage(for: "me") { (url) in
         guard let url = url else { return }
-        
+
         self?.imageURL = url
         self?.configure()
         completion()
       }
-      
+
       Facebook.getRealName(for: "me") { (name) in
         self?.name = name ?? "Could not load"
         self?.configure()
         completion()
       }
+
+      AKFCausesService.getParticipant(fbid: Facebook.id, completion: { (result) in
+        guard let participant = Participant(json: result.response) else { return }
+        self?.isOnTeam = participant.team != nil
+      })
     }
   }
-  
+
   func configure() {
     cells = [[
       SettingsProfileCellContext(
         imageURL: imageURL,
         name: name,
-        teamName: "World Walkers",
-        membership: "Team Lead"),
+        teamName: teamName,
+        membership: teamMembership),
       SettingsTitleCellContext(
         title: "Personal"),
       SettingsDisclosureCellContext(
