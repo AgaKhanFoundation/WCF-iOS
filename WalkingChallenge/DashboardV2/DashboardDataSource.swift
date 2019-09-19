@@ -32,8 +32,11 @@ import UIKit
 class DashboardDataSource: TableViewDataSource {
   var cells = [[CellContext]]()
 
-  private var name: String = ""
+  private var name: String = " "
   private var imageURL: URL?
+  private var teamName: String = " "
+  private var eventName: String = " "
+  private var eventTimeline: String = " "
 
   func reload(completion: @escaping () -> Void) {
     configure()
@@ -61,10 +64,10 @@ class DashboardDataSource: TableViewDataSource {
       ProfileCardCellContext(
         imageURL: imageURL,
         name: name,
-        teamName: "Team: Global Walkers",
-        eventName: "AKF Spring 2019",
-        eventTimeline: "Current Challenge",
-        disclosureLabel: "View Badges"),
+        teamName: teamName,
+        eventName: eventName,
+        eventTimeline: eventTimeline,
+        disclosureLabel: Strings.Dashboard.badges),
       EmptyActivityCellContext(
         title: "Activity",
         body: "No activity yet. You will need to connect a fitness tracker to track your miles",
