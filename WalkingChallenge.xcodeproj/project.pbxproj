@@ -88,6 +88,7 @@
 		F06254C11ECD5D1700168DD6 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06254C01ECD5D1700168DD6 /* Participant.swift */; };
 		F0681D271ED53CA70029278E /* Cause.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0681D261ED53CA70029278E /* Cause.swift */; };
 		F078D9D52333EC3000EF0BAD /* AKFLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F078D9D42333EC3000EF0BAD /* AKFLogin.swift */; };
+		F078D9DA2334453F00EF0BAD /* ConnectedActivityCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F078D9D92334453F00EF0BAD /* ConnectedActivityCardCell.swift */; };
 		F0A0A5FE2210EC3600F20315 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0A5FD2210EC3600F20315 /* Navigation.swift */; };
 		F0A992D61EABF037001621A6 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A992D51EABF037001621A6 /* Formatters.swift */; };
 		F0A992D81EAC3812001621A6 /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A992D71EAC3812001621A6 /* ProgressRing.swift */; };
@@ -196,6 +197,7 @@
 		F0681D261ED53CA70029278E /* Cause.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cause.swift; sourceTree = "<group>"; };
 		F078D9D42333EC3000EF0BAD /* AKFLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKFLogin.swift; sourceTree = "<group>"; };
 		F078D9D62334354000EF0BAD /* steps4impact.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = steps4impact.entitlements; sourceTree = "<group>"; };
+		F078D9D92334453F00EF0BAD /* ConnectedActivityCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedActivityCardCell.swift; sourceTree = "<group>"; };
 		F0A0A5FD2210EC3600F20315 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		F0A992D51EABF037001621A6 /* Formatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		F0A992D71EAC3812001621A6 /* ProgressRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressRing.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			children = (
 				260BF5992324CFA6005F0882 /* EmptyActivityCardCell.swift */,
 				260BF5942324B3FC005F0882 /* ProfileCardCell.swift */,
+				F078D9D92334453F00EF0BAD /* ConnectedActivityCardCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -781,6 +784,7 @@
 				2676B3CC2331F3D400CB0A31 /* TeamSettingsMemberCell.swift in Sources */,
 				269E35291E767AE1000726C2 /* Collection.swift in Sources */,
 				260BF5B7232502A9005F0882 /* UIStackView.swift in Sources */,
+				F078D9DA2334453F00EF0BAD /* ConnectedActivityCardCell.swift in Sources */,
 				F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */,
 				F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */,
 				26FE24532322332D00E01B9B /* UITableView.swift in Sources */,

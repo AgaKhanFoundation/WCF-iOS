@@ -72,6 +72,14 @@ class DashboardDataSource: TableViewDataSource {
   }
 
   func configure() {
+    var activityCellContext: CellContext =
+        EmptyActivityCellContext(title: Strings.Dashboard.Activity.title,
+                                 body: Strings.Dashboard.Activity.disconnected,
+                                 ctaTitle: Strings.Dashboard.Activity.connect)
+    if UserInfo.pedometerSource != nil {
+      activityCellContext = ConnectedActivityCellContext()
+    }
+
     cells = [[
       ProfileCardCellContext(
         imageURL: imageURL,
@@ -80,10 +88,7 @@ class DashboardDataSource: TableViewDataSource {
         eventName: eventName,
         eventTimeline: eventTimeline,
         disclosureLabel: Strings.Dashboard.badges),
-      EmptyActivityCellContext(
-        title: Strings.Dashboard.Activity.title,
-        body: Strings.Dashboard.Activity.disconnected,
-        ctaTitle: Strings.Dashboard.Activity.connect),
+      activityCellContext,
       InfoCellContext(
         title: Strings.Dashboard.ChallengeProgress.title,
         body: Strings.Dashboard.ChallengeProgress.unavailable),
