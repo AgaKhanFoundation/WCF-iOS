@@ -152,7 +152,7 @@
 		267FAE272325C1660014222D /* SettingsDisclosureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDisclosureCell.swift; sourceTree = "<group>"; };
 		267FAE292325C9210014222D /* SettingsSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSwitchCell.swift; sourceTree = "<group>"; };
 		267FAE2D2325CF590014222D /* SettingsActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsActionCell.swift; sourceTree = "<group>"; };
-		269E34C61E765828000726C2 /* WalkingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		269E34C61E765828000726C2 /* steps4impact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = steps4impact.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		269E34C91E765828000726C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		269E34D01E765828000726C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		269E34D51E765828000726C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -355,7 +355,7 @@
 		269E34C71E765828000726C2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				269E34C61E765828000726C2 /* WalkingChallenge.app */,
+				269E34C61E765828000726C2 /* steps4impact.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -568,9 +568,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		269E34C51E765828000726C2 /* WalkingChallenge */ = {
+		269E34C51E765828000726C2 /* steps4impact */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 269E34E31E765828000726C2 /* Build configuration list for PBXNativeTarget "WalkingChallenge" */;
+			buildConfigurationList = 269E34E31E765828000726C2 /* Build configuration list for PBXNativeTarget "steps4impact" */;
 			buildPhases = (
 				14FA866E60122FB13DD0CD94 /* [CP] Check Pods Manifest.lock */,
 				269E34C21E765828000726C2 /* Sources */,
@@ -583,9 +583,9 @@
 			);
 			dependencies = (
 			);
-			name = WalkingChallenge;
+			name = steps4impact;
 			productName = WalkingChallenge;
-			productReference = 269E34C61E765828000726C2 /* WalkingChallenge.app */;
+			productReference = 269E34C61E765828000726C2 /* steps4impact.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -625,7 +625,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				269E34C51E765828000726C2 /* WalkingChallenge */,
+				269E34C51E765828000726C2 /* steps4impact */,
 			);
 		};
 /* End PBXProject section */
@@ -943,7 +943,7 @@
 				DEVELOPMENT_TEAM = 6SQ8F32998;
 				INFOPLIST_FILE = WalkingChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.akf.WalkingChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = org.step4change;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -960,7 +960,7 @@
 				DEVELOPMENT_TEAM = 6SQ8F32998;
 				INFOPLIST_FILE = WalkingChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.akf.WalkingChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = org.step4change;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -978,7 +978,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		269E34E31E765828000726C2 /* Build configuration list for PBXNativeTarget "WalkingChallenge" */ = {
+		269E34E31E765828000726C2 /* Build configuration list for PBXNativeTarget "steps4impact" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				269E34E41E765828000726C2 /* Debug */,

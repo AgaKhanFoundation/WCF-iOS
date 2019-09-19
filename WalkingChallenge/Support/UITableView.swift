@@ -31,8 +31,8 @@ import UIKit
 
 extension UITableView {
   func configure<V>(with viewController: V) where V: UITableViewDataSource & UITableViewDelegate {
-    backgroundColor = WalkingChallenge.Style.Colors.Background
-    estimatedRowHeight = WalkingChallenge.Style.Padding.p40
+    backgroundColor = steps4impact.Style.Colors.Background
+    estimatedRowHeight = steps4impact.Style.Padding.p40
     rowHeight = UITableView.automaticDimension
     separatorStyle = .none
     delegate = viewController
