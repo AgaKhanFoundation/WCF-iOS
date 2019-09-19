@@ -33,6 +33,6 @@ class LeaderboardViewController: TableViewController {
   override func commonInit() {
     super.commonInit()
     title = Strings.Leaderboard.title
-    dataSource = ChallengeDataSource()
+    dataSource = LeaderboardDataSource()
   }
 }
