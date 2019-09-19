@@ -38,8 +38,7 @@ class LoginViewController: UIViewController {
   let lblTitle: UILabel = UILabel(typography: .onboarding)
   let imgImage: UIImageView =
       UIImageView(image: Assets.onboardingLoginPeople.image)
-  let btnLogin: LoginButton =
-    LoginButton(readPermissions: [.publicProfile, .custom("user_location")])
+  let btnLogin: LoginButton = LoginButton(readPermissions: [.publicProfile])
   let lblTermsAndConditions: UILabel = UILabel(typography: .footnote)
 
   override func viewDidLoad() {
