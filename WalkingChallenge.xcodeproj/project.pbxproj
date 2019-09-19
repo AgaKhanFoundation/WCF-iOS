@@ -87,6 +87,7 @@
 		F03D77DE1EA83B0800A70230 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03D77DD1EA83B0800A70230 /* Event.swift */; };
 		F06254C11ECD5D1700168DD6 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06254C01ECD5D1700168DD6 /* Participant.swift */; };
 		F0681D271ED53CA70029278E /* Cause.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0681D261ED53CA70029278E /* Cause.swift */; };
+		F078D9D52333EC3000EF0BAD /* AKFLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F078D9D42333EC3000EF0BAD /* AKFLogin.swift */; };
 		F0A0A5FE2210EC3600F20315 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0A5FD2210EC3600F20315 /* Navigation.swift */; };
 		F0A992D61EABF037001621A6 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A992D51EABF037001621A6 /* Formatters.swift */; };
 		F0A992D81EAC3812001621A6 /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A992D71EAC3812001621A6 /* ProgressRing.swift */; };
@@ -193,6 +194,7 @@
 		F03D77DD1EA83B0800A70230 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		F06254C01ECD5D1700168DD6 /* Participant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
 		F0681D261ED53CA70029278E /* Cause.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cause.swift; sourceTree = "<group>"; };
+		F078D9D42333EC3000EF0BAD /* AKFLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKFLogin.swift; sourceTree = "<group>"; };
 		F0A0A5FD2210EC3600F20315 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		F0A992D51EABF037001621A6 /* Formatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		F0A992D71EAC3812001621A6 /* ProgressRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressRing.swift; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 				F0A0A5FD2210EC3600F20315 /* Navigation.swift */,
 				F02FB49D1E9180CE0097481D /* Preferences.swift */,
 				269E350B1E765F73000726C2 /* StyleGuide.swift */,
+				F078D9D32333EC0D00EF0BAD /* AKF */,
 				2676B3C22331D42B00CB0A31 /* Animators */,
 				F0D16A3A2218AD530081440C /* Challenge */,
 				26FE2443232228D300E01B9B /* CommonUI */,
@@ -493,6 +496,14 @@
 				269E35231E767807000726C2 /* Team.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F078D9D32333EC0D00EF0BAD /* AKF */ = {
+			isa = PBXGroup;
+			children = (
+				F078D9D42333EC3000EF0BAD /* AKFLogin.swift */,
+			);
+			path = AKF;
 			sourceTree = "<group>";
 		};
 		F0D16A3A2218AD530081440C /* Challenge */ = {
@@ -794,6 +805,7 @@
 				260BF5AB2324F805005F0882 /* CGFloat.swift in Sources */,
 				265DE5662332D663009DDA5A /* BadgesViewController.swift in Sources */,
 				269E35181E7669FB000726C2 /* LocalizedStrings.swift in Sources */,
+				F078D9D52333EC3000EF0BAD /* AKFLogin.swift in Sources */,
 				F0F8EDD92210C7FA00321A6D /* ChallengeCard.swift in Sources */,
 				2676B3CA2331F18B00CB0A31 /* TeamSettingsHeaderCell.swift in Sources */,
 				F0E6878F22251B7800454340 /* LeaderboardViewController.swift in Sources */,

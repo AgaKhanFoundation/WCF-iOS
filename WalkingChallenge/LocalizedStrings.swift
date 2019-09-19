@@ -95,7 +95,7 @@ Click continue for a quick tour of the app.
     static let title: String =
         NSLocalizedString("Dashboard", comment: "Dashboard")
     static let badges: String =
-      NSLocalizedString("View Badges", comment: "View Badges")
+        NSLocalizedString("View Badges", comment: "View Badges")
 
     struct Activity {                                                            // swiftlint:disable:this nesting
       static let title: String =

@@ -39,6 +39,8 @@ struct UserInfo {
       "UserInfo.Keys.TeamLeaderboardStatsRange"
   private static let OnboardingCompleteKey: String =
       "UserInfo.Keys.OnboardingComplete"
+  private static let AKFIDKey: String =
+      "UserInfo.Keys.AKFID"
 
   enum Pedometer: String {
     case healthKit = "UserInfo.Pedometer.HealthKit"
@@ -71,5 +73,10 @@ struct UserInfo {
   public static var onboardingComplete: Bool {
     get { return defaults.bool(forKey: OnboardingCompleteKey) }
     set { defaults.set(newValue, forKey: OnboardingCompleteKey) }
+  }
+
+  public static var AKFID: String? {
+    get { return defaults.string(forKey: AKFIDKey) }
+    set { defaults.set(newValue, forKey: AKFIDKey) }
   }
 }
