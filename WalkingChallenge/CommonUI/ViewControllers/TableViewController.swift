@@ -90,6 +90,12 @@ class TableViewController: ViewController {
       }
     }
   }
+  
+  func reload() {
+    dataSource?.reload { [weak self] in
+      self?.tableView.reloadOnMain()
+    }
+  }
 
   func handle(context: Context) {
     // Override point for subclasses
