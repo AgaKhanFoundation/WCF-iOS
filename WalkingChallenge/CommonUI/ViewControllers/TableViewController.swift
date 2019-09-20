@@ -90,7 +90,7 @@ class TableViewController: ViewController {
       }
     }
   }
-  
+
   func reload() {
     dataSource?.reload { [weak self] in
       self?.tableView.reloadOnMain()

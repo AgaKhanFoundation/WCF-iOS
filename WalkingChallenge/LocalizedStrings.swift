@@ -181,14 +181,14 @@ Click continue for a quick tour of the app.
         NSLocalizedString("Your Team Name", comment: "Create team form title")
       static let formPlaceholder: String =
         NSLocalizedString("My Awesome Team", comment: "Create team form placeholder")
-      
+
       struct ErrorAlert { // swiftlint:disable:this nesting
         static let title: String =
           NSLocalizedString("Error", comment: "Error Alert Title")
         static let body: String =
           NSLocalizedString("Could not create team - perhaps try a different name", comment: "Error Alert Body")
       }
-      
+
       static let successTitle: String =
         NSLocalizedString("You have successfully created a team", comment: "Create team success")
     }

@@ -64,20 +64,20 @@ class ConnectSourceCell: ConfigurableTableViewCell {
 
     btnConnect.title = Strings.ConnectSource.connect
     btnConnect.addTarget(self, action: #selector(connect), for: .touchUpInside)
-    
+
     contentView.addSubview(btnConnect) {
       $0.trailing.equalToSuperview().inset(Style.Padding.p16)
       $0.centerY.equalToSuperview()
       $0.width.equalToSuperview().multipliedBy(0.30)
     }
-    
+
     let layoutGuide = UILayoutGuide()
     contentView.addLayoutGuide(layoutGuide: layoutGuide) {
       $0.top.bottom.equalToSuperview().inset(Style.Padding.p8)
       $0.leading.equalToSuperview().inset(Style.Padding.p32)
       $0.trailing.equalTo(btnConnect.snp.leading).offset(-Style.Padding.p8)
     }
-    
+
     contentView.addSubview(lblName) {
       $0.leading.trailing.top.equalTo(layoutGuide)
     }
@@ -86,7 +86,7 @@ class ConnectSourceCell: ConfigurableTableViewCell {
       $0.leading.trailing.bottom.equalTo(layoutGuide)
       $0.top.equalTo(lblName.snp.bottom).offset(Style.Padding.p8)
     }
-    
+
     contentView.addSubview(separator) {
       $0.height.equalTo(1)
       $0.bottom.equalToSuperview()

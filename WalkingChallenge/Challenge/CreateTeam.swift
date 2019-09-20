@@ -39,9 +39,9 @@ class CreateTeamViewController: ViewController {
   private let seperatorView = UIView()
   private let activityView = UIActivityIndicatorView(style: .gray)
   private var teamName: String = ""
-  
+
   weak var delegate: CreateTeamViewControllerDelegate?
-  
+
   override func configureView() {
     super.configureView()
     title = Strings.Challenge.CreateTeam.title
@@ -56,28 +56,28 @@ class CreateTeamViewController: ViewController {
       target: self,
       action: #selector(createTapped))
     navigationItem.rightBarButtonItem?.isEnabled = false
-    
+
     label.text = Strings.Challenge.CreateTeam.formTitle
     textField.placeholder = Strings.Challenge.CreateTeam.formPlaceholder
     textField.addTarget(self, action: #selector(teamNameChanged(_:)), for: .editingChanged)
     seperatorView.backgroundColor = Style.Colors.FoundationGreen
-    
+
     view.addSubview(label) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
       $0.top.equalTo(view.safeAreaLayoutGuide).inset(Style.Padding.p32)
     }
-    
+
     view.addSubview(textField) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
       $0.top.equalTo(label.snp.bottom).offset(Style.Padding.p16)
     }
-    
+
     view.addSubview(seperatorView) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
       $0.top.equalTo(textField.snp.bottom)
       $0.height.equalTo(1)
     }
-    
+
     view.addSubview(activityView) {
       $0.centerX.equalToSuperview()
       $0.top.equalTo(seperatorView.snp.bottom).offset(Style.Padding.p24)
@@ -88,28 +88,28 @@ class CreateTeamViewController: ViewController {
   func closeButtonTapped() {
     dismiss(animated: true, completion: nil)
   }
-  
+
   @objc
   func teamNameChanged(_ sender: UITextField) {
     guard let newValue = sender.text else { return }
     teamName = newValue
-    
+
     navigationItem.rightBarButtonItem?.isEnabled = teamName.count > 3
   }
-  
+
   @objc
   func createTapped() {
     activityView.startAnimating()
     navigationItem.rightBarButtonItem?.isEnabled = false
     textField.isEnabled = false
-    
+
     AKFCausesService.createTeam(name: teamName) { [weak self] (result) in
       onMain {
         guard let `self` = self else { return }
         self.activityView.stopAnimating()
         self.textField.isEnabled = true
         self.navigationItem.rightBarButtonItem?.isEnabled = true
-        
+
         switch result {
         case .success:
           self.navigationController?.setViewControllers([CreateTeamSuccessViewController()], animated: true)
@@ -129,7 +129,7 @@ class CreateTeamViewController: ViewController {
 class CreateTeamSuccessViewController: ViewController {
   private let checkmarkImageView = UIImageView(image: Assets.checkmark.image)
   private let titleLabel = UILabel(typography: .title)
-  
+
   override func configureView() {
     super.configureView()
     title = Strings.Challenge.CreateTeam.title
@@ -141,19 +141,19 @@ class CreateTeamSuccessViewController: ViewController {
       style: .plain,
       target: self,
       action: #selector(closeButtonTapped))
-    
+
     view.addSubview(checkmarkImageView) {
       $0.height.width.equalTo(100)
       $0.centerX.equalToSuperview()
       $0.top.equalTo(view.safeAreaLayoutGuide).inset(Style.Padding.p32)
     }
-    
+
     view.addSubview(titleLabel) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
       $0.top.equalTo(checkmarkImageView.snp.bottom).offset(Style.Padding.p32)
     }
   }
-  
+
   @objc
   func closeButtonTapped() {
     dismiss(animated: true, completion: nil)

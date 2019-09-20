@@ -63,7 +63,7 @@ class ConnectSourceViewController: TableViewController {
         let status = healthStore.authorizationStatus(for: steps)
         switch status {
         case .notDetermined:
-          healthStore.requestAuthorization(toShare: [steps], read: [steps]) { [weak self] (success, error) in
+          healthStore.requestAuthorization(toShare: [steps], read: [steps]) { [weak self] (_, _) in
             UserInfo.pedometerSource = .healthKit
             onMain {
               self?.reload()

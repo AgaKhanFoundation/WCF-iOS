@@ -76,23 +76,23 @@ extension ChallengeViewController: CreateTeamViewControllerDelegate {
 
 class ChallengeDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
-  
+
   private var participant: Participant?
-  
+
   func reload(completion: @escaping () -> Void) {
     configure()
     completion()
-    
+
     AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
       self?.participant = Participant(json: result.response)
       self?.configure()
       completion()
     }
   }
-  
+
   func configure() {
     cells.removeAll()
-    
+
     if participant?.team == nil {
       cells.append([
         TeamNeededCellContext(

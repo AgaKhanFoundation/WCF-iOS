@@ -36,7 +36,7 @@ struct JoinTeamCellContext: CellContext {
   let memberCount: Int
   var isLastItem: Bool
   let context: Context?
-  
+
   init(event: Event, teamName: String, memberCount: Int, isLastItem: Bool = false, context: Context?) {
     self.event = event
     self.teamName = teamName
@@ -48,14 +48,14 @@ struct JoinTeamCellContext: CellContext {
 
 class JoinTeamCell: ConfigurableTableViewCell, Contextable {
   static let identifier = "JoinTeamCell"
-  
+
   private let teamImageView = UIImageView(image: UIImage(color: Style.Colors.FoundationGreen))
   private let teamNameLabel = UILabel(typography: .bodyRegular)
   private let availableLabel = UILabel(typography: .subtitleRegular)
   private let seperatorView = UIView()
 
   var context: Context?
-  
+
   override func commonInit() {
     super.commonInit()
     backgroundColor = Style.Colors.white
@@ -63,27 +63,27 @@ class JoinTeamCell: ConfigurableTableViewCell, Contextable {
     seperatorView.backgroundColor = Style.Colors.Seperator
     teamImageView.layer.cornerRadius = 24
     teamImageView.clipsToBounds = true
-    
+
     contentView.addSubview(teamImageView) {
       $0.top.bottom.equalToSuperview().inset(Style.Padding.p16)
       $0.height.width.equalTo(48)
       $0.leading.equalToSuperview().inset(Style.Padding.p32)
     }
-    
+
     let layoutGuide = UILayoutGuide()
     contentView.addLayoutGuide(layoutGuide: layoutGuide) {
       $0.leading.equalTo(teamImageView.snp.trailing).offset(Style.Padding.p16)
       $0.trailing.centerY.equalToSuperview()
     }
-    
+
     contentView.addSubview(teamNameLabel) {
       $0.leading.trailing.bottom.equalTo(layoutGuide)
     }
-    
+
     contentView.addSubview(availableLabel) {
       $0.leading.trailing.top.equalTo(layoutGuide)
     }
-    
+
     contentView.addSubview(seperatorView) {
       $0.height.equalTo(1)
       $0.bottom.equalToSuperview()

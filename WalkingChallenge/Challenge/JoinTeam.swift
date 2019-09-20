@@ -36,7 +36,7 @@ protocol JoinTeamViewControllerDelegate: class {
 class JoinTeamViewController: TableViewController {
   var selectedId: Int?
   weak var delegate: JoinTeamViewControllerDelegate?
-  
+
   override func commonInit() {
     super.commonInit()
 
@@ -58,14 +58,14 @@ class JoinTeamViewController: TableViewController {
     guard let context = (tableView.cellForRow(at: indexPath) as? Contextable)?.context else { return }
     handle(context: context)
   }
-  
+
   // MARK: - Actions
 
   @objc
   func closeButtonTapped() {
     dismiss(animated: true, completion: nil)
   }
-  
+
   @objc
   func joinTapped() {
     guard let selectedId = selectedId, let dataSource = dataSource as? JoinTeamDataSource else { return }
@@ -75,7 +75,7 @@ class JoinTeamViewController: TableViewController {
       alert.title = "Error"
       alert.body = "Could not join team."
       alert.add(.okay())
-      
+
       onMain {
         if success {
           // Not pushing the success view controller because we don't want the user to be able to go back in the stack
@@ -87,7 +87,7 @@ class JoinTeamViewController: TableViewController {
       }
     }
   }
-  
+
   override func handle(context: Context) {
     guard let context = context as? JoinTeamContext else { return }
     switch context {
@@ -103,7 +103,7 @@ class JoinTeamViewController: TableViewController {
 class JoinTeamSuccessViewController: ViewController {
   private let checkmarkImageView = UIImageView(image: Assets.checkmark.image)
   private let titleLabel = UILabel(typography: .title)
-  
+
   override func configureView() {
     super.configureView()
     title = Strings.Challenge.JoinTeam.title
@@ -115,19 +115,19 @@ class JoinTeamSuccessViewController: ViewController {
       style: .plain,
       target: self,
       action: #selector(closeButtonTapped))
-    
+
     view.addSubview(checkmarkImageView) {
       $0.height.width.equalTo(100)
       $0.centerX.equalToSuperview()
       $0.top.equalTo(view.safeAreaLayoutGuide).inset(Style.Padding.p32)
     }
-    
+
     view.addSubview(titleLabel) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
       $0.top.equalTo(checkmarkImageView.snp.bottom).offset(Style.Padding.p32)
     }
   }
-  
+
   @objc
   func closeButtonTapped() {
     dismiss(animated: true, completion: nil)
@@ -150,7 +150,7 @@ class JoinTeamDataSource: TableViewDataSource {
       guard let participant = Participant(json: result.response) else { return }
       guard let event = participant.event, let eventID = event.id else { return }
       self?.event = event
-      
+
       AKFCausesService.getEvent(event: eventID) { [weak self] (result) in
         AKFCausesService.getTeams() { [weak self] (result) in
           guard let teams = result.response?.arrayValue else { return }
@@ -164,7 +164,7 @@ class JoinTeamDataSource: TableViewDataSource {
         }
       }
     }
-    
+
     configure()
     completion()
   }
@@ -174,7 +174,7 @@ class JoinTeamDataSource: TableViewDataSource {
       guard let name = $0.name, let id = $0.id, let event = self.event else { return nil }
       return JoinTeamCellContext(event: event, teamName: name, memberCount: $0.members.count, context: JoinTeamContext.team(id: id))
     }
-    
+
     if teamCells.isEmpty {
       cells = [[
           InfoCellContext(title: "No Teams Available", body: "No teams available for the event you are a part of. Please create a new team.")
@@ -183,11 +183,11 @@ class JoinTeamDataSource: TableViewDataSource {
       var last = teamCells.removeLast()
       last.isLastItem = true
       teamCells.append(last)
-      
+
       cells = [teamCells]
     }
   }
-  
+
   func joinTeam(team: Int, _ completion: @escaping (Bool) -> Void) {
     AKFCausesService.joinTeam(fbid: Facebook.id, team: team) { (result) in
       completion(result.isSuccess)

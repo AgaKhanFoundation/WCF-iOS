@@ -107,7 +107,7 @@ class TeamSettingsDataSource: TableViewDataSource {
 
     cells = [[
       TeamSettingsHeaderCellContext(team: self.teamName, event: self.eventName),
-      SettingsTitleCellContext(title: "Team Members"),
+      SettingsTitleCellContext(title: "Team Members")
     ]] + members + [[
       SettingsActionCellContext(
         title: "Invite \(self.team.capacity - self.team.members.count) new team members",
