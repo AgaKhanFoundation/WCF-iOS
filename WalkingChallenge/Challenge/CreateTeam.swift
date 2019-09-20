@@ -29,12 +29,10 @@
 
 import UIKit
 
-class CreateTeamViewController: TableViewController {
-  override func commonInit() {
-    super.commonInit()
-
+class CreateTeamViewController: ViewController {
+  override func configureView() {
+    super.configureView()
     title = Strings.Challenge.CreateTeam.title
-    dataSource = CreateTeamDataSource()
     navigationItem.leftBarButtonItem = UIBarButtonItem(
       image: Assets.close.image,
       style: .plain,
@@ -45,13 +43,5 @@ class CreateTeamViewController: TableViewController {
   @objc
   func closeButtonTapped() {
     dismiss(animated: true, completion: nil)
-  }
-}
-
-class CreateTeamDataSource: TableViewDataSource {
-  var cells: [[CellContext]] = []
-
-  func configure() {
-
   }
 }
