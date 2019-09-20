@@ -33,7 +33,7 @@ struct JoinTeamCellContext: CellContext {
   let identifier: String = JoinTeamCell.identifier
   let teamName: String
   let memberCount: Int
-  let isLastItem: Bool
+  var isLastItem: Bool
   let context: Context?
   
   init(teamName: String, memberCount: Int, isLastItem: Bool = false, context: Context?) {
@@ -57,11 +57,14 @@ class JoinTeamCell: ConfigurableTableViewCell, Contextable {
   override func commonInit() {
     super.commonInit()
     backgroundColor = Style.Colors.white
+    selectionStyle = .default
     seperatorView.backgroundColor = Style.Colors.Seperator
+    teamImageView.layer.cornerRadius = 24
+    teamImageView.clipsToBounds = true
     
     contentView.addSubview(teamImageView) {
-      $0.top.bottom.equalToSuperview().inset(Style.Padding.p8)
-      $0.height.width.equalTo(32)
+      $0.top.bottom.equalToSuperview().inset(Style.Padding.p16)
+      $0.height.width.equalTo(48)
       $0.leading.equalToSuperview().inset(Style.Padding.p32)
     }
     
