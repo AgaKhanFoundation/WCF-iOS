@@ -53,6 +53,13 @@ enum ServiceRequestResult {
       return nil
     }
   }
+  
+  var isSuccess: Bool {
+    switch self {
+    case .success: return true
+    case .failed: return false
+    }
+  }
 }
 
 class Service {
