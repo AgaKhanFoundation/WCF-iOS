@@ -67,6 +67,9 @@ class DashboardDataSource: TableViewDataSource {
             DataFormatters.formatDateRange(value: (start: event.teamFormationPhase.start,
                                                    end: event.challengePhase.end))
         }
+
+        self?.configure()
+        completion()
       }
     }
   }
