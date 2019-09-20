@@ -48,7 +48,9 @@ class ChallengeViewController: TableViewController {
 
 extension ChallengeViewController: TeamNeededCellDelegate {
   func teamNeededCellPrimaryTapped() {
-    present(NavigationController(rootVC: CreateTeamViewController()), animated: true, completion: nil)
+    let createTeamVC = CreateTeamViewController()
+    createTeamVC.delegate = self
+    present(NavigationController(rootVC: createTeamVC), animated: true, completion: nil)
   }
 
   func teamNeededCellSecondaryTapped() {
@@ -62,6 +64,13 @@ extension ChallengeViewController: JoinTeamViewControllerDelegate {
   func joinTeamSuccess() {
     // TODO(samisuteria) this is causing a crash currently.
 //    refresh()
+  }
+}
+
+extension ChallengeViewController: CreateTeamViewControllerDelegate {
+  func createTeamSuccess() {
+    // TODO(samisuteria) this is causing a crash currently.
+    // refresh()
   }
 }
 
