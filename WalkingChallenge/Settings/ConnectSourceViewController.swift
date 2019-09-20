@@ -28,55 +28,41 @@
  **/
 
 import UIKit
-import FacebookLogin
+import SnapKit
 
-class SettingsViewController: TableViewController {
+class ConnectSourceViewController: TableViewController {
   override func commonInit() {
     super.commonInit()
 
-    title = Strings.Settings.title
-    dataSource = SettingsDataSource()
+    title = Strings.ConnectSource.title
+    dataSource = ConnectSourceDataSource()
   }
 
-  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+  override func tableView(_ tableView: UITableView,
+                          willDisplay cell: UITableViewCell,
+                          forRowAt indexPath: IndexPath) {
     super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
-    if let cell = cell as? SettingsActionCell {
+    if let cell = cell as? ConnectSourceCell {
       cell.delegate = self
     }
   }
 
   override func handle(context: Context) {
-    guard let context = context as? SettingsDataSource.SettingsContext else { return }
-    switch context {
-    case .connectSource:
-      navigationController?.pushViewController(ConnectSourceViewController(), animated: true)
-    case .viewTeam:
-      navigationController?.pushViewController(TeamSettingsViewController(), animated: true)
-    case .logout:
-      logout()
-    case .deleteAccount:
-      guard let dataSource = dataSource as? SettingsDataSource else { return }
-      let alert = AlertViewController()
-      alert.title = Strings.Settings.delete
-      alert.isDismissable = false
-      AppController.shared.present(alert: alert, in: self) {
-        dataSource.deleteAccount { [weak self] in
-          self?.logout()
-          alert.dismiss(animated: true, completion: nil)
-        }
-      }
-    }
-  }
+    guard let source = context as? ConnectSourceDataSource.Source else { return }
 
-  func logout() {
-    let loginManager = LoginManager()
-    loginManager.logOut()
-    AppController.shared.transition(to: .login)
+    switch source {
+    case .fitbit:
+      // TODO(compnerd) support this
+      break
+    case .healthkit:
+      // TODO(compnerd) ensure we have HK access or request
+      UserInfo.pedometerSource = .healthKit
+    }
   }
 }
 
-extension SettingsViewController: SettingsActionCellDelegate {
-  func settingsActionCellTapped(context: Context?) {
+extension ConnectSourceViewController: ConnectSourceCellDelegate {
+  func connectSource(context: Context?) {
     guard let context = context else { return }
     handle(context: context)
   }

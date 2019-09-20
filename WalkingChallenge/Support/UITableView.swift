@@ -56,6 +56,7 @@ extension UITableView {
     register(TeamSettingsMemberCell.self, forCellReuseIdentifier: TeamSettingsMemberCell.identifier)
     register(TeamNeededCell.self, forCellReuseIdentifier: TeamNeededCell.identifier)
     register(JoinTeamCell.self, forCellReuseIdentifier: JoinTeamCell.identifier)
+    register(ConnectSourceCell.self, forCellReuseIdentifier: ConnectSourceCell.identifier)
   }
 
   func reloadOnMain() {
