@@ -38,7 +38,7 @@ class LoginViewController: UIViewController {
   let lblTitle: UILabel = UILabel(typography: .onboarding)
   let imgImage: UIImageView =
       UIImageView(image: Assets.onboardingLoginPeople.image)
-  let btnLogin: LoginButton = LoginButton(readPermissions: [.publicProfile])
+  let btnLogin: FBLoginButton = FBLoginButton(permissions: [.publicProfile])
   let lblTermsAndConditions: UILabel = UILabel(typography: .footnote)
 
   override func viewDidLoad() {
@@ -88,20 +88,20 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: LoginButtonDelegate {
-  func loginButtonDidCompleteLogin(_ loginButton: LoginButton,
-                                   result: LoginResult) {
-    switch result {
-    case .success:
-      AKFCausesService.createParticipant(fbid: Facebook.id)
-      AppController.shared.login()
-    case .cancelled:
-      break
-    case .failed(let error):
+  func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+    if let error = error {
       alert(message: "Error logging in \(error)", style: .cancel)
+      return
     }
+
+    guard let result = result else { return }
+    if result.isCancelled { return }
+
+    AKFCausesService.createParticipant(fbid: Facebook.id)
+    AppController.shared.login()
   }
 
-  func loginButtonDidLogOut(_ loginButton: LoginButton) {
+  func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
     fatalError("user logged in without a session?")
   }
 }

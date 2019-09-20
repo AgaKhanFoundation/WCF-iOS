@@ -68,23 +68,22 @@ class Facebook {
   typealias EnumerationCallback = (_: Friend) -> Void
 
   static var id: String {                                                       // swiftlint:disable:this identifier_name line_length
-    return AccessToken.current?.userId ?? ""
+    return AccessToken.current?.userID ?? ""
   }
 
   static func getRealName(for fbid: String,
                           completion: @escaping (_: String?) -> Void) {
     let request: GraphRequest =
         GraphRequest(graphPath: fbid, parameters: ["fields" : "name"],          // swiftlint:disable:this colon
-                     accessToken: AccessToken.current, httpMethod: .GET,
-                     apiVersion: .defaultVersion)
-    request.start { (response, result) in
-      switch result {
-      case .success(let response):
-        if let deserialised = JSON(response.dictionaryValue!) {
-          completion(deserialised["name"]?.stringValue)
-        }
-      case .failed(let error):
+          tokenString: AccessToken.current?.tokenString, version: nil,
+          httpMethod: .get)
+    request.start { (connection, result, error) in
+      guard let result = result else {
         print("unable to execute GraphQL query \(String(describing: error))")
+        return
+      }
+      if let deserialised = JSON(result) {
+        completion(deserialised["name"]?.stringValue)
       }
     }
   }
@@ -92,16 +91,15 @@ class Facebook {
   static func getLocation(completion: @escaping (_: String?) -> Void) {
     let request: GraphRequest =
         GraphRequest(graphPath: "me", parameters: ["fields" : "location"],      // swiftlint:disable:this colon
-                     accessToken: AccessToken.current, httpMethod: .GET,
-                     apiVersion: .defaultVersion)
-    request.start { (response, result) in
-      switch result {
-      case .success(let response):
-        if let deserialised = JSON(response.dictionaryValue!) {
-          completion(deserialised["location"]?["name"]?.stringValue)
-        }
-      case .failed(let error):
+          tokenString: AccessToken.current?.tokenString, version: nil,
+          httpMethod: .get)
+    request.start { (connection, result, error) in
+      guard let result = result else {
         print("unable to execute GraphQL query: \(String(describing: error))")
+        return
+      }
+      if let deserialised = JSON(result) {
+        completion(deserialised["location"]?["name"]?.stringValue)
       }
     }
   }
@@ -111,18 +109,16 @@ class Facebook {
     let request: GraphRequest =
         GraphRequest(graphPath: "/\(fbid)/picture?type=large&redirect=false",
                      parameters: ["fields" : ""],                               // swiftlint:disable:this colon
-                     accessToken: AccessToken.current, httpMethod: .GET,
-                     apiVersion: .defaultVersion)
-    request.start { (response, result) in
-      switch result {
-      case .success(let response):
-        if let deserialised = JSON(response.dictionaryValue!) {
-          if let url = deserialised["data"]?["url"]?.stringValue {
-            completion(URL(string: url))
-          }
-        }
-      case .failed(let error):
+                     tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: .get)
+    request.start { (connection, result, error) in
+      guard let result = result else {
         print("unable to execute GraphQL query: \(String(describing: error))")
+        return
+      }
+      if let deserialised = JSON(result) {
+        if let url = deserialised["data"]?["url"]?.stringValue {
+          completion(URL(string: url))
+        }
       }
     }
   }

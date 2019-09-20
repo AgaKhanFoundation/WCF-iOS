@@ -40,7 +40,7 @@
 		<string>fbapi</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
-		<string>fb-messenger-api</string>
+		<string>fb-messenger-share-api</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
