@@ -35,18 +35,34 @@ protocol ConnectedActivityCellDelegate: class {
 
 struct ConnectedActivityCellContext: CellContext {
   let identifier: String = ConnectedActivityCell.identifier
+  let title: String
 }
 
 class ConnectedActivityCell: ConfigurableTableViewCell {
   static let identifier = "ConnectedActivityCell"
 
-  weak var delegate: ConnectedActivityCellDelegate?
+  private let card: CardViewV2 = CardViewV2()
+  private let title: UILabel = UILabel(typography: .title)
 
-  func configure(context: CellContext) {
-    guard let context = context as? ConnectedActivityCellContext else { return }
-  }
+  weak var delegate: ConnectedActivityCellDelegate?
 
   override func commonInit() {
     super.commonInit()
+
+    contentView.addSubview(card) {
+      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)
+      $0.top.bottom.equalToSuperview().inset(Style.Padding.p12)
+    }
+
+    card.addSubview(title) {
+      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
+      $0.top.bottom.equalToSuperview().inset(Style.Padding.p32)
+    }
+  }
+
+  func configure(context: CellContext) {
+    guard let context = context as? ConnectedActivityCellContext else { return }
+
+    title.text = context.title
   }
 }

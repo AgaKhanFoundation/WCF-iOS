@@ -77,7 +77,8 @@ class DashboardDataSource: TableViewDataSource {
                                  body: Strings.Dashboard.Activity.disconnected,
                                  ctaTitle: Strings.Dashboard.Activity.connect)
     if UserInfo.pedometerSource != nil {
-      activityCellContext = ConnectedActivityCellContext()
+      activityCellContext =
+          ConnectedActivityCellContext(title: Strings.Dashboard.Activity.title)
     }
 
     cells = [[
