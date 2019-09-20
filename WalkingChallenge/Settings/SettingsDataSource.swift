@@ -36,6 +36,7 @@ class SettingsDataSource: TableViewDataSource {
     case viewTeam
     case logout
     case deleteAccount
+    case connectSource
   }
 
   private var isTeamLead = true
@@ -89,7 +90,8 @@ class SettingsDataSource: TableViewDataSource {
         isSwitchEnabled: true),
       SettingsDisclosureCellContext(
         title: "Connected apps & devices",
-        isLastItem: true),
+        isLastItem: true,
+        context: SettingsContext.connectSource),
       SettingsTitleCellContext(
         title: "Team"),
       SettingsDisclosureCellContext(

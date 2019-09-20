@@ -243,6 +243,13 @@ Click continue for a quick tour of the app.
     static let edit: String =
       NSLocalizedString("Edit", comment: "Team settings edit button in navigation bar")
   }
+
+  struct ConnectSource {
+    static let title: String =
+        NSLocalizedString("Connected Apps & Devices", comment: "Connected Apps & Devices")
+    static let connect: String =
+        NSLocalizedString("Connect", comment: "Connect")
+  }
 }
 
 enum Assets: String {

@@ -89,6 +89,9 @@
 		F0681D271ED53CA70029278E /* Cause.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0681D261ED53CA70029278E /* Cause.swift */; };
 		F078D9D52333EC3000EF0BAD /* AKFLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F078D9D42333EC3000EF0BAD /* AKFLogin.swift */; };
 		F078D9DA2334453F00EF0BAD /* ConnectedActivityCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F078D9D92334453F00EF0BAD /* ConnectedActivityCardCell.swift */; };
+		F078D9DC233478E900EF0BAD /* ConnectSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F078D9DB233478E900EF0BAD /* ConnectSourceViewController.swift */; };
+		F078D9DE23347DEE00EF0BAD /* ConnectSourceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F078D9DD23347DEE00EF0BAD /* ConnectSourceCell.swift */; };
+		F078D9E02334964200EF0BAD /* ConnectSourceDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F078D9DF2334964200EF0BAD /* ConnectSourceDataSource.swift */; };
 		F0A0A5FE2210EC3600F20315 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0A5FD2210EC3600F20315 /* Navigation.swift */; };
 		F0A992D61EABF037001621A6 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A992D51EABF037001621A6 /* Formatters.swift */; };
 		F0A992D81EAC3812001621A6 /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A992D71EAC3812001621A6 /* ProgressRing.swift */; };
@@ -198,6 +201,9 @@
 		F078D9D42333EC3000EF0BAD /* AKFLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKFLogin.swift; sourceTree = "<group>"; };
 		F078D9D62334354000EF0BAD /* steps4impact.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = steps4impact.entitlements; sourceTree = "<group>"; };
 		F078D9D92334453F00EF0BAD /* ConnectedActivityCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedActivityCardCell.swift; sourceTree = "<group>"; };
+		F078D9DB233478E900EF0BAD /* ConnectSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectSourceViewController.swift; sourceTree = "<group>"; };
+		F078D9DD23347DEE00EF0BAD /* ConnectSourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectSourceCell.swift; sourceTree = "<group>"; };
+		F078D9DF2334964200EF0BAD /* ConnectSourceDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectSourceDataSource.swift; sourceTree = "<group>"; };
 		F0A0A5FD2210EC3600F20315 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		F0A992D51EABF037001621A6 /* Formatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		F0A992D71EAC3812001621A6 /* ProgressRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressRing.swift; sourceTree = "<group>"; };
@@ -277,6 +283,8 @@
 				260BF5B12324FD37005F0882 /* SettingsDataSource.swift */,
 				263EF52D232A105C00A00414 /* TeamSettingsViewController.swift */,
 				263EF52F232A106400A00414 /* TeamSettingsDataSource.swift */,
+				F078D9DF2334964200EF0BAD /* ConnectSourceDataSource.swift */,
+				F078D9DB233478E900EF0BAD /* ConnectSourceViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -291,6 +299,7 @@
 				267FAE2D2325CF590014222D /* SettingsActionCell.swift */,
 				2676B3C92331F18B00CB0A31 /* TeamSettingsHeaderCell.swift */,
 				2676B3CB2331F3D400CB0A31 /* TeamSettingsMemberCell.swift */,
+				F078D9DD23347DEE00EF0BAD /* ConnectSourceCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -751,6 +760,7 @@
 				2622C09223249CA10092B145 /* EmptyTableViewDataSource.swift in Sources */,
 				F0681D271ED53CA70029278E /* Cause.swift in Sources */,
 				26FE2455232234A300E01B9B /* EmptyCell.swift in Sources */,
+				F078D9DE23347DEE00EF0BAD /* ConnectSourceCell.swift in Sources */,
 				26FE244923222B6400E01B9B /* DashboardViewController.swift in Sources */,
 				26FE2445232228E600E01B9B /* NavigationController.swift in Sources */,
 				F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */,
@@ -788,6 +798,7 @@
 				F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */,
 				F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */,
 				26FE24532322332D00E01B9B /* UITableView.swift in Sources */,
+				F078D9E02334964200EF0BAD /* ConnectSourceDataSource.swift in Sources */,
 				F004030F1EBF9DAB005E6F10 /* JSON.swift in Sources */,
 				265DE5712332FB38009DDA5A /* CreateTeam.swift in Sources */,
 				F00403151EC3EC6F005E6F10 /* AKFCausesService.swift in Sources */,
@@ -814,6 +825,7 @@
 				F078D9D52333EC3000EF0BAD /* AKFLogin.swift in Sources */,
 				F0F8EDD92210C7FA00321A6D /* ChallengeCard.swift in Sources */,
 				2676B3CA2331F18B00CB0A31 /* TeamSettingsHeaderCell.swift in Sources */,
+				F078D9DC233478E900EF0BAD /* ConnectSourceViewController.swift in Sources */,
 				F0E6878F22251B7800454340 /* LeaderboardViewController.swift in Sources */,
 				269E34EC1E7658E6000726C2 /* AppController.swift in Sources */,
 				26FE2451232231FB00E01B9B /* TableViewController.swift in Sources */,
