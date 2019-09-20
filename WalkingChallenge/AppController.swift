@@ -43,7 +43,7 @@ class AppController {
     self.window = window
 
     // Facebook SDK Setup
-    SDKApplicationDelegate.shared.application(app, didFinishLaunchingWithOptions: options)
+    ApplicationDelegate.shared.application(app, didFinishLaunchingWithOptions: options)
 
     // AppCenter Setup
     MSAppCenter.start(AppConfig.appCenterSecret, withServices: [
@@ -52,7 +52,7 @@ class AppController {
     ])
 
     // Setup Telemetry
-    AppEventsLogger.activate()
+    AppEvents.activateApp()
 
     // Setup Window
     window?.frame = UIScreen.main.bounds
@@ -74,7 +74,7 @@ class AppController {
   }
 
   func can(_ app: UIApplication, open url: URL, with options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
-    return SDKApplicationDelegate.shared.application(app, open: url, options: options)
+    return ApplicationDelegate.shared.application(app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options)
   }
 
   enum ViewController {
