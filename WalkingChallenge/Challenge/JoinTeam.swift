@@ -29,8 +29,14 @@
 
 import UIKit
 
+protocol JoinTeamViewControllerDelegate: class {
+  func joinTeamSuccess()
+}
+
 class JoinTeamViewController: TableViewController {
   var selectedId: Int?
+  weak var delegate: JoinTeamViewControllerDelegate?
+  
   override func commonInit() {
     super.commonInit()
 

@@ -52,7 +52,16 @@ extension ChallengeViewController: TeamNeededCellDelegate {
   }
 
   func teamNeededCellSecondaryTapped() {
-    present(NavigationController(rootVC: JoinTeamViewController()), animated: true, completion: nil)
+    let joinVC = JoinTeamViewController()
+    joinVC.delegate = self
+    present(NavigationController(rootVC: joinVC), animated: true, completion: nil)
+  }
+}
+
+extension ChallengeViewController: JoinTeamViewControllerDelegate {
+  func joinTeamSuccess() {
+    // TODO(samisuteria) this is causing a crash currently.
+//    refresh()
   }
 }
 
