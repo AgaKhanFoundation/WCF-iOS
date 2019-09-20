@@ -33,21 +33,22 @@ class ConnectSourceDataSource: TableViewDataSource {
     case fitbit
   }
 
-  var cells: [[CellContext]] = [[
-    ConnectSourceCellContext(name: "HealthKit",
-                             description: "Connect to Apple HealthKit to track your daily steps.",
-                             selected: UserInfo.pedometerSource == UserInfo.Pedometer.healthKit,
-                             context: ConnectSourceDataSource.Source.healthkit,
-                             disabled: false,
-                             isLast: false),
-    ConnectSourceCellContext(name: "FitBit",
-                             description: "Connect your FitBit to track your daily steps.",
-                             selected: false,
-                             context: ConnectSourceDataSource.Source.fitbit,
-                             disabled: true,
-                             isLast: true)
-  ]]
+  var cells: [[CellContext]] = []
 
   func configure() {
+    cells = [[
+      ConnectSourceCellContext(name: "HealthKit",
+                               description: "Connect to Apple HealthKit to track your daily steps.",
+                               selected: UserInfo.pedometerSource == UserInfo.Pedometer.healthKit,
+                               context: ConnectSourceDataSource.Source.healthkit,
+                               disabled: false,
+                               isLast: false),
+      ConnectSourceCellContext(name: "FitBit",
+                               description: "Connect your FitBit to track your daily steps.",
+                               selected: false,
+                               context: ConnectSourceDataSource.Source.fitbit,
+                               disabled: true,
+                               isLast: true)
+      ]]
   }
 }
