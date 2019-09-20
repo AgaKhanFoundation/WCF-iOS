@@ -143,13 +143,15 @@ class JoinTeamDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
 
   private var teams: [Team] = []
+  private var event: Event?
 
   func reload(completion: @escaping () -> Void) {
     AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
       guard let participant = Participant(json: result.response) else { return }
-      guard let event = participant.event else { return }
-
-      AKFCausesService.getEvent(event: event.id!) { [weak self] (result) in
+      guard let event = participant.event, let eventID = event.id else { return }
+      self?.event = event
+      
+      AKFCausesService.getEvent(event: eventID) { [weak self] (result) in
         AKFCausesService.getTeams() { [weak self] (result) in
           guard let teams = result.response?.arrayValue else { return }
           self?.teams = teams
@@ -169,8 +171,8 @@ class JoinTeamDataSource: TableViewDataSource {
 
   func configure() {
     var teamCells: [JoinTeamCellContext] = teams.compactMap {
-      guard let name = $0.name, let id = $0.id else { return nil }
-      return JoinTeamCellContext(teamName: name, memberCount: $0.members.count, context: JoinTeamContext.team(id: id))
+      guard let name = $0.name, let id = $0.id, let event = self.event else { return nil }
+      return JoinTeamCellContext(event: event, teamName: name, memberCount: $0.members.count, context: JoinTeamContext.team(id: id))
     }
     
     if teamCells.isEmpty {
