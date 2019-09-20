@@ -29,6 +29,7 @@
 
 import UIKit
 import SnapKit
+import HealthKit
 
 class ConnectSourceViewController: TableViewController {
   override func commonInit() {
@@ -55,8 +56,27 @@ class ConnectSourceViewController: TableViewController {
       // TODO(compnerd) support this
       break
     case .healthkit:
-      // TODO(compnerd) ensure we have HK access or request
-      UserInfo.pedometerSource = .healthKit
+      // Just to ask for permission
+      if HKHealthStore.isHealthDataAvailable() {
+        let healthStore = HKHealthStore()
+        let steps = HKSampleType.quantityType(forIdentifier: .stepCount)!
+        let status = healthStore.authorizationStatus(for: steps)
+        switch status {
+        case .notDetermined:
+          healthStore.requestAuthorization(toShare: [steps], read: [steps]) { [weak self] (success, error) in
+            UserInfo.pedometerSource = .healthKit
+            onMain {
+              self?.reload()
+            }
+          }
+        case .sharingDenied:
+          UserInfo.pedometerSource = nil
+        case .sharingAuthorized:
+          UserInfo.pedometerSource = .healthKit
+        @unknown default:
+          UserInfo.pedometerSource = nil
+        }
+      }
     }
   }
 }
