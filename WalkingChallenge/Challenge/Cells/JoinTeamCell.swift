@@ -31,12 +31,14 @@ import UIKit
 
 struct JoinTeamCellContext: CellContext {
   let identifier: String = JoinTeamCell.identifier
+  let event: Event
   let teamName: String
   let memberCount: Int
   var isLastItem: Bool
   let context: Context?
   
-  init(teamName: String, memberCount: Int, isLastItem: Bool = false, context: Context?) {
+  init(event: Event, teamName: String, memberCount: Int, isLastItem: Bool = false, context: Context?) {
+    self.event = event
     self.teamName = teamName
     self.memberCount = memberCount
     self.isLastItem = isLastItem
@@ -92,7 +94,7 @@ class JoinTeamCell: ConfigurableTableViewCell, Contextable {
   func configure(context: CellContext) {
     guard let context = context as? JoinTeamCellContext else { return }
     teamNameLabel.text = context.teamName
-    availableLabel.text = "\(11 - context.memberCount) spots available"
+    availableLabel.text = "\(context.event.teamLimit - context.memberCount) spots available"
     seperatorView.isHidden = context.isLastItem
     self.context = context.context
   }
