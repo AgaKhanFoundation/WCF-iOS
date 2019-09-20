@@ -41,6 +41,7 @@ struct ConnectSourceCellContext: CellContext {
   let selected: Bool
   let context: Context?
   let disabled: Bool
+  let isLast: Bool
 }
 
 class ConnectSourceCell: ConfigurableTableViewCell {
@@ -48,7 +49,7 @@ class ConnectSourceCell: ConfigurableTableViewCell {
 
   private let lblName: UILabel = UILabel(typography: .bodyBold)
   private let lblDescription: UILabel = UILabel(typography: .bodyRegular)
-  private let btnConnect: UIButton = Button(style: .primary)
+  private let btnConnect: Button = Button(style: .primary)
   private let separator: UIView = UIView()
   private var context: Context?
 
@@ -61,29 +62,31 @@ class ConnectSourceCell: ConfigurableTableViewCell {
 
     separator.backgroundColor = Style.Colors.Seperator
 
-    btnConnect.setTitle(Strings.ConnectSource.connect, for: .normal)
-    btnConnect.addTarget(self, action: #selector(connect(_:)),
-                         for: .touchUpInside)
-
-    contentView.addSubview(btnConnect)
-
+    btnConnect.title = Strings.ConnectSource.connect
+    btnConnect.addTarget(self, action: #selector(connect), for: .touchUpInside)
+    
+    contentView.addSubview(btnConnect) {
+      $0.trailing.equalToSuperview().inset(Style.Padding.p16)
+      $0.centerY.equalToSuperview()
+      $0.width.equalToSuperview().multipliedBy(0.30)
+    }
+    
+    let layoutGuide = UILayoutGuide()
+    contentView.addLayoutGuide(layoutGuide: layoutGuide) {
+      $0.top.bottom.equalToSuperview().inset(Style.Padding.p8)
+      $0.leading.equalToSuperview().inset(Style.Padding.p32)
+      $0.trailing.equalTo(btnConnect.snp.leading).offset(-Style.Padding.p8)
+    }
+    
     contentView.addSubview(lblName) {
-      $0.leading.equalToSuperview().inset(Style.Padding.p32)
-      $0.trailing.equalTo(btnConnect.snp.leading).offset(Style.Padding.p8)
-      $0.top.equalToSuperview().offset(Style.Padding.p8)
-    }
-    contentView.addSubview(lblDescription) {
-      $0.leading.equalToSuperview().inset(Style.Padding.p32)
-      $0.trailing.equalTo(btnConnect.snp.leading).inset(Style.Padding.p12)
-      $0.top.equalTo(lblName.snp.bottom).offset(Style.Padding.p8)
-      $0.bottom.equalToSuperview().inset(Style.Padding.p8)
-    }
-    btnConnect.snp.makeConstraints { (make) in
-      make.trailing.equalToSuperview().inset(Style.Padding.p16)
-      make.width.equalToSuperview().multipliedBy(0.30)
-      make.centerY.equalToSuperview()
+      $0.leading.trailing.top.equalTo(layoutGuide)
     }
 
+    contentView.addSubview(lblDescription) {
+      $0.leading.trailing.bottom.equalTo(layoutGuide)
+      $0.top.equalTo(lblName.snp.bottom).offset(Style.Padding.p8)
+    }
+    
     contentView.addSubview(separator) {
       $0.height.equalTo(1)
       $0.bottom.equalToSuperview()
@@ -97,14 +100,14 @@ class ConnectSourceCell: ConfigurableTableViewCell {
     lblDescription.text = context.description
     btnConnect.isEnabled = !context.selected
     self.context = context.context
-
+    separator.isHidden = context.isLast
     self.accessoryType = context.selected ? .checkmark : .none
-    self.isUserInteractionEnabled = !context.disabled
-    // TODO(compnerd) grey out the cell?
+    btnConnect.style = context.disabled ? .disabled : .primary
+    btnConnect.isEnabled = !context.disabled
   }
 
   @objc
-  func connect(_ sender: UIView) {
+  func connect() {
     delegate?.connectSource(context: context)
   }
 }

@@ -38,12 +38,14 @@ class ConnectSourceDataSource: TableViewDataSource {
                              description: "Connect to Apple HealthKit to track your daily steps.",
                              selected: UserInfo.pedometerSource == UserInfo.Pedometer.healthKit,
                              context: ConnectSourceDataSource.Source.healthkit,
-                             disabled: false),
+                             disabled: false,
+                             isLast: false),
     ConnectSourceCellContext(name: "FitBit",
                              description: "Connect your FitBit to track your daily steps.",
                              selected: false,
                              context: ConnectSourceDataSource.Source.fitbit,
-                             disabled: true)
+                             disabled: true,
+                             isLast: true)
   ]]
 
   func configure() {
