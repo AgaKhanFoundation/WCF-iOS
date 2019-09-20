@@ -31,6 +31,6 @@ import Foundation
 
 struct AppConfig {
   static let server: URLComponents =
-      URLComponents(string: "http://13.82.223.25")! // "https://akf-causes.subshell.org")!
+      URLComponents(string: "https://step4change.org")! // "https://akf-causes.subshell.org")!
   static let appCenterSecret = "9ca54e4e-20df-425a-bfe6-b72d0daad2da" // TODO: Move this to CI env
 }
