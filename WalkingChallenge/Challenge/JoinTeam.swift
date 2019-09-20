@@ -54,15 +54,22 @@ class JoinTeamDataSource: TableViewDataSource {
   private var teams: [Team] = []
 
   func reload(completion: @escaping () -> Void) {
-    AKFCausesService.getTeams { [weak self] (result) in
-      guard let rawTeams = result.response?.arrayValue else { return }
-      self?.teams = rawTeams
-        .compactMap { Team(json: $0) }
-        .filter { $0.members.count != 11 }
-        .sorted { $0.members.count > $1.members.count }
+    AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
+      guard let participant = Participant(json: result.response) else { return }
+      guard let event = participant.event else { return }
 
-      self?.configure()
-      completion()
+      AKFCausesService.getEvent(event: event.id!) { [weak self] (result) in
+        AKFCausesService.getTeams() { [weak self] (result) in
+          guard let teams = result.response?.arrayValue else { return }
+          self?.teams = teams
+            .compactMap { Team(json: $0) }
+            .filter { $0.members.count < event.teamLimit }
+            .sorted { $0.members.count > $1.members.count }
+
+          self?.configure()
+          completion()
+        }
+      }
     }
   }
 
