@@ -10,18 +10,13 @@
 #endif
 #endif
 
-#import "FBSDKAppGroupAddDialog.h"
 #import "FBSDKAppGroupContent.h"
-#import "FBSDKAppGroupJoinDialog.h"
 #import "FBSDKAppInviteContent.h"
-#import "FBSDKAppInviteDialog.h"
 #import "FBSDKCameraEffectArguments.h"
 #import "FBSDKCameraEffectTextures.h"
 #import "FBSDKGameRequestContent.h"
 #import "FBSDKGameRequestDialog.h"
 #import "FBSDKHashtag.h"
-#import "FBSDKLikeButton.h"
-#import "FBSDKLikeControl.h"
 #import "FBSDKLikeObjectType.h"
 #import "FBSDKLiking.h"
 #import "FBSDKMessageDialog.h"

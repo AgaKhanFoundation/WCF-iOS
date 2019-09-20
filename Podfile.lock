@@ -7,31 +7,30 @@ PODS:
   - AppCenter/Core (2.3.0)
   - AppCenter/Crashes (2.3.0):
     - AppCenter/Core
-  - Bolts (1.9.0):
-    - Bolts/AppLinks (= 1.9.0)
-    - Bolts/Tasks (= 1.9.0)
-  - Bolts/AppLinks (1.9.0):
-    - Bolts/Tasks
-  - Bolts/Tasks (1.9.0)
-  - FacebookCore (0.5.0):
-    - Bolts (~> 1.9)
-    - FBSDKCoreKit (~> 4.37)
-  - FacebookLogin (0.5.0):
-    - Bolts (~> 1.9)
-    - FacebookCore (~> 0.5)
-    - FBSDKCoreKit (~> 4.37)
-    - FBSDKLoginKit (~> 4.37)
-  - FacebookShare (0.5.0):
-    - Bolts (~> 1.9)
-    - FacebookCore (~> 0.5)
-    - FBSDKCoreKit (~> 4.37)
-    - FBSDKShareKit (~> 4.37)
-  - FBSDKCoreKit (4.39.1):
-    - Bolts (~> 1.9)
-  - FBSDKLoginKit (4.39.1):
-    - FBSDKCoreKit
-  - FBSDKShareKit (4.39.1):
-    - FBSDKCoreKit
+  - FacebookCore (0.9.0):
+    - FBSDKCoreKit (~> 5.0)
+  - FacebookLogin (0.9.0):
+    - FacebookCore (~> 0.9.0)
+    - FBSDKCoreKit (~> 5.0)
+    - FBSDKLoginKit (~> 5.0)
+  - FacebookShare (0.9.0):
+    - FacebookCore (~> 0.9.0)
+    - FBSDKCoreKit (~> 5.0)
+    - FBSDKShareKit (~> 5.0)
+  - FBSDKCoreKit (5.6.0):
+    - FBSDKCoreKit/Basics (= 5.6.0)
+    - FBSDKCoreKit/Core (= 5.6.0)
+  - FBSDKCoreKit/Basics (5.6.0)
+  - FBSDKCoreKit/Core (5.6.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (5.6.0):
+    - FBSDKLoginKit/Login (= 5.6.0)
+  - FBSDKLoginKit/Login (5.6.0):
+    - FBSDKCoreKit (~> 5.0)
+  - FBSDKShareKit (5.6.0):
+    - FBSDKShareKit/Share (= 5.6.0)
+  - FBSDKShareKit/Share (5.6.0):
+    - FBSDKCoreKit (~> 5.0)
   - FirebaseAnalyticsInterop (1.4.0)
   - FirebaseCore (6.2.3):
     - FirebaseCoreDiagnostics (~> 1.0)
@@ -91,12 +90,12 @@ PODS:
 
 DEPENDENCIES:
   - AppCenter (~> 2.3.0)
-  - FacebookCore (~> 0.5.0)
-  - FacebookLogin (~> 0.5.0)
-  - FacebookShare (~> 0.5.0)
-  - FBSDKCoreKit (~> 4.39.1)
-  - FBSDKLoginKit (~> 4.39.1)
-  - FBSDKShareKit (~> 4.39.1)
+  - FacebookCore (~> 0.9.0)
+  - FacebookLogin (~> 0.9.0)
+  - FacebookShare (~> 0.9.0)
+  - FBSDKCoreKit (~> 5.6.0)
+  - FBSDKLoginKit (~> 5.6.0)
+  - FBSDKShareKit (~> 5.6.0)
   - FirebaseMessaging (~> 4.1.4)
   - SDWebImage (~> 5.1.1)
   - SnapKit (~> 4.2.0)
@@ -105,7 +104,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AppCenter
-    - Bolts
     - FacebookCore
     - FacebookLogin
     - FacebookShare
@@ -129,13 +127,12 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AppCenter: 9784d2fc998c9bd0b8fbaf4fb9ed69526d12ce1a
-  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  FacebookCore: 74288d0add931d361b1596beae787ab72c438249
-  FacebookLogin: ebcf34714a1cb9f0759d9f071cfb01ed500996cf
-  FacebookShare: 963b4bb1124a64a395b1e428163d70b5774116e8
-  FBSDKCoreKit: f442aa96179cc9b382bb4abeb7e340a47cca8f91
-  FBSDKLoginKit: c3079d9a4db27c492287b1eed7a4272b28cf8a59
-  FBSDKShareKit: 27d7b982e7b1f4638da2f2b1ab6eba5afc6b5888
+  FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
+  FacebookLogin: 6cee9fd6e1fe976fe8f7eec199e27b28b14f5d63
+  FacebookShare: 85968ad1b1606c4944fb154924e425fd29184ea5
+  FBSDKCoreKit: d6655a343868d4bb5c29a60859bab07c3be14a0b
+  FBSDKLoginKit: c5a623de88a6b0cda35b35582921f6cec2efcc36
+  FBSDKShareKit: 0d8c4cfd5c1f185d5f9c26d79758b141086e1251
   FirebaseAnalyticsInterop: d48b6ab67bcf016a05e55b71fc39c61c0cb6b7f3
   FirebaseCore: e9d9bd1dae61c1e82bc1e0e617a9d832392086a0
   FirebaseCoreDiagnostics: 4c04ae09d0ab027c30179828c6bb47764df1bd13
@@ -151,6 +148,6 @@ SPEC CHECKSUMS:
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftLint: 73f2ecfd0f6d812c8cb9a73c00fe809bc2504585
 
-PODFILE CHECKSUM: 2ccd11e8c7b2cc940508687dd59dc7d470f5d35b
+PODFILE CHECKSUM: bce516e86da6afc0bf345ef62581b31452a9b6c5
 
 COCOAPODS: 1.8.0.beta.2

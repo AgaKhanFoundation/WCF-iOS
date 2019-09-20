@@ -18,7 +18,11 @@
 
 #import "FBSDKShareMessengerOpenGraphMusicTemplateContent.h"
 
+#ifdef COCOAPODS
+#import <FBSDKCoreKit/FBSDKCoreKit+Internal.h>
+#else
 #import "FBSDKCoreKit+Internal.h"
+#endif
 #import "FBSDKShareMessengerContentUtility.h"
 #import "FBSDKShareUtility.h"
 
@@ -27,19 +31,24 @@ static NSString *const kMusicTemplateURLKey = @"url";
 static NSString *const kMusicTemplateButtonKey = @"button";
 static NSString *const kMusicTemplateUUIDKey = @"uuid";
 
+DEPRECATED_FOR_MESSENGER
 static NSArray<NSDictionary<NSString *, id> *> *_SerializableOpenGraphMusicTemplateContentFromContent(FBSDKShareMessengerOpenGraphMusicTemplateContent *openGraphMusicTemplateContent)
 {
   NSMutableArray<NSDictionary<NSString *, id> *> *serializableOpenGraphMusicTemplateContent = [NSMutableArray array];
 
   NSMutableDictionary<NSString *, id> *openGraphMusicTemplateContentDictionary = [NSMutableDictionary dictionary];
-  [FBSDKInternalUtility dictionary:openGraphMusicTemplateContentDictionary setObject:openGraphMusicTemplateContent.url.absoluteString forKey:@"url"];
-  [FBSDKInternalUtility dictionary:openGraphMusicTemplateContentDictionary setObject:SerializableButtonsFromButton(openGraphMusicTemplateContent.button) forKey:kFBSDKShareMessengerButtonsKey];
+  [FBSDKBasicUtility dictionary:openGraphMusicTemplateContentDictionary setObject:openGraphMusicTemplateContent.url.absoluteString forKey:@"url"];
+  [FBSDKBasicUtility dictionary:openGraphMusicTemplateContentDictionary setObject:SerializableButtonsFromButton(openGraphMusicTemplateContent.button) forKey:kFBSDKShareMessengerButtonsKey];
   [serializableOpenGraphMusicTemplateContent addObject:openGraphMusicTemplateContentDictionary];
 
   return serializableOpenGraphMusicTemplateContent;
 }
 
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
 @implementation FBSDKShareMessengerOpenGraphMusicTemplateContent
+#pragma clang diagnostic pop
 
 #pragma mark - Properties
 
@@ -64,12 +73,6 @@ static NSArray<NSDictionary<NSString *, id> *> *_SerializableOpenGraphMusicTempl
 
 #pragma mark - FBSDKSharingContent
 
-- (void)addToParameters:(NSMutableDictionary<NSString *, id> *)parameters
-          bridgeOptions:(FBSDKShareBridgeOptions)bridgeOptions
-{
-  [parameters addEntriesFromDictionary:[self addParameters:parameters bridgeOptions:bridgeOptions]];
-}
-
 - (NSDictionary<NSString *, id> *)addParameters:(NSDictionary<NSString *, id> *)existingParameters
                                   bridgeOptions:(FBSDKShareBridgeOptions)bridgeOptions
 {
@@ -87,8 +90,8 @@ static NSArray<NSDictionary<NSString *, id> *> *_SerializableOpenGraphMusicTempl
   contentForShare[kFBSDKShareMessengerAttachmentKey] = attachment;
 
   NSMutableDictionary<NSString *, id> *contentForPreview = [NSMutableDictionary dictionary];
-  [FBSDKInternalUtility dictionary:contentForPreview setObject:@"OPEN_GRAPH" forKey:@"preview_type"];
-  [FBSDKInternalUtility dictionary:contentForPreview setObject:_url.absoluteString forKey:@"open_graph_url"];
+  [FBSDKBasicUtility dictionary:contentForPreview setObject:@"OPEN_GRAPH" forKey:@"preview_type"];
+  [FBSDKBasicUtility dictionary:contentForPreview setObject:_url.absoluteString forKey:@"open_graph_url"];
   AddToContentPreviewDictionaryForButton(contentForPreview, _button);
 
   [FBSDKShareMessengerContentUtility addToParameters:updatedParameters contentForShare:contentForShare contentForPreview:contentForPreview];

@@ -69,10 +69,10 @@
 		26FE24532322332D00E01B9B /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE24522322332D00E01B9B /* UITableView.swift */; };
 		26FE2455232234A300E01B9B /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2454232234A300E01B9B /* EmptyCell.swift */; };
 		C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */; };
-		ED85D460832E1D261F31B25E /* Pods_WalkingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */; };
+		E536CBE9430958C22957D1AA /* Pods_steps4impact.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9919BE42B10E251EBAA9AFC7 /* Pods_steps4impact.framework */; };
 		F004030F1EBF9DAB005E6F10 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004030E1EBF9DAB005E6F10 /* JSON.swift */; };
 		F00403151EC3EC6F005E6F10 /* AKFCausesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */; };
-		F00403191EC3FB7D005E6F10 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		F00403191EC3FB7D005E6F10 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004031C1EC52772005E6F10 /* AppConfig.swift */; };
 		F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */; };
 		F017B68E227686A60023E84B /* OnboardingWelcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017B68D227686A60023E84B /* OnboardingWelcome.swift */; };
@@ -116,6 +116,7 @@
 
 /* Begin PBXFileReference section */
 		00596233B5D00EAEF7957964 /* Pods-WalkingChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.debug.xcconfig"; sourceTree = "<group>"; };
+		00787BA9EF782540F075A2B4 /* Pods-steps4impact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impact.debug.xcconfig"; path = "Pods/Target Support Files/Pods-steps4impact/Pods-steps4impact.debug.xcconfig"; sourceTree = "<group>"; };
 		2606948A1E7DD1A200BFED76 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		260BF58B2324B17D005F0882 /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
 		260BF58F2324B28D005F0882 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -180,7 +181,8 @@
 		26FE2450232231FB00E01B9B /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		26FE24522322332D00E01B9B /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		26FE2454232234A300E01B9B /* EmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCell.swift; sourceTree = "<group>"; };
-		6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkingChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2877AA5DAD849FDC5B131032 /* Pods-steps4impact.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impact.release.xcconfig"; path = "Pods/Target Support Files/Pods-steps4impact/Pods-steps4impact.release.xcconfig"; sourceTree = "<group>"; };
+		9919BE42B10E251EBAA9AFC7 /* Pods_steps4impact.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_steps4impact.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		F004030E1EBF9DAB005E6F10 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKFCausesService.swift; sourceTree = "<group>"; };
@@ -232,8 +234,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED85D460832E1D261F31B25E /* Pods_WalkingChallenge.framework in Frameworks */,
 				26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */,
+				E536CBE9430958C22957D1AA /* Pods_steps4impact.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +455,8 @@
 			children = (
 				00596233B5D00EAEF7957964 /* Pods-WalkingChallenge.debug.xcconfig */,
 				FB0F6813102ABF61F968C9BD /* Pods-WalkingChallenge.release.xcconfig */,
+				00787BA9EF782540F075A2B4 /* Pods-steps4impact.debug.xcconfig */,
+				2877AA5DAD849FDC5B131032 /* Pods-steps4impact.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -461,7 +465,7 @@
 			isa = PBXGroup;
 			children = (
 				26C5E3611E7DCAF70053DE3E /* HealthKit.framework */,
-				6AA48A8026A2CF45C3F6472E /* Pods_WalkingChallenge.framework */,
+				9919BE42B10E251EBAA9AFC7 /* Pods_steps4impact.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -682,7 +686,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WalkingChallenge-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-steps4impact-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -709,8 +713,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-steps4impact/Pods-steps4impact-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
@@ -725,7 +728,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
@@ -740,7 +742,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-steps4impact/Pods-steps4impact-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -770,7 +772,7 @@
 				26FE24472322295300E01B9B /* ViewController.swift in Sources */,
 				F06254C11ECD5D1700168DD6 /* Participant.swift in Sources */,
 				F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */,
-				F00403191EC3FB7D005E6F10 /* (null) in Sources */,
+				F00403191EC3FB7D005E6F10 /* BuildFile in Sources */,
 				F0A992D61EABF037001621A6 /* Formatters.swift in Sources */,
 				2622C09023249A4B0092B145 /* UIRefreshControl.swift in Sources */,
 				26FE244D23222E8500E01B9B /* Context.swift in Sources */,
@@ -968,7 +970,7 @@
 		};
 		269E34E41E765828000726C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 00596233B5D00EAEF7957964 /* Pods-WalkingChallenge.debug.xcconfig */;
+			baseConfigurationReference = 00787BA9EF782540F075A2B4 /* Pods-steps4impact.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -986,7 +988,7 @@
 		};
 		269E34E51E765828000726C2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB0F6813102ABF61F968C9BD /* Pods-WalkingChallenge.release.xcconfig */;
+			baseConfigurationReference = 2877AA5DAD849FDC5B131032 /* Pods-steps4impact.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

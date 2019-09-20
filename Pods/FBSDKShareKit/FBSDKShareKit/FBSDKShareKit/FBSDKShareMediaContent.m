@@ -18,7 +18,11 @@
 
 #import "FBSDKShareMediaContent.h"
 
+#ifdef COCOAPODS
+#import <FBSDKCoreKit/FBSDKCoreKit+Internal.h>
+#else
 #import "FBSDKCoreKit+Internal.h"
+#endif
 #import "FBSDKHashtag.h"
 #import "FBSDKShareConstants.h"
 #import "FBSDKSharePhoto.h"
@@ -67,7 +71,7 @@
   }
 }
 
-- (void)setMedia:(NSArray *)media
+- (void)setMedia:(NSArray<id<FBSDKShareMedia>> *)media
 {
   [FBSDKShareUtility assertCollection:media ofClassStrings:@[NSStringFromClass([FBSDKSharePhoto class]), NSStringFromClass([FBSDKShareVideo class])] name:@"media"];
   if (![FBSDKInternalUtility object:_media isEqualToObject:media]) {
@@ -76,12 +80,6 @@
 }
 
 #pragma mark - FBSDKSharingContent
-
-- (void)addToParameters:(NSMutableDictionary<NSString *, id> *)parameters
-          bridgeOptions:(FBSDKShareBridgeOptions)bridgeOptions
-{
-  // FBSDKShareMediaContent is currently available via the Share extension only (thus no parameterization implemented at this time)
-}
 
 - (NSDictionary<NSString *, id> *)addParameters:(NSDictionary<NSString *, id> *)existingParameters
                                   bridgeOptions:(FBSDKShareBridgeOptions)bridgeOptions
@@ -103,20 +101,20 @@
       FBSDKSharePhoto *photo = (FBSDKSharePhoto *)media;
       if (![photo validateWithOptions:bridgeOptions error:NULL]) {
         if (errorRef != NULL) {
-          *errorRef = [NSError fbInvalidArgumentErrorWithDomain:FBSDKShareErrorDomain
-                                                           name:@"media"
-                                                          value:media
-                                                        message:@"photos must have UIImages"];
+          *errorRef = [FBSDKError invalidArgumentErrorWithDomain:FBSDKShareErrorDomain
+                                                            name:@"media"
+                                                           value:media
+                                                         message:@"photos must have UIImages"];
         }
         return NO;
       }
     } else if ([media isKindOfClass:[FBSDKShareVideo class]]) {
       if (videoCount > 0) {
         if (errorRef != NULL) {
-          *errorRef = [NSError fbInvalidArgumentErrorWithDomain:FBSDKShareErrorDomain
-                                                           name:@"media"
-                                                          value:media
-                                                        message:@"Only 1 video is allowed"];
+          *errorRef = [FBSDKError invalidArgumentErrorWithDomain:FBSDKShareErrorDomain
+                                                            name:@"media"
+                                                           value:media
+                                                         message:@"Only 1 video is allowed"];
           return NO;
         }
       }
@@ -131,10 +129,10 @@
 
     } else {
       if (errorRef != NULL) {
-        *errorRef = [NSError fbInvalidArgumentErrorWithDomain:FBSDKShareErrorDomain
-                                                         name:@"media"
-                                                        value:media
-                                                      message:@"Only FBSDKSharePhoto and FBSDKShareVideo are allowed in `media` property"];
+        *errorRef = [FBSDKError invalidArgumentErrorWithDomain:FBSDKShareErrorDomain
+                                                          name:@"media"
+                                                         value:media
+                                                       message:@"Only FBSDKSharePhoto and FBSDKShareVideo are allowed in `media` property"];
       }
       return NO;
     }
