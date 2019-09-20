@@ -30,22 +30,67 @@
 import UIKit
 
 struct JoinTeamCellContext: CellContext {
-  let identifier: String
+  let identifier: String = JoinTeamCell.identifier
+  let teamName: String
+  let memberCount: Int
+  let isLastItem: Bool
+  let context: Context?
+  
+  init(teamName: String, memberCount: Int, isLastItem: Bool = false, context: Context?) {
+    self.teamName = teamName
+    self.memberCount = memberCount
+    self.isLastItem = isLastItem
+    self.context = context
+  }
 }
 
-class JoinTeamCell: ConfigurableTableViewCell {
+class JoinTeamCell: ConfigurableTableViewCell, Contextable {
   static let identifier = "JoinTeamCell"
-
+  
+  private let teamImageView = UIImageView(image: UIImage(color: Style.Colors.FoundationGreen))
   private let teamNameLabel = UILabel(typography: .bodyRegular)
   private let availableLabel = UILabel(typography: .subtitleRegular)
   private let seperatorView = UIView()
 
+  var context: Context?
+  
   override func commonInit() {
     super.commonInit()
     backgroundColor = Style.Colors.white
+    seperatorView.backgroundColor = Style.Colors.Seperator
+    
+    contentView.addSubview(teamImageView) {
+      $0.top.bottom.equalToSuperview().inset(Style.Padding.p8)
+      $0.height.width.equalTo(32)
+      $0.leading.equalToSuperview().inset(Style.Padding.p32)
+    }
+    
+    let layoutGuide = UILayoutGuide()
+    contentView.addLayoutGuide(layoutGuide: layoutGuide) {
+      $0.leading.equalTo(teamImageView.snp.trailing).offset(Style.Padding.p16)
+      $0.trailing.centerY.equalToSuperview()
+    }
+    
+    contentView.addSubview(teamNameLabel) {
+      $0.leading.trailing.bottom.equalTo(layoutGuide)
+    }
+    
+    contentView.addSubview(availableLabel) {
+      $0.leading.trailing.top.equalTo(layoutGuide)
+    }
+    
+    contentView.addSubview(seperatorView) {
+      $0.height.equalTo(1)
+      $0.bottom.equalToSuperview()
+      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
+    }
   }
 
   func configure(context: CellContext) {
-
+    guard let context = context as? JoinTeamCellContext else { return }
+    teamNameLabel.text = context.teamName
+    availableLabel.text = "\(11 - context.memberCount) spots available"
+    seperatorView.isHidden = context.isLastItem
+    self.context = context.context
   }
 }
