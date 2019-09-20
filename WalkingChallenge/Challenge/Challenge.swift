@@ -58,14 +58,31 @@ extension ChallengeViewController: TeamNeededCellDelegate {
 
 class ChallengeDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
-
+  
+  private var participant: Participant?
+  
+  func reload(completion: @escaping () -> Void) {
+    configure()
+    completion()
+    
+    AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
+      self?.participant = Participant(json: result.response)
+      self?.configure()
+      completion()
+    }
+  }
+  
   func configure() {
-    cells = [[
-      TeamNeededCellContext(
-        title: Strings.Challenge.TeamNeededCard.title,
-        body: Strings.Challenge.TeamNeededCard.body,
-        primaryButtonTitle: Strings.Challenge.TeamNeededCard.primaryButton,
-        secondaryButtonTitle: Strings.Challenge.TeamNeededCard.secondaryButton)
-      ]]
+    cells.removeAll()
+    
+    if participant?.team == nil {
+      cells.append([
+        TeamNeededCellContext(
+          title: Strings.Challenge.TeamNeededCard.title,
+          body: Strings.Challenge.TeamNeededCard.body,
+          primaryButtonTitle: Strings.Challenge.TeamNeededCard.primaryButton,
+          secondaryButtonTitle: Strings.Challenge.TeamNeededCard.secondaryButton)
+        ])
+    }
   }
 }
