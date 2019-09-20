@@ -51,14 +51,14 @@ class CreateTeamViewController: ViewController {
       target: self,
       action: #selector(closeButtonTapped))
     navigationItem.rightBarButtonItem = UIBarButtonItem(
-      title: "Create",
+      title: Strings.Challenge.CreateTeam.create,
       style: .plain,
       target: self,
       action: #selector(createTapped))
     navigationItem.rightBarButtonItem?.isEnabled = false
     
-    label.text = "Your Team Name"
-    textField.placeholder = "My Awesome Team"
+    label.text = Strings.Challenge.CreateTeam.formTitle
+    textField.placeholder = Strings.Challenge.CreateTeam.formPlaceholder
     textField.addTarget(self, action: #selector(teamNameChanged(_:)), for: .editingChanged)
     seperatorView.backgroundColor = Style.Colors.FoundationGreen
     
@@ -116,8 +116,8 @@ class CreateTeamViewController: ViewController {
           self.delegate?.createTeamSuccess()
         case .failed:
           let alert = AlertViewController()
-          alert.title = "Error"
-          alert.body = "Could not create team - perhaps try a different name."
+          alert.title = Strings.Challenge.CreateTeam.ErrorAlert.title
+          alert.body = Strings.Challenge.CreateTeam.ErrorAlert.body
           alert.add(.okay())
           AppController.shared.present(alert: alert, in: self, completion: nil)
         }
@@ -134,7 +134,7 @@ class CreateTeamSuccessViewController: ViewController {
     super.configureView()
     title = Strings.Challenge.CreateTeam.title
     checkmarkImageView.contentMode = .scaleAspectFit
-    titleLabel.text = "You have successfully created a team"
+    titleLabel.text = Strings.Challenge.CreateTeam.successTitle
     titleLabel.textAlignment = .center
     navigationItem.leftBarButtonItem = UIBarButtonItem(
       image: Assets.close.image,
