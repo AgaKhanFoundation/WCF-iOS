@@ -234,6 +234,7 @@ enum Assets: String {
   case gear = "GearIcon"
   case disclosure = "BlueBackButton"
   case close = "close"
+  case checkmark = "checkmark"
 
   // Logos
   case AKFLogo = "AKFLogo"
