@@ -18,7 +18,11 @@
 
 #import "FBSDKAppInviteContent.h"
 
+#ifdef COCOAPODS
+#import <FBSDKCoreKit/FBSDKCoreKit+Internal.h>
+#else
 #import "FBSDKCoreKit+Internal.h"
+#endif
 #import "FBSDKShareUtility.h"
 
 #define FBSDK_APP_INVITE_CONTENT_APP_LINK_URL_KEY @"appLinkURL"
@@ -59,28 +63,28 @@
     // Check for validity of promo text and promo code.
     if (!(_promotionText.length > 0 && _promotionText.length <= 80)) {
       if (errorRef != NULL) {
-        *errorRef = [NSError fbInvalidArgumentErrorWithName:@"promotionText" value:_promotionText message:@"Invalid value for promotionText, promotionText has to be between 1 and 80 characters long."];
+        *errorRef = [FBSDKError invalidArgumentErrorWithName:@"promotionText" value:_promotionText message:@"Invalid value for promotionText, promotionText has to be between 1 and 80 characters long."];
       }
       return NO;
     }
 
     if (!(_promotionCode.length <= 10)) {
       if (errorRef != NULL) {
-        *errorRef = [NSError fbInvalidArgumentErrorWithName:@"promotionCode" value:_promotionCode message:@"Invalid value for promotionCode, promotionCode has to be between 0 and 10 characters long and is required when promoCode is set."];
+        *errorRef = [FBSDKError invalidArgumentErrorWithName:@"promotionCode" value:_promotionCode message:@"Invalid value for promotionCode, promotionCode has to be between 0 and 10 characters long and is required when promoCode is set."];
       }
       return NO;
     }
 
     if ([_promotionText rangeOfCharacterFromSet:alphanumericWithSpaces.invertedSet].location != NSNotFound) {
       if (errorRef != NULL) {
-        *errorRef = [NSError fbInvalidArgumentErrorWithName:@"promotionText" value:_promotionText message:@"Invalid value for promotionText, promotionText can contain only alphanumeric characters and spaces."];
+        *errorRef = [FBSDKError invalidArgumentErrorWithName:@"promotionText" value:_promotionText message:@"Invalid value for promotionText, promotionText can contain only alphanumeric characters and spaces."];
       }
       return NO;
     }
 
     if (_promotionCode.length > 0 && [_promotionCode rangeOfCharacterFromSet:alphanumericWithSpaces.invertedSet].location != NSNotFound) {
       if (errorRef != NULL) {
-        *errorRef = [NSError fbInvalidArgumentErrorWithName:@"promotionCode" value:_promotionCode message:@"Invalid value for promotionCode, promotionCode can contain only alphanumeric characters and spaces."];
+        *errorRef = [FBSDKError invalidArgumentErrorWithName:@"promotionCode" value:_promotionCode message:@"Invalid value for promotionCode, promotionCode can contain only alphanumeric characters and spaces."];
       }
       return NO;
     }
@@ -158,7 +162,7 @@
   [encoder encodeObject:_appInvitePreviewImageURL forKey:FBSDK_APP_INVITE_CONTENT_PREVIEW_IMAGE_KEY];
   [encoder encodeObject:_promotionCode forKey:FBSDK_APP_INVITE_CONTENT_PROMO_CODE_KEY];
   [encoder encodeObject:_promotionText forKey:FBSDK_APP_INVITE_CONTENT_PROMO_TEXT_KEY];
-  [encoder encodeInt:_destination forKey:FBSDK_APP_INVITE_CONTENT_DESTINATION_KEY];
+  [encoder encodeInt:(int)_destination forKey:FBSDK_APP_INVITE_CONTENT_DESTINATION_KEY];
 }
 
 #pragma mark - NSCopying
