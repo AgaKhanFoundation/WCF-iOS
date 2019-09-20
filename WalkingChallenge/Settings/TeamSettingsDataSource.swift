@@ -32,17 +32,85 @@ import Foundation
 class TeamSettingsDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
 
+  private var teamName: String = " "
+  private var eventName: String = " "
+  private var team: (members: [(name: String?, image: URL?)], capacity: Int) = ([], 0)
+
+  func reload(completion: @escaping () -> Void) {
+    configure()
+    completion()
+
+    onBackground { [weak self] in
+      let CC: NSCondition = NSCondition()
+      var MS: DispatchSemaphore = DispatchSemaphore(value: 0)
+
+      var capacity: Int = 1
+      var members: [(name: String?, image: URL?)] = []
+
+      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+        guard let participant = Participant(json: result.response) else {
+          CC.signal()
+          return
+        }
+
+        self?.eventName = participant.event?.name ?? " "
+
+        if let event = participant.event?.id {
+          AKFCausesService.getEvent(event: event) { (result) in
+            guard let event = Event(json: result.response) else {
+              CC.signal()
+              return
+            }
+            capacity = event.teamLimit
+            CC.signal()
+          }
+        }
+
+        if let team = participant.team {
+          self?.teamName = team.name ?? " "
+
+          if let team = participant.team?.members {
+            MS = DispatchSemaphore(value: team.count * 2)
+            members = Array<(String?, URL?)>.init(repeating: (name: nil, image: nil), count: team.count)
+            for (index, member) in team.enumerated() {
+              Facebook.getRealName(for: member.fbid) { (name) in
+                members[index].name = name
+                MS.signal()
+              }
+              Facebook.profileImage(for: member.fbid) { (url) in
+                members[index].image = url
+                MS.signal()
+              }
+            }
+          }
+        }
+      }
+
+      CC.wait()
+      MS.wait()
+
+      self?.team = (members: members, capacity: capacity)
+
+      self?.configure()
+      completion()
+    }
+  }
+
   func configure() {
+    var members: [[CellContext]] = []
+    for (index, member) in self.team.members.enumerated() {
+      members.append([TeamSettingsMemberCellContext(count: index + 1,
+                                                    imageURL: member.image,
+                                                    name: member.name ?? "<Facebook Error>",
+                                                    isLastItem: index == self.team.members.count - 1)])
+    }
+
     cells = [[
-      TeamSettingsHeaderCellContext(team: "World Walkers", event: "AFK Spring 2019"),
+      TeamSettingsHeaderCellContext(team: self.teamName, event: self.eventName),
       SettingsTitleCellContext(title: "Team Members"),
-      TeamSettingsMemberCellContext(count: 4, imageURL: nil, name: "Sarah Bhamani"),
-      TeamSettingsMemberCellContext(count: 4, imageURL: nil, name: "Sarah Bhamani"),
-      TeamSettingsMemberCellContext(count: 4, imageURL: nil, name: "Sarah Bhamani"),
-      TeamSettingsMemberCellContext(count: 4, imageURL: nil, name: "Sarah Bhamani"),
-      TeamSettingsMemberCellContext(count: 5, imageURL: nil, name: "Sarah Bhamani", isLastItem: true),
+    ]] + members + [[
       SettingsActionCellContext(
-        title: "Invite 5 new team members",
+        title: "Invite \(self.team.capacity - self.team.members.count) new team members",
         buttonStyle: .plain,
         context: nil),
       SettingsActionCellContext(
