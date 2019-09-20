@@ -30,6 +30,7 @@
 import UIKit
 
 class JoinTeamViewController: TableViewController {
+  var selectedId: Int?
   override func commonInit() {
     super.commonInit()
 
@@ -40,12 +41,96 @@ class JoinTeamViewController: TableViewController {
       style: .plain,
       target: self,
       action: #selector(closeButtonTapped))
+    navigationItem.rightBarButtonItem = UIBarButtonItem(
+      title: "Join",
+      style: .plain,
+      target: self, action: #selector(joinTapped))
+    navigationItem.rightBarButtonItem?.isEnabled = false
   }
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let context = (tableView.cellForRow(at: indexPath) as? Contextable)?.context else { return }
+    handle(context: context)
+  }
+  
+  // MARK: - Actions
 
   @objc
   func closeButtonTapped() {
     dismiss(animated: true, completion: nil)
   }
+  
+  @objc
+  func joinTapped() {
+    guard let selectedId = selectedId, let dataSource = dataSource as? JoinTeamDataSource else { return }
+    dataSource.joinTeam(team: selectedId) { [weak self] (success) in
+      guard let `self` = self else { return }
+      let alert = AlertViewController()
+      alert.title = "Error"
+      alert.body = "Could not join team."
+      alert.add(.okay())
+      
+      onMain {
+        if success {
+          // Not pushing the success view controller because we don't want the user to be able to go back in the stack
+          self.navigationController?.setViewControllers([JoinTeamSuccessViewController()], animated: true)
+          self.delegate?.joinTeamSuccess()
+        } else {
+          AppController.shared.present(alert: alert, in: self, completion: nil)
+        }
+      }
+    }
+  }
+  
+  override func handle(context: Context) {
+    guard let context = context as? JoinTeamContext else { return }
+    switch context {
+    case .none:
+      break
+    case .team(id: let id):
+      selectedId = id
+      navigationItem.rightBarButtonItem?.isEnabled = true
+    }
+  }
+}
+
+class JoinTeamSuccessViewController: ViewController {
+  private let checkmarkImageView = UIImageView(image: Assets.checkmark.image)
+  private let titleLabel = UILabel(typography: .title)
+  
+  override func configureView() {
+    super.configureView()
+    title = Strings.Challenge.JoinTeam.title
+    checkmarkImageView.contentMode = .scaleAspectFit
+    titleLabel.text = "You have successfully joined"
+    titleLabel.textAlignment = .center
+    navigationItem.leftBarButtonItem = UIBarButtonItem(
+      image: Assets.close.image,
+      style: .plain,
+      target: self,
+      action: #selector(closeButtonTapped))
+    
+    view.addSubview(checkmarkImageView) {
+      $0.height.width.equalTo(100)
+      $0.centerX.equalToSuperview()
+      $0.top.equalTo(view.safeAreaLayoutGuide).inset(Style.Padding.p32)
+    }
+    
+    view.addSubview(titleLabel) {
+      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
+      $0.top.equalTo(checkmarkImageView.snp.bottom).offset(Style.Padding.p32)
+    }
+  }
+  
+  @objc
+  func closeButtonTapped() {
+    dismiss(animated: true, completion: nil)
+  }
+}
+
+enum JoinTeamContext: Context {
+  case none
+  case team(id: Int)
 }
 
 class JoinTeamDataSource: TableViewDataSource {
@@ -71,9 +156,33 @@ class JoinTeamDataSource: TableViewDataSource {
         }
       }
     }
+    
+    configure()
+    completion()
   }
 
   func configure() {
-
+    var teamCells: [JoinTeamCellContext] = teams.compactMap {
+      guard let name = $0.name, let id = $0.id else { return nil }
+      return JoinTeamCellContext(teamName: name, memberCount: $0.members.count, context: JoinTeamContext.team(id: id))
+    }
+    
+    if teamCells.isEmpty {
+      cells = [[
+          InfoCellContext(title: "No Teams Available", body: "No teams available for the event you are a part of. Please create a new team.")
+        ]]
+    } else {
+      var last = teamCells.removeLast()
+      last.isLastItem = true
+      teamCells.append(last)
+      
+      cells = [teamCells]
+    }
+  }
+  
+  func joinTeam(team: Int, _ completion: @escaping (Bool) -> Void) {
+    AKFCausesService.joinTeam(fbid: Facebook.id, team: team) { (result) in
+      completion(result.isSuccess)
+    }
   }
 }
