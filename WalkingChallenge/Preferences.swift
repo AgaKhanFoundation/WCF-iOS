@@ -55,8 +55,11 @@ struct UserInfo {
       return Pedometer(rawValue: pedometerRaw)
     }
     set {
-      guard let newValue = newValue else { return }
-      defaults.set(newValue.rawValue, forKey: pedometerKey)
+      if let newValue = newValue {
+        defaults.set(newValue.rawValue, forKey: pedometerKey)
+      } else {
+        defaults.removeObject(forKey: pedometerKey)
+      }
     }
   }
 
