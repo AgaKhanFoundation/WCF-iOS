@@ -17,4 +17,16 @@ steps:
     sdk: 'iphoneos'
     xcWorkspacePath: 'Steps4Impact.xcworkspace'
     scheme: 'Steps4Impact'
+
+- task: Xcode@5
+  inputs:
+    actions: 'build'
+    configuration: 'Release'
+    sdk: 'iphonesimulator'
+    xcWorkspacePath: 'Steps4Impact.xcworkspace'
+    scheme: 'Steps4Impact'
+    destinationPlatformOption: iOS
+    destinationTypeOption: simulators
+    destinationSimulators: 'iPhone SE'
+    args: 'test'
     publishJUnitResults: true
