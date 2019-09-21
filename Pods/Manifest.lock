@@ -81,7 +81,9 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - Nimble (8.0.4)
   - Protobuf (3.9.0)
+  - Quick (2.2.0)
   - SDWebImage (5.1.1):
     - SDWebImage/Core (= 5.1.1)
   - SDWebImage/Core (5.1.1)
@@ -97,12 +99,16 @@ DEPENDENCIES:
   - FBSDKLoginKit (~> 5.6.0)
   - FBSDKShareKit (~> 5.6.0)
   - FirebaseMessaging (~> 4.1.4)
+  - Nimble (~> 8.0.4)
+  - Quick (~> 2.2.0)
   - SDWebImage (~> 5.1.1)
   - SnapKit (~> 4.2.0)
   - SwiftLint (~> 0.29.2)
 
 SPEC REPOS:
-  trunk:
+  https://cdn.cocoapods.org/:
+    - FirebaseCore
+  https://github.com/cocoapods/specs.git:
     - AppCenter
     - FacebookCore
     - FacebookLogin
@@ -111,7 +117,6 @@ SPEC REPOS:
     - FBSDKLoginKit
     - FBSDKShareKit
     - FirebaseAnalyticsInterop
-    - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCoreDiagnosticsInterop
     - FirebaseInstanceID
@@ -120,7 +125,9 @@ SPEC REPOS:
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
     - nanopb
+    - Nimble
     - Protobuf
+    - Quick
     - SDWebImage
     - SnapKit
     - SwiftLint
@@ -143,11 +150,13 @@ SPEC CHECKSUMS:
   GoogleDataTransportCCTSupport: 7455d07b98851aa63e4c05a34dad356ca588479e
   GoogleUtilities: 9c2c544202301110b29f7974a82e77fdcf12bf51
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Nimble: 18d5360282923225d62b09d781f63abc1a0111fc
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
+  Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
   SDWebImage: 96d7f03415ccb28d299d765f93557ff8a617abd8
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftLint: 73f2ecfd0f6d812c8cb9a73c00fe809bc2504585
 
-PODFILE CHECKSUM: bce516e86da6afc0bf345ef62581b31452a9b6c5
+PODFILE CHECKSUM: f0e72d751d3818cf89f3b04a7a973380a701765f
 
-COCOAPODS: 1.8.0.beta.2
+COCOAPODS: 1.7.5
