@@ -132,7 +132,7 @@ class Notifications: UIViewController {
 
     view.addSubview(lblTitle)
     lblTitle.snp.makeConstraints {
-      $0.top.equalTo(topLayoutGuide.snp.bottom)
+      $0.top.equalTo(view.safeAreaLayoutGuide)
       $0.left.right.equalToSuperview().inset(Style.Padding.p24)
     }
 

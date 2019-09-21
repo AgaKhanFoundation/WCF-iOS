@@ -54,7 +54,7 @@ class LoginViewController: UIViewController {
 
     imgLogo.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
-      make.top.equalTo(topLayoutGuide.snp.bottom).offset(Style.Size.s24)
+      make.top.equalTo(view.safeAreaLayoutGuide).offset(Style.Size.s24)
     }
 
     lblTitle.text = Strings.Application.name

@@ -61,6 +61,8 @@ class HealthKitDataProvider: PedometerDataProvider {
       fallthrough
     case .sharingAuthorized:
       query(sampleType: quantityType, interval: forInterval, completion: completion)
+    @unknown default:
+      completion(.failure(.unknown))
     }
   }
 

@@ -41,8 +41,8 @@ class TeamSettingsDataSource: TableViewDataSource {
     completion()
 
     onBackground { [weak self] in
-      let CC: NSCondition = NSCondition()
-      var MS: DispatchSemaphore = DispatchSemaphore(value: 0)
+      let CC: NSCondition = NSCondition() // swiftlint:disable:this identifier_name
+      var MS: DispatchSemaphore = DispatchSemaphore(value: 0) // swiftlint:disable:this identifier_name
 
       var capacity: Int = 1
       var members: [(name: String?, image: URL?)] = []
@@ -71,7 +71,7 @@ class TeamSettingsDataSource: TableViewDataSource {
 
           if let team = participant.team?.members {
             MS = DispatchSemaphore(value: team.count * 2)
-            members = Array<(String?, URL?)>.init(repeating: (name: nil, image: nil), count: team.count)
+            members = [(String?, URL?)](repeating: (name: nil, image: nil), count: team.count)
             for (index, member) in team.enumerated() {
               Facebook.getRealName(for: member.fbid) { (name) in
                 members[index].name = name

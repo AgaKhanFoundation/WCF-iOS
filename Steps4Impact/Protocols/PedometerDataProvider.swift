@@ -34,6 +34,7 @@ enum PedometerDataProviderError: Error {
   case resultsNotPresent
   case sharingDenied
   case sharingNotAuthorized
+  case unknown
 }
 
 protocol PedometerDataProvider {

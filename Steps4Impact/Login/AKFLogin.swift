@@ -39,7 +39,8 @@ class AKFLoginViewController: ViewController {
 
   deinit {
     // explicitly remove the message handler to avoid a circular reference
-    webview.configuration.userContentController.removeScriptMessageHandler(forName: AKFLoginViewController.LoginCompletedHandlerKey)
+    webview.configuration.userContentController.removeScriptMessageHandler(
+      forName: AKFLoginViewController.LoginCompletedHandlerKey)
   }
 
   override func viewDidLoad() {

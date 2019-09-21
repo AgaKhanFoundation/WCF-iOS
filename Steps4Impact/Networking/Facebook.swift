@@ -77,7 +77,7 @@ class Facebook {
         GraphRequest(graphPath: fbid, parameters: ["fields" : "name"],          // swiftlint:disable:this colon
           tokenString: AccessToken.current?.tokenString, version: nil,
           httpMethod: .get)
-    request.start { (connection, result, error) in
+    request.start { (_, result, error) in
       guard let result = result else {
         print("unable to execute GraphQL query \(String(describing: error))")
         return
@@ -93,7 +93,7 @@ class Facebook {
         GraphRequest(graphPath: "me", parameters: ["fields" : "location"],      // swiftlint:disable:this colon
           tokenString: AccessToken.current?.tokenString, version: nil,
           httpMethod: .get)
-    request.start { (connection, result, error) in
+    request.start { (_, result, error) in
       guard let result = result else {
         print("unable to execute GraphQL query: \(String(describing: error))")
         return
@@ -110,7 +110,7 @@ class Facebook {
         GraphRequest(graphPath: "/\(fbid)/picture?type=large&redirect=false",
                      parameters: ["fields" : ""],                               // swiftlint:disable:this colon
                      tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: .get)
-    request.start { (connection, result, error) in
+    request.start { (_, result, error) in
       guard let result = result else {
         print("unable to execute GraphQL query: \(String(describing: error))")
         return

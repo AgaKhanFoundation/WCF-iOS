@@ -53,7 +53,7 @@ class JoinTeamViewController: TableViewController {
       target: self, action: #selector(joinTapped))
     navigationItem.rightBarButtonItem?.isEnabled = false
   }
-  
+
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let context = (tableView.cellForRow(at: indexPath) as? Contextable)?.context else { return }
     handle(context: context)
@@ -93,7 +93,7 @@ class JoinTeamViewController: TableViewController {
     switch context {
     case .none:
       break
-    case .team(id: let id):
+    case .team(id: let id): // swiftlint:disable:this identifier_name
       selectedId = id
       navigationItem.rightBarButtonItem?.isEnabled = true
     }
@@ -136,7 +136,7 @@ class JoinTeamSuccessViewController: ViewController {
 
 enum JoinTeamContext: Context {
   case none
-  case team(id: Int)
+  case team(id: Int) // swiftlint:disable:this identifier_name
 }
 
 class JoinTeamDataSource: TableViewDataSource {
@@ -152,7 +152,7 @@ class JoinTeamDataSource: TableViewDataSource {
       self?.event = event
 
       AKFCausesService.getEvent(event: eventID) { [weak self] (result) in
-        AKFCausesService.getTeams() { [weak self] (result) in
+        AKFCausesService.getTeams { [weak self] (result) in
           guard let teams = result.response?.arrayValue else { return }
           self?.teams = teams
             .compactMap { Team(json: $0) }
@@ -171,13 +171,23 @@ class JoinTeamDataSource: TableViewDataSource {
 
   func configure() {
     var teamCells: [JoinTeamCellContext] = teams.compactMap {
-      guard let name = $0.name, let id = $0.id, let event = self.event else { return nil }
-      return JoinTeamCellContext(event: event, teamName: name, memberCount: $0.members.count, context: JoinTeamContext.team(id: id))
+      guard
+        let name = $0.name,
+        let id = $0.id, // swiftlint:disable:this identifier_name
+        let event = self.event
+      else { return nil }
+      return JoinTeamCellContext(
+        event: event,
+        teamName: name,
+        memberCount: $0.members.count,
+        context: JoinTeamContext.team(id: id))
     }
 
     if teamCells.isEmpty {
       cells = [[
-          InfoCellContext(title: "No Teams Available", body: "No teams available for the event you are a part of. Please create a new team.")
+          InfoCellContext(
+            title: "No Teams Available",
+            body: "No teams available for the event you are a part of. Please create a new team.")
         ]]
     } else {
       var last = teamCells.removeLast()
