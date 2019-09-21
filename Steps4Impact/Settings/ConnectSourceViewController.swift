@@ -32,6 +32,8 @@ import SnapKit
 import HealthKit
 
 class ConnectSourceViewController: TableViewController {
+  static let steps = HKSampleType.quantityType(forIdentifier: .stepCount)!
+
   override func commonInit() {
     super.commonInit()
 
@@ -58,25 +60,95 @@ class ConnectSourceViewController: TableViewController {
     case .healthkit:
       // Just to ask for permission
       if HKHealthStore.isHealthDataAvailable() {
-        let healthStore = HKHealthStore()
-        let steps = HKSampleType.quantityType(forIdentifier: .stepCount)!
-        let status = healthStore.authorizationStatus(for: steps)
-        switch status {
+        switch HKHealthStore().authorizationStatus(for: ConnectSourceViewController.steps) {
         case .notDetermined:
-          healthStore.requestAuthorization(toShare: [steps], read: [steps]) { [weak self] (_, _) in
-            UserInfo.pedometerSource = .healthKit
-            onMain {
-              self?.reload()
-            }
-          }
+          requestHealthKitAccess()
         case .sharingDenied:
           UserInfo.pedometerSource = nil
+          requestHealthKitUpdate()
         case .sharingAuthorized:
           UserInfo.pedometerSource = .healthKit
         @unknown default:
           UserInfo.pedometerSource = nil
         }
       }
+    }
+  }
+
+  private func requestHealthKitAccess() {
+    HKHealthStore().requestAuthorization(toShare: [ConnectSourceViewController.steps],
+                                         read: [ConnectSourceViewController.steps]) { [weak self] (_, _) in
+      UserInfo.pedometerSource = .healthKit
+      onMain {
+        self?.reload()
+      }
+    }
+  }
+
+  private func requestHealthKitUpdate() {
+    class DirectionCell: UIView {
+      let image: UIImageView =
+          UIImageView(frame: .init(x: 0, y: 0, width: 40, height: 40))
+      let text: UILabel = UILabel(frame: .zero)
+
+      public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupView()
+      }
+
+      public override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+      }
+
+      public convenience init(image: UIImage?, text: String?) {
+        self.init(frame: .zero)
+        self.image.image = image
+        self.text.text = text
+      }
+
+      private func setupView() {
+        self.addSubview(image) { (make) in
+          make.height.equalToSuperview().inset(Style.Padding.p8)
+          make.width.equalTo(image.snp.height)
+          make.top.left.equalToSuperview().inset(Style.Padding.p8)
+        }
+        self.addSubview(text) { (make) in
+          make.left.equalTo(image.snp.right).offset(Style.Padding.p8)
+          make.right.top.bottom.equalToSuperview().inset(Style.Padding.p8)
+        }
+      }
+    }
+
+    let directions: UIStackView = UIStackView()
+
+    directions.axis = .vertical
+    directions.distribution = .equalSpacing
+    directions.alignment = .fill
+    directions.spacing = Style.Padding.p4
+
+    directions.addArrangedSubviews(
+      DirectionCell(image: nil, text: "Open iPhone Settings"),
+      DirectionCell(image: nil, text: "Tap Privacy"),
+      DirectionCell(image: nil, text: "Tap Health"),
+      DirectionCell(image: UIImage(named: "AppIcon40x40"), text: "Tap steps4impact"),
+      DirectionCell(image: nil, text: "Allow steps4impact to read data")
+    )
+
+    let alert: AlertViewController = AlertViewController()
+    alert.title = "Allow access to HealthKit"
+    alert.body = "steps4impact uses HealthKit to track your daily steps."
+    alert.contentView.addSubview(directions) { (make) in
+      make.edges.equalToSuperview()
+    }
+    alert.add(AlertAction(title: "Open Settings", style: .primary, shouldDismiss: true) {
+      let url: URL = URL(string: UIApplication.openSettingsURLString)!
+      UIApplication.shared.open(url)
+    })
+    alert.add(AlertAction(title: "Cancel", style: .primary, shouldDismiss: true))
+
+    AppController.shared.present(alert: alert, in: self) { [weak self] in
+      self?.reload()
     }
   }
 }
