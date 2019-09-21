@@ -98,11 +98,10 @@ class ConnectSourceCell: ConfigurableTableViewCell {
     guard let context = context as? ConnectSourceCellContext else { return }
     lblName.text = context.name
     lblDescription.text = context.description
-    btnConnect.isEnabled = !context.selected
     self.context = context.context
     separator.isHidden = context.isLast
     self.accessoryType = context.selected ? .checkmark : .none
-    btnConnect.style = context.disabled ? .disabled : .primary
+    btnConnect.style = context.disabled || context.selected ? .disabled : .primary
     btnConnect.isEnabled = !context.disabled
   }
 
