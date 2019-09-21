@@ -17,5 +17,4 @@ steps:
     sdk: 'iphoneos'
     xcWorkspacePath: 'Steps4Impact.xcworkspace'
     scheme: 'Steps4Impact'
-    packageApp: true
     publishJUnitResults: true
