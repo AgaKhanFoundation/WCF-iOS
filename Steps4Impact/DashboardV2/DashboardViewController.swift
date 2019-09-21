@@ -47,6 +47,9 @@ class DashboardViewController: TableViewController {
     if let cell = cell as? ProfileCardCell {
       cell.delegate = self
     }
+    if let cell = cell as? EmptyActivityCell {
+      cell.delegate = self
+    }
   }
 
   // MARK: - Actions
@@ -60,5 +63,12 @@ class DashboardViewController: TableViewController {
 extension DashboardViewController: ProfileCardCellDelegate {
   func profileDisclosureTapped() {
     navigationController?.pushViewController(BadgesViewController(), animated: true)
+  }
+}
+
+extension DashboardViewController: EmptyActivityCellDelegate {
+  func emptyActivityCellConnectTapped() {
+    navigationController?.pushViewController(ConnectSourceViewController(),
+                                             animated: true)
   }
 }
