@@ -46,9 +46,10 @@ struct Style {
     static let EarthyGold = #colorLiteral(red: 0.8078431372, green: 0.0000000000, blue: 0.3450980392, alpha: 1)           // #bfa548
     static let SpringGreen = #colorLiteral(red: 0.5960784313, green: 0.8313725490, blue: 0.3058823529, alpha: 1)          // #98d44e
     static let VerdantGreen = #colorLiteral(red: 0.1098039215, green: 0.4862745098, blue: 0.3294117647, alpha: 1)         // #1c7c54
-
     static let FoundationGrey = #colorLiteral(red: 0.0784313725, green: 0.0784313725, blue: 0.0784313725, alpha: 1)       // #333333
+    static let Gold = #colorLiteral(red: 0.7490196078, green: 0.6470588235, blue: 0.2823529412, alpha: 1)                 // #bfa548
     static let Silver = #colorLiteral(red: 0.4980392156, green: 0.4980392156, blue: 0.4980392156, alpha: 1)               // #7f7f7f
+    static let Bronze = #colorLiteral(red: 0.7843137255, green: 0.4078431373, blue: 0.1921568627, alpha: 1)               // #c86831
   }
 
   enum Typography {
@@ -64,6 +65,8 @@ struct Style {
     case footnote
 
     case onboarding
+    case placeholder
+    case placeholderBold
 
     var font: UIFont? {
       switch self {
@@ -89,8 +92,23 @@ struct Style {
         return UIFont.systemFont(ofSize: 12)
       case .onboarding:
         return UIFont.systemFont(ofSize: 24, weight: .bold)
+      case .placeholder:
+        return UIFont.systemFont(ofSize: 18)
+      case .placeholderBold:
+        return UIFont.boldSystemFont(ofSize: 18)
       }
     }
+  }
+  struct Font {
+    static let title: UIFont = UIFont.boldSystemFont(ofSize: 32)
+    static let placeholder: UIFont = UIFont.systemFont(ofSize: 18)
+    static let placeholderBold: UIFont = UIFont.boldSystemFont(ofSize: 18)
+    static let placeholderThin: UIFont = UIFont.systemFont(ofSize: 18, weight: .thin)
+    static let leaderboard: UIFont = UIFont.systemFont(ofSize: 20)
+    static let leaderboardBold: UIFont = UIFont.boldSystemFont(ofSize: 20)
+    static let smallLabel: UIFont = UIFont.systemFont(ofSize: 13)
+    static let largeLabel: UIFont = UIFont.systemFont(ofSize: 15)
+    static let largeLabelThin: UIFont = UIFont.systemFont(ofSize: 15, weight: .thin)
   }
 
   struct Size {
@@ -103,7 +121,10 @@ struct Style {
     static let s56: CGFloat = 56
     static let s64: CGFloat = 64
     static let s96: CGFloat = 96
+    static let s108: CGFloat = 108
     static let s128: CGFloat = 128
+    static let s200: CGFloat = 200
+    static let s1000: CGFloat = 1000
   }
 
   struct Padding {
@@ -113,10 +134,18 @@ struct Style {
     static let p12: CGFloat = 12
     static let p16: CGFloat = 16
     static let p24: CGFloat = 24
+    static let p28: CGFloat = 28
     static let p32: CGFloat = 32
     static let p40: CGFloat = 40
     static let p48: CGFloat = 48
     static let p64: CGFloat = 64
+    static let p72: CGFloat = 72
+    static let p80: CGFloat = 80
+    static let p86: CGFloat = 86
+    static let p96: CGFloat = 96
+    static let p208: CGFloat = 208
+    static let p236: CGFloat = 236
+    static let p316: CGFloat = 316
   }
 }
 

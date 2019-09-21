@@ -94,6 +94,33 @@ Click continue for a quick tour of the app.
     static let title: String =
         NSLocalizedString("Dashboard", comment: "Dashboard")
   }
+  struct Leaderboard {
+    static let title: String =
+      NSLocalizedString("Leaderboard", comment: "Leaderboard")
+    static let leaderboardId: String =
+        NSLocalizedString("leaderboardId", comment: "leaderboardId")
+    static let collapseId: String =
+        NSLocalizedString("collapseId", comment: "collapseId")
+    static let placeholder: String =
+        NSLocalizedString("Rest of the team rankings will show here.",
+                          comment: "Rest of the team rankings will show here.")
+    static let expand: String =
+        NSLocalizedString("Expand", comment: "Expand")
+    static let collapse: String =
+        NSLocalizedString("Collapse", comment: "Collapse")
+    static let miles: String =
+        NSLocalizedString("Miles", comment: "Miles")
+    static let teamName: String =
+        NSLocalizedString("Team Name", comment: "Team Name")
+    static let blank: String =
+        NSLocalizedString("————", comment: "————")
+    static let firstPlace: String =
+        NSLocalizedString("1", comment: "1")
+    static let secondPlace: String =
+      NSLocalizedString("2", comment: "2")
+    static let thirdPlace: String =
+      NSLocalizedString("3", comment: "3")
+  }
 
   struct ProfileCard {
     static let challengeTimeline: String =
@@ -154,4 +181,5 @@ struct Assets {
   static let LeaderboardUnselected = "leaderboard-unselected"
   static let NotificationsSelected = "notifications-selected"
   static let NotificationsUnselected = "notifications-unselected"
+  static let chevron = "downArrow"
 }
