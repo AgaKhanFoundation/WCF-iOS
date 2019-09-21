@@ -15,3 +15,8 @@ target 'steps4impact' do
   pod 'AppCenter', '~> 2.3.0'
   pod 'SDWebImage', '~> 5.1.1'
 end
+
+target 'steps4impactTests' do
+  pod 'Quick', '~> 2.2.0'
+  pod 'Nimble', '~> 8.0.4'
+end
