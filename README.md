@@ -1,14 +1,16 @@
-[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58e196233a9e92000147b73a&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58e196233a9e92000147b73a/build/latest?branch=master)
-
 ## Getting Started
 
-- Built using Xcode v10.1 on Swift 4.2.1
+- Built using Xcode 11.0 on Swift 5.0
 - Open `WalkingChallenge.xcworkspace`
 
 ## Adding Dependencies
 
-- Managed by Cocoapods v1.2.1
+- Managed by Cocoapods v1.7.5
+
+## Testing
+
+BDD style tests with Quick & Nimble
 
 ## CI/CD
 
-- Managed by BuddyBuild
+- TBD
