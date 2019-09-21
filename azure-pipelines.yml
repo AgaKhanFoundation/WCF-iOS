@@ -10,14 +10,12 @@ pool:
   vmImage: 'macOS-10.14'
 
 steps:
-- task: CocoaPods@0
-  inputs:
-    forceRepoUpdate: true
 - task: Xcode@5
   inputs:
     actions: 'build'
-    scheme: 'Steps4Impact'
-    sdk: 'iphoneos'
     configuration: 'Release'
+    sdk: 'iphoneos'
     xcWorkspacePath: 'Steps4Impact.xcworkspace'
-    xcodeVersion: 'default' # Options: 8, 9, 10, default, specifyPath
+    scheme: 'Steps4Impact'
+    packageApp: true
+    publishJUnitResults: true
