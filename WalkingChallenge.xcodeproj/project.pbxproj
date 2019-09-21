@@ -25,6 +25,7 @@
 		260BF5B52324FE32005F0882 /* SettingsProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5B42324FE32005F0882 /* SettingsProfileCell.swift */; };
 		260BF5B7232502A9005F0882 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5B6232502A9005F0882 /* UIStackView.swift */; };
 		260BF5B923250414005F0882 /* SettingsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5B823250414005F0882 /* SettingsTitleCell.swift */; };
+		2611A4EF2335F8350030E77E /* steps4impactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A4EE2335F8350030E77E /* steps4impactTests.swift */; };
 		2622C09023249A4B0092B145 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C08F23249A4B0092B145 /* UIRefreshControl.swift */; };
 		2622C09223249CA10092B145 /* EmptyTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C09123249CA10092B145 /* EmptyTableViewDataSource.swift */; };
 		2622C09423249D680092B145 /* DashboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C09323249D680092B145 /* DashboardDataSource.swift */; };
@@ -68,8 +69,9 @@
 		26FE2451232231FB00E01B9B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2450232231FB00E01B9B /* TableViewController.swift */; };
 		26FE24532322332D00E01B9B /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE24522322332D00E01B9B /* UITableView.swift */; };
 		26FE2455232234A300E01B9B /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2454232234A300E01B9B /* EmptyCell.swift */; };
+		37042423F6FEDBD35D777EA4 /* Pods_steps4impact.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6685A06CA2B2EFA10FDAC3E5 /* Pods_steps4impact.framework */; };
+		7993E56BD14015AAAF888E86 /* Pods_steps4impactTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539DA73C858D1467B4FCE9B4 /* Pods_steps4impactTests.framework */; };
 		C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */; };
-		E536CBE9430958C22957D1AA /* Pods_steps4impact.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9919BE42B10E251EBAA9AFC7 /* Pods_steps4impact.framework */; };
 		F004030F1EBF9DAB005E6F10 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004030E1EBF9DAB005E6F10 /* JSON.swift */; };
 		F00403151EC3EC6F005E6F10 /* AKFCausesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */; };
 		F00403191EC3FB7D005E6F10 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
@@ -114,9 +116,18 @@
 		F0F8EDD92210C7FA00321A6D /* ChallengeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F8EDD82210C7FA00321A6D /* ChallengeCard.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2611A4F12335F8350030E77E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 269E34BE1E765828000726C2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 269E34C51E765828000726C2;
+			remoteInfo = steps4impact;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		00596233B5D00EAEF7957964 /* Pods-WalkingChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.debug.xcconfig"; sourceTree = "<group>"; };
-		00787BA9EF782540F075A2B4 /* Pods-steps4impact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impact.debug.xcconfig"; path = "Pods/Target Support Files/Pods-steps4impact/Pods-steps4impact.debug.xcconfig"; sourceTree = "<group>"; };
+		020D0DFBB98F71EA58A2FE41 /* Pods-steps4impactTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impactTests.release.xcconfig"; path = "Target Support Files/Pods-steps4impactTests/Pods-steps4impactTests.release.xcconfig"; sourceTree = "<group>"; };
 		2606948A1E7DD1A200BFED76 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		260BF58B2324B17D005F0882 /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
 		260BF58F2324B28D005F0882 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -135,6 +146,9 @@
 		260BF5B42324FE32005F0882 /* SettingsProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileCell.swift; sourceTree = "<group>"; };
 		260BF5B6232502A9005F0882 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		260BF5B823250414005F0882 /* SettingsTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTitleCell.swift; sourceTree = "<group>"; };
+		2611A4EC2335F8350030E77E /* steps4impactTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = steps4impactTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2611A4EE2335F8350030E77E /* steps4impactTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = steps4impactTests.swift; sourceTree = "<group>"; };
+		2611A4F02335F8350030E77E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2622C08F23249A4B0092B145 /* UIRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
 		2622C09123249CA10092B145 /* EmptyTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewDataSource.swift; sourceTree = "<group>"; };
 		2622C09323249D680092B145 /* DashboardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardDataSource.swift; sourceTree = "<group>"; };
@@ -181,9 +195,12 @@
 		26FE2450232231FB00E01B9B /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		26FE24522322332D00E01B9B /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		26FE2454232234A300E01B9B /* EmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCell.swift; sourceTree = "<group>"; };
-		2877AA5DAD849FDC5B131032 /* Pods-steps4impact.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impact.release.xcconfig"; path = "Pods/Target Support Files/Pods-steps4impact/Pods-steps4impact.release.xcconfig"; sourceTree = "<group>"; };
-		9919BE42B10E251EBAA9AFC7 /* Pods_steps4impact.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_steps4impact.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		307EFC69C033D08671C5E6C6 /* Pods-steps4impact.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impact.release.xcconfig"; path = "Target Support Files/Pods-steps4impact/Pods-steps4impact.release.xcconfig"; sourceTree = "<group>"; };
+		539DA73C858D1467B4FCE9B4 /* Pods_steps4impactTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_steps4impactTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6685A06CA2B2EFA10FDAC3E5 /* Pods_steps4impact.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_steps4impact.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D885FB78222CE09537F0C6A /* Pods-steps4impact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impact.debug.xcconfig"; path = "Target Support Files/Pods-steps4impact/Pods-steps4impact.debug.xcconfig"; sourceTree = "<group>"; };
 		C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		D119AEC4C6C2D75E13B09A89 /* Pods-steps4impactTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impactTests.debug.xcconfig"; path = "Target Support Files/Pods-steps4impactTests/Pods-steps4impactTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F004030E1EBF9DAB005E6F10 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKFCausesService.swift; sourceTree = "<group>"; };
 		F004031C1EC52772005E6F10 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
@@ -226,16 +243,23 @@
 		F0F8EDD42210C71600321A6D /* ActivityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCard.swift; sourceTree = "<group>"; };
 		F0F8EDD62210C7C700321A6D /* FundraisingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundraisingCard.swift; sourceTree = "<group>"; };
 		F0F8EDD82210C7FA00321A6D /* ChallengeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCard.swift; sourceTree = "<group>"; };
-		FB0F6813102ABF61F968C9BD /* Pods-WalkingChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkingChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkingChallenge/Pods-WalkingChallenge.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2611A4E92335F8350030E77E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7993E56BD14015AAAF888E86 /* Pods_steps4impactTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		269E34C31E765828000726C2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */,
-				E536CBE9430958C22957D1AA /* Pods_steps4impact.framework in Frameworks */,
+				37042423F6FEDBD35D777EA4 /* Pods_steps4impact.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +330,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		2611A4ED2335F8350030E77E /* steps4impactTests */ = {
+			isa = PBXGroup;
+			children = (
+				2611A4EE2335F8350030E77E /* steps4impactTests.swift */,
+				2611A4F02335F8350030E77E /* Info.plist */,
+			);
+			path = steps4impactTests;
+			sourceTree = "<group>";
+		};
 		2622C0972324ADE70092B145 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,9 +395,10 @@
 				F078D9D62334354000EF0BAD /* steps4impact.entitlements */,
 				F03D77D91EA839D300A70230 /* Data Sources */,
 				269E34C81E765828000726C2 /* WalkingChallenge */,
+				2611A4ED2335F8350030E77E /* steps4impactTests */,
 				269E34C71E765828000726C2 /* Products */,
-				32BEA0F580FBBCEE2DC19561 /* Pods */,
 				71A05532D1340D55ABD0E4B4 /* Frameworks */,
+				693EA03CC2AC5E248782CE98 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -374,6 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				269E34C61E765828000726C2 /* steps4impact.app */,
+				2611A4EC2335F8350030E77E /* steps4impactTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -450,22 +485,24 @@
 			path = CommonUI;
 			sourceTree = "<group>";
 		};
-		32BEA0F580FBBCEE2DC19561 /* Pods */ = {
+		693EA03CC2AC5E248782CE98 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				00596233B5D00EAEF7957964 /* Pods-WalkingChallenge.debug.xcconfig */,
-				FB0F6813102ABF61F968C9BD /* Pods-WalkingChallenge.release.xcconfig */,
-				00787BA9EF782540F075A2B4 /* Pods-steps4impact.debug.xcconfig */,
-				2877AA5DAD849FDC5B131032 /* Pods-steps4impact.release.xcconfig */,
+				7D885FB78222CE09537F0C6A /* Pods-steps4impact.debug.xcconfig */,
+				307EFC69C033D08671C5E6C6 /* Pods-steps4impact.release.xcconfig */,
+				D119AEC4C6C2D75E13B09A89 /* Pods-steps4impactTests.debug.xcconfig */,
+				020D0DFBB98F71EA58A2FE41 /* Pods-steps4impactTests.release.xcconfig */,
 			);
 			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		71A05532D1340D55ABD0E4B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				26C5E3611E7DCAF70053DE3E /* HealthKit.framework */,
-				9919BE42B10E251EBAA9AFC7 /* Pods_steps4impact.framework */,
+				6685A06CA2B2EFA10FDAC3E5 /* Pods_steps4impact.framework */,
+				539DA73C858D1467B4FCE9B4 /* Pods_steps4impactTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -597,16 +634,36 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2611A4EB2335F8350030E77E /* steps4impactTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2611A4F52335F8350030E77E /* Build configuration list for PBXNativeTarget "steps4impactTests" */;
+			buildPhases = (
+				A16BF170E311CB807A51AC21 /* [CP] Check Pods Manifest.lock */,
+				2611A4E82335F8350030E77E /* Sources */,
+				2611A4E92335F8350030E77E /* Frameworks */,
+				2611A4EA2335F8350030E77E /* Resources */,
+				5AFD5020B3FA67ADEDA7F81C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2611A4F22335F8350030E77E /* PBXTargetDependency */,
+			);
+			name = steps4impactTests;
+			productName = steps4impactTests;
+			productReference = 2611A4EC2335F8350030E77E /* steps4impactTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		269E34C51E765828000726C2 /* steps4impact */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 269E34E31E765828000726C2 /* Build configuration list for PBXNativeTarget "steps4impact" */;
 			buildPhases = (
-				14FA866E60122FB13DD0CD94 /* [CP] Check Pods Manifest.lock */,
+				C534CC0111F4BC7DD5A332BC /* [CP] Check Pods Manifest.lock */,
 				269E34C21E765828000726C2 /* Sources */,
 				269E34C31E765828000726C2 /* Frameworks */,
 				269E34C41E765828000726C2 /* Resources */,
-				65FAF8F474BBD7BA376F8E48 /* [CP] Embed Pods Frameworks */,
 				26AFC9E21EA6508C002E6D2A /* SwiftLint */,
+				A9D5D03D7E9F3ABB7953FB45 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -623,10 +680,16 @@
 		269E34BE1E765828000726C2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = AKDN;
 				TargetAttributes = {
+					2611A4EB2335F8350030E77E = {
+						CreatedOnToolsVersion = 11.0;
+						DevelopmentTeam = 6SQ8F32998;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 269E34C51E765828000726C2;
+					};
 					269E34C51E765828000726C2 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 6SQ8F32998;
@@ -658,11 +721,19 @@
 			projectRoot = "";
 			targets = (
 				269E34C51E765828000726C2 /* steps4impact */,
+				2611A4EB2335F8350030E77E /* steps4impactTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2611A4EA2335F8350030E77E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		269E34C41E765828000726C2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -675,24 +746,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		14FA866E60122FB13DD0CD94 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-steps4impact-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		26AFC9E21EA6508C002E6D2A /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -707,7 +760,49 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
-		65FAF8F474BBD7BA376F8E48 /* [CP] Embed Pods Frameworks */ = {
+		5AFD5020B3FA67ADEDA7F81C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-steps4impactTests/Pods-steps4impactTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-steps4impactTests/Pods-steps4impactTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A16BF170E311CB807A51AC21 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-steps4impactTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A9D5D03D7E9F3ABB7953FB45 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -745,9 +840,39 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-steps4impact/Pods-steps4impact-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C534CC0111F4BC7DD5A332BC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-steps4impact-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2611A4E82335F8350030E77E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2611A4EF2335F8350030E77E /* steps4impactTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		269E34C21E765828000726C2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -858,7 +983,64 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		2611A4F22335F8350030E77E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 269E34C51E765828000726C2 /* steps4impact */;
+			targetProxy = 2611A4F12335F8350030E77E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		2611A4F32335F8350030E77E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D119AEC4C6C2D75E13B09A89 /* Pods-steps4impactTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6SQ8F32998;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = steps4impactTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.afk.steps4impactTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/steps4impact.app/steps4impact";
+			};
+			name = Debug;
+		};
+		2611A4F42335F8350030E77E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 020D0DFBB98F71EA58A2FE41 /* Pods-steps4impactTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6SQ8F32998;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = steps4impactTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.afk.steps4impactTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/steps4impact.app/steps4impact";
+			};
+			name = Release;
+		};
 		269E34E11E765828000726C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -970,7 +1152,7 @@
 		};
 		269E34E41E765828000726C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 00787BA9EF782540F075A2B4 /* Pods-steps4impact.debug.xcconfig */;
+			baseConfigurationReference = 7D885FB78222CE09537F0C6A /* Pods-steps4impact.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -988,7 +1170,7 @@
 		};
 		269E34E51E765828000726C2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2877AA5DAD849FDC5B131032 /* Pods-steps4impact.release.xcconfig */;
+			baseConfigurationReference = 307EFC69C033D08671C5E6C6 /* Pods-steps4impact.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1006,6 +1188,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2611A4F52335F8350030E77E /* Build configuration list for PBXNativeTarget "steps4impactTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2611A4F32335F8350030E77E /* Debug */,
+				2611A4F42335F8350030E77E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		269E34C11E765828000726C2 /* Build configuration list for PBXProject "WalkingChallenge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
