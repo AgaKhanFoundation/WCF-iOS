@@ -103,7 +103,7 @@ class CreateTeamViewController: ViewController {
     navigationItem.rightBarButtonItem?.isEnabled = false
     textField.isEnabled = false
 
-    AKFCausesService.createTeam(name: teamName) { [weak self] (result) in
+    AKFCausesService.createTeam(name: teamName, lead: Facebook.id) { [weak self] (result) in
       onMain {
         guard let `self` = self else { return }
         self.activityView.stopAnimating()
