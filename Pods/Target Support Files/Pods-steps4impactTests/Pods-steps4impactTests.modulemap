@@ -1,0 +1,6 @@
+framework module Pods_steps4impactTests {
+  umbrella header "Pods-steps4impactTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
