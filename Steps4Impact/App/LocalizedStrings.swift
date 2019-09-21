@@ -112,8 +112,8 @@ Click continue for a quick tour of the app.
       static let title: String =
           NSLocalizedString("Challenge Progress", comment: "Challenge Progress")
       static let unavailable: String =
-          NSLocalizedString("No data available. You will be able to see your team's progress once the challenge has started",
-                            comment: "No data available. You will be able to see your team's progress once the challenge has started")
+          NSLocalizedString("No data available. You will be able to see your team's progress once the challenge has started", // swiftlint:disable:this line_length
+                            comment: "No data available. You will be able to see your team's progress once the challenge has started") // swiftlint:disable:this line_length
     }
 
     struct FundrasingProgress {                                                  // swiftlint:disable:this nesting
@@ -122,7 +122,7 @@ Click continue for a quick tour of the app.
                             comment: "Fundraising Progress")
       static let unavailable: String =
           NSLocalizedString("No data available. You will be able to see your progress once the challenge has started.",
-                            comment: "No data available. You will be able to see your progress once the challenge has started.")
+                            comment: "No data available. You will be able to see your progress once the challenge has started.") // swiftlint:disable:this line_length
       static let invite: String =
           NSLocalizedString("Invite supporters to pledge",
                             comment: "Invite supporters to pledge")
