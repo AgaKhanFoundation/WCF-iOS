@@ -3,7 +3,7 @@ Current Status: [![Build Status](https://dev.azure.com/steps4impact/steps4impact
 ## Getting Started
 
 - Built using Xcode 11.0 on Swift 5.0
-- Open `WalkingChallenge.xcworkspace`
+- Open `Steps4Impact.xcworkspace`
 
 ## Adding Dependencies
 
