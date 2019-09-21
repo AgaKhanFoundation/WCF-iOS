@@ -32,6 +32,7 @@ import FacebookCore
 import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
+import HealthKit
 
 class AppController {
   static let shared = AppController()
@@ -70,6 +71,7 @@ class AppController {
       transition(to: .navigation)
     }
 
+    healthCheckHealth()
     healthCheckServer()
   }
 
@@ -146,6 +148,23 @@ class AppController {
     alert.transitioningDelegate = alertDelegate
 
     viewController.present(alert, animated: true, completion: completion)
+  }
+
+  private func healthCheckHealth() {
+    if HKHealthStore.isHealthDataAvailable() {
+      switch HKHealthStore().authorizationStatus(for: ConnectSourceViewController.steps) {
+      case .notDetermined:
+        return
+      case .sharingAuthorized:
+        UserInfo.pedometerSource = .healthKit
+        return
+      case .sharingDenied:
+        fallthrough
+      @unknown default:
+        break
+      }
+    }
+    UserInfo.pedometerSource = nil
   }
 
   private func healthCheckServer() {
