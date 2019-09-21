@@ -15,9 +15,23 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "269E34C51E765828000726C2"
-               BuildableName = "steps4impact.app"
-               BlueprintName = "steps4impact"
-               ReferencedContainer = "container:WalkingChallenge.xcodeproj">
+               BuildableName = "Steps4Impact.app"
+               BlueprintName = "Steps4Impact"
+               ReferencedContainer = "container:Steps4Impact.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2611A4EB2335F8350030E77E"
+               BuildableName = "Steps4ImpactTests.xctest"
+               BlueprintName = "Steps4ImpactTests"
+               ReferencedContainer = "container:Steps4Impact.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2611A4EB2335F8350030E77E"
-               BuildableName = "steps4impactTests.xctest"
-               BlueprintName = "steps4impactTests"
-               ReferencedContainer = "container:WalkingChallenge.xcodeproj">
+               BuildableName = "Steps4ImpactTests.xctest"
+               BlueprintName = "Steps4ImpactTests"
+               ReferencedContainer = "container:Steps4Impact.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +69,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "269E34C51E765828000726C2"
-            BuildableName = "steps4impact.app"
-            BlueprintName = "steps4impact"
-            ReferencedContainer = "container:WalkingChallenge.xcodeproj">
+            BuildableName = "Steps4Impact.app"
+            BlueprintName = "Steps4Impact"
+            ReferencedContainer = "container:Steps4Impact.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +86,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "269E34C51E765828000726C2"
-            BuildableName = "steps4impact.app"
-            BlueprintName = "steps4impact"
-            ReferencedContainer = "container:WalkingChallenge.xcodeproj">
+            BuildableName = "Steps4Impact.app"
+            BlueprintName = "Steps4Impact"
+            ReferencedContainer = "container:Steps4Impact.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

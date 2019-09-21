@@ -87,8 +87,8 @@ PODS:
   - SDWebImage (5.1.1):
     - SDWebImage/Core (= 5.1.1)
   - SDWebImage/Core (5.1.1)
-  - SnapKit (4.2.0)
-  - SwiftLint (0.29.4)
+  - SnapKit (5.0.1)
+  - SwiftLint (0.35.0)
 
 DEPENDENCIES:
   - AppCenter (~> 2.3.0)
@@ -102,8 +102,8 @@ DEPENDENCIES:
   - Nimble (~> 8.0.4)
   - Quick (~> 2.2.0)
   - SDWebImage (~> 5.1.1)
-  - SnapKit (~> 4.2.0)
-  - SwiftLint (~> 0.29.2)
+  - SnapKit (~> 5.0.1)
+  - SwiftLint (~> 0.35.0)
 
 SPEC REPOS:
   https://cdn.cocoapods.org/:
@@ -154,9 +154,9 @@ SPEC CHECKSUMS:
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
   SDWebImage: 96d7f03415ccb28d299d765f93557ff8a617abd8
-  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  SwiftLint: 73f2ecfd0f6d812c8cb9a73c00fe809bc2504585
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftLint: 5553187048b900c91aa03552807681bb6b027846
 
-PODFILE CHECKSUM: f0e72d751d3818cf89f3b04a7a973380a701765f
+PODFILE CHECKSUM: f94c2ae933022def7c99d69402bdeb3e849d91bc
 
 COCOAPODS: 1.7.5

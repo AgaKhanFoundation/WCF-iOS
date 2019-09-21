@@ -1,5 +1,5 @@
-framework module Pods_steps4impactTests {
-  umbrella header "Pods-steps4impactTests-umbrella.h"
+framework module Pods_Steps4ImpactTests {
+  umbrella header "Pods-Steps4ImpactTests-umbrella.h"
 
   export *
   module * { export * }
