@@ -26,6 +26,11 @@
 		260BF5B7232502A9005F0882 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5B6232502A9005F0882 /* UIStackView.swift */; };
 		260BF5B923250414005F0882 /* SettingsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5B823250414005F0882 /* SettingsTitleCell.swift */; };
 		2611A4EF2335F8350030E77E /* Steps4ImpactSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A4EE2335F8350030E77E /* Steps4ImpactSpec.swift */; };
+		2611A5052335FF290030E77E /* AKFCausesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A5012335FF290030E77E /* AKFCausesService.swift */; };
+		2611A5062335FF290030E77E /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A5022335FF290030E77E /* Facebook.swift */; };
+		2611A5072335FF290030E77E /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A5032335FF290030E77E /* JSON.swift */; };
+		2611A5082335FF290030E77E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A5042335FF290030E77E /* Service.swift */; };
+		2611A50D2335FFDC0030E77E /* SponsorshipDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A50C2335FFDC0030E77E /* SponsorshipDataSource.swift */; };
 		2622C09023249A4B0092B145 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C08F23249A4B0092B145 /* UIRefreshControl.swift */; };
 		2622C09223249CA10092B145 /* EmptyTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C09123249CA10092B145 /* EmptyTableViewDataSource.swift */; };
 		2622C09423249D680092B145 /* DashboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C09323249D680092B145 /* DashboardDataSource.swift */; };
@@ -45,7 +50,6 @@
 		2676B3C82331E1B400CB0A31 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C72331E1B400CB0A31 /* ActionButton.swift */; };
 		2676B3CA2331F18B00CB0A31 /* TeamSettingsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C92331F18B00CB0A31 /* TeamSettingsHeaderCell.swift */; };
 		2676B3CC2331F3D400CB0A31 /* TeamSettingsMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3CB2331F3D400CB0A31 /* TeamSettingsMemberCell.swift */; };
-		26792DD81E91DCB400A7E5BA /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26792DD71E91DCB400A7E5BA /* Service.swift */; };
 		267FAE282325C1660014222D /* SettingsDisclosureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267FAE272325C1660014222D /* SettingsDisclosureCell.swift */; };
 		267FAE2A2325C9210014222D /* SettingsSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267FAE292325C9210014222D /* SettingsSwitchCell.swift */; };
 		267FAE2E2325CF590014222D /* SettingsActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267FAE2D2325CF590014222D /* SettingsActionCell.swift */; };
@@ -69,11 +73,9 @@
 		26FE2451232231FB00E01B9B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2450232231FB00E01B9B /* TableViewController.swift */; };
 		26FE24532322332D00E01B9B /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE24522322332D00E01B9B /* UITableView.swift */; };
 		26FE2455232234A300E01B9B /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2454232234A300E01B9B /* EmptyCell.swift */; };
-		37042423F6FEDBD35D777EA4 /* Pods_steps4impact.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6685A06CA2B2EFA10FDAC3E5 /* Pods_steps4impact.framework */; };
-		7993E56BD14015AAAF888E86 /* Pods_steps4impactTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539DA73C858D1467B4FCE9B4 /* Pods_steps4impactTests.framework */; };
+		7A7C5B5BCE64FE425FE48D17 /* Pods_Steps4ImpactTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644A965BB27AB6174A19603E /* Pods_Steps4ImpactTests.framework */; };
+		885A50211F181C0FFD544AAA /* Pods_Steps4Impact.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E04420449F9B74A2501CBBEA /* Pods_Steps4Impact.framework */; };
 		C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */; };
-		F004030F1EBF9DAB005E6F10 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004030E1EBF9DAB005E6F10 /* JSON.swift */; };
-		F00403151EC3EC6F005E6F10 /* AKFCausesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */; };
 		F00403191EC3FB7D005E6F10 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004031C1EC52772005E6F10 /* AppConfig.swift */; };
 		F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */; };
@@ -99,13 +101,11 @@
 		F0A992D81EAC3812001621A6 /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A992D71EAC3812001621A6 /* ProgressRing.swift */; };
 		F0C6D50D1EA3071A008E3B82 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6D50C1EA3071A008E3B82 /* SelectionButton.swift */; };
 		F0CBDA4E1EA6FCAB00BB34F1 /* Supporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CBDA4D1EA6FCAB00BB34F1 /* Supporter.swift */; };
-		F0CBDA501EA6FD7200BB34F1 /* SponsorshipDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CBDA4F1EA6FD7200BB34F1 /* SponsorshipDataSource.swift */; };
 		F0CBDA521EA6FF1D00BB34F1 /* Sponsor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */; };
 		F0CF39861EE0E903006A7462 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF39851EE0E903006A7462 /* Record.swift */; };
 		F0CF39881EE0EA98006A7462 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF39871EE0EA98006A7462 /* Source.swift */; };
 		F0D16A3C2218AD810081440C /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D16A3B2218AD810081440C /* Challenge.swift */; };
 		F0DE162C221F8DD900FF17C9 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DE162B221F8DD900FF17C9 /* Result.swift */; };
-		F0E1828A1E80B1DB00665E4F /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E182891E80B1DB00665E4F /* Facebook.swift */; };
 		F0E6878F22251B7800454340 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6878E22251B7800454340 /* LeaderboardViewController.swift */; };
 		F0E6879222251C0600454340 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6879122251C0600454340 /* Notifications.swift */; };
 		F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F8EDCD220F865200321A6D /* Dashboard.swift */; };
@@ -128,6 +128,8 @@
 
 /* Begin PBXFileReference section */
 		020D0DFBB98F71EA58A2FE41 /* Pods-steps4impactTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impactTests.release.xcconfig"; path = "Target Support Files/Pods-steps4impactTests/Pods-steps4impactTests.release.xcconfig"; sourceTree = "<group>"; };
+		0C455ECDAFD1CB04BB087641 /* Pods-Steps4ImpactTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steps4ImpactTests.debug.xcconfig"; path = "Target Support Files/Pods-Steps4ImpactTests/Pods-Steps4ImpactTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1D1F104434F267C2C6769905 /* Pods-Steps4Impact.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steps4Impact.release.xcconfig"; path = "Target Support Files/Pods-Steps4Impact/Pods-Steps4Impact.release.xcconfig"; sourceTree = "<group>"; };
 		2606948A1E7DD1A200BFED76 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		260BF58B2324B17D005F0882 /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
 		260BF58F2324B28D005F0882 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -146,9 +148,14 @@
 		260BF5B42324FE32005F0882 /* SettingsProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileCell.swift; sourceTree = "<group>"; };
 		260BF5B6232502A9005F0882 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		260BF5B823250414005F0882 /* SettingsTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTitleCell.swift; sourceTree = "<group>"; };
-		2611A4EC2335F8350030E77E /* steps4impactTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = steps4impactTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2611A4EC2335F8350030E77E /* Steps4ImpactTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Steps4ImpactTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2611A4EE2335F8350030E77E /* Steps4ImpactSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Steps4ImpactSpec.swift; sourceTree = "<group>"; };
 		2611A4F02335F8350030E77E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2611A5012335FF290030E77E /* AKFCausesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKFCausesService.swift; sourceTree = "<group>"; };
+		2611A5022335FF290030E77E /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
+		2611A5032335FF290030E77E /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		2611A5042335FF290030E77E /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		2611A50C2335FFDC0030E77E /* SponsorshipDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SponsorshipDataSource.swift; sourceTree = "<group>"; };
 		2622C08F23249A4B0092B145 /* UIRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
 		2622C09123249CA10092B145 /* EmptyTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewDataSource.swift; sourceTree = "<group>"; };
 		2622C09323249D680092B145 /* DashboardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardDataSource.swift; sourceTree = "<group>"; };
@@ -168,11 +175,10 @@
 		2676B3C72331E1B400CB0A31 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		2676B3C92331F18B00CB0A31 /* TeamSettingsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsHeaderCell.swift; sourceTree = "<group>"; };
 		2676B3CB2331F3D400CB0A31 /* TeamSettingsMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsMemberCell.swift; sourceTree = "<group>"; };
-		26792DD71E91DCB400A7E5BA /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		267FAE272325C1660014222D /* SettingsDisclosureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDisclosureCell.swift; sourceTree = "<group>"; };
 		267FAE292325C9210014222D /* SettingsSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSwitchCell.swift; sourceTree = "<group>"; };
 		267FAE2D2325CF590014222D /* SettingsActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsActionCell.swift; sourceTree = "<group>"; };
-		269E34C61E765828000726C2 /* steps4impact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = steps4impact.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		269E34C61E765828000726C2 /* Steps4Impact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Steps4Impact.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		269E34C91E765828000726C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		269E34D01E765828000726C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		269E34D51E765828000726C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -185,7 +191,6 @@
 		269E35171E7669FB000726C2 /* LocalizedStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
 		269E35231E767807000726C2 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		269E35281E767AE1000726C2 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
-		26C5E3601E7DCACF0053DE3E /* WalkingChallenge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WalkingChallenge.entitlements; sourceTree = "<group>"; };
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		26FE2444232228E600E01B9B /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		26FE24462322295300E01B9B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -196,13 +201,13 @@
 		26FE24522322332D00E01B9B /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		26FE2454232234A300E01B9B /* EmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCell.swift; sourceTree = "<group>"; };
 		307EFC69C033D08671C5E6C6 /* Pods-steps4impact.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impact.release.xcconfig"; path = "Target Support Files/Pods-steps4impact/Pods-steps4impact.release.xcconfig"; sourceTree = "<group>"; };
-		539DA73C858D1467B4FCE9B4 /* Pods_steps4impactTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_steps4impactTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6685A06CA2B2EFA10FDAC3E5 /* Pods_steps4impact.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_steps4impact.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		31082B36DD919D9631B44E5E /* Pods-Steps4Impact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steps4Impact.debug.xcconfig"; path = "Target Support Files/Pods-Steps4Impact/Pods-Steps4Impact.debug.xcconfig"; sourceTree = "<group>"; };
+		644A965BB27AB6174A19603E /* Pods_Steps4ImpactTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Steps4ImpactTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D885FB78222CE09537F0C6A /* Pods-steps4impact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impact.debug.xcconfig"; path = "Target Support Files/Pods-steps4impact/Pods-steps4impact.debug.xcconfig"; sourceTree = "<group>"; };
 		C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		CF9EDF06C6BFB060D8FD292A /* Pods-Steps4ImpactTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steps4ImpactTests.release.xcconfig"; path = "Target Support Files/Pods-Steps4ImpactTests/Pods-Steps4ImpactTests.release.xcconfig"; sourceTree = "<group>"; };
 		D119AEC4C6C2D75E13B09A89 /* Pods-steps4impactTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impactTests.debug.xcconfig"; path = "Target Support Files/Pods-steps4impactTests/Pods-steps4impactTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F004030E1EBF9DAB005E6F10 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
-		F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKFCausesService.swift; sourceTree = "<group>"; };
+		E04420449F9B74A2501CBBEA /* Pods_Steps4Impact.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Steps4Impact.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F004031C1EC52772005E6F10 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressStepsView.swift; sourceTree = "<group>"; };
 		F017B68D227686A60023E84B /* OnboardingWelcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWelcome.swift; sourceTree = "<group>"; };
@@ -218,7 +223,7 @@
 		F06254C01ECD5D1700168DD6 /* Participant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
 		F0681D261ED53CA70029278E /* Cause.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cause.swift; sourceTree = "<group>"; };
 		F078D9D42333EC3000EF0BAD /* AKFLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKFLogin.swift; sourceTree = "<group>"; };
-		F078D9D62334354000EF0BAD /* steps4impact.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = steps4impact.entitlements; sourceTree = "<group>"; };
+		F078D9D62334354000EF0BAD /* Steps4Impact.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Steps4Impact.entitlements; sourceTree = "<group>"; };
 		F078D9D92334453F00EF0BAD /* ConnectedActivityCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedActivityCardCell.swift; sourceTree = "<group>"; };
 		F078D9DB233478E900EF0BAD /* ConnectSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectSourceViewController.swift; sourceTree = "<group>"; };
 		F078D9DD23347DEE00EF0BAD /* ConnectSourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectSourceCell.swift; sourceTree = "<group>"; };
@@ -228,13 +233,11 @@
 		F0A992D71EAC3812001621A6 /* ProgressRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressRing.swift; sourceTree = "<group>"; };
 		F0C6D50C1EA3071A008E3B82 /* SelectionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionButton.swift; sourceTree = "<group>"; };
 		F0CBDA4D1EA6FCAB00BB34F1 /* Supporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Supporter.swift; sourceTree = "<group>"; };
-		F0CBDA4F1EA6FD7200BB34F1 /* SponsorshipDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SponsorshipDataSource.swift; path = WalkingChallenge/SponsorshipDataSource.swift; sourceTree = "<group>"; };
 		F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sponsor.swift; sourceTree = "<group>"; };
 		F0CF39851EE0E903006A7462 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		F0CF39871EE0EA98006A7462 /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		F0D16A3B2218AD810081440C /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		F0DE162B221F8DD900FF17C9 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		F0E182891E80B1DB00665E4F /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
 		F0E6878E22251B7800454340 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		F0E6879122251C0600454340 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		F0F8EDCD220F865200321A6D /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
@@ -250,7 +253,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7993E56BD14015AAAF888E86 /* Pods_steps4impactTests.framework in Frameworks */,
+				7A7C5B5BCE64FE425FE48D17 /* Pods_Steps4ImpactTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */,
-				37042423F6FEDBD35D777EA4 /* Pods_steps4impact.framework in Frameworks */,
+				885A50211F181C0FFD544AAA /* Pods_Steps4Impact.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,11 +272,15 @@
 		260BF5932324B307005F0882 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				260BF58F2324B28D005F0882 /* CardView.swift */,
-				260BF5912324B2C6005F0882 /* View.swift */,
-				260BF5962324C023005F0882 /* CellDisclosureView.swift */,
-				260BF5A42324D914005F0882 /* Button.swift */,
 				2676B3C72331E1B400CB0A31 /* ActionButton.swift */,
+				260BF5A42324D914005F0882 /* Button.swift */,
+				260BF58F2324B28D005F0882 /* CardView.swift */,
+				260BF5962324C023005F0882 /* CellDisclosureView.swift */,
+				F0A992D71EAC3812001621A6 /* ProgressRing.swift */,
+				F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */,
+				F0320B6D222F678500EABAD6 /* SegmentedView.swift */,
+				F0C6D50C1EA3071A008E3B82 /* SelectionButton.swift */,
+				260BF5912324B2C6005F0882 /* View.swift */,
 				265DE5632332BDAA009DDA5A /* WebImageView.swift */,
 			);
 			path = Views;
@@ -282,11 +289,11 @@
 		260BF5982324C939005F0882 /* DashboardV2 */ = {
 			isa = PBXGroup;
 			children = (
-				260BF59F2324CFCE005F0882 /* Cells */,
-				26FE244823222B6400E01B9B /* DashboardViewController.swift */,
-				2622C09323249D680092B145 /* DashboardDataSource.swift */,
-				265DE5652332D663009DDA5A /* BadgesViewController.swift */,
 				265DE5672332D66E009DDA5A /* BadgesDataSource.swift */,
+				265DE5652332D663009DDA5A /* BadgesViewController.swift */,
+				2622C09323249D680092B145 /* DashboardDataSource.swift */,
+				26FE244823222B6400E01B9B /* DashboardViewController.swift */,
+				260BF59F2324CFCE005F0882 /* Cells */,
 			);
 			path = DashboardV2;
 			sourceTree = "<group>";
@@ -294,9 +301,9 @@
 		260BF59F2324CFCE005F0882 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				F078D9D92334453F00EF0BAD /* ConnectedActivityCardCell.swift */,
 				260BF5992324CFA6005F0882 /* EmptyActivityCardCell.swift */,
 				260BF5942324B3FC005F0882 /* ProfileCardCell.swift */,
-				F078D9D92334453F00EF0BAD /* ConnectedActivityCardCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -304,13 +311,13 @@
 		260BF5AE2324FD24005F0882 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				260BF5B32324FE23005F0882 /* Cells */,
-				260BF5AF2324FD31005F0882 /* SettingsViewController.swift */,
-				260BF5B12324FD37005F0882 /* SettingsDataSource.swift */,
-				263EF52D232A105C00A00414 /* TeamSettingsViewController.swift */,
-				263EF52F232A106400A00414 /* TeamSettingsDataSource.swift */,
 				F078D9DF2334964200EF0BAD /* ConnectSourceDataSource.swift */,
 				F078D9DB233478E900EF0BAD /* ConnectSourceViewController.swift */,
+				260BF5B12324FD37005F0882 /* SettingsDataSource.swift */,
+				260BF5AF2324FD31005F0882 /* SettingsViewController.swift */,
+				263EF52F232A106400A00414 /* TeamSettingsDataSource.swift */,
+				263EF52D232A105C00A00414 /* TeamSettingsViewController.swift */,
+				260BF5B32324FE23005F0882 /* Cells */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -318,34 +325,98 @@
 		260BF5B32324FE23005F0882 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				260BF5B42324FE32005F0882 /* SettingsProfileCell.swift */,
-				260BF5B823250414005F0882 /* SettingsTitleCell.swift */,
-				267FAE272325C1660014222D /* SettingsDisclosureCell.swift */,
-				267FAE292325C9210014222D /* SettingsSwitchCell.swift */,
+				F078D9DD23347DEE00EF0BAD /* ConnectSourceCell.swift */,
 				267FAE2D2325CF590014222D /* SettingsActionCell.swift */,
+				267FAE272325C1660014222D /* SettingsDisclosureCell.swift */,
+				260BF5B42324FE32005F0882 /* SettingsProfileCell.swift */,
+				267FAE292325C9210014222D /* SettingsSwitchCell.swift */,
+				260BF5B823250414005F0882 /* SettingsTitleCell.swift */,
 				2676B3C92331F18B00CB0A31 /* TeamSettingsHeaderCell.swift */,
 				2676B3CB2331F3D400CB0A31 /* TeamSettingsMemberCell.swift */,
-				F078D9DD23347DEE00EF0BAD /* ConnectSourceCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		2611A4ED2335F8350030E77E /* steps4impactTests */ = {
+		2611A4ED2335F8350030E77E /* Steps4ImpactTests */ = {
 			isa = PBXGroup;
 			children = (
 				2611A4EE2335F8350030E77E /* Steps4ImpactSpec.swift */,
+				2611A4F62335FCC60030E77E /* Supporting Files */,
+			);
+			path = Steps4ImpactTests;
+			sourceTree = "<group>";
+		};
+		2611A4F62335FCC60030E77E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				2611A4F02335F8350030E77E /* Info.plist */,
 			);
-			path = steps4impactTests;
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2611A4F82335FEEA0030E77E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				2611A5012335FF290030E77E /* AKFCausesService.swift */,
+				2611A5022335FF290030E77E /* Facebook.swift */,
+				2611A5032335FF290030E77E /* JSON.swift */,
+				2611A5042335FF290030E77E /* Service.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		2611A5092335FF460030E77E /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F078D9D42333EC3000EF0BAD /* AKFLogin.swift */,
+				269E35061E765C68000726C2 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		2611A50A2335FF680030E77E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				26FE244A23222DF400E01B9B /* Cells.swift */,
+				26FE244C23222E8500E01B9B /* Context.swift */,
+				F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		2611A50B2335FF930030E77E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F078D9D62334354000EF0BAD /* Steps4Impact.entitlements */,
+				269E34D51E765828000726C2 /* Info.plist */,
+				269E34EE1E7658F2000726C2 /* Launch.storyboard */,
+				269E34D01E765828000726C2 /* Assets.xcassets */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2611A50E233601DC0030E77E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				F004031C1EC52772005E6F10 /* AppConfig.swift */,
+				269E34E91E7658E6000726C2 /* AppController.swift */,
+				269E34C91E765828000726C2 /* AppDelegate.swift */,
+				269E35171E7669FB000726C2 /* LocalizedStrings.swift */,
+				F0A0A5FD2210EC3600F20315 /* Navigation.swift */,
+				F02FB49D1E9180CE0097481D /* Preferences.swift */,
+				269E350B1E765F73000726C2 /* StyleGuide.swift */,
+				2611A50C2335FFDC0030E77E /* SponsorshipDataSource.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		2622C0972324ADE70092B145 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				26FE2454232234A300E01B9B /* EmptyCell.swift */,
-				2622C0952324A0490092B145 /* TableViewCell.swift */,
 				260BF5A02324D0BE005F0882 /* DisclosureCell.swift */,
+				26FE2454232234A300E01B9B /* EmptyCell.swift */,
 				260BF5A22324D4B7005F0882 /* InfoCell.swift */,
+				2622C0952324A0490092B145 /* TableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -353,10 +424,10 @@
 		2622C0982324ADFD0092B145 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2676B3C52331DA1500CB0A31 /* AlertViewController.swift */,
 				26FE2444232228E600E01B9B /* NavigationController.swift */,
 				26FE2450232231FB00E01B9B /* TableViewController.swift */,
 				26FE24462322295300E01B9B /* ViewController.swift */,
-				2676B3C52331DA1500CB0A31 /* AlertViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -364,21 +435,10 @@
 		265DE56D2332F633009DDA5A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				265DE56E2332F645009DDA5A /* TeamNeededCell.swift */,
 				265DE5742333015F009DDA5A /* JoinTeamCell.swift */,
+				265DE56E2332F645009DDA5A /* TeamNeededCell.swift */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		266986791E91D50E004D45B4 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				F0E182891E80B1DB00665E4F /* Facebook.swift */,
-				26792DD71E91DCB400A7E5BA /* Service.swift */,
-				F004030E1EBF9DAB005E6F10 /* JSON.swift */,
-				F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */,
-			);
-			name = Networking;
 			sourceTree = "<group>";
 		};
 		2676B3C22331D42B00CB0A31 /* Animators */ = {
@@ -392,10 +452,8 @@
 		269E34BD1E765828000726C2 = {
 			isa = PBXGroup;
 			children = (
-				F078D9D62334354000EF0BAD /* steps4impact.entitlements */,
-				F03D77D91EA839D300A70230 /* Data Sources */,
-				269E34C81E765828000726C2 /* WalkingChallenge */,
-				2611A4ED2335F8350030E77E /* steps4impactTests */,
+				269E34C81E765828000726C2 /* Steps4Impact */,
+				2611A4ED2335F8350030E77E /* Steps4ImpactTests */,
 				269E34C71E765828000726C2 /* Products */,
 				71A05532D1340D55ABD0E4B4 /* Frameworks */,
 				693EA03CC2AC5E248782CE98 /* Pods */,
@@ -407,21 +465,16 @@
 		269E34C71E765828000726C2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				269E34C61E765828000726C2 /* steps4impact.app */,
-				2611A4EC2335F8350030E77E /* steps4impactTests.xctest */,
+				269E34C61E765828000726C2 /* Steps4Impact.app */,
+				2611A4EC2335F8350030E77E /* Steps4ImpactTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		269E34C81E765828000726C2 /* WalkingChallenge */ = {
+		269E34C81E765828000726C2 /* Steps4Impact */ = {
 			isa = PBXGroup;
 			children = (
-				269E34E91E7658E6000726C2 /* AppController.swift */,
-				269E35171E7669FB000726C2 /* LocalizedStrings.swift */,
-				F0A0A5FD2210EC3600F20315 /* Navigation.swift */,
-				F02FB49D1E9180CE0097481D /* Preferences.swift */,
-				269E350B1E765F73000726C2 /* StyleGuide.swift */,
-				F078D9D32333EC0D00EF0BAD /* AKF */,
+				2611A50E233601DC0030E77E /* App */,
 				2676B3C22331D42B00CB0A31 /* Animators */,
 				F0D16A3A2218AD530081440C /* Challenge */,
 				26FE2443232228D300E01B9B /* CommonUI */,
@@ -429,49 +482,18 @@
 				260BF5982324C939005F0882 /* DashboardV2 */,
 				F0E6878C2225154700454340 /* Integration */,
 				F0E6878D22251B4700454340 /* Leaderboard */,
-				269E352E1E768058000726C2 /* Login */,
+				2611A5092335FF460030E77E /* Login */,
 				F058BD8322276F54006C7F20 /* Models */,
-				266986791E91D50E004D45B4 /* Networking */,
+				2611A4F82335FEEA0030E77E /* Networking */,
 				F0E6879022251BEE00454340 /* Notifications */,
 				F017B68F227699240023E84B /* Onboarding */,
-				269E35251E76782D000726C2 /* Protocols */,
+				2611A50A2335FF680030E77E /* Protocols */,
 				260BF5AE2324FD24005F0882 /* Settings */,
 				F0DE162A221F8DBA00FF17C9 /* Support */,
-				269E35051E765BBF000726C2 /* Supporting Files */,
+				2611A50B2335FF930030E77E /* Supporting Files */,
 				F0320B6B222F671F00EABAD6 /* Widgets */,
 			);
-			path = WalkingChallenge;
-			sourceTree = "<group>";
-		};
-		269E35051E765BBF000726C2 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				F004031C1EC52772005E6F10 /* AppConfig.swift */,
-				269E34C91E765828000726C2 /* AppDelegate.swift */,
-				269E34D01E765828000726C2 /* Assets.xcassets */,
-				269E34D51E765828000726C2 /* Info.plist */,
-				269E34EE1E7658F2000726C2 /* Launch.storyboard */,
-				26C5E3601E7DCACF0053DE3E /* WalkingChallenge.entitlements */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		269E35251E76782D000726C2 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */,
-				26FE244A23222DF400E01B9B /* Cells.swift */,
-				26FE244C23222E8500E01B9B /* Context.swift */,
-			);
-			name = Protocols;
-			sourceTree = "<group>";
-		};
-		269E352E1E768058000726C2 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				269E35061E765C68000726C2 /* LoginViewController.swift */,
-			);
-			name = Login;
+			path = Steps4Impact;
 			sourceTree = "<group>";
 		};
 		26FE2443232228D300E01B9B /* CommonUI */ = {
@@ -492,6 +514,10 @@
 				307EFC69C033D08671C5E6C6 /* Pods-steps4impact.release.xcconfig */,
 				D119AEC4C6C2D75E13B09A89 /* Pods-steps4impactTests.debug.xcconfig */,
 				020D0DFBB98F71EA58A2FE41 /* Pods-steps4impactTests.release.xcconfig */,
+				31082B36DD919D9631B44E5E /* Pods-Steps4Impact.debug.xcconfig */,
+				1D1F104434F267C2C6769905 /* Pods-Steps4Impact.release.xcconfig */,
+				0C455ECDAFD1CB04BB087641 /* Pods-Steps4ImpactTests.debug.xcconfig */,
+				CF9EDF06C6BFB060D8FD292A /* Pods-Steps4ImpactTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -500,8 +526,8 @@
 			isa = PBXGroup;
 			children = (
 				26C5E3611E7DCAF70053DE3E /* HealthKit.framework */,
-				6685A06CA2B2EFA10FDAC3E5 /* Pods_steps4impact.framework */,
-				539DA73C858D1467B4FCE9B4 /* Pods_steps4impactTests.framework */,
+				E04420449F9B74A2501CBBEA /* Pods_Steps4Impact.framework */,
+				644A965BB27AB6174A19603E /* Pods_Steps4ImpactTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -510,10 +536,10 @@
 			isa = PBXGroup;
 			children = (
 				F017B690227699440023E84B /* Onboarding.swift */,
-				F017B68D227686A60023E84B /* OnboardingWelcome.swift */,
 				F017B6922276B99A0023E84B /* OnboardingCreateTeam.swift */,
-				F017B6942276C9C60023E84B /* OnboardingJourney.swift */,
 				F017B6962276D0C60023E84B /* OnboardingDashboard.swift */,
+				F017B6942276C9C60023E84B /* OnboardingJourney.swift */,
+				F017B68D227686A60023E84B /* OnboardingWelcome.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -521,20 +547,8 @@
 		F0320B6B222F671F00EABAD6 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				F0A992D71EAC3812001621A6 /* ProgressRing.swift */,
-				F0C6D50C1EA3071A008E3B82 /* SelectionButton.swift */,
-				F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */,
-				F0320B6D222F678500EABAD6 /* SegmentedView.swift */,
 			);
 			path = Widgets;
-			sourceTree = "<group>";
-		};
-		F03D77D91EA839D300A70230 /* Data Sources */ = {
-			isa = PBXGroup;
-			children = (
-				F0CBDA4F1EA6FD7200BB34F1 /* SponsorshipDataSource.swift */,
-			);
-			name = "Data Sources";
 			sourceTree = "<group>";
 		};
 		F058BD8322276F54006C7F20 /* Models */ = {
@@ -552,21 +566,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		F078D9D32333EC0D00EF0BAD /* AKF */ = {
-			isa = PBXGroup;
-			children = (
-				F078D9D42333EC3000EF0BAD /* AKFLogin.swift */,
-			);
-			path = AKF;
-			sourceTree = "<group>";
-		};
 		F0D16A3A2218AD530081440C /* Challenge */ = {
 			isa = PBXGroup;
 			children = (
-				265DE56D2332F633009DDA5A /* Cells */,
 				F0D16A3B2218AD810081440C /* Challenge.swift */,
 				265DE5702332FB38009DDA5A /* CreateTeam.swift */,
 				265DE5722332FBA9009DDA5A /* JoinTeam.swift */,
+				265DE56D2332F633009DDA5A /* Cells */,
 			);
 			path = Challenge;
 			sourceTree = "<group>";
@@ -575,20 +581,20 @@
 			isa = PBXGroup;
 			children = (
 				269E350D1E76664F000726C2 /* Async.swift */,
+				260BF58B2324B17D005F0882 /* CALayer.swift */,
 				F0F8EDD02210C65C00321A6D /* CardViewSupport.swift */,
+				260BF5AA2324F805005F0882 /* CGFloat.swift */,
 				269E35281E767AE1000726C2 /* Collection.swift */,
 				2606948A1E7DD1A200BFED76 /* Date.swift */,
 				F0A992D51EABF037001621A6 /* Formatters.swift */,
 				F0DE162B221F8DD900FF17C9 /* Result.swift */,
-				C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */,
-				269E35081E765F24000726C2 /* UIView.swift */,
-				26FE24522322332D00E01B9B /* UITableView.swift */,
-				2622C08F23249A4B0092B145 /* UIRefreshControl.swift */,
-				260BF58B2324B17D005F0882 /* CALayer.swift */,
-				260BF5A62324D99A005F0882 /* UIImage.swift */,
 				260BF5A82324F7D1005F0882 /* UIColor.swift */,
-				260BF5AA2324F805005F0882 /* CGFloat.swift */,
+				260BF5A62324D99A005F0882 /* UIImage.swift */,
+				C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */,
+				2622C08F23249A4B0092B145 /* UIRefreshControl.swift */,
 				260BF5B6232502A9005F0882 /* UIStackView.swift */,
+				26FE24522322332D00E01B9B /* UITableView.swift */,
+				269E35081E765F24000726C2 /* UIView.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -604,8 +610,8 @@
 		F0E6878D22251B4700454340 /* Leaderboard */ = {
 			isa = PBXGroup;
 			children = (
-				F0E6878E22251B7800454340 /* LeaderboardViewController.swift */,
 				265DE56B2332E492009DDA5A /* LeaderboardDataSource.swift */,
+				F0E6878E22251B7800454340 /* LeaderboardViewController.swift */,
 			);
 			path = Leaderboard;
 			sourceTree = "<group>";
@@ -633,9 +639,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2611A4EB2335F8350030E77E /* steps4impactTests */ = {
+		2611A4EB2335F8350030E77E /* Steps4ImpactTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2611A4F52335F8350030E77E /* Build configuration list for PBXNativeTarget "steps4impactTests" */;
+			buildConfigurationList = 2611A4F52335F8350030E77E /* Build configuration list for PBXNativeTarget "Steps4ImpactTests" */;
 			buildPhases = (
 				A16BF170E311CB807A51AC21 /* [CP] Check Pods Manifest.lock */,
 				2611A4E82335F8350030E77E /* Sources */,
@@ -648,14 +654,14 @@
 			dependencies = (
 				2611A4F22335F8350030E77E /* PBXTargetDependency */,
 			);
-			name = steps4impactTests;
+			name = Steps4ImpactTests;
 			productName = steps4impactTests;
-			productReference = 2611A4EC2335F8350030E77E /* steps4impactTests.xctest */;
+			productReference = 2611A4EC2335F8350030E77E /* Steps4ImpactTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		269E34C51E765828000726C2 /* steps4impact */ = {
+		269E34C51E765828000726C2 /* Steps4Impact */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 269E34E31E765828000726C2 /* Build configuration list for PBXNativeTarget "steps4impact" */;
+			buildConfigurationList = 269E34E31E765828000726C2 /* Build configuration list for PBXNativeTarget "Steps4Impact" */;
 			buildPhases = (
 				C534CC0111F4BC7DD5A332BC /* [CP] Check Pods Manifest.lock */,
 				269E34C21E765828000726C2 /* Sources */,
@@ -668,9 +674,9 @@
 			);
 			dependencies = (
 			);
-			name = steps4impact;
+			name = Steps4Impact;
 			productName = WalkingChallenge;
-			productReference = 269E34C61E765828000726C2 /* steps4impact.app */;
+			productReference = 269E34C61E765828000726C2 /* Steps4Impact.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -705,12 +711,11 @@
 					};
 				};
 			};
-			buildConfigurationList = 269E34C11E765828000726C2 /* Build configuration list for PBXProject "WalkingChallenge" */;
+			buildConfigurationList = 269E34C11E765828000726C2 /* Build configuration list for PBXProject "Steps4Impact" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -719,8 +724,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				269E34C51E765828000726C2 /* steps4impact */,
-				2611A4EB2335F8350030E77E /* steps4impactTests */,
+				269E34C51E765828000726C2 /* Steps4Impact */,
+				2611A4EB2335F8350030E77E /* Steps4ImpactTests */,
 			);
 		};
 /* End PBXProject section */
@@ -765,7 +770,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-steps4impactTests/Pods-steps4impactTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Steps4ImpactTests/Pods-Steps4ImpactTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 			);
@@ -776,7 +781,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-steps4impactTests/Pods-steps4impactTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Steps4ImpactTests/Pods-Steps4ImpactTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A16BF170E311CB807A51AC21 /* [CP] Check Pods Manifest.lock */ = {
@@ -794,7 +799,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-steps4impactTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Steps4ImpactTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -807,7 +812,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-steps4impact/Pods-steps4impact-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Steps4Impact/Pods-Steps4Impact-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
@@ -836,7 +841,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-steps4impact/Pods-steps4impact-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Steps4Impact/Pods-Steps4Impact-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C534CC0111F4BC7DD5A332BC /* [CP] Check Pods Manifest.lock */ = {
@@ -854,7 +859,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-steps4impact-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Steps4Impact-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -888,6 +893,8 @@
 				269E35091E765F24000726C2 /* UIView.swift in Sources */,
 				2622C09223249CA10092B145 /* EmptyTableViewDataSource.swift in Sources */,
 				F0681D271ED53CA70029278E /* Cause.swift in Sources */,
+				2611A5072335FF290030E77E /* JSON.swift in Sources */,
+				2611A50D2335FFDC0030E77E /* SponsorshipDataSource.swift in Sources */,
 				26FE2455232234A300E01B9B /* EmptyCell.swift in Sources */,
 				F078D9DE23347DEE00EF0BAD /* ConnectSourceCell.swift in Sources */,
 				26FE244923222B6400E01B9B /* DashboardViewController.swift in Sources */,
@@ -916,11 +923,12 @@
 				265DE5752333015F009DDA5A /* JoinTeamCell.swift in Sources */,
 				F0DE162C221F8DD900FF17C9 /* Result.swift in Sources */,
 				F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */,
-				26792DD81E91DCB400A7E5BA /* Service.swift in Sources */,
 				260BF5A92324F7D1005F0882 /* UIColor.swift in Sources */,
 				260BF5A72324D99A005F0882 /* UIImage.swift in Sources */,
 				265DE56F2332F645009DDA5A /* TeamNeededCell.swift in Sources */,
+				2611A5052335FF290030E77E /* AKFCausesService.swift in Sources */,
 				2676B3CC2331F3D400CB0A31 /* TeamSettingsMemberCell.swift in Sources */,
+				2611A5062335FF290030E77E /* Facebook.swift in Sources */,
 				269E35291E767AE1000726C2 /* Collection.swift in Sources */,
 				260BF5B7232502A9005F0882 /* UIStackView.swift in Sources */,
 				F078D9DA2334453F00EF0BAD /* ConnectedActivityCardCell.swift in Sources */,
@@ -928,9 +936,7 @@
 				F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */,
 				26FE24532322332D00E01B9B /* UITableView.swift in Sources */,
 				F078D9E02334964200EF0BAD /* ConnectSourceDataSource.swift in Sources */,
-				F004030F1EBF9DAB005E6F10 /* JSON.swift in Sources */,
 				265DE5712332FB38009DDA5A /* CreateTeam.swift in Sources */,
-				F00403151EC3EC6F005E6F10 /* AKFCausesService.swift in Sources */,
 				260BF5B923250414005F0882 /* SettingsTitleCell.swift in Sources */,
 				F0F8EDD32210C68E00321A6D /* ProfileCard.swift in Sources */,
 				260BF5B02324FD31005F0882 /* SettingsViewController.swift in Sources */,
@@ -942,7 +948,6 @@
 				260BF58C2324B17D005F0882 /* CALayer.swift in Sources */,
 				26FE244B23222DF400E01B9B /* Cells.swift in Sources */,
 				269E350C1E765F73000726C2 /* StyleGuide.swift in Sources */,
-				F0E1828A1E80B1DB00665E4F /* Facebook.swift in Sources */,
 				269E35241E767807000726C2 /* Team.swift in Sources */,
 				260BF5972324C023005F0882 /* CellDisclosureView.swift in Sources */,
 				260BF5B52324FE32005F0882 /* SettingsProfileCell.swift in Sources */,
@@ -954,6 +959,7 @@
 				F078D9D52333EC3000EF0BAD /* AKFLogin.swift in Sources */,
 				F0F8EDD92210C7FA00321A6D /* ChallengeCard.swift in Sources */,
 				2676B3CA2331F18B00CB0A31 /* TeamSettingsHeaderCell.swift in Sources */,
+				2611A5082335FF290030E77E /* Service.swift in Sources */,
 				F078D9DC233478E900EF0BAD /* ConnectSourceViewController.swift in Sources */,
 				F0E6878F22251B7800454340 /* LeaderboardViewController.swift in Sources */,
 				269E34EC1E7658E6000726C2 /* AppController.swift in Sources */,
@@ -976,7 +982,6 @@
 				F0CF39881EE0EA98006A7462 /* Source.swift in Sources */,
 				C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */,
 				260BF5902324B28D005F0882 /* CardView.swift in Sources */,
-				F0CBDA501EA6FD7200BB34F1 /* SponsorshipDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -985,7 +990,7 @@
 /* Begin PBXTargetDependency section */
 		2611A4F22335F8350030E77E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 269E34C51E765828000726C2 /* steps4impact */;
+			target = 269E34C51E765828000726C2 /* Steps4Impact */;
 			targetProxy = 2611A4F12335F8350030E77E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -993,7 +998,7 @@
 /* Begin XCBuildConfiguration section */
 		2611A4F32335F8350030E77E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D119AEC4C6C2D75E13B09A89 /* Pods-steps4impactTests.debug.xcconfig */;
+			baseConfigurationReference = 0C455ECDAFD1CB04BB087641 /* Pods-Steps4ImpactTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1003,7 +1008,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6SQ8F32998;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = steps4impactTests/Info.plist;
+				INFOPLIST_FILE = "Steps4ImpactTests/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1012,13 +1017,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/steps4impact.app/steps4impact";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Steps4Impact.app/Steps4Impact";
 			};
 			name = Debug;
 		};
 		2611A4F42335F8350030E77E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 020D0DFBB98F71EA58A2FE41 /* Pods-steps4impactTests.release.xcconfig */;
+			baseConfigurationReference = CF9EDF06C6BFB060D8FD292A /* Pods-Steps4ImpactTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1028,7 +1033,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6SQ8F32998;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = steps4impactTests/Info.plist;
+				INFOPLIST_FILE = "Steps4ImpactTests/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
@@ -1036,7 +1041,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/steps4impact.app/steps4impact";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Steps4Impact.app/Steps4Impact";
 			};
 			name = Release;
 		};
@@ -1151,14 +1156,14 @@
 		};
 		269E34E41E765828000726C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D885FB78222CE09537F0C6A /* Pods-steps4impact.debug.xcconfig */;
+			baseConfigurationReference = 31082B36DD919D9631B44E5E /* Pods-Steps4Impact.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = steps4impact.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Steps4Impact/Supporting Files/Steps4Impact.entitlements";
 				CURRENT_PROJECT_VERSION = 258;
 				DEVELOPMENT_TEAM = 6SQ8F32998;
-				INFOPLIST_FILE = WalkingChallenge/Info.plist;
+				INFOPLIST_FILE = "Steps4Impact/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.akf.WalkingChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1169,14 +1174,14 @@
 		};
 		269E34E51E765828000726C2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 307EFC69C033D08671C5E6C6 /* Pods-steps4impact.release.xcconfig */;
+			baseConfigurationReference = 1D1F104434F267C2C6769905 /* Pods-Steps4Impact.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = steps4impact.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Steps4Impact/Supporting Files/Steps4Impact.entitlements";
 				CURRENT_PROJECT_VERSION = 258;
 				DEVELOPMENT_TEAM = 6SQ8F32998;
-				INFOPLIST_FILE = WalkingChallenge/Info.plist;
+				INFOPLIST_FILE = "Steps4Impact/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.akf.WalkingChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1187,7 +1192,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2611A4F52335F8350030E77E /* Build configuration list for PBXNativeTarget "steps4impactTests" */ = {
+		2611A4F52335F8350030E77E /* Build configuration list for PBXNativeTarget "Steps4ImpactTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2611A4F32335F8350030E77E /* Debug */,
@@ -1196,7 +1201,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		269E34C11E765828000726C2 /* Build configuration list for PBXProject "WalkingChallenge" */ = {
+		269E34C11E765828000726C2 /* Build configuration list for PBXProject "Steps4Impact" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				269E34E11E765828000726C2 /* Debug */,
@@ -1205,7 +1210,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		269E34E31E765828000726C2 /* Build configuration list for PBXNativeTarget "steps4impact" */ = {
+		269E34E31E765828000726C2 /* Build configuration list for PBXNativeTarget "Steps4Impact" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				269E34E41E765828000726C2 /* Debug */,
