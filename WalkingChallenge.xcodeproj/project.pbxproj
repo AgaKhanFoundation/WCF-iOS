@@ -25,7 +25,7 @@
 		260BF5B52324FE32005F0882 /* SettingsProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5B42324FE32005F0882 /* SettingsProfileCell.swift */; };
 		260BF5B7232502A9005F0882 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5B6232502A9005F0882 /* UIStackView.swift */; };
 		260BF5B923250414005F0882 /* SettingsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5B823250414005F0882 /* SettingsTitleCell.swift */; };
-		2611A4EF2335F8350030E77E /* steps4impactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A4EE2335F8350030E77E /* steps4impactTests.swift */; };
+		2611A4EF2335F8350030E77E /* Steps4ImpactSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A4EE2335F8350030E77E /* Steps4ImpactSpec.swift */; };
 		2622C09023249A4B0092B145 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C08F23249A4B0092B145 /* UIRefreshControl.swift */; };
 		2622C09223249CA10092B145 /* EmptyTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C09123249CA10092B145 /* EmptyTableViewDataSource.swift */; };
 		2622C09423249D680092B145 /* DashboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C09323249D680092B145 /* DashboardDataSource.swift */; };
@@ -74,7 +74,7 @@
 		C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */; };
 		F004030F1EBF9DAB005E6F10 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004030E1EBF9DAB005E6F10 /* JSON.swift */; };
 		F00403151EC3EC6F005E6F10 /* AKFCausesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00403141EC3EC6F005E6F10 /* AKFCausesService.swift */; };
-		F00403191EC3FB7D005E6F10 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		F00403191EC3FB7D005E6F10 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004031C1EC52772005E6F10 /* AppConfig.swift */; };
 		F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */; };
 		F017B68E227686A60023E84B /* OnboardingWelcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017B68D227686A60023E84B /* OnboardingWelcome.swift */; };
@@ -147,7 +147,7 @@
 		260BF5B6232502A9005F0882 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		260BF5B823250414005F0882 /* SettingsTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTitleCell.swift; sourceTree = "<group>"; };
 		2611A4EC2335F8350030E77E /* steps4impactTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = steps4impactTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2611A4EE2335F8350030E77E /* steps4impactTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = steps4impactTests.swift; sourceTree = "<group>"; };
+		2611A4EE2335F8350030E77E /* Steps4ImpactSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Steps4ImpactSpec.swift; sourceTree = "<group>"; };
 		2611A4F02335F8350030E77E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2622C08F23249A4B0092B145 /* UIRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
 		2622C09123249CA10092B145 /* EmptyTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -333,7 +333,7 @@
 		2611A4ED2335F8350030E77E /* steps4impactTests */ = {
 			isa = PBXGroup;
 			children = (
-				2611A4EE2335F8350030E77E /* steps4impactTests.swift */,
+				2611A4EE2335F8350030E77E /* Steps4ImpactSpec.swift */,
 				2611A4F02335F8350030E77E /* Info.plist */,
 			);
 			path = steps4impactTests;
@@ -493,7 +493,6 @@
 				D119AEC4C6C2D75E13B09A89 /* Pods-steps4impactTests.debug.xcconfig */,
 				020D0DFBB98F71EA58A2FE41 /* Pods-steps4impactTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -869,7 +868,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2611A4EF2335F8350030E77E /* steps4impactTests.swift in Sources */,
+				2611A4EF2335F8350030E77E /* Steps4ImpactSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -897,7 +896,7 @@
 				26FE24472322295300E01B9B /* ViewController.swift in Sources */,
 				F06254C11ECD5D1700168DD6 /* Participant.swift in Sources */,
 				F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */,
-				F00403191EC3FB7D005E6F10 /* BuildFile in Sources */,
+				F00403191EC3FB7D005E6F10 /* (null) in Sources */,
 				F0A992D61EABF037001621A6 /* Formatters.swift in Sources */,
 				2622C09023249A4B0092B145 /* UIRefreshControl.swift in Sources */,
 				26FE244D23222E8500E01B9B /* Context.swift in Sources */,
