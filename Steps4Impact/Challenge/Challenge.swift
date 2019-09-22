@@ -62,15 +62,13 @@ extension ChallengeViewController: TeamNeededCellDelegate {
 
 extension ChallengeViewController: JoinTeamViewControllerDelegate {
   func joinTeamSuccess() {
-    // TODO(samisuteria) this is causing a crash currently.
-//    refresh()
+    reload()
   }
 }
 
 extension ChallengeViewController: CreateTeamViewControllerDelegate {
   func createTeamSuccess() {
-    // TODO(samisuteria) this is causing a crash currently.
-    // refresh()
+    reload()
   }
 }
 
