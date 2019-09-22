@@ -110,19 +110,35 @@ class CreateTeamViewController: ViewController {
         self.textField.isEnabled = true
         self.navigationItem.rightBarButtonItem?.isEnabled = true
 
-        switch result {
-        case .success:
-          self.navigationController?.setViewControllers([CreateTeamSuccessViewController()], animated: true)
-          self.delegate?.createTeamSuccess()
-        case .failed:
-          let alert = AlertViewController()
-          alert.title = Strings.Challenge.CreateTeam.ErrorAlert.title
-          alert.body = Strings.Challenge.CreateTeam.ErrorAlert.body
-          alert.add(.okay())
-          AppController.shared.present(alert: alert, in: self, completion: nil)
+        guard let teamID = Team(json: result.response)?.id else {
+          self.showErrorAlert()
+          return
+        }
+
+        AKFCausesService.joinTeam(fbid: Facebook.id, team: teamID) { [weak self] (result) in
+          onMain {
+            guard let `self` = self else { return }
+            switch result {
+            case .success:
+              self.navigationController?.setViewControllers([CreateTeamSuccessViewController()], animated: true)
+              self.delegate?.createTeamSuccess()
+            case .failed:
+              // If creating a team is successful but joining fails - delete it.
+              AKFCausesService.deleteTeam(team: teamID)
+              self.showErrorAlert()
+            }
+          }
         }
       }
     }
+  }
+
+  private func showErrorAlert() {
+    let alert = AlertViewController()
+    alert.title = Strings.Challenge.CreateTeam.ErrorAlert.title
+    alert.body = Strings.Challenge.CreateTeam.ErrorAlert.body
+    alert.add(.okay())
+    AppController.shared.present(alert: alert, in: self, completion: nil)
   }
 }
 
