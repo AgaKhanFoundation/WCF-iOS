@@ -52,6 +52,9 @@ class SettingsViewController: TableViewController {
       navigationController?.pushViewController(ConnectSourceViewController(), animated: true)
     case .viewTeam:
       navigationController?.pushViewController(TeamSettingsViewController(), animated: true)
+    case .leaveTeam:
+      // TODO(compnerd) handle this
+      break
     case .logout:
       logout()
     case .deleteAccount:

@@ -34,12 +34,13 @@ class SettingsDataSource: TableViewDataSource {
 
   enum SettingsContext: Context {
     case viewTeam
+    case leaveTeam
     case logout
     case deleteAccount
     case connectSource
   }
 
-  private var isTeamLead = true
+  private var isTeamLead = false
   private var imageURL: URL?
   private var name: String = " "
   private var isOnTeam: Bool = false
@@ -54,12 +55,14 @@ class SettingsDataSource: TableViewDataSource {
       let group: DispatchGroup = DispatchGroup()
 
       group.enter()
-      AKFCausesService.getParticipant(fbid: Facebook.id, completion: { (result) in
+      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
         if let participant = Participant(json: result.response) {
           self?.isOnTeam = participant.team != nil
+          // TODO(compnerd) query this from the team's creator field
+          self?.isTeamLead = participant.team?.members[safe: 0]?.fbid == participant.fbid
         }
         group.leave()
-      })
+      }
 
       group.enter()
       Facebook.profileImage(for: "me") { (url) in
@@ -82,43 +85,38 @@ class SettingsDataSource: TableViewDataSource {
 
   func configure() {
     cells = [[
-      SettingsProfileCellContext(
-        imageURL: imageURL,
-        name: name,
-        teamName: teamName,
-        membership: teamMembership),
-      SettingsTitleCellContext(
-        title: "Personal"),
-      SettingsDisclosureCellContext(
-        title: "Personal Mile Commitment",
-        body: "Mile commitment cannot be changed once the challenge has started.",
-        value: "500 mi"),
-      SettingsSwitchCellContext(
-        title: "Push Notifications",
-        isSwitchEnabled: true),
-      SettingsDisclosureCellContext(
-        title: "Connected apps & devices",
-        isLastItem: true,
-        context: SettingsContext.connectSource),
-      SettingsTitleCellContext(
-        title: "Team"),
-      SettingsDisclosureCellContext(
-        title: "View team",
-        context: SettingsContext.viewTeam),
-      SettingsSwitchCellContext(
-        title: "Team visibility",
-        body: "Your team is discoverable.\nAny participant can find and join your team.",
-        switchLabel: "Public",
-        isSwitchEnabled: true,
-        isLastItem: true),
-      SettingsActionCellContext(
-        title: "Logout",
-        context: SettingsContext.logout),
-      SettingsActionCellContext(
-        title: "Delete Account",
-        buttonStyle: .plain,
-        context: SettingsContext.deleteAccount)
-      ]]
+      // Profile
+      SettingsProfileCellContext(imageURL: imageURL, name: name,
+                                 teamName: teamName, membership: teamMembership),
+      // Personal
+      SettingsTitleCellContext(title: "Personal"),
+      SettingsDisclosureCellContext(title: "Personal Mile Commitment",
+                                    body: "Mile commitment cannot be changed once the challenge has started.",
+                                    value: "500 mi"),
+      SettingsSwitchCellContext(title: "Push Notifications",
+                                isSwitchEnabled: true),
+      SettingsDisclosureCellContext(title: "Connected apps & devices",
+                                    isLastItem: true,
+                                    context: SettingsContext.connectSource),
+      // Team
+      SettingsTitleCellContext(title: "Team"),
+      SettingsDisclosureCellContext(title: "View team",
+                                    isDisclosureHidden: !isOnTeam,
+                                    context: SettingsContext.viewTeam),
+      (isTeamLead
+        ? SettingsSwitchCellContext(title: "Team visibility",
+                                    body: "Your team is discoverable.\nAny participant can find and join your team.",
+                                    switchLabel: "Public",
+                                    isSwitchEnabled: true, isLastItem: true)
+        : SettingsDisclosureCellContext(title: "Leave Team",
+                                        isDisclosureHidden: !isOnTeam,
+                                        isLastItem: true,
+                                        context: SettingsContext.leaveTeam)),
+      SettingsActionCellContext(title: "Logout",
+                                context: SettingsContext.logout),
+      SettingsActionCellContext(title: "Delete Account", buttonStyle: .plain,
+                                context: SettingsContext.deleteAccount)
+    ]]
   }
 
   func deleteAccount(completion: @escaping () -> Void) {
