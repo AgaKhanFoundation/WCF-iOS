@@ -41,53 +41,49 @@ class TeamSettingsDataSource: TableViewDataSource {
     completion()
 
     onBackground { [weak self] in
-      let CC: NSCondition = NSCondition() // swiftlint:disable:this identifier_name
-      var MS: DispatchSemaphore = DispatchSemaphore(value: 0) // swiftlint:disable:this identifier_name
+      let group: DispatchGroup = DispatchGroup()
 
       var capacity: Int = 1
       var members: [(name: String?, image: URL?)] = []
 
+      group.enter()
       AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
-        guard let participant = Participant(json: result.response) else {
-          CC.signal()
-          return
-        }
+        if let participant = Participant(json: result.response) {
+          if let event = participant.event {
+            self?.eventName = event.name
 
-        self?.eventName = participant.event?.name ?? " "
-
-        if let event = participant.event?.id {
-          AKFCausesService.getEvent(event: event) { (result) in
-            guard let event = Event(json: result.response) else {
-              CC.signal()
-              return
+            group.enter()
+            AKFCausesService.getEvent(event: event.id!) { (result) in
+              if let event = Event(json: result.response) {
+                capacity = event.teamLimit
+              }
+              group.leave()
             }
-            capacity = event.teamLimit
-            CC.signal()
           }
-        }
 
-        if let team = participant.team {
-          self?.teamName = team.name ?? " "
+          if let team = participant.team {
+            if let name = team.name { self?.teamName = name }
 
-          if let team = participant.team?.members {
-            MS = DispatchSemaphore(value: team.count * 2)
-            members = [(String?, URL?)](repeating: (name: nil, image: nil), count: team.count)
-            for (index, member) in team.enumerated() {
+            members = [(String?, URL?)](repeating: (name: nil, image: nil), count: team.members.count)
+
+            for (index, member) in team.members.enumerated() {
+              group.enter()
               Facebook.getRealName(for: member.fbid) { (name) in
                 members[index].name = name
-                MS.signal()
+                group.leave()
               }
+
+              group.enter()
               Facebook.profileImage(for: member.fbid) { (url) in
                 members[index].image = url
-                MS.signal()
+                group.leave()
               }
             }
           }
         }
+        group.leave()
       }
-
-      CC.wait()
-      MS.wait()
+      group.wait()
 
       self?.team = (members: members, capacity: capacity)
 
