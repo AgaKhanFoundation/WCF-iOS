@@ -58,7 +58,7 @@ class TableViewController: ViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    refresh()
+    reload()
   }
 
   override func viewDidAppear(_ animated: Bool) {
