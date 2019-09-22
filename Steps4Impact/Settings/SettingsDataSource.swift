@@ -51,24 +51,32 @@ class SettingsDataSource: TableViewDataSource {
     completion()
 
     onBackground { [weak self] in
-      Facebook.profileImage(for: "me") { (url) in
-        guard let url = url else { return }
+      let group: DispatchGroup = DispatchGroup()
 
-        self?.imageURL = url
-        self?.configure()
-        completion()
-      }
-
-      Facebook.getRealName(for: "me") { (name) in
-        self?.name = name ?? "Could not load"
-        self?.configure()
-        completion()
-      }
-
+      group.enter()
       AKFCausesService.getParticipant(fbid: Facebook.id, completion: { (result) in
-        guard let participant = Participant(json: result.response) else { return }
-        self?.isOnTeam = participant.team != nil
+        if let participant = Participant(json: result.response) {
+          self?.isOnTeam = participant.team != nil
+        }
+        group.leave()
       })
+
+      group.enter()
+      Facebook.profileImage(for: "me") { (url) in
+        if let url = url { self?.imageURL = url }
+        group.leave()
+      }
+
+      group.enter()
+      Facebook.getRealName(for: "me") { (name) in
+        if let name = name { self?.name = name }
+        group.leave()
+      }
+
+      group.wait()
+
+      self?.configure()
+      completion()
     }
   }
 
