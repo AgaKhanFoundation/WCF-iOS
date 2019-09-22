@@ -43,3 +43,10 @@ struct Source {
     self.name = name
   }
 }
+
+extension Source: Equatable {
+  static func == (lhs: Source, rhs: Source) -> Bool {
+    return lhs.id == rhs.id &&
+      lhs.name == rhs.name
+  }
+}

@@ -58,3 +58,13 @@ struct Record {
     }
   }
 }
+
+extension Record: Equatable {
+  static func == (lhs: Record, rhs: Record) -> Bool {
+    return lhs.id == rhs.id &&
+    lhs.date == rhs.date &&
+    lhs.distance == rhs.distance &&
+    lhs.fbid == rhs.fbid &&
+    lhs.source == rhs.source
+  }
+}

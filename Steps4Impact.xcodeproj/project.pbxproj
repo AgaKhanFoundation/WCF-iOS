@@ -75,6 +75,12 @@
 		26FE2455232234A300E01B9B /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2454232234A300E01B9B /* EmptyCell.swift */; };
 		7A7C5B5BCE64FE425FE48D17 /* Pods_Steps4ImpactTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644A965BB27AB6174A19603E /* Pods_Steps4ImpactTests.framework */; };
 		885A50211F181C0FFD544AAA /* Pods_Steps4Impact.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E04420449F9B74A2501CBBEA /* Pods_Steps4Impact.framework */; };
+		BF00998E2336FFFE0034FD51 /* LeaderboardCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF00998D2336FFFE0034FD51 /* LeaderboardCardCell.swift */; };
+		BF009993233733D20034FD51 /* RankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF009992233733D20034FD51 /* RankingView.swift */; };
+		BF009995233734200034FD51 /* LeadersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF009994233734200034FD51 /* LeadersView.swift */; };
+		BF0099972337346A0034FD51 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0099962337346A0034FD51 /* LeaderboardView.swift */; };
+		BF00999A23375CA60034FD51 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF00999923375CA60034FD51 /* LeaderboardCell.swift */; };
+		BF00999E23376E620034FD51 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF00999D23376E620034FD51 /* HeaderView.swift */; };
 		C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */; };
 		F00403191EC3FB7D005E6F10 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004031C1EC52772005E6F10 /* AppConfig.swift */; };
@@ -204,6 +210,12 @@
 		31082B36DD919D9631B44E5E /* Pods-Steps4Impact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steps4Impact.debug.xcconfig"; path = "Target Support Files/Pods-Steps4Impact/Pods-Steps4Impact.debug.xcconfig"; sourceTree = "<group>"; };
 		644A965BB27AB6174A19603E /* Pods_Steps4ImpactTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Steps4ImpactTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D885FB78222CE09537F0C6A /* Pods-steps4impact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impact.debug.xcconfig"; path = "Target Support Files/Pods-steps4impact/Pods-steps4impact.debug.xcconfig"; sourceTree = "<group>"; };
+		BF00998D2336FFFE0034FD51 /* LeaderboardCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCardCell.swift; sourceTree = "<group>"; };
+		BF009992233733D20034FD51 /* RankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingView.swift; sourceTree = "<group>"; };
+		BF009994233734200034FD51 /* LeadersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadersView.swift; sourceTree = "<group>"; };
+		BF0099962337346A0034FD51 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
+		BF00999923375CA60034FD51 /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
+		BF00999D23376E620034FD51 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		CF9EDF06C6BFB060D8FD292A /* Pods-Steps4ImpactTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steps4ImpactTests.release.xcconfig"; path = "Target Support Files/Pods-Steps4ImpactTests/Pods-Steps4ImpactTests.release.xcconfig"; sourceTree = "<group>"; };
 		D119AEC4C6C2D75E13B09A89 /* Pods-steps4impactTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impactTests.debug.xcconfig"; path = "Target Support Files/Pods-steps4impactTests/Pods-steps4impactTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -532,6 +544,27 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BF00998F2337003C0034FD51 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				BF00998D2336FFFE0034FD51 /* LeaderboardCardCell.swift */,
+				BF009998233734750034FD51 /* Views */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		BF009998233734750034FD51 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BF009992233733D20034FD51 /* RankingView.swift */,
+				BF009994233734200034FD51 /* LeadersView.swift */,
+				BF0099962337346A0034FD51 /* LeaderboardView.swift */,
+				BF00999923375CA60034FD51 /* LeaderboardCell.swift */,
+				BF00999D23376E620034FD51 /* HeaderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		F017B68F227699240023E84B /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -612,6 +645,7 @@
 			children = (
 				265DE56B2332E492009DDA5A /* LeaderboardDataSource.swift */,
 				F0E6878E22251B7800454340 /* LeaderboardViewController.swift */,
+				BF00998F2337003C0034FD51 /* Cells */,
 			);
 			path = Leaderboard;
 			sourceTree = "<group>";
@@ -891,6 +925,7 @@
 				260BF5A32324D4B7005F0882 /* InfoCell.swift in Sources */,
 				2676B3C62331DA1500CB0A31 /* AlertViewController.swift in Sources */,
 				269E35091E765F24000726C2 /* UIView.swift in Sources */,
+				BF0099972337346A0034FD51 /* LeaderboardView.swift in Sources */,
 				2622C09223249CA10092B145 /* EmptyTableViewDataSource.swift in Sources */,
 				F0681D271ED53CA70029278E /* Cause.swift in Sources */,
 				2611A5072335FF290030E77E /* JSON.swift in Sources */,
@@ -910,6 +945,7 @@
 				265DE56C2332E492009DDA5A /* LeaderboardDataSource.swift in Sources */,
 				F0CF39861EE0E903006A7462 /* Record.swift in Sources */,
 				260BF59A2324CFA6005F0882 /* EmptyActivityCardCell.swift in Sources */,
+				BF009993233733D20034FD51 /* RankingView.swift in Sources */,
 				260BF5A12324D0BE005F0882 /* DisclosureCell.swift in Sources */,
 				F0F8EDD52210C71600321A6D /* ActivityCard.swift in Sources */,
 				2622C09423249D680092B145 /* DashboardDataSource.swift in Sources */,
@@ -919,6 +955,7 @@
 				F0320B6E222F678500EABAD6 /* SegmentedView.swift in Sources */,
 				2676B3C82331E1B400CB0A31 /* ActionButton.swift in Sources */,
 				269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */,
+				BF009995233734200034FD51 /* LeadersView.swift in Sources */,
 				269E350E1E76664F000726C2 /* Async.swift in Sources */,
 				265DE5752333015F009DDA5A /* JoinTeamCell.swift in Sources */,
 				F0DE162C221F8DD900FF17C9 /* Result.swift in Sources */,
@@ -939,6 +976,7 @@
 				265DE5712332FB38009DDA5A /* CreateTeam.swift in Sources */,
 				260BF5B923250414005F0882 /* SettingsTitleCell.swift in Sources */,
 				F0F8EDD32210C68E00321A6D /* ProfileCard.swift in Sources */,
+				BF00998E2336FFFE0034FD51 /* LeaderboardCardCell.swift in Sources */,
 				260BF5B02324FD31005F0882 /* SettingsViewController.swift in Sources */,
 				F0A0A5FE2210EC3600F20315 /* Navigation.swift in Sources */,
 				265DE5682332D66E009DDA5A /* BadgesDataSource.swift in Sources */,
@@ -947,6 +985,7 @@
 				263EF52E232A105C00A00414 /* TeamSettingsViewController.swift in Sources */,
 				260BF58C2324B17D005F0882 /* CALayer.swift in Sources */,
 				26FE244B23222DF400E01B9B /* Cells.swift in Sources */,
+				BF00999A23375CA60034FD51 /* LeaderboardCell.swift in Sources */,
 				269E350C1E765F73000726C2 /* StyleGuide.swift in Sources */,
 				269E35241E767807000726C2 /* Team.swift in Sources */,
 				260BF5972324C023005F0882 /* CellDisclosureView.swift in Sources */,
@@ -973,6 +1012,7 @@
 				2622C0962324A0490092B145 /* TableViewCell.swift in Sources */,
 				F017B6972276D0C60023E84B /* OnboardingDashboard.swift in Sources */,
 				F0F8EDD72210C7C700321A6D /* FundraisingCard.swift in Sources */,
+				BF00999E23376E620034FD51 /* HeaderView.swift in Sources */,
 				267FAE2A2325C9210014222D /* SettingsSwitchCell.swift in Sources */,
 				F0CBDA521EA6FF1D00BB34F1 /* Sponsor.swift in Sources */,
 				269E35071E765C68000726C2 /* LoginViewController.swift in Sources */,

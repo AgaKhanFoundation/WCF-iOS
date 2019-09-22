@@ -50,3 +50,11 @@ struct Team {
     }
   }
 }
+
+extension Team: Equatable {
+  static func == (lhs: Team, rhs: Team) -> Bool {
+    return lhs.id == rhs.id &&
+      lhs.name == rhs.name &&
+      lhs.members == rhs.members
+  }
+}

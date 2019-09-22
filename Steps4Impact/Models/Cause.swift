@@ -43,3 +43,10 @@ struct Cause {
     self.name = name
   }
 }
+
+extension Cause: Equatable {
+  static func == (lhs: Cause, rhs: Cause) -> Bool {
+    return lhs.id == rhs.id &&
+      lhs.name == rhs.name
+  }
+}

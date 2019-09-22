@@ -213,6 +213,8 @@ Click continue for a quick tour of the app.
   struct Leaderboard {
     static let title: String =
       NSLocalizedString("Leaderboard", comment: "Leaderboard")
+    static let blank: String =
+      NSLocalizedString("————", comment: "————")
   }
 
   struct ChallengeCard {
@@ -258,6 +260,7 @@ enum Assets: String {
   case disclosure = "BlueBackButton"
   case close = "close"
   case checkmark = "checkmark"
+  case downArrow = "downArrow"
 
   // Logos
   case AKFLogo = "AKFLogo"

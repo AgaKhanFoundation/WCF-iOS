@@ -66,3 +66,13 @@ struct Participant {
     }
   }
 }
+
+extension Participant: Equatable {
+  static func == (lhs: Participant, rhs: Participant) -> Bool {
+    return lhs.fbid == rhs.fbid &&
+    lhs.team == rhs.team &&
+    lhs.event == rhs.event &&
+    lhs.preferredCause == rhs.preferredCause &&
+    lhs.records == rhs.records
+  }
+}
