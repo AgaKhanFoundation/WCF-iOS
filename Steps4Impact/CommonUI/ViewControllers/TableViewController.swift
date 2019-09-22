@@ -81,7 +81,7 @@ class TableViewController: ViewController {
   // MARK: - Actions
 
   @objc
-  func refresh() {
+  private func refresh() {
     refreshControl.beginRefreshing()
     dataSource?.reload { [weak self] in
       onMain {
