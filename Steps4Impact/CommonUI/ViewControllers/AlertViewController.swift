@@ -86,6 +86,7 @@ class AlertViewController: ViewController {
     buttonsStackView.axis = .vertical
     buttonsStackView.distribution = .equalSpacing
     buttonsStackView.alignment = .fill
+    buttonsStackView.spacing = Style.Padding.p8
     dismissView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissViewTapped(_:))))
 
     view.addSubview(dismissView) {
