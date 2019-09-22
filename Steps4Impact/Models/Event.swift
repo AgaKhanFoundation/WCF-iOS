@@ -83,3 +83,18 @@ struct Event {
     self.image = nil
   }
 }
+
+extension Event: Equatable {
+  static func == (lhs: Event, rhs: Event) -> Bool {
+    return lhs.image == rhs.image &&
+      lhs.id == rhs.id &&
+      lhs.name == rhs.name &&
+      lhs.description == rhs.description &&
+      lhs.challengePhase.start == rhs.challengePhase.start &&
+      lhs.challengePhase.end == rhs.challengePhase.end &&
+      lhs.teamFormationPhase.start == rhs.teamFormationPhase.start &&
+      lhs.teamFormationPhase.end == rhs.teamFormationPhase.end &&
+      lhs.teamLimit == rhs.teamLimit &&
+      lhs.cause == rhs.cause
+  }
+}

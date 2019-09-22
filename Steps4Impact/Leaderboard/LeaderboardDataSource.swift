@@ -31,8 +31,44 @@ import Foundation
 
 class LeaderboardDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
-
+  private var teams: [Team] = []
+  private var userTeam: Team?
+  func reload(completion: @escaping () -> Void) {
+    configure()
+    completion()
+    AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
+      guard let participant = Participant(json: result.response) else { return }
+      self?.userTeam = participant.team
+      self?.configure()
+      completion()
+    }
+    AKFCausesService.getTeams { [weak self] (result) in
+      guard let teams = result.response?.arrayValue else { return }
+      self?.teams = teams
+        .compactMap { Team(json: $0) }
+        .sorted { $0.calculateDist() < $1.calculateDist() }
+      self?.configure()
+      completion()
+    }
+    return
+  }
   func configure() {
+    cells = [[
+      LeaderboardCardCellContext(
+        teams: teams,
+        userTeam: userTeam)
+    ]]
+  }
+}
 
+extension Team {
+  func calculateDist() -> Int {
+    var sum = 0
+    for team in members {
+      for record in team.records {
+        sum += record.distance
+      }
+    }
+    return sum
   }
 }
