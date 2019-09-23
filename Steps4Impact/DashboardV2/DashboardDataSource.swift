@@ -85,7 +85,9 @@ class DashboardDataSource: TableViewDataSource {
                                  ctaTitle: Strings.Dashboard.Activity.connect)
     if UserInfo.pedometerSource != nil {
       activityCellContext =
-          ConnectedActivityCellContext(title: Strings.Dashboard.Activity.title)
+        InfoCellContext(
+          title: Strings.Dashboard.Activity.title,
+          body: Strings.Dashboard.ChallengeProgress.unavailable)
     }
 
     cells = [[
