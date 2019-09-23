@@ -41,9 +41,25 @@ class TeamSettingsViewController: TableViewController {
       target: self,
       action: #selector(editTapped))
   }
+  
+  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
+    if let cell = cell as? SettingsActionCell {
+      cell.delegate = self
+    }
+  }
 
   @objc
   func editTapped() {
     // TODO
+  }
+}
+
+extension TeamSettingsViewController: SettingsActionCellDelegate {
+  func settingsActionCellTapped(context: Context?, button: UIButton) {
+    AppController.shared.shareTapped(
+      viewController: self,
+      shareButton: button,
+      string: Strings.Share.item)
   }
 }

@@ -29,6 +29,10 @@
 
 import Foundation
 
+enum TeamSettingsContext: Context {
+  case invite
+}
+
 class TeamSettingsDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
 
@@ -108,7 +112,7 @@ class TeamSettingsDataSource: TableViewDataSource {
       SettingsActionCellContext(
         title: "Invite \(self.team.capacity - self.team.members.count) new team members",
         buttonStyle: .plain,
-        context: nil),
+        context: TeamSettingsContext.invite),
       SettingsActionCellContext(
         title: "Delete Team",
         buttonStyle: .destructive,

@@ -30,7 +30,7 @@
 import UIKit
 
 protocol SettingsActionCellDelegate: class {
-  func settingsActionCellTapped(context: Context?)
+  func settingsActionCellTapped(context: Context?, button: UIButton)
 }
 
 struct SettingsActionCellContext: CellContext {
@@ -77,6 +77,6 @@ class SettingsActionCell: ConfigurableTableViewCell {
 
   @objc
   func buttonTapped() {
-    delegate?.settingsActionCellTapped(context: context)
+    delegate?.settingsActionCellTapped(context: context, button: button)
   }
 }
