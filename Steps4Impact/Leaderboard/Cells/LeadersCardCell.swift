@@ -27,52 +27,46 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-import Foundation
+import UIKit
+import SnapKit
 
-class LeaderboardDataSource: TableViewDataSource {
-  var cells: [[CellContext]] = []
-  private var teams: [Team] = []
-  private var userTeam: Team?
-
-  func reload(completion: @escaping () -> Void) {
-    configure()
-    completion()
-    AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
-      guard let participant = Participant(json: result.response) else { return }
-      self?.userTeam = participant.team
-      self?.configure()
-      completion()
-    }
-    AKFCausesService.getTeams { [weak self] (result) in
-      guard let teams = result.response?.arrayValue else { return }
-      self?.teams = teams
-        .compactMap { Team(json: $0) }
-        .sorted { $0.calculateDist() < $1.calculateDist() }
-      self?.configure()
-      completion()
-    }
-    return
-  }
-  func configure() {
-    cells = [[
-      LeadersCardCellContext(
-        teams: teams,
-        userTeam: userTeam),
-      LeaderboardCardCellContext(
-        teams: teams,
-        userTeam: userTeam)
-    ]]
-  }
+struct LeadersCardCellContext: CellContext {
+  let identifier: String = LeadersCardCell.identifier
+  let teams: [Team]
+  let userTeam: Team?
 }
 
-extension Team {
-  func calculateDist() -> Int {
-    var sum = 0
-    for team in members {
-      for record in team.records {
-        sum += record.distance
-      }
+struct RankingContext: Context {
+  let rank: Int
+  let name: String
+  let dist: String
+  let isUserTeam: Bool
+}
+
+class LeadersCardCell: ConfigurableTableViewCell {
+  static let identifier = "LeadersCardCell"
+
+  private let cardView = CardViewV2()
+  private let leadersView = LeadersView()
+  override func commonInit() {
+    super.commonInit()
+
+    contentView.addSubview(cardView) {
+      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)
+      $0.top.bottom.equalToSuperview().inset(Style.Padding.p12)
     }
-    return sum
+
+    cardView.addSubview(leadersView) {
+      $0.top.leading.trailing.bottom.equalToSuperview().inset(Style.Padding.p4)
+      $0.height.equalTo(200)
+    }
+
+  }
+  override func layoutSubviews() {
+    super.layoutSubviews()
+  }
+  func configure(context: CellContext) {
+    guard let context = context as? LeadersCardCellContext else { return }
+    leadersView.configure(context: context)
   }
 }

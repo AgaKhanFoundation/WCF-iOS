@@ -38,8 +38,10 @@ class PlaceholderView: View {
     lbl.textAlignment = .center
     return lbl
   }()
+
   override func commonInit() {
     super.commonInit()
+
     addSubview(lbl) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
       $0.top.equalToSuperview().offset(Style.Padding.p16)
@@ -73,13 +75,16 @@ class HeaderView: View {
     lbl.attributedText = mileString
     return lbl
   }()
+
   override func commonInit() {
     super.commonInit()
+
     addSubview(teamName) {
       $0.leading.equalToSuperview().offset(Style.Padding.p16)
       $0.centerY.equalToSuperview()
       $0.width.lessThanOrEqualTo(200)
     }
+
     addSubview(miles) {
       $0.trailing.equalToSuperview().offset(-Style.Padding.p16)
       $0.centerY.equalToSuperview()

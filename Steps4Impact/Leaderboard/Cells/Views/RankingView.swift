@@ -33,7 +33,7 @@ import SnapKit
 class RankingView: View {
   private let circularView: View = {
     let view = View()
-    view.layer.cornerRadius = 32
+    view.layer.cornerRadius = Style.Size.s32
     return view
   }()
   private let placeLbl: UILabel = UILabel(typography: .headerTitle, color: Style.Colors.white)
@@ -51,21 +51,26 @@ class RankingView: View {
     lbl.text = Strings.Leaderboard.blank
     return lbl
   }()
+
   override func commonInit() {
     super.commonInit()
+
     addSubview(circularView) {
       $0.top.centerX.equalToSuperview()
-      $0.height.width.equalTo(64)
+      $0.height.width.equalTo(Style.Size.s64)
     }
+
     circularView.addSubview(placeLbl) {
       $0.centerX.centerY.equalToSuperview()
     }
+
     addSubview(teamLbl) {
       $0.leading.equalToSuperview().offset(Style.Padding.p8)
       $0.trailing.equalToSuperview().offset(-Style.Padding.p8)
       $0.top.equalTo(circularView.snp.bottom).offset(Style.Padding.p2)
       $0.height.lessThanOrEqualTo(Style.Size.s32)
     }
+
     addSubview(distLbl) {
       $0.leading.equalToSuperview().offset(Style.Padding.p8)
       $0.trailing.equalToSuperview().offset(-Style.Padding.p8)

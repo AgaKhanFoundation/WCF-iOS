@@ -36,49 +36,30 @@ struct LeaderboardCardCellContext: CellContext {
   let userTeam: Team?
 }
 
-struct RankingContext: Context {
-  let rank: Int
-  let name: String
-  let dist: String
-  let isUserTeam: Bool
-}
-
 class LeaderboardCardCell: ConfigurableTableViewCell {
   static let identifier = "LeaderboardCardCell"
+
   private let cardView = CardViewV2()
-  private let leadersView = LeadersView()
-  private let content = View()
   private let leaderboardView = LeaderboardView()
   override func commonInit() {
     super.commonInit()
+
     contentView.addSubview(cardView) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)
       $0.top.bottom.equalToSuperview().inset(Style.Padding.p12)
     }
-    cardView.addSubview(content) {
-      $0.leading.trailing.equalToSuperview()
-      $0.top.equalToSuperview()
-      $0.height.equalTo(650)
+
+    cardView.addSubview(leaderboardView) {
+      $0.top.leading.trailing.bottom.equalToSuperview()
+      $0.height.equalTo(450)
     }
-    content.addSubview(leadersView) {
-      $0.leading.trailing.top.equalToSuperview().inset(Style.Padding.p8)
-      $0.height.equalTo(216)
-    }
-    content.addSubview(leaderboardView) {
-      $0.leading.trailing.bottom.equalToSuperview().inset(Style.Padding.p8)
-      $0.top.equalTo(leadersView.snp.bottom)
-    }
-    cardView.addSubview(UIView(frame: .zero)) {
-      $0.leading.trailing.bottom.equalToSuperview()
-      $0.top.equalTo(content.snp.bottom)
-    }
+
   }
   override func layoutSubviews() {
     super.layoutSubviews()
   }
   func configure(context: CellContext) {
     guard let context = context as? LeaderboardCardCellContext else { return }
-    leadersView.configure(context: context)
     leaderboardView.configure(context: context)
   }
 }

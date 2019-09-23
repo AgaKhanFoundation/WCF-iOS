@@ -46,20 +46,24 @@ class LeadersView: View {
     view.setColor(rank: 2)
     return view
   }()
+
   override func commonInit() {
     super.commonInit()
+
     addSubview(firstPlace) {
       $0.top.equalToSuperview()
       $0.centerX.equalToSuperview()
       $0.height.equalTo(Style.Size.s128)
       $0.width.equalTo(Style.Size.s128)
     }
+
     addSubview(secondPlace) {
       $0.top.equalTo(firstPlace.snp.bottom).offset(-Style.Padding.p64)
       $0.right.equalTo(firstPlace.snp.left).offset(Style.Padding.p40)
       $0.height.equalTo(Style.Size.s128)
       $0.width.equalTo(Style.Size.s128)
     }
+
     addSubview(thirdPlace) {
       $0.top.equalTo(firstPlace.snp.bottom).offset(-Style.Padding.p32)
       $0.left.equalTo(firstPlace.snp.right).offset(-Style.Padding.p40)
@@ -67,7 +71,7 @@ class LeadersView: View {
       $0.width.equalTo(Style.Size.s128)
     }
   }
-  func configure(context: LeaderboardCardCellContext) {
+  func configure(context: LeadersCardCellContext) {
     let teams = context.teams
     var isUserTeam = false
     for rank in 0..<teams.count {

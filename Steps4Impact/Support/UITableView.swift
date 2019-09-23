@@ -57,6 +57,7 @@ extension UITableView {
     register(TeamNeededCell.self, forCellReuseIdentifier: TeamNeededCell.identifier)
     register(JoinTeamCell.self, forCellReuseIdentifier: JoinTeamCell.identifier)
     register(ConnectSourceCell.self, forCellReuseIdentifier: ConnectSourceCell.identifier)
+    register(LeadersCardCell.self, forCellReuseIdentifier: LeadersCardCell.identifier)
     register(LeaderboardCardCell.self, forCellReuseIdentifier: LeaderboardCardCell.identifier)
   }
 

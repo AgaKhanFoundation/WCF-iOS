@@ -35,29 +35,36 @@ class LeaderboardView: View {
   private let tableView: UITableView = UITableView(frame: .zero, style: .grouped)
   private var fetchedTeams: [Team] = [] {
     didSet {
-      self.updateList()
-      self.tableView.reloadData()
+      self.reloadTableView()
     }
   }
-  private var currentTeam: Team?
+  private var currentTeam: Team? {
+    didSet {
+      displayTeams()
+      self.reloadTableView()
+    }
+  }
   private var shouldCollapse: Bool = false
   private var isCollapsed: Bool = true
   private var displayedTeams: [Team] = [] {
     didSet {
-      self.updateList()
-      self.tableView.reloadData()
+      self.reloadTableView()
     }
   }
+
   override func commonInit() {
     super.commonInit()
+
     tableView.backgroundColor = Style.Colors.white
     tableView.delegate = self
     tableView.dataSource = self
     tableView.register(LeaderboardCell.self, forCellReuseIdentifier: LeaderboardCell.identifier)
     tableView.register(CollapseCell.self, forCellReuseIdentifier: CollapseCell.identifier)
+
     addSubview(placeholderView) {
       $0.leading.trailing.top.bottom.equalToSuperview()
     }
+
     addSubview(tableView) {
       $0.leading.trailing.top.bottom.equalToSuperview()
     }
@@ -66,10 +73,10 @@ class LeaderboardView: View {
     fetchedTeams = context.teams
     currentTeam = context.userTeam
     displayTeams()
-    print(displayedTeams.count)
     updateList()
   }
   private func displayTeams() {
+    displayedTeams = [Team]()
     if fetchedTeams.count <= 3 {
       isCollapsed = true
       shouldCollapse = false
@@ -105,6 +112,10 @@ class LeaderboardView: View {
     tableView.reloadData()
     tableView.setNeedsUpdateConstraints()
     tableView.layoutIfNeeded()
+    tableView.reloadData()
+  }
+  private func reloadTableView() {
+    updateList()
     tableView.reloadData()
   }
 }
@@ -165,13 +176,13 @@ extension LeaderboardView: UITableViewDataSource {
         for: indexPath) as? LeaderboardCell
     if shouldCollapse && indexPath.row >= 4 {
       cell?.configure(context: LeaderboardCellContext(
-        rank: indexPath.row,
+        rank: indexPath.row + 3,
         dist: displayedTeams[indexPath.row - 1].calculateDist(),
         name: displayedTeams[indexPath.row - 1].name ?? "",
         isUserTeam: currentTeam != nil && currentTeam == displayedTeams[indexPath.row - 1]))
     } else {
       cell?.configure(context: LeaderboardCellContext(
-        rank: indexPath.row + 1,
+        rank: indexPath.row + 4,
         dist: displayedTeams[indexPath.row].calculateDist(),
         name: displayedTeams[indexPath.row].name ?? "",
         isUserTeam: currentTeam != nil && currentTeam == displayedTeams[indexPath.row]))

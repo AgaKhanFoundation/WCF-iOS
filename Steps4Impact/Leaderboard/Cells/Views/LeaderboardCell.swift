@@ -62,8 +62,10 @@ class LeaderboardCell: TableViewCell {
     lbl.textAlignment = .left
     return lbl
   }()
+
   override func commonInit() {
     super.commonInit()
+
     addSubview(rankLbl) {
       $0.leading.equalTo(safeAreaLayoutGuide.snp.leading).offset(Style.Padding.p16)
       $0.centerY.equalToSuperview()
@@ -88,7 +90,7 @@ class LeaderboardCell: TableViewCell {
     }
     rankLbl.text = "\(context.rank)."
     distLbl.text = "\(context.dist) mi"
-    teamLbl.text = "\(context.name)"
+    teamLbl.text = context.name
   }
 }
 
@@ -96,8 +98,11 @@ class CollapseCell: TableViewCell {
   static let identifier = "CollapseCell"
   var lbl: UILabel = UILabel(typography: .bodyRegular, color: Style.Colors.grey)
   weak var delegate: CollapseCellDelegate?
+
   override func commonInit() {
     super.commonInit()
+
+    lbl.text = "Expand"
     isUserInteractionEnabled = true
     let gesture = UITapGestureRecognizer(target: self, action: #selector(collapseOrExpand))
     addGestureRecognizer(gesture)
