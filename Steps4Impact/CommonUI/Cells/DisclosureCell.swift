@@ -84,6 +84,7 @@ class DisclosureCell: ConfigurableTableViewCell {
 
     titleLabel.text = context.title
     bodyLabel.text = context.body
+    self.context = context.context
     disclosureView.configure(context: CellDisclosureContext(label: context.disclosureTitle))
   }
 }
