@@ -132,6 +132,8 @@ Click continue for a quick tour of the app.
   struct Badges {
     static let title: String =
       NSLocalizedString("Badges", comment: "Badges")
+    static let empty: String =
+      NSLocalizedString("Come back often to check on what badges you've earned", comment: "Badges empty state")
   }
 
   struct ProfileCard {

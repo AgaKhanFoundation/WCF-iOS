@@ -33,6 +33,10 @@ class BadgesDataSource: TableViewDataSource {
   var cells = [[CellContext]]()
 
   func configure() {
-
+      cells = [[
+        InfoCellContext(
+          title: Strings.Badges.title,
+          body: Strings.Badges.empty)
+      ]]
   }
 }
