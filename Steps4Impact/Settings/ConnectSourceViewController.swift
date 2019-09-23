@@ -41,6 +41,11 @@ class ConnectSourceViewController: TableViewController {
     dataSource = ConnectSourceDataSource()
   }
 
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    reload()
+  }
+
   override func tableView(_ tableView: UITableView,
                           willDisplay cell: UITableViewCell,
                           forRowAt indexPath: IndexPath) {
