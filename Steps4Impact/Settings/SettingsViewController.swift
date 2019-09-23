@@ -53,8 +53,15 @@ class SettingsViewController: TableViewController {
     case .viewTeam:
       navigationController?.pushViewController(TeamSettingsViewController(), animated: true)
     case .leaveTeam:
-      // TODO(compnerd) handle this
-      break
+      let alert: AlertViewController = AlertViewController()
+      alert.title = Strings.TeamSettings.leave
+      alert.body = Strings.TeamSettings.leaveBody
+      alert.add(AlertAction(title: "Cancel", style: .secondary))
+      alert.add(AlertAction(title: "Leave", style: .destructive) { [weak self] in
+        AKFCausesService.leaveTeam(fbid: Facebook.id)
+        self?.reload()
+      })
+      AppController.shared.present(alert: alert, in: self, completion: nil)
     case .logout:
       logout()
     case .deleteAccount:
