@@ -93,9 +93,10 @@ class Button: UIButton {
 
   func commonInit() {
     updateColors()
+
     layer.cornerRadius = 4
     layer.masksToBounds = true
-    setTitle(currentTitle, for: .normal)
+
     snp.makeConstraints { $0.height.equalTo(Style.Size.s48) }
 
     contentEdgeInsets = UIEdgeInsets(
@@ -104,12 +105,17 @@ class Button: UIButton {
       bottom: Style.Size.s16,
       right: Style.Size.s16)
 
+    setTitle(currentTitle, for: .normal)
+
     guard let buttonFont = Style.Typography.bodyBold.font else { return }
     titleLabel?.font = buttonFont
 
     // this is to center the title in the actual button
     // descender is the part under the font for lowercase and is a negative number
     titleEdgeInsets = UIEdgeInsets(top: -buttonFont.descender / 2, left: 0, bottom: 0, right: 0)
+
+    layer.borderWidth = 2
+    layer.borderColor = style.titleColor.cgColor
   }
 
   private func updateColors() {
