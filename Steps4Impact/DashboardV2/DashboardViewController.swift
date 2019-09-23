@@ -50,6 +50,9 @@ class DashboardViewController: TableViewController {
     if let cell = cell as? EmptyActivityCell {
       cell.delegate = self
     }
+    if let cell = cell as? DisclosureCell {
+      cell.delegate = self
+    }
   }
 
   // MARK: - Actions
@@ -70,5 +73,15 @@ extension DashboardViewController: EmptyActivityCellDelegate {
   func emptyActivityCellConnectTapped() {
     navigationController?.pushViewController(ConnectSourceViewController(),
                                              animated: true)
+  }
+}
+
+extension DashboardViewController: DisclosureCellDelegate {
+  func disclosureCellTapped(context: Context?) {
+    guard let context = context as? DashboardDataSource.DashboardContext else { return }
+    switch context {
+    case .inviteSupporters:
+      navigationController?.pushViewController(InviteSupportersViewController(), animated: true)
+    }
   }
 }

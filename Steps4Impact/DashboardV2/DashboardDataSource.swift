@@ -38,6 +38,10 @@ class DashboardDataSource: TableViewDataSource {
   private var eventName: String = " "
   private var eventTimeline: String = " "
 
+  enum DashboardContext: Context {
+  case inviteSupporters
+  }
+
   func reload(completion: @escaping () -> Void) {
     configure()
     completion()
@@ -100,7 +104,7 @@ class DashboardDataSource: TableViewDataSource {
         title: Strings.Dashboard.FundrasingProgress.title,
         body: Strings.Dashboard.FundrasingProgress.unavailable,
         disclosureTitle: Strings.Dashboard.FundrasingProgress.invite,
-        context: nil)
+        context: DashboardContext.inviteSupporters)
     ]]
   }
 }
