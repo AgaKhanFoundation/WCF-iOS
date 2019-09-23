@@ -288,7 +288,7 @@ All proceeds will be donated to AKF. Learn about AKF https://www.akfusa.org/ Tha
     static let item: String =
       NSLocalizedString(
 """
-Hey! I  created a team for the %@ Challenge on the new Aga Khan Foundation app, Steps4Impact, and I want you on my team!
+Hey! I  created a team for the AKF Walk Challenge on the new Aga Khan Foundation app, Steps4Impact, and I want you on my team!
 Download the app here:
 http://rebrand.ly/steps4impact-iphone
 http://rebrand.ly/steps4impact-android
