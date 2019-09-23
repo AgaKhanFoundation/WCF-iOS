@@ -213,6 +213,8 @@ Click continue for a quick tour of the app.
   struct Leaderboard {
     static let title: String =
       NSLocalizedString("Leaderboard", comment: "Leaderboard")
+    static let empty: String =
+      NSLocalizedString("Check back for global team rankings.", comment: "Leaderboard empty state")
   }
 
   struct ChallengeCard {
@@ -311,7 +313,10 @@ enum Assets: String {
   case onboardingCreateTeam = "create-team"
   case onboardingJourney = "journey"
   case onboardingDashboard = "dashboard"
-
+  
+  // Leaderboard
+  case leaderboardEmpty = "leaderboard-empty"
+  
   // Tab Bar
   case tabbarDashboardSelected = "tabbar-dashboard-selected"
   case tabbarDashboardUnselected = "tabbar-dashboard-unselected"
