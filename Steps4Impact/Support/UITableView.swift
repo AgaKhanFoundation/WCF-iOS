@@ -41,22 +41,29 @@ extension UITableView {
   }
 
   func registerAllCells() {
-    register(EmptyCell.self, forCellReuseIdentifier: EmptyCell.identifier)
-    register(DisclosureCell.self, forCellReuseIdentifier: DisclosureCell.identifier)
-    register(InfoCell.self, forCellReuseIdentifier: InfoCell.identifier)
-    register(ProfileCardCell.self, forCellReuseIdentifier: ProfileCardCell.identifier)
-    register(ConnectedActivityCell.self, forCellReuseIdentifier: ConnectedActivityCell.identifier)
-    register(EmptyActivityCell.self, forCellReuseIdentifier: EmptyActivityCell.identifier)
-    register(SettingsProfileCell.self, forCellReuseIdentifier: SettingsProfileCell.identifier)
-    register(SettingsTitleCell.self, forCellReuseIdentifier: SettingsTitleCell.identifier)
-    register(SettingsDisclosureCell.self, forCellReuseIdentifier: SettingsDisclosureCell.identifier)
-    register(SettingsSwitchCell.self, forCellReuseIdentifier: SettingsSwitchCell.identifier)
-    register(SettingsActionCell.self, forCellReuseIdentifier: SettingsActionCell.identifier)
-    register(TeamSettingsHeaderCell.self, forCellReuseIdentifier: TeamSettingsHeaderCell.identifier)
-    register(TeamSettingsMemberCell.self, forCellReuseIdentifier: TeamSettingsMemberCell.identifier)
-    register(TeamNeededCell.self, forCellReuseIdentifier: TeamNeededCell.identifier)
-    register(JoinTeamCell.self, forCellReuseIdentifier: JoinTeamCell.identifier)
-    register(ConnectSourceCell.self, forCellReuseIdentifier: ConnectSourceCell.identifier)
+    [
+      EmptyCell.self,
+      DisclosureCell.self,
+      InfoCell.self,
+      ProfileCardCell.self,
+      ConnectedActivityCell.self,
+      EmptyActivityCell.self,
+      SettingsProfileCell.self,
+      SettingsTitleCell.self,
+      SettingsDisclosureCell.self,
+      SettingsSwitchCell.self,
+      SettingsActionCell.self,
+      TeamSettingsHeaderCell.self,
+      TeamSettingsMemberCell.self,
+      TeamNeededCell.self,
+      JoinTeamCell.self,
+      ConnectSourceCell.self,
+      EmptyLeaderboardCell.self,
+    ].forEach { register($0) }
+  }
+
+  func register(_ cellType: ReusableCell.Type) {
+    register(cellType, forCellReuseIdentifier: cellType.identifier)
   }
 
   func reloadOnMain() {

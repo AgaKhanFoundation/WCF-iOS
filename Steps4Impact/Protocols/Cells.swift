@@ -37,7 +37,11 @@ protocol ConfigurableCell: class {
   func configure(context: CellContext)
 }
 
-typealias ConfigurableTableViewCell = ConfigurableCell & TableViewCell
+protocol ReusableCell: class {
+  static var identifier: String { get }
+}
+
+typealias ConfigurableTableViewCell = ConfigurableCell & TableViewCell & ReusableCell
 typealias ConfigurableCollectionViewCell = ConfigurableCell & UICollectionViewCell
 
 protocol ListDataSource {
