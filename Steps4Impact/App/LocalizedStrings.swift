@@ -283,6 +283,17 @@ Want to join me in supporting a good cause? I am participating in Aga Khan Found
 All proceeds will be donated to AKF. Learn about AKF https://www.akfusa.org/ Thank you for your support.
 """)
   }
+
+  struct Share {
+    static let item: String =
+      NSLocalizedString(
+"""
+Hey! I  created a team for the %@ Challenge on the new Aga Khan Foundation app, Steps4Impact, and I want you on my team!
+Download the app here:
+http://rebrand.ly/steps4impact-iphone
+http://rebrand.ly/steps4impact-android
+""", comment: "Share item")
+  }
 }
 
 enum Assets: String {
