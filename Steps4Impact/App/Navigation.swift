@@ -38,7 +38,7 @@ class Navigation: UITabBarController {
   private let leaderboard: UINavigationController =
       NavigationController(rootVC: LeaderboardViewController())
   private let notifications: UINavigationController =
-      UINavigationController(rootViewController: Notifications())
+      NavigationController(rootVC: NotificationsViewController())
 
   init() {
     super.init(nibName: nil, bundle: nil)
