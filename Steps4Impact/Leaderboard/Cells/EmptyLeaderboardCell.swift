@@ -27,14 +27,44 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-import Foundation
+import UIKit
+import SnapKit
 
-class LeaderboardDataSource: TableViewDataSource {
-  var cells: [[CellContext]] = []
+struct EmptyLeaderboardCellContext: CellContext {
+  let identifier: String = EmptyLeaderboardCell.identifier
+  let body: String
+}
 
-  func configure() {
-    cells = [[
-      EmptyLeaderboardCellContext(body: Strings.Leaderboard.empty)
-      ]]
+class EmptyLeaderboardCell: ConfigurableTableViewCell {
+  static let identifier = "EmptyLeaderboardCell"
+
+  private let cardView = CardViewV2()
+  private let cellImageView = UIImageView(asset: .leaderboardEmpty)
+  private let bodyLabel = UILabel(typography: .subtitleRegular)
+
+  override func commonInit() {
+    super.commonInit()
+    bodyLabel.textAlignment = .center
+
+    contentView.addSubview(cardView) {
+      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)
+      $0.top.bottom.equalToSuperview().inset(Style.Padding.p12)
+    }
+
+    cardView.addSubview(cellImageView) {
+      $0.centerX.equalToSuperview()
+      $0.top.equalToSuperview().inset(Style.Padding.p64)
+    }
+
+    cardView.addSubview(bodyLabel) {
+      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p48)
+      $0.top.equalTo(cellImageView.snp.bottom).offset(Style.Padding.p16)
+      $0.bottom.equalToSuperview().inset(600) // Oh dear magic numbers
+    }
+  }
+
+  func configure(context: CellContext) {
+    guard let context = context as? EmptyLeaderboardCellContext else { return }
+    bodyLabel.text = context.body
   }
 }
