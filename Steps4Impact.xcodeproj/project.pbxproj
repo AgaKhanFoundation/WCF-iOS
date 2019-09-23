@@ -36,6 +36,7 @@
 		2622C09423249D680092B145 /* DashboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C09323249D680092B145 /* DashboardDataSource.swift */; };
 		2622C0962324A0490092B145 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C0952324A0490092B145 /* TableViewCell.swift */; };
 		262418342336EA5700454EF2 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262418332336EA5700454EF2 /* OnboardingViewController.swift */; };
+		2635EB8B2338AAD400BC50E9 /* EmptyLeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2635EB8A2338AAD400BC50E9 /* EmptyLeaderboardCell.swift */; };
 		263EF52E232A105C00A00414 /* TeamSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263EF52D232A105C00A00414 /* TeamSettingsViewController.swift */; };
 		263EF530232A106400A00414 /* TeamSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263EF52F232A106400A00414 /* TeamSettingsDataSource.swift */; };
 		265DE5642332BDAA009DDA5A /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5632332BDAA009DDA5A /* WebImageView.swift */; };
@@ -166,6 +167,7 @@
 		2622C0952324A0490092B145 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		262418332336EA5700454EF2 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		262BE89D2338817D0087DDDF /* Steps4Impact.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Steps4Impact.entitlements; sourceTree = "<group>"; };
+		2635EB8A2338AAD400BC50E9 /* EmptyLeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyLeaderboardCell.swift; sourceTree = "<group>"; };
 		263EF52D232A105C00A00414 /* TeamSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsViewController.swift; sourceTree = "<group>"; };
 		263EF52F232A106400A00414 /* TeamSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsDataSource.swift; sourceTree = "<group>"; };
 		265DE5632332BDAA009DDA5A /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
@@ -450,6 +452,14 @@
 			path = OnboardingV2;
 			sourceTree = "<group>";
 		};
+		2635EB892338AAC800BC50E9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2635EB8A2338AAD400BC50E9 /* EmptyLeaderboardCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		265DE56D2332F633009DDA5A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -630,6 +640,7 @@
 		F0E6878D22251B4700454340 /* Leaderboard */ = {
 			isa = PBXGroup;
 			children = (
+				2635EB892338AAC800BC50E9 /* Cells */,
 				265DE56B2332E492009DDA5A /* LeaderboardDataSource.swift */,
 				F0E6878E22251B7800454340 /* LeaderboardViewController.swift */,
 			);
@@ -950,6 +961,7 @@
 				260BF5A72324D99A005F0882 /* UIImage.swift in Sources */,
 				265DE56F2332F645009DDA5A /* TeamNeededCell.swift in Sources */,
 				2611A5052335FF290030E77E /* AKFCausesService.swift in Sources */,
+				2635EB8B2338AAD400BC50E9 /* EmptyLeaderboardCell.swift in Sources */,
 				2676B3CC2331F3D400CB0A31 /* TeamSettingsMemberCell.swift in Sources */,
 				2611A5062335FF290030E77E /* Facebook.swift in Sources */,
 				269E35291E767AE1000726C2 /* Collection.swift in Sources */,
