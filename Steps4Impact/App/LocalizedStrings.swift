@@ -234,7 +234,10 @@ Click continue for a quick tour of the app.
     static let title: String =
       NSLocalizedString("Settings", comment: "Settings screen title")
     static let delete: String =
-      NSLocalizedString("Delete Account", comment: "Delete Account")
+      NSLocalizedString("Delete Account?", comment: "Delete Account?")
+    static let deleteBody: String =
+      NSLocalizedString("You will be removed from any ongoing challenges and your mile progress will be lost.",
+                        comment: "You will be removed from any ongoing challenges and your mile progress will be lost.")
   }
 
   struct TeamSettings {

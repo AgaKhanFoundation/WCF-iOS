@@ -65,16 +65,19 @@ class SettingsViewController: TableViewController {
     case .logout:
       logout()
     case .deleteAccount:
-      guard let dataSource = dataSource as? SettingsDataSource else { return }
       let alert = AlertViewController()
       alert.title = Strings.Settings.delete
-      alert.isDismissable = false
-      AppController.shared.present(alert: alert, in: self) {
-        dataSource.deleteAccount { [weak self] in
+      alert.body = Strings.Settings.deleteBody
+      alert.add(AlertAction.cancel())
+      alert.add(AlertAction(title: "Delete", style: .destructive, shouldDismiss: false) { [weak self] in
+        AKFCausesService.deleteParticipant(fbid: Facebook.id) { (_) in
+          onMain {
+            alert.dismiss(animated: true, completion: nil)
+          }
           self?.logout()
-          alert.dismiss(animated: true, completion: nil)
         }
-      }
+      })
+      AppController.shared.present(alert: alert, in: self, completion: nil)
     }
   }
 
