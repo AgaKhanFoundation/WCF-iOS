@@ -90,40 +90,6 @@ class ConnectSourceViewController: TableViewController {
   }
 
   private func requestHealthKitUpdate() {
-    class DirectionCell: UIView {
-      let image: UIImageView =
-          UIImageView(frame: .init(x: 0, y: 0, width: 40, height: 40))
-      let text: UILabel = UILabel(frame: .zero)
-
-      public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupView()
-      }
-
-      public override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
-      }
-
-      public convenience init(image: UIImage?, text: String?) {
-        self.init(frame: .zero)
-        self.image.image = image
-        self.text.text = text
-      }
-
-      private func setupView() {
-        self.addSubview(image) { (make) in
-          make.height.equalToSuperview().inset(Style.Padding.p8)
-          make.width.equalTo(image.snp.height)
-          make.top.left.equalToSuperview().inset(Style.Padding.p8)
-        }
-        self.addSubview(text) { (make) in
-          make.left.equalTo(image.snp.right).offset(Style.Padding.p8)
-          make.right.top.bottom.equalToSuperview().inset(Style.Padding.p8)
-        }
-      }
-    }
-
     let directions: UIStackView = UIStackView()
 
     directions.axis = .vertical
@@ -161,5 +127,39 @@ extension ConnectSourceViewController: ConnectSourceCellDelegate {
   func connectSource(context: Context?) {
     guard let context = context else { return }
     handle(context: context)
+  }
+}
+
+class DirectionCell: UIView {
+  let image: UIImageView =
+      UIImageView(frame: .init(x: 0, y: 0, width: 40, height: 40))
+  let text: UILabel = UILabel(frame: .zero)
+
+  public required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    setupView()
+  }
+
+  public override init(frame: CGRect) {
+    super.init(frame: frame)
+    setupView()
+  }
+
+  public convenience init(image: UIImage?, text: String?) {
+    self.init(frame: .zero)
+    self.image.image = image
+    self.text.text = text
+  }
+
+  private func setupView() {
+    self.addSubview(image) { (make) in
+      make.height.equalToSuperview().inset(Style.Padding.p8)
+      make.width.equalTo(image.snp.height)
+      make.top.left.equalToSuperview().inset(Style.Padding.p8)
+    }
+    self.addSubview(text) { (make) in
+      make.left.equalTo(image.snp.right).offset(Style.Padding.p8)
+      make.right.top.bottom.equalToSuperview().inset(Style.Padding.p8)
+    }
   }
 }
