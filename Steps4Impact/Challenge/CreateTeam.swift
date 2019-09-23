@@ -145,6 +145,7 @@ class CreateTeamViewController: ViewController {
 class CreateTeamSuccessViewController: ViewController {
   private let checkmarkImageView = UIImageView(image: Assets.checkmark.image)
   private let titleLabel = UILabel(typography: .title)
+  private let inviteButton = Button(style: .primary)
 
   override func configureView() {
     super.configureView()
@@ -152,6 +153,8 @@ class CreateTeamSuccessViewController: ViewController {
     checkmarkImageView.contentMode = .scaleAspectFit
     titleLabel.text = Strings.Challenge.CreateTeam.successTitle
     titleLabel.textAlignment = .center
+    inviteButton.title = "Invite Friends to Join"
+    inviteButton.addTarget(self, action: #selector(inviteButtonTapped), for: .touchUpInside)
     navigationItem.leftBarButtonItem = UIBarButtonItem(
       image: Assets.close.image,
       style: .plain,
@@ -168,10 +171,25 @@ class CreateTeamSuccessViewController: ViewController {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
       $0.top.equalTo(checkmarkImageView.snp.bottom).offset(Style.Padding.p32)
     }
+
+    // TODO(samisuteria) add image upload and visibility toggle
+
+    view.addSubview(inviteButton) {
+      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
+      $0.top.equalTo(titleLabel.snp.bottom).offset(Style.Padding.p64)
+    }
   }
 
   @objc
   func closeButtonTapped() {
     dismiss(animated: true, completion: nil)
+  }
+  
+  @objc
+  func inviteButtonTapped() {
+    AppController.shared.shareTapped(
+      viewController: self,
+      shareButton: inviteButton,
+      string: Strings.Share.item)
   }
 }
