@@ -97,7 +97,7 @@ class SettingsDataSource: TableViewDataSource {
       SettingsSwitchCellContext(title: "Push Notifications",
                                 isSwitchEnabled: true),
       SettingsDisclosureCellContext(title: "Connected apps & devices",
-                                    context: SettingsContext.connectSource),
+                                    context: SettingsContext.connectSource)
   ]]
 
   if UserInfo.AKFID == nil {
