@@ -56,7 +56,11 @@ class ConnectSourceViewController: TableViewController {
     switch source {
     case .fitbit:
       // TODO(compnerd) support this
-      break
+      let alert = AlertViewController()
+      alert.title = "Error"
+      alert.body = "Fitbit is currently not available"
+      alert.add(.okay())
+      AppController.shared.present(alert: alert, in: self, completion: nil)
     case .healthkit:
       // Just to ask for permission
       if HKHealthStore.isHealthDataAvailable() {
