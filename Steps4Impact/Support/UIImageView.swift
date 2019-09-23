@@ -33,6 +33,10 @@ import UIKit
 let cache = NSCache<AnyObject, AnyObject>()
 
 extension UIImageView {
+  convenience init(asset: Assets) {
+    self.init(image: asset.image)
+  }
+
   public func loadImage(from urlString: String) {
     if let cached = cache.object(forKey: urlString as AnyObject) as? UIImage {
       self.image = cached
