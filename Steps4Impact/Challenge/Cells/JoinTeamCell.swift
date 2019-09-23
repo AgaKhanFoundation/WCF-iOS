@@ -71,7 +71,7 @@ class JoinTeamCell: ConfigurableTableViewCell, Contextable {
     }
 
     let layoutGuide = UILayoutGuide()
-    contentView.addLayoutGuide(layoutGuide: layoutGuide) {
+    contentView.addLayoutGuide(layoutGuide) {
       $0.leading.equalTo(teamImageView.snp.trailing).offset(Style.Padding.p16)
       $0.trailing.centerY.equalToSuperview()
     }

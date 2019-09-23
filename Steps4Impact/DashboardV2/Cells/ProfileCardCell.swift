@@ -71,7 +71,7 @@ class ProfileCardCell: ConfigurableTableViewCell {
     }
 
     let layoutGuide = UILayoutGuide()
-    cardView.addLayoutGuide(layoutGuide: layoutGuide) {
+    cardView.addLayoutGuide(layoutGuide) {
       $0.top.leading.trailing.equalToSuperview()
       $0.bottom.equalTo(disclosureView.snp.top)
     }

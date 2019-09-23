@@ -77,7 +77,7 @@ class SettingsSwitchCell: ConfigurableTableViewCell {
     seperatorView.backgroundColor = Style.Colors.Seperator
 
     let layoutGuide = UILayoutGuide()
-    contentView.addLayoutGuide(layoutGuide: layoutGuide) {
+    contentView.addLayoutGuide(layoutGuide) {
       $0.top.bottom.equalToSuperview().inset(Style.Padding.p16)
       $0.leading.equalToSuperview().inset(Style.Padding.p32)
       $0.width.equalToSuperview().multipliedBy(0.6)
