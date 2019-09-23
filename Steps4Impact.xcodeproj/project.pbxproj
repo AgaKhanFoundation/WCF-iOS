@@ -65,6 +65,7 @@
 		269E35241E767807000726C2 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35231E767807000726C2 /* Team.swift */; };
 		269E35291E767AE1000726C2 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35281E767AE1000726C2 /* Collection.swift */; };
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
+		26E9C0FC2338533E00800E8A /* UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9C0FB2338533E00800E8A /* UIPageViewController.swift */; };
 		26FE2445232228E600E01B9B /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2444232228E600E01B9B /* NavigationController.swift */; };
 		26FE24472322295300E01B9B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE24462322295300E01B9B /* ViewController.swift */; };
 		26FE244923222B6400E01B9B /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE244823222B6400E01B9B /* DashboardViewController.swift */; };
@@ -192,6 +193,7 @@
 		269E35231E767807000726C2 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		269E35281E767AE1000726C2 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		26E9C0FB2338533E00800E8A /* UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageViewController.swift; sourceTree = "<group>"; };
 		26FE2444232228E600E01B9B /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		26FE24462322295300E01B9B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		26FE244823222B6400E01B9B /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -591,6 +593,7 @@
 				260BF5A82324F7D1005F0882 /* UIColor.swift */,
 				260BF5A62324D99A005F0882 /* UIImage.swift */,
 				C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */,
+				26E9C0FB2338533E00800E8A /* UIPageViewController.swift */,
 				2622C08F23249A4B0092B145 /* UIRefreshControl.swift */,
 				260BF5B6232502A9005F0882 /* UIStackView.swift */,
 				26FE24522322332D00E01B9B /* UITableView.swift */,
@@ -889,6 +892,7 @@
 				267FAE282325C1660014222D /* SettingsDisclosureCell.swift in Sources */,
 				F0F8EDD12210C65C00321A6D /* CardViewSupport.swift in Sources */,
 				260BF5A32324D4B7005F0882 /* InfoCell.swift in Sources */,
+				26E9C0FC2338533E00800E8A /* UIPageViewController.swift in Sources */,
 				2676B3C62331DA1500CB0A31 /* AlertViewController.swift in Sources */,
 				269E35091E765F24000726C2 /* UIView.swift in Sources */,
 				2622C09223249CA10092B145 /* EmptyTableViewDataSource.swift in Sources */,
