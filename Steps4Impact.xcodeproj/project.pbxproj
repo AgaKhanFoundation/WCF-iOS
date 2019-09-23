@@ -164,6 +164,7 @@
 		2622C09323249D680092B145 /* DashboardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardDataSource.swift; sourceTree = "<group>"; };
 		2622C0952324A0490092B145 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		262418332336EA5700454EF2 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		262BE89D2338817D0087DDDF /* Steps4Impact.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Steps4Impact.entitlements; sourceTree = "<group>"; };
 		263EF52D232A105C00A00414 /* TeamSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsViewController.swift; sourceTree = "<group>"; };
 		263EF52F232A106400A00414 /* TeamSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsDataSource.swift; sourceTree = "<group>"; };
 		265DE5632332BDAA009DDA5A /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
@@ -229,7 +230,6 @@
 		F06254C01ECD5D1700168DD6 /* Participant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
 		F0681D261ED53CA70029278E /* Cause.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cause.swift; sourceTree = "<group>"; };
 		F078D9D42333EC3000EF0BAD /* AKFLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKFLogin.swift; sourceTree = "<group>"; };
-		F078D9D62334354000EF0BAD /* Steps4Impact.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Steps4Impact.entitlements; sourceTree = "<group>"; };
 		F078D9D92334453F00EF0BAD /* ConnectedActivityCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedActivityCardCell.swift; sourceTree = "<group>"; };
 		F078D9DB233478E900EF0BAD /* ConnectSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectSourceViewController.swift; sourceTree = "<group>"; };
 		F078D9DD23347DEE00EF0BAD /* ConnectSourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectSourceCell.swift; sourceTree = "<group>"; };
@@ -393,7 +393,7 @@
 		2611A50B2335FF930030E77E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F078D9D62334354000EF0BAD /* Steps4Impact.entitlements */,
+				262BE89D2338817D0087DDDF /* Steps4Impact.entitlements */,
 				269E34D51E765828000726C2 /* Info.plist */,
 				269E34EE1E7658F2000726C2 /* Launch.storyboard */,
 				269E34D01E765828000726C2 /* Assets.xcassets */,
