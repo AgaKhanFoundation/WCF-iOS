@@ -44,14 +44,14 @@ struct ConnectSourceCellContext: CellContext {
   let isLast: Bool
 }
 
-class ConnectSourceCell: ConfigurableTableViewCell {
+class ConnectSourceCell: ConfigurableTableViewCell, Contextable {
   static let identifier = "ConnectSourceCell"
 
   private let lblName: UILabel = UILabel(typography: .bodyBold)
   private let lblDescription: UILabel = UILabel(typography: .bodyRegular)
   private let btnConnect: Button = Button(style: .primary)
   private let separator: UIView = UIView()
-  private var context: Context?
+  var context: Context?
 
   weak var delegate: ConnectSourceCellDelegate?
 
