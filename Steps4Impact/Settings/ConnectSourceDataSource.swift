@@ -27,6 +27,9 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
+import Foundation
+import HealthKit
+
 class ConnectSourceDataSource: TableViewDataSource {
   enum Source: Context {
     case healthkit
@@ -36,6 +39,17 @@ class ConnectSourceDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
 
   func configure() {
+    if HKHealthStore.isHealthDataAvailable() {
+      switch HKHealthStore().authorizationStatus(for: ConnectSourceViewController.steps) {
+      case .notDetermined, .sharingDenied:
+        UserInfo.pedometerSource = nil
+      case .sharingAuthorized:
+        UserInfo.pedometerSource = .healthKit
+      @unknown default:
+        UserInfo.pedometerSource = nil
+      }
+    }
+
     cells = [[
       ConnectSourceCellContext(name: "HealthKit",
                                description: "Connect to Apple HealthKit to track your daily steps.",
