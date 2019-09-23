@@ -38,6 +38,7 @@ class ConnectSourceViewController: TableViewController {
     super.commonInit()
 
     title = Strings.ConnectSource.title
+    navigationItem.largeTitleDisplayMode = .never
     dataSource = ConnectSourceDataSource()
   }
 
