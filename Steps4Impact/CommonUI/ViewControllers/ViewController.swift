@@ -30,13 +30,29 @@
 import UIKit
 
 class ViewController: UIViewController {
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    commonInit()
+  }
+
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
+    commonInit()
+  }
+
+  func commonInit() {
+    // Override point for subclasses - need to call super.commonInit() first
+    // Hide name next to back button
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     configureView()
   }
 
   func configureView() {
+    // Override point for subclasses - need to call super.commonInit() first
     view.backgroundColor = Style.Colors.Background
-    // Override point for subclasses
   }
 }
