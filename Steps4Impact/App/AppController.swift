@@ -97,7 +97,7 @@ class AppController {
         return LoginViewController()
       case .akflogin:
         return NavigationController(rootVC: AKFLoginViewController())
-      case .onboarding: return Onboarding()
+      case .onboarding: return OnboardingViewController()
       case .navigation: return AppController.shared.navigation
       }
     }
