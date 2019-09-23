@@ -261,6 +261,28 @@ This will remove your data linked to the team. You will not be able to participa
     static let connect: String =
         NSLocalizedString("Connect", comment: "Connect")
   }
+
+  struct InviteSupporters {
+    static let title: String =
+        NSLocalizedString("Invite Supporters", comment: "Invite Supporters")
+    static let getSupported: String =
+        NSLocalizedString("""
+Get sponsored by your friends. When your friends sign up to support you, you will raise money for every mile you move. Proceeds will be donated to AKF.
+""", comment: """
+Get sponsored by your friends. When your friends sign up to support you, you will raise money for every mile you move. Proceeds will be donated to AKF.
+""")
+    static let inviteSupporters: String =
+        NSLocalizedString("Invite Supporters to Pledge",
+                          comment: "Invite Supporters to Pledge")
+    static let request: String =
+        NSLocalizedString("""
+Want to join me in supporting a good cause? I am participating in Aga Khan Foundation's (AKF) steps4impact challenge. You can support me by pledging http://www.akfusa.org/steps4impactpledge.
+All proceeds will be donated to AKF. Learn about AKF https://www.akfusa.org/ Thank you for your support.
+""", comment: """
+Want to join me in supporting a good cause? I am participating in Aga Khan Foundation's (AKF) steps4impact challenge. You can support me by pledging http://www.akfusa.org/steps4impactpledge.
+All proceeds will be donated to AKF. Learn about AKF https://www.akfusa.org/ Thank you for your support.
+""")
+  }
 }
 
 enum Assets: String {

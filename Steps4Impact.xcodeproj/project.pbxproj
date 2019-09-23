@@ -108,6 +108,7 @@
 		F0CF39861EE0E903006A7462 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF39851EE0E903006A7462 /* Record.swift */; };
 		F0CF39881EE0EA98006A7462 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF39871EE0EA98006A7462 /* Source.swift */; };
 		F0D16A3C2218AD810081440C /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D16A3B2218AD810081440C /* Challenge.swift */; };
+		F0D2378C23387BC100F41DB4 /* InviteSupportersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D2378B23387BC100F41DB4 /* InviteSupportersViewController.swift */; };
 		F0DE162C221F8DD900FF17C9 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DE162B221F8DD900FF17C9 /* Result.swift */; };
 		F0E6878F22251B7800454340 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6878E22251B7800454340 /* LeaderboardViewController.swift */; };
 		F0E6879222251C0600454340 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6879122251C0600454340 /* Notifications.swift */; };
@@ -243,6 +244,7 @@
 		F0CF39851EE0E903006A7462 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		F0CF39871EE0EA98006A7462 /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		F0D16A3B2218AD810081440C /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
+		F0D2378B23387BC100F41DB4 /* InviteSupportersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteSupportersViewController.swift; sourceTree = "<group>"; };
 		F0DE162B221F8DD900FF17C9 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		F0E6878E22251B7800454340 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		F0E6879122251C0600454340 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				265DE5652332D663009DDA5A /* BadgesViewController.swift */,
 				2622C09323249D680092B145 /* DashboardDataSource.swift */,
 				26FE244823222B6400E01B9B /* DashboardViewController.swift */,
+				F0D2378B23387BC100F41DB4 /* InviteSupportersViewController.swift */,
 				260BF59F2324CFCE005F0882 /* Cells */,
 			);
 			path = DashboardV2;
@@ -995,6 +998,7 @@
 				F0F8EDD72210C7C700321A6D /* FundraisingCard.swift in Sources */,
 				267FAE2A2325C9210014222D /* SettingsSwitchCell.swift in Sources */,
 				F0CBDA521EA6FF1D00BB34F1 /* Sponsor.swift in Sources */,
+				F0D2378C23387BC100F41DB4 /* InviteSupportersViewController.swift in Sources */,
 				269E35071E765C68000726C2 /* LoginViewController.swift in Sources */,
 				263EF530232A106400A00414 /* TeamSettingsDataSource.swift in Sources */,
 				265DE5642332BDAA009DDA5A /* WebImageView.swift in Sources */,

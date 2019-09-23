@@ -176,4 +176,12 @@ class AppController {
       }
     }
   }
+
+  func shareTapped(viewController: UIViewController, shareButton: UIButton, string: String) {
+    let activityItems: [Any] = [string]
+
+    let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+    activityVC.popoverPresentationController?.sourceView = shareButton
+    viewController.present(activityVC, animated: true, completion: nil)
+  }
 }
