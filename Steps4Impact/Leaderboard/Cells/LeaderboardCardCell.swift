@@ -38,8 +38,9 @@ struct LeaderboardCardCellContext: CellContext {
 
 class LeaderboardCardCell: ConfigurableTableViewCell {
   static let identifier = "LeaderboardCardCell"
-
   private let cardView = CardViewV2()
+  private let leadersView = LeadersView()
+  private let content = View()
   private let leaderboardView = LeaderboardView()
   override func commonInit() {
     super.commonInit()
@@ -53,7 +54,6 @@ class LeaderboardCardCell: ConfigurableTableViewCell {
       $0.top.leading.trailing.bottom.equalToSuperview()
       $0.height.equalTo(450)
     }
-
   }
   override func layoutSubviews() {
     super.layoutSubviews()

@@ -38,7 +38,6 @@ class PlaceholderView: View {
     lbl.textAlignment = .center
     return lbl
   }()
-
   override func commonInit() {
     super.commonInit()
 

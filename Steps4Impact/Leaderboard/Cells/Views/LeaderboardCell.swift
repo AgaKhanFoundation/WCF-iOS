@@ -71,11 +71,13 @@ class LeaderboardCell: TableViewCell {
       $0.centerY.equalToSuperview()
       $0.width.lessThanOrEqualTo(200)
     }
+
     addSubview(distLbl) {
       $0.trailing.equalTo(safeAreaLayoutGuide.snp.trailing).offset(-Style.Padding.p16)
       $0.centerY.equalToSuperview()
       $0.width.lessThanOrEqualTo(200)
     }
+
     addSubview(teamLbl) {
       $0.leading.equalTo(rankLbl.snp.trailing).offset(Style.Padding.p16)
       $0.trailing.equalTo(distLbl.snp.leading).offset(-Style.Padding.p16)
