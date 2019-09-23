@@ -97,22 +97,36 @@ extension LoginViewController: LoginButtonDelegate {
     guard let result = result else { return }
     if result.isCancelled { return }
 
-    AKFCausesService.createParticipant(fbid: Facebook.id) { (result) in
-      if result.isSuccess {
-        AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
-          guard let participant = Participant(json: result.response),
-              participant.event == nil else {
-            return
-          }
+    AKFCausesService.createParticipant(fbid: Facebook.id)
 
+    onBackground {
+      let group: DispatchGroup = DispatchGroup()
+
+      group.enter()
+      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+        if let participant = Participant(json: result.response), participant.event == nil {
+          group.enter()
           AKFCausesService.getEvents { (result) in
-            guard let events: [Event] = result.response?.arrayValue?.compactMap({ (json) -> Event? in
-              Event(json: json)
-            }), let eid = events.first?.id else { return }
-
-            AKFCausesService.joinEvent(fbid: Facebook.id, eventID: eid)
+            if let events: [Event] = result.response?.arrayValue?.compactMap({ (json) in Event(json: json) }),
+                let eid = events.first?.id {
+              group.enter()
+              AKFCausesService.joinEvent(fbid: Facebook.id, eventID: eid) { (_) in
+                group.leave()
+              }
+            }
+            group.leave()
           }
         }
+        group.leave()
+      }
+      group.wait()
+
+      // NOTE(compnerd) this forces the reload since the event information
+      // needs to be populated and may not have been present when the view was
+      // loaded.  Unfortunately, we do not have a good way to get to the actual
+      // controller, so hardcode the expected path.
+      onMain {
+        (AppController.shared.navigation.viewControllers?.first as? TableViewController)?.reload()
       }
     }
 
