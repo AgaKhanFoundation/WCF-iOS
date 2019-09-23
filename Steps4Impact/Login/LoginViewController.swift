@@ -97,7 +97,25 @@ extension LoginViewController: LoginButtonDelegate {
     guard let result = result else { return }
     if result.isCancelled { return }
 
-    AKFCausesService.createParticipant(fbid: Facebook.id)
+    AKFCausesService.createParticipant(fbid: Facebook.id) { (result) in
+      if result.isSuccess {
+        AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+          guard let participant = Participant(json: result.response),
+              participant.event == nil else {
+            return
+          }
+
+          AKFCausesService.getEvents { (result) in
+            guard let events: [Event] = result.response?.arrayValue?.compactMap({ (json) -> Event? in
+              Event(json: json)
+            }), let eid = events.first?.id else { return }
+
+            AKFCausesService.joinEvent(fbid: Facebook.id, eventID: eid)
+          }
+        }
+      }
+    }
+
     AppController.shared.login()
   }
 
