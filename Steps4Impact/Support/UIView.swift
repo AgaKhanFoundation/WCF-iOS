@@ -42,7 +42,7 @@ extension UIView {
     view.snp.makeConstraints(constraintsClosure)
   }
 
-  func addLayoutGuide(layoutGuide: UILayoutGuide, _ constraintsClosure: (ConstraintMaker) -> Void) {
+  func addLayoutGuide(_ layoutGuide: UILayoutGuide, _ constraintsClosure: (ConstraintMaker) -> Void) {
     addLayoutGuide(layoutGuide)
     layoutGuide.snp.makeConstraints(constraintsClosure)
   }

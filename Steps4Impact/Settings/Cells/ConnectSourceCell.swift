@@ -72,7 +72,7 @@ class ConnectSourceCell: ConfigurableTableViewCell {
     }
 
     let layoutGuide = UILayoutGuide()
-    contentView.addLayoutGuide(layoutGuide: layoutGuide) {
+    contentView.addLayoutGuide(layoutGuide) {
       $0.top.bottom.equalToSuperview().inset(Style.Padding.p8)
       $0.leading.equalToSuperview().inset(Style.Padding.p32)
       $0.trailing.equalTo(btnConnect.snp.leading).offset(-Style.Padding.p8)
