@@ -198,16 +198,7 @@ class OnboardingViewController: ViewController {
   }
 }
 
-extension OnboardingViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
-  func pageViewController(_ pageViewController: UIPageViewController,
-                          didFinishAnimating finished: Bool,
-                          previousViewControllers: [UIViewController],
-                          transitionCompleted completed: Bool) {
-    guard finished, completed, let state = state(for: pageViewController.viewControllers?.first) else { return }
-    self.state = state
-    updateForState(programmatically: false)
-  }
-
+extension OnboardingViewController: UIPageViewControllerDataSource {
   func presentationCount(for pageViewController: UIPageViewController) -> Int {
     return state.totalPages
   }
@@ -226,5 +217,16 @@ extension OnboardingViewController: UIPageViewControllerDataSource, UIPageViewCo
                           viewControllerAfter viewController: UIViewController) -> UIViewController? {
     guard let index = viewControllers.firstIndex(of: viewController) else { return nil }
     return viewControllers[safe: index + 1]
+  }
+}
+
+extension OnboardingViewController: UIPageViewControllerDelegate {
+  func pageViewController(_ pageViewController: UIPageViewController,
+                          didFinishAnimating finished: Bool,
+                          previousViewControllers: [UIViewController],
+                          transitionCompleted completed: Bool) {
+    guard finished, completed, let state = state(for: pageViewController.viewControllers?.first) else { return }
+    self.state = state
+    updateForState(programmatically: false)
   }
 }

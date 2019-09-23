@@ -54,7 +54,7 @@ class OnboardingPageViewController: ViewController {
 
   override func configureView() {
     super.configureView()
-    
+
     titleLabel.numberOfLines = 2
     titleLabel.adjustsFontSizeToFitWidth = true
     imageView.contentMode = .scaleAspectFit
