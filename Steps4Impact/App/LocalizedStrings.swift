@@ -242,6 +242,14 @@ Click continue for a quick tour of the app.
       NSLocalizedString("Team", comment: "Team settings screen title")
     static let edit: String =
       NSLocalizedString("Edit", comment: "Team settings edit button in navigation bar")
+    static let leave: String =
+      NSLocalizedString("Leave Team?", comment: "Leave Team?")
+    static let leaveBody: String =
+      NSLocalizedString("""
+This will remove your data linked to the team. You will not be able to participate in the challenge.
+""", comment: """
+This will remove your data linked to the team. You will not be able to participate in the challenge.
+""")
   }
 
   struct ConnectSource {
