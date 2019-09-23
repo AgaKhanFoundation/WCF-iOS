@@ -39,21 +39,6 @@ class TableViewController: ViewController {
   // Cached Heights
   var heights = [IndexPath: CGFloat]()
 
-  // MARK: - Init
-  init() {
-    super.init(nibName: nil, bundle: nil)
-    commonInit()
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-    commonInit()
-  }
-
-  func commonInit() {
-    // Override point for subclasses
-  }
-
   // MARK: - Configure
 
   override func viewDidLoad() {
