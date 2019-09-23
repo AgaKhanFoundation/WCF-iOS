@@ -91,7 +91,7 @@ class SettingsViewController: TableViewController {
 }
 
 extension SettingsViewController: SettingsActionCellDelegate {
-  func settingsActionCellTapped(context: Context?) {
+  func settingsActionCellTapped(context: Context?, button: UIButton) {
     guard let context = context else { return }
     handle(context: context)
   }
