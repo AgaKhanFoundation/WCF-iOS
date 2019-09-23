@@ -50,6 +50,8 @@ class SettingsViewController: TableViewController {
     switch context {
     case .connectSource:
       navigationController?.pushViewController(ConnectSourceViewController(), animated: true)
+    case .createAKFProfile:
+      navigationController?.pushViewController(AKFLoginViewController(), animated: true)
     case .viewTeam:
       navigationController?.pushViewController(TeamSettingsViewController(), animated: true)
     case .leaveTeam:

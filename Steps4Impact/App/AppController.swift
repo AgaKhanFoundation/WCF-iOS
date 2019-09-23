@@ -63,8 +63,6 @@ class AppController {
     // Select Default View
     if Facebook.id.isEmpty {
       transition(to: .login)
-    } else if UserInfo.AKFID == nil {
-      transition(to: .akflogin)
     } else if !UserInfo.onboardingComplete {
       transition(to: .onboarding)
     } else {
@@ -85,7 +83,6 @@ class AppController {
 
   enum ViewController {
     case login
-    case akflogin
     case onboarding
     case navigation
 
@@ -95,8 +92,6 @@ class AppController {
         // Rebuild navigation so data is wiped on logout
         AppController.shared.navigation = Navigation()
         return LoginViewController()
-      case .akflogin:
-        return NavigationController(rootVC: AKFLoginViewController())
       case .onboarding: return OnboardingViewController()
       case .navigation: return AppController.shared.navigation
       }
@@ -124,9 +119,7 @@ class AppController {
   }
 
   func login() {
-    if UserInfo.AKFID == nil {
-      transition(to: .akflogin)
-    } else if !UserInfo.onboardingComplete {
+    if !UserInfo.onboardingComplete {
       transition(to: .onboarding)
     } else {
       transition(to: .navigation)

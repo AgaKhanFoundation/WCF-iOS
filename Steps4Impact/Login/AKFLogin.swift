@@ -49,10 +49,6 @@ class AKFLoginViewController: ViewController {
   }
 
   private func configure() {
-    navigationItem.rightBarButtonItem =
-      UIBarButtonItem(barButtonSystemItem: .done, target: self,
-                      action: #selector(dismiss(_:)))
-
     view.backgroundColor = Style.Colors.Background
 
     view.addSubview(webview) { (make) in
@@ -61,15 +57,6 @@ class AKFLoginViewController: ViewController {
     }
     webview.configuration.userContentController.add(self, name: AKFLoginViewController.LoginCompletedHandlerKey)
     webview.load(URLRequest(url: URL(string: "https://www.akfusa.org/steps4impact/")!))
-  }
-
-  @objc
-  func dismiss(_ sender: UIView) {
-    if UserInfo.onboardingComplete {
-      AppController.shared.transition(to: .navigation)
-    } else {
-      AppController.shared.transition(to: .onboarding)
-    }
   }
 }
 
