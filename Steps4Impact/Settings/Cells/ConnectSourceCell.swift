@@ -68,14 +68,14 @@ class ConnectSourceCell: ConfigurableTableViewCell, Contextable {
     contentView.addSubview(btnConnect) {
       $0.trailing.equalToSuperview().inset(Style.Padding.p16)
       $0.centerY.equalToSuperview()
-      $0.width.equalToSuperview().multipliedBy(0.30)
+      $0.width.equalToSuperview().multipliedBy(0.35)
     }
 
     let layoutGuide = UILayoutGuide()
     contentView.addLayoutGuide(layoutGuide) {
       $0.top.bottom.equalToSuperview().inset(Style.Padding.p8)
       $0.leading.equalToSuperview().inset(Style.Padding.p32)
-      $0.trailing.equalTo(btnConnect.snp.leading).offset(-Style.Padding.p8)
+      $0.trailing.equalTo(btnConnect.snp.leading).offset(-Style.Padding.p16)
     }
 
     contentView.addSubview(lblName) {
