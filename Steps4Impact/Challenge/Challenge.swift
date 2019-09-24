@@ -104,6 +104,7 @@ class ChallengeDataSource: TableViewDataSource {
 
     AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
       self?.participant = Participant(json: result.response)
+
       self?.configure()
       completion()
     }
@@ -121,17 +122,24 @@ class ChallengeDataSource: TableViewDataSource {
       return
     }
 
+    guard let event = participant?.event, let team = participant?.team else {
+      return
+    }
+
+    let formatter: DateFormatter = DateFormatter()
+    formatter.dateStyle = .medium
+
     cells = [[
       InfoCellContext(
         asset: .challengeJourney,
         title: "Journey",
-        body: "Your journey begins in 25 days on Feb 1, 2019"),
+        body: "Your journey begins in \(Date().daysUntil(event.challengePhase.start)) days on \(formatter.string(from: event.challengePhase.start))"),
       EmptyCellContext(),
       DisclosureCellContext(
         asset: .inviteFriends,
         title: "Invite more friends to join!",
         body: "Maximize your chances of reaching the team goal. Your team has 4 spots remaining. Invite more friends to join!",
-        disclosureTitle: "Invite 4 new team members",
+        disclosureTitle: "Invite \(event.teamLimit - team.members.count) new team members",
         context: ChallengeContext.inviteFriends),
       DisclosureCellContext(
         asset: .inviteSupporters,

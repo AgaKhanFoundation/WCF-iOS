@@ -54,4 +54,8 @@ extension Date {
       components.second = 59
       return .from(components: components)
   }
+
+  func daysUntil(_ date: Date) -> Int {
+    return Calendar.current.dateComponents([.day], from: self, to: date).day!
+  }
 }
