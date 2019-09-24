@@ -48,6 +48,7 @@
 		265DE5712332FB38009DDA5A /* CreateTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5702332FB38009DDA5A /* CreateTeam.swift */; };
 		265DE5732332FBA9009DDA5A /* JoinTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5722332FBA9009DDA5A /* JoinTeam.swift */; };
 		265DE5752333015F009DDA5A /* JoinTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5742333015F009DDA5A /* JoinTeamCell.swift */; };
+		266DA27B2339E54000035CC5 /* ChallengeTeamProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266DA27A2339E54000035CC5 /* ChallengeTeamProgressCell.swift */; };
 		2676B3C42331D45000CB0A31 /* AlertModalAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C32331D45000CB0A31 /* AlertModalAnimations.swift */; };
 		2676B3C62331DA1500CB0A31 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C52331DA1500CB0A31 /* AlertViewController.swift */; };
 		2676B3C82331E1B400CB0A31 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C72331E1B400CB0A31 /* ActionButton.swift */; };
@@ -181,6 +182,7 @@
 		265DE5702332FB38009DDA5A /* CreateTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeam.swift; sourceTree = "<group>"; };
 		265DE5722332FBA9009DDA5A /* JoinTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeam.swift; sourceTree = "<group>"; };
 		265DE5742333015F009DDA5A /* JoinTeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamCell.swift; sourceTree = "<group>"; };
+		266DA27A2339E54000035CC5 /* ChallengeTeamProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeTeamProgressCell.swift; sourceTree = "<group>"; };
 		2676B3C32331D45000CB0A31 /* AlertModalAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalAnimations.swift; sourceTree = "<group>"; };
 		2676B3C52331DA1500CB0A31 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		2676B3C72331E1B400CB0A31 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 			children = (
 				265DE5742333015F009DDA5A /* JoinTeamCell.swift */,
 				265DE56E2332F645009DDA5A /* TeamNeededCell.swift */,
+				266DA27A2339E54000035CC5 /* ChallengeTeamProgressCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -967,6 +970,7 @@
 				2676B3C82331E1B400CB0A31 /* ActionButton.swift in Sources */,
 				262418342336EA5700454EF2 /* OnboardingViewController.swift in Sources */,
 				269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */,
+				266DA27B2339E54000035CC5 /* ChallengeTeamProgressCell.swift in Sources */,
 				269E350E1E76664F000726C2 /* Async.swift in Sources */,
 				265DE5752333015F009DDA5A /* JoinTeamCell.swift in Sources */,
 				F0DE162C221F8DD900FF17C9 /* Result.swift in Sources */,
