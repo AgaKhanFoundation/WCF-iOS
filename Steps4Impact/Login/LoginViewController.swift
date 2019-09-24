@@ -30,13 +30,14 @@
 import SnapKit
 import FacebookLogin
 import FacebookCore
+import SafariServices
 
 class LoginViewController: UIViewController {
   let imgLogo: UIImageView = UIImageView(image: Assets.logo.image)
   let imgImage: UIImageView =
       UIImageView(image: Assets.onboardingLoginPeople.image)
   let btnLogin: FBLoginButton = FBLoginButton(permissions: [.publicProfile])
-  let lblTermsAndConditions: UILabel = UILabel(typography: .footnote)
+  let btnTermsAndConditions: Button = Button(style: .link)
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -65,12 +66,21 @@ class LoginViewController: UIViewController {
       make.top.equalTo(imgImage.snp.bottom).offset(Style.Padding.p32)
     }
 
-    lblTermsAndConditions.text = Strings.Login.conditions
-    lblTermsAndConditions.textColor = Style.Colors.grey
-    view.addSubview(lblTermsAndConditions) { (make) in
+    btnTermsAndConditions.title = Strings.Login.conditions
+    btnTermsAndConditions.addTarget(self,
+                                    action: #selector(viewTermsAndConditions),
+                                    for: .touchUpInside)
+    view.addSubview(btnTermsAndConditions) { (make) in
       make.bottom.equalToSuperview().inset(Style.Padding.p32)
       make.centerX.equalToSuperview()
     }
+  }
+
+  @objc
+  private func viewTermsAndConditions() {
+    let view: SFSafariViewController =
+      SFSafariViewController(url: URL(string: "https://www.akfusa.org/website-private-policy")!)
+    present(view, animated: true, completion: nil)
   }
 }
 
