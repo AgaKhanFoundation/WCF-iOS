@@ -36,16 +36,26 @@ protocol DisclosureCellDelegate: class {
 
 struct DisclosureCellContext: CellContext {
   let identifier: String = DisclosureCell.identifier
+  let asset: Assets?
   let title: String
   let body: String?
   let disclosureTitle: String
   let context: Context?
+  
+  init(asset: Assets? = nil, title: String, body: String?, disclosureTitle: String, context: Context? = nil) {
+    self.asset = asset
+    self.title = title
+    self.body = body
+    self.disclosureTitle = disclosureTitle
+    self.context = context
+  }
 }
 
 class DisclosureCell: ConfigurableTableViewCell {
   static let identifier = "DisclosureCell"
 
   private let cardView = CardViewV2()
+  private let cellImageView = UIImageView()
   private let titleLabel = UILabel(typography: .title)
   private let bodyLabel = UILabel(typography: .bodyRegular)
   private let disclosureView = CellDisclosureView()
@@ -56,6 +66,7 @@ class DisclosureCell: ConfigurableTableViewCell {
   override func commonInit() {
     super.commonInit()
 
+    cellImageView.contentMode = .scaleAspectFit
     disclosureView.delegate = self
 
     contentView.addSubview(cardView) {
@@ -63,7 +74,12 @@ class DisclosureCell: ConfigurableTableViewCell {
       $0.top.bottom.equalToSuperview().inset(Style.Padding.p12)
     }
 
-    cardView.addSubview(titleLabel) {
+    let stackView = UIStackView()
+    stackView.axis = .vertical
+    stackView.spacing = Style.Padding.p32
+    stackView.addArrangedSubviews(cellImageView, titleLabel)
+
+    cardView.addSubview(stackView) {
       $0.top.equalToSuperview().inset(Style.Padding.p32)
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
     }
@@ -74,7 +90,7 @@ class DisclosureCell: ConfigurableTableViewCell {
 
     cardView.addSubview(bodyLabel) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
-      $0.top.equalTo(titleLabel.snp.bottom).offset(Style.Padding.p32)
+      $0.top.equalTo(stackView.snp.bottom).offset(Style.Padding.p32)
       $0.bottom.equalTo(disclosureView.snp.top).offset(-Style.Padding.p32)
     }
   }
@@ -82,6 +98,8 @@ class DisclosureCell: ConfigurableTableViewCell {
   func configure(context: CellContext) {
     guard let context = context as? DisclosureCellContext else { return }
 
+    cellImageView.image = context.asset?.image
+    cellImageView.isHidden = context.asset == nil
     titleLabel.text = context.title
     bodyLabel.text = context.body
     self.context = context.context
