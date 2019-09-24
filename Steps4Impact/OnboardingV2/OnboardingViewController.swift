@@ -166,8 +166,10 @@ class OnboardingViewController: ViewController {
     }
 
     if case .onboarding(.track) = state {
+      skipButton.isHidden = true
       continueButton.title = Strings.Onboarding.begin
     } else {
+      skipButton.isHidden = false
       continueButton.title = Strings.Onboarding.continue
     }
   }
