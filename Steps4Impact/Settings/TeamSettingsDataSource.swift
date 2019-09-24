@@ -31,6 +31,7 @@ import Foundation
 
 enum TeamSettingsContext: Context {
   case invite
+  case delete
 }
 
 class TeamSettingsDataSource: TableViewDataSource {
@@ -116,7 +117,7 @@ class TeamSettingsDataSource: TableViewDataSource {
       SettingsActionCellContext(
         title: "Delete Team",
         buttonStyle: .destructive,
-        context: nil)
+        context: TeamSettingsContext.delete)
     ]]
   }
 }

@@ -57,9 +57,16 @@ class TeamSettingsViewController: TableViewController {
 
 extension TeamSettingsViewController: SettingsActionCellDelegate {
   func settingsActionCellTapped(context: Context?, button: UIButton) {
-    AppController.shared.shareTapped(
-      viewController: self,
-      shareButton: button,
-      string: Strings.Share.item)
+    guard let context = context as? TeamSettingsContext else { return }
+    switch context {
+    case .invite:
+      AppController.shared.shareTapped(
+          viewController: self,
+          shareButton: button,
+          string: Strings.Share.item)
+    case .delete:
+      break
+    }
+
   }
 }
