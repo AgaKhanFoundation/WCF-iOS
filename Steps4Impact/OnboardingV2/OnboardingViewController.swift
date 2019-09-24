@@ -107,7 +107,7 @@ class OnboardingViewController: ViewController {
     stackView.addArrangedSubviews(continueButton, skipButton)
     view.addSubview(stackView) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
-      $0.bottom.equalTo(view.safeAreaLayoutGuide)
+      $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(Style.Padding.p16)
     }
 
     pageViewController.willMove(toParent: self)
