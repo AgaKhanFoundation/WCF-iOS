@@ -133,20 +133,29 @@ class ChallengeDataSource: TableViewDataSource {
       InfoCellContext(
         asset: .challengeJourney,
         title: "Journey",
-        body: "Your journey begins in \(Date().daysUntil(event.challengePhase.start)) days on \(formatter.string(from: event.challengePhase.start))"),
-      EmptyCellContext(),
-      DisclosureCellContext(
-        asset: .inviteFriends,
-        title: "Invite more friends to join!",
-        body: "Maximize your chances of reaching the team goal. Your team has 4 spots remaining. Invite more friends to join!",
-        disclosureTitle: "Invite \(event.teamLimit - team.members.count) new team members",
-        context: ChallengeContext.inviteFriends),
+        body: "Your journey begins in \(Date().daysUntil(event.challengePhase.start)) days on \(formatter.string(from: event.challengePhase.start))!"),
+      EmptyCellContext()
+    ]]
+
+    let spots = event.teamLimit - team.members.count
+    if spots > 0 {
+      cells.append([
+        DisclosureCellContext(
+          asset: .inviteFriends,
+          title: "Invite more friends to join!",
+          body: "Maximize your chances of reaching the team goal. Your team has \(spots) \(spots > 1 ? "spots" : "spot") remaining. Invite more friends to join!",
+          disclosureTitle: "Invite \(spots) new team members",
+          context: ChallengeContext.inviteFriends)
+      ])
+    }
+
+    cells.append([
       DisclosureCellContext(
         asset: .inviteSupporters,
         title: "Fundraise while you stay fit",
         body: "Did you know your friends and family can support you by donating to the cause?",
         disclosureTitle: "Invite supporters to pledge",
         context: ChallengeContext.inviteSupporters)
-      ]]
+    ])
   }
 }
