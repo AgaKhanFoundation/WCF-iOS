@@ -32,10 +32,7 @@ import FacebookLogin
 import FacebookCore
 
 class LoginViewController: UIViewController {
-  let imgLogo: UIImageView =
-      UIImageView(image: UIImage(cgImage: Assets.AKFLogo.image!.cgImage!,
-                                 scale: 4.0, orientation: .up))
-  let lblTitle: UILabel = UILabel(typography: .onboarding)
+  let imgLogo: UIImageView = UIImageView(image: Assets.logo.image)
   let imgImage: UIImageView =
       UIImageView(image: Assets.onboardingLoginPeople.image)
   let btnLogin: FBLoginButton = FBLoginButton(permissions: [.publicProfile])
@@ -49,40 +46,30 @@ class LoginViewController: UIViewController {
   private func configureView() {
     view.backgroundColor = Style.Colors.white
 
-    view.addSubviews([imgLogo, lblTitle, imgImage, btnLogin,
-                      lblTermsAndConditions])
-
-    imgLogo.snp.makeConstraints { (make) in
+    imgLogo.contentMode = .scaleAspectFit
+    view.addSubview(imgLogo) { (make) in
       make.centerX.equalToSuperview()
-      make.top.equalTo(view.safeAreaLayoutGuide).offset(Style.Size.s24)
-    }
-
-    lblTitle.text = Strings.Application.name
-    lblTitle.snp.makeConstraints { (make) in
-      make.centerX.equalToSuperview()
-      make.top.equalTo(imgLogo.snp.bottom).offset(Style.Size.s16)
+      make.top.equalTo(view.safeAreaLayoutGuide).inset(Style.Padding.p32)
+      make.height.width.equalTo(Style.Size.s128)
     }
 
     imgImage.contentMode = .scaleAspectFit
-    imgImage.snp.makeConstraints { (make) in
-      make.left.equalToSuperview().offset(Style.Size.s32)
-      make.right.equalToSuperview().inset(Style.Size.s32)
-      make.top.equalTo(lblTitle).offset(Style.Size.s56)
-      make.bottom.equalTo(btnLogin).inset(Style.Size.s56)
+    view.addSubview(imgImage) { (make) in
+      make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(Style.Padding.p32)
+      make.top.equalTo(imgLogo.snp.bottom).offset(Style.Padding.p32)
     }
 
     btnLogin.delegate = self
-    btnLogin.snp.makeConstraints { (make) in
-      make.left.equalToSuperview().offset(Style.Size.s40)
-      make.right.equalToSuperview().inset(Style.Size.s40)
-      make.height.equalTo(Style.Size.s48)
+    view.addSubview(btnLogin) { (make) in
+      make.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
+      make.top.equalTo(imgImage.snp.bottom).offset(Style.Padding.p32)
     }
 
     lblTermsAndConditions.text = Strings.Login.conditions
     lblTermsAndConditions.textColor = Style.Colors.grey
-    lblTermsAndConditions.snp.makeConstraints { (make) in
+    view.addSubview(lblTermsAndConditions) { (make) in
+      make.bottom.equalToSuperview().inset(Style.Padding.p32)
       make.centerX.equalToSuperview()
-      make.bottom.equalToSuperview().inset(Style.Size.s32)
     }
   }
 }
