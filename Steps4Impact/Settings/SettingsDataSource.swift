@@ -111,7 +111,7 @@ class SettingsDataSource: TableViewDataSource {
     SettingsTitleCellContext(title: "Team"),
     SettingsDisclosureCellContext(title: "View team",
                                   isDisclosureHidden: !isOnTeam,
-                                  context: SettingsContext.viewTeam),
+                                  context: isOnTeam ? SettingsContext.viewTeam : nil),
     (isTeamLead
       ? SettingsSwitchCellContext(title: "Team visibility",
                                   body: "Your team is discoverable.\nAny participant can find and join your team.",
@@ -120,7 +120,7 @@ class SettingsDataSource: TableViewDataSource {
       : SettingsDisclosureCellContext(title: "Leave Team",
                                       isDisclosureHidden: !isOnTeam,
                                       isLastItem: true,
-                                      context: SettingsContext.leaveTeam)),
+                                      context: isOnTeam ? SettingsContext.leaveTeam : nil)),
     SettingsActionCellContext(title: "Logout",
                               context: SettingsContext.logout),
     SettingsActionCellContext(title: "Delete Account", buttonStyle: .plain,
