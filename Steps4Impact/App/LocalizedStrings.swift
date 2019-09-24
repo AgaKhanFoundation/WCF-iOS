@@ -309,6 +309,7 @@ enum Assets: String {
 
   // Logos
   case AKFLogo = "AKFLogo"
+  case logo = "logo"
 
   // Onboarding
   case onboardingLoginPeople = "login-couple"
