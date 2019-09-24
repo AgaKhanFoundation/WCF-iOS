@@ -98,33 +98,44 @@ class SettingsDataSource: TableViewDataSource {
                                 isSwitchEnabled: true),
       SettingsDisclosureCellContext(title: "Connected apps & devices",
                                     context: SettingsContext.connectSource)
-  ]]
+      ]]
 
-  if UserInfo.AKFID == nil {
-    cells.append([SettingsDisclosureCellContext(title: "Create Aga Khan Foundation Profile",
-                                                isLastItem: true,
-                                                context: SettingsContext.createAKFProfile)])
-  }
+    if UserInfo.AKFID == nil {
+      cells.append([SettingsDisclosureCellContext(title: "Create Aga Khan Foundation Profile",
+                                                  isLastItem: true,
+                                                  context: SettingsContext.createAKFProfile)])
+    }
 
-  cells.append(contentsOf: [[
-    // Team
-    SettingsTitleCellContext(title: "Team"),
-    SettingsDisclosureCellContext(title: "View team",
-                                  isDisclosureHidden: !isOnTeam,
-                                  context: SettingsContext.viewTeam),
-    (isTeamLead
-      ? SettingsSwitchCellContext(title: "Team visibility",
-                                  body: "Your team is discoverable.\nAny participant can find and join your team.",
-                                  switchLabel: "Public",
-                                  isSwitchEnabled: true, isLastItem: true)
-      : SettingsDisclosureCellContext(title: "Leave Team",
-                                      isDisclosureHidden: !isOnTeam,
-                                      isLastItem: true,
-                                      context: SettingsContext.leaveTeam)),
-    SettingsActionCellContext(title: "Logout",
-                              context: SettingsContext.logout),
-    SettingsActionCellContext(title: "Delete Account", buttonStyle: .plain,
-                              context: SettingsContext.deleteAccount)
-    ]])
+    if isOnTeam {
+      cells.append([
+        SettingsTitleCellContext(title: "Team"),
+        SettingsDisclosureCellContext(title: "View team",
+                                      context: SettingsContext.viewTeam)
+      ])
+
+      if isTeamLead {
+        cells.append([
+          SettingsSwitchCellContext(title: "Team visibility",
+                                    body: "Your team is discoverable.\nAny participant can find and join your team.",
+                                    switchLabel: "Public",
+                                    isSwitchEnabled: true,
+                                    isLastItem: true)
+        ])
+      } else {
+        cells.append([
+          SettingsDisclosureCellContext(title: "Leave Team",
+                                        isDisclosureHidden: !isOnTeam,
+                                        isLastItem: true,
+                                        context: SettingsContext.leaveTeam)
+        ])
+      }
+    }
+
+    cells.append([
+      SettingsActionCellContext(title: "Logout",
+                                context: SettingsContext.logout),
+      SettingsActionCellContext(title: "Delete Account", buttonStyle: .plain,
+                                context: SettingsContext.deleteAccount)
+    ])
   }
 }
