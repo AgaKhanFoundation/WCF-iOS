@@ -309,7 +309,12 @@ enum Assets: String {
   case disclosure = "BlueBackButton"
   case close = "close"
   case checkmark = "checkmark"
-
+  
+  // Challenge
+  case challengeJourney = "challengejourney"
+  case inviteFriends = "invitefriends"
+  case inviteSupporters = "invitesupporters"
+  
   // Logos
   case AKFLogo = "AKFLogo"
   case logo = "logo"
