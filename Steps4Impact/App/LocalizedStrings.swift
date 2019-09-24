@@ -192,7 +192,10 @@ Click continue for a quick tour of the app.
       }
 
       static let successTitle: String =
-        NSLocalizedString("You have successfully created a team", comment: "Create team success")
+        NSLocalizedString("Your team has been created!",
+                          comment: "Your team has been created!")
+      static let `continue`: String =
+        NSLocalizedString("Continue", comment: "Continue")
     }
 
     struct JoinTeam { // swiftlint:disable:this nesting

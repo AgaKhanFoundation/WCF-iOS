@@ -42,6 +42,8 @@ class CreateTeamViewController: ViewController {
 
   weak var delegate: CreateTeamViewControllerDelegate?
 
+  private var event: Event?
+
   override func configureView() {
     super.configureView()
     title = Strings.Challenge.CreateTeam.title
@@ -82,6 +84,17 @@ class CreateTeamViewController: ViewController {
       $0.centerX.equalToSuperview()
       $0.top.equalTo(seperatorView.snp.bottom).offset(Style.Padding.p24)
     }
+
+    onBackground {
+      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+        guard let participant = Participant(json: result.response) else { return }
+        if let event = participant.event {
+          AKFCausesService.getEvent(event: event.id!) { (result) in
+            self.event = Event(json: result.response)
+          }
+        }
+      }
+    }
   }
 
   @objc
@@ -120,7 +133,7 @@ class CreateTeamViewController: ViewController {
             guard let `self` = self else { return }
             switch result {
             case .success:
-              self.navigationController?.setViewControllers([CreateTeamSuccessViewController()], animated: true)
+              self.navigationController?.setViewControllers([CreateTeamSuccessViewController(for: self.event)], animated: true)
               self.delegate?.createTeamSuccess()
             case .failed:
               // If creating a team is successful but joining fails - delete it.
