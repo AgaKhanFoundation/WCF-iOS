@@ -184,7 +184,7 @@ class CreateTeamSuccessViewController: ViewController {
   func closeButtonTapped() {
     dismiss(animated: true, completion: nil)
   }
-  
+
   @objc
   func inviteButtonTapped() {
     AppController.shared.shareTapped(
