@@ -311,9 +311,9 @@ enum Assets: String {
   case checkmark = "checkmark"
   
   // Challenge
-  case challengeJourney = "challengejourney"
-  case inviteFriends = "invitefriends"
-  case inviteSupporters = "invitesupporters"
+  case challengeJourney = "challenge-journey"
+  case inviteFriends = "invite-friends"
+  case inviteSupporters = "invite-supporters"
   
   // Logos
   case AKFLogo = "AKFLogo"
