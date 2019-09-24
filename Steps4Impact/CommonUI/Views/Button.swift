@@ -37,6 +37,7 @@ class Button: UIButton {
     case disabled
     case destructive
     case plain
+    case link
 
     var titleColor: UIColor {
       switch self {
@@ -46,6 +47,8 @@ class Button: UIButton {
         return Style.Colors.FoundationGreen
       case .plain:
         return Style.Colors.blue
+      case .link:
+        return Style.Colors.grey
       }
     }
 
@@ -59,7 +62,7 @@ class Button: UIButton {
         return Style.Colors.Silver
       case .destructive:
         return Style.Colors.Destructive
-      case .plain:
+      case .plain, .link:
         return .clear
       }
     }
@@ -87,7 +90,20 @@ class Button: UIButton {
 
   var title: String? {
     didSet {
-      setTitle(title, for: .normal)
+      switch self.style {
+      case .link:
+        if let value = title {
+          setAttributedTitle(NSAttributedString(string: value, attributes: [
+            .underlineStyle: 1.0,
+            .font: Style.Typography.footnote.font!,
+            .foregroundColor: Style.Colors.grey
+          ]), for: .normal)
+        } else {
+          setTitle(nil, for: .normal)
+        }
+      default:
+        setTitle(title, for: .normal)
+      }
     }
   }
 
@@ -97,25 +113,35 @@ class Button: UIButton {
     layer.cornerRadius = 4
     layer.masksToBounds = true
 
-    snp.makeConstraints { $0.height.equalTo(Style.Size.s48) }
-
-    contentEdgeInsets = UIEdgeInsets(
-      top: Style.Size.s16,
-      left: Style.Size.s16,
-      bottom: Style.Size.s16,
-      right: Style.Size.s16)
-
     setTitle(currentTitle, for: .normal)
 
-    guard let buttonFont = Style.Typography.bodyBold.font else { return }
+    var font: UIFont?
+    switch self.style {
+    case .link:
+      font = Style.Typography.footnote.font
+
+    case .secondary:
+      layer.borderWidth = 2
+      layer.borderColor = style.titleColor.cgColor
+      fallthrough
+    default:
+      font = Style.Typography.bodyBold.font
+
+      snp.makeConstraints { $0.height.equalTo(Style.Size.s48) }
+
+      contentEdgeInsets = UIEdgeInsets(
+        top: Style.Size.s16,
+        left: Style.Size.s16,
+        bottom: Style.Size.s16,
+        right: Style.Size.s16)
+    }
+
+    guard let buttonFont = font else { return }
     titleLabel?.font = buttonFont
 
     // this is to center the title in the actual button
     // descender is the part under the font for lowercase and is a negative number
     titleEdgeInsets = UIEdgeInsets(top: -buttonFont.descender / 2, left: 0, bottom: 0, right: 0)
-
-    layer.borderWidth = 2
-    layer.borderColor = style.titleColor.cgColor
   }
 
   private func updateColors() {
