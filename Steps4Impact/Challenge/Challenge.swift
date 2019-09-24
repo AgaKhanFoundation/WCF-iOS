@@ -72,6 +72,11 @@ extension ChallengeViewController: CreateTeamViewControllerDelegate {
   }
 }
 
+enum ChallengeContext: Context {
+  case inviteFriends
+  case inviteSupporters
+}
+
 class ChallengeDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
 
@@ -89,16 +94,35 @@ class ChallengeDataSource: TableViewDataSource {
   }
 
   func configure() {
-    cells.removeAll()
-
-    if participant?.team == nil {
-      cells.append([
+    guard participant?.team != nil else {
+      cells = [[
         TeamNeededCellContext(
           title: Strings.Challenge.TeamNeededCard.title,
           body: Strings.Challenge.TeamNeededCard.body,
           primaryButtonTitle: Strings.Challenge.TeamNeededCard.primaryButton,
           secondaryButtonTitle: Strings.Challenge.TeamNeededCard.secondaryButton)
-        ])
+        ]]
+      return
     }
+
+    cells = [[
+      InfoCellContext(
+        asset: .challengeJourney,
+        title: "Journey",
+        body: "Your journey begins in 25 days on Feb 1, 2019"),
+      EmptyCellContext(),
+      DisclosureCellContext(
+        asset: .inviteFriends,
+        title: "Invite more friends to join!",
+        body: "Maximize your chances of reaching the team goal. Your team has 4 spots remaining. Invite more friends to join!",
+        disclosureTitle: "Invite 4 new team members",
+        context: ChallengeContext.inviteFriends),
+      DisclosureCellContext(
+        asset: .inviteSupporters,
+        title: "Fundraise while you stay fit",
+        body: "Did you know your friends and family can support you by donating to the cause?",
+        disclosureTitle: "Invite supporters to pledge",
+        context: ChallengeContext.inviteSupporters)
+      ]]
   }
 }
