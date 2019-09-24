@@ -43,6 +43,9 @@ class ChallengeViewController: TableViewController {
     if let cell = cell as? TeamNeededCell {
       cell.delegate = self
     }
+    if let cell = cell as? DisclosureCell {
+      cell.delegate = self
+    }
   }
 }
 
@@ -70,6 +73,19 @@ extension ChallengeViewController: CreateTeamViewControllerDelegate {
   func createTeamSuccess() {
     reload()
   }
+}
+
+extension ChallengeViewController: DisclosureCellDelegate {
+  func disclosureCellTapped(context: Context?) {
+    guard let context = context as? ChallengeContext else { return }
+    switch context {
+    case .inviteFriends:
+      AppController.shared.shareTapped(viewController: self, shareButton: nil, string: Strings.Share.item)
+    case .inviteSupporters:
+      AppController.shared.shareTapped(viewController: self, shareButton: nil, string: Strings.InviteSupporters.request)
+    }
+  }
+
 }
 
 enum ChallengeContext: Context {
