@@ -48,6 +48,13 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>step4change.org</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
 			<key>13.82.223.25</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
