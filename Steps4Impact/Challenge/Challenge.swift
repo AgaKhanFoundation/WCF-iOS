@@ -130,12 +130,22 @@ class ChallengeDataSource: TableViewDataSource {
     let formatter: DateFormatter = DateFormatter()
     formatter.dateStyle = .medium
 
+    let challengeProgressCell = ChallengeTeamProgressCellContext(
+       teamName: "Global Citizens 2018",
+       teamLeadName: "Sarah Bhamani",
+       teamMemberImageURLS: [],
+       yourCommittedMiles: 500,
+       teamCommittedMiles: 3000,
+       totalMiles: 5500,
+       disclosureTitle: "View breakdown",
+       isEditingHidden: false)
+
     cells = [[
       InfoCellContext(
         asset: .challengeJourney,
         title: "Journey",
         body: "Your journey begins in \(Date().daysUntil(event.challengePhase.start)) days on \(formatter.string(from: event.challengePhase.start))!"),
-      EmptyCellContext()
+      challengeProgressCell
     ]]
 
     let spots = event.teamLimit - team.members.count
