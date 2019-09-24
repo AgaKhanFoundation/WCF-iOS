@@ -63,7 +63,7 @@ class OnboardingViewController: ViewController {
   var state: State = .welcome(.initial)
 
   private let continueButton = Button(style: .primary)
-  private let skipButton = Button(style: .secondary)
+  private let skipButton = Button(style: .link)
   private let pageViewController = UIPageViewController(
     transitionStyle: .scroll,
     navigationOrientation: .horizontal,
