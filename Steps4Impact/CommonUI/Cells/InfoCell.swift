@@ -32,39 +32,56 @@ import SnapKit
 
 struct InfoCellContext: CellContext {
   let identifier: String = InfoCell.identifier
+  let asset: Assets?
   let title: String
   let body: String?
+
+  init(asset: Assets? = nil, title: String, body: String? = nil) {
+    self.asset = asset
+    self.title = title
+    self.body = body
+  }
 }
 
 class InfoCell: ConfigurableTableViewCell {
   static let identifier = "InfoCell"
 
   private let cardView = CardViewV2()
+  private let cellImageView = UIImageView()
   private let titleLabel = UILabel(typography: .title)
   private let bodyLabel = UILabel(typography: .bodyRegular)
 
   override func commonInit() {
     super.commonInit()
 
+    cellImageView.contentMode = .scaleAspectFit
+
     contentView.addSubview(cardView) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)
       $0.top.bottom.equalToSuperview().inset(Style.Padding.p12)
     }
-
-    cardView.addSubview(titleLabel) {
+    
+    let stackView = UIStackView()
+    stackView.axis = .vertical
+    stackView.spacing = Style.Padding.p32
+    stackView.addArrangedSubviews(cellImageView, titleLabel)
+    
+    cardView.addSubview(stackView) {
       $0.top.equalToSuperview().inset(Style.Padding.p32)
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
     }
 
     cardView.addSubview(bodyLabel) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
-      $0.top.equalTo(titleLabel.snp.bottom).offset(Style.Padding.p32)
+      $0.top.equalTo(stackView.snp.bottom).offset(Style.Padding.p32)
       $0.bottom.equalToSuperview().inset(Style.Padding.p32)
     }
   }
 
   func configure(context: CellContext) {
     guard let context = context as? InfoCellContext else { return }
+    cellImageView.image = context.asset?.image
+    cellImageView.isHidden = context.asset == nil
     titleLabel.text = context.title
     bodyLabel.text = context.body
   }
