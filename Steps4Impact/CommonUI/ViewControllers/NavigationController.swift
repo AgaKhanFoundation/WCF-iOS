@@ -34,6 +34,9 @@ class NavigationController: UINavigationController {
     self.init(rootViewController: rootVC)
     navigationBar.prefersLargeTitles = true
     navigationBar.tintColor = Style.Colors.black
+    navigationBar.largeTitleTextAttributes = [
+      .foregroundColor: Style.Colors.black
+    ]
     navigationBar.isTranslucent = true
     navigationBar.setValue(true, forKey: "hidesShadow")
   }
