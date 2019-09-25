@@ -82,7 +82,7 @@ class Service {
 
     let task = session.dataTask(with: request) {
       (data: Data?, response: URLResponse?, error: Error?) in
-        print("<- [\(method.rawValue.uppercased())] \(request)")
+        print("<- [\(method.rawValue.uppercased())] \(request) [\(request.httpBody != nil ? String(data: request.httpBody!, encoding: .utf8)! : "")]")
 
         guard error == nil else {
           self.callback(completion, result: .failed(error))
