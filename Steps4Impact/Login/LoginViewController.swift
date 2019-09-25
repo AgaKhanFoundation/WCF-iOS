@@ -107,7 +107,8 @@ extension LoginViewController: LoginButtonDelegate {
             if let events: [Event] = result.response?.arrayValue?.compactMap({ (json) in Event(json: json) }),
                 let eid = events.first?.id {
               group.enter()
-              AKFCausesService.joinEvent(fbid: Facebook.id, eventID: eid) { (_) in
+              // TODO(compnerd) do not hard code the distance here (we should push this to the backend to provide)
+              AKFCausesService.joinEvent(fbid: Facebook.id, eventID: eid, miles: 500) { (_) in
                 group.leave()
               }
             }
