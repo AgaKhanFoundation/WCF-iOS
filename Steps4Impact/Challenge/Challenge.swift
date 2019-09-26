@@ -29,6 +29,7 @@
 
 import UIKit
 import Foundation
+import NotificationCenter
 
 class ChallengeViewController: TableViewController {
   override func commonInit() {
@@ -36,6 +37,15 @@ class ChallengeViewController: TableViewController {
 
     title = Strings.Challenge.title
     dataSource = ChallengeDataSource()
+
+    _ = NotificationCenter.default.addObserver(forName: .teamChanged,
+                                               object: nil, queue: nil) { [weak self](_) in
+      self?.reload()
+    }
+  }
+
+  deinit {
+    NotificationCenter.default.removeObserver(self)
   }
 
   override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -51,27 +61,13 @@ class ChallengeViewController: TableViewController {
 
 extension ChallengeViewController: TeamNeededCellDelegate {
   func teamNeededCellPrimaryTapped() {
-    let createTeamVC = CreateTeamViewController()
-    createTeamVC.delegate = self
-    present(NavigationController(rootVC: createTeamVC), animated: true, completion: nil)
+    present(NavigationController(rootVC: CreateTeamViewController()),
+            animated: true, completion: nil)
   }
 
   func teamNeededCellSecondaryTapped() {
-    let joinVC = JoinTeamViewController()
-    joinVC.delegate = self
-    present(NavigationController(rootVC: joinVC), animated: true, completion: nil)
-  }
-}
-
-extension ChallengeViewController: JoinTeamViewControllerDelegate {
-  func joinTeamSuccess() {
-    reload()
-  }
-}
-
-extension ChallengeViewController: CreateTeamViewControllerDelegate {
-  func createTeamSuccess() {
-    reload()
+    present(NavigationController(rootVC: JoinTeamViewController()),
+            animated: true, completion: nil)
   }
 }
 

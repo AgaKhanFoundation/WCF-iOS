@@ -28,14 +28,10 @@
  **/
 
 import UIKit
-
-protocol JoinTeamViewControllerDelegate: class {
-  func joinTeamSuccess()
-}
+import NotificationCenter
 
 class JoinTeamViewController: TableViewController {
   var selectedId: Int?
-  weak var delegate: JoinTeamViewControllerDelegate?
 
   override func commonInit() {
     super.commonInit()
@@ -80,7 +76,6 @@ class JoinTeamViewController: TableViewController {
         if success {
           // Not pushing the success view controller because we don't want the user to be able to go back in the stack
           self.navigationController?.setViewControllers([JoinTeamSuccessViewController()], animated: true)
-          self.delegate?.joinTeamSuccess()
         } else {
           AppController.shared.present(alert: alert, in: self, completion: nil)
         }
@@ -202,6 +197,9 @@ class JoinTeamDataSource: TableViewDataSource {
   func joinTeam(team: Int, _ completion: @escaping (Bool) -> Void) {
     AKFCausesService.joinTeam(fbid: Facebook.id, team: team) { (result) in
       completion(result.isSuccess)
+      if result.isSuccess {
+        NotificationCenter.default.post(name: .teamChanged, object: nil)
+      }
     }
   }
 }

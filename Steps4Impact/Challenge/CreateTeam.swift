@@ -28,10 +28,7 @@
  **/
 
 import UIKit
-
-protocol CreateTeamViewControllerDelegate: class {
-  func createTeamSuccess()
-}
+import NotificationCenter
 
 class CreateTeamViewController: ViewController {
   private let label = UILabel(typography: .title)
@@ -39,8 +36,6 @@ class CreateTeamViewController: ViewController {
   private let seperatorView = UIView()
   private let activityView = UIActivityIndicatorView(style: .gray)
   private var teamName: String = ""
-
-  weak var delegate: CreateTeamViewControllerDelegate?
 
   private var event: Event?
 
@@ -136,7 +131,7 @@ class CreateTeamViewController: ViewController {
             switch result {
             case .success:
               self.navigationController?.setViewControllers([CreateTeamSuccessViewController(for: self.event)], animated: true)
-              self.delegate?.createTeamSuccess()
+              NotificationCenter.default.post(name: .teamChanged, object: nil)
             case .failed:
               // If creating a team is successful but joining fails - delete it.
               AKFCausesService.deleteTeam(team: teamID)

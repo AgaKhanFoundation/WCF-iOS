@@ -28,6 +28,14 @@
  **/
 
 import UIKit
+import NotificationCenter
+
+extension NSNotification.Name {
+  static let teamChanged: NSNotification.Name =
+    NSNotification.Name(rawValue: "steps4impact.team-changed")
+  static let eventChanged: NSNotification.Name =
+    NSNotification.Name(rawValue: "steps4impact.event-changed")
+}
 
 class DashboardViewController: TableViewController {
   override func commonInit() {
@@ -40,6 +48,20 @@ class DashboardViewController: TableViewController {
       style: .plain,
       target: self,
       action: #selector(settingsButtonTapped))
+
+    // setup event handlers
+    _ = NotificationCenter.default.addObserver(forName: .teamChanged,
+                                               object: nil, queue: nil) { [weak self] (_) in
+      self?.reload()
+    }
+    _ = NotificationCenter.default.addObserver(forName: .eventChanged,
+                                               object: nil, queue: nil) { [weak self] (_) in
+      self?.reload()
+    }
+  }
+
+  deinit {
+    NotificationCenter.default.removeObserver(self)
   }
 
   override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
