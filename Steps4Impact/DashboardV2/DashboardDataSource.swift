@@ -43,6 +43,12 @@ class DashboardDataSource: TableViewDataSource {
   }
 
   func reload(completion: @escaping () -> Void) {
+    self.name = " "
+    self.imageURL = nil
+    self.teamName = " "
+    self.eventName = " "
+    self.eventTimeline = " "
+
     configure()
     completion()
 
@@ -64,6 +70,7 @@ class DashboardDataSource: TableViewDataSource {
       AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
         guard let participant = Participant(json: result.response) else { return }
 
+        // cache the event to avoid selecting again
         if let event = participant.currentEvent {
           self?.eventName = event.name
 
@@ -72,9 +79,7 @@ class DashboardDataSource: TableViewDataSource {
                                                      end: event.challengePhase.end))
         }
 
-        if let team = participant.team {
-          self?.teamName = team.name!
-        }
+        self?.teamName = participant.team?.name ?? " "
 
         self?.configure()
         completion()
