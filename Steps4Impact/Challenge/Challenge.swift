@@ -37,6 +37,11 @@ class ChallengeViewController: TableViewController {
 
     title = Strings.Challenge.title
     dataSource = ChallengeDataSource()
+    navigationItem.rightBarButtonItem = UIBarButtonItem(
+      image: Assets.gear.image,
+      style: .plain,
+      target: self,
+      action: #selector(settingsButtonTapped))
 
     _ = NotificationCenter.default.addObserver(forName: .teamChanged,
                                                object: nil, queue: nil) { [weak self](_) in
@@ -48,7 +53,14 @@ class ChallengeViewController: TableViewController {
     NotificationCenter.default.removeObserver(self)
   }
 
-  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+  @objc
+  private func settingsButtonTapped() {
+    navigationController?.pushViewController(SettingsViewController(), animated: true)
+  }
+
+  override func tableView(_ tableView: UITableView,
+                          willDisplay cell: UITableViewCell,
+                          forRowAt indexPath: IndexPath) {
     super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
     if let cell = cell as? TeamNeededCell {
       cell.delegate = self
