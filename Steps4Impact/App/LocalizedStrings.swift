@@ -260,6 +260,11 @@ This will remove your data linked to the team. You will not be able to participa
 """, comment: """
 This will remove your data linked to the team. You will not be able to participate in the challenge.
 """)
+    static let deleteTeam: String =
+      NSLocalizedString("Delete Team?", comment: "Delete Team?")
+    static let deleteTeamBody: String =
+      NSLocalizedString("This will remove all data and team members from the challenge.",
+                        comment: "This will remove all data and team members from the challenge.")
   }
 
   struct ConnectSource {

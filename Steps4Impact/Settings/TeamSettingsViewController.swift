@@ -41,7 +41,7 @@ class TeamSettingsViewController: TableViewController {
       target: self,
       action: #selector(editTapped))
   }
-  
+
   override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
     if let cell = cell as? SettingsActionCell {
@@ -65,7 +65,25 @@ extension TeamSettingsViewController: SettingsActionCellDelegate {
           shareButton: button,
           string: Strings.Share.item)
     case .delete:
-      break
+      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+        guard let participant = Participant(json: result.response) else { return }
+        guard participant.team != nil else { return }
+
+        let alert: AlertViewController = AlertViewController()
+        alert.title = Strings.TeamSettings.deleteTeam
+        alert.body = Strings.TeamSettings.deleteTeamBody
+        alert.add(AlertAction.cancel())
+        alert.add(AlertAction(title: "Delete", style: .destructive, shouldDismiss: false) { [weak self] in
+          AKFCausesService.deleteTeam(team: (participant.team?.id)!) { (_) in
+            onMain {
+              alert.dismiss(animated: true, completion: nil)
+              self?.navigationController?.popViewController(animated: true)
+              // TODO(compnerd) refresh the dashboard, settings, and challenge views
+            }
+          }
+        })
+        AppController.shared.present(alert: alert, in: self, completion: nil)
+      }
     }
 
   }
