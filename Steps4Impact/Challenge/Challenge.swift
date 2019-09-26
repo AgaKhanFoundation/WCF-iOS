@@ -145,7 +145,7 @@ class ChallengeDataSource: TableViewDataSource {
         asset: .challengeJourney,
         title: "Journey",
         body: "Your journey begins in \(Date().daysUntil(event.challengePhase.start)) days on \(formatter.string(from: event.challengePhase.start))!"),
-      challengeProgressCell
+//      challengeProgressCell
     ]]
 
     let spots = event.teamLimit - team.members.count
