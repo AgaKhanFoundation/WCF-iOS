@@ -31,6 +31,7 @@ import SnapKit
 import FacebookLogin
 import FacebookCore
 import SafariServices
+import NotificationCenter
 
 class LoginViewController: UIViewController {
   let imgLogo: UIImageView = UIImageView(image: Assets.logo.image)
@@ -119,13 +120,7 @@ extension LoginViewController: LoginButtonDelegate {
       }
       group.wait()
 
-      // NOTE(compnerd) this forces the reload since the event information
-      // needs to be populated and may not have been present when the view was
-      // loaded.  Unfortunately, we do not have a good way to get to the actual
-      // controller, so hardcode the expected path.
-      onMain {
-        (AppController.shared.navigation.viewControllers?.first as? TableViewController)?.reload()
-      }
+      NotificationCenter.default.post(name: .eventChanged, object: nil)
     }
 
     AppController.shared.login()

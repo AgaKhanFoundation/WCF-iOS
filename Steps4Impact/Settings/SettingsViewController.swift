@@ -29,6 +29,7 @@
 
 import UIKit
 import FacebookLogin
+import NotificationCenter
 
 class SettingsViewController: TableViewController {
   override func commonInit() {
@@ -36,6 +37,15 @@ class SettingsViewController: TableViewController {
 
     title = Strings.Settings.title
     dataSource = SettingsDataSource()
+
+    _ = NotificationCenter.default.addObserver(forName: .teamChanged,
+                                               object: nil, queue: nil) { [weak self] (_) in
+      self?.reload()
+    }
+  }
+
+  deinit {
+    NotificationCenter.default.removeObserver(self)
   }
 
   override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

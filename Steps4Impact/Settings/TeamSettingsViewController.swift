@@ -28,6 +28,7 @@
  **/
 
 import UIKit
+import NotificationCenter
 
 class TeamSettingsViewController: TableViewController {
   override func commonInit() {
@@ -40,6 +41,15 @@ class TeamSettingsViewController: TableViewController {
       style: .plain,
       target: self,
       action: #selector(editTapped))
+
+    _ = NotificationCenter.default.addObserver(forName: .teamChanged,
+                                               object: nil, queue: nil) { [weak self] (_) in
+      self?.reload()
+    }
+  }
+
+  deinit {
+    NotificationCenter.default.removeObserver(self)
   }
 
   override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -78,7 +88,7 @@ extension TeamSettingsViewController: SettingsActionCellDelegate {
             onMain {
               alert.dismiss(animated: true, completion: nil)
               self?.navigationController?.popViewController(animated: true)
-              // TODO(compnerd) refresh the dashboard, settings, and challenge views
+              NotificationCenter.default.post(name: .teamChanged, object: nil)
             }
           }
         })
