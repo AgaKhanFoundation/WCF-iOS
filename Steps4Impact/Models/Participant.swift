@@ -32,7 +32,7 @@ import Foundation
 struct Participant {
   let fbid: String
   let team: Team?
-  let event: Event?
+  let events: [Event]
   let preferredCause: Cause?
   let records: [Record]
 
@@ -49,10 +49,10 @@ struct Participant {
     } else {
       self.team = nil
     }
-    if let event = json["event"] {
-      self.event = Event(json: event)
+    if let events = json["events"]?.arrayValue {
+      self.events = events.compactMap({ (json) in Event(json: json) })
     } else {
-      self.event = nil
+      self.events = []
     }
     if let cause = json["cause"] {
       self.preferredCause = Cause(json: cause)
@@ -64,5 +64,14 @@ struct Participant {
     } else {
       self.records = []
     }
+  }
+
+  public var currentEvent: Event? {
+    for event in self.events {
+      if event.challengePhase.end.timeIntervalSinceNow.sign == .plus {
+        return event
+      }
+    }
+    return nil
   }
 }

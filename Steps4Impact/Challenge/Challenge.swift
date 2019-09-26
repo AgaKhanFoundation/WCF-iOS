@@ -122,7 +122,8 @@ class ChallengeDataSource: TableViewDataSource {
       return
     }
 
-    guard let event = participant?.event, let team = participant?.team else {
+    guard let event = participant?.currentEvent,
+          let team = participant?.team else {
       return
     }
 

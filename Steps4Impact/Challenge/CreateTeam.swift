@@ -87,11 +87,13 @@ class CreateTeamViewController: ViewController {
 
     onBackground {
       AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
-        guard let participant = Participant(json: result.response) else { return }
-        if let event = participant.event {
-          AKFCausesService.getEvent(event: event.id!) { (result) in
-            self.event = Event(json: result.response)
-          }
+        guard let participant = Participant(json: result.response),
+              let event = participant.currentEvent else {
+          return
+        }
+
+        AKFCausesService.getEvent(event: event.id!) { (result) in
+          self.event = Event(json: result.response)
         }
       }
     }

@@ -101,7 +101,7 @@ extension LoginViewController: LoginButtonDelegate {
 
       group.enter()
       AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
-        if let participant = Participant(json: result.response), participant.event == nil {
+        if let participant = Participant(json: result.response), participant.currentEvent == nil {
           group.enter()
           AKFCausesService.getEvents { (result) in
             if let events: [Event] = result.response?.arrayValue?.compactMap({ (json) in Event(json: json) }),

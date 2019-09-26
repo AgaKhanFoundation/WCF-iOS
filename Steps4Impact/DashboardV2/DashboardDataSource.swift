@@ -63,13 +63,17 @@ class DashboardDataSource: TableViewDataSource {
 
       AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
         guard let participant = Participant(json: result.response) else { return }
-        self?.eventName = participant.event?.name ?? " "
-        self?.teamName = participant.team?.name ?? " "
 
-        if let event = participant.event {
+        if let event = participant.currentEvent {
+          self?.eventName = event.name
+
           self?.eventTimeline =
-            DataFormatters.formatDateRange(value: (start: event.teamFormationPhase.start,
-                                                   end: event.challengePhase.end))
+              DataFormatters.formatDateRange(value: (start: event.teamFormationPhase.start,
+                                                     end: event.challengePhase.end))
+        }
+
+        if let team = participant.team {
+          self?.teamName = team.name!
         }
 
         self?.configure()

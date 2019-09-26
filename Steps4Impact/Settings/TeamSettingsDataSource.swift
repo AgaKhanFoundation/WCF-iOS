@@ -54,7 +54,7 @@ class TeamSettingsDataSource: TableViewDataSource {
       group.enter()
       AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
         if let participant = Participant(json: result.response) {
-          if let event = participant.event {
+          if let event = participant.currentEvent {
             self?.eventName = event.name
 
             group.enter()
