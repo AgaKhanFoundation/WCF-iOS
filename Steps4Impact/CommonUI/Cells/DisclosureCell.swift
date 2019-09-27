@@ -41,7 +41,7 @@ struct DisclosureCellContext: CellContext {
   let body: String?
   let disclosureTitle: String
   let context: Context?
-  
+
   init(asset: Assets? = nil, title: String, body: String?, disclosureTitle: String, context: Context? = nil) {
     self.asset = asset
     self.title = title
