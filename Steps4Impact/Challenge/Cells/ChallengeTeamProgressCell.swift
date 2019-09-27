@@ -177,7 +177,7 @@ class ChallengeTeamProgressCell: ConfigurableTableViewCell {
       imagesStackView.sendSubviewToBack(imageView)
     }
   }
-  
+
   @objc func editButtonTapped() {
     delegate?.challengeTeamProgressEditTapped()
   }

@@ -32,7 +32,7 @@ import UIKit
 class NotificationsViewController: TableViewController {
   override func commonInit() {
     super.commonInit()
-    
+
     title = Strings.Notifications.title
     dataSource = NotificationsDataSource()
   }
@@ -40,7 +40,7 @@ class NotificationsViewController: TableViewController {
 
 class NotificationsDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
-  
+
   func configure() {
     cells = [[
         InfoCellContext(

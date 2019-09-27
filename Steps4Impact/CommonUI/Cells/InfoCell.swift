@@ -60,12 +60,12 @@ class InfoCell: ConfigurableTableViewCell {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)
       $0.top.bottom.equalToSuperview().inset(Style.Padding.p12)
     }
-    
+
     let stackView = UIStackView()
     stackView.axis = .vertical
     stackView.spacing = Style.Padding.p32
     stackView.addArrangedSubviews(cellImageView, titleLabel)
-    
+
     cardView.addSubview(stackView) {
       $0.top.equalToSuperview().inset(Style.Padding.p32)
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)

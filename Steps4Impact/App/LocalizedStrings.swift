@@ -314,12 +314,12 @@ enum Assets: String {
   case disclosure = "BlueBackButton"
   case close = "close"
   case checkmark = "checkmark"
-  
+
   // Challenge
   case challengeJourney = "challenge-journey"
   case inviteFriends = "invite-friends"
   case inviteSupporters = "invite-supporters"
-  
+
   // Logos
   case AKFLogo = "AKFLogo"
   case logo = "logo"
@@ -329,10 +329,10 @@ enum Assets: String {
   case onboardingCreateTeam = "create-team"
   case onboardingJourney = "journey"
   case onboardingDashboard = "dashboard"
-  
+
   // Leaderboard
   case leaderboardEmpty = "leaderboard-empty"
-  
+
   // Tab Bar
   case tabbarDashboardSelected = "tabbar-dashboard-selected"
   case tabbarDashboardUnselected = "tabbar-dashboard-unselected"
