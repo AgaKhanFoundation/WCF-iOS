@@ -62,7 +62,7 @@ class DashboardDataSource: TableViewDataSource {
       }
 
       Facebook.getRealName(for: "me") { (name) in
-        self?.name = name ?? "<Facebook Error>"
+        self?.name = name ?? ""
         self?.configure()
         completion()
       }
@@ -75,11 +75,11 @@ class DashboardDataSource: TableViewDataSource {
           self?.eventName = event.name
 
           self?.eventTimeline =
-              DataFormatters.formatDateRange(value: (start: event.teamFormationPhase.start,
+              DataFormatters.formatDateRange(value: (start: event.challengePhase.start,
                                                      end: event.challengePhase.end))
         }
 
-        self?.teamName = participant.team?.name ?? " "
+        self?.teamName = participant.team?.name ?? ""
 
         self?.configure()
         completion()
