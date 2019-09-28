@@ -83,11 +83,6 @@ struct Participant {
   }
 
   public var currentEvent: Event? {
-    for event in self.events {
-      if event.challengePhase.end.timeIntervalSinceNow.sign == .plus {
-        return event
-      }
-    }
-    return nil
+    return self.events.filter { $0.challengePhase.end.timeIntervalSinceNow.sign == .plus }.first
   }
 }
