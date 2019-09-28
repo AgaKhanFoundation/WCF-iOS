@@ -105,14 +105,36 @@ class ChallengeDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
 
   private var participant: Participant?
+  private var teamCreator: String?
+  private var teamImages: [URL?] = []
 
   func reload(completion: @escaping () -> Void) {
-    configure()
-    completion()
+    let group: DispatchGroup = DispatchGroup()
 
+    group.enter()
     AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
-      self?.participant = Participant(json: result.response)
+      if let participant = Participant(json: result.response), let team = participant.team {
+        self?.participant = participant
 
+        for member in team.members {
+          group.enter()
+          Facebook.profileImage(for: member.fbid) { (url) in
+            self?.teamImages.append(url)
+            group.leave()
+          }
+        }
+
+        group.enter()
+        Facebook.getRealName(for: team.creator!) { (name) in
+          self?.teamCreator = name
+          group.leave()
+        }
+      }
+
+      group.leave()
+    }
+
+    group.notify(queue: .global()) { [weak self] in
       self?.configure()
       completion()
     }
@@ -138,22 +160,20 @@ class ChallengeDataSource: TableViewDataSource {
     let formatter: DateFormatter = DateFormatter()
     formatter.dateStyle = .medium
 
-    let challengeProgressCell = ChallengeTeamProgressCellContext(
-       teamName: "Global Citizens 2018",
-       teamLeadName: "Sarah Bhamani",
-       teamMemberImageURLS: [],
-       yourCommittedMiles: 500,
-       teamCommittedMiles: 3000,
-       totalMiles: 5500,
-       disclosureTitle: "View breakdown",
-       isEditingHidden: false)
-
     cells = [[
       InfoCellContext(
         asset: .challengeJourney,
         title: "Journey",
         body: "Your journey begins in \(Date().daysUntil(event.challengePhase.start)) days on \(formatter.string(from: event.challengePhase.start))!"),
-//      challengeProgressCell
+      ChallengeTeamProgressCellContext(
+        teamName: team.name ?? "",
+        teamLeadName: teamCreator ?? "",
+        teamMemberImageURLS: teamImages,
+        yourCommittedMiles: 500,
+        teamCommittedMiles: 500,
+        totalMiles: 5500,
+        disclosureTitle: "View Breakdown",
+        isEditingHidden: false)
     ]]
 
     let spots = event.teamLimit - team.members.count
