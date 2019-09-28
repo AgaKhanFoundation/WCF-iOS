@@ -107,6 +107,7 @@ class ChallengeDataSource: TableViewDataSource {
   private var participant: Participant?
   private var teamCreator: String?
   private var teamImages: [URL?] = []
+  private var teamMembers: [Participant] = []
 
   func reload(completion: @escaping () -> Void) {
     let group: DispatchGroup = DispatchGroup()
@@ -120,6 +121,14 @@ class ChallengeDataSource: TableViewDataSource {
           group.enter()
           Facebook.profileImage(for: member.fbid) { (url) in
             self?.teamImages.append(url)
+            group.leave()
+          }
+
+          group.enter()
+          AKFCausesService.getParticipant(fbid: member.fbid) { (result) in
+            if let participant = Participant(json: result.response) {
+              self?.teamMembers.append(participant)
+            }
             group.leave()
           }
         }
@@ -169,8 +178,8 @@ class ChallengeDataSource: TableViewDataSource {
         teamName: team.name ?? "",
         teamLeadName: teamCreator ?? "",
         teamMemberImageURLS: teamImages,
-        yourCommittedMiles: 500,
-        teamCommittedMiles: 500,
+        yourCommittedMiles: participant?.currentEventCommitment ?? 0,
+        teamCommittedMiles: teamMembers.compactMap({ $0.currentEventCommitment }).reduce(0, +),
         totalMiles: 5500,
         disclosureTitle: "View Breakdown",
         isEditingHidden: false)
