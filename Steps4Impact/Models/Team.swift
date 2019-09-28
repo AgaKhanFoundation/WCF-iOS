@@ -33,6 +33,7 @@ struct Team {
   let id: Int?                                                                  // swiftlint:disable:this identifier_name line_length
   let name: String?
   let members: [Participant]
+  let creator: String?
 
   init?(json: JSON?) {
     guard
@@ -48,5 +49,8 @@ struct Team {
     } else {
       self.members = []
     }
+
+    // FIXME(compnerd) the backend sends the fbid as an integer causing truncation
+    self.creator = self.members.first?.fbid ?? nil
   }
 }
