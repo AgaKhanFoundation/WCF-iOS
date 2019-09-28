@@ -73,7 +73,7 @@ class ChallengeTeamProgressCell: ConfigurableTableViewCell {
     imagesStackView.axis = .horizontal
     imagesStackView.spacing = -10
     imagesStackView.distribution = .fillProportionally
-    
+
     yourProgressView.layer.cornerRadius = 10
     yourProgressView.clipsToBounds = true
     yourProgressView.tintColor = Style.Colors.FoundationGreen
@@ -84,19 +84,19 @@ class ChallengeTeamProgressCell: ConfigurableTableViewCell {
     totalProgressView.layer.cornerRadius = 10
     totalProgressView.clipsToBounds = true
     totalProgressView.tintColor = Style.Colors.grey
-    
+
     yourProgressLabel.indicatorColor = Style.Colors.FoundationGreen
     yourProgressLabel.text = "Your committed miles"
     teamProgressLabel.indicatorColor = Style.Colors.SpringGreen
     teamProgressLabel.text = "Team's committed miles"
     totalProgressLabel.indicatorColor = Style.Colors.grey
     totalProgressLabel.text = "Uncommitted miles"
-    
+
     editButton.setTitle("Edit", for: .normal)
     editButton.setTitleColor(Style.Colors.blue, for: .normal)
     editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
     disclosureView.delegate = self
-    
+
     contentView.addSubview(cardView) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)
       $0.top.bottom.equalToSuperview().inset(Style.Padding.p12)

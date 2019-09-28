@@ -130,7 +130,8 @@ class CreateTeamViewController: ViewController {
             guard let `self` = self else { return }
             switch result {
             case .success:
-              self.navigationController?.setViewControllers([CreateTeamSuccessViewController(for: self.event)], animated: true)
+              self.navigationController?.setViewControllers([CreateTeamSuccessViewController(for: self.event)],
+                                                            animated: true)
               NotificationCenter.default.post(name: .teamChanged, object: nil)
             case .failed:
               // If creating a team is successful but joining fails - delete it.
