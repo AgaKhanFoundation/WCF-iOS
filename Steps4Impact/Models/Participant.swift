@@ -35,12 +35,19 @@ struct Participant {
   let events: [Event]
   let preferredCause: Cause?
   let records: [Record]
+  let currentEventCommitment: Int?
 
   init?(json: JSON?) {
     guard let json = json else { return nil }
     guard
       let fbid = json["fbid"]?.stringValue
     else { return nil }
+
+    let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
+    formatter.formatOptions = [
+      .withInternetDateTime,
+      .withFractionalSeconds
+    ]
 
     self.fbid = fbid
 
@@ -51,8 +58,17 @@ struct Participant {
     }
     if let events = json["events"]?.arrayValue {
       self.events = events.compactMap({ (json) in Event(json: json) })
+
+      var commitment: Int?
+      for event in events {
+        if formatter.date(from: event["end_date"]?.stringValue ?? "")?.timeIntervalSinceNow.sign == .plus {
+          commitment = event["participant_event"]?["commitment"]?.intValue
+        }
+      }
+      self.currentEventCommitment = commitment
     } else {
       self.events = []
+      self.currentEventCommitment = nil
     }
     if let cause = json["cause"] {
       self.preferredCause = Cause(json: cause)
