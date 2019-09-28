@@ -155,19 +155,26 @@ class ChallengeTeamProgressCell: ConfigurableTableViewCell {
 
   func configure(context: CellContext) {
     guard let context = context as? ChallengeTeamProgressCellContext else { return }
+
     teamLabel.text = context.teamName
     teamLeadLabel.text = "Team Lead: \(context.teamLeadName)"
-    teamProgressView.progress = (Float(context.yourCommittedMiles) + Float(context.teamCommittedMiles)) / Float(context.totalMiles)
+
     yourProgressView.progress = Float(context.yourCommittedMiles) / Float(context.totalMiles)
     yourProgressLabel.miles = context.yourCommittedMiles
+
+    teamProgressView.progress = (Float(context.yourCommittedMiles) + Float(context.teamCommittedMiles)) / Float(context.totalMiles)
     teamProgressLabel.miles = context.teamCommittedMiles
+
     totalProgressLabel.miles = context.totalMiles - context.yourCommittedMiles - context.teamCommittedMiles
+
+    editButton.isHidden = context.isEditingHidden
+
     disclosureView.configure(context: CellDisclosureContext(label: context.disclosureTitle))
 
     imagesStackView.arrangedSubviews.forEach { imagesStackView.removeArrangedSubview($0) }
-    // TODO(samisuteria) switch from colors to urls
-    for color in [UIColor.black, UIColor.red, UIColor.blue, UIColor.green, UIColor.magenta] {
-      let imageView = UIImageView(image: UIImage(color: color))
+    for url in context.teamMemberImageURLS {
+      let imageView = WebImageView()
+      imageView.fadeInImage(imageURL: url, placeHolderImage: Assets.placeholder.image)
       imageView.snp.makeConstraints {
         $0.height.width.equalTo(32)
       }
