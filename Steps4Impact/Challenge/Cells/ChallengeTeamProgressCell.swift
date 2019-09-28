@@ -162,10 +162,10 @@ class ChallengeTeamProgressCell: ConfigurableTableViewCell {
     yourProgressView.progress = Float(context.yourCommittedMiles) / Float(context.totalMiles)
     yourProgressLabel.miles = context.yourCommittedMiles
 
-    teamProgressView.progress = (Float(context.yourCommittedMiles) + Float(context.teamCommittedMiles)) / Float(context.totalMiles)
+    teamProgressView.progress = Float(context.teamCommittedMiles) / Float(context.totalMiles)
     teamProgressLabel.miles = context.teamCommittedMiles
 
-    totalProgressLabel.miles = context.totalMiles - context.yourCommittedMiles - context.teamCommittedMiles
+    totalProgressLabel.miles = context.totalMiles - context.teamCommittedMiles
 
     editButton.isHidden = context.isEditingHidden
 
