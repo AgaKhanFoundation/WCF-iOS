@@ -91,6 +91,7 @@
 		F017B6952276C9C60023E84B /* OnboardingJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017B6942276C9C60023E84B /* OnboardingJourney.swift */; };
 		F017B6972276D0C60023E84B /* OnboardingDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017B6962276D0C60023E84B /* OnboardingDashboard.swift */; };
 		F02C5DB42339D4F70028FDA9 /* CreateTeamSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02C5DB32339D4F70028FDA9 /* CreateTeamSuccessViewController.swift */; };
+		F02C5DB6233FFA820028FDA9 /* DeviceInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02C5DB5233FFA810028FDA9 /* DeviceInformationCell.swift */; };
 		F02FB49E1E9180CE0097481D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49D1E9180CE0097481D /* Preferences.swift */; };
 		F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */; };
 		F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */; };
@@ -231,6 +232,7 @@
 		F017B6942276C9C60023E84B /* OnboardingJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingJourney.swift; sourceTree = "<group>"; };
 		F017B6962276D0C60023E84B /* OnboardingDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDashboard.swift; sourceTree = "<group>"; };
 		F02C5DB32339D4F70028FDA9 /* CreateTeamSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamSuccessViewController.swift; sourceTree = "<group>"; };
+		F02C5DB5233FFA810028FDA9 /* DeviceInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInformationCell.swift; sourceTree = "<group>"; };
 		F02FB49D1E9180CE0097481D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedometerDataProvider.swift; sourceTree = "<group>"; };
 		F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitDataProvider.swift; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 				260BF5B823250414005F0882 /* SettingsTitleCell.swift */,
 				2676B3C92331F18B00CB0A31 /* TeamSettingsHeaderCell.swift */,
 				2676B3CB2331F3D400CB0A31 /* TeamSettingsMemberCell.swift */,
+				F02C5DB5233FFA810028FDA9 /* DeviceInformationCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1003,6 +1006,7 @@
 				260BF58C2324B17D005F0882 /* CALayer.swift in Sources */,
 				26FE244B23222DF400E01B9B /* Cells.swift in Sources */,
 				269E350C1E765F73000726C2 /* StyleGuide.swift in Sources */,
+				F02C5DB6233FFA820028FDA9 /* DeviceInformationCell.swift in Sources */,
 				269E35241E767807000726C2 /* Team.swift in Sources */,
 				260BF5972324C023005F0882 /* CellDisclosureView.swift in Sources */,
 				260BF5B52324FE32005F0882 /* SettingsProfileCell.swift in Sources */,
