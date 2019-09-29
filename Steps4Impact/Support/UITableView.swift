@@ -59,7 +59,8 @@ extension UITableView {
       JoinTeamCell.self,
       ConnectSourceCell.self,
       EmptyLeaderboardCell.self,
-      ChallengeTeamProgressCell.self
+      ChallengeTeamProgressCell.self,
+      ConnectDeviceInformationCell.self
     ].forEach { register($0) }
   }
 

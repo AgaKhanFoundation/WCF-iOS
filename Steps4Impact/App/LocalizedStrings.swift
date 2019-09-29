@@ -272,6 +272,15 @@ This will remove your data linked to the team. You will not be able to participa
         NSLocalizedString("Connected Apps & Devices", comment: "Connected Apps & Devices")
     static let connect: String =
         NSLocalizedString("Connect", comment: "Connect")
+    static let missingDevice: String =
+        NSLocalizedString("Can't see your device on the list?",
+                          comment: "Can't see your device on the list?")
+    static let missingDeviceDetails: String =
+        NSLocalizedString("""
+Fitness trackers such as Jawbone, Garmin, etc. connect to your phone's fitness app. Use the HealthKit option above to track your steps.
+""", comment: """
+Fitness trackers such as Jawbone, Garmin, etc. connect to your phone's fitness app. Use the HealthKit option above to track your steps.
+""")
   }
 
   struct InviteSupporters {
@@ -342,6 +351,9 @@ enum Assets: String {
   case tabbarLeaderboardUnselected = "tabbar-leaderboard-unselected"
   case tabbarNotificationsSelected = "tabbar-notifications-selected"
   case tabbarNotificationsUnselected = "tabbar-notifications-unselected"
+
+  case circumflex = "circumflex"
+  case invertedCircumflex = "inverted-circumflex"
 
   case placeholder
 

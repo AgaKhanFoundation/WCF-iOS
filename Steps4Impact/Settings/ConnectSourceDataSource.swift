@@ -62,7 +62,8 @@ class ConnectSourceDataSource: TableViewDataSource {
                                selected: false,
                                context: ConnectSourceDataSource.Source.fitbit,
                                disabled: true,
-                               isLast: true)
-      ]]
+                               isLast: false),
+      ConnectDeviceInformationCellContext()
+    ]]
   }
 }
