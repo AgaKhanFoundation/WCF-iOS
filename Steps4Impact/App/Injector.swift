@@ -34,7 +34,7 @@ protocol Consumer: AnyObject {}
 struct Injector {
   static func inject<T: Consumer>(consumer: T) -> T {
     if let consumer = consumer as? AKFCausesServiceConsumer {
-      consumer.akfCausesServiceClient = AKFCausesService.shared
+      consumer.akfCausesService = AKFCausesService.shared
     }
 
     return consumer

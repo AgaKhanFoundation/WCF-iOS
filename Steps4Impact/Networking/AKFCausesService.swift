@@ -79,7 +79,7 @@ extension AKFCausesEndPoint {
 }
 
 protocol AKFCausesServiceConsumer: Consumer {
-  var akfCausesServiceClient: AKFCausesServicing? { get set }
+  var akfCausesService: AKFCausesServicing? { get set }
 }
 
 protocol AKFCausesServicing {

@@ -30,7 +30,7 @@
 import UIKit
 
 class DashboardDataSource: TableViewDataSource, AKFCausesServiceConsumer {
-  var akfCausesServiceClient: AKFCausesServicing?
+  var akfCausesService: AKFCausesServicing?
   var cells = [[CellContext]]()
 
   private var name: String = " "
