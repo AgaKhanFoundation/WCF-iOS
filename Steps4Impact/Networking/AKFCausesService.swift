@@ -99,7 +99,7 @@ protocol AKFCausesServicing {
   func createRecord(record: Record, completion: ServiceRequestCompletion?)
   func getSource(source: Int, completion: ServiceRequestCompletion?)
   func getSources(completion: ServiceRequestCompletion?)
-  func joinEvent(fbid: String, eventID: Int, miles: Int, commpletion: ServiceRequestCompletion?)
+  func joinEvent(fbid: String, eventID: Int, miles: Int, completion: ServiceRequestCompletion?)
   func getSourceByName(source: String, completion: ServiceRequestCompletion?)
 }
 
@@ -210,10 +210,10 @@ class AKFCausesService: Service, AKFCausesServicing {
   }
 
   func joinEvent(fbid: String, eventID: Int, miles: Int,
-                        commpletion: ServiceRequestCompletion? = nil) {
+                        completion: ServiceRequestCompletion? = nil) {
     request(.post, endpoint: .commitments,
                    parameters: JSON(["fbid": fbid, "event_id": eventID, "commitment": miles]),
-                   completion: commpletion)
+                   completion: completion)
   }
 }
 
