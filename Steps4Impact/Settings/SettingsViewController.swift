@@ -70,7 +70,7 @@ class SettingsViewController: TableViewController {
       alert.body = Strings.TeamSettings.leaveBody
       alert.add(AlertAction(title: "Cancel", style: .secondary))
       alert.add(AlertAction(title: "Leave", style: .destructive) { [weak self] in
-        AKFCausesService.leaveTeam(fbid: Facebook.id)
+        AKFCausesService.shared.leaveTeam(fbid: Facebook.id)
         self?.reload()
       })
       AppController.shared.present(alert: alert, in: self, completion: nil)
@@ -82,7 +82,7 @@ class SettingsViewController: TableViewController {
       alert.body = Strings.Settings.deleteBody
       alert.add(AlertAction.cancel())
       alert.add(AlertAction(title: "Delete", style: .destructive, shouldDismiss: false) { [weak self] in
-        AKFCausesService.deleteParticipant(fbid: Facebook.id) { (_) in
+        AKFCausesService.shared.deleteParticipant(fbid: Facebook.id) { (_) in
           onMain {
             alert.dismiss(animated: true, completion: nil)
           }

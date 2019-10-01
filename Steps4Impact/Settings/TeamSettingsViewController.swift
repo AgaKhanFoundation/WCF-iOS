@@ -75,7 +75,7 @@ extension TeamSettingsViewController: SettingsActionCellDelegate {
           shareButton: button,
           string: Strings.Share.item)
     case .delete:
-      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+      AKFCausesService.shared.getParticipant(fbid: Facebook.id) { (result) in
         guard let participant = Participant(json: result.response) else { return }
         guard participant.team != nil else { return }
 
@@ -84,7 +84,7 @@ extension TeamSettingsViewController: SettingsActionCellDelegate {
         alert.body = Strings.TeamSettings.deleteTeamBody
         alert.add(AlertAction.cancel())
         alert.add(AlertAction(title: "Delete", style: .destructive, shouldDismiss: false) { [weak self] in
-          AKFCausesService.deleteTeam(team: (participant.team?.id)!) { (_) in
+          AKFCausesService.shared.deleteTeam(team: (participant.team?.id)!) { (_) in
             onMain {
               alert.dismiss(animated: true, completion: nil)
               self?.navigationController?.popViewController(animated: true)

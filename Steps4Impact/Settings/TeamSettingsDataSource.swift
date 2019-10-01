@@ -52,13 +52,13 @@ class TeamSettingsDataSource: TableViewDataSource {
       var members: [(name: String?, image: URL?)] = []
 
       group.enter()
-      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+      AKFCausesService.shared.getParticipant(fbid: Facebook.id) { (result) in
         if let participant = Participant(json: result.response) {
           if let event = participant.currentEvent {
             self?.eventName = event.name
 
             group.enter()
-            AKFCausesService.getEvent(event: event.id!) { (result) in
+            AKFCausesService.shared.getEvent(event: event.id!) { (result) in
               if let event = Event(json: result.response) {
                 capacity = event.teamLimit
               }

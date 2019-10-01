@@ -81,13 +81,13 @@ class CreateTeamViewController: ViewController {
     }
 
     onBackground {
-      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+      AKFCausesService.shared.getParticipant(fbid: Facebook.id) { (result) in
         guard let participant = Participant(json: result.response),
               let event = participant.currentEvent else {
           return
         }
 
-        AKFCausesService.getEvent(event: event.id!) { (result) in
+        AKFCausesService.shared.getEvent(event: event.id!) { (result) in
           self.event = Event(json: result.response)
         }
       }
@@ -113,7 +113,7 @@ class CreateTeamViewController: ViewController {
     navigationItem.rightBarButtonItem?.isEnabled = false
     textField.isEnabled = false
 
-    AKFCausesService.createTeam(name: teamName, lead: Facebook.id) { [weak self] (result) in
+    AKFCausesService.shared.createTeam(name: teamName, lead: Facebook.id) { [weak self] (result) in
       onMain {
         guard let `self` = self else { return }
         self.activityView.stopAnimating()
@@ -125,7 +125,7 @@ class CreateTeamViewController: ViewController {
           return
         }
 
-        AKFCausesService.joinTeam(fbid: Facebook.id, team: teamID) { [weak self] (result) in
+        AKFCausesService.shared.joinTeam(fbid: Facebook.id, team: teamID) { [weak self] (result) in
           onMain {
             guard let `self` = self else { return }
             switch result {
@@ -135,7 +135,7 @@ class CreateTeamViewController: ViewController {
               NotificationCenter.default.post(name: .teamChanged, object: nil)
             case .failed:
               // If creating a team is successful but joining fails - delete it.
-              AKFCausesService.deleteTeam(team: teamID)
+              AKFCausesService.shared.deleteTeam(team: teamID)
               self.showErrorAlert()
             }
           }

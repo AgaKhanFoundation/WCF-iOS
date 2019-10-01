@@ -161,7 +161,7 @@ class AppController {
   }
 
   private func healthCheckServer() {
-    AKFCausesService.performAPIHealthCheck { (result) in
+    AKFCausesService.shared.performAPIHealthCheck { (result) in
       switch result {
       case .failed:
         self.transition(to: .login)

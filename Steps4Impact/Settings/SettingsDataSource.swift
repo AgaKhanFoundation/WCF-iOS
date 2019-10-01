@@ -56,7 +56,7 @@ class SettingsDataSource: TableViewDataSource {
       let group: DispatchGroup = DispatchGroup()
 
       group.enter()
-      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+      AKFCausesService.shared.getParticipant(fbid: Facebook.id) { (result) in
         if let participant = Participant(json: result.response) {
           self?.isOnTeam = participant.team != nil
           // TODO(compnerd) query this from the team's creator field

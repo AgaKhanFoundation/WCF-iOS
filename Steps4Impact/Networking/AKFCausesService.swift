@@ -78,7 +78,32 @@ extension AKFCausesEndPoint {
   }
 }
 
-class AKFCausesService: Service {
+protocol AKFCausesServiceConsumer: Consumer {
+  var akfCausesServiceClient: AKFCausesServicing? { get set }
+}
+
+protocol AKFCausesServicing {
+  func createParticipant(fbid: String, completion: ServiceRequestCompletion?)
+  func getParticipant(fbid: String, completion: ServiceRequestCompletion?)
+  func deleteParticipant(fbid: String, completion: ServiceRequestCompletion?)
+  func createTeam(name: String, lead fbid: String, completion: ServiceRequestCompletion?)
+  func deleteTeam(team: Int, completion: ServiceRequestCompletion?)
+  func getTeams(completion: ServiceRequestCompletion?)
+  func getTeam(team: Int, completion: ServiceRequestCompletion?)
+  func joinTeam(fbid: String, team: Int, completion: ServiceRequestCompletion?)
+  func leaveTeam(fbid: String, completion: ServiceRequestCompletion?)
+  func performAPIHealthCheck(completion: ServiceRequestCompletion?)
+  func getEvent(event: Int, completion: ServiceRequestCompletion?)
+  func getEvents(completion: ServiceRequestCompletion?)
+  func getRecord(record: Int, completion: ServiceRequestCompletion?)
+  func createRecord(record: Record, completion: ServiceRequestCompletion?)
+  func getSource(source: Int, completion: ServiceRequestCompletion?)
+  func getSources(completion: ServiceRequestCompletion?)
+  func joinEvent(fbid: String, eventID: Int, miles: Int, commpletion: ServiceRequestCompletion?)
+  func getSourceByName(source: String, completion: ServiceRequestCompletion?)
+}
+
+class AKFCausesService: Service, AKFCausesServicing {
   public static var shared: AKFCausesService =
       AKFCausesService(server: AppConfig.server)
 
@@ -98,77 +123,77 @@ class AKFCausesService: Service {
     request(method, url: url, parameters: parameters, completion: completion)
   }
 
-  static func createParticipant(fbid: String,
+  func createParticipant(fbid: String,
                                 completion: ServiceRequestCompletion? = nil) {
-    shared.request(.post, endpoint: .participants,
+    request(.post, endpoint: .participants,
                    parameters: JSON(["fbid": fbid]), completion: completion)
   }
 
-  static func getParticipant(fbid: String,
+  func getParticipant(fbid: String,
                              completion: ServiceRequestCompletion? = nil) {
-    shared.request(endpoint: .participant(fbId: fbid), completion: completion)
+    request(endpoint: .participant(fbId: fbid), completion: completion)
   }
 
-  static func deleteParticipant(fbid: String,
+  func deleteParticipant(fbid: String,
                                 completion: ServiceRequestCompletion? = nil) {
-    shared.request(.delete, endpoint: .participant(fbId: fbid), completion: completion)
+    request(.delete, endpoint: .participant(fbId: fbid), completion: completion)
   }
 
-  static func createTeam(name: String, lead fbid: String,
+  func createTeam(name: String, lead fbid: String,
                          completion: ServiceRequestCompletion? = nil) {
-    shared.request(.post, endpoint: .teams,
+    request(.post, endpoint: .teams,
                    parameters: JSON(["name": name, "creator_id": fbid]),
                    completion: completion)
   }
 
-  static func deleteTeam(team: Int, completion: ServiceRequestCompletion? = nil) {
-    shared.request(.delete, endpoint: .team(teamId: team), completion: completion)
+  func deleteTeam(team: Int, completion: ServiceRequestCompletion? = nil) {
+    request(.delete, endpoint: .team(teamId: team), completion: completion)
   }
 
-  static func getTeams(completion: ServiceRequestCompletion? = nil) {
-    shared.request(endpoint: .teams, completion: completion)
+  func getTeams(completion: ServiceRequestCompletion? = nil) {
+    request(endpoint: .teams, completion: completion)
   }
 
-  static func getTeam(team: Int, completion: ServiceRequestCompletion? = nil) {
-    shared.request(endpoint: .team(teamId: team), completion: completion)
+  func getTeam(team: Int, completion: ServiceRequestCompletion? = nil) {
+    request(endpoint: .team(teamId: team), completion: completion)
   }
 
-  static func joinTeam(fbid: String, team: Int,
+  func joinTeam(fbid: String, team: Int,
                        completion: ServiceRequestCompletion? = nil) {
-    shared.request(.patch, endpoint: .participant(fbId: fbid),
+    request(.patch, endpoint: .participant(fbId: fbid),
                    parameters: JSON(["team_id": team]), completion: completion)
   }
 
-  static func leaveTeam(fbid: String, completion: ServiceRequestCompletion? = nil) {
-    shared.request(.patch, endpoint: .participant(fbId: fbid),
+  func leaveTeam(fbid: String, completion: ServiceRequestCompletion? = nil) {
+    request(.patch, endpoint: .participant(fbId: fbid),
                    parameters: JSON(["team_id": nil]), completion: completion)
   }
 
-  static func performAPIHealthCheck(completion: ServiceRequestCompletion? = nil) {
-    shared.request(endpoint: .healthcheck, completion: completion)
+  func performAPIHealthCheck(completion: ServiceRequestCompletion? = nil) {
+    request(endpoint: .healthcheck, completion: completion)
   }
 
-  static func getEvent(event: Int, completion: ServiceRequestCompletion? = nil) {
-    shared.request(endpoint: .event(eventId: event), completion: completion)
+  func getEvent(event: Int, completion: ServiceRequestCompletion? = nil) {
+    request(endpoint: .event(eventId: event), completion: completion)
   }
 
-  static func getEvents(completion: ServiceRequestCompletion? = nil) {
-    shared.request(endpoint: .events, completion: completion)
+  func getEvents(completion: ServiceRequestCompletion? = nil) {
+    request(endpoint: .events, completion: completion)
   }
 
-  static func getRecord(record: Int, completion: ServiceRequestCompletion? = nil) {
-    shared.request(endpoint: .record(recordId: record), completion: completion)
+  func getRecord(record: Int, completion: ServiceRequestCompletion? = nil) {
+    request(endpoint: .record(recordId: record), completion: completion)
   }
 
-  static func createRecord(record: Record,
+  func createRecord(record: Record,
                            completion: ServiceRequestCompletion? = nil) {
     guard let source = record.source?.id else {
-      shared.callback(completion, result: .failed(nil))
+      callback(completion, result: .failed(nil))
       return
     }
 
     let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
-    shared.request(.post, endpoint: .records,
+    request(.post, endpoint: .records,
                    parameters: JSON(["date": formatter.string(from: record.date),
                                      "distance": record.distance,
                                      "participant_id": record.fbid,
@@ -176,33 +201,33 @@ class AKFCausesService: Service {
                    completion: completion)
   }
 
-  static func getSource(source: Int, completion: ServiceRequestCompletion? = nil) {
-    shared.request(endpoint: .source(sourceId: source), completion: completion)
+  func getSource(source: Int, completion: ServiceRequestCompletion? = nil) {
+    request(endpoint: .source(sourceId: source), completion: completion)
   }
 
-  static func getSources(completion: ServiceRequestCompletion? = nil) {
-    shared.request(endpoint: .sources, completion: completion)
+  func getSources(completion: ServiceRequestCompletion? = nil) {
+    request(endpoint: .sources, completion: completion)
   }
 
-  static func joinEvent(fbid: String, eventID: Int, miles: Int,
+  func joinEvent(fbid: String, eventID: Int, miles: Int,
                         commpletion: ServiceRequestCompletion? = nil) {
-    shared.request(.post, endpoint: .commitments,
+    request(.post, endpoint: .commitments,
                    parameters: JSON(["fbid": fbid, "event_id": eventID, "commitment": miles]),
                    completion: commpletion)
   }
 }
 
 extension AKFCausesService {
-  static func getSourceByName(source: String, completion: ServiceRequestCompletion? = nil) {
-    getSources { result in
+  func getSourceByName(source: String, completion: ServiceRequestCompletion? = nil) {
+    getSources { [weak self] result in
       switch result {
       case .failed(let error):
-        shared.callback(completion, result: .failed(error))
+        self?.callback(completion, result: .failed(error))
 
       case .success(let status, let response):
         let source: JSON? =
             response?.arrayValue?.filter { Source(json: $0)?.name == source }.first
-        shared.callback(completion, result: .success(statusCode: status, response: source))
+        self?.callback(completion, result: .success(statusCode: status, response: source))
       }
     }
   }
