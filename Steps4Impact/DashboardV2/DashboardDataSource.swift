@@ -41,7 +41,7 @@ class DashboardDataSource: TableViewDataSource, AKFCausesServiceConsumer, Facebo
   private var eventTimeline: String = " "
 
   enum DashboardContext: Context {
-  case inviteSupporters
+    case inviteSupporters
   }
 
   func reload(completion: @escaping () -> Void) {
