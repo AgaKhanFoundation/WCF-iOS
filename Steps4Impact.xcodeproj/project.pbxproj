@@ -70,6 +70,8 @@
 		269E35291E767AE1000726C2 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35281E767AE1000726C2 /* Collection.swift */; };
 		26ADB5D12343179800317EF6 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADB5D02343179800317EF6 /* Injector.swift */; };
 		26ADB5D323431EA500317EF6 /* Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADB5D223431EA500317EF6 /* Blocks.swift */; };
+		26ADB5D6234322B100317EF6 /* AKFCausesServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADB5D5234322B100317EF6 /* AKFCausesServiceMock.swift */; };
+		26ADB5D8234322BA00317EF6 /* FacebookServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADB5D7234322BA00317EF6 /* FacebookServiceMock.swift */; };
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
 		26E9C0FA233838A700800E8A /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9C0F9233838A700800E8A /* OnboardingPageViewController.swift */; };
 		26E9C0FC2338533E00800E8A /* UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9C0FB2338533E00800E8A /* UIPageViewController.swift */; };
@@ -208,6 +210,8 @@
 		269E35281E767AE1000726C2 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		26ADB5D02343179800317EF6 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		26ADB5D223431EA500317EF6 /* Blocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blocks.swift; sourceTree = "<group>"; };
+		26ADB5D5234322B100317EF6 /* AKFCausesServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKFCausesServiceMock.swift; sourceTree = "<group>"; };
+		26ADB5D7234322BA00317EF6 /* FacebookServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookServiceMock.swift; sourceTree = "<group>"; };
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		26E9C0F9233838A700800E8A /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
 		26E9C0FB2338533E00800E8A /* UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageViewController.swift; sourceTree = "<group>"; };
@@ -361,6 +365,7 @@
 		2611A4ED2335F8350030E77E /* Steps4ImpactTests */ = {
 			isa = PBXGroup;
 			children = (
+				26ADB5D42343227B00317EF6 /* Mocks */,
 				2611A4EE2335F8350030E77E /* Steps4ImpactSpec.swift */,
 				2611A4F62335FCC60030E77E /* Supporting Files */,
 			);
@@ -544,6 +549,15 @@
 				F0320B6B222F671F00EABAD6 /* Widgets */,
 			);
 			path = Steps4Impact;
+			sourceTree = "<group>";
+		};
+		26ADB5D42343227B00317EF6 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				26ADB5D5234322B100317EF6 /* AKFCausesServiceMock.swift */,
+				26ADB5D7234322BA00317EF6 /* FacebookServiceMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		26FE2443232228D300E01B9B /* CommonUI */ = {
@@ -927,7 +941,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26ADB5D6234322B100317EF6 /* AKFCausesServiceMock.swift in Sources */,
 				2611A4EF2335F8350030E77E /* Steps4ImpactSpec.swift in Sources */,
+				26ADB5D8234322BA00317EF6 /* FacebookServiceMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
