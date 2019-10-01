@@ -62,9 +62,9 @@ enum ServiceRequestResult {
   }
 }
 
-class Service {
-  typealias ServiceRequestCompletion = (ServiceRequestResult) -> Void
+typealias ServiceRequestCompletion = (ServiceRequestResult) -> Void
 
+class Service {
   private let server: URLComponents
   private let session: URLSession
 
