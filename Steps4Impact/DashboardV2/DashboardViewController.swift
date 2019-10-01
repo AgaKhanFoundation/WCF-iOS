@@ -42,7 +42,7 @@ class DashboardViewController: TableViewController {
     super.commonInit()
 
     title = Strings.Dashboard.title
-    dataSource = DashboardDataSource()
+    dataSource = Injector.inject(consumer: DashboardDataSource())
     navigationItem.rightBarButtonItem = UIBarButtonItem(
       image: Assets.gear.image,
       style: .plain,

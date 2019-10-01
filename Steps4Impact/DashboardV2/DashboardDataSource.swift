@@ -29,8 +29,9 @@
 
 import UIKit
 
-class DashboardDataSource: TableViewDataSource, AKFCausesServiceConsumer {
+class DashboardDataSource: TableViewDataSource, AKFCausesServiceConsumer, FacebookServiceConsumer {
   var akfCausesService: AKFCausesServicing?
+  var faceboookService: FacebookServicing?
   var cells = [[CellContext]]()
 
   private var name: String = " "
@@ -54,7 +55,7 @@ class DashboardDataSource: TableViewDataSource, AKFCausesServiceConsumer {
     completion()
 
     onBackground { [weak self] in
-      FacebookService.shared.profileImage(for: "me") { (url) in
+      self?.faceboookService?.profileImage(for: "me") { (url) in
         guard let url = url else { return }
 
         self?.imageURL = url
@@ -62,7 +63,7 @@ class DashboardDataSource: TableViewDataSource, AKFCausesServiceConsumer {
         completion()
       }
 
-      FacebookService.shared.getRealName(for: "me") { (name) in
+      self?.faceboookService?.getRealName(for: "me") { (name) in
         self?.name = name ?? "<Facebook Error>"
         self?.configure()
         completion()
