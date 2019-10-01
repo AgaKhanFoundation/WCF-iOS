@@ -63,7 +63,7 @@ class AppController {
     // Select Default View
     if FacebookService.shared.id.isEmpty {
       transition(to: .login)
-    } else if !UserInfo.onboardingComplete {
+    } else if !UserInfo.shared.onboardingComplete {
       transition(to: .onboarding)
     } else {
       transition(to: .navigation)
@@ -100,7 +100,7 @@ class AppController {
 
   @objc
   private func onAKFLoginCompleted(_ sender: UIButton) {
-    if !UserInfo.onboardingComplete {
+    if !UserInfo.shared.onboardingComplete {
       AppController.shared.transition(to: .onboarding)
     } else {
       AppController.shared.transition(to: .navigation)
@@ -119,7 +119,7 @@ class AppController {
   }
 
   func login() {
-    if !UserInfo.onboardingComplete {
+    if !UserInfo.shared.onboardingComplete {
       transition(to: .onboarding)
     } else {
       transition(to: .navigation)
@@ -149,7 +149,7 @@ class AppController {
       case .notDetermined:
         return
       case .sharingAuthorized:
-        UserInfo.pedometerSource = .healthKit
+        UserInfo.shared.pedometerSource = .healthKit
         return
       case .sharingDenied:
         fallthrough
@@ -157,7 +157,7 @@ class AppController {
         break
       }
     }
-    UserInfo.pedometerSource = nil
+    UserInfo.shared.pedometerSource = nil
   }
 
   private func healthCheckServer() {

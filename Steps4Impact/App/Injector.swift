@@ -36,9 +36,13 @@ struct Injector {
     if let consumer = consumer as? AKFCausesServiceConsumer {
       consumer.akfCausesService = AKFCausesService.shared
     }
-    
+
     if let consumer = consumer as? FacebookServiceConsumer {
       consumer.faceboookService = FacebookService.shared
+    }
+
+    if let consumer = consumer as? UserInfoServiceConsumer {
+      consumer.userInfoService = UserInfo.shared
     }
 
     return consumer

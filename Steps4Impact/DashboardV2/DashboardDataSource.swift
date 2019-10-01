@@ -29,9 +29,10 @@
 
 import UIKit
 
-class DashboardDataSource: TableViewDataSource, AKFCausesServiceConsumer, FacebookServiceConsumer {
+class DashboardDataSource: TableViewDataSource, AKFCausesServiceConsumer, FacebookServiceConsumer, UserInfoServiceConsumer {
   var akfCausesService: AKFCausesServicing?
   var faceboookService: FacebookServicing?
+  var userInfoService: UserInfoServicing?
   var cells = [[CellContext]]()
 
   private var name: String = " "
@@ -94,7 +95,7 @@ class DashboardDataSource: TableViewDataSource, AKFCausesServiceConsumer, Facebo
         EmptyActivityCellContext(title: Strings.Dashboard.Activity.title,
                                  body: Strings.Dashboard.Activity.disconnected,
                                  ctaTitle: Strings.Dashboard.Activity.connect)
-    if UserInfo.pedometerSource != nil {
+    if userInfoService?.pedometerSource != nil {
       activityCellContext =
         InfoCellContext(
           title: Strings.Dashboard.Activity.title,

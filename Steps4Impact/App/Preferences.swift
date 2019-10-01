@@ -29,8 +29,26 @@
 
 import Foundation
 
-struct UserInfo {
-  private static let defaults = UserDefaults.standard
+protocol UserInfoServiceConsumer: Consumer {
+  var userInfoService: UserInfoServicing? { get set }
+}
+
+protocol UserInfoServicing {
+  var pedometerSource: Pedometer? { get set }
+  var profileStatsRange: Int { get set }
+  var teamLeaderStatsRange: Int { get set }
+  var onboardingComplete: Bool { get set }
+  var AKFID: String? { get set }
+}
+
+enum Pedometer: String {
+  case healthKit = "UserInfo.Pedometer.HealthKit"
+  // case fitbit
+}
+
+class UserInfo: UserInfoServicing {
+  static let shared = UserInfo()
+  private let defaults = UserDefaults.standard
 
   // Add new keys to store to UserDefaults here
   private static let pedometerKey = "UserInfo.Keys.Pedometer"
@@ -42,44 +60,39 @@ struct UserInfo {
   private static let AKFIDKey: String =
       "UserInfo.Keys.AKFID"
 
-  enum Pedometer: String {
-    case healthKit = "UserInfo.Pedometer.HealthKit"
-    // case fitbit
-  }
-
-  static var pedometerSource: Pedometer? {
+  var pedometerSource: Pedometer? {
     get {
       guard
-        let pedometerRaw = defaults.string(forKey: pedometerKey)
+        let pedometerRaw = defaults.string(forKey: UserInfo.pedometerKey)
       else { return nil }
       return Pedometer(rawValue: pedometerRaw)
     }
     set {
       if let newValue = newValue {
-        defaults.set(newValue.rawValue, forKey: pedometerKey)
+        defaults.set(newValue.rawValue, forKey: UserInfo.pedometerKey)
       } else {
-        defaults.removeObject(forKey: pedometerKey)
+        defaults.removeObject(forKey: UserInfo.pedometerKey)
       }
     }
   }
 
-  static var profileStatsRange: Int {
-    get { return defaults.integer(forKey: profileStatsRangeKey) } // 0 returned by default if none set
-    set { defaults.set(newValue, forKey: profileStatsRangeKey) }
+  var profileStatsRange: Int {
+    get { return defaults.integer(forKey: UserInfo.profileStatsRangeKey) } // 0 returned by default if none set
+    set { defaults.set(newValue, forKey: UserInfo.profileStatsRangeKey) }
   }
 
-  static var teamLeaderStatsRange: Int {
-    get { return defaults.integer(forKey: teamLeaderStatsRangeKey) }
-    set { defaults.set(newValue, forKey: teamLeaderStatsRangeKey) }
+  var teamLeaderStatsRange: Int {
+    get { return defaults.integer(forKey: UserInfo.teamLeaderStatsRangeKey) }
+    set { defaults.set(newValue, forKey: UserInfo.teamLeaderStatsRangeKey) }
   }
 
-  public static var onboardingComplete: Bool {
-    get { return defaults.bool(forKey: OnboardingCompleteKey) }
-    set { defaults.set(newValue, forKey: OnboardingCompleteKey) }
+  var onboardingComplete: Bool {
+    get { return defaults.bool(forKey: UserInfo.OnboardingCompleteKey) }
+    set { defaults.set(newValue, forKey: UserInfo.OnboardingCompleteKey) }
   }
 
-  public static var AKFID: String? {
-    get { return defaults.string(forKey: AKFIDKey) }
-    set { defaults.set(newValue, forKey: AKFIDKey) }
+  var AKFID: String? {
+    get { return defaults.string(forKey: UserInfo.AKFIDKey) }
+    set { defaults.set(newValue, forKey: UserInfo.AKFIDKey) }
   }
 }

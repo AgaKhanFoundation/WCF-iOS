@@ -176,7 +176,7 @@ class OnboardingViewController: ViewController {
 
   @objc
   private func skipTapped() {
-    UserInfo.onboardingComplete = true
+    UserInfo.shared.onboardingComplete = true
     AppController.shared.transition(to: .navigation)
   }
 
@@ -188,7 +188,7 @@ class OnboardingViewController: ViewController {
     case .onboarding(let onboarding):
       switch onboarding {
       case Onboarding.allCases.last:
-        UserInfo.onboardingComplete = true
+        UserInfo.shared.onboardingComplete = true
         AppController.shared.transition(to: .navigation)
       default:
         if let nextState = Onboarding(rawValue: onboarding.rawValue + 1) {

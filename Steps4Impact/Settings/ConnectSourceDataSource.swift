@@ -42,18 +42,18 @@ class ConnectSourceDataSource: TableViewDataSource {
     if HKHealthStore.isHealthDataAvailable() {
       switch HKHealthStore().authorizationStatus(for: ConnectSourceViewController.steps) {
       case .notDetermined, .sharingDenied:
-        UserInfo.pedometerSource = nil
+        UserInfo.shared.pedometerSource = nil
       case .sharingAuthorized:
-        UserInfo.pedometerSource = .healthKit
+        UserInfo.shared.pedometerSource = .healthKit
       @unknown default:
-        UserInfo.pedometerSource = nil
+        UserInfo.shared.pedometerSource = nil
       }
     }
 
     cells = [[
       ConnectSourceCellContext(name: "HealthKit",
                                description: "Connect to Apple HealthKit to track your daily steps.",
-                               selected: UserInfo.pedometerSource == UserInfo.Pedometer.healthKit,
+                               selected: UserInfo.shared.pedometerSource == Pedometer.healthKit,
                                context: ConnectSourceDataSource.Source.healthkit,
                                disabled: false,
                                isLast: false),

@@ -100,7 +100,7 @@ class SettingsDataSource: TableViewDataSource {
                                     context: SettingsContext.connectSource)
   ]]
 
-  if UserInfo.AKFID == nil {
+  if UserInfo.shared.AKFID == nil {
     cells.append([SettingsDisclosureCellContext(title: "Create Aga Khan Foundation Profile",
                                                 isLastItem: true,
                                                 context: SettingsContext.createAKFProfile)])

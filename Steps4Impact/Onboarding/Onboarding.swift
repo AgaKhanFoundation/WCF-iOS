@@ -123,7 +123,7 @@ class Onboarding : UIPageViewController {                                       
 
   @objc
   func skip(sender: UIButton!) {
-    UserInfo.onboardingComplete = true
+    UserInfo.shared.onboardingComplete = true
     AppController.shared.transition(to: .navigation)
   }
 }
@@ -181,7 +181,7 @@ extension Onboarding: UIPageViewControllerDelegate {
       btnContinue.backgroundColor = Style.Colors.green
 
     case count: // complete
-      UserInfo.onboardingComplete = true
+      UserInfo.shared.onboardingComplete = true
       fallthrough
 
     default:

@@ -74,12 +74,12 @@ class ConnectSourceViewController: TableViewController {
         case .notDetermined:
           requestHealthKitAccess()
         case .sharingDenied:
-          UserInfo.pedometerSource = nil
+          UserInfo.shared.pedometerSource = nil
           requestHealthKitUpdate()
         case .sharingAuthorized:
-          UserInfo.pedometerSource = .healthKit
+          UserInfo.shared.pedometerSource = .healthKit
         @unknown default:
-          UserInfo.pedometerSource = nil
+          UserInfo.shared.pedometerSource = nil
         }
       }
     }
@@ -88,7 +88,7 @@ class ConnectSourceViewController: TableViewController {
   private func requestHealthKitAccess() {
     HKHealthStore().requestAuthorization(toShare: [ConnectSourceViewController.steps],
                                          read: [ConnectSourceViewController.steps]) { [weak self] (_, _) in
-      UserInfo.pedometerSource = .healthKit
+      UserInfo.shared.pedometerSource = .healthKit
       onMain {
         self?.reload()
       }
