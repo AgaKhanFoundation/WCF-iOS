@@ -141,7 +141,7 @@ class JoinTeamDataSource: TableViewDataSource {
   private var event: Event?
 
   func reload(completion: @escaping () -> Void) {
-    AKFCausesService.shared.getParticipant(fbid: Facebook.id) { [weak self] (result) in
+    AKFCausesService.shared.getParticipant(fbid: FacebookService.shared.id) { [weak self] (result) in
       guard let participant = Participant(json: result.response),
             let event = participant.currentEvent else {
         return
@@ -195,7 +195,7 @@ class JoinTeamDataSource: TableViewDataSource {
   }
 
   func joinTeam(team: Int, _ completion: @escaping (Bool) -> Void) {
-    AKFCausesService.shared.joinTeam(fbid: Facebook.id, team: team) { (result) in
+    AKFCausesService.shared.joinTeam(fbid: FacebookService.shared.id, team: team) { (result) in
       completion(result.isSuccess)
       if result.isSuccess {
         NotificationCenter.default.post(name: .teamChanged, object: nil)

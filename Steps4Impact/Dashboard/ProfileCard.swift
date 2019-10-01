@@ -134,7 +134,7 @@ extension ProfileCardView: CardView {
     guard let data = context as? ProfileCard else { return }
 
     onBackground {
-      Facebook.profileImage(for: data.fbid) { (url) in
+      FacebookService.shared.profileImage(for: data.fbid) { (url) in
         guard let url = url else { return }
         if let data = try? Data(contentsOf: url) {
           onMain { self.imgImage.image = UIImage(data: data) }
@@ -143,7 +143,7 @@ extension ProfileCardView: CardView {
     }
 
     onBackground {
-      Facebook.getRealName(for: data.fbid) { (name) in
+      FacebookService.shared.getRealName(for: data.fbid) { (name) in
         onMain { self.lblName.text = name }
       }
     }

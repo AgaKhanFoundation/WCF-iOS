@@ -27,7 +27,7 @@
 		260BF5B923250414005F0882 /* SettingsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5B823250414005F0882 /* SettingsTitleCell.swift */; };
 		2611A4EF2335F8350030E77E /* Steps4ImpactSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A4EE2335F8350030E77E /* Steps4ImpactSpec.swift */; };
 		2611A5052335FF290030E77E /* AKFCausesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A5012335FF290030E77E /* AKFCausesService.swift */; };
-		2611A5062335FF290030E77E /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A5022335FF290030E77E /* Facebook.swift */; };
+		2611A5062335FF290030E77E /* FacebookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A5022335FF290030E77E /* FacebookService.swift */; };
 		2611A5072335FF290030E77E /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A5032335FF290030E77E /* JSON.swift */; };
 		2611A5082335FF290030E77E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A5042335FF290030E77E /* Service.swift */; };
 		2611A50D2335FFDC0030E77E /* SponsorshipDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A50C2335FFDC0030E77E /* SponsorshipDataSource.swift */; };
@@ -162,7 +162,7 @@
 		2611A4EE2335F8350030E77E /* Steps4ImpactSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Steps4ImpactSpec.swift; sourceTree = "<group>"; };
 		2611A4F02335F8350030E77E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2611A5012335FF290030E77E /* AKFCausesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKFCausesService.swift; sourceTree = "<group>"; };
-		2611A5022335FF290030E77E /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
+		2611A5022335FF290030E77E /* FacebookService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookService.swift; sourceTree = "<group>"; };
 		2611A5032335FF290030E77E /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		2611A5042335FF290030E77E /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		2611A50C2335FFDC0030E77E /* SponsorshipDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SponsorshipDataSource.swift; sourceTree = "<group>"; };
@@ -379,7 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				2611A5012335FF290030E77E /* AKFCausesService.swift */,
-				2611A5022335FF290030E77E /* Facebook.swift */,
+				2611A5022335FF290030E77E /* FacebookService.swift */,
 				2611A5032335FF290030E77E /* JSON.swift */,
 				2611A5042335FF290030E77E /* Service.swift */,
 			);
@@ -991,7 +991,7 @@
 				2611A5052335FF290030E77E /* AKFCausesService.swift in Sources */,
 				2635EB8B2338AAD400BC50E9 /* EmptyLeaderboardCell.swift in Sources */,
 				2676B3CC2331F3D400CB0A31 /* TeamSettingsMemberCell.swift in Sources */,
-				2611A5062335FF290030E77E /* Facebook.swift in Sources */,
+				2611A5062335FF290030E77E /* FacebookService.swift in Sources */,
 				269E35291E767AE1000726C2 /* Collection.swift in Sources */,
 				260BF5B7232502A9005F0882 /* UIStackView.swift in Sources */,
 				F078D9DA2334453F00EF0BAD /* ConnectedActivityCardCell.swift in Sources */,

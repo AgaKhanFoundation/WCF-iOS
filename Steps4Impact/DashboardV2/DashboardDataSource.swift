@@ -54,7 +54,7 @@ class DashboardDataSource: TableViewDataSource, AKFCausesServiceConsumer {
     completion()
 
     onBackground { [weak self] in
-      Facebook.profileImage(for: "me") { (url) in
+      FacebookService.shared.profileImage(for: "me") { (url) in
         guard let url = url else { return }
 
         self?.imageURL = url
@@ -62,13 +62,13 @@ class DashboardDataSource: TableViewDataSource, AKFCausesServiceConsumer {
         completion()
       }
 
-      Facebook.getRealName(for: "me") { (name) in
+      FacebookService.shared.getRealName(for: "me") { (name) in
         self?.name = name ?? "<Facebook Error>"
         self?.configure()
         completion()
       }
 
-      self?.akfCausesServiceClient?.getParticipant(fbid: Facebook.id) { (result) in
+      self?.akfCausesService?.getParticipant(fbid: FacebookService.shared.id) { (result) in
         guard let participant = Participant(json: result.response) else { return }
 
         // cache the event to avoid selecting again

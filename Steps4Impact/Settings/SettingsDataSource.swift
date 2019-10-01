@@ -56,7 +56,7 @@ class SettingsDataSource: TableViewDataSource {
       let group: DispatchGroup = DispatchGroup()
 
       group.enter()
-      AKFCausesService.shared.getParticipant(fbid: Facebook.id) { (result) in
+      AKFCausesService.shared.getParticipant(fbid: FacebookService.shared.id) { (result) in
         if let participant = Participant(json: result.response) {
           self?.isOnTeam = participant.team != nil
           // TODO(compnerd) query this from the team's creator field
@@ -66,13 +66,13 @@ class SettingsDataSource: TableViewDataSource {
       }
 
       group.enter()
-      Facebook.profileImage(for: "me") { (url) in
+      FacebookService.shared.profileImage(for: "me") { (url) in
         if let url = url { self?.imageURL = url }
         group.leave()
       }
 
       group.enter()
-      Facebook.getRealName(for: "me") { (name) in
+      FacebookService.shared.getRealName(for: "me") { (name) in
         if let name = name { self?.name = name }
         group.leave()
       }

@@ -75,7 +75,7 @@ extension TeamSettingsViewController: SettingsActionCellDelegate {
           shareButton: button,
           string: Strings.Share.item)
     case .delete:
-      AKFCausesService.shared.getParticipant(fbid: Facebook.id) { (result) in
+      AKFCausesService.shared.getParticipant(fbid: FacebookService.shared.id) { (result) in
         guard let participant = Participant(json: result.response) else { return }
         guard participant.team != nil else { return }
 

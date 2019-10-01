@@ -61,7 +61,7 @@ class AppController {
     window?.makeKeyAndVisible()
 
     // Select Default View
-    if Facebook.id.isEmpty {
+    if FacebookService.shared.id.isEmpty {
       transition(to: .login)
     } else if !UserInfo.onboardingComplete {
       transition(to: .onboarding)

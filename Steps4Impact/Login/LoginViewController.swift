@@ -95,13 +95,13 @@ extension LoginViewController: LoginButtonDelegate {
     guard let result = result else { return }
     if result.isCancelled { return }
 
-    AKFCausesService.shared.createParticipant(fbid: Facebook.id)
+    AKFCausesService.shared.createParticipant(fbid: FacebookService.shared.id)
 
     onBackground {
       let group: DispatchGroup = DispatchGroup()
 
       group.enter()
-      AKFCausesService.shared.getParticipant(fbid: Facebook.id) { (result) in
+      AKFCausesService.shared.getParticipant(fbid: FacebookService.shared.id) { (result) in
         if let participant = Participant(json: result.response), participant.currentEvent == nil {
           group.enter()
           AKFCausesService.shared.getEvents { (result) in
@@ -109,7 +109,7 @@ extension LoginViewController: LoginButtonDelegate {
                 let eid = events.first?.id {
               group.enter()
               // TODO(compnerd) do not hard code the distance here (we should push this to the backend to provide)
-              AKFCausesService.shared.joinEvent(fbid: Facebook.id, eventID: eid, miles: 500) { (_) in
+              AKFCausesService.shared.joinEvent(fbid: FacebookService.shared.id, eventID: eid, miles: 500) { (_) in
                 group.leave()
               }
             }

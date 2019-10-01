@@ -52,7 +52,7 @@ class TeamSettingsDataSource: TableViewDataSource {
       var members: [(name: String?, image: URL?)] = []
 
       group.enter()
-      AKFCausesService.shared.getParticipant(fbid: Facebook.id) { (result) in
+      AKFCausesService.shared.getParticipant(fbid: FacebookService.shared.id) { (result) in
         if let participant = Participant(json: result.response) {
           if let event = participant.currentEvent {
             self?.eventName = event.name
@@ -73,13 +73,13 @@ class TeamSettingsDataSource: TableViewDataSource {
 
             for (index, member) in team.members.enumerated() {
               group.enter()
-              Facebook.getRealName(for: member.fbid) { (name) in
+              FacebookService.shared.getRealName(for: member.fbid) { (name) in
                 members[index].name = name
                 group.leave()
               }
 
               group.enter()
-              Facebook.profileImage(for: member.fbid) { (url) in
+              FacebookService.shared.profileImage(for: member.fbid) { (url) in
                 members[index].image = url
                 group.leave()
               }

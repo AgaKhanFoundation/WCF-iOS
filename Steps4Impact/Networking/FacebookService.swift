@@ -64,14 +64,26 @@ private enum FriendType {
   case appUsers
 }
 
-class Facebook {
-  typealias EnumerationCallback = (_: Friend) -> Void
+protocol FacebookServiceConsumer: Consumer {
+  var faceboookService: FacebookServicing? { get set }
+}
 
-  static var id: String {                                                       // swiftlint:disable:this identifier_name line_length
+protocol FacebookServicing {
+  var id: String { get }
+  func getRealName(for fbid: String, completion: @escaping ReturnBlock<String?>)
+  func getLocation(completion: @escaping ReturnBlock<String?>)
+  func profileImage(for fbid: String, completion: @escaping ReturnBlock<URL?>)
+}
+
+class FacebookService: FacebookServicing {
+  typealias EnumerationCallback = (_: Friend) -> Void
+  static let shared = FacebookService()
+  
+  var id: String {                                                       // swiftlint:disable:this identifier_name line_length
     return AccessToken.current?.userID ?? ""
   }
 
-  static func getRealName(for fbid: String,
+  func getRealName(for fbid: String,
                           completion: @escaping (_: String?) -> Void) {
     let request: GraphRequest =
         GraphRequest(graphPath: fbid, parameters: ["fields" : "name"],          // swiftlint:disable:this colon
@@ -88,7 +100,7 @@ class Facebook {
     }
   }
 
-  static func getLocation(completion: @escaping (_: String?) -> Void) {
+  func getLocation(completion: @escaping (_: String?) -> Void) {
     let request: GraphRequest =
         GraphRequest(graphPath: "me", parameters: ["fields" : "location"],      // swiftlint:disable:this colon
           tokenString: AccessToken.current?.tokenString, version: nil,
@@ -104,7 +116,7 @@ class Facebook {
     }
   }
 
-  static func profileImage(for fbid: String,
+  func profileImage(for fbid: String,
                            completion: @escaping (_: URL?) -> Void) {
     let request: GraphRequest =
         GraphRequest(graphPath: "/\(fbid)/picture?type=large&redirect=false",

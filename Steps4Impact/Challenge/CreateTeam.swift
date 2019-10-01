@@ -81,7 +81,7 @@ class CreateTeamViewController: ViewController {
     }
 
     onBackground {
-      AKFCausesService.shared.getParticipant(fbid: Facebook.id) { (result) in
+      AKFCausesService.shared.getParticipant(fbid: FacebookService.shared.id) { (result) in
         guard let participant = Participant(json: result.response),
               let event = participant.currentEvent else {
           return
@@ -113,7 +113,7 @@ class CreateTeamViewController: ViewController {
     navigationItem.rightBarButtonItem?.isEnabled = false
     textField.isEnabled = false
 
-    AKFCausesService.shared.createTeam(name: teamName, lead: Facebook.id) { [weak self] (result) in
+    AKFCausesService.shared.createTeam(name: teamName, lead: FacebookService.shared.id) { [weak self] (result) in
       onMain {
         guard let `self` = self else { return }
         self.activityView.stopAnimating()
@@ -125,7 +125,7 @@ class CreateTeamViewController: ViewController {
           return
         }
 
-        AKFCausesService.shared.joinTeam(fbid: Facebook.id, team: teamID) { [weak self] (result) in
+        AKFCausesService.shared.joinTeam(fbid: FacebookService.shared.id, team: teamID) { [weak self] (result) in
           onMain {
             guard let `self` = self else { return }
             switch result {

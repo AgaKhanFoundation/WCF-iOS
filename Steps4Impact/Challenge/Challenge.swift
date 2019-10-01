@@ -110,7 +110,7 @@ class ChallengeDataSource: TableViewDataSource {
     configure()
     completion()
 
-    AKFCausesService.shared.getParticipant(fbid: Facebook.id) { [weak self] (result) in
+    AKFCausesService.shared.getParticipant(fbid: FacebookService.shared.id) { [weak self] (result) in
       self?.participant = Participant(json: result.response)
 
       self?.configure()
