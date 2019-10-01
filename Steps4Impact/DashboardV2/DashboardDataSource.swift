@@ -29,7 +29,8 @@
 
 import UIKit
 
-class DashboardDataSource: TableViewDataSource {
+class DashboardDataSource: TableViewDataSource, AKFCausesServiceConsumer {
+  var akfCausesServiceClient: AKFCausesServicing?
   var cells = [[CellContext]]()
 
   private var name: String = " "
@@ -67,7 +68,7 @@ class DashboardDataSource: TableViewDataSource {
         completion()
       }
 
-      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+      self?.akfCausesServiceClient?.getParticipant(fbid: Facebook.id) { (result) in
         guard let participant = Participant(json: result.response) else { return }
 
         // cache the event to avoid selecting again
