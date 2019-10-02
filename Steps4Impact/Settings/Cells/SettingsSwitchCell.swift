@@ -80,6 +80,7 @@ class SettingsSwitchCell: ConfigurableTableViewCell {
     contentView.addLayoutGuide(layoutGuide) {
       $0.top.bottom.equalToSuperview().inset(Style.Padding.p16)
       $0.leading.equalToSuperview().inset(Style.Padding.p32)
+      $0.width.equalToSuperview().multipliedBy(0.6)
     }
 
     contentView.addSubview(titleLabel) {
