@@ -63,8 +63,8 @@ class ConnectSourceViewController: TableViewController {
     case .fitbit:
       // TODO(compnerd) support this
       let alert = AlertViewController()
-      alert.title = "Error"
-      alert.body = "Fitbit is currently not available"
+      alert.title = "Unavailable"
+      alert.body = "Fitbit will be able available soon."
       alert.add(.okay())
       AppController.shared.present(alert: alert, in: self, completion: nil)
     case .healthkit:
