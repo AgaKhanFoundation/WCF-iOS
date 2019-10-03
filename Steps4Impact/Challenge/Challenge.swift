@@ -168,6 +168,7 @@ class ChallengeDataSource: TableViewDataSource {
 
     let formatter: DateFormatter = DateFormatter()
     formatter.dateStyle = .medium
+    formatter.timeZone = TimeZone(abbreviation: "GMT")
 
     cells = [[
       InfoCellContext(
