@@ -223,7 +223,7 @@ extension JSON {
     case .array(let array):
       return array.compactMap({ $0.foundationTyped })
     case .dictionary(let dictionary):
-      var dict: [String:Any] = [:]                                              // swiftlint:disable:this colon
+      var dict: [String:Any?] = [:]                                              // swiftlint:disable:this colon
       for (key, value) in dictionary {
         dict[key] = value.foundationTyped
       }

@@ -69,9 +69,14 @@ class SettingsViewController: TableViewController {
       alert.title = Strings.TeamSettings.leave
       alert.body = Strings.TeamSettings.leaveBody
       alert.add(AlertAction(title: "Cancel", style: .secondary))
-      alert.add(AlertAction(title: "Leave", style: .destructive) { [weak self] in
-        AKFCausesService.leaveTeam(fbid: Facebook.id)
-        self?.reload()
+      alert.add(AlertAction(title: "Leave", style: .destructive, shouldDismiss: false) { [weak self] in
+        AKFCausesService.leaveTeam(fbid: Facebook.id) { (_) in
+          NotificationCenter.default.post(name: .teamChanged, object: nil)
+          onMain {
+            alert.dismiss(animated: true, completion: nil)
+          }
+          self?.reload()
+        }
       })
       AppController.shared.present(alert: alert, in: self, completion: nil)
     case .logout:
