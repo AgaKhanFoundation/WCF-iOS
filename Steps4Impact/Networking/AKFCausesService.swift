@@ -190,6 +190,13 @@ class AKFCausesService: Service {
                    parameters: JSON(["fbid": fbid, "event_id": eventID, "commitment": miles]),
                    completion: commpletion)
   }
+
+  static func setCommitment(for fbid: String, andEvent event: Int, toSteps steps: Int,
+                            completion: ServiceRequestCompletion? = nil) {
+    shared.request(.patch, endpoint: .commitments,
+                   parameters: JSON(["fbid": fbid, "event_id": event, "commitment": steps]),
+                   completion: completion)
+  }
 }
 
 extension AKFCausesService {
