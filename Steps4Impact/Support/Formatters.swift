@@ -46,6 +46,7 @@ struct DataFormatters {
     let formatter: DateIntervalFormatter = DateIntervalFormatter()
     formatter.dateStyle = .medium
     formatter.timeStyle = .none
+    formatter.timeZone = TimeZone(abbreviation: "GMT")
     return formatter.string(from: value.start, to: value.end)
   }
 }
