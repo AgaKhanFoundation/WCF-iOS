@@ -1,0 +1,145 @@
+/**
+* Copyright © 2019 Aga Khan Foundation
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions are met:
+*
+* 1. Redistributions of source code must retain the above copyright notice,
+*    this list of conditions and the following disclaimer.
+*
+* 2. Redistributions in binary form must reproduce the above copyright notice,
+*    this list of conditions and the following disclaimer in the documentation
+*    and/or other materials provided with the distribution.
+*
+* 3. The name of the author may not be used to endorse or promote products
+*    derived from this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE AUTHOR "AS IS" AND ANY EXPRESS OR IMPLIED
+* WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+* EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+* SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+* PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+* OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+* WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+* OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+* ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+**/
+
+// Application
+"application.name" = "Steps4Impact";
+
+// Navigation
+"navigation.dashboard" = "डैशबोर्ड";
+"navigation.challenge" = "चुनौती";
+"navigation.leaderboard" = "लीडरबोर्ड";
+"navigation.notifications" = "सूचनाएं";
+
+// AKFCausesServiceError
+"AKFCausesServiceError.unableToConnect" = "Unable to access AKF Causes at this time.  Please try again later.";
+
+// Login
+"Login.conditions" = "Terms and Conditions Apply";
+
+// Welcome
+"Welcome.title" = "Welcome to Steps for Change!";
+"Welcome.thanks" = "Thanks for registering!\nClick continue for a quick tour of the app";
+"Welcome.continue" = "Continue";
+"Welcome.skip" = "Skip";
+
+// Onboarding
+"Onboarding.createTeam" = "Create a team or join an existing team";
+"Onboarding.journey" = "Complete a challenge while reaching milestones";
+"Onboarding.dashboard" = "Track your progress using the dashboard";
+"Onboarding.continue" = "Continue";
+"Onboarding.begin" = "Let's Begin!";
+
+// Dashboard
+"Dashboard.title" = "Dashboard";
+"Dashboard.badges" = "View Badges";
+"Dashboard.Activity.title" = "Activity";
+"Dashboard.Activity.disconnected" = "No activity yet. You will need to connect a fitness tracker to track your miles";
+"Dashboard.Activity.connect" = "Connect an App or Device";
+"Dashboard.ChallengeProgress.title" = "Challenge Progress";
+"Dashboard.ChallengeProgress.unavailable" = "No data available. You will be able to see your team's progress once the challenge has started";
+"Dashboard.FundraisingProgress.title" = "Fundraising Progress";
+"Dashboard.FundraisingProgress.unavailable" = "No data available. You will be able to see your progress once the challenge has started.";
+"Dashboard.FundraisingProgress.invite" = "Invite supporters to pledge";
+
+// Badges
+"Badges.title" = "Badges";
+"Badges.empty" = "Come back often to check on what badges you've earned";
+
+// ProfileCard
+"ProfileCard.challengeTimeline" = "Challenge Timeline";
+"ProfileCard.team" = "Team:";
+
+// ActivityCard
+"ActivityCard.title" = "Your Miles Walked";
+"ActivityCard.joinChallenge" = "Join Challenge";
+"ActivityCard.daily" = "Daily";
+"ActivityCard.weekly" = "Weekly";
+"ActivityCard.total" = "Total";
+
+// FundraisingCard
+"FundraisingCard.title" = "Fundraising Progress";
+"FundraisingCard.inviteSupporters" = "Invite Supporters";
+"FundraisingCard.viewSupporters" = "View Supporters \u{203a}";
+
+// Challenge
+"Challenge.title" = "Challenge";
+"Challenge.CreateTeam.title" = "Create a Team";
+"Challenge.CreateTeam.create" = "Create";
+"Challenge.CreateTeam.formTitle" = "Your Team Name";
+"Challenge.CreateTeam.formPlaceholder" = "My Awesome Team";
+"Challenge.CreateTeam.errorTitle" = "Error";
+"Challenge.CreateTeam.errorBody" = "Could not create team - perhaps try a different name";
+"Challenge.CreateTeam.successTitle" = "Your team has been created!";
+"Challenge.CreateTeam.continue" = "Continue";
+"Challenge.JoinTeam.title" = "Join a Team";
+"Challenge.TeamNeededCard.title" = "You will need a Team";
+"Challenge.TeamNeededCard.body" = "Participating in a challenge is always more fun with friends";
+"Challenge.TeamNeededCard.primaryButton" = "Create a New Team";
+"Challenge.TeamNeededCard.secondaryButton" = "Join an Existing Team";
+
+// Leaderboard
+"Leaderboard.title" = "Leaderboard";
+"Leaderboard.empty" = "Check back for global team rankings.";
+
+// ChallengeCard
+"ChallengeCard.title" = "Challenge Progress";
+"ChallengeCard.joinChallenge" = "Join Challenge";
+
+// Notifications
+"Notifications.title" = "Notifications";
+"Notifications.youHaveNoNotifications" = "You don't have any notifications right now.";
+
+// Settings
+"Settings.title" = "Settings";
+"Settings.delete" = "Delete Account?";
+"Settings.deleteBody" = "You will be removed from any ongoing challenges and your mile progress will be lost.";
+
+// TeamSettings
+"TeamSettings.title" = "Team";
+"TeamSettings.edit" = "Edit";
+"TeamSettings.leave" = "Leave Team?";
+"TeamSettings.leaveBody" = "This will remove your data linked to the team. You will not be able to participate in the challenge.";
+"TeamSettings.deleteTeam" = "Delete Team?";
+"TeamSettings.deleteTeamBody" = "This will remove all data and team members from the challenge.";
+
+// ConnectSource
+"ConnectSource.title" = "Connected Apps & Devices";
+"ConnectSource.connect" = "Connect";
+"ConnectSource.missingDevice" = "Can't see your device on the list?";
+"ConnectSource.missingDeviceDetails" = "Fitness trackers such as Jawbone, Garmin, etc. connect to your phone's fitness app. Use the HealthKit option above to track your steps.";
+
+// InviteSupporters
+"InviteSupporters.title" = "Invite Supporters";
+"InviteSupporters.getSupported" = "Get sponsored by your friends. When your friends sign up to support you, you will raise money for every mile you move. Proceeds will be donated to AKF.";
+"InviteSupporters.inviteSupporters" = "Invite Supporters to Pledge";
+"InviteSupporters.request" = "Want to join me in supporting a good cause? I am participating in Aga Khan Foundation's (AKF) steps4impact challenge. You can support me by pledging http://www.akfusa.org/steps4impactpledge.\nAll proceeds will be donated to AKF. Learn about AKF https://www.akfusa.org/ Thank you for your support.";
+
+// Share
+"Share.item" = "Hey! I  created a team for the AKF Walk Challenge on the new Aga Khan Foundation app, Steps4Impact, and I want you on my team!\nDownload the app here:\nhttp://rebrand.ly/steps4impact-iphone\nhttp://rebrand.ly/steps4impact-android";
+
