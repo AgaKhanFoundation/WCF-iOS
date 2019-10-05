@@ -36,20 +36,11 @@ struct Team {
   let creator: String?
 
   init?(json: JSON?) {
-    guard
-      let json = json,
-      let name = json["name"]?.stringValue
-    else { return nil }
+    guard let json = json else { return nil }
 
     self.id = json["id"]?.intValue
-    self.name = name
-
-    if let participants = json["participants"]?.arrayValue {
-      self.members = participants.compactMap { Participant(json: $0) }
-    } else {
-      self.members = []
-    }
-
+    self.name = json["name"]?.stringValue
+    self.members = json["participants"]?.arrayValue?.compactMap { Participant(json: $0) } ?? []
     // FIXME(compnerd) the backend sends the fbid as an integer causing truncation
     self.creator = self.members.first?.fbid ?? nil
   }
