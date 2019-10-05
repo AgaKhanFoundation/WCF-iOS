@@ -112,9 +112,9 @@ class DashboardDataSource: TableViewDataSource {
         title: Strings.Dashboard.ChallengeProgress.title,
         body: Strings.Dashboard.ChallengeProgress.unavailable),
       DisclosureCellContext(
-        title: Strings.Dashboard.FundrasingProgress.title,
-        body: Strings.Dashboard.FundrasingProgress.unavailable,
-        disclosureTitle: Strings.Dashboard.FundrasingProgress.invite,
+        title: Strings.Dashboard.FundraisingProgress.title,
+        body: Strings.Dashboard.FundraisingProgress.unavailable,
+        disclosureTitle: Strings.Dashboard.FundraisingProgress.invite,
         context: DashboardContext.inviteSupporters)
     ]]
   }

@@ -146,8 +146,8 @@ class CreateTeamViewController: ViewController {
 
   private func showErrorAlert() {
     let alert = AlertViewController()
-    alert.title = Strings.Challenge.CreateTeam.ErrorAlert.title
-    alert.body = Strings.Challenge.CreateTeam.ErrorAlert.body
+    alert.title = Strings.Challenge.CreateTeam.errorTitle
+    alert.body = Strings.Challenge.CreateTeam.errorBody
     alert.add(.okay())
     AppController.shared.present(alert: alert, in: self, completion: nil)
   }

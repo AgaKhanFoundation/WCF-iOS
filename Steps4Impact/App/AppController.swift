@@ -167,7 +167,7 @@ class AppController {
         self.transition(to: .login)
         if let view = self.window?.rootViewController {
           let alert = AlertViewController()
-          alert.title = Strings.Application.unableToConnect
+          alert.title = Strings.AKFCausesServiceError.unableToConnect
           alert.add(.okay())
           self.present(alert: alert, in: view, completion: nil)
         }
