@@ -44,6 +44,7 @@ class TeamSettingsDataSource: TableViewDataSource {
   private var teamName: String = " "
   private var eventName: String = " "
   private var team: (members: [(name: String?, image: URL?)], capacity: Int) = ([], 0)
+  private var isLead: Bool = false
 
   public weak var delegate: TeamSettingsDataSourceDelegate?
 
@@ -60,6 +61,8 @@ class TeamSettingsDataSource: TableViewDataSource {
       group.enter()
       AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
         if let participant = Participant(json: result.response) {
+          self?.delegate?.updated(team: participant.team)
+
           if let event = participant.currentEvent {
             self?.eventName = event.name
 
@@ -72,7 +75,8 @@ class TeamSettingsDataSource: TableViewDataSource {
             }
           }
 
-          self?.delegate?.updated(team: participant.team)
+          self?.isLead = participant.team?.creator == Facebook.id
+
           if let team = participant.team {
             if let name = team.name { self?.teamName = name }
 
@@ -105,26 +109,33 @@ class TeamSettingsDataSource: TableViewDataSource {
   }
 
   func configure() {
-    var members: [[CellContext]] = []
-    for (index, member) in self.team.members.enumerated() {
-      members.append([TeamSettingsMemberCellContext(count: index + 1,
-                                                    imageURL: member.image,
-                                                    name: member.name ?? "<Facebook Error>",
-                                                    isLastItem: index == self.team.members.count - 1)])
-    }
-
     cells = [[
       TeamSettingsHeaderCellContext(team: self.teamName, event: self.eventName),
       SettingsTitleCellContext(title: "Team Members")
-    ]] + members + [[
+    ]]
+
+    for (index, member) in self.team.members.enumerated() {
+      cells.append([
+        TeamSettingsMemberCellContext(count: index + 1, imageURL: member.image,
+                                      name: member.name ?? "",
+                                      isLastItem: index == self.team.members.count - 1)
+      ])
+    }
+
+    cells.append([
       SettingsActionCellContext(
         title: "Invite \(self.team.capacity - self.team.members.count) new team members",
         buttonStyle: .plain,
-        context: TeamSettingsContext.invite),
-      SettingsActionCellContext(
-        title: "Delete Team",
-        buttonStyle: .destructive,
-        context: TeamSettingsContext.delete)
-    ]]
+        context: TeamSettingsContext.invite)
+    ])
+
+    if isLead {
+      cells.append([
+        SettingsActionCellContext(
+          title: "Delete Team",
+          buttonStyle: .destructive,
+          context: TeamSettingsContext.delete)
+      ])
+    }
   }
 }
