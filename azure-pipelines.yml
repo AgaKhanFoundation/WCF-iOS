@@ -20,8 +20,8 @@ steps:
 
 - task: Xcode@5
   inputs:
-    actions: 'test'
-    configuration: 'Release'
+    actions: 'build'
+    configuration: 'Debug'
     sdk: 'iphonesimulator'
     xcWorkspacePath: 'Steps4Impact.xcworkspace'
     scheme: 'Steps4Impact'
