@@ -14,9 +14,11 @@ target 'Steps4Impact' do
   pod 'FirebaseMessaging', '~> 4.1.4'
   pod 'AppCenter', '~> 2.3.0'
   pod 'SDWebImage', '~> 5.1.1'
-end
+  pod 'OAuthSwift', '~> 2.0.0'
 
-target 'Steps4ImpactTests' do
-  pod 'Quick', '~> 2.2.0'
-  pod 'Nimble', '~> 8.0.4'
+  target 'Steps4ImpactTests' do
+    inherit! :search_paths
+    pod 'Quick', '~> 2.2.0'
+    pod 'Nimble', '~> 8.0.4'
+  end
 end
