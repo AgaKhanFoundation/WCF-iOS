@@ -6,6 +6,12 @@
 trigger:
 - master
 
+pr:
+  autoCancel: true
+  branches:
+    include:
+    - '*'
+
 pool:
   vmImage: 'macOS-10.14'
 
