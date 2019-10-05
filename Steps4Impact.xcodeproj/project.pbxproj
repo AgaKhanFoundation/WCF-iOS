@@ -38,6 +38,9 @@
 		262418342336EA5700454EF2 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262418332336EA5700454EF2 /* OnboardingViewController.swift */; };
 		2635EB8B2338AAD400BC50E9 /* EmptyLeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2635EB8A2338AAD400BC50E9 /* EmptyLeaderboardCell.swift */; };
 		2635EB8E2338B57800BC50E9 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2635EB8D2338B57800BC50E9 /* NotificationsViewController.swift */; };
+		26388A682348293700C83AC2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 26388A6A2348293700C83AC2 /* Localizable.strings */; };
+		26388A6F23482D2300C83AC2 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26388A6E23482D2300C83AC2 /* Assets.swift */; };
+		26388A7123492F5600C83AC2 /* LocalizationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26388A7023492F5600C83AC2 /* LocalizationSpec.swift */; };
 		263EF52E232A105C00A00414 /* TeamSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263EF52D232A105C00A00414 /* TeamSettingsViewController.swift */; };
 		263EF530232A106400A00414 /* TeamSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263EF52F232A106400A00414 /* TeamSettingsDataSource.swift */; };
 		265DE5642332BDAA009DDA5A /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5632332BDAA009DDA5A /* WebImageView.swift */; };
@@ -65,7 +68,7 @@
 		269E35091E765F24000726C2 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35081E765F24000726C2 /* UIView.swift */; };
 		269E350C1E765F73000726C2 /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E350B1E765F73000726C2 /* StyleGuide.swift */; };
 		269E350E1E76664F000726C2 /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E350D1E76664F000726C2 /* Async.swift */; };
-		269E35181E7669FB000726C2 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35171E7669FB000726C2 /* LocalizedStrings.swift */; };
+		269E35181E7669FB000726C2 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35171E7669FB000726C2 /* Strings.swift */; };
 		269E35241E767807000726C2 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35231E767807000726C2 /* Team.swift */; };
 		269E35291E767AE1000726C2 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35281E767AE1000726C2 /* Collection.swift */; };
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
@@ -82,7 +85,7 @@
 		7A7C5B5BCE64FE425FE48D17 /* Pods_Steps4ImpactTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644A965BB27AB6174A19603E /* Pods_Steps4ImpactTests.framework */; };
 		885A50211F181C0FFD544AAA /* Pods_Steps4Impact.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E04420449F9B74A2501CBBEA /* Pods_Steps4Impact.framework */; };
 		C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */; };
-		F00403191EC3FB7D005E6F10 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		F00403191EC3FB7D005E6F10 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004031C1EC52772005E6F10 /* AppConfig.swift */; };
 		F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */; };
 		F017B68E227686A60023E84B /* OnboardingWelcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017B68D227686A60023E84B /* OnboardingWelcome.swift */; };
@@ -173,6 +176,10 @@
 		262BE89D2338817D0087DDDF /* Steps4Impact.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Steps4Impact.entitlements; sourceTree = "<group>"; };
 		2635EB8A2338AAD400BC50E9 /* EmptyLeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyLeaderboardCell.swift; sourceTree = "<group>"; };
 		2635EB8D2338B57800BC50E9 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		26388A692348293700C83AC2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		26388A6B23482BF200C83AC2 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		26388A6E23482D2300C83AC2 /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		26388A7023492F5600C83AC2 /* LocalizationSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationSpec.swift; sourceTree = "<group>"; };
 		263EF52D232A105C00A00414 /* TeamSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsViewController.swift; sourceTree = "<group>"; };
 		263EF52F232A106400A00414 /* TeamSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsDataSource.swift; sourceTree = "<group>"; };
 		265DE5632332BDAA009DDA5A /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
@@ -202,7 +209,7 @@
 		269E35081E765F24000726C2 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		269E350B1E765F73000726C2 /* StyleGuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
 		269E350D1E76664F000726C2 /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
-		269E35171E7669FB000726C2 /* LocalizedStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
+		269E35171E7669FB000726C2 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		269E35231E767807000726C2 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		269E35281E767AE1000726C2 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -360,6 +367,7 @@
 		2611A4ED2335F8350030E77E /* Steps4ImpactTests */ = {
 			isa = PBXGroup;
 			children = (
+				26388A7023492F5600C83AC2 /* LocalizationSpec.swift */,
 				2611A4EE2335F8350030E77E /* Steps4ImpactSpec.swift */,
 				2611A4F62335FCC60030E77E /* Supporting Files */,
 			);
@@ -407,6 +415,7 @@
 		2611A50B2335FF930030E77E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				26388A6A2348293700C83AC2 /* Localizable.strings */,
 				262BE89D2338817D0087DDDF /* Steps4Impact.entitlements */,
 				269E34D51E765828000726C2 /* Info.plist */,
 				269E34EE1E7658F2000726C2 /* Launch.storyboard */,
@@ -421,11 +430,12 @@
 				F004031C1EC52772005E6F10 /* AppConfig.swift */,
 				269E34E91E7658E6000726C2 /* AppController.swift */,
 				269E34C91E765828000726C2 /* AppDelegate.swift */,
-				269E35171E7669FB000726C2 /* LocalizedStrings.swift */,
+				269E35171E7669FB000726C2 /* Strings.swift */,
 				F0A0A5FD2210EC3600F20315 /* Navigation.swift */,
 				F02FB49D1E9180CE0097481D /* Preferences.swift */,
 				269E350B1E765F73000726C2 /* StyleGuide.swift */,
 				2611A50C2335FFDC0030E77E /* SponsorshipDataSource.swift */,
+				26388A6E23482D2300C83AC2 /* Assets.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -769,6 +779,7 @@
 			knownRegions = (
 				en,
 				Base,
+				hi,
 			);
 			mainGroup = 269E34BD1E765828000726C2;
 			productRefGroup = 269E34C71E765828000726C2 /* Products */;
@@ -795,6 +806,7 @@
 			files = (
 				269E34D11E765828000726C2 /* Assets.xcassets in Resources */,
 				269E34FD1E7658F2000726C2 /* Launch.storyboard in Resources */,
+				26388A682348293700C83AC2 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -927,6 +939,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2611A4EF2335F8350030E77E /* Steps4ImpactSpec.swift in Sources */,
+				26388A7123492F5600C83AC2 /* LocalizationSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -958,7 +971,7 @@
 				26FE24472322295300E01B9B /* ViewController.swift in Sources */,
 				F06254C11ECD5D1700168DD6 /* Participant.swift in Sources */,
 				F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */,
-				F00403191EC3FB7D005E6F10 /* BuildFile in Sources */,
+				F00403191EC3FB7D005E6F10 /* (null) in Sources */,
 				F0A992D61EABF037001621A6 /* Formatters.swift in Sources */,
 				2622C09023249A4B0092B145 /* UIRefreshControl.swift in Sources */,
 				26FE244D23222E8500E01B9B /* Context.swift in Sources */,
@@ -1016,7 +1029,7 @@
 				260BF5A52324D914005F0882 /* Button.swift in Sources */,
 				260BF5AB2324F805005F0882 /* CGFloat.swift in Sources */,
 				265DE5662332D663009DDA5A /* BadgesViewController.swift in Sources */,
-				269E35181E7669FB000726C2 /* LocalizedStrings.swift in Sources */,
+				269E35181E7669FB000726C2 /* Strings.swift in Sources */,
 				F078D9D52333EC3000EF0BAD /* AKFLogin.swift in Sources */,
 				F0F8EDD92210C7FA00321A6D /* ChallengeCard.swift in Sources */,
 				2676B3CA2331F18B00CB0A31 /* TeamSettingsHeaderCell.swift in Sources */,
@@ -1038,6 +1051,7 @@
 				F0CBDA521EA6FF1D00BB34F1 /* Sponsor.swift in Sources */,
 				F0D2378C23387BC100F41DB4 /* InviteSupportersViewController.swift in Sources */,
 				269E35071E765C68000726C2 /* LoginViewController.swift in Sources */,
+				26388A6F23482D2300C83AC2 /* Assets.swift in Sources */,
 				263EF530232A106400A00414 /* TeamSettingsDataSource.swift in Sources */,
 				265DE5642332BDAA009DDA5A /* WebImageView.swift in Sources */,
 				F017B691227699440023E84B /* Onboarding.swift in Sources */,
@@ -1056,6 +1070,18 @@
 			targetProxy = 2611A4F12335F8350030E77E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		26388A6A2348293700C83AC2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				26388A692348293700C83AC2 /* en */,
+				26388A6B23482BF200C83AC2 /* hi */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2611A4F32335F8350030E77E /* Debug */ = {
