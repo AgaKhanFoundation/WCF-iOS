@@ -80,6 +80,7 @@ class Facebook {
     request.start { (_, result, error) in
       guard let result = result else {
         print("unable to execute GraphQL query \(String(describing: error))")
+        completion(nil)
         return
       }
       if let deserialised = JSON(result) {
@@ -96,6 +97,7 @@ class Facebook {
     request.start { (_, result, error) in
       guard let result = result else {
         print("unable to execute GraphQL query: \(String(describing: error))")
+        completion(nil)
         return
       }
       if let deserialised = JSON(result) {
@@ -113,6 +115,7 @@ class Facebook {
     request.start { (_, result, error) in
       guard let result = result else {
         print("unable to execute GraphQL query: \(String(describing: error))")
+        completion(nil)
         return
       }
       if let deserialised = JSON(result) {
