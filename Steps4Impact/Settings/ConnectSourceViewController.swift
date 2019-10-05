@@ -121,7 +121,7 @@ class ConnectSourceViewController: TableViewController {
       let url: URL = URL(string: UIApplication.openSettingsURLString)!
       UIApplication.shared.open(url)
     })
-    alert.add(AlertAction(title: "Cancel", style: .primary, shouldDismiss: true))
+    alert.add(AlertAction(title: "Cancel", style: .secondary, shouldDismiss: true))
 
     AppController.shared.present(alert: alert, in: self) { [weak self] in
       self?.reload()
