@@ -165,7 +165,7 @@ class ChallengeTeamProgressCell: ConfigurableTableViewCell {
     teamProgressView.progress = Float(context.teamCommittedMiles) / Float(context.totalMiles)
     teamProgressLabel.miles = context.teamCommittedMiles
 
-    totalProgressLabel.miles = context.totalMiles - context.teamCommittedMiles
+    totalProgressLabel.miles = Swift.max(context.totalMiles - context.teamCommittedMiles, 0)
 
     editButton.isHidden = context.isEditingHidden
 
