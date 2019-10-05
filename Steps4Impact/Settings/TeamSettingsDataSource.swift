@@ -34,12 +34,18 @@ enum TeamSettingsContext: Context {
   case delete
 }
 
+protocol TeamSettingsDataSourceDelegate: class {
+  func updated(team: Team?)
+}
+
 class TeamSettingsDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
 
   private var teamName: String = " "
   private var eventName: String = " "
   private var team: (members: [(name: String?, image: URL?)], capacity: Int) = ([], 0)
+
+  public weak var delegate: TeamSettingsDataSourceDelegate?
 
   func reload(completion: @escaping () -> Void) {
     configure()
@@ -66,6 +72,7 @@ class TeamSettingsDataSource: TableViewDataSource {
             }
           }
 
+          self?.delegate?.updated(team: participant.team)
           if let team = participant.team {
             if let name = team.name { self?.teamName = name }
 

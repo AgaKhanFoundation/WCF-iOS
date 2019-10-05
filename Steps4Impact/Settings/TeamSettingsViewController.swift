@@ -35,12 +35,9 @@ class TeamSettingsViewController: TableViewController {
     super.commonInit()
 
     title = Strings.TeamSettings.title
+
     dataSource = TeamSettingsDataSource()
-    navigationItem.rightBarButtonItem = UIBarButtonItem(
-      title: Strings.TeamSettings.edit,
-      style: .plain,
-      target: self,
-      action: #selector(editTapped))
+    (dataSource as? TeamSettingsDataSource)?.delegate = self
 
     _ = NotificationCenter.default.addObserver(forName: .teamChanged,
                                                object: nil, queue: nil) { [weak self] (_) in
@@ -52,16 +49,13 @@ class TeamSettingsViewController: TableViewController {
     NotificationCenter.default.removeObserver(self)
   }
 
-  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+  override func tableView(_ tableView: UITableView,
+                          willDisplay cell: UITableViewCell,
+                          forRowAt indexPath: IndexPath) {
     super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
     if let cell = cell as? SettingsActionCell {
       cell.delegate = self
     }
-  }
-
-  @objc
-  func editTapped() {
-    // TODO
   }
 }
 
@@ -95,6 +89,24 @@ extension TeamSettingsViewController: SettingsActionCellDelegate {
         AppController.shared.present(alert: alert, in: self, completion: nil)
       }
     }
+  }
+}
 
+extension TeamSettingsViewController: TeamSettingsDataSourceDelegate {
+  func updated(team: Team?) {
+    onMain {
+      if team?.creator == Facebook.id && team?.members.count ?? 0 > 1 {
+        self.navigationItem.rightBarButtonItem =
+          UIBarButtonItem(title: Strings.TeamSettings.edit, style: .plain,
+                          target: self, action: #selector(self.editTapped))
+      } else {
+        self.navigationItem.rightBarButtonItem = nil
+      }
+    }
+  }
+
+  @objc
+  private func editTapped() {
+    // TODO
   }
 }
