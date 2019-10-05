@@ -28,13 +28,13 @@
 **/
 
 // Application
-"application.name" = "Steps4Impact";
+"Application.name" = "Steps4Impact";
 
 // Navigation
-"navigation.dashboard" = "डैशबोर्ड";
-"navigation.challenge" = "चुनौती";
-"navigation.leaderboard" = "लीडरबोर्ड";
-"navigation.notifications" = "सूचनाएं";
+"Navigation.dashboard" = "डैशबोर्ड";
+"Navigation.challenge" = "चुनौती";
+"Navigation.leaderboard" = "लीडरबोर्ड";
+"Navigation.notifications" = "सूचनाएं";
 
 // AKFCausesServiceError
 "AKFCausesServiceError.unableToConnect" = "Unable to access AKF Causes at this time.  Please try again later.";
