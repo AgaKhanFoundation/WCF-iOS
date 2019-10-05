@@ -1,5 +1,6 @@
 import Quick
 import Nimble
+@testable import Steps4Impact
 
 class Steps4ImpactSpec: QuickSpec {
   override func spec() {
