@@ -31,7 +31,13 @@ import UIKit
 import NotificationCenter
 
 class JoinTeamViewController: TableViewController {
-  var selectedId: Int?
+  private let searchController = UISearchController(searchResultsController: nil)
+
+  var selectedId: Int? {
+    didSet {
+      navigationItem.rightBarButtonItem?.isEnabled = selectedId != nil
+    }
+  }
 
   override func commonInit() {
     super.commonInit()
@@ -48,6 +54,15 @@ class JoinTeamViewController: TableViewController {
       style: .plain,
       target: self, action: #selector(joinTapped))
     navigationItem.rightBarButtonItem?.isEnabled = false
+    configureSearchController()
+  }
+
+  private func configureSearchController() {
+    searchController.searchResultsUpdater = self
+    searchController.dimsBackgroundDuringPresentation = false
+    searchController.hidesNavigationBarDuringPresentation = false
+    navigationItem.hidesSearchBarWhenScrolling = false
+    navigationItem.searchController = searchController
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -87,11 +102,20 @@ class JoinTeamViewController: TableViewController {
     guard let context = context as? JoinTeamContext else { return }
     switch context {
     case .none:
-      break
+      selectedId = nil
     case .team(id: let id): // swiftlint:disable:this identifier_name
       selectedId = id
-      navigationItem.rightBarButtonItem?.isEnabled = true
     }
+  }
+}
+
+extension JoinTeamViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    selectedId = nil
+    guard let searchText = searchController.searchBar.text else { return }
+    (dataSource as? JoinTeamDataSource)?.filter(search: searchText, { [weak self] in
+      self?.reload()
+    })
   }
 }
 
@@ -139,6 +163,7 @@ class JoinTeamDataSource: TableViewDataSource {
 
   private var teams: [Team] = []
   private var event: Event?
+  private var filter: String?
 
   func reload(completion: @escaping () -> Void) {
     AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
@@ -166,7 +191,12 @@ class JoinTeamDataSource: TableViewDataSource {
   }
 
   func configure() {
-    var teamCells: [JoinTeamCellContext] = teams.compactMap {
+    var teamCells: [JoinTeamCellContext] = teams
+      .filter {
+        guard let filter = self.filter else { return true }
+        return $0.name?.lowercased().contains(filter.lowercased()) ?? true
+      }
+      .compactMap {
       guard
         let name = $0.name,
         let id = $0.id, // swiftlint:disable:this identifier_name
@@ -201,5 +231,11 @@ class JoinTeamDataSource: TableViewDataSource {
         NotificationCenter.default.post(name: .teamChanged, object: nil)
       }
     }
+  }
+
+  func filter(search: String, _ completion: () -> Void) {
+    filter = search.isEmpty ? nil : search
+    configure()
+    completion()
   }
 }
