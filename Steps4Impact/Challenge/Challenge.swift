@@ -112,6 +112,11 @@ class ChallengeDataSource: TableViewDataSource {
   func reload(completion: @escaping () -> Void) {
     let group: DispatchGroup = DispatchGroup()
 
+    self.participant = nil
+    self.teamCreator = nil
+    self.teamImages = []
+    self.teamMembers = []
+
     group.enter()
     AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
       if let participant = Participant(json: result.response), let team = participant.team {
