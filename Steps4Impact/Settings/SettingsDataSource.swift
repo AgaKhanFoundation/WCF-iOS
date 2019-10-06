@@ -47,6 +47,7 @@ class SettingsDataSource: TableViewDataSource {
   private var isOnTeam: Bool = false
   private var teamName: String = " "
   private var teamMembership: String = " "
+  private var commitment: Int = 0
 
   func reload(completion: @escaping () -> Void) {
     configure()
@@ -59,8 +60,8 @@ class SettingsDataSource: TableViewDataSource {
       AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
         if let participant = Participant(json: result.response) {
           self?.isOnTeam = participant.team != nil
-          // TODO(compnerd) query this from the team's creator field
-          self?.isTeamLead = participant.team?.members[safe: 0]?.fbid == participant.fbid
+          self?.isTeamLead = participant.team?.creator == participant.fbid
+          self?.commitment = participant.currentEventCommitment!
         }
         group.leave()
       }
@@ -77,10 +78,10 @@ class SettingsDataSource: TableViewDataSource {
         group.leave()
       }
 
-      group.wait()
-
-      self?.configure()
-      completion()
+      group.notify(queue: .global()) { [weak self] in
+        self?.configure()
+        completion()
+      }
     }
   }
 
@@ -93,7 +94,7 @@ class SettingsDataSource: TableViewDataSource {
       SettingsTitleCellContext(title: "Personal"),
       SettingsDisclosureCellContext(title: "Personal Mile Commitment",
                                     body: "Mile commitment cannot be changed once the challenge has started.",
-                                    value: "500 mi"),
+                                    value: "\(commitment) mi"),
       SettingsSwitchCellContext(title: "Push Notifications",
                                 isSwitchEnabled: true),
       SettingsDisclosureCellContext(title: "Connected apps & devices",
