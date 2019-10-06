@@ -123,6 +123,7 @@
 // TeamSettings
 "TeamSettings.title" = "Team";
 "TeamSettings.edit" = "Edit";
+"TeamSettings.done" = "Done";
 "TeamSettings.leave" = "Leave Team?";
 "TeamSettings.leaveBody" = "This will remove your data linked to the team. You will not be able to participate in the challenge.";
 "TeamSettings.deleteTeam" = "Delete Team?";
