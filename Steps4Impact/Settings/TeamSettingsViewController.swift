@@ -105,7 +105,20 @@ extension TeamSettingsViewController: TeamSettingsMemberCellDelegate {
       alert.body = "\(name) will be permanently removed from your team"
       alert.add(AlertAction.cancel())
       alert.add(AlertAction(title: "Remove", style: .destructive, shouldDismiss: false) {
-        AKFCausesService.leaveTeam(fbid: fbid) { (_) in
+        AKFCausesService.leaveTeam(fbid: fbid) { (result) in
+          if !result.isSuccess {
+            alert.dismiss(animated: true, completion: nil)
+
+            let alert: AlertViewController = AlertViewController()
+            alert.title = "Remove Failed"
+            alert.body = "Could not remove \(name).  Please try again later."
+            alert.add(AlertAction.okay())
+            onMain {
+              AppController.shared.present(alert: alert, in: self, completion: nil)
+            }
+            return
+          }
+
           onMain {
             alert.dismiss(animated: true, completion: nil)
             NotificationCenter.default.post(name: .teamChanged, object: nil)
