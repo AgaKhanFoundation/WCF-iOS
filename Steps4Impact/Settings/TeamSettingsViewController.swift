@@ -107,15 +107,16 @@ extension TeamSettingsViewController: TeamSettingsMemberCellDelegate {
       alert.add(AlertAction(title: "Remove", style: .destructive, shouldDismiss: false) {
         AKFCausesService.leaveTeam(fbid: fbid) { (result) in
           if !result.isSuccess {
-            alert.dismiss(animated: true, completion: nil)
-
-            let alert: AlertViewController = AlertViewController()
-            alert.title = "Remove Failed"
-            alert.body = "Could not remove \(name).  Please try again later."
-            alert.add(AlertAction.okay())
-            onMain {
-              AppController.shared.present(alert: alert, in: self, completion: nil)
+            alert.dismiss(animated: true) {
+              let alert: AlertViewController = AlertViewController()
+              alert.title = "Remove Failed"
+              alert.body = "Could not remove \(name).  Please try again later."
+              alert.add(AlertAction.okay())
+              onMain {
+                AppController.shared.present(alert: alert, in: self, completion: nil)
+              }
             }
+
             return
           }
 
