@@ -51,7 +51,7 @@ struct Strings {
   }
 
   struct Welcome {
-    static let title = NSLocalizedString("Welcome.title", comment: "")
+    static let title = String(format: NSLocalizedString("Welcome.title", comment: ""), Application.name)
     static let thanks = NSLocalizedString("Welcome.thanks", comment: "")
     static let `continue` = NSLocalizedString("Welcome.continue", comment: "")
     static let skip = NSLocalizedString("Welcome.skip", comment: "")

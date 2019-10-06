@@ -43,7 +43,7 @@
 "Login.conditions" = "Terms and Conditions Apply";
 
 // Welcome
-"Welcome.title" = "Welcome to Steps for Change!";
+"Welcome.title" = "Welcome to %@";
 "Welcome.thanks" = "Thanks for registering!\nClick continue for a quick tour of the app";
 "Welcome.continue" = "Continue";
 "Welcome.skip" = "Skip";
