@@ -43,6 +43,7 @@ struct Event {
   let challengePhase: DateRange
   let teamFormationPhase: DateRange
   let teamLimit: Int
+  let defaultStepCount: Int
   let cause: Cause?
 
   init?(json: JSON?) {
@@ -73,6 +74,12 @@ struct Event {
         DateRange(start: formatter.date(from: teamBuildingStart) ?? Date(),
                   end: formatter.date(from: teamBuildingEnd) ?? Date())
     self.teamLimit = teamLimit
+
+    if let defaultSteps = json["default_steps"]?.intValue {
+      self.defaultStepCount = defaultSteps
+    } else {
+      self.defaultStepCount = 10000 * challengePhase.start.daysUntil(challengePhase.end)
+    }
 
     if let cause = json["cause"] {
       self.cause = Cause(json: cause)

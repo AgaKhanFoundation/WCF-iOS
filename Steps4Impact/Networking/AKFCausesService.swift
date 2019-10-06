@@ -184,10 +184,10 @@ class AKFCausesService: Service {
     shared.request(endpoint: .sources, completion: completion)
   }
 
-  static func joinEvent(fbid: String, eventID: Int, miles: Int,
+  static func joinEvent(fbid: String, eventID: Int, steps: Int,
                         commpletion: ServiceRequestCompletion? = nil) {
     shared.request(.post, endpoint: .commitments,
-                   parameters: JSON(["fbid": fbid, "event_id": eventID, "commitment": miles]),
+                   parameters: JSON(["fbid": fbid, "event_id": eventID, "commitment": steps]),
                    completion: commpletion)
   }
 
