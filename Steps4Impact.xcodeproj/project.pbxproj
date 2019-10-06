@@ -85,7 +85,7 @@
 		7A7C5B5BCE64FE425FE48D17 /* Pods_Steps4ImpactTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644A965BB27AB6174A19603E /* Pods_Steps4ImpactTests.framework */; };
 		885A50211F181C0FFD544AAA /* Pods_Steps4Impact.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E04420449F9B74A2501CBBEA /* Pods_Steps4Impact.framework */; };
 		C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */; };
-		F00403191EC3FB7D005E6F10 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		F00403191EC3FB7D005E6F10 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004031C1EC52772005E6F10 /* AppConfig.swift */; };
 		F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */; };
 		F017B68E227686A60023E84B /* OnboardingWelcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017B68D227686A60023E84B /* OnboardingWelcome.swift */; };
@@ -834,13 +834,19 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Steps4ImpactTests/Pods-Steps4ImpactTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -885,6 +891,9 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/OAuthSwift/OAuthSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -900,6 +909,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OAuthSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -971,7 +983,7 @@
 				26FE24472322295300E01B9B /* ViewController.swift in Sources */,
 				F06254C11ECD5D1700168DD6 /* Participant.swift in Sources */,
 				F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */,
-				F00403191EC3FB7D005E6F10 /* (null) in Sources */,
+				F00403191EC3FB7D005E6F10 /* BuildFile in Sources */,
 				F0A992D61EABF037001621A6 /* Formatters.swift in Sources */,
 				2622C09023249A4B0092B145 /* UIRefreshControl.swift in Sources */,
 				26FE244D23222E8500E01B9B /* Context.swift in Sources */,
