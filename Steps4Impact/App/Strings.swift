@@ -161,6 +161,7 @@ struct Strings {
   struct TeamSettings {
     static let title = NSLocalizedString("TeamSettings.title", comment: "")
     static let edit = NSLocalizedString("TeamSettings.edit", comment: "")
+    static let done = NSLocalizedString("TeamSettings.done", comment: "")
     static let leave = NSLocalizedString("TeamSettings.leave", comment: "")
     static let leaveBody = NSLocalizedString("TeamSettings.leaveBody", comment: "")
     static let deleteTeam = NSLocalizedString("TeamSettings.deleteTeam", comment: "")

@@ -56,6 +56,9 @@ class TeamSettingsViewController: TableViewController {
     if let cell = cell as? SettingsActionCell {
       cell.delegate = self
     }
+    if let cell = cell as? TeamSettingsMemberCell {
+      cell.delegate = self
+    }
   }
 }
 
@@ -92,6 +95,28 @@ extension TeamSettingsViewController: SettingsActionCellDelegate {
   }
 }
 
+extension TeamSettingsViewController: TeamSettingsMemberCellDelegate {
+  func removeTapped(context: Context?, button: UIButton) {
+    guard let context = context as? TeamMembersContext else { return }
+    switch context {
+    case .remove(let fbid, let name):
+      let alert: AlertViewController = AlertViewController()
+      alert.title = "Remove \(name)"
+      alert.body = "\(name) will be permanently removed from your team"
+      alert.add(AlertAction.cancel())
+      alert.add(AlertAction(title: "Remove", style: .destructive, shouldDismiss: false) {
+        AKFCausesService.leaveTeam(fbid: fbid) { (_) in
+          onMain {
+            alert.dismiss(animated: true, completion: nil)
+            NotificationCenter.default.post(name: .teamChanged, object: nil)
+          }
+        }
+      })
+      AppController.shared.present(alert: alert, in: self, completion: nil)
+    }
+  }
+}
+
 extension TeamSettingsViewController: TeamSettingsDataSourceDelegate {
   func updated(team: Team?) {
     onMain {
@@ -107,6 +132,27 @@ extension TeamSettingsViewController: TeamSettingsDataSourceDelegate {
 
   @objc
   private func editTapped() {
-    // TODO
+    guard let data = dataSource as? TeamSettingsDataSource else { return }
+    onMain {
+      self.navigationItem.rightBarButtonItem =
+        UIBarButtonItem(title: Strings.TeamSettings.done, style: .plain,
+                        target: self, action: #selector(self.doneTapped))
+    }
+    data.editing = true
+    data.configure()
+    tableView.reloadOnMain()
+  }
+
+  @objc
+  private func doneTapped() {
+    guard let data = dataSource as? TeamSettingsDataSource else { return }
+    onMain {
+      self.navigationItem.rightBarButtonItem =
+        UIBarButtonItem(title: Strings.TeamSettings.edit, style: .plain,
+                        target: self, action: #selector(self.editTapped))
+    }
+    data.editing = false
+    data.configure()
+    tableView.reloadOnMain()
   }
 }

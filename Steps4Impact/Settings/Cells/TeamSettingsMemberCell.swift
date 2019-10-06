@@ -31,19 +31,28 @@ import UIKit
 
 struct TeamSettingsMemberCellContext: CellContext {
   let identifier: String = TeamSettingsMemberCell.identifier
+
   let count: Int
   let imageURL: URL?
   let name: String
+  let isLead: Bool
+  let isEditable: Bool
   let isLastItem: Bool
   let context: Context?
 
-  init(count: Int, imageURL: URL? = nil, name: String, isLastItem: Bool = false, context: Context? = nil) {
+  init(count: Int, imageURL: URL? = nil, name: String, isLead: Bool, isEditable: Bool, isLastItem: Bool = false, context: Context? = nil) {
     self.count = count
     self.imageURL = imageURL
     self.name = name
+    self.isLead = isLead
+    self.isEditable = isEditable
     self.isLastItem = isLastItem
     self.context = context
   }
+}
+
+protocol TeamSettingsMemberCellDelegate: class {
+  func removeTapped(context: Context?, button: UIButton)
 }
 
 class TeamSettingsMemberCell: ConfigurableTableViewCell, Contextable {
@@ -52,8 +61,11 @@ class TeamSettingsMemberCell: ConfigurableTableViewCell, Contextable {
   private let countLabel = UILabel(typography: .bodyRegular)
   private let profileImageView = UIImageView(image: Assets.placeholder.image)
   private let nameLabel = UILabel(typography: .bodyRegular)
+  private let btnRemove: Button = Button(style: .plain)
   private let seperatorView = UIView()
+
   var context: Context?
+  weak var delegate: TeamSettingsMemberCellDelegate?
 
   override func commonInit() {
     super.commonInit()
@@ -79,6 +91,13 @@ class TeamSettingsMemberCell: ConfigurableTableViewCell, Contextable {
       $0.centerY.equalToSuperview()
     }
 
+    btnRemove.setTitle("Remove", for: .normal)
+    contentView.addSubview(btnRemove) {
+      $0.centerY.equalToSuperview()
+      $0.trailing.equalToSuperview().inset(Style.Padding.p32)
+    }
+    btnRemove.addTarget(self, action: #selector(removeTapped), for: .touchUpInside)
+
     contentView.addSubview(seperatorView) {
       $0.height.equalTo(1)
       $0.bottom.equalToSuperview()
@@ -90,7 +109,13 @@ class TeamSettingsMemberCell: ConfigurableTableViewCell, Contextable {
     guard let context = context as? TeamSettingsMemberCellContext else { return }
     countLabel.text = "\(context.count)."
     nameLabel.text = context.name
+    btnRemove.isHidden = !context.isEditable
     seperatorView.isHidden = context.isLastItem
     self.context = context.context
+  }
+
+  @objc
+  private func removeTapped() {
+    delegate?.removeTapped(context: context, button: btnRemove)
   }
 }

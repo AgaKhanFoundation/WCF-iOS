@@ -33,7 +33,7 @@ class TableViewController: ViewController {
   var dataSource: TableViewDataSource? = EmptyTableViewDataSource()
 
   // Views
-  private let tableView = UITableView()
+  let tableView = UITableView()
   private let refreshControl = UIRefreshControl()
 
   // Cached Heights
