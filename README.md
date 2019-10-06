@@ -7,7 +7,7 @@ Current Status: [![Build Status](https://dev.azure.com/steps4impact/steps4impact
 
 ## Adding Dependencies
 
-- Managed by Cocoapods v1.7.5
+- Managed by Cocoapods v1.8.3
 
 ## Testing
 
