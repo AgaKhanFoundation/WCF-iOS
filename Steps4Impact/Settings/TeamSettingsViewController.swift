@@ -57,6 +57,15 @@ class TeamSettingsViewController: TableViewController {
       cell.delegate = self
     }
   }
+  
+  override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    guard let cellContext = dataSource?.cell(for: indexPath) as? TeamSettingsMemberCellContext else { return nil }
+    let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, cell, completion) in
+      print("delete")
+      // datasource.delete
+    }
+    return UISwipeActionsConfiguration(actions: [deleteAction])
+  }
 }
 
 extension TeamSettingsViewController: SettingsActionCellDelegate {

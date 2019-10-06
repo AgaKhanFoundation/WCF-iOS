@@ -113,4 +113,12 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     guard let context = (tableView.cellForRow(at: indexPath) as? Contextable)?.context else { return }
     handle(context: context)
   }
+  
+  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    return nil
+  }
+  
+  func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    return nil
+  }
 }
