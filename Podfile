@@ -15,10 +15,14 @@ target 'Steps4Impact' do
   pod 'AppCenter', '~> 2.3.0'
   pod 'SDWebImage', '~> 5.1.1'
   pod 'OAuthSwift', '~> 2.0.0'
+  pod 'RxSwift', '~> 5.0.0' 
+  pod 'RxCocoa', '~> 5.0.0'
 
   target 'Steps4ImpactTests' do
     inherit! :search_paths
     pod 'Quick', '~> 2.2.0'
     pod 'Nimble', '~> 8.0.4'
+    pod 'RxTest', '~> 5.0.0'
+    pod 'RxBlocking', '~> 5.0.0'
   end
 end
