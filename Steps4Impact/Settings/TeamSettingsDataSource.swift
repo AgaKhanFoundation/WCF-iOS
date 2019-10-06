@@ -34,6 +34,10 @@ enum TeamSettingsContext: Context {
   case delete
 }
 
+enum TeamMembersContext: Context {
+  case remove(fbid: String, name: String)
+}
+
 protocol TeamSettingsDataSourceDelegate: class {
   func updated(team: Team?)
 }
@@ -41,11 +45,14 @@ protocol TeamSettingsDataSourceDelegate: class {
 class TeamSettingsDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
 
+  typealias Member = (fbid: String?, name: String?, image: URL?, isLead: Bool)
+
   private var teamName: String = " "
   private var eventName: String = " "
-  private var team: (members: [(name: String?, image: URL?)], capacity: Int) = ([], 0)
+  private var team: (members: [Member], capacity: Int) = ([], 0)
   private var isLead: Bool = false
 
+  var editing: Bool = false
   public weak var delegate: TeamSettingsDataSourceDelegate?
 
   func reload(completion: @escaping () -> Void) {
@@ -56,7 +63,7 @@ class TeamSettingsDataSource: TableViewDataSource {
       let group: DispatchGroup = DispatchGroup()
 
       var capacity: Int = 1
-      var members: [(name: String?, image: URL?)] = []
+      var members: [Member] = []
 
       group.enter()
       AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
@@ -80,9 +87,13 @@ class TeamSettingsDataSource: TableViewDataSource {
           if let team = participant.team {
             if let name = team.name { self?.teamName = name }
 
-            members = [(String?, URL?)](repeating: (name: nil, image: nil), count: team.members.count)
+            members = Array<Member>(repeating: (fbid: nil, name: nil, image: nil, isLead: false),
+                                    count: team.members.count)
 
             for (index, member) in team.members.enumerated() {
+              members[index].fbid = member.fbid
+              members[index].isLead = member.fbid == team.creator
+
               group.enter()
               Facebook.getRealName(for: member.fbid) { (name) in
                 members[index].name = name
@@ -118,7 +129,10 @@ class TeamSettingsDataSource: TableViewDataSource {
       cells.append([
         TeamSettingsMemberCellContext(count: index + 1, imageURL: member.image,
                                       name: member.name ?? "",
-                                      isLastItem: index == self.team.members.count - 1)
+                                      isLead: member.isLead,
+                                      isEditable: !member.isLead && editing,
+                                      isLastItem: index == self.team.members.count - 1,
+                                      context: TeamMembersContext.remove(fbid: member.fbid!, name: member.name!))
       ])
     }
 
