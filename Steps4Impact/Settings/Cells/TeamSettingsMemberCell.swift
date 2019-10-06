@@ -62,6 +62,7 @@ class TeamSettingsMemberCell: ConfigurableTableViewCell, Contextable {
   private let profileImageView = UIImageView(image: Assets.placeholder.image)
   private let nameLabel = UILabel(typography: .bodyRegular)
   private let btnRemove: Button = Button(style: .plain)
+  private let lblLead: UILabel = UILabel(typography: .smallBold)
   private let seperatorView = UIView()
 
   var context: Context?
@@ -91,6 +92,12 @@ class TeamSettingsMemberCell: ConfigurableTableViewCell, Contextable {
       $0.centerY.equalToSuperview()
     }
 
+    lblLead.text = "Lead"
+    contentView.addSubview(lblLead) {
+      $0.centerY.equalToSuperview()
+      $0.trailing.equalToSuperview().inset(Style.Padding.p32)
+    }
+
     btnRemove.setTitle("Remove", for: .normal)
     contentView.addSubview(btnRemove) {
       $0.centerY.equalToSuperview()
@@ -109,6 +116,7 @@ class TeamSettingsMemberCell: ConfigurableTableViewCell, Contextable {
     guard let context = context as? TeamSettingsMemberCellContext else { return }
     countLabel.text = "\(context.count)."
     nameLabel.text = context.name
+    lblLead.isHidden = !context.isLead
     btnRemove.isHidden = !context.isEditable
     seperatorView.isHidden = context.isLastItem
     self.context = context.context
