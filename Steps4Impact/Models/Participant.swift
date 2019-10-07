@@ -30,6 +30,7 @@
 import Foundation
 
 struct Participant {
+  let id: Int?
   let fbid: String
   let team: Team?
   let events: [Event]
@@ -49,6 +50,7 @@ struct Participant {
       .withFractionalSeconds
     ]
 
+    self.id = json["id"]?.intValue
     self.fbid = fbid
 
     if let team = json["team"] {

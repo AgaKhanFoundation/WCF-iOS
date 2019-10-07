@@ -160,6 +160,19 @@ class AKFCausesService: Service {
     shared.request(endpoint: .record(recordId: record), completion: completion)
   }
 
+  static func createRecord(for participantID: Int,
+                           dated: Date = Date.init(timeIntervalSinceNow: 0),
+                           steps: Int, sourceID: Int,
+                           completion: ServiceRequestCompletion? = nil) {
+    let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
+    shared.request(.post, endpoint: .records, parameters: JSON([
+      "date": formatter.string(from: dated),
+      "distance": steps,
+      "participant_id": participantID,
+      "source_id": sourceID,
+    ]), completion: completion)
+  }
+
   static func createRecord(record: Record,
                            completion: ServiceRequestCompletion? = nil) {
     guard let source = record.source?.id else {

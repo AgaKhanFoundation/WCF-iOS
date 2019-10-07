@@ -160,6 +160,50 @@ class AppController {
     UserInfo.pedometerSource = nil
   }
 
+  private func updateRecords() {
+    guard let pedometer = UserInfo.pedometerSource else { return }
+
+    let group: DispatchGroup = DispatchGroup()
+
+    var source: Source?
+    var provider: PedometerDataProvider?
+
+    switch pedometer {
+    case .healthKit:
+      group.enter()
+      provider = HealthKitDataProvider()
+      AKFCausesService.getSourceByName(source: "HealthKit") { (result) in
+        source = Source(json: result.response)
+        group.leave()
+      }
+    }
+    group.wait()
+
+    guard let sourceID = source?.id else { return }
+
+    AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+      if let participant = Participant(json: result.response) {
+        guard let start = (participant.records.sorted {
+          (lhs, rhs) -> Bool in lhs.date.timeIntervalSince(rhs.date).sign == .minus
+        }.last?.date ?? participant.currentEvent?.challengePhase.start) else { return }
+
+        guard start.timeIntervalSinceNow.sign == .minus else { return }
+
+        let interval: DateInterval = DateInterval(start: start, end: Date.init(timeIntervalSinceNow: 0))
+
+        provider?.retrieveStepCount(forInterval: interval) { (result) in
+          switch result {
+          case .failure(let error):
+            print("unable to query pedometer: \(error)")
+          case .success(let steps):
+            AKFCausesService.createRecord(for: participant.id!, dated: interval.end,
+                                          steps: steps, sourceID: sourceID)
+          }
+        }
+      }
+    }
+  }
+
   private func healthCheckServer() {
     AKFCausesService.performAPIHealthCheck { (result) in
       switch result {
@@ -172,7 +216,9 @@ class AppController {
           self.present(alert: alert, in: view, completion: nil)
         }
       case .success:
-        break
+        onBackground {
+          self.updateRecords()
+        }
       }
     }
   }
