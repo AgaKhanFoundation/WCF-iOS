@@ -38,9 +38,34 @@ class FitbitAuthorizeViewController: OAuthWebViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    setNavigationBar()
-
     view.backgroundColor = Style.Colors.white
+    setNavigationBar()
+    setupWebView()
+  }
+
+  override func handle(_ url: URL) {
+    targetURL = url
+    super.handle(url)
+    self.loadAddressURL()
+  }
+
+  private func setNavigationBar() {
+    view.addSubview(navBar)
+
+    let navItem = UINavigationItem(title: "")
+    let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(done))
+    navItem.rightBarButtonItem = doneItem
+    navBar.setItems([navItem], animated: false)
+
+    let guide = view.safeAreaLayoutGuide
+    navBar.snp.makeConstraints {
+      $0.leading.trailing.equalTo(guide)
+      $0.top.equalTo(guide.snp.top)
+      $0.height.equalTo(44)
+    }
+  }
+
+  private func setupWebView() {
     view.addSubview(wkWebView)
 
     let guide = view.safeAreaLayoutGuide
@@ -50,28 +75,6 @@ class FitbitAuthorizeViewController: OAuthWebViewController {
       $0.top.equalTo(navBar.snp.bottom)
       $0.bottom.equalTo(guide.snp.bottom)
     }
-  }
-
-  override func handle(_ url: URL) {
-    targetURL = url
-    super.handle(url)
-    self.loadAddressURL()
-  }
-
-  func setNavigationBar() {
-    view.addSubview(navBar)
-
-    let guide = view.safeAreaLayoutGuide
-    navBar.snp.makeConstraints {
-      $0.leading.trailing.equalTo(guide)
-      $0.top.equalTo(guide.snp.top)
-      $0.height.equalTo(44)
-    }
-
-    let navItem = UINavigationItem(title: "")
-    let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(done))
-    navItem.rightBarButtonItem = doneItem
-    navBar.setItems([navItem], animated: false)
   }
 
   @objc func done() {
@@ -90,8 +93,8 @@ extension FitbitAuthorizeViewController: WKNavigationDelegate {
   func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
                decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
     if let url = navigationAction.request.url,
-      let fitBitUrl = URL(string: AppConfig.fitbitCallbackUri),
-      url.host == fitBitUrl.host {
+      let fitbitUri = URL(string: AppConfig.fitbitCallbackUri),
+      url.host == fitbitUri.host {
       OAuthSwift.handle(url: url)
       decisionHandler(.cancel)
 
