@@ -48,7 +48,9 @@ class SettingsViewController: TableViewController {
     NotificationCenter.default.removeObserver(self)
   }
 
-  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+  override func tableView(_ tableView: UITableView,
+                          willDisplay cell: UITableViewCell,
+                          forRowAt indexPath: IndexPath) {
     super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
     if let cell = cell as? SettingsActionCell {
       cell.delegate = self
@@ -96,15 +98,39 @@ class SettingsViewController: TableViewController {
       })
       AppController.shared.present(alert: alert, in: self, completion: nil)
     case .personalMileCommitment:
-      let alert = TextAlertViewController()
-      alert.title = "Personal mile commitment"
-      alert.value = "50"
-      alert.suffix = "Miles"
-      alert.add(.init(title: "Save", style: .primary, handler: {
-        print(alert.value)
-      }))
-      alert.add(.cancel())
-      AppController.shared.present(alert: alert, in: self, completion: nil)
+      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+        guard let participant = Participant(json: result.response) else { return }
+
+        let alert = TextAlertViewController()
+        alert.title = "Personal mile commitment"
+        alert.value = "\(participant.currentEventCommitment ?? 0)"
+        alert.suffix = "Miles"
+        alert.add(.init(title: "Save", style: .primary, shouldDismiss: false) {
+          if let cid = participant.currentEventCommitmentId {
+            AKFCausesService.setCommitment(cid, toSteps: (Int(alert.value ?? "0") ?? 0) * 2000) { (result) in
+              alert.dismiss(animated: true) {
+                if !result.isSuccess {
+                  let alert: AlertViewController = AlertViewController()
+                  alert.title = "Update Failed"
+                  alert.body = "Could not update commitment.  Please try again later."
+                  alert.add(.okay())
+                  onMain {
+                    AppController.shared.present(alert: alert, in: self, completion: nil)
+                  }
+                  return
+                }
+
+                NotificationCenter.default.post(name: .commitmentChanged, object: nil)
+                onMain {
+                  self.reload()
+                }
+              }
+            }
+          }
+        })
+        alert.add(.cancel())
+        AppController.shared.present(alert: alert, in: self, completion: nil)
+      }
     }
   }
 

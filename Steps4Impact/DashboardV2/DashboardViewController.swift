@@ -35,6 +35,8 @@ extension NSNotification.Name {
     NSNotification.Name(rawValue: "steps4impact.team-changed")
   static let eventChanged: NSNotification.Name =
     NSNotification.Name(rawValue: "steps4impact.event-changed")
+  static let commitmentChanged: NSNotification.Name =
+    NSNotification.Name(rawValue: "steps4impact.commitment-changed")
 }
 
 class DashboardViewController: TableViewController {
