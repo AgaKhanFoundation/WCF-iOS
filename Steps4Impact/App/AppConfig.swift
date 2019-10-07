@@ -39,4 +39,11 @@ struct AppConfig {
 #endif
 
   static let appCenterSecret = "9ca54e4e-20df-425a-bfe6-b72d0daad2da" // TODO: Move this to CI env
+  
+  static let fitbitConsumerKey = "22B4MM"
+  static let fitbitConsumerSecret = "c2daab8d7565ffc888cc269ad1a9dff9"
+  static let fitbitCallbackUri = "https://fitbit_oauth2_complete"
+  static let fitbitAuthorizeUrl = "https://www.fitbit.com/oauth2/authorize"
+  static let fitbitTokenUrl = "https://api.fitbit.com/oauth2/token"
+  static let fitbitScope = "activity profile settings"
 }

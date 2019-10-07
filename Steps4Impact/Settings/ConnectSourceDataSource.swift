@@ -48,9 +48,9 @@ class ConnectSourceDataSource: TableViewDataSource {
                                isLast: false),
       ConnectSourceCellContext(name: "Fitbit",
                                description: "Connect your Fitbit to track your daily steps.",
-                               selected: false,
+                               selected: UserInfo.pedometerSource == UserInfo.Pedometer.fitbit,
                                context: ConnectSourceDataSource.Source.fitbit,
-                               disabled: true,
+                               disabled: false,
                                isLast: false),
       ConnectDeviceInformationCellContext()
     ]]
