@@ -31,16 +31,16 @@ import Foundation
 import OAuthSwift
 import WebKit
 
-class FitbitAuthorizeViewController : OAuthWebViewController {
+class FitbitAuthorizeViewController: OAuthWebViewController {
   var targetURL: URL?
   let navBar = UINavigationBar()
   let wkWebView: WKWebView = WKWebView()
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setNavigationBar()
     view.backgroundColor = .white
-    
+
     view.addSubview(wkWebView)
     wkWebView.navigationDelegate = self
     wkWebView.translatesAutoresizingMaskIntoConstraints = false
@@ -50,56 +50,57 @@ class FitbitAuthorizeViewController : OAuthWebViewController {
     wkWebView.topAnchor.constraint(equalTo: navBar.bottomAnchor).isActive = true
     wkWebView.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
   }
-  
+
   override func handle(_ url: URL) {
     targetURL = url
     super.handle(url)
     self.loadAddressURL()
   }
-  
+
   func setNavigationBar() {
     navBar.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(navBar)
-    
+
     let guide = view.safeAreaLayoutGuide
     navBar.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
     navBar.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
     navBar.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
     navBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
-    
+
     let navItem = UINavigationItem(title: "")
     let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(done))
     navItem.rightBarButtonItem = doneItem
     navBar.setItems([navItem], animated: false)
   }
-  
+
   @objc func done() {
     dismissWebViewController()
   }
-  
+
   func loadAddressURL() {
     guard let url = targetURL else {
       return
     }
-    
+
     let urlRequest = URLRequest(url: url)
     wkWebView.load(urlRequest)
   }
 }
 
-extension FitbitAuthorizeViewController : WKNavigationDelegate {
-  func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-    print ("url:\(navigationAction.request.url!)")
+extension FitbitAuthorizeViewController: WKNavigationDelegate {
+  func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
+               decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    //print ("url:\(navigationAction.request.url!)")
     if let url = navigationAction.request.url,
       let fitBitUrl = URL(string: AppConfig.fitbitCallbackUri),
       url.host == fitBitUrl.host {
       OAuthSwift.handle(url: url)
       decisionHandler(.cancel)
-      
+
       dismissWebViewController()
       return
     }
-    
+
     decisionHandler(.allow)
   }
 }
