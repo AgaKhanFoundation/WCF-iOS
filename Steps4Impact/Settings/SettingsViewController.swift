@@ -95,6 +95,16 @@ class SettingsViewController: TableViewController {
         }
       })
       AppController.shared.present(alert: alert, in: self, completion: nil)
+    case .personalMileCommitment:
+      let alert = TextAlertViewController()
+      alert.title = "Personal mile commitment"
+      alert.value = "50"
+      alert.suffix = "Miles"
+      alert.add(.init(title: "Save", style: .primary, handler: {
+        print(alert.value)
+      }))
+      alert.add(.cancel())
+      AppController.shared.present(alert: alert, in: self, completion: nil)
     }
   }
 
