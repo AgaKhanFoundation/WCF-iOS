@@ -72,6 +72,9 @@ class ChallengeViewController: TableViewController {
     if let cell = cell as? DisclosureCell {
       cell.delegate = self
     }
+    if let cell = cell as? ChallengeTeamProgressCell {
+      cell.delegate = self
+    }
   }
 }
 
@@ -92,12 +95,51 @@ extension ChallengeViewController: DisclosureCellDelegate {
     guard let context = context as? ChallengeContext else { return }
     switch context {
     case .inviteFriends:
-      AppController.shared.shareTapped(viewController: self, shareButton: nil, string: Strings.Share.item)
+      AppController.shared.shareTapped(viewController: self, shareButton: nil,
+                                       string: Strings.Share.item)
     case .inviteSupporters:
-      AppController.shared.shareTapped(viewController: self, shareButton: nil, string: Strings.InviteSupporters.request)
+      AppController.shared.shareTapped(viewController: self, shareButton: nil,
+                                       string: Strings.InviteSupporters.request)
     }
   }
+}
 
+extension ChallengeViewController: ChallengeTeamProgressCellDelegate {
+  func challengeTeamProgressDisclosureTapped() {
+    // TODO(compnerd) view breakdown
+  }
+
+  func challengeTeamProgressEditTapped() {
+    AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+      guard let participant = Participant(json: result.response) else { return }
+
+      let alert = TextAlertViewController()
+      alert.title = "Personal mile commitment"
+      alert.value = "\(participant.currentEventCommitment ?? 0)"
+      alert.suffix = "Miles"
+      alert.add(.init(title: "Save", style: .primary, shouldDismiss: false) {
+        if let cid = participant.currentEventCommitmentId {
+          AKFCausesService.setCommitment(cid, toSteps: (Int(alert.value ?? "0") ?? 0) * 2000) { (result) in
+            alert.dismiss(animated: true) {
+              if result.isSuccess {
+                NotificationCenter.default.post(name: .commitmentChanged, object: nil)
+              } else {
+                let alert: AlertViewController = AlertViewController()
+                alert.title = "Update Failed"
+                alert.body = "Could not update commitment.  Please try again later."
+                alert.add(.okay())
+                onMain {
+                  AppController.shared.present(alert: alert, in: self, completion: nil)
+                }
+              }
+            }
+          }
+        }
+      })
+      alert.add(.cancel())
+      AppController.shared.present(alert: alert, in: self, completion: nil)
+    }
+  }
 }
 
 enum ChallengeContext: Context {
