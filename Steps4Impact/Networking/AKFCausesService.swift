@@ -41,8 +41,8 @@ enum AKFCausesEndPoint {
   case records
   case source(sourceId: Int)
   case sources
-  case commitment(fbid: String)
-  case commitments
+  case commitment
+  case commitments(id: Int)
 }
 
 extension AKFCausesEndPoint {
@@ -70,10 +70,10 @@ extension AKFCausesEndPoint {
       return "/sources/\(sourceId)"
     case .sources:
       return "/sources"
-    case .commitment(let fbid):
-      return "/commitments/participant/\(fbid)"
-    case .commitments:
+    case .commitment:
       return "/commitments"
+    case .commitments(let id):
+      return "/commitments/\(id)"
     }
   }
 }
@@ -199,15 +199,15 @@ class AKFCausesService: Service {
 
   static func joinEvent(fbid: String, eventID: Int, steps: Int,
                         commpletion: ServiceRequestCompletion? = nil) {
-    shared.request(.post, endpoint: .commitments,
+    shared.request(.post, endpoint: .commitment,
                    parameters: JSON(["fbid": fbid, "event_id": eventID, "commitment": steps]),
                    completion: commpletion)
   }
 
-  static func setCommitment(for fbid: String, andEvent event: Int, toSteps steps: Int,
+  static func setCommitment(_ commitment: Int, toSteps steps: Int,
                             completion: ServiceRequestCompletion? = nil) {
-    shared.request(.patch, endpoint: .commitments,
-                   parameters: JSON(["fbid": fbid, "event_id": event, "commitment": steps]),
+    shared.request(.patch, endpoint: .commitments(id: commitment),
+                   parameters: JSON(["commitment": steps]),
                    completion: completion)
   }
 }

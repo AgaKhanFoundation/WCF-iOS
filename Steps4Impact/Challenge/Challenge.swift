@@ -44,7 +44,11 @@ class ChallengeViewController: TableViewController {
       action: #selector(settingsButtonTapped))
 
     _ = NotificationCenter.default.addObserver(forName: .teamChanged,
-                                               object: nil, queue: nil) { [weak self](_) in
+                                               object: nil, queue: nil) { [weak self] (_) in
+      self?.reload()
+    }
+    _ = NotificationCenter.default.addObserver(forName: .commitmentChanged,
+                                               object: nil, queue: nil) { [weak self] (_) in
       self?.reload()
     }
   }

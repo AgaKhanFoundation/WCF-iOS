@@ -36,7 +36,9 @@ struct Participant {
   let events: [Event]
   let preferredCause: Cause?
   let records: [Record]
+
   let currentEventCommitment: Int?
+  let currentEventCommitmentId: Int?
 
   init?(json: JSON?) {
     guard let json = json else { return nil }
@@ -62,19 +64,24 @@ struct Participant {
       self.events = events.compactMap({ (json) in Event(json: json) })
 
       var commitment: Int?
+      var commitmentId: Int?
       for event in events {
         if formatter.date(from: event["end_date"]?.stringValue ?? "")?.timeIntervalSinceNow.sign == .plus {
           commitment = event["participant_event"]?["commitment"]?.intValue
+          commitmentId = event["participant_event"]?["id"]?.intValue
         }
       }
-      if let commitment = commitment {
+      if let commitment = commitment, let commitmentId = commitmentId {
         self.currentEventCommitment = commitment / 2000 // steps to miles
+        self.currentEventCommitmentId = commitmentId
       } else {
         self.currentEventCommitment = nil
+        self.currentEventCommitmentId = nil
       }
     } else {
       self.events = []
       self.currentEventCommitment = nil
+      self.currentEventCommitmentId = nil
     }
     if let cause = json["cause"] {
       self.preferredCause = Cause(json: cause)
