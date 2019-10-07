@@ -28,9 +28,14 @@
  **/
 
 import UIKit
+import RxSwift
 
 class DashboardDataSource: TableViewDataSource {
+  var cache = Cache.shared
+  var facebookService = FacebookService.shared
+  var disposeBag = DisposeBag()
   var cells = [[CellContext]]()
+  var completion: (() -> Void)?
 
   private var name: String = " "
   private var imageURL: URL?
@@ -39,51 +44,44 @@ class DashboardDataSource: TableViewDataSource {
   private var eventTimeline: String = " "
 
   enum DashboardContext: Context {
-  case inviteSupporters
+    case inviteSupporters
+  }
+
+  init() {
+    let update = Observable.combineLatest(
+      cache.facebookNamesRelay,
+      cache.facebookProfileImageURLsRelay,
+      cache.participantRelay)
+
+    update.subscribeOnNext { [weak self] (names, imageURLs, participant) in
+      self?.name = names["me"] ?? " "
+      self?.imageURL = imageURLs["me"]
+      self?.teamName = participant?.team?.name ?? " "
+      if let event = participant?.currentEvent {
+        self?.eventName = event.name
+        self?.eventTimeline = DataFormatters
+          .formatDateRange(value: (start: event.challengePhase.start, end: event.challengePhase.end))
+      }
+      self?.configure()
+      self?.completion?()
+    }.disposed(by: disposeBag)
   }
 
   func reload(completion: @escaping () -> Void) {
+    self.completion = completion
     self.name = " "
     self.imageURL = nil
     self.teamName = " "
     self.eventName = " "
     self.eventTimeline = " "
-
+    
     configure()
     completion()
 
-    onBackground { [weak self] in
-      Facebook.profileImage(for: "me") { (url) in
-        guard let url = url else { return }
-
-        self?.imageURL = url
-        self?.configure()
-        completion()
-      }
-
-      Facebook.getRealName(for: "me") { (name) in
-        self?.name = name ?? ""
-        self?.configure()
-        completion()
-      }
-
-      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
-        guard let participant = Participant(json: result.response) else { return }
-
-        // cache the event to avoid selecting again
-        if let event = participant.currentEvent {
-          self?.eventName = event.name
-
-          self?.eventTimeline =
-              DataFormatters.formatDateRange(value: (start: event.challengePhase.start,
-                                                     end: event.challengePhase.end))
-        }
-
-        self?.teamName = participant.team?.name ?? ""
-
-        self?.configure()
-        completion()
-      }
+    facebookService.getRealName(fbid: "me")
+    facebookService.getProfileImageURL(fbid: "me")
+    AKFCausesService.getParticipant(fbid: facebookService.id) { [weak self] (result) in
+      self?.cache.participantRelay.accept(Participant(json: result.response))
     }
   }
 

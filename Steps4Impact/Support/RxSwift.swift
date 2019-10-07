@@ -27,31 +27,22 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
 
-import Foundation
 import RxSwift
-import RxCocoa
 
-class Cache {
-  static let shared = Cache()
-
-  typealias FacebookID = String
-  typealias FacebookName = String
-  typealias FacebookProfileImageURL = URL
-
-  let facebookNamesRelay = BehaviorRelay<[FacebookID: FacebookName]>(value: [:])
-  private var facebookNames = [FacebookID: FacebookName]()
-  func update(fbid: FacebookID, name: FacebookName) {
-    facebookNames[fbid] = name
-    facebookNamesRelay.accept(facebookNames)
+extension ObservableType {
+  func subscribeOnNext(_ onNext: @escaping (Self.Element) -> Void) -> Disposable {
+    return subscribe(onNext: onNext)
   }
-
-  let facebookProfileImageURLsRelay = BehaviorRelay<[FacebookID: FacebookProfileImageURL]>(value: [:])
-  private var facebookProfileImageURLs = [FacebookID: FacebookProfileImageURL]()
-  func update(fbid: FacebookID, url: FacebookProfileImageURL) {
-    facebookProfileImageURLs[fbid] = url
-    facebookProfileImageURLsRelay.accept(facebookProfileImageURLs)
+  
+  func subscribeOnError(_ onError: @escaping (Error) -> Void) -> Disposable {
+    return subscribe(onError: onError)
   }
-
-  let participantRelay = BehaviorRelay<Participant?>(value: nil)
-  let currentEventRelay = BehaviorRelay<Event?>(value: nil)
+  
+  func subscribeOnCompleted(_ onCompleted: @escaping () -> Void) -> Disposable {
+    return subscribe(onCompleted: onCompleted)
+  }
+  
+  func subscribeOnDisposed(_ onDisposed: @escaping () -> Void) -> Disposable {
+    return subscribe(onDisposed: onDisposed)
+  }
 }
