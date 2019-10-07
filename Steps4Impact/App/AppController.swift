@@ -169,6 +169,8 @@ class AppController {
     var provider: PedometerDataProvider?
 
     switch pedometer {
+    case .fitbit:
+      break
     case .healthKit:
       group.enter()
       provider = HealthKitDataProvider()
