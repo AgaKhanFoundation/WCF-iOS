@@ -65,7 +65,11 @@ struct Participant {
           commitment = event["participant_event"]?["commitment"]?.intValue
         }
       }
-      self.currentEventCommitment = commitment! / 2000 // steps to miles
+      if let commitment = commitment {
+        self.currentEventCommitment = commitment / 2000 // steps to miles
+      } else {
+        self.currentEventCommitment = nil
+      }
     } else {
       self.events = []
       self.currentEventCommitment = nil
