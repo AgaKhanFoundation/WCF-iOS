@@ -44,6 +44,8 @@
 		263EF52E232A105C00A00414 /* TeamSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263EF52D232A105C00A00414 /* TeamSettingsViewController.swift */; };
 		263EF530232A106400A00414 /* TeamSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263EF52F232A106400A00414 /* TeamSettingsDataSource.swift */; };
 		26570DD9234AE83E0016F189 /* TextAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26570DD8234AE83E0016F189 /* TextAlertViewController.swift */; };
+		26570DDB234B01010016F189 /* FacebookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26570DDA234B01010016F189 /* FacebookService.swift */; };
+		26570DDD234B0B930016F189 /* RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26570DDC234B0B930016F189 /* RxSwift.swift */; };
 		265DE5642332BDAA009DDA5A /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5632332BDAA009DDA5A /* WebImageView.swift */; };
 		265DE5662332D663009DDA5A /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5652332D663009DDA5A /* BadgesViewController.swift */; };
 		265DE5682332D66E009DDA5A /* BadgesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5672332D66E009DDA5A /* BadgesDataSource.swift */; };
@@ -187,6 +189,8 @@
 		263EF52D232A105C00A00414 /* TeamSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsViewController.swift; sourceTree = "<group>"; };
 		263EF52F232A106400A00414 /* TeamSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsDataSource.swift; sourceTree = "<group>"; };
 		26570DD8234AE83E0016F189 /* TextAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAlertViewController.swift; sourceTree = "<group>"; };
+		26570DDA234B01010016F189 /* FacebookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookService.swift; sourceTree = "<group>"; };
+		26570DDC234B0B930016F189 /* RxSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwift.swift; sourceTree = "<group>"; };
 		265DE5632332BDAA009DDA5A /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
 		265DE5652332D663009DDA5A /* BadgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
 		265DE5672332D66E009DDA5A /* BadgesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesDataSource.swift; sourceTree = "<group>"; };
@@ -396,6 +400,7 @@
 			children = (
 				2611A5012335FF290030E77E /* AKFCausesService.swift */,
 				2611A5022335FF290030E77E /* Facebook.swift */,
+				26570DDA234B01010016F189 /* FacebookService.swift */,
 				2611A5032335FF290030E77E /* JSON.swift */,
 				2611A5042335FF290030E77E /* Service.swift */,
 			);
@@ -667,6 +672,7 @@
 				260BF5B6232502A9005F0882 /* UIStackView.swift */,
 				26FE24522322332D00E01B9B /* UITableView.swift */,
 				269E35081E765F24000726C2 /* UIView.swift */,
+				26570DDC234B0B930016F189 /* RxSwift.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -1004,6 +1010,7 @@
 				F0CF39861EE0E903006A7462 /* Record.swift in Sources */,
 				260BF59A2324CFA6005F0882 /* EmptyActivityCardCell.swift in Sources */,
 				260BF5A12324D0BE005F0882 /* DisclosureCell.swift in Sources */,
+				26570DDD234B0B930016F189 /* RxSwift.swift in Sources */,
 				F0F8EDD52210C71600321A6D /* ActivityCard.swift in Sources */,
 				2622C09423249D680092B145 /* DashboardDataSource.swift in Sources */,
 				267FAE2E2325CF590014222D /* SettingsActionCell.swift in Sources */,
@@ -1014,6 +1021,7 @@
 				262418342336EA5700454EF2 /* OnboardingViewController.swift in Sources */,
 				269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */,
 				266DA27B2339E54000035CC5 /* ChallengeTeamProgressCell.swift in Sources */,
+				26570DDB234B01010016F189 /* FacebookService.swift in Sources */,
 				265FE47A2349A0A400215391 /* Cache.swift in Sources */,
 				269E350E1E76664F000726C2 /* Async.swift in Sources */,
 				265DE5752333015F009DDA5A /* JoinTeamCell.swift in Sources */,

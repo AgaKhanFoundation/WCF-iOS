@@ -28,6 +28,7 @@
  **/
 
 import Foundation
+import RxSwift
 
 enum TeamSettingsContext: Context {
   case invite
@@ -43,7 +44,11 @@ protocol TeamSettingsDataSourceDelegate: class {
 }
 
 class TeamSettingsDataSource: TableViewDataSource {
+  var cache = Cache.shared
+  var facebookService = FacebookService.shared
+  var disposeBag = DisposeBag()
   var cells: [[CellContext]] = []
+  var completion: (() -> Void)?
 
   typealias Member = (fbid: String?, name: String?, image: URL?, isLead: Bool)
 
@@ -55,67 +60,54 @@ class TeamSettingsDataSource: TableViewDataSource {
   var editing: Bool = false
   public weak var delegate: TeamSettingsDataSourceDelegate?
 
+  init() {
+    let update = Observable.combineLatest(
+      cache.facebookNamesRelay,
+      cache.facebookProfileImageURLsRelay,
+      cache.participantRelay,
+      cache.currentEventRelay
+    )
+
+    update.subscribeOnNext { [weak self] (names, imageURLs, participant, currentEvent) in
+      guard let participant = participant else { return }
+      self?.delegate?.updated(team: participant.team)
+      self?.isLead = participant.team?.creator == self?.facebookService.id
+      self?.teamName = participant.team?.name ?? " "
+
+      if let event = participant.currentEvent {
+        self?.eventName = event.name
+        let members = participant.team?.members.map {
+          ($0.fbid, names[$0.fbid], imageURLs[$0.fbid], $0.fbid == participant.team?.creator)
+        }
+        self?.team = (members: members ?? [], capacity: event.teamLimit)
+      }
+
+      self?.configure()
+      self?.completion?()
+    }.disposed(by: disposeBag)
+  }
+
   func reload(completion: @escaping () -> Void) {
+    self.completion = completion
     configure()
     completion()
 
-    onBackground { [weak self] in
-      let group: DispatchGroup = DispatchGroup()
+    AKFCausesService.getParticipant(fbid: facebookService.id) { [weak self] (result) in
+      let participant = Participant(json: result.response)
+      self?.cache.participantRelay.accept(participant)
 
-      var capacity: Int = 1
-      var members: [Member] = []
-
-      group.enter()
-      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
-        if let participant = Participant(json: result.response) {
-          self?.delegate?.updated(team: participant.team)
-
-          if let event = participant.currentEvent {
-            self?.eventName = event.name
-
-            group.enter()
-            AKFCausesService.getEvent(event: event.id!) { (result) in
-              if let event = Event(json: result.response) {
-                capacity = event.teamLimit
-              }
-              group.leave()
-            }
-          }
-
-          self?.isLead = participant.team?.creator == Facebook.id
-
-          if let team = participant.team {
-            if let name = team.name { self?.teamName = name }
-
-            members = Array<Member>(repeating: (fbid: nil, name: nil, image: nil, isLead: false),
-                                    count: team.members.count)
-
-            for (index, member) in team.members.enumerated() {
-              members[index].fbid = member.fbid
-              members[index].isLead = member.fbid == team.creator
-
-              group.enter()
-              Facebook.getRealName(for: member.fbid) { (name) in
-                members[index].name = name
-                group.leave()
-              }
-
-              group.enter()
-              Facebook.profileImage(for: member.fbid) { (url) in
-                members[index].image = url
-                group.leave()
-              }
-            }
-          }
+      if let eventId = participant?.currentEvent?.id {
+        AKFCausesService.getEvent(event: eventId) { (result) in
+          self?.cache.currentEventRelay.accept(Event(json: result.response))
         }
-        group.leave()
       }
-      group.wait()
 
-      self?.team = (members: members, capacity: capacity)
-
-      self?.configure()
-      completion()
+      if let team = participant?.team {
+        for teamMember in team.members {
+          self?.facebookService.getRealName(fbid: teamMember.fbid)
+          self?.facebookService.getProfileImageURL(fbid: teamMember.fbid)
+        }
+      }
     }
   }
 
@@ -126,13 +118,20 @@ class TeamSettingsDataSource: TableViewDataSource {
     ]]
 
     for (index, member) in self.team.members.enumerated() {
+      let context: Context?
+      if let fbid = member.fbid, let name = member.name {
+        context = TeamMembersContext.remove(fbid: fbid, name: name)
+      } else {
+        context = nil
+      }
+
       cells.append([
         TeamSettingsMemberCellContext(count: index + 1, imageURL: member.image,
                                       name: member.name ?? "",
                                       isLead: member.isLead,
                                       isEditable: !member.isLead && editing,
                                       isLastItem: index == self.team.members.count - 1,
-                                      context: TeamMembersContext.remove(fbid: member.fbid!, name: member.name!))
+                                      context: context)
       ])
     }
 

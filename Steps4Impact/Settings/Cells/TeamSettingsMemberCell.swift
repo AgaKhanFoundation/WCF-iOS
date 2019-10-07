@@ -59,7 +59,7 @@ class TeamSettingsMemberCell: ConfigurableTableViewCell, Contextable {
   static let identifier = "TeamSettingsMemberCell"
 
   private let countLabel = UILabel(typography: .bodyRegular)
-  private let profileImageView = UIImageView(image: Assets.placeholder.image)
+  private let profileImageView = WebImageView(image: Assets.placeholder.image)
   private let nameLabel = UILabel(typography: .bodyRegular)
   private let btnRemove: Button = Button(style: .plain)
   private let lblLead: UILabel = UILabel(typography: .smallBold)
@@ -111,6 +111,11 @@ class TeamSettingsMemberCell: ConfigurableTableViewCell, Contextable {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
     }
   }
+  
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    profileImageView.stopLoading()
+  }
 
   func configure(context: CellContext) {
     guard let context = context as? TeamSettingsMemberCellContext else { return }
@@ -119,6 +124,7 @@ class TeamSettingsMemberCell: ConfigurableTableViewCell, Contextable {
     lblLead.isHidden = !context.isLead
     btnRemove.isHidden = !context.isEditable
     seperatorView.isHidden = context.isLastItem
+    profileImageView.fadeInImage(imageURL: context.imageURL, placeHolderImage: Assets.placeholder.image)
     self.context = context.context
   }
 
