@@ -56,35 +56,6 @@ class ConnectSourceViewController: TableViewController {
     }
   }
 
-  override func handle(context: Context) {
-    guard let source = context as? ConnectSourceDataSource.Source else { return }
-
-    switch source {
-    case .fitbit:
-      // TODO(compnerd) support this
-      let alert = AlertViewController()
-      alert.title = "Unavailable"
-      alert.body = "Fitbit will be able available soon."
-      alert.add(.okay())
-      AppController.shared.present(alert: alert, in: self, completion: nil)
-    case .healthkit:
-      // Just to ask for permission
-      if HKHealthStore.isHealthDataAvailable() {
-        switch HKHealthStore().authorizationStatus(for: ConnectSourceViewController.steps) {
-        case .notDetermined:
-          requestHealthKitAccess()
-        case .sharingDenied:
-          UserInfo.pedometerSource = nil
-          requestHealthKitUpdate()
-        case .sharingAuthorized:
-          UserInfo.pedometerSource = .healthKit
-        @unknown default:
-          UserInfo.pedometerSource = nil
-        }
-      }
-    }
-  }
-
   private func requestHealthKitAccess() {
     HKHealthStore().requestAuthorization(toShare: [ConnectSourceViewController.steps],
                                          read: [ConnectSourceViewController.steps]) { [weak self] (_, _) in
@@ -130,9 +101,40 @@ class ConnectSourceViewController: TableViewController {
 }
 
 extension ConnectSourceViewController: ConnectSourceCellDelegate {
-  func connectSource(context: Context?) {
-    guard let context = context else { return }
-    handle(context: context)
+  func updateSource(context: Context?) {
+    if context == nil {
+      UserInfo.pedometerSource = nil
+    } else if let source = context as? ConnectSourceDataSource.Source {
+      switch source {
+      case .fitbit:
+        // TODO(compnerd) support this
+        let alert = AlertViewController()
+        alert.title = "Unavailable"
+        alert.body = "Fitbit will be able available soon."
+        alert.add(.okay())
+        AppController.shared.present(alert: alert, in: self, completion: nil)
+      case .healthkit:
+        // Just to ask for permission
+        if HKHealthStore.isHealthDataAvailable() {
+          switch HKHealthStore().authorizationStatus(for: ConnectSourceViewController.steps) {
+          case .notDetermined:
+            requestHealthKitAccess()
+          case .sharingDenied:
+            UserInfo.pedometerSource = nil
+            requestHealthKitUpdate()
+          case .sharingAuthorized:
+            UserInfo.pedometerSource = .healthKit
+          @unknown default:
+            UserInfo.pedometerSource = nil
+          }
+        }
+      }
+    }
+
+    dataSource?.configure()
+    onMain {
+      self.reload()
+    }
   }
 }
 

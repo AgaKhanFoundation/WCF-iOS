@@ -30,7 +30,7 @@
 import UIKit
 
 protocol ConnectSourceCellDelegate: class {
-  func connectSource(context: Context?)
+  func updateSource(context: Context?)
 }
 
 struct ConnectSourceCellContext: CellContext {
@@ -51,6 +51,7 @@ class ConnectSourceCell: ConfigurableTableViewCell, Contextable {
   private let lblDescription: UILabel = UILabel(typography: .bodyRegular)
   private let btnConnect: Button = Button(style: .primary)
   private let separator: UIView = UIView()
+  private var bConnected: Bool = false
   var context: Context?
 
   weak var delegate: ConnectSourceCellDelegate?
@@ -96,17 +97,24 @@ class ConnectSourceCell: ConfigurableTableViewCell, Contextable {
 
   func configure(context: CellContext) {
     guard let context = context as? ConnectSourceCellContext else { return }
+
     lblName.text = context.name
     lblDescription.text = context.description
     self.context = context.context
     separator.isHidden = context.isLast
-    self.accessoryType = context.selected ? .checkmark : .none
-    btnConnect.style = context.disabled || context.selected ? .disabled : .primary
+    btnConnect.style = context.disabled ? .disabled : .primary
     btnConnect.isEnabled = !context.disabled
+    btnConnect.title = context.selected ? Strings.ConnectSource.disconnect
+                                        : Strings.ConnectSource.connect
+    bConnected = context.selected
   }
 
   @objc
-  func connect() {
-    delegate?.connectSource(context: context)
+  private func connect() {
+    if bConnected {
+      delegate?.updateSource(context: nil)
+    } else {
+      delegate?.updateSource(context: self.context)
+    }
   }
 }

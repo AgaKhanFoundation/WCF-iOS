@@ -39,17 +39,6 @@ class ConnectSourceDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
 
   func configure() {
-    if HKHealthStore.isHealthDataAvailable() {
-      switch HKHealthStore().authorizationStatus(for: ConnectSourceViewController.steps) {
-      case .notDetermined, .sharingDenied:
-        UserInfo.pedometerSource = nil
-      case .sharingAuthorized:
-        UserInfo.pedometerSource = .healthKit
-      @unknown default:
-        UserInfo.pedometerSource = nil
-      }
-    }
-
     cells = [[
       ConnectSourceCellContext(name: "HealthKit",
                                description: "Connect to Apple HealthKit to track your daily steps.",

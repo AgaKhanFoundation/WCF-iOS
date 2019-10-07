@@ -171,6 +171,7 @@ struct Strings {
   struct ConnectSource {
     static let title = NSLocalizedString("ConnectSource.title", comment: "")
     static let connect = NSLocalizedString("ConnectSource.connect", comment: "")
+    static let disconnect = NSLocalizedString("ConnectSource.disconnect", comment: "")
     static let missingDevice = NSLocalizedString("ConnectSource.missingDevice", comment: "")
     static let missingDeviceDetails = NSLocalizedString("ConnectSource.missingDeviceDetails", comment: "")
   }

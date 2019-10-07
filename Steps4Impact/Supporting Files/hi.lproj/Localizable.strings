@@ -132,6 +132,7 @@
 // ConnectSource
 "ConnectSource.title" = "Connected Apps & Devices";
 "ConnectSource.connect" = "Connect";
+"ConnectSource.disconnect" = "Disconnect";
 "ConnectSource.missingDevice" = "Can't see your device on the list?";
 "ConnectSource.missingDeviceDetails" = "Fitness trackers such as Jawbone, Garmin, etc. connect to your phone's fitness app. Use the HealthKit option above to track your steps.";
 
