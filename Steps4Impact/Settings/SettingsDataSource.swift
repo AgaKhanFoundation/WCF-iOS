@@ -61,7 +61,7 @@ class SettingsDataSource: TableViewDataSource {
         if let participant = Participant(json: result.response) {
           self?.isOnTeam = participant.team != nil
           self?.isTeamLead = participant.team?.creator == participant.fbid
-          self?.commitment = participant.currentEventCommitment!
+          self?.commitment = participant.currentEventCommitment ?? 0
         }
         group.leave()
       }
