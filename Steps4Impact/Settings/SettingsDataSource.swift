@@ -39,6 +39,7 @@ class SettingsDataSource: TableViewDataSource {
     case deleteAccount
     case connectSource
     case createAKFProfile
+    case personalMileCommitment
   }
 
   private var isTeamLead = false
@@ -94,7 +95,8 @@ class SettingsDataSource: TableViewDataSource {
       SettingsTitleCellContext(title: "Personal"),
       SettingsDisclosureCellContext(title: "Personal Mile Commitment",
                                     body: "Mile commitment cannot be changed once the challenge has started.",
-                                    value: "\(commitment) mi"),
+                                    value: "\(commitment) mi",
+                                    context: SettingsContext.personalMileCommitment),
       SettingsSwitchCellContext(title: "Push Notifications",
                                 isSwitchEnabled: true),
       SettingsDisclosureCellContext(title: "Connected apps & devices",
