@@ -76,9 +76,9 @@
 		</dict>
 	</dict>
 	<key>NSHealthShareUsageDescription</key>
-	<string>AFK Walking Challenge uses your step count toward your goals for the event.</string>
+	<string>steps4impact uses your step count toward your goals for the event.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>AFK Walking Challenge reads your step and distance count for the goals of the event.</string>
+	<string>steps4impact reads your step and distance count for the goals of the event.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch</string>
 	<key>UIRequiredDeviceCapabilities</key>
