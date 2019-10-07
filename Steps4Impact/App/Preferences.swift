@@ -41,10 +41,11 @@ struct UserInfo {
       "UserInfo.Keys.OnboardingComplete"
   private static let AKFIDKey: String =
       "UserInfo.Keys.AKFID"
+  private static let fitbitTokenKey: String = "UserInfo.Keys.fitbitToken"
 
   enum Pedometer: String {
     case healthKit = "UserInfo.Pedometer.HealthKit"
-    // case fitbit
+    case fitbit = "UserInfo.Pedometer.Fitbit"
   }
 
   static var pedometerSource: Pedometer? {
@@ -81,5 +82,10 @@ struct UserInfo {
   public static var AKFID: String? {
     get { return defaults.string(forKey: AKFIDKey) }
     set { defaults.set(newValue, forKey: AKFIDKey) }
+  }
+  
+  public static var fitbitToken: String? {
+    get { return defaults.string(forKey: fitbitTokenKey) }
+    set { defaults.set(newValue, forKey: fitbitTokenKey) }
   }
 }

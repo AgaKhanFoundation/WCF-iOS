@@ -107,12 +107,7 @@ extension ConnectSourceViewController: ConnectSourceCellDelegate {
     } else if let source = context as? ConnectSourceDataSource.Source {
       switch source {
       case .fitbit:
-        // TODO(compnerd) support this
-        let alert = AlertViewController()
-        alert.title = "Unavailable"
-        alert.body = "Fitbit will be able available soon."
-        alert.add(.okay())
-        AppController.shared.present(alert: alert, in: self, completion: nil)
+        OAuthFitbit.shared.authorize(using: FitbitAuthorizeViewController())
       case .healthkit:
         // Just to ask for permission
         if HKHealthStore.isHealthDataAvailable() {
