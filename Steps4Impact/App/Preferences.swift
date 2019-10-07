@@ -83,7 +83,7 @@ struct UserInfo {
     get { return defaults.string(forKey: AKFIDKey) }
     set { defaults.set(newValue, forKey: AKFIDKey) }
   }
-  
+
   public static var fitbitToken: String? {
     get { return defaults.string(forKey: fitbitTokenKey) }
     set { defaults.set(newValue, forKey: fitbitTokenKey) }

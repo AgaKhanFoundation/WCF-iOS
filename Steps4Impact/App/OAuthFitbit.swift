@@ -32,7 +32,7 @@ import OAuthSwift
 class OAuthFitbit {
   public static let shared = OAuthFitbit()
   let oauthswift: OAuth2Swift
-  
+
   private init() {
     oauthswift = OAuth2Swift(
       consumerKey:
@@ -47,7 +47,7 @@ class OAuthFitbit {
       "code" //  Authorization Code Grant Flow
     )
   }
-  
+
   func authorize(using handlerViewController: OAuthWebViewController) {
     guard let callbackUrl = URL(string: AppConfig.fitbitCallbackUri) else { return }
 
