@@ -39,16 +39,17 @@ class FitbitAuthorizeViewController: OAuthWebViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setNavigationBar()
-    view.backgroundColor = .white
 
+    view.backgroundColor = Style.Colors.white
     view.addSubview(wkWebView)
-    wkWebView.navigationDelegate = self
-    wkWebView.translatesAutoresizingMaskIntoConstraints = false
+
     let guide = view.safeAreaLayoutGuide
-    wkWebView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
-    wkWebView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
-    wkWebView.topAnchor.constraint(equalTo: navBar.bottomAnchor).isActive = true
-    wkWebView.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
+    wkWebView.navigationDelegate = self
+    wkWebView.snp.makeConstraints {
+      $0.leading.trailing.equalTo(guide)
+      $0.top.equalTo(navBar.snp.bottom)
+      $0.bottom.equalTo(guide.snp.bottom)
+    }
   }
 
   override func handle(_ url: URL) {
@@ -58,14 +59,14 @@ class FitbitAuthorizeViewController: OAuthWebViewController {
   }
 
   func setNavigationBar() {
-    navBar.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(navBar)
 
     let guide = view.safeAreaLayoutGuide
-    navBar.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
-    navBar.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
-    navBar.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
-    navBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
+    navBar.snp.makeConstraints {
+      $0.leading.trailing.equalTo(guide)
+      $0.top.equalTo(guide.snp.top)
+      $0.height.equalTo(44)
+    }
 
     let navItem = UINavigationItem(title: "")
     let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(done))
@@ -78,9 +79,7 @@ class FitbitAuthorizeViewController: OAuthWebViewController {
   }
 
   func loadAddressURL() {
-    guard let url = targetURL else {
-      return
-    }
+    guard let url = targetURL else { return }
 
     let urlRequest = URLRequest(url: url)
     wkWebView.load(urlRequest)
@@ -90,7 +89,6 @@ class FitbitAuthorizeViewController: OAuthWebViewController {
 extension FitbitAuthorizeViewController: WKNavigationDelegate {
   func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
                decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-    //print ("url:\(navigationAction.request.url!)")
     if let url = navigationAction.request.url,
       let fitBitUrl = URL(string: AppConfig.fitbitCallbackUri),
       url.host == fitBitUrl.host {
