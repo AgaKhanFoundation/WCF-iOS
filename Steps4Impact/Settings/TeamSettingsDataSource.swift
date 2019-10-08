@@ -50,11 +50,17 @@ class TeamSettingsDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
   var completion: (() -> Void)?
 
-  typealias Member = (fbid: String?, name: String?, image: URL?, isLead: Bool)
+  struct Member {
+    let fbid: String?
+    let name: String?
+    let image: URL?
+    let isLead: Bool
+  }
 
   private var teamName: String = " "
   private var eventName: String = " "
-  private var team: (members: [Member], capacity: Int) = ([], 0)
+  private var eventTeamLimit: Int = 0
+  private var team: [Member] = []
   private var isLead: Bool = false
 
   var editing: Bool = false
@@ -76,10 +82,11 @@ class TeamSettingsDataSource: TableViewDataSource {
 
       if let event = participant.currentEvent {
         self?.eventName = event.name
+        self?.eventTeamLimit = event.teamLimit
         let members = participant.team?.members.map {
-          ($0.fbid, names[$0.fbid], imageURLs[$0.fbid], $0.fbid == participant.team?.creator)
+          Member(fbid: $0.fbid, name: names[$0.fbid], image: imageURLs[$0.fbid], isLead: $0.fbid == participant.team?.creator)
         }
-        self?.team = (members: members ?? [], capacity: event.teamLimit)
+        self?.team = members ?? []
       }
 
       self?.configure()
@@ -117,7 +124,7 @@ class TeamSettingsDataSource: TableViewDataSource {
       SettingsTitleCellContext(title: "Team Members")
     ]]
 
-    for (index, member) in self.team.members.enumerated() {
+    for (index, member) in self.team.enumerated() {
       let context: Context?
       if let fbid = member.fbid, let name = member.name {
         context = TeamMembersContext.remove(fbid: fbid, name: name)
@@ -130,14 +137,14 @@ class TeamSettingsDataSource: TableViewDataSource {
                                       name: member.name ?? "",
                                       isLead: member.isLead,
                                       isEditable: !member.isLead && editing,
-                                      isLastItem: index == self.team.members.count - 1,
+                                      isLastItem: index == self.team.count - 1,
                                       context: context)
       ])
     }
 
     cells.append([
       SettingsActionCellContext(
-        title: "Invite \(self.team.capacity - self.team.members.count) new team members",
+        title: "Invite \(self.eventTeamLimit - self.team.count) new team members",
         buttonStyle: .plain,
         context: TeamSettingsContext.invite)
     ])
