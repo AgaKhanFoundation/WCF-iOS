@@ -101,6 +101,7 @@
 		F017B6972276D0C60023E84B /* OnboardingDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017B6962276D0C60023E84B /* OnboardingDashboard.swift */; };
 		F02C5DB42339D4F70028FDA9 /* CreateTeamSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02C5DB32339D4F70028FDA9 /* CreateTeamSuccessViewController.swift */; };
 		F02C5DB6233FFA820028FDA9 /* DeviceInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02C5DB5233FFA810028FDA9 /* DeviceInformationCell.swift */; };
+		F02F1734234B9B3E008A1CD6 /* Commitment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02F1733234B9B3E008A1CD6 /* Commitment.swift */; };
 		F02FB49E1E9180CE0097481D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49D1E9180CE0097481D /* Preferences.swift */; };
 		F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */; };
 		F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */; };
@@ -252,6 +253,7 @@
 		F017B6962276D0C60023E84B /* OnboardingDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDashboard.swift; sourceTree = "<group>"; };
 		F02C5DB32339D4F70028FDA9 /* CreateTeamSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamSuccessViewController.swift; sourceTree = "<group>"; };
 		F02C5DB5233FFA810028FDA9 /* DeviceInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInformationCell.swift; sourceTree = "<group>"; };
+		F02F1733234B9B3E008A1CD6 /* Commitment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commitment.swift; sourceTree = "<group>"; };
 		F02FB49D1E9180CE0097481D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedometerDataProvider.swift; sourceTree = "<group>"; };
 		F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitDataProvider.swift; sourceTree = "<group>"; };
@@ -637,6 +639,7 @@
 				F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */,
 				F0CBDA4D1EA6FCAB00BB34F1 /* Supporter.swift */,
 				269E35231E767807000726C2 /* Team.swift */,
+				F02F1733234B9B3E008A1CD6 /* Commitment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1018,6 +1021,7 @@
 				265DE5732332FBA9009DDA5A /* JoinTeam.swift in Sources */,
 				F0320B6E222F678500EABAD6 /* SegmentedView.swift in Sources */,
 				2676B3C82331E1B400CB0A31 /* ActionButton.swift in Sources */,
+				F02F1734234B9B3E008A1CD6 /* Commitment.swift in Sources */,
 				262418342336EA5700454EF2 /* OnboardingViewController.swift in Sources */,
 				269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */,
 				266DA27B2339E54000035CC5 /* ChallengeTeamProgressCell.swift in Sources */,

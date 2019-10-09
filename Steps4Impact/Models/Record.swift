@@ -31,30 +31,18 @@ import Foundation
 
 struct Record {
   let id: Int?                                                                  // swiftlint:disable:this identifier_name line_length
-  let date: Date
-  let distance: Int
-  let fbid: String
+  let date: Date?
+  let distance: Int?
+  let fbid: String?
   let source: Source?
 
   init?(json: JSON?) {
-    guard
-      let json = json,
-      let date = json["date"]?.stringValue,
-      let distance = json["distance"]?.intValue,
-      let fbid = json["participant_id"]?.stringValue
-    else { return nil }
-
-    let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
+    guard let json = json else { return nil }
 
     self.id = json["id"]?.intValue
-    self.date = formatter.date(from: date) ?? Date()
-    self.distance = distance
-    self.fbid = fbid
-
-    if let source = json["source"] {
-      self.source = Source(json: source)
-    } else {
-      self.source = nil
-    }
+    self.date = Date.formatter.date(from: json["date"]?.stringValue ?? "")
+    self.distance = json["distance"]?.intValue
+    self.fbid = nil
+    self.source = Source(json: json["source"])
   }
 }

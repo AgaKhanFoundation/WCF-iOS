@@ -69,7 +69,7 @@ class SettingsDataSource: TableViewDataSource {
       if let participant = participant {
         self?.isOnTeam = participant.team != nil
         self?.isTeamLead = participant.team?.creator == participant.fbid
-        self?.commitment = participant.currentEventCommitment ?? 0
+        self?.commitment = participant.currentEvent?.commitment?.miles ?? 0
       }
 
       self?.configure()

@@ -30,72 +30,27 @@
 import Foundation
 
 struct Participant {
-  let id: Int?
+  let id: Int?                                                                  // swiftlint:disable:this identifier_name line_length
   let fbid: String
   let team: Team?
-  let events: [Event]
+  let events: [Event]?
   let preferredCause: Cause?
-  let records: [Record]
-
-  let currentEventCommitment: Int?
-  let currentEventCommitmentId: Int?
+  let records: [Record]?
 
   init?(json: JSON?) {
     guard let json = json else { return nil }
-    guard
-      let fbid = json["fbid"]?.stringValue
-    else { return nil }
 
-    let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
-    formatter.formatOptions = [
-      .withInternetDateTime,
-      .withFractionalSeconds
-    ]
-
-    self.id = json["id"]?.intValue
+    guard let fbid = json["fbid"]?.stringValue else { return nil }
     self.fbid = fbid
 
-    if let team = json["team"] {
-      self.team = Team(json: team)
-    } else {
-      self.team = nil
-    }
-    if let events = json["events"]?.arrayValue {
-      self.events = events.compactMap({ (json) in Event(json: json) })
-
-      var commitment: Int?
-      var commitmentId: Int?
-      for event in events {
-        if formatter.date(from: event["end_date"]?.stringValue ?? "")?.timeIntervalSinceNow.sign == .plus {
-          commitment = event["participant_event"]?["commitment"]?.intValue
-          commitmentId = event["participant_event"]?["id"]?.intValue
-        }
-      }
-      if let commitment = commitment, let commitmentId = commitmentId {
-        self.currentEventCommitment = commitment / 2000 // steps to miles
-        self.currentEventCommitmentId = commitmentId
-      } else {
-        self.currentEventCommitment = nil
-        self.currentEventCommitmentId = nil
-      }
-    } else {
-      self.events = []
-      self.currentEventCommitment = nil
-      self.currentEventCommitmentId = nil
-    }
-    if let cause = json["cause"] {
-      self.preferredCause = Cause(json: cause)
-    } else {
-      self.preferredCause = nil
-    }
-    if let records = json["records"]?.arrayValue {
-      self.records = records.compactMap { return Record(json: $0) }
-    } else {
-      self.records = []
-    }
+    self.id = json["id"]?.intValue
+    self.team = Team(json: json["team"])
+    self.events = json["events"]?.arrayValue?.compactMap { Event(json: $0) }
+    self.preferredCause = Cause(json: json["cause"])
+    self.records = json["records"]?.arrayValue?.compactMap { Record(json: $0) }
   }
 
   public var currentEvent: Event? {
-    return self.events.filter { $0.challengePhase.end.timeIntervalSinceNow.sign == .plus }.first
+    return self.events?.filter { $0.challengePhase.end > Date(timeIntervalSinceNow: 0) }.first
   }
 }
