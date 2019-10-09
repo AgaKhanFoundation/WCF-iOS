@@ -185,11 +185,10 @@ class AppController {
 
     AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
       if let participant = Participant(json: result.response) {
-        guard let start = (participant.records.sorted {
-          (lhs, rhs) -> Bool in lhs.date.timeIntervalSince(rhs.date).sign == .minus
-        }.last?.date ?? participant.currentEvent?.challengePhase.start) else { return }
+        guard let start = (participant.records?.sorted { $0.date! < $1.date! }.last?.date
+                            ?? participant.currentEvent?.challengePhase.start) else { return }
 
-        guard start.timeIntervalSinceNow.sign == .minus else { return }
+        guard start < Date(timeIntervalSinceNow: 0) else { return }
 
         let interval: DateInterval = DateInterval(start: start, end: Date.init(timeIntervalSinceNow: 0))
 

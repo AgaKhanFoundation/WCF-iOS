@@ -73,7 +73,6 @@ class ConnectDeviceInformationCell: ConfigurableTableViewCell, Contextable {
   }
 
   func configure(context: CellContext) {
-    guard let context = context as? ConnectDeviceInformationCellContext else { return }
     lblDetails.isHidden = !bExpanded
   }
 

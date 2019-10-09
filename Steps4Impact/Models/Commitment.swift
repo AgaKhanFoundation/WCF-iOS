@@ -29,43 +29,16 @@
 
 import Foundation
 
-struct Event {
-  struct DateRange {
-    let start: Date
-    let end: Date
-  }
+struct Commitment {
+  let id: Int?
+  let steps: Int?
 
-  let image: URL?
-
-  let id: Int?                                                                  // swiftlint:disable:this identifier_name line_length
-  let name: String
-  let description: String?
-  let challengePhase: DateRange
-  let teamFormationPhase: DateRange
-  let teamLimit: Int
-  let defaultStepCount: Int
-  let cause: Cause?
-
-  let commitment: Commitment?
-
-  init?(json: JSON?) {
+  public init?(json: JSON?) {
     guard let json = json else { return nil }
 
-    self.image = nil
     self.id = json["id"]?.intValue
-    self.name = json["name"]?.stringValue ?? ""
-    self.description = json["description"]?.stringValue
-    self.challengePhase = DateRange(start: Date.formatter.date(from: json["start_date"]?.stringValue ?? "") ?? Date.distantFuture,
-                                    end: Date.formatter.date(from: json["end_date"]?.stringValue ?? "") ?? Date.distantFuture)
-    self.teamFormationPhase = DateRange(start: Date.formatter.date(from: json["team_building_start"]?.stringValue ?? "") ?? Date.distantFuture,
-                                        end: Date.formatter.date(from: json["team_building_end"]?.stringValue ?? "") ?? Date.distantFuture)
-    self.teamLimit = json["team_limit"]?.intValue ?? 0
-    if let defaultSteps = json["default_steps"]?.intValue {
-      self.defaultStepCount = defaultSteps
-    } else {
-      self.defaultStepCount = 10000 * challengePhase.start.daysUntil(challengePhase.end)
-    }
-    self.cause = Cause(json: json["cause"])
-    self.commitment = Commitment(json: json["participant_event"])
+    self.steps = json["commitment"]?.intValue
   }
+
+  public var miles: Int? { return steps == nil ? nil : steps! / 2000 }
 }

@@ -103,10 +103,10 @@ class SettingsViewController: TableViewController {
 
         let alert = TextAlertViewController()
         alert.title = "Personal mile commitment"
-        alert.value = "\(participant.currentEventCommitment ?? 0)"
+        alert.value = "\(participant.currentEvent?.commitment?.miles ?? 0)"
         alert.suffix = "Miles"
         alert.add(.init(title: "Save", style: .primary, shouldDismiss: false) {
-          if let cid = participant.currentEventCommitmentId {
+          if let cid = participant.currentEvent?.commitment?.id {
             AKFCausesService.setCommitment(cid, toSteps: (Int(alert.value ?? "0") ?? 0) * 2000) { (result) in
               alert.dismiss(animated: true) {
                 if !result.isSuccess {

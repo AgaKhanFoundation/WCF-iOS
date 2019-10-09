@@ -125,11 +125,9 @@ class TeamSettingsDataSource: TableViewDataSource {
     ]]
 
     for (index, member) in self.team.enumerated() {
-      let context: Context?
-      if let fbid = member.fbid, let name = member.name {
-        context = TeamMembersContext.remove(fbid: fbid, name: name)
-      } else {
-        context = nil
+      var context: Context?
+      if let fbid = member.fbid {
+        context = TeamMembersContext.remove(fbid: fbid, name: member.name ?? "")
       }
 
       cells.append([

@@ -30,9 +30,15 @@
 import Foundation
 
 extension Date {
-    private var components: DateComponents {
-      return Calendar.current.dateComponents([.year, .month, .day, .hour,
-                                              .second], from: self)
+  static let formatter: ISO8601DateFormatter = {
+    let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
+    formatter.formatOptions = [.withFractionalSeconds, .withInternetDateTime]
+    return formatter
+  }()
+
+  private var components: DateComponents {
+    return Calendar.current.dateComponents([.year, .month, .day, .hour,
+                                            .second], from: self)
   }
 
   private static func from(components: DateComponents) -> Date {
