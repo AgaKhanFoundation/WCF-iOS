@@ -57,6 +57,7 @@ class AKFLoginViewController: ViewController {
     }
     webview.configuration.userContentController.add(self, name: AKFLoginViewController.LoginCompletedHandlerKey)
     webview.load(URLRequest(url: URL(string: "https://www.akfusa.org/steps4impact/?fbid=\(Facebook.id)")!))
+    webview.navigationDelegate = self
   }
 }
 
@@ -64,5 +65,19 @@ extension AKFLoginViewController: WKScriptMessageHandler {
   func userContentController(_ userContentController: WKUserContentController,
                              didReceive message: WKScriptMessage) {
     // TODO(compnerd) handle the message, save the AKFID
+  }
+}
+
+extension AKFLoginViewController: WKNavigationDelegate {
+  func webView(_ webView: WKWebView,
+               decidePolicyFor navigationResponse: WKNavigationResponse,
+               decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+    if !(webView.url?.absoluteString.starts(with: "https://www.akfusa.org/thank-you-steps4impact/") ?? false) {
+      return decisionHandler(.allow)
+    }
+
+    UserInfo.AKFProfileCreated = true
+    AppController.shared.onAKFLoginCompleted()
+    return decisionHandler(.allow)
   }
 }
