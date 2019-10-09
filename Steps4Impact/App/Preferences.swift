@@ -41,6 +41,8 @@ struct UserInfo {
       "UserInfo.Keys.OnboardingComplete"
   private static let AKFIDKey: String =
       "UserInfo.Keys.AKFID"
+  private static let AKFProfileCreatedKey: String =
+      "UserInfo.Keys.AKFProfileCreated"
   private static let fitbitTokenKey: String = "UserInfo.Keys.fitbitToken"
 
   enum Pedometer: String {
@@ -82,6 +84,11 @@ struct UserInfo {
   public static var AKFID: String? {
     get { return defaults.string(forKey: AKFIDKey) }
     set { defaults.set(newValue, forKey: AKFIDKey) }
+  }
+
+  public static var AKFProfileCreated: Bool {
+    get { return defaults.bool(forKey: AKFProfileCreatedKey) }
+    set { defaults.set(newValue, forKey: AKFProfileCreatedKey) }
   }
 
   public static var fitbitToken: String? {
