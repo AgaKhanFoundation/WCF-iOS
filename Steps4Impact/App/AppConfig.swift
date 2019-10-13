@@ -32,7 +32,7 @@ import Foundation
 struct AppConfig {
 #if DEBUG
   static let server: URLComponents =
-      URLComponents(string: "http://akf-causes.subshell.org")!
+      URLComponents(string: "https://dev.step4change.org")!
 #else
   static let server: URLComponents =
       URLComponents(string: "http://step4change.org")!
