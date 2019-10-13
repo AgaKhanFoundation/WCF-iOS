@@ -75,6 +75,7 @@
 		269E35181E7669FB000726C2 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35171E7669FB000726C2 /* Strings.swift */; };
 		269E35241E767807000726C2 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35231E767807000726C2 /* Team.swift */; };
 		269E35291E767AE1000726C2 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35281E767AE1000726C2 /* Collection.swift */; };
+		26A475A32353E63400059764 /* AppInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A475A22353E63400059764 /* AppInfoCell.swift */; };
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
 		26E9C0FA233838A700800E8A /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9C0F9233838A700800E8A /* OnboardingPageViewController.swift */; };
 		26E9C0FC2338533E00800E8A /* UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9C0FB2338533E00800E8A /* UIPageViewController.swift */; };
@@ -223,6 +224,7 @@
 		269E35171E7669FB000726C2 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		269E35231E767807000726C2 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		269E35281E767AE1000726C2 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		26A475A22353E63400059764 /* AppInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoCell.swift; sourceTree = "<group>"; };
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		26E9C0F9233838A700800E8A /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
 		26E9C0FB2338533E00800E8A /* UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageViewController.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				2676B3C92331F18B00CB0A31 /* TeamSettingsHeaderCell.swift */,
 				2676B3CB2331F3D400CB0A31 /* TeamSettingsMemberCell.swift */,
 				F02C5DB5233FFA810028FDA9 /* DeviceInformationCell.swift */,
+				26A475A22353E63400059764 /* AppInfoCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -453,7 +456,7 @@
 				2611A50C2335FFDC0030E77E /* SponsorshipDataSource.swift */,
 				269E35171E7669FB000726C2 /* Strings.swift */,
 				269E350B1E765F73000726C2 /* StyleGuide.swift */,
-                C92244C6234AD68A0098A333 /* OAuthFitbit.swift */,
+				C92244C6234AD68A0098A333 /* OAuthFitbit.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -1004,6 +1007,7 @@
 				F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */,
 				26FE24472322295300E01B9B /* ViewController.swift in Sources */,
 				F06254C11ECD5D1700168DD6 /* Participant.swift in Sources */,
+				26A475A32353E63400059764 /* AppInfoCell.swift in Sources */,
 				F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */,
 				F00403191EC3FB7D005E6F10 /* (null) in Sources */,
 				F0A992D61EABF037001621A6 /* Formatters.swift in Sources */,

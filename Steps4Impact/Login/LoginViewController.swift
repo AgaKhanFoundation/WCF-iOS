@@ -47,6 +47,9 @@ class LoginViewController: UIViewController {
 
   private func configureView() {
     view.backgroundColor = Style.Colors.white
+    btnLogin.addGestureRecognizer(UILongPressGestureRecognizer(
+      target: self,
+      action: #selector(loginButtonLongPressed)))
 
     imgLogo.contentMode = .scaleAspectFit
     view.addSubview(imgLogo) { (make) in
@@ -82,6 +85,18 @@ class LoginViewController: UIViewController {
     let view: SFSafariViewController =
       SFSafariViewController(url: URL(string: "https://www.akfusa.org/website-private-policy")!)
     present(view, animated: true, completion: nil)
+  }
+
+  @objc
+  private func loginButtonLongPressed() {
+    let alert = AlertViewController()
+    alert.title = "Switch Server"
+    alert.body = "Switch to \(UserInfo.isStaging ? "Production" : "Staging")?"
+    alert.add(.okay({
+      UserInfo.isStaging = !UserInfo.isStaging
+    }))
+    alert.add(.cancel())
+    AppController.shared.present(alert: alert, in: self, completion: nil)
   }
 }
 

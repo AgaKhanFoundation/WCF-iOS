@@ -55,6 +55,9 @@ class SettingsViewController: TableViewController {
     if let cell = cell as? SettingsActionCell {
       cell.delegate = self
     }
+    if let cell = cell as? AppInfoCell {
+      cell.delegate = self
+    }
   }
 
   override func handle(context: Context) {
@@ -145,5 +148,19 @@ extension SettingsViewController: SettingsActionCellDelegate {
   func settingsActionCellTapped(context: Context?, button: UIButton) {
     guard let context = context else { return }
     handle(context: context)
+  }
+}
+
+extension SettingsViewController: AppInfoCellDelegate {
+  func appInfoCellToggleStaging() {
+    let alert = AlertViewController()
+    alert.title = "Switch Server"
+    alert.body = "Switch to \(UserInfo.isStaging ? "Production" : "Staging")?\nApp will logout if you continue."
+    alert.add(.okay({ [weak self] in
+      UserInfo.isStaging = !UserInfo.isStaging
+      self?.logout()
+    }))
+    alert.add(.cancel())
+    AppController.shared.present(alert: alert, in: self, completion: nil)
   }
 }
