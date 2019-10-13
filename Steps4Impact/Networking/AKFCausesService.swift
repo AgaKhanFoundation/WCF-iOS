@@ -114,10 +114,14 @@ class AKFCausesService: Service {
     shared.request(.delete, endpoint: .participant(fbId: fbid), completion: completion)
   }
 
-  static func createTeam(name: String, lead fbid: String,
+  static func createTeam(name: String, lead fbid: String, hidden: Bool = false,
                          completion: ServiceRequestCompletion? = nil) {
     shared.request(.post, endpoint: .teams,
-                   parameters: JSON(["name": name, "creator_id": fbid]),
+                   parameters: JSON([
+                     "name": name,
+                     "creator_id": fbid,
+                     "hidden": hidden
+                   ]),
                    completion: completion)
   }
 
