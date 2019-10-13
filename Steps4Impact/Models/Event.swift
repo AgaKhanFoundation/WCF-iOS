@@ -55,10 +55,10 @@ struct Event {
     self.id = json["id"]?.intValue
     self.name = json["name"]?.stringValue ?? ""
     self.description = json["description"]?.stringValue
-    self.challengePhase = DateRange(start: Date.formatter.date(from: json["start_date"]?.stringValue ?? "") ?? Date.distantFuture,
-                                    end: Date.formatter.date(from: json["end_date"]?.stringValue ?? "") ?? Date.distantFuture)
-    self.teamFormationPhase = DateRange(start: Date.formatter.date(from: json["team_building_start"]?.stringValue ?? "") ?? Date.distantFuture,
-                                        end: Date.formatter.date(from: json["team_building_end"]?.stringValue ?? "") ?? Date.distantFuture)
+    self.challengePhase = DateRange(start: Date.formatter.date(from: json["start_date"]?.stringValue ?? "") ?? Date.distantFuture, // swiftlint:disable:this line_length
+                                    end: Date.formatter.date(from: json["end_date"]?.stringValue ?? "") ?? Date.distantFuture) // swiftlint:disable:this line_length
+    self.teamFormationPhase = DateRange(start: Date.formatter.date(from: json["team_building_start"]?.stringValue ?? "") ?? Date.distantFuture, // swiftlint:disable:this line_length
+                                        end: Date.formatter.date(from: json["team_building_end"]?.stringValue ?? "") ?? Date.distantFuture) // swiftlint:disable:this line_length
     self.teamLimit = json["team_limit"]?.intValue ?? 0
     if let defaultSteps = json["default_steps"]?.intValue {
       self.defaultStepCount = defaultSteps
