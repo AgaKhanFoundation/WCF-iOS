@@ -134,7 +134,7 @@ class SettingsDataSource: TableViewDataSource {
     ]])
 
     cells.append([
-      AppInfoCellContext(title: "Build Info", body: AppConfig.build)
+      AppInfoCellContext(title: "Build Information", body: AppConfig.build)
     ])
   }
 }
