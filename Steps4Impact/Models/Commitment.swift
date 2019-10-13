@@ -30,7 +30,7 @@
 import Foundation
 
 struct Commitment {
-  let id: Int?
+  let id: Int? // swiftlint:disable:this identifier_name
   let steps: Int?
 
   public init?(json: JSON?) {

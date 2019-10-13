@@ -40,7 +40,13 @@ struct TeamSettingsMemberCellContext: CellContext {
   let isLastItem: Bool
   let context: Context?
 
-  init(count: Int, imageURL: URL? = nil, name: String, isLead: Bool, isEditable: Bool, isLastItem: Bool = false, context: Context? = nil) {
+  init(count: Int,
+       imageURL: URL? = nil,
+       name: String,
+       isLead: Bool,
+       isEditable: Bool,
+       isLastItem: Bool = false,
+       context: Context? = nil) {
     self.count = count
     self.imageURL = imageURL
     self.name = name
@@ -111,7 +117,7 @@ class TeamSettingsMemberCell: ConfigurableTableViewCell, Contextable {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
     }
   }
-  
+
   override func prepareForReuse() {
     super.prepareForReuse()
     profileImageView.stopLoading()

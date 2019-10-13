@@ -42,7 +42,7 @@ enum AKFCausesEndPoint {
   case source(sourceId: Int)
   case sources
   case commitment
-  case commitments(id: Int)
+  case commitments(id: Int) // swiftlint:disable:this identifier_name
 }
 
 extension AKFCausesEndPoint {

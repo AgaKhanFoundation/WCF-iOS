@@ -202,13 +202,7 @@ class ChallengeDataSource: TableViewDataSource {
 
   func configure() {
     guard participant?.team != nil else {
-      cells = [[
-        TeamNeededCellContext(
-          title: Strings.Challenge.TeamNeededCard.title,
-          body: Strings.Challenge.TeamNeededCard.body,
-          primaryButtonTitle: Strings.Challenge.TeamNeededCard.primaryButton,
-          secondaryButtonTitle: Strings.Challenge.TeamNeededCard.secondaryButton)
-        ]]
+      configureNoTeamCells()
       return
     }
 
@@ -225,7 +219,7 @@ class ChallengeDataSource: TableViewDataSource {
       InfoCellContext(
         asset: .challengeJourney,
         title: "Journey",
-        body: "Your journey begins in \(Date().daysUntil(event.challengePhase.start)) days on \(formatter.string(from: event.challengePhase.start))!"),
+        body: "Your journey begins in \(Date().daysUntil(event.challengePhase.start)) days on \(formatter.string(from: event.challengePhase.start))!"), // swiftlint:disable:this line_length
       ChallengeTeamProgressCellContext(
         teamName: team.name ?? "",
         teamLeadName: teamCreator ?? "",
@@ -243,7 +237,7 @@ class ChallengeDataSource: TableViewDataSource {
         DisclosureCellContext(
           asset: .inviteFriends,
           title: "Invite more friends to join!",
-          body: "Maximize your chances of reaching the team goal. Your team has \(spots) \(spots > 1 ? "spots" : "spot") remaining. Invite more friends to join!",
+          body: "Maximize your chances of reaching the team goal. Your team has \(spots) \(spots > 1 ? "spots" : "spot") remaining. Invite more friends to join!", // swiftlint:disable:this line_length
           disclosureTitle: "Invite \(spots) new team members",
           context: ChallengeContext.inviteFriends)
       ])
@@ -257,5 +251,15 @@ class ChallengeDataSource: TableViewDataSource {
         disclosureTitle: "Invite supporters to pledge",
         context: ChallengeContext.inviteSupporters)
     ])
+  }
+
+  private func configureNoTeamCells() {
+    cells = [[
+      TeamNeededCellContext(
+        title: Strings.Challenge.TeamNeededCard.title,
+        body: Strings.Challenge.TeamNeededCard.body,
+        primaryButtonTitle: Strings.Challenge.TeamNeededCard.primaryButton,
+        secondaryButtonTitle: Strings.Challenge.TeamNeededCard.secondaryButton)
+    ]]
   }
 }

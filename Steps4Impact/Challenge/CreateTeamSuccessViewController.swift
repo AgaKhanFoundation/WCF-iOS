@@ -58,7 +58,7 @@ class CreateTeamSuccessViewController: ViewController {
     titleLabel.text = Strings.Challenge.CreateTeam.successTitle
     titleLabel.textAlignment = .center
 
-    lblNextSteps.text = "Next, invite friends to join. You have \((event?.teamLimit ?? 1) - 1) spots remaining on your team."
+    lblNextSteps.text = "Next, invite friends to join. You have \((event?.teamLimit ?? 1) - 1) spots remaining on your team." // swiftlint:disable:this line_length
     lblNextSteps.textAlignment = .center
 
     inviteButton.title = "Invite Friends to Join"
