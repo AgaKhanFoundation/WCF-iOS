@@ -27,46 +27,59 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-import Foundation
+import UIKit
+import SnapKit
 
-struct AppConfig {
-  static var server: URLComponents {
-    if UserInfo.isStaging {
-      return URLComponents(string: "https://staging.step4change.org")!
-    } else {
-      #if DEBUG
-        return URLComponents(string: "https://dev.step4change.org")!
-      #else
-        return URLComponents(string: "http://step4change.org")!
-      #endif
+struct AppInfoCellContext: CellContext {
+  let identifier: String = AppInfoCell.identifier
+  let title: String
+  let body: String
+}
+
+protocol AppInfoCellDelegate: class {
+  func appInfoCellToggleStaging()
+}
+
+class AppInfoCell: ConfigurableTableViewCell {
+  static let identifier = "AppInfoCell"
+
+  private let cardView = CardViewV2()
+  private let titleLabel = UILabel(typography: .title)
+  private let bodyLabel = UILabel(typography: .bodyRegular)
+
+  weak var delegate: AppInfoCellDelegate?
+
+  override func commonInit() {
+    super.commonInit()
+
+    cardView.addGestureRecognizer(UILongPressGestureRecognizer(
+      target: self,
+      action: #selector(cardLongPressed)))
+
+    contentView.addSubview(cardView) {
+      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)
+      $0.top.bottom.equalToSuperview().inset(Style.Padding.p12)
+    }
+
+    let stackView = UIStackView()
+    stackView.axis = .vertical
+    stackView.spacing = Style.Padding.p32
+    stackView.addArrangedSubviews(titleLabel, bodyLabel)
+
+    cardView.addSubview(stackView) {
+      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
+      $0.top.bottom.equalToSuperview().inset(Style.Padding.p32)
     }
   }
 
-  static let appCenterSecret = "9ca54e4e-20df-425a-bfe6-b72d0daad2da" // TODO: Move this to CI env
+  func configure(context: CellContext) {
+    guard let context = context as? AppInfoCellContext else { return }
+    titleLabel.text = context.title
+    bodyLabel.text = context.body
+  }
 
-  static let fitbitConsumerKey = "22B4MM"
-  static let fitbitConsumerSecret = "c2daab8d7565ffc888cc269ad1a9dff9"
-  static let fitbitCallbackUri = "https://fitbit_oauth2_complete"
-  static let fitbitAuthorizeUrl = "https://www.fitbit.com/oauth2/authorize"
-  static let fitbitTokenUrl = "https://api.fitbit.com/oauth2/token"
-  static let fitbitScope = "activity profile settings"
-
-  static var build: String {
-    guard
-        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String,
-        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-    else { return "" }
-
-    var string = "\(Strings.Application.name): \(version) - \(build)"
-
-    #if DEBUG
-      string += "\nDebug"
-    #endif
-
-    if UserInfo.isStaging {
-      string += "\nStaging"
-    }
-
-    return string
+  @objc
+  func cardLongPressed() {
+    delegate?.appInfoCellToggleStaging()
   }
 }

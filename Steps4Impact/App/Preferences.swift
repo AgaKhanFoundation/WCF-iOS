@@ -44,6 +44,7 @@ struct UserInfo {
   private static let AKFProfileCreatedKey: String =
       "UserInfo.Keys.AKFProfileCreated"
   private static let fitbitTokenKey: String = "UserInfo.Keys.fitbitToken"
+  private static let staging: String = "UserInfo.Keys.staging"
 
   enum Pedometer: String {
     case healthKit = "UserInfo.Pedometer.HealthKit"
@@ -94,5 +95,10 @@ struct UserInfo {
   public static var fitbitToken: String? {
     get { return defaults.string(forKey: fitbitTokenKey) }
     set { defaults.set(newValue, forKey: fitbitTokenKey) }
+  }
+  
+  public static var isStaging: Bool {
+    get { return defaults.bool(forKey: staging) }
+    set { defaults.set(newValue, forKey: staging) }
   }
 }

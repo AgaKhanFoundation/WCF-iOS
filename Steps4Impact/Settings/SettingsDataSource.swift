@@ -132,5 +132,9 @@ class SettingsDataSource: TableViewDataSource {
     SettingsActionCellContext(title: "Delete Account", buttonStyle: .plain,
                               context: SettingsContext.deleteAccount)
     ]])
+
+    cells.append([
+      AppInfoCellContext(title: "App Info", body: AppConfig.build)
+    ])
   }
 }
