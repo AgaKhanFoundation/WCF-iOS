@@ -110,34 +110,27 @@ extension LoginViewController: LoginButtonDelegate {
     guard let result = result else { return }
     if result.isCancelled { return }
 
-    AKFCausesService.createParticipant(fbid: Facebook.id)
+    AKFCausesService.createParticipant(fbid: Facebook.id) { [weak self] (_) in
+      onMain {
+        AppController.shared.login()
+      }
+      self?.addParticipantToDefaultEventIfNeeded()
+    }
+  }
 
-    onBackground {
-      let group: DispatchGroup = DispatchGroup()
-
-      group.enter()
-      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
-        if let participant = Participant(json: result.response), participant.currentEvent == nil {
-          group.enter()
-          AKFCausesService.getEvents { (result) in
-            if let events: [Event] = result.response?.arrayValue?.compactMap({ (json) in Event(json: json) }),
-               let eid = events.first?.id, let defaultSteps = events.first?.defaultStepCount {
-              group.enter()
-              AKFCausesService.joinEvent(fbid: Facebook.id, eventID: eid, steps: defaultSteps) { (_) in
-                group.leave()
-              }
+  private func addParticipantToDefaultEventIfNeeded() {
+    AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+      if let participant = Participant(json: result.response), participant.currentEvent == nil {
+        AKFCausesService.getEvents { (result) in
+          if let events = result.response?.arrayValue?.compactMap({ Event(json: $0)}),
+            let eventId = events.first?.id, let defaultSteps = events.first?.defaultStepCount {
+            AKFCausesService.joinEvent(fbid: Facebook.id, eventID: eventId, steps: defaultSteps) { _ in
+              NotificationCenter.default.post(name: .eventChanged, object: nil)
             }
-            group.leave()
           }
         }
-        group.leave()
       }
-      group.wait()
-
-      NotificationCenter.default.post(name: .eventChanged, object: nil)
     }
-
-    AppController.shared.login()
   }
 
   func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
