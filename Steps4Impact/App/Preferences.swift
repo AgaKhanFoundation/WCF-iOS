@@ -96,7 +96,7 @@ struct UserInfo {
     get { return defaults.string(forKey: fitbitTokenKey) }
     set { defaults.set(newValue, forKey: fitbitTokenKey) }
   }
-  
+
   public static var isStaging: Bool {
     get { return defaults.bool(forKey: staging) }
     set { defaults.set(newValue, forKey: staging) }
