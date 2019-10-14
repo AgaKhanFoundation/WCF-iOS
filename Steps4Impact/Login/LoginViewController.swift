@@ -122,10 +122,10 @@ extension LoginViewController: LoginButtonDelegate {
     AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
       if let participant = Participant(json: result.response), participant.currentEvent == nil {
         AKFCausesService.getEvents { (result) in
-          if let events = result.response?.arrayValue?.compactMap( { Event(json: $0) } ),
-            let eventId = events.first?.id, let defaultSteps = events.first?.defaultStepCount {
+          let events = result.response?.arrayValue?.compactMap { Event(json: $0) }
 
-            AKFCausesService.joinEvent(fbid: Facebook.id, eventID: eventId, steps: defaultSteps) { _ in
+          if let event = events?.first, let eventID = event.id {
+            AKFCausesService.joinEvent(fbid: Facebook.id, eventID: eventID, steps: event.defaultStepCount) { _ in
               NotificationCenter.default.post(name: .eventChanged, object: nil)
             }
           }
