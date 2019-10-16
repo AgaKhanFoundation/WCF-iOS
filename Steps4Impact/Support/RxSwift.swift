@@ -33,15 +33,15 @@ extension ObservableType {
   func subscribeOnNext(_ onNext: @escaping (Self.Element) -> Void) -> Disposable {
     return subscribe(onNext: onNext)
   }
-  
+
   func subscribeOnError(_ onError: @escaping (Error) -> Void) -> Disposable {
     return subscribe(onError: onError)
   }
-  
+
   func subscribeOnCompleted(_ onCompleted: @escaping () -> Void) -> Disposable {
     return subscribe(onCompleted: onCompleted)
   }
-  
+
   func subscribeOnDisposed(_ onDisposed: @escaping () -> Void) -> Disposable {
     return subscribe(onDisposed: onDisposed)
   }

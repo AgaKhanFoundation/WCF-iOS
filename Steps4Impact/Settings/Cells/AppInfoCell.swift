@@ -27,41 +27,59 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-import Foundation
+import UIKit
+import SnapKit
 
-extension Date {
-  static let formatter: ISO8601DateFormatter = {
-    let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
-    formatter.formatOptions = [.withFractionalSeconds, .withInternetDateTime]
-    return formatter
-  }()
+struct AppInfoCellContext: CellContext {
+  let identifier: String = AppInfoCell.identifier
+  let title: String
+  let body: String
+}
 
-  private var components: DateComponents {
-    return Calendar.current.dateComponents([.year, .month, .day, .hour,
-                                            .second], from: self)
+protocol AppInfoCellDelegate: class {
+  func appInfoCellToggleStaging()
+}
+
+class AppInfoCell: ConfigurableTableViewCell {
+  static let identifier = "AppInfoCell"
+
+  private let cardView = CardViewV2()
+  private let titleLabel = UILabel(typography: .title)
+  private let bodyLabel = UILabel(typography: .bodyRegular)
+
+  weak var delegate: AppInfoCellDelegate?
+
+  override func commonInit() {
+    super.commonInit()
+
+    cardView.addGestureRecognizer(UILongPressGestureRecognizer(
+      target: self,
+      action: #selector(cardLongPressed)))
+
+    contentView.addSubview(cardView) {
+      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)
+      $0.top.bottom.equalToSuperview().inset(Style.Padding.p12)
+    }
+
+    let stackView = UIStackView()
+    stackView.axis = .vertical
+    stackView.spacing = Style.Padding.p32
+    stackView.addArrangedSubviews(titleLabel, bodyLabel)
+
+    cardView.addSubview(stackView) {
+      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
+      $0.top.bottom.equalToSuperview().inset(Style.Padding.p32)
+    }
   }
 
-  private static func from(components: DateComponents) -> Date {
-    return Calendar.current.date(from: components) ?? Date()
+  func configure(context: CellContext) {
+    guard let context = context as? AppInfoCellContext else { return }
+    titleLabel.text = context.title
+    bodyLabel.text = context.body
   }
 
-  var startOfDay: Date {
-      var components = self.components
-      components.hour = 0
-      components.minute = 0
-      components.second = 0
-      return .from(components: components)
-  }
-
-  var endOfDay: Date {
-      var components = self.components
-      components.hour = 23
-      components.minute = 59
-      components.second = 59
-      return .from(components: components)
-  }
-
-  func daysUntil(_ date: Date) -> Int {
-    return Calendar.current.dateComponents([.day], from: self, to: date).day!
+  @objc
+  func cardLongPressed() {
+    delegate?.appInfoCellToggleStaging()
   }
 }

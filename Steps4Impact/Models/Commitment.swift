@@ -29,39 +29,16 @@
 
 import Foundation
 
-extension Date {
-  static let formatter: ISO8601DateFormatter = {
-    let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
-    formatter.formatOptions = [.withFractionalSeconds, .withInternetDateTime]
-    return formatter
-  }()
+struct Commitment {
+  let id: Int? // swiftlint:disable:this identifier_name
+  let steps: Int?
 
-  private var components: DateComponents {
-    return Calendar.current.dateComponents([.year, .month, .day, .hour,
-                                            .second], from: self)
+  public init?(json: JSON?) {
+    guard let json = json else { return nil }
+
+    self.id = json["id"]?.intValue
+    self.steps = json["commitment"]?.intValue
   }
 
-  private static func from(components: DateComponents) -> Date {
-    return Calendar.current.date(from: components) ?? Date()
-  }
-
-  var startOfDay: Date {
-      var components = self.components
-      components.hour = 0
-      components.minute = 0
-      components.second = 0
-      return .from(components: components)
-  }
-
-  var endOfDay: Date {
-      var components = self.components
-      components.hour = 23
-      components.minute = 59
-      components.second = 59
-      return .from(components: components)
-  }
-
-  func daysUntil(_ date: Date) -> Int {
-    return Calendar.current.dateComponents([.day], from: self, to: date).day!
-  }
+  public var miles: Int? { return steps == nil ? nil : steps! / 2000 }
 }

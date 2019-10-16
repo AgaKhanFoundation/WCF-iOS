@@ -69,7 +69,11 @@ class ChallengeTeamProgressCell: ConfigurableTableViewCell {
 
   override func commonInit() {
     super.commonInit()
+    configureViews()
+    configureConstraints()
+  }
 
+  private func configureViews() {
     imagesStackView.axis = .horizontal
     imagesStackView.spacing = -10
     imagesStackView.distribution = .fillProportionally
@@ -96,7 +100,9 @@ class ChallengeTeamProgressCell: ConfigurableTableViewCell {
     editButton.setTitleColor(Style.Colors.blue, for: .normal)
     editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
     disclosureView.delegate = self
+  }
 
+  private func configureConstraints() {
     contentView.addSubview(cardView) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)
       $0.top.bottom.equalToSuperview().inset(Style.Padding.p12)

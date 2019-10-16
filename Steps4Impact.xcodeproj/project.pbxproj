@@ -75,6 +75,7 @@
 		269E35181E7669FB000726C2 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35171E7669FB000726C2 /* Strings.swift */; };
 		269E35241E767807000726C2 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35231E767807000726C2 /* Team.swift */; };
 		269E35291E767AE1000726C2 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35281E767AE1000726C2 /* Collection.swift */; };
+		26A475A32353E63400059764 /* AppInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A475A22353E63400059764 /* AppInfoCell.swift */; };
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
 		26E9C0FA233838A700800E8A /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9C0F9233838A700800E8A /* OnboardingPageViewController.swift */; };
 		26E9C0FC2338533E00800E8A /* UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9C0FB2338533E00800E8A /* UIPageViewController.swift */; };
@@ -103,6 +104,7 @@
 		F017B6972276D0C60023E84B /* OnboardingDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017B6962276D0C60023E84B /* OnboardingDashboard.swift */; };
 		F02C5DB42339D4F70028FDA9 /* CreateTeamSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02C5DB32339D4F70028FDA9 /* CreateTeamSuccessViewController.swift */; };
 		F02C5DB6233FFA820028FDA9 /* DeviceInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02C5DB5233FFA810028FDA9 /* DeviceInformationCell.swift */; };
+		F02F1734234B9B3E008A1CD6 /* Commitment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02F1733234B9B3E008A1CD6 /* Commitment.swift */; };
 		F02FB49E1E9180CE0097481D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49D1E9180CE0097481D /* Preferences.swift */; };
 		F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */; };
 		F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */; };
@@ -224,6 +226,7 @@
 		269E35171E7669FB000726C2 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		269E35231E767807000726C2 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		269E35281E767AE1000726C2 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		26A475A22353E63400059764 /* AppInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoCell.swift; sourceTree = "<group>"; };
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		26E9C0F9233838A700800E8A /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
 		26E9C0FB2338533E00800E8A /* UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageViewController.swift; sourceTree = "<group>"; };
@@ -256,6 +259,7 @@
 		F017B6962276D0C60023E84B /* OnboardingDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDashboard.swift; sourceTree = "<group>"; };
 		F02C5DB32339D4F70028FDA9 /* CreateTeamSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamSuccessViewController.swift; sourceTree = "<group>"; };
 		F02C5DB5233FFA810028FDA9 /* DeviceInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInformationCell.swift; sourceTree = "<group>"; };
+		F02F1733234B9B3E008A1CD6 /* Commitment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commitment.swift; sourceTree = "<group>"; };
 		F02FB49D1E9180CE0097481D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedometerDataProvider.swift; sourceTree = "<group>"; };
 		F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitDataProvider.swift; sourceTree = "<group>"; };
@@ -377,6 +381,7 @@
 				2676B3C92331F18B00CB0A31 /* TeamSettingsHeaderCell.swift */,
 				2676B3CB2331F3D400CB0A31 /* TeamSettingsMemberCell.swift */,
 				F02C5DB5233FFA810028FDA9 /* DeviceInformationCell.swift */,
+				26A475A22353E63400059764 /* AppInfoCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -641,6 +646,7 @@
 				F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */,
 				F0CBDA4D1EA6FCAB00BB34F1 /* Supporter.swift */,
 				269E35231E767807000726C2 /* Team.swift */,
+				F02F1733234B9B3E008A1CD6 /* Commitment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1008,6 +1014,7 @@
 				F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */,
 				26FE24472322295300E01B9B /* ViewController.swift in Sources */,
 				F06254C11ECD5D1700168DD6 /* Participant.swift in Sources */,
+				26A475A32353E63400059764 /* AppInfoCell.swift in Sources */,
 				F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */,
 				F00403191EC3FB7D005E6F10 /* (null) in Sources */,
 				F0A992D61EABF037001621A6 /* Formatters.swift in Sources */,
@@ -1025,6 +1032,7 @@
 				265DE5732332FBA9009DDA5A /* JoinTeam.swift in Sources */,
 				F0320B6E222F678500EABAD6 /* SegmentedView.swift in Sources */,
 				2676B3C82331E1B400CB0A31 /* ActionButton.swift in Sources */,
+				F02F1734234B9B3E008A1CD6 /* Commitment.swift in Sources */,
 				262418342336EA5700454EF2 /* OnboardingViewController.swift in Sources */,
 				269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */,
 				266DA27B2339E54000035CC5 /* ChallengeTeamProgressCell.swift in Sources */,

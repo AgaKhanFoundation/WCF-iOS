@@ -74,7 +74,7 @@ class DashboardDataSource: TableViewDataSource {
     self.teamName = " "
     self.eventName = " "
     self.eventTimeline = " "
-    
+
     configure()
     completion()
 

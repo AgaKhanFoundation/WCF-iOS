@@ -39,54 +39,33 @@ struct Event {
 
   let id: Int?                                                                  // swiftlint:disable:this identifier_name line_length
   let name: String
-  let description: String
+  let description: String?
   let challengePhase: DateRange
   let teamFormationPhase: DateRange
   let teamLimit: Int
   let defaultStepCount: Int
   let cause: Cause?
 
+  let commitment: Commitment?
+
   init?(json: JSON?) {
-    guard
-      let json = json,
-      let name = json["name"]?.stringValue,
-      let description = json["description"]?.stringValue,
-      let startDate = json["start_date"]?.stringValue,
-      let endDate = json["end_date"]?.stringValue,
-      let teamLimit = json["team_limit"]?.intValue,
-      let teamBuildingStart = json["team_building_start"]?.stringValue,
-      let teamBuildingEnd = json["team_building_end"]?.stringValue
-    else { return nil }
+    guard let json = json else { return nil }
 
-    let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
-    formatter.formatOptions = [
-      .withInternetDateTime,
-      .withFractionalSeconds
-    ]
-
+    self.image = nil
     self.id = json["id"]?.intValue
-    self.name = name
-    self.description = description
-    self.challengePhase =
-        DateRange(start: formatter.date(from: startDate) ?? Date(),
-                  end: formatter.date(from: endDate) ?? Date())
-    self.teamFormationPhase =
-        DateRange(start: formatter.date(from: teamBuildingStart) ?? Date(),
-                  end: formatter.date(from: teamBuildingEnd) ?? Date())
-    self.teamLimit = teamLimit
-
+    self.name = json["name"]?.stringValue ?? ""
+    self.description = json["description"]?.stringValue
+    self.challengePhase = DateRange(start: Date.formatter.date(from: json["start_date"]?.stringValue ?? "") ?? Date.distantFuture, // swiftlint:disable:this line_length
+                                    end: Date.formatter.date(from: json["end_date"]?.stringValue ?? "") ?? Date.distantFuture) // swiftlint:disable:this line_length
+    self.teamFormationPhase = DateRange(start: Date.formatter.date(from: json["team_building_start"]?.stringValue ?? "") ?? Date.distantFuture, // swiftlint:disable:this line_length
+                                        end: Date.formatter.date(from: json["team_building_end"]?.stringValue ?? "") ?? Date.distantFuture) // swiftlint:disable:this line_length
+    self.teamLimit = json["team_limit"]?.intValue ?? 0
     if let defaultSteps = json["default_steps"]?.intValue {
       self.defaultStepCount = defaultSteps
     } else {
       self.defaultStepCount = 10000 * challengePhase.start.daysUntil(challengePhase.end)
     }
-
-    if let cause = json["cause"] {
-      self.cause = Cause(json: cause)
-    } else {
-      self.cause = nil
-    }
-
-    self.image = nil
+    self.cause = Cause(json: json["cause"])
+    self.commitment = Commitment(json: json["participant_event"])
   }
 }

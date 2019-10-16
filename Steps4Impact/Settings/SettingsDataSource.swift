@@ -69,7 +69,7 @@ class SettingsDataSource: TableViewDataSource {
       if let participant = participant {
         self?.isOnTeam = participant.team != nil
         self?.isTeamLead = participant.team?.creator == participant.fbid
-        self?.commitment = participant.currentEventCommitment ?? 0
+        self?.commitment = participant.currentEvent?.commitment?.miles ?? 0
       }
 
       self?.configure()
@@ -132,5 +132,9 @@ class SettingsDataSource: TableViewDataSource {
     SettingsActionCellContext(title: "Delete Account", buttonStyle: .plain,
                               context: SettingsContext.deleteAccount)
     ]])
+
+    cells.append([
+      AppInfoCellContext(title: "Build Information", body: AppConfig.build)
+    ])
   }
 }

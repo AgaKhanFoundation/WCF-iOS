@@ -30,13 +30,17 @@
 import Foundation
 
 struct AppConfig {
-#if DEBUG
-  static let server: URLComponents =
-      URLComponents(string: "http://akf-causes.subshell.org")!
-#else
-  static let server: URLComponents =
-      URLComponents(string: "http://step4change.org")!
-#endif
+  static var server: URLComponents {
+    if UserInfo.isStaging {
+      return URLComponents(string: "https://staging.step4change.org")!
+    } else {
+      #if DEBUG
+        return URLComponents(string: "https://dev.step4change.org")!
+      #else
+        return URLComponents(string: "http://step4change.org")!
+      #endif
+    }
+  }
 
   static let appCenterSecret = "9ca54e4e-20df-425a-bfe6-b72d0daad2da" // TODO: Move this to CI env
 
@@ -46,4 +50,23 @@ struct AppConfig {
   static let fitbitAuthorizeUrl = "https://www.fitbit.com/oauth2/authorize"
   static let fitbitTokenUrl = "https://api.fitbit.com/oauth2/token"
   static let fitbitScope = "activity profile settings"
+
+  static var build: String {
+    guard
+        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String,
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    else { return "" }
+
+    var string = "\(Strings.Application.name): \(version) - \(build)"
+
+    #if DEBUG
+      string += "\nDebug"
+    #endif
+
+    if UserInfo.isStaging {
+      string += "\nStaging"
+    }
+
+    return string
+  }
 }

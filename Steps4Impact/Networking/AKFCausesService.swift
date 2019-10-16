@@ -42,7 +42,7 @@ enum AKFCausesEndPoint {
   case source(sourceId: Int)
   case sources
   case commitment
-  case commitments(id: Int)
+  case commitments(id: Int) // swiftlint:disable:this identifier_name
 }
 
 extension AKFCausesEndPoint {
@@ -72,8 +72,8 @@ extension AKFCausesEndPoint {
       return "/sources"
     case .commitment:
       return "/commitments"
-    case .commitments(let id):
-      return "/commitments/\(id)"
+    case .commitments(let cid):
+      return "/commitments/\(cid)"
     }
   }
 }
@@ -114,10 +114,14 @@ class AKFCausesService: Service {
     shared.request(.delete, endpoint: .participant(fbId: fbid), completion: completion)
   }
 
-  static func createTeam(name: String, lead fbid: String,
+  static func createTeam(name: String, lead fbid: String, hidden: Bool = false,
                          completion: ServiceRequestCompletion? = nil) {
     shared.request(.post, endpoint: .teams,
-                   parameters: JSON(["name": name, "creator_id": fbid]),
+                   parameters: JSON([
+                     "name": name,
+                     "creator_id": fbid,
+                     "hidden": hidden
+                   ]),
                    completion: completion)
   }
 
@@ -164,29 +168,12 @@ class AKFCausesService: Service {
                            dated: Date = Date.init(timeIntervalSinceNow: 0),
                            steps: Int, sourceID: Int,
                            completion: ServiceRequestCompletion? = nil) {
-    let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
     shared.request(.post, endpoint: .records, parameters: JSON([
-      "date": formatter.string(from: dated),
+      "date": Date.formatter.string(from: dated),
       "distance": steps,
       "participant_id": participantID,
-      "source_id": sourceID,
+      "source_id": sourceID
     ]), completion: completion)
-  }
-
-  static func createRecord(record: Record,
-                           completion: ServiceRequestCompletion? = nil) {
-    guard let source = record.source?.id else {
-      shared.callback(completion, result: .failed(nil))
-      return
-    }
-
-    let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
-    shared.request(.post, endpoint: .records,
-                   parameters: JSON(["date": formatter.string(from: record.date),
-                                     "distance": record.distance,
-                                     "participant_id": record.fbid,
-                                     "source_id": source]),
-                   completion: completion)
   }
 
   static func getSource(source: Int, completion: ServiceRequestCompletion? = nil) {

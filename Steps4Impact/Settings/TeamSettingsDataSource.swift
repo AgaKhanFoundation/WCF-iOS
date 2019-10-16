@@ -84,7 +84,10 @@ class TeamSettingsDataSource: TableViewDataSource {
         self?.eventName = event.name
         self?.eventTeamLimit = event.teamLimit
         let members = participant.team?.members.map {
-          Member(fbid: $0.fbid, name: names[$0.fbid], image: imageURLs[$0.fbid], isLead: $0.fbid == participant.team?.creator)
+          Member(fbid: $0.fbid,
+                 name: names[$0.fbid],
+                 image: imageURLs[$0.fbid],
+                 isLead: $0.fbid == participant.team?.creator)
         }
         self?.team = members ?? []
       }
@@ -125,11 +128,9 @@ class TeamSettingsDataSource: TableViewDataSource {
     ]]
 
     for (index, member) in self.team.enumerated() {
-      let context: Context?
-      if let fbid = member.fbid, let name = member.name {
-        context = TeamMembersContext.remove(fbid: fbid, name: name)
-      } else {
-        context = nil
+      var context: Context?
+      if let fbid = member.fbid {
+        context = TeamMembersContext.remove(fbid: fbid, name: member.name ?? "")
       }
 
       cells.append([

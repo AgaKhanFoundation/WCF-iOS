@@ -42,6 +42,9 @@ struct UserInfo {
       "UserInfo.Keys.OnboardingComplete"
   private static let AKFIDKey: String =
       "UserInfo.Keys.AKFID"
+  private static let AKFProfileCreatedKey: String =
+      "UserInfo.Keys.AKFProfileCreated"
+  private static let staging: String = "UserInfo.Keys.staging"
   private static let fitbitAuthObjKey: String = "UserInfo.Keys.fitbitAuthObj"
 
   enum Pedometer: String {
@@ -84,9 +87,19 @@ struct UserInfo {
     get { return defaults.string(forKey: AKFIDKey) }
     set { defaults.set(newValue, forKey: AKFIDKey) }
   }
-
+  
+  public static var AKFProfileCreated: Bool {
+    get { return defaults.bool(forKey: AKFProfileCreatedKey) }
+    set { defaults.set(newValue, forKey: AKFProfileCreatedKey) }
+  }
+  
   public static var fitbitAuthObj: OAuthSwiftCredential? {
     get { return defaults.retrieve(OAuthSwiftCredential.self, fromKey: fitbitAuthObjKey) }
     set { defaults.save(newValue, forKey: fitbitAuthObjKey) }
+  }
+
+  public static var isStaging: Bool {
+    get { return defaults.bool(forKey: staging) }
+    set { defaults.set(newValue, forKey: staging) }
   }
 }

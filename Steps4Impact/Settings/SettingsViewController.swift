@@ -55,6 +55,9 @@ class SettingsViewController: TableViewController {
     if let cell = cell as? SettingsActionCell {
       cell.delegate = self
     }
+    if let cell = cell as? AppInfoCell {
+      cell.delegate = self
+    }
   }
 
   override func handle(context: Context) {
@@ -67,77 +70,89 @@ class SettingsViewController: TableViewController {
     case .viewTeam:
       navigationController?.pushViewController(TeamSettingsViewController(), animated: true)
     case .leaveTeam:
-      let alert: AlertViewController = AlertViewController()
-      alert.title = Strings.TeamSettings.leave
-      alert.body = Strings.TeamSettings.leaveBody
-      alert.add(AlertAction(title: "Cancel", style: .secondary))
-      alert.add(AlertAction(title: "Leave", style: .destructive, shouldDismiss: false) { [weak self] in
-        AKFCausesService.leaveTeam(fbid: Facebook.id) { (_) in
-          NotificationCenter.default.post(name: .teamChanged, object: nil)
-          onMain {
-            alert.dismiss(animated: true, completion: nil)
-          }
-          self?.reload()
-        }
-      })
-      AppController.shared.present(alert: alert, in: self, completion: nil)
+      leaveTeam()
     case .logout:
       logout()
     case .deleteAccount:
-      let alert = AlertViewController()
-      alert.title = Strings.Settings.delete
-      alert.body = Strings.Settings.deleteBody
-      alert.add(AlertAction.cancel())
-      alert.add(AlertAction(title: "Delete", style: .destructive, shouldDismiss: false) { [weak self] in
-        AKFCausesService.deleteParticipant(fbid: Facebook.id) { (_) in
-          onMain {
-            alert.dismiss(animated: true, completion: nil)
-          }
-          self?.logout()
-        }
-      })
-      AppController.shared.present(alert: alert, in: self, completion: nil)
+      deleteAccount()
     case .personalMileCommitment:
-      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
-        guard let participant = Participant(json: result.response) else { return }
-
-        let alert = TextAlertViewController()
-        alert.title = "Personal mile commitment"
-        alert.value = "\(participant.currentEventCommitment ?? 0)"
-        alert.suffix = "Miles"
-        alert.add(.init(title: "Save", style: .primary, shouldDismiss: false) {
-          if let cid = participant.currentEventCommitmentId {
-            AKFCausesService.setCommitment(cid, toSteps: (Int(alert.value ?? "0") ?? 0) * 2000) { (result) in
-              alert.dismiss(animated: true) {
-                if !result.isSuccess {
-                  let alert: AlertViewController = AlertViewController()
-                  alert.title = "Update Failed"
-                  alert.body = "Could not update commitment.  Please try again later."
-                  alert.add(.okay())
-                  onMain {
-                    AppController.shared.present(alert: alert, in: self, completion: nil)
-                  }
-                  return
-                }
-
-                NotificationCenter.default.post(name: .commitmentChanged, object: nil)
-                onMain {
-                  self.reload()
-                }
-              }
-            }
-          }
-        })
-        alert.add(.cancel())
-        AppController.shared.present(alert: alert, in: self, completion: nil)
-      }
+      updatePersonalMileCommitment()
     }
   }
 
-  func logout() {
+  private func logout() {
     let loginManager = LoginManager()
     loginManager.logOut()
     AppController.shared.transition(to: .login)
+  }
+
+  private func leaveTeam() {
+    let alert: AlertViewController = AlertViewController()
+    alert.title = Strings.TeamSettings.leave
+    alert.body = Strings.TeamSettings.leaveBody
+    alert.add(AlertAction(title: "Cancel", style: .secondary))
+    alert.add(AlertAction(title: "Leave", style: .destructive, shouldDismiss: false) { [weak self] in
+      AKFCausesService.leaveTeam(fbid: Facebook.id) { (_) in
+        NotificationCenter.default.post(name: .teamChanged, object: nil)
+        onMain {
+          alert.dismiss(animated: true, completion: nil)
+        }
+        self?.reload()
+      }
+    })
+    AppController.shared.present(alert: alert, in: self, completion: nil)
+  }
+
+  private func deleteAccount() {
+    let alert = AlertViewController()
+    alert.title = Strings.Settings.delete
+    alert.body = Strings.Settings.deleteBody
+    alert.add(AlertAction.cancel())
+    alert.add(AlertAction(title: "Delete", style: .destructive, shouldDismiss: false) { [weak self] in
+      AKFCausesService.deleteParticipant(fbid: Facebook.id) { (_) in
+        onMain {
+          alert.dismiss(animated: true, completion: nil)
+        }
+        self?.logout()
+      }
+    })
+    AppController.shared.present(alert: alert, in: self, completion: nil)
+  }
+
+  private func updatePersonalMileCommitment() {
+    AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+      guard let participant = Participant(json: result.response) else { return }
+
+      let alert = TextAlertViewController()
+      alert.title = "Personal mile commitment"
+      alert.value = "\(participant.currentEvent?.commitment?.miles ?? 0)"
+      alert.suffix = "Miles"
+      alert.add(.init(title: "Save", style: .primary, shouldDismiss: false) {
+        if let cid = participant.currentEvent?.commitment?.id {
+          AKFCausesService.setCommitment(cid, toSteps: (Int(alert.value ?? "0") ?? 0) * 2000) { (result) in
+            alert.dismiss(animated: true) {
+              if !result.isSuccess {
+                let alert: AlertViewController = AlertViewController()
+                alert.title = "Update Failed"
+                alert.body = "Could not update commitment.  Please try again later."
+                alert.add(.okay())
+                onMain {
+                  AppController.shared.present(alert: alert, in: self, completion: nil)
+                }
+                return
+              }
+
+              NotificationCenter.default.post(name: .commitmentChanged, object: nil)
+              onMain {
+                self.reload()
+              }
+            }
+          }
+        }
+      })
+      alert.add(.cancel())
+      AppController.shared.present(alert: alert, in: self, completion: nil)
+    }
   }
 }
 
@@ -145,5 +160,19 @@ extension SettingsViewController: SettingsActionCellDelegate {
   func settingsActionCellTapped(context: Context?, button: UIButton) {
     guard let context = context else { return }
     handle(context: context)
+  }
+}
+
+extension SettingsViewController: AppInfoCellDelegate {
+  func appInfoCellToggleStaging() {
+    let alert = AlertViewController()
+    alert.title = "Switch Server"
+    alert.body = "Switch to \(UserInfo.isStaging ? "Production" : "Staging")?\nApp will logout if you continue."
+    alert.add(.okay({ [weak self] in
+      UserInfo.isStaging = !UserInfo.isStaging
+      self?.logout()
+    }))
+    alert.add(.cancel())
+    AppController.shared.present(alert: alert, in: self, completion: nil)
   }
 }

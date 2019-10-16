@@ -63,6 +63,8 @@ class AppController {
     // Select Default View
     if Facebook.id.isEmpty {
       transition(to: .login)
+    } else if !UserInfo.AKFProfileCreated {
+      transition(to: .akf)
     } else if !UserInfo.onboardingComplete {
       transition(to: .onboarding)
     } else {
@@ -83,6 +85,7 @@ class AppController {
 
   enum ViewController {
     case login
+    case akf
     case onboarding
     case navigation
 
@@ -92,14 +95,14 @@ class AppController {
         // Rebuild navigation so data is wiped on logout
         AppController.shared.navigation = Navigation()
         return LoginViewController()
+      case .akf: return AKFLoginViewController()
       case .onboarding: return OnboardingViewController()
       case .navigation: return AppController.shared.navigation
       }
     }
   }
 
-  @objc
-  private func onAKFLoginCompleted(_ sender: UIButton) {
+  func onAKFLoginCompleted() {
     if !UserInfo.onboardingComplete {
       AppController.shared.transition(to: .onboarding)
     } else {
@@ -119,7 +122,9 @@ class AppController {
   }
 
   func login() {
-    if !UserInfo.onboardingComplete {
+    if !UserInfo.AKFProfileCreated {
+      transition(to: .akf)
+    } else if !UserInfo.onboardingComplete {
       transition(to: .onboarding)
     } else {
       transition(to: .navigation)
@@ -191,11 +196,10 @@ class AppController {
 
     AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
       if let participant = Participant(json: result.response) {
-        guard let start = (participant.records.sorted {
-          (lhs, rhs) -> Bool in lhs.date.timeIntervalSince(rhs.date).sign == .minus
-        }.last?.date ?? participant.currentEvent?.challengePhase.start) else { return }
+        guard let start = (participant.records?.sorted { $0.date! < $1.date! }.last?.date
+                            ?? participant.currentEvent?.challengePhase.start) else { return }
 
-        guard start.timeIntervalSinceNow.sign == .minus else { return }
+        guard start < Date(timeIntervalSinceNow: 0) else { return }
 
         let interval: DateInterval = DateInterval(start: start, end: Date.init(timeIntervalSinceNow: 0))
 
