@@ -144,20 +144,26 @@ class AppController {
   }
 
   private func healthCheckHealth() {
-    if HKHealthStore.isHealthDataAvailable() {
-      switch HKHealthStore().authorizationStatus(for: ConnectSourceViewController.steps) {
-      case .notDetermined:
-        return
-      case .sharingAuthorized:
-        UserInfo.pedometerSource = .healthKit
-        return
-      case .sharingDenied:
-        fallthrough
-      @unknown default:
-        break
+    switch UserInfo.pedometerSource {
+    case .fitbit:
+      OAuthFitbit.shared.fetchSteps()
+    case .healthKit:
+      if HKHealthStore.isHealthDataAvailable() {
+        switch HKHealthStore().authorizationStatus(for: ConnectSourceViewController.steps) {
+        case .notDetermined:
+          return
+        case .sharingAuthorized:
+          UserInfo.pedometerSource = .healthKit
+          return
+        case .sharingDenied:
+          fallthrough
+        @unknown default:
+          break
+        }
       }
+    default:
+      print("")
     }
-    UserInfo.pedometerSource = nil
   }
 
   private func updateRecords() {

@@ -28,6 +28,7 @@
  **/
 
 import Foundation
+import OAuthSwift
 
 struct UserInfo {
   private static let defaults = UserDefaults.standard
@@ -41,7 +42,7 @@ struct UserInfo {
       "UserInfo.Keys.OnboardingComplete"
   private static let AKFIDKey: String =
       "UserInfo.Keys.AKFID"
-  private static let fitbitTokenKey: String = "UserInfo.Keys.fitbitToken"
+  private static let fitbitAuthObjKey: String = "UserInfo.Keys.fitbitAuthObj"
 
   enum Pedometer: String {
     case healthKit = "UserInfo.Pedometer.HealthKit"
@@ -84,8 +85,8 @@ struct UserInfo {
     set { defaults.set(newValue, forKey: AKFIDKey) }
   }
 
-  public static var fitbitToken: String? {
-    get { return defaults.string(forKey: fitbitTokenKey) }
-    set { defaults.set(newValue, forKey: fitbitTokenKey) }
+  public static var fitbitAuthObj: OAuthSwiftCredential? {
+    get { return defaults.retrieve(OAuthSwiftCredential.self, fromKey: fitbitAuthObjKey) }
+    set { defaults.save(newValue, forKey: fitbitAuthObjKey) }
   }
 }

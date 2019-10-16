@@ -26,10 +26,13 @@
 * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
+
 import Foundation
 import OAuthSwift
 
 class OAuthFitbit {
+  public static let fitbitAPIBaseUrl = "https://api.fitbit.com/1"
+
   public static let shared = OAuthFitbit()
   let oauthswift: OAuth2Swift
 
@@ -46,6 +49,20 @@ class OAuthFitbit {
       responseType:
       "code" //  Authorization Code Grant Flow
     )
+
+    if let authObj = UserInfo.fitbitAuthObj {
+      oauthswift.client = OAuthSwiftClient(credential: authObj)
+    }
+  }
+
+  public static var profileAPI: URL? {
+    guard let url = URL(string: fitbitAPIBaseUrl) else { return nil }
+    return url.appendingPathComponent("user/-/profile.json")
+  }
+
+  public static var stepsAPI: URL? {
+    guard let url = URL(string: fitbitAPIBaseUrl) else { return nil }
+    return url.appendingPathComponent("user/-/activities/steps/date/2019-10-01/2019-10-12.json")
   }
 
   func authorize(using handlerViewController: OAuthWebViewController) {
@@ -58,10 +75,42 @@ class OAuthFitbit {
         switch result {
         case .success(let (credential, _, _)):
           UserInfo.pedometerSource = .fitbit
-          UserInfo.fitbitToken = credential.oauthToken
+          UserInfo.fitbitAuthObj = credential
         case .failure(let error):
             print(error.description)
         }
     }
+  }
+
+  func fetchProfile() {
+    guard let url = OAuthFitbit.profileAPI else { return }
+
+    _ = oauthswift.client.get(
+      url.absoluteString,
+      parameters: [:]) { result in
+        switch result {
+        case .success(let response):
+          let jsonDict = try? response.jsonObject()
+          print(jsonDict as Any)
+        case .failure(let error):
+          print(error.description)
+        }
+      }
+  }
+
+  func fetchSteps() {
+    guard let url = OAuthFitbit.stepsAPI else { return }
+
+    _ = oauthswift.client.get(
+      url.absoluteString,
+      parameters: [:]) { result in
+        switch result {
+        case .success(let response):
+          let jsonDict = try? response.jsonObject()
+          print(jsonDict as Any)
+        case .failure(let error):
+          print(error.description)
+        }
+      }
   }
 }
