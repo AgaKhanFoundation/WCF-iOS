@@ -94,6 +94,8 @@
 		C92244C9234AD7840098A333 /* FitbitAuthorizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244C8234AD7840098A333 /* FitbitAuthorizeViewController.swift */; };
 		C92244CB235364C50098A333 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244CA235364C50098A333 /* String.swift */; };
 		C92244CD2356C21C0098A333 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244CC2356C21C0098A333 /* UserDefaults.swift */; };
+		C92244CF235A7D400098A333 /* FitbitDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244CE235A7D400098A333 /* FitbitDataProvider.swift */; };
+		C92244D1235CBE8D0098A333 /* FitbitStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244D0235CBE8D0098A333 /* FitbitStep.swift */; };
 		F00403191EC3FB7D005E6F10 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004031C1EC52772005E6F10 /* AppConfig.swift */; };
 		F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */; };
@@ -247,6 +249,8 @@
 		C92244C8234AD7840098A333 /* FitbitAuthorizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitbitAuthorizeViewController.swift; sourceTree = "<group>"; };
 		C92244CA235364C50098A333 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		C92244CC2356C21C0098A333 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		C92244CE235A7D400098A333 /* FitbitDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitbitDataProvider.swift; sourceTree = "<group>"; };
+		C92244D0235CBE8D0098A333 /* FitbitStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitbitStep.swift; sourceTree = "<group>"; };
 		CF9EDF06C6BFB060D8FD292A /* Pods-Steps4ImpactTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steps4ImpactTests.release.xcconfig"; path = "Target Support Files/Pods-Steps4ImpactTests/Pods-Steps4ImpactTests.release.xcconfig"; sourceTree = "<group>"; };
 		D119AEC4C6C2D75E13B09A89 /* Pods-steps4impactTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impactTests.debug.xcconfig"; path = "Target Support Files/Pods-steps4impactTests/Pods-steps4impactTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E04420449F9B74A2501CBBEA /* Pods_Steps4Impact.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Steps4Impact.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -647,6 +651,7 @@
 				F0CBDA4D1EA6FCAB00BB34F1 /* Supporter.swift */,
 				269E35231E767807000726C2 /* Team.swift */,
 				F02F1733234B9B3E008A1CD6 /* Commitment.swift */,
+				C92244D0235CBE8D0098A333 /* FitbitStep.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -693,6 +698,7 @@
 			isa = PBXGroup;
 			children = (
 				F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */,
+				C92244CE235A7D400098A333 /* FitbitDataProvider.swift */,
 			);
 			path = Integration;
 			sourceTree = "<group>";
@@ -1081,10 +1087,12 @@
 				260BF5A52324D914005F0882 /* Button.swift in Sources */,
 				260BF5AB2324F805005F0882 /* CGFloat.swift in Sources */,
 				265DE5662332D663009DDA5A /* BadgesViewController.swift in Sources */,
+				C92244D1235CBE8D0098A333 /* FitbitStep.swift in Sources */,
 				269E35181E7669FB000726C2 /* Strings.swift in Sources */,
 				F078D9D52333EC3000EF0BAD /* AKFLogin.swift in Sources */,
 				F0F8EDD92210C7FA00321A6D /* ChallengeCard.swift in Sources */,
 				2676B3CA2331F18B00CB0A31 /* TeamSettingsHeaderCell.swift in Sources */,
+				C92244CF235A7D400098A333 /* FitbitDataProvider.swift in Sources */,
 				2611A5082335FF290030E77E /* Service.swift in Sources */,
 				F078D9DC233478E900EF0BAD /* ConnectSourceViewController.swift in Sources */,
 				F0E6878F22251B7800454340 /* LeaderboardViewController.swift in Sources */,

@@ -151,7 +151,7 @@ class AppController {
   private func healthCheckHealth() {
     switch UserInfo.pedometerSource {
     case .fitbit:
-      OAuthFitbit.shared.fetchSteps()
+      break
     case .healthKit:
       if HKHealthStore.isHealthDataAvailable() {
         switch HKHealthStore().authorizationStatus(for: ConnectSourceViewController.steps) {
@@ -176,19 +176,25 @@ class AppController {
 
     let group: DispatchGroup = DispatchGroup()
 
+    var sourceName: String?
     var source: Source?
     var provider: PedometerDataProvider?
 
     switch pedometer {
     case .fitbit:
-      break
+      provider = FitbitDataProvider()
+      sourceName = "Fitbit"
     case .healthKit:
-      group.enter()
       provider = HealthKitDataProvider()
-      AKFCausesService.getSourceByName(source: "HealthKit") { (result) in
-        source = Source(json: result.response)
-        group.leave()
-      }
+      sourceName = "HealthKit"
+    }
+
+    guard let name = sourceName else { return }
+
+    group.enter()
+    AKFCausesService.getSourceByName(source: name) { (result) in
+      source = Source(json: result.response)
+      group.leave()
     }
     group.wait()
 

@@ -52,6 +52,9 @@ class OAuthFitbit {
 
     if let authObj = UserInfo.fitbitAuthObj {
       oauthswift.client = OAuthSwiftClient(credential: authObj)
+      // Token might be exprired. Need to refresh it but we
+      // are not doing it here. Any subsequent API call will throw error,
+      // where we will refresh the token - Needs to be done
     }
   }
 
@@ -60,9 +63,14 @@ class OAuthFitbit {
     return url.appendingPathComponent("user/-/profile.json")
   }
 
-  public static var stepsAPI: URL? {
+  public static func stepsAPI(forInterval interval: DateInterval) -> URL? {
     guard let url = URL(string: fitbitAPIBaseUrl) else { return nil }
-    return url.appendingPathComponent("user/-/activities/steps/date/2019-10-01/2019-10-12.json")
+
+    let formatter = Date.formatter
+    formatter.formatOptions = [.withYear, .withMonth, .withDay, .withDashSeparatorInDate]
+    let start = Date.formatter.string(from: interval.start)
+    let end = Date.formatter.string(from: interval.end)
+    return url.appendingPathComponent("user/-/activities/steps/date/\(start)/\(end).json")
   }
 
   func authorize(using handlerViewController: OAuthWebViewController) {
@@ -93,23 +101,27 @@ class OAuthFitbit {
           let jsonDict = try? response.jsonObject()
           print(jsonDict as Any)
         case .failure(let error):
+          // FIXME:
+          // In case of authorization revoked or token expired, handle it here
           print(error.description)
         }
       }
   }
 
-  func fetchSteps() {
-    guard let url = OAuthFitbit.stepsAPI else { return }
+  func fetchSteps(forInterval interval: DateInterval, completion: OAuthSwiftHTTPRequest.CompletionHandler?) {
+    guard let url = OAuthFitbit.stepsAPI(forInterval: interval) else { return }
 
     _ = oauthswift.client.get(
       url.absoluteString,
       parameters: [:]) { result in
         switch result {
         case .success(let response):
-          let jsonDict = try? response.jsonObject()
-          print(jsonDict as Any)
+          completion?(.success(response))
         case .failure(let error):
-          print(error.description)
+          // FIXME:
+          // In case of authorization revoked or token expired, handle it here
+          //print(error.description)
+          completion?(.failure(error))
         }
       }
   }
