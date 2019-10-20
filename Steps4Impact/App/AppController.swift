@@ -151,7 +151,7 @@ class AppController {
   private func healthCheckHealth() {
     switch UserInfo.pedometerSource {
     case .fitbit:
-      break
+      print("")
     case .healthKit:
       if HKHealthStore.isHealthDataAvailable() {
         switch HKHealthStore().authorizationStatus(for: ConnectSourceViewController.steps) {
