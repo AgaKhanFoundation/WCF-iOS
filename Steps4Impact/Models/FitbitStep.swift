@@ -40,10 +40,11 @@ struct FitbitStep: Codable {
 
   init?(json: JSON) {
     guard let theDate = json["dateTime"]?.stringValue,
-      let value = json["value"]?.intValue else { return nil }
-  
+      let value = json["value"]?.stringValue,
+      let intValue = Int(value) else { return nil }
+
     date = theDate
-    steps = value
+    steps = intValue
   }
 
   init(from decoder: Decoder) throws {
