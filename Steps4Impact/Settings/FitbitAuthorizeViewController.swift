@@ -39,17 +39,17 @@ class FitbitAuthorizeViewController: OAuthWebViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = Style.Colors.white
-    setNavigationBar()
+    setupNavigationBar()
     setupWebView()
   }
 
   override func handle(_ url: URL) {
     targetURL = url
     super.handle(url)
-    self.loadAddressURL()
+    loadAddressURL()
   }
 
-  private func setNavigationBar() {
+  private func setupNavigationBar() {
     view.addSubview(navBar)
 
     let navItem = UINavigationItem(title: "")

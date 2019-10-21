@@ -64,10 +64,10 @@ class AppController {
     // Select Default View
     if Facebook.id.isEmpty {
       transition(to: .login)
-    } else if !UserInfo.AKFProfileCreated {
-      transition(to: .akf)
-    } else if !UserInfo.onboardingComplete {
-      transition(to: .onboarding)
+//    } else if !UserInfo.AKFProfileCreated {
+//      transition(to: .akf)
+//    } else if !UserInfo.onboardingComplete {
+//      transition(to: .onboarding)
     } else {
       transition(to: .navigation)
     }
@@ -149,6 +149,8 @@ class AppController {
   }
 
   private func healthCheckHealth() {
+    switch UserInfo.pedometerSource {
+    case .healthKit:
     if HKHealthStore.isHealthDataAvailable() {
       switch HKHealthStore().authorizationStatus(for: ConnectSourceViewController.steps) {
       case .notDetermined:
@@ -162,7 +164,9 @@ class AppController {
         break
       }
     }
-    UserInfo.pedometerSource = nil
+    default:
+      print("")
+    }
   }
 
   private func updateRecords() {
@@ -170,20 +174,26 @@ class AppController {
 
     let group: DispatchGroup = DispatchGroup()
 
+    var sourceName: String?
     var source: Source?
     var provider: PedometerDataProvider?
 
     switch pedometer {
     case .fitbit:
-      break
+      provider = FitbitDataProvider()
+      sourceName = "Fitbit"
     case .healthKit:
-      group.enter()
       provider = HealthKitDataProvider()
-      AKFCausesService.getSourceByName(source: "HealthKit") { (result) in
+      sourceName = "HealthKit"
+    }
+
+    guard let name = sourceName else { return }
+
+      group.enter()
+    AKFCausesService.getSourceByName(source: name) { (result) in
         source = Source(json: result.response)
         group.leave()
       }
-    }
     group.wait()
 
     guard let sourceID = source?.id else { return }
