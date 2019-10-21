@@ -186,11 +186,11 @@ class AppController {
 
     guard let name = sourceName else { return }
 
-      group.enter()
+    group.enter()
     AKFCausesService.getSourceByName(source: name) { (result) in
-        source = Source(json: result.response)
-        group.leave()
-      }
+      source = Source(json: result.response)
+      group.leave()
+    }
     group.wait()
 
     guard let sourceID = source?.id else { return }
