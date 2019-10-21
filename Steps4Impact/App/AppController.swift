@@ -64,10 +64,10 @@ class AppController {
     // Select Default View
     if Facebook.id.isEmpty {
       transition(to: .login)
-//    } else if !UserInfo.AKFProfileCreated {
-//      transition(to: .akf)
-//    } else if !UserInfo.onboardingComplete {
-//      transition(to: .onboarding)
+    } else if !UserInfo.AKFProfileCreated {
+      transition(to: .akf)
+    } else if !UserInfo.onboardingComplete {
+      transition(to: .onboarding)
     } else {
       transition(to: .navigation)
     }
@@ -149,23 +149,20 @@ class AppController {
   }
 
   private func healthCheckHealth() {
-    switch UserInfo.pedometerSource {
-    case .healthKit:
-    if HKHealthStore.isHealthDataAvailable() {
-      switch HKHealthStore().authorizationStatus(for: ConnectSourceViewController.steps) {
-      case .notDetermined:
-        return
-      case .sharingAuthorized:
-        UserInfo.pedometerSource = .healthKit
-        return
-      case .sharingDenied:
-        fallthrough
-      @unknown default:
-        break
+    if UserInfo.pedometerSource == .healthKit {
+      if HKHealthStore.isHealthDataAvailable() {
+        switch HKHealthStore().authorizationStatus(for: ConnectSourceViewController.steps) {
+        case .notDetermined:
+          return
+        case .sharingAuthorized:
+          UserInfo.pedometerSource = .healthKit
+          return
+        case .sharingDenied:
+          fallthrough
+        @unknown default:
+          break
+        }
       }
-    }
-    default:
-      print("")
     }
   }
 
