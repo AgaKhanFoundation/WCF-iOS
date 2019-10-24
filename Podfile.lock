@@ -99,6 +99,7 @@ PODS:
     - SDWebImage/Core (= 5.1.1)
   - SDWebImage/Core (5.1.1)
   - SnapKit (5.0.1)
+  - Sourcery (0.17.0)
   - SwiftLint (0.35.0)
 
 DEPENDENCIES:
@@ -119,6 +120,7 @@ DEPENDENCIES:
   - RxTest (~> 5.0.0)
   - SDWebImage (~> 5.1.1)
   - SnapKit (~> 5.0.1)
+  - Sourcery (~> 0.17.0)
   - SwiftLint (~> 0.35.0)
 
 SPEC REPOS:
@@ -153,6 +155,7 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - RxTest
+    - Sourcery
 
 SPEC CHECKSUMS:
   AppCenter: 9784d2fc998c9bd0b8fbaf4fb9ed69526d12ce1a
@@ -183,8 +186,9 @@ SPEC CHECKSUMS:
   RxTest: 4349afe98f564e0a9bc19063368904622d17d49a
   SDWebImage: 96d7f03415ccb28d299d765f93557ff8a617abd8
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Sourcery: 3ed61be7c8a1218fce349266139379dba477efe0
   SwiftLint: 5553187048b900c91aa03552807681bb6b027846
 
-PODFILE CHECKSUM: 159af60f8a8663eaea26b12b79701ec700c0670e
+PODFILE CHECKSUM: 2ef5f512b72f8d07906febbefbd4e620d06e5b94
 
 COCOAPODS: 1.8.3
