@@ -17,6 +17,7 @@ target 'Steps4Impact' do
   pod 'OAuthSwift', '~> 2.0.0'
   pod 'RxSwift', '~> 5.0.0' 
   pod 'RxCocoa', '~> 5.0.0'
+  pod 'Sourcery', '~> 0.17.0'
 
   target 'Steps4ImpactTests' do
     inherit! :search_paths
