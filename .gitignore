@@ -100,3 +100,9 @@ iOSInjectionProject/
 ### Objective-C Patch ###
 
 # End of https://www.gitignore.io/api/objective-c,macos
+
+# Secrets Related
+secrets.sh
+
+# Sourcery Generated Code
+Generated/*.generated.swift

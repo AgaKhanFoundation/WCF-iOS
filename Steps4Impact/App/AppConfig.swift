@@ -42,6 +42,18 @@ struct AppConfig {
     }
   }
 
+  static var serverPassword: String {
+    if UserInfo.isStaging {
+      return AppSecrets.stagingPassword
+    } else {
+      #if DEBUG
+        return AppSecrets.devPassword
+      #else
+        return AppSecrets.prodPassword
+      #endif
+    }
+  }
+
   static let appCenterSecret = "9ca54e4e-20df-425a-bfe6-b72d0daad2da" // TODO: Move this to CI env
 
   static let fitbitConsumerKey = "22B4MM"

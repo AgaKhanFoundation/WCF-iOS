@@ -55,6 +55,7 @@
 		265DE5732332FBA9009DDA5A /* JoinTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5722332FBA9009DDA5A /* JoinTeam.swift */; };
 		265DE5752333015F009DDA5A /* JoinTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5742333015F009DDA5A /* JoinTeamCell.swift */; };
 		265FE47A2349A0A400215391 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FE4792349A0A400215391 /* Cache.swift */; };
+		2668B06B2361936300309B9D /* AppSecrets.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2668B0692361936300309B9D /* AppSecrets.generated.swift */; };
 		266DA27B2339E54000035CC5 /* ChallengeTeamProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266DA27A2339E54000035CC5 /* ChallengeTeamProgressCell.swift */; };
 		2676B3C42331D45000CB0A31 /* AlertModalAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C32331D45000CB0A31 /* AlertModalAnimations.swift */; };
 		2676B3C62331DA1500CB0A31 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C52331DA1500CB0A31 /* AlertViewController.swift */; };
@@ -202,6 +203,7 @@
 		265DE5722332FBA9009DDA5A /* JoinTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeam.swift; sourceTree = "<group>"; };
 		265DE5742333015F009DDA5A /* JoinTeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamCell.swift; sourceTree = "<group>"; };
 		265FE4792349A0A400215391 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		2668B0692361936300309B9D /* AppSecrets.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSecrets.generated.swift; sourceTree = "<group>"; };
 		266DA27A2339E54000035CC5 /* ChallengeTeamProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeTeamProgressCell.swift; sourceTree = "<group>"; };
 		2676B3C32331D45000CB0A31 /* AlertModalAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalAnimations.swift; sourceTree = "<group>"; };
 		2676B3C52331DA1500CB0A31 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
@@ -519,6 +521,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		2668B0672361936300309B9D /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				2668B0692361936300309B9D /* AppSecrets.generated.swift */,
+			);
+			path = Generated;
+			sourceTree = SOURCE_ROOT;
+		};
 		2676B3C22331D42B00CB0A31 /* Animators */ = {
 			isa = PBXGroup;
 			children = (
@@ -552,6 +562,7 @@
 		269E34C81E765828000726C2 /* Steps4Impact */ = {
 			isa = PBXGroup;
 			children = (
+				2668B0672361936300309B9D /* Generated */,
 				2676B3C22331D42B00CB0A31 /* Animators */,
 				2611A50E233601DC0030E77E /* App */,
 				F0D16A3A2218AD530081440C /* Challenge */,
@@ -749,6 +760,7 @@
 			buildConfigurationList = 269E34E31E765828000726C2 /* Build configuration list for PBXNativeTarget "Steps4Impact" */;
 			buildPhases = (
 				C534CC0111F4BC7DD5A332BC /* [CP] Check Pods Manifest.lock */,
+				2668B06223617B2800309B9D /* Generate Secrets */,
 				269E34C21E765828000726C2 /* Sources */,
 				269E34C31E765828000726C2 /* Frameworks */,
 				269E34C41E765828000726C2 /* Resources */,
@@ -837,6 +849,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2668B06223617B2800309B9D /* Generate Secrets */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Secrets";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "# Check for secrets.sh for local\nif [ -f ./secrets.sh ]\nthen\nsource ./secrets.sh\nfi\n\n# Generate Secrets File\n\"${PODS_ROOT}\"/Sourcery/bin/sourcery \\\n--templates ./Templates/*.stencil \\\n--sources ./Steps4Impact \\\n--output ./Generated/ \\\n--args devPassword=\\\"$API_DEV_PASSWORD\\\" \\\n--args stagingPassword=\\\"$API_STAGING_PASSWORD\\\" \\\n--args prodPassword=\\\"$API_PROD_PASSWORD\\\"\n";
+		};
 		26AFC9E21EA6508C002E6D2A /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -849,7 +879,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		5AFD5020B3FA67ADEDA7F81C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1075,6 +1105,7 @@
 				265DE5662332D663009DDA5A /* BadgesViewController.swift in Sources */,
 				269E35181E7669FB000726C2 /* Strings.swift in Sources */,
 				F078D9D52333EC3000EF0BAD /* AKFLogin.swift in Sources */,
+				2668B06B2361936300309B9D /* AppSecrets.generated.swift in Sources */,
 				F0F8EDD92210C7FA00321A6D /* ChallengeCard.swift in Sources */,
 				2676B3CA2331F18B00CB0A31 /* TeamSettingsHeaderCell.swift in Sources */,
 				2611A5082335FF290030E77E /* Service.swift in Sources */,
