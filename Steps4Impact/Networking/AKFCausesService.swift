@@ -83,7 +83,9 @@ class AKFCausesService: Service {
       AKFCausesService(server: AppConfig.server)
 
   init(server: URLComponents) {
-    super.init(server: server, session: URLSession(configuration: .default))
+    let config = URLSessionConfiguration.default
+    config.httpAdditionalHeaders = ["Authorization": "Basic \(AppConfig.serverPassword)"]
+    super.init(server: server, session: URLSession(configuration: config))
   }
 
   private func request(_ method: HTTPMethod = .get,
