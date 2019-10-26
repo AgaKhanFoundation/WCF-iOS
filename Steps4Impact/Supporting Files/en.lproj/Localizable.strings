@@ -41,6 +41,7 @@
 
 // Login
 "Login.conditions" = "Terms and Conditions Apply";
+"Login.facebookButton" = "Log in with Facebook";
 
 // Welcome
 "Welcome.title" = "Welcome to %@!";

@@ -48,6 +48,7 @@ struct Strings {
 
   struct Login {
     static let conditions = NSLocalizedString("Login.conditions", comment: "")
+    static let facebookButton = NSLocalizedString("Login.facebookButton", comment: "")
   }
 
   struct Welcome {

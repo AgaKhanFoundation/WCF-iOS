@@ -59,7 +59,7 @@ class FBLoginButton: UIButton {
       maker.height.equalTo(24)
     }
 
-    label.text = "Log in with Facebook"
+    label.text = Strings.Login.facebookButton
     label.textColor = .white
     label.font = Style.Typography.buttonTitle.font
     addSubview(label) { (maker) in

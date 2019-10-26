@@ -118,26 +118,26 @@ extension LoginViewController {
       }
     }
   }
-  
+
   @objc
   private func loginFacebookAction(sender: AnyObject) {
     let fbLoginManager = LoginManager()
     fbLoginManager.logIn(permissions: [.publicProfile], viewController: self, completion: loginResult(result:))
   }
-  
+
   private func loginResult(result: LoginResult) {
     switch result {
-      case .success(_, _, _):
-        AKFCausesService.createParticipant(fbid: Facebook.id) { [weak self] (_) in
-          onMain {
-            AppController.shared.login()
-          }
-          self?.addParticipantToDefaultEventIfNeeded()
+    case .success:
+      AKFCausesService.createParticipant(fbid: Facebook.id) { [weak self] (_) in
+        onMain {
+          AppController.shared.login()
         }
-      case .failed(let error):
-        alert(message: "Error logging in \(error)", style: .cancel)
-      default:
-        return
+        self?.addParticipantToDefaultEventIfNeeded()
+      }
+    case .failed(let error):
+      alert(message: "Error logging in \(error)", style: .cancel)
+    default:
+      return
     }
   }
 
