@@ -69,6 +69,7 @@ struct Style {
     case smallRegularBlue
     case smallBold
     case footnote
+    case buttonTitle
 
     case onboarding
 
@@ -80,6 +81,8 @@ struct Style {
         return UIFont.boldSystemFont(ofSize: 20)
       case .subtitleRegular:
         return UIFont.systemFont(ofSize: 16)
+      case .buttonTitle:
+        return UIFont.systemFont(ofSize: 16, weight: .semibold)
       case .subtitleBold:
         return UIFont.systemFont(ofSize: 16, weight: .bold)
       case .bodyRegular:

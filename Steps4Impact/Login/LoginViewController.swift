@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
   let imgLogo: UIImageView = UIImageView(image: Assets.logo.image)
   let imgImage: UIImageView =
       UIImageView(image: Assets.onboardingLoginPeople.image)
-  let btnLogin: FBLoginButton = FBLoginButton(permissions: [.publicProfile])
+  let btnLogin = FBLoginButton()
   let btnTermsAndConditions: Button = Button(style: .link)
 
   override func viewDidLoad() {
@@ -64,10 +64,13 @@ class LoginViewController: UIViewController {
       make.top.equalTo(imgLogo.snp.bottom).offset(Style.Padding.p32)
     }
 
-    btnLogin.delegate = self
+    btnLogin.addTarget(self, action: #selector(loginFacebookAction(sender:)), for: .touchUpInside)
     view.addSubview(btnLogin) { (make) in
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
       make.top.equalTo(imgImage.snp.bottom).offset(Style.Padding.p32)
+      make.height.equalTo(48)
+      make.width.equalTo(296)
+      make.centerX.equalToSuperview()
     }
 
     btnTermsAndConditions.title = Strings.Login.conditions
@@ -100,37 +103,41 @@ class LoginViewController: UIViewController {
   }
 }
 
-extension LoginViewController: LoginButtonDelegate {
-  func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-    if let error = error {
-      alert(message: "Error logging in \(error)", style: .cancel)
-      return
-    }
-
-    guard let result = result else { return }
-    if result.isCancelled { return }
-
-    AKFCausesService.createParticipant(fbid: Facebook.id) { [weak self] (_) in
-      onMain {
-        AppController.shared.login()
-      }
-      self?.addParticipantToDefaultEventIfNeeded()
-    }
-  }
+extension LoginViewController {
 
   private func addParticipantToDefaultEventIfNeeded() {
     AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
-      if let participant = Participant(json: result.response), participant.currentEvent == nil {
-        AKFCausesService.getEvents { (result) in
-          let events = result.response?.arrayValue?.compactMap { Event(json: $0) }
+      guard let participant = Participant(json: result.response), participant.currentEvent == nil else { return }
+      AKFCausesService.getEvents { (result) in
+        let events = result.response?.arrayValue?.compactMap { Event(json: $0) }
 
-          if let event = events?.first, let eventID = event.id {
-            AKFCausesService.joinEvent(fbid: Facebook.id, eventID: eventID, steps: event.defaultStepCount) { _ in
-              NotificationCenter.default.post(name: .eventChanged, object: nil)
-            }
-          }
+        guard let event = events?.first, let eventID = event.id else { return }
+        AKFCausesService.joinEvent(fbid: Facebook.id, eventID: eventID, steps: event.defaultStepCount) { _ in
+          NotificationCenter.default.post(name: .eventChanged, object: nil)
         }
       }
+    }
+  }
+  
+  @objc
+  private func loginFacebookAction(sender: AnyObject) {
+    let fbLoginManager = LoginManager()
+    fbLoginManager.logIn(permissions: [.publicProfile], viewController: self, completion: loginResult(result:))
+  }
+  
+  private func loginResult(result: LoginResult) {
+    switch result {
+      case .success(_, _, _):
+        AKFCausesService.createParticipant(fbid: Facebook.id) { [weak self] (_) in
+          onMain {
+            AppController.shared.login()
+          }
+          self?.addParticipantToDefaultEventIfNeeded()
+        }
+      case .failed(let error):
+        alert(message: "Error logging in \(error)", style: .cancel)
+      default:
+        return
     }
   }
 
