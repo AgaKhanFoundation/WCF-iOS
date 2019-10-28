@@ -34,6 +34,8 @@ import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
 import HealthKit
+import FirebaseCore
+import FirebaseMessaging
 
 class AppController {
   static let shared = AppController()
@@ -55,6 +57,9 @@ class AppController {
 
     // Setup Telemetry
     AppEvents.activateApp()
+
+    // Initialize Firebase
+    FirebaseApp.configure()
 
     // Setup Window
     window?.frame = UIScreen.main.bounds
@@ -237,5 +242,20 @@ class AppController {
     let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
     activityVC.popoverPresentationController?.sourceView = shareButton
     viewController.present(activityVC, animated: true, completion: nil)
+  }
+
+  func askForPushNotificationPermissions() {
+    UIApplication.shared.registerForRemoteNotifications()
+    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
+      print("Permission granted: \(granted)")
+    }
+  }
+
+  func didReceivePushNotification(deviceToken: Data) {
+    Messaging.messaging().apnsToken = deviceToken
+  }
+
+  func didReceivePushNotification(with userInfo: [AnyHashable: Any]) {
+    NotificationCenter.default.post(name: .receivedNotification, object: nil, userInfo: userInfo)
   }
 }

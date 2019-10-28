@@ -47,4 +47,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    options: [UIApplication.OpenURLOptionsKey:Any]) -> Bool {    // swiftlint:disable:this colon line_length
     return appController.can(app, open: url, with: options)
   }
+
+  func application(_ app: UIApplication,
+                   didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    appController.didReceivePushNotification(deviceToken: deviceToken)
+  }
+
+  func application(_ app: UIApplication,
+                   didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    print("Failed to register remote notifications", error)
+  }
+
+  func application(_ app: UIApplication,
+                   didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+    appController.didReceivePushNotification(with: userInfo)
+  }
 }

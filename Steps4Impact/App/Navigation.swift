@@ -62,8 +62,15 @@ class Navigation: UITabBarController {
 
     // FIXME(compnerd) enumerate the notifications
     self.notifications.tabBarItem.badgeValue = "0"
+    AppController.shared.askForPushNotificationPermissions()
 
     self.viewControllers = [dashboard, challenge, leaderboard, notifications]
+  
+    NotificationCenter.default.addObserver(forName: .receivedNotification, object: nil, queue: nil) { [weak self] (notification) in
+      guard let this = self else { return }
+      let oldValue = Int(this.notifications.tabBarItem.badgeValue ?? "0") ?? 0
+      this.notifications.tabBarItem.badgeValue = String(oldValue + 1)
+    }
   }
 
   required init?(coder aDecoder: NSCoder) {
