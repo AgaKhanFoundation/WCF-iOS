@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>668777612620-aftl55nn5oquvs2otq2cu71vt74f4m03.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.668777612620-aftl55nn5oquvs2otq2cu71vt74f4m03</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD38OFspJLs2nYQ3L18wakseLx1zeFxUQw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>668777612620</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.akf.WalkingChallenge.dev</string>
+	<key>PROJECT_ID</key>
+	<string>akf-dev</string>
+	<key>STORAGE_BUCKET</key>
+	<string>akf-dev.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:668777612620:ios:31de047d0c34c0ceb5fbe9</string>
+	<key>DATABASE_URL</key>
+	<string>https://akf-dev.firebaseio.com</string>
+</dict>
+</plist>

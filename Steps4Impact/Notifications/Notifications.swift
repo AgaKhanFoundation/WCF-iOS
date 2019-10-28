@@ -159,6 +159,15 @@ class Notifications: UIViewController {
       uvwNotificationsBackground.isHidden = true
     }
     tblNotifications.reloadData()
+  
+    NotificationCenter.default.addObserver(forName: .receivedNotification, object: nil, queue: nil) { [weak self] (notification) in
+      self?.didReceive(notification: notification.userInfo)
+    }
+  }
+
+  func didReceive(notification userInfo: [AnyHashable: Any]?) {
+    guard let userInfo = userInfo else { return }
+    print("Received notification", userInfo)
   }
 }
 
