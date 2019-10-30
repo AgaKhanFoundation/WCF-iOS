@@ -122,9 +122,7 @@ class AppController {
   }
 
   func login() {
-//    if !UserInfo.AKFProfileCreated {
-//      transition(to: .akf)
-//    }
+    // TODO: Add check to go to akf sign up form 
     if !UserInfo.onboardingComplete {
       transition(to: .onboarding)
     } else {
