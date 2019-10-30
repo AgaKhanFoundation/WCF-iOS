@@ -36,11 +36,12 @@ import AppCenterCrashes
 import HealthKit
 import FirebaseCore
 import FirebaseMessaging
+import FirebaseInstanceID
 
-class AppController {
+class AppController: NSObject {
   static let shared = AppController()
 
-  private init() { }
+  private override init() { }
 
   var window: UIWindow?
   var navigation: UITabBarController = Navigation()
@@ -251,6 +252,7 @@ class AppController {
     UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
       print("Permission granted: \(granted)")
     }
+    Messaging.messaging().delegate = self
   }
 
   func didReceivePushNotification(deviceToken: Data) {
@@ -260,4 +262,16 @@ class AppController {
   func didReceivePushNotification(with userInfo: [AnyHashable: Any]) {
     NotificationCenter.default.post(name: .receivedNotification, object: nil, userInfo: userInfo)
   }
+}
+
+extension AppController: MessagingDelegate {
+
+  func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+    // Save to current user's profile
+  }
+
+  func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+    print(remoteMessage.appData)
+  }
+
 }

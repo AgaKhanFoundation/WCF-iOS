@@ -35,6 +35,22 @@ class NotificationsViewController: TableViewController {
 
     title = Strings.Notifications.title
     dataSource = NotificationsDataSource()
+
+    _ = NotificationCenter.default.addObserver(forName: .receivedNotification, object: nil, queue: nil) { [weak self] (notification) in
+      self?.didReceive(notification: notification.userInfo)
+    }
+  }
+
+  func didReceive(notification userInfo: [AnyHashable: Any]?) {
+    print("Received notification", userInfo)
+    guard let userInfo = userInfo, let title = userInfo["title"] as? String, let body = userInfo["body"] as? String else { return }
+    guard let cells = dataSource?.cells, var first = cells.first else { return }
+    first.append(InfoCellContext(
+      title: title,
+      body: body
+    ))
+    dataSource?.cells = [first]
+    reload()
   }
 }
 
