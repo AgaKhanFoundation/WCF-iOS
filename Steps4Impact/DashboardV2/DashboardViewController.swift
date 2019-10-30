@@ -64,6 +64,13 @@ class DashboardViewController: TableViewController {
     }
   }
 
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    // Asking for push notification permission after login
+    AppController.shared.askForPushNotificationPermissions()
+  }
+
   deinit {
     NotificationCenter.default.removeObserver(self)
   }
