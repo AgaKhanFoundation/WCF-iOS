@@ -55,11 +55,6 @@ class AppController {
     // Setup Telemetry
     AppEvents.activateApp()
 
-    // Customizing back button image
-    let backImage = Assets.backIcon.image
-    UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
-    UINavigationBar.appearance().backIndicatorImage = backImage
-
     // Setup Window
     window?.frame = UIScreen.main.bounds
     window?.rootViewController = UIViewController()
