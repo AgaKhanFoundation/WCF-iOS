@@ -39,5 +39,10 @@ class NavigationController: UINavigationController {
     ]
     navigationBar.isTranslucent = true
     navigationBar.setValue(true, forKey: "hidesShadow")
+
+    // Customizing back button using image from assets
+    let backImage = Assets.backIcon.image
+    navigationBar.backIndicatorTransitionMaskImage = backImage
+    navigationBar.backIndicatorImage = backImage
   }
 }
