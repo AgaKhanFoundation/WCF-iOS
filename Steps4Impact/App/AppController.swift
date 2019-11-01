@@ -211,25 +211,25 @@ class AppController {
   }
 
   private func healthCheckServer() {
-     AKFCausesService.performAPIHealthCheck { (result) in
-       switch result {
-       case .failed:
-         let loginManager = LoginManager()
-         loginManager.logOut()
-         self.transition(to: .login)
-         if let view = self.window?.rootViewController {
-           let alert = AlertViewController()
-           alert.title = Strings.AKFCausesServiceError.unableToConnect
-           alert.add(.okay())
-           self.present(alert: alert, in: view, completion: nil)
-         }
-       case .success:
-         onBackground {
-           self.updateRecords()
-         }
-       }
-     }
-   }
+    AKFCausesService.performAPIHealthCheck { (result) in
+      switch result {
+      case .failed:
+        let loginManager = LoginManager()
+        loginManager.logOut()
+        self.transition(to: .login)
+        if let view = self.window?.rootViewController {
+          let alert = AlertViewController()
+          alert.title = Strings.AKFCausesServiceError.unableToConnect
+          alert.add(.okay())
+          self.present(alert: alert, in: view, completion: nil)
+        }
+      case .success:
+        onBackground {
+          self.updateRecords()
+        }
+      }
+    }
+  }
 
   func shareTapped(viewController: UIViewController, shareButton: UIButton?, string: String) {
     let activityItems: [Any] = [string]
