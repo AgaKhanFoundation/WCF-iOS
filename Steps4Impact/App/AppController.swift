@@ -63,6 +63,7 @@ class AppController {
 
     // Select Default View
     // TODO(samisuteria) add check for akf profile?
+    print("Facebook Id: \(Facebook.id)")
     if Facebook.id.isEmpty {
       transition(to: .login)
     } else if !UserInfo.onboardingComplete {

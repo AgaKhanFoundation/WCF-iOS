@@ -106,6 +106,9 @@
 		A594DC8B238B6620003B5EF7 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594DC8A238B6620003B5EF7 /* LeaderboardCell.swift */; };
 		A594DC8D238B6DBA003B5EF7 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594DC8C238B6DBA003B5EF7 /* Leaderboard.swift */; };
 		A5E291A6238EEF6700F61954 /* HeaderCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E291A5238EEF6700F61954 /* HeaderCells.swift */; };
+		A53E7B3B236E6049006BD6D9 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E7B3A236E6049006BD6D9 /* TestViewController.swift */; };
+		A57A29FC236E408E002AA380 /* BadgesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57A29FB236E408E002AA380 /* BadgesCollectionViewController.swift */; };
+		A57A29FD236E408E002AA380 /* BadgesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57A29FB236E408E002AA380 /* BadgesCollectionViewController.swift */; };
 		C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */; };
 		C92244C7234AD68A0098A333 /* OAuthFitbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244C6234AD68A0098A333 /* OAuthFitbit.swift */; };
 		C92244C9234AD7840098A333 /* FitbitAuthorizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244C8234AD7840098A333 /* FitbitAuthorizeViewController.swift */; };
@@ -277,6 +280,8 @@
 		A594DC8A238B6620003B5EF7 /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
 		A594DC8C238B6DBA003B5EF7 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
 		A5E291A5238EEF6700F61954 /* HeaderCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCells.swift; sourceTree = "<group>"; };
+		A53E7B3A236E6049006BD6D9 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		A57A29FB236E408E002AA380 /* BadgesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesCollectionViewController.swift; sourceTree = "<group>"; };
 		C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		C92244C6234AD68A0098A333 /* OAuthFitbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthFitbit.swift; sourceTree = "<group>"; };
 		C92244C8234AD7840098A333 /* FitbitAuthorizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitbitAuthorizeViewController.swift; sourceTree = "<group>"; };
@@ -608,6 +613,7 @@
 			isa = PBXGroup;
 			children = (
 				A5123F1D2381B4F700C3E9DE /* Journey */,
+				A57A29FA236E404C002AA380 /* BadgesV2 */,
 				2668B0672361936300309B9D /* Generated */,
 				2676B3C22331D42B00CB0A31 /* Animators */,
 				2611A50E233601DC0030E77E /* App */,
@@ -686,6 +692,15 @@
 				A5123F252381C9CE00C3E9DE /* CurrentMilestoneCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		A57A29FA236E404C002AA380 /* BadgesV2 */ = {
+			isa = PBXGroup;
+			children = (
+				A57A29FB236E408E002AA380 /* BadgesCollectionViewController.swift */,
+				A53E7B3A236E6049006BD6D9 /* TestViewController.swift */,
+			);
+			path = BadgesV2;
 			sourceTree = "<group>";
 		};
 		F017B68F227699240023E84B /* Onboarding */ = {
@@ -1079,6 +1094,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2611A4EF2335F8350030E77E /* Steps4ImpactSpec.swift in Sources */,
+				A57A29FD236E408E002AA380 /* BadgesCollectionViewController.swift in Sources */,
 				26388A7123492F5600C83AC2 /* LocalizationSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1088,6 +1104,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AAA32A023655CB5002B7479 /* LoginButton.swift in Sources */,
+				A53E7B3B236E6049006BD6D9 /* TestViewController.swift in Sources */,
 				F0D16A3C2218AD810081440C /* Challenge.swift in Sources */,
 				26B2793823765FFA000CEE94 /* Keyboardable.swift in Sources */,
 				F017B68E227686A60023E84B /* OnboardingWelcome.swift in Sources */,
@@ -1135,6 +1152,7 @@
 				F017B6952276C9C60023E84B /* OnboardingJourney.swift in Sources */,
 				265DE5732332FBA9009DDA5A /* JoinTeam.swift in Sources */,
 				F0320B6E222F678500EABAD6 /* SegmentedView.swift in Sources */,
+				A57A29FC236E408E002AA380 /* BadgesCollectionViewController.swift in Sources */,
 				2676B3C82331E1B400CB0A31 /* ActionButton.swift in Sources */,
 				F02F1734234B9B3E008A1CD6 /* Commitment.swift in Sources */,
 				262418342336EA5700454EF2 /* OnboardingViewController.swift in Sources */,
@@ -1425,6 +1443,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1444,6 +1463,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

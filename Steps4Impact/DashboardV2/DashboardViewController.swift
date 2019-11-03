@@ -89,7 +89,7 @@ class DashboardViewController: TableViewController {
 
 extension DashboardViewController: ProfileCardCellDelegate {
   func profileDisclosureTapped() {
-    navigationController?.pushViewController(BadgesViewController(), animated: true)
+    navigationController?.pushViewController(BadgesCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout()), animated: true)
   }
 }
 
