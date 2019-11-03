@@ -135,6 +135,6 @@ extension LoginViewController: LoginButtonDelegate {
   }
 
   func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-    fatalError("user logged in without a session?")
+   // fatalError("user logged in without a session?")
   }
 }

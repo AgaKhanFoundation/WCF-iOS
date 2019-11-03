@@ -61,6 +61,7 @@ class AppController {
     window?.makeKeyAndVisible()
 
     // Select Default View
+    print("Facebook Id: \(Facebook.id)")
     if Facebook.id.isEmpty {
       transition(to: .login)
     } else if !UserInfo.AKFProfileCreated {
