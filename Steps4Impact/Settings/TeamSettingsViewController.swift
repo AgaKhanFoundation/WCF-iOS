@@ -99,7 +99,6 @@ extension TeamSettingsViewController: SettingsActionCellDelegate {
       AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
         guard let participant = Participant(json: result.response) else { return }
         guard participant.team != nil else { return }
-
         let alert: AlertViewController = AlertViewController()
         alert.title = Strings.TeamSettings.deleteTeam
         alert.body = Strings.TeamSettings.deleteTeamBody
@@ -118,7 +117,6 @@ extension TeamSettingsViewController: SettingsActionCellDelegate {
     }
   }
 }
-
 
 extension TeamSettingsViewController: TeamSettingsMemberCellDelegate {
   func removeTapped(context: Context?, button: UIButton) {

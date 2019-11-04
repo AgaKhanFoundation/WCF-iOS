@@ -154,13 +154,13 @@ class TeamSettingsDataSource: TableViewDataSource {
     if isLead {
       cells.append([
         SettingsActionCellContext(
-          title: "Delete Team",
-          buttonStyle: .destructive,
-          context: TeamSettingsContext.delete),
-        SettingsActionCellContext(
           title: "Edit Team Name",
           buttonStyle: .plain,
-          context: TeamSettingsContext.editname)
+          context: TeamSettingsContext.editname),
+        SettingsActionCellContext(
+          title: "Delete Team",
+          buttonStyle: .destructive,
+          context: TeamSettingsContext.delete)
       ])
     }
   }
