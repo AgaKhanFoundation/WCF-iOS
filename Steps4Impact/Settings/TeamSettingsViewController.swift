@@ -119,6 +119,7 @@ extension TeamSettingsViewController: SettingsActionCellDelegate {
   }
 }
 
+
 extension TeamSettingsViewController: TeamSettingsMemberCellDelegate {
   func removeTapped(context: Context?, button: UIButton) {
     guard let context = context as? TeamMembersContext else { return }

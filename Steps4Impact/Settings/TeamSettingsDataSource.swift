@@ -156,11 +156,7 @@ class TeamSettingsDataSource: TableViewDataSource {
         SettingsActionCellContext(
           title: "Delete Team",
           buttonStyle: .destructive,
-          context: TeamSettingsContext.delete)
-      ])
-    }
-    if isLead {
-      cells.append([
+          context: TeamSettingsContext.delete),
         SettingsActionCellContext(
           title: "Edit Team Name",
           buttonStyle: .plain,
