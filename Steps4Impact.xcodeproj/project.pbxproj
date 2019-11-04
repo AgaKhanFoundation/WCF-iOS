@@ -794,7 +794,7 @@
 					};
 					269E34C51E765828000726C2 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 6SQ8F32998;
+						DevelopmentTeam = 479QYREFPY;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1324,11 +1324,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Steps4Impact/Supporting Files/Steps4Impact.entitlements";
 				CURRENT_PROJECT_VERSION = 265;
-				DEVELOPMENT_TEAM = 6SQ8F32998;
+				DEVELOPMENT_TEAM = 479QYREFPY;
 				INFOPLIST_FILE = "Steps4Impact/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.akf.WalkingChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akf.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1343,11 +1343,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Steps4Impact/Supporting Files/Steps4Impact.entitlements";
 				CURRENT_PROJECT_VERSION = 265;
-				DEVELOPMENT_TEAM = 6SQ8F32998;
+				DEVELOPMENT_TEAM = 479QYREFPY;
 				INFOPLIST_FILE = "Steps4Impact/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.akf.WalkingChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akf.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
