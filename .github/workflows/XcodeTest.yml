@@ -1,0 +1,12 @@
+name: Swift
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: macOS-latest
+    steps:
+    - name: Checkout
+    - uses: actions/checkout@master
+    - name: Build and Test
+      run: xcodebuild clean test -sdk iphoneos -configuration Release -workspace Steps4Impact.xcworkspace -scheme Steps4Impact CODE_SIGNING_ALLOWED=NO | xcpretty -r junit --no-color       
