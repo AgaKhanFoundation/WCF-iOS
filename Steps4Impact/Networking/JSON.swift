@@ -208,7 +208,7 @@ extension JSON {
                                            options: [JSONSerialization.ReadingOptions.allowFragments])
       return JSON(deserialised)
     } catch {
-      print("unable to read JSON payload `\(String(data: data, encoding: .utf8)!)`: \(error.localizedDescription)")
+      print("unable to read JSON payload `\(String(data: data, encoding: .utf8) ?? "Not decodable")`: \(error.localizedDescription)") // swiftlint:disable:this line_length
     }
     return nil
   }

@@ -57,8 +57,8 @@ class Onboarding : UIPageViewController {                                       
 
     dataSource = self
     delegate = self
-    setViewControllers([pages.first!], direction: .forward, animated: true,
-                       completion: nil)
+    setViewControllers([pages.first!], direction: .forward, animated: true, // swiftlint:disable:this force_unwrapping
+                       completion: nil)                       // this view is not used anyway and will be deleted soon
 
     control.currentPage = 1
     control.numberOfPages = pages.count
@@ -90,10 +90,10 @@ class Onboarding : UIPageViewController {                                       
     btnContinue.addTarget(self, action: #selector(`continue`),
                           for: .touchUpInside)
 
-    let attributes: [NSAttributedString.Key:Any] = [                            // swiftlint:disable:this colon
-      .underlineStyle:NSUnderlineStyle.single.rawValue,                         // swiftlint:disable:this colon
-      .foregroundColor:Style.Colors.black,                                      // swiftlint:disable:this colon
-      .font:Style.Typography.smallRegular.font!                                 // swiftlint:disable:this colon
+    let attributes: [NSAttributedString.Key:Any] = [                   // swiftlint:disable:this colon
+      .underlineStyle:NSUnderlineStyle.single.rawValue,                // swiftlint:disable:this colon
+      .foregroundColor:Style.Colors.black,                             // swiftlint:disable:this colon
+      .font:Style.Typography.smallRegular.font!                        // swiftlint:disable:this colon force_unwrapping
     ]
     btnSkip.setAttributedTitle(NSAttributedString(string: Strings.Welcome.skip,
                                                   attributes: attributes),

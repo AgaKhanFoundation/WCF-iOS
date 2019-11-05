@@ -85,7 +85,7 @@ class LoginViewController: UIViewController {
   @objc
   private func viewTermsAndConditions() {
     let view: SFSafariViewController =
-      SFSafariViewController(url: URL(string: "https://www.akfusa.org/website-private-policy")!)
+      SFSafariViewController(url: URL(string: "https://www.akfusa.org/website-private-policy")!) // swiftlint:disable:this force_unwrapping line_length
     present(view, animated: true, completion: nil)
   }
 

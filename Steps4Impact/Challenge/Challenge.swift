@@ -185,7 +185,7 @@ class ChallengeDataSource: TableViewDataSource {
         }
 
         group.enter()
-        Facebook.getRealName(for: team.creator!) { (name) in
+        Facebook.getRealName(for: team.creator!) { (name) in // swiftlint:disable:this force_unwrapping
           self?.teamCreator = name
           group.leave()
         }

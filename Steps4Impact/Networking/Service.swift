@@ -82,7 +82,7 @@ class Service {
 
     let task = session.dataTask(with: request) {
       (data: Data?, response: URLResponse?, error: Error?) in
-        print("<- [\(method.rawValue.uppercased())] \(request) [\(request.httpBody != nil ? String(data: request.httpBody!, encoding: .utf8)! : "")]") // swiftlint:disable:this line_length
+        print("<- [\(method.rawValue.uppercased())] \(request) [\(String(data: request.httpBody, encoding: .utf8) ?? "")]") // swiftlint:disable:this line_length
 
         guard error == nil else {
           self.callback(completion, result: .failed(error))
@@ -97,7 +97,7 @@ class Service {
           return
         }
 
-        print("-> [\(http.statusCode)] \(String(data: data, encoding: .utf8)!)")
+        print("-> [\(http.statusCode)] \(String(data: data, encoding: .utf8) ?? "Not decodable")")
 
         switch JSON.deserialise(data) {
         case .some(let response):

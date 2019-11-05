@@ -189,8 +189,8 @@ class AppController {
     guard let sourceID = source?.id else { return }
 
     AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
-      if let participant = Participant(json: result.response) {
-        guard let start = (participant.records?.sorted { $0.date! < $1.date! }.last?.date
+      if let participant = Participant(json: result.response), let participantId = participant.id {
+        guard let start = (participant.records?.sorted { $0.date! < $1.date! }.last?.date // swiftlint:disable:this force_unwrapping line_length
                             ?? participant.currentEvent?.challengePhase.start) else { return }
 
         guard start < Date(timeIntervalSinceNow: 0) else { return }
@@ -202,7 +202,7 @@ class AppController {
           case .failure(let error):
             print("unable to query pedometer: \(error)")
           case .success(let steps):
-            AKFCausesService.createRecord(for: participant.id!, dated: interval.end,
+            AKFCausesService.createRecord(for: participantId, dated: interval.end,
                                           steps: steps, sourceID: sourceID)
           }
         }

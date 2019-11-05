@@ -40,5 +40,8 @@ struct Commitment {
     self.steps = json["commitment"]?.intValue
   }
 
-  public var miles: Int? { return steps == nil ? nil : steps! / 2000 }
+  public var miles: Int? {
+    guard let steps = steps else { return nil }
+    return steps / 2000
+  }
 }

@@ -67,8 +67,7 @@ extension SelectionButtonPopoverViewController: UITableViewDelegate {
 extension SelectionButtonPopoverViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView,
                  numberOfRowsInSection section: Int) -> Int {
-    guard delegate != nil else { return 0 }
-    return delegate!.items.count
+    return delegate?.items.count ?? 0
   }
 
   func tableView(_ tableView: UITableView,
@@ -81,9 +80,9 @@ extension SelectionButtonPopoverViewController: UITableViewDataSource {
       }
     }
 
-    if indexPath.row >= delegate!.items.count - 1 {
+    if let count = delegate?.items.count, indexPath.row >= count - 1 {
       cell.separatorInset =
-          UIEdgeInsets(top: 0, left: 0, bottom: 0, right: cell.bounds.size.width)
+        UIEdgeInsets(top: 0, left: 0, bottom: 0, right: cell.bounds.size.width)
     }
 
     cell.textLabel?.text = delegate?.items[safe: indexPath.row]

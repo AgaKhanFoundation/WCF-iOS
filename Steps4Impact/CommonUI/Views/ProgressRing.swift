@@ -137,9 +137,10 @@ class ProgressRing: UIView {
       value = Float(summary.value) / Float(summary.max)
     }
 
-    arcLayer = ProgressArcLayer(radius: arcRadius, width: arcWidth, value: value,
+    let someArcLayer = ProgressArcLayer(radius: arcRadius, width: arcWidth, value: value,
                                 color: trackTintColor)
-    layer.addSublayer(arcLayer!)
+    layer.addSublayer(someArcLayer)
+    arcLayer = someArcLayer
 
     addSubview(lblValue)
     lblValue.snp.makeConstraints { (make) in

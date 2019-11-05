@@ -32,12 +32,12 @@ import Foundation
 struct AppConfig {
   static var server: URLComponents {
     if UserInfo.isStaging {
-      return URLComponents(string: "https://staging.step4change.org")!
+      return URLComponents(string: "https://staging.step4change.org")! // swiftlint:disable:this force_unwrapping
     } else {
       #if DEBUG
-        return URLComponents(string: "https://dev.step4change.org")!
+        return URLComponents(string: "https://dev.step4change.org")! // swiftlint:disable:this force_unwrapping
       #else
-        return URLComponents(string: "http://step4change.org")!
+        return URLComponents(string: "http://step4change.org")! // swiftlint:disable:this force_unwrapping
       #endif
     }
   }
