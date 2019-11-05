@@ -29,6 +29,7 @@
 
 import UIKit
 import FacebookCore
+import FacebookLogin
 import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
@@ -213,6 +214,8 @@ class AppController {
     AKFCausesService.performAPIHealthCheck { (result) in
       switch result {
       case .failed:
+        let loginManager = LoginManager()
+        loginManager.logOut()
         self.transition(to: .login)
         if let view = self.window?.rootViewController {
           let alert = AlertViewController()
