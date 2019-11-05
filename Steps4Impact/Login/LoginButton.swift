@@ -28,21 +28,28 @@
  **/
 
 import UIKit
+import FacebookLogin
+import FacebookCore
+import SnapKit
 
-class NavigationController: UINavigationController {
-  convenience init(rootVC: ViewController) {
-    self.init(rootViewController: rootVC)
-    navigationBar.prefersLargeTitles = true
-    navigationBar.tintColor = Style.Colors.black
-    navigationBar.largeTitleTextAttributes = [
-      .foregroundColor: Style.Colors.black
-    ]
-    navigationBar.isTranslucent = true
-    navigationBar.setValue(true, forKey: "hidesShadow")
+class LoginButton: FBLoginButton {
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    commonInit()
+  }
 
-    // Customizing back button using image from assets
-    let backImage = Assets.backIcon.image
-    navigationBar.backIndicatorTransitionMaskImage = backImage
-    navigationBar.backIndicatorImage = backImage
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
+    commonInit()
+  }
+
+  private func commonInit() {
+    self.imageView?.snp.makeConstraints { (maker) in
+      maker.leading.equalToSuperview().inset(Style.Padding.p32)
+      maker.centerY.equalToSuperview()
+    }
+    self.constraints
+      .filter { $0.firstAttribute == .height && $0.constant == 28 }
+      .forEach { $0.isActive = false }
   }
 }

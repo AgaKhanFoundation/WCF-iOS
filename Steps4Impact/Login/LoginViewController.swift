@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
   let imgLogo: UIImageView = UIImageView(image: Assets.logo.image)
   let imgImage: UIImageView =
       UIImageView(image: Assets.onboardingLoginPeople.image)
-  let btnLogin: FBLoginButton = FBLoginButton(permissions: [.publicProfile])
+  let btnLogin: LoginButton = LoginButton(permissions: [.publicProfile])
   let btnTermsAndConditions: Button = Button(style: .link)
 
   override func viewDidLoad() {
@@ -68,6 +68,8 @@ class LoginViewController: UIViewController {
     view.addSubview(btnLogin) { (make) in
       make.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
       make.top.equalTo(imgImage.snp.bottom).offset(Style.Padding.p32)
+      make.height.equalTo(48).priority(.required)
+      make.centerX.equalToSuperview()
     }
 
     btnTermsAndConditions.title = Strings.Login.conditions

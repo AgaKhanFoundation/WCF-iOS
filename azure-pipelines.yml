@@ -33,6 +33,6 @@ steps:
     scheme: 'Steps4Impact'
     destinationPlatformOption: iOS
     destinationTypeOption: simulators
-    destinationSimulators: 'iPhone SE'
+    destinationSimulators: 'iPhone 8'
     args: 'test'
     publishJUnitResults: true
