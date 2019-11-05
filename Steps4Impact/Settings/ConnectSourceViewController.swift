@@ -32,7 +32,7 @@ import SnapKit
 import HealthKit
 
 class ConnectSourceViewController: TableViewController {
-  static let steps = HKSampleType.quantityType(forIdentifier: .stepCount)!
+  static let steps = HKSampleType.quantityType(forIdentifier: .stepCount)! // swiftlint:disable:this force_unwrapping
 
   override func commonInit() {
     super.commonInit()
@@ -89,7 +89,7 @@ class ConnectSourceViewController: TableViewController {
       make.edges.equalToSuperview()
     }
     alert.add(AlertAction(title: "Open Settings", style: .primary, shouldDismiss: true) {
-      let url: URL = URL(string: UIApplication.openSettingsURLString)!
+      let url: URL = URL(string: UIApplication.openSettingsURLString)! // swiftlint:disable:this force_unwrapping
       UIApplication.shared.open(url)
     })
     alert.add(AlertAction(title: "Cancel", style: .secondary, shouldDismiss: true))
