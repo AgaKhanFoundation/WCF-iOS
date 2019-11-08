@@ -275,10 +275,12 @@ extension AppController: MessagingDelegate {
 
   func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
     // Save to current user's profile
+//    print(fcmToken)
   }
 
   func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-    print(remoteMessage.appData)
+//    print(remoteMessage.appData)
+    NotificationCenter.default.post(name: .receivedNotification, object: nil, userInfo: remoteMessage.appData)
   }
 
 }
