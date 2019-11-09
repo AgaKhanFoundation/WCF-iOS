@@ -148,17 +148,5 @@ extension BadgesCollectionViewController {
     }
     return CGSize(width: view.frame.width, height: 0)
   }
-
-  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    let cell = collectionView.cellForItem(at: indexPath) as! BadgeCell
-
-    if cell.badge?.badgeType != .finalMedal {
-      let showBadgeVC = ShowBadgeViewController()
-      showBadgeVC.badgeTitle = cell.badgeLabel.text
-      navigationController?.pushViewController(showBadgeVC, animated: true)
-    } else {
-      collectionView.deselectItem(at: indexPath, animated: true)
-    }
-  }
 }
 
