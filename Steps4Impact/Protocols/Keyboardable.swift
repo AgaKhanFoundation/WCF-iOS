@@ -37,6 +37,7 @@ protocol Keyboardable: class {
   func dismissKeyboard(forced: Bool)
 
   var bottomConstraint: Constraint? { get set }
+  var bottomConstraintOffset: CGFloat? { get set }
 }
 
 extension Keyboardable where Self: UIViewController {
@@ -68,6 +69,7 @@ extension Keyboardable where Self: UIViewController {
 
     let animationCurve = UIView.AnimationOptions(rawValue: animationCurveRaw)
     let bottomOffset = keyboardFrame.origin.y - UIScreen.main.bounds.height
+    bottomConstraint?.update(offset: bottomOffset - (bottomConstraintOffset ?? 0.0))
 
     UIView.animate(withDuration: animationDuration,
                    delay: 0,
