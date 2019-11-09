@@ -73,6 +73,7 @@ class AlertViewController: ViewController {
 
   // Keyboardable
   var bottomConstraint: Constraint?
+  var bottomConstraintOffset: CGFloat? = Style.Padding.p16
 
   // MARK: - Lifecycle
 
