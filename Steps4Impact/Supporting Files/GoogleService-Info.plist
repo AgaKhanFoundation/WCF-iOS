@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>496133680393-i6gufisfls348fhllt6kq8bup4a87ndp.apps.googleusercontent.com</string>
+	<string>312206975123-v1nel13i562ir77rpr0690lnfrst278n.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.496133680393-i6gufisfls348fhllt6kq8bup4a87ndp</string>
+	<string>com.googleusercontent.apps.312206975123-v1nel13i562ir77rpr0690lnfrst278n</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBP7qCS23OMcQEcYh91-b9XXyJ-f8SLsTk</string>
+	<string>AIzaSyBxMzOX4HYOzz6ZqKLp-J75Hqk0no9NbpE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>496133680393</string>
+	<string>312206975123</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.akf.WalkingChallenge</string>
 	<key>PROJECT_ID</key>
-	<string>akf-test</string>
+	<string>steps4impact-15f2a</string>
 	<key>STORAGE_BUCKET</key>
-	<string>akf-test.appspot.com</string>
+	<string>steps4impact-15f2a.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:496133680393:ios:3b84ea21c33b0fdc49f7d8</string>
+	<string>1:312206975123:ios:99daa77ff0039316956d66</string>
 	<key>DATABASE_URL</key>
-	<string>https://akf-test.firebaseio.com</string>
+	<string>https://steps4impact-15f2a.firebaseio.com</string>
 </dict>
 </plist>
