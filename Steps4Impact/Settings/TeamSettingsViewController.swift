@@ -73,27 +73,25 @@ extension TeamSettingsViewController: SettingsActionCellDelegate {
           string: Strings.Share.item)
     case .editname:
       AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
-        guard let participant = Participant(json: result.response) else { return }
-        guard participant.team != nil else { return }
-        let alert = UIAlertController(title: Strings.TeamSettings.editTeamName,
-                                      message: Strings.TeamSettings.editTeamNameMessage,
-                                      preferredStyle: UIAlertController.Style.alert)
-        let action = UIAlertAction(title: Strings.TeamSettings.update, style: .default) { (_) in
-          let textField = alert.textFields![0] as UITextField
-          let newName = textField.text!
-          AKFCausesService.editTeamName(team: (participant.team?.id)!, name: newName) { (_) in
-            onMain {
-              alert.dismiss(animated: true, completion: nil)
-              self.navigationController?.popViewController(animated: true)
-              NotificationCenter.default.post(name: .teamChanged, object: nil)
-            }
+        guard
+          let participant = Participant(json: result.response),
+          let team = participant.team,
+          let teamId = team.id
+        else { return }
+
+        let alert = TextAlertViewController()
+        alert.title = Strings.TeamSettings.editTeamName
+        alert.body = Strings.TeamSettings.editTeamNameMessage
+        alert.value = team.name
+        alert.add(.init(title: Strings.TeamSettings.update, handler: {
+          guard let newName = alert.value else { return }
+          AKFCausesService.editTeamName(teamId: teamId, name: newName) { (result) in
+            guard !result.isSuccess else { return }
+            NotificationCenter.default.post(name: .teamChanged, object: nil)
           }
-        }
-        alert.addTextField { (textField) in
-          textField.text = "Enter Team Name"
-        }
-        alert.addAction(action)
-        UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+        }))
+        alert.add(.cancel())
+        AppController.shared.present(alert: alert, in: self, completion: nil)
       }
     case .delete:
       AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
