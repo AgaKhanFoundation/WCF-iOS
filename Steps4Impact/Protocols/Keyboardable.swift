@@ -31,18 +31,22 @@ import UIKit
 import SnapKit
 
 protocol Keyboardable: class {
-    func addKeyboardNotifications()
-    func removeKeyboardNotifications()
-    func keyboardChanged(notification: Foundation.Notification)
-    func dismissKeyboard(forced: Bool)
+  func addKeyboardNotifications()
+  func removeKeyboardNotifications()
+  func keyboardChanged(notification: Foundation.Notification)
+  func dismissKeyboard(forced: Bool)
 
-    var bottomConstraint: Constraint? { get set }
+  var bottomConstraint: Constraint? { get set }
 }
 
 extension Keyboardable where Self: UIViewController {
   func addKeyboardNotifications() {
-      _ = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { self.keyboardChanged(notification: $0) } // swiftlint:disable:this line_length
-      _ = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) { self.keyboardChanged(notification: $0) } // swiftlint:disable:this line_length
+    _ = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification,
+                                               object: nil,
+                                               queue: nil) { self.keyboardChanged(notification: $0) }
+    _ = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
+                                               object: nil,
+                                               queue: nil) { self.keyboardChanged(notification: $0) }
   }
 
   func removeKeyboardNotifications() {
@@ -52,26 +56,27 @@ extension Keyboardable where Self: UIViewController {
   }
 
   func keyboardChanged(notification: Foundation.Notification) {
-      guard
-          let userInfo = notification.userInfo,
-          let animationCurveRaw = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt,
-          let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
-          let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-      else {
-          print("Keyboardable - Something went wrong with keyboard animation")
-          return
-      }
+    guard
+      let userInfo = notification.userInfo,
+      let animationCurveRaw = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt,
+      let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
+      let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+    else {
+      print("Keyboardable - Something went wrong with keyboard animation")
+      return
+    }
 
-      let animationCurve = UIView.AnimationOptions(rawValue: animationCurveRaw)
-      let bottomOffset = keyboardFrame.origin.y - UIScreen.main.bounds.height
-      bottomConstraint?.update(offset: bottomOffset)
+    let animationCurve = UIView.AnimationOptions(rawValue: animationCurveRaw)
+    let bottomOffset = keyboardFrame.origin.y - UIScreen.main.bounds.height
 
-      UIView.animate(withDuration: animationDuration, delay: 0, options: [.beginFromCurrentState, animationCurve], animations: { // swiftlint:disable:this line_length
-          self.view.layoutIfNeeded()
-      }, completion: nil)
+    UIView.animate(withDuration: animationDuration,
+                   delay: 0,
+                   options: [.beginFromCurrentState, animationCurve],
+                   animations: { self.view.layoutIfNeeded() },
+                   completion: nil)
   }
 
   func dismissKeyboard(forced: Bool) {
-      view.endEditing(forced)
+    view.endEditing(forced)
   }
 }
