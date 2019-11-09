@@ -56,7 +56,7 @@ struct AlertAction {
   }
 }
 
-class AlertViewController: ViewController, Keyboardable {
+class AlertViewController: ViewController {
   override var title: String? { didSet { titleLabel.text = title }}
   var body: String? { didSet { bodyLabel.text = body }}
   var dismissBlock: (() -> Void)?
@@ -163,3 +163,5 @@ class AlertViewController: ViewController, Keyboardable {
     }
   }
 }
+
+extension AlertViewController: Keyboardable {}
