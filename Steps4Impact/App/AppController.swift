@@ -272,7 +272,6 @@ extension AppController: MessagingDelegate {
   }
 
   func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-//    print(remoteMessage.appData)
     NotificationCenter.default.post(name: .receivedNotification, object: nil, userInfo: remoteMessage.appData)
   }
 
