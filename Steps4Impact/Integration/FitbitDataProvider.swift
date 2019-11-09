@@ -41,7 +41,7 @@ class FitbitDataProvider: PedometerDataProvider {
           // FIXME: handle error situation
           return
         }
-    
+
         completion(.success(steps))
       case .failure(let error):
         print(error.description)
