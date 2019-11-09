@@ -166,6 +166,7 @@ class AppController {
   }
 
   private func updateRecords() {
+    
     guard let pedometer = UserInfo.pedometerSource else { return }
 
     let group: DispatchGroup = DispatchGroup()
