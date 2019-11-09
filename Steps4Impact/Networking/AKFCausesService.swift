@@ -99,6 +99,7 @@ class AKFCausesService: Service {
                        query: JSON? = nil,
                        parameters: JSON? = nil,
                        completion: ServiceRequestCompletion?) {
+    
     guard let url = buildURL(endpoint.rawValue, query) else {
       self.callback(completion, result: .failed(nil))
       return

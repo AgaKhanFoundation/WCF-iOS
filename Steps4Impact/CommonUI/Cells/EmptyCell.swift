@@ -44,3 +44,15 @@ class EmptyCell: ConfigurableTableViewCell {
     // Left blank on purpose
   }
 }
+
+class EmptyCollectionViewCell: ConfigurableCollectionViewCell {
+  static let indentifier = "Empty Cell"
+
+  override func commonInit() {
+    backgroundColor = nil
+  }
+  func configure(context: CellContext) {
+    // Empty cell
+  }
+
+}

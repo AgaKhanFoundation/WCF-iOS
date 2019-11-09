@@ -36,3 +36,13 @@ class EmptyTableViewDataSource: TableViewDataSource {
     // Left blank on purpose
   }
 }
+
+class EmptyCollectionViewDataSource: CollectionViewDataSource {
+  var cells = [[CellContext]]()
+
+  func configure() {
+    // Left blank on purpose
+  }
+}
+
+
