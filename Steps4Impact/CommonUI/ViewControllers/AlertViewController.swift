@@ -56,7 +56,7 @@ struct AlertAction {
   }
 }
 
-class AlertViewController: ViewController {
+class AlertViewController: ViewController, Keyboardable {
   override var title: String? { didSet { titleLabel.text = title }}
   var body: String? { didSet { bodyLabel.text = body }}
   var dismissBlock: (() -> Void)?
@@ -71,7 +71,20 @@ class AlertViewController: ViewController {
   private let labelsStackView = UIStackView()
   private let buttonsStackView = UIStackView()
 
+  // Keyboardable
+  var bottomConstraint: Constraint?
+
   // MARK: - Lifecycle
+
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    addKeyboardNotifications()
+  }
+
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    removeKeyboardNotifications()
+  }
 
   override func configureView() {
     super.configureView()
@@ -95,7 +108,8 @@ class AlertViewController: ViewController {
 
     view.addSubview(containerView) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
-      $0.centerY.equalToSuperview()
+      $0.centerY.equalToSuperview().priority(.low)
+      self.bottomConstraint = $0.bottom.lessThanOrEqualToSuperview().constraint
     }
 
     containerView.addSubview(labelsStackView) {
