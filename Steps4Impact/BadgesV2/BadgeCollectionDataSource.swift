@@ -46,7 +46,6 @@ class BadgesCollectionDataSource : CollectionViewDataSource {
 
     let now = Date()
     isChallengeCompleted = event.challengePhase.end < now
-    isChallengeCompleted = true
 
     /// Removing all earlier cells during refereh()
     stepsBadges.removeAll()
