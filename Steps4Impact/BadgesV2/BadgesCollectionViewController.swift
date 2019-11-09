@@ -112,7 +112,11 @@ extension BadgesCollectionViewController {
   override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerCellId, for: indexPath) as! HeaderCell
     if indexPath.section == 0 {
-      header.headerLabel.text = ""
+      if stepsBadges.count == 0 && achievementBadges.count == 0 {
+        header.headerLabel.text = "No Badges earned yet!"
+      } else {
+        header.headerLabel.text = ""
+      }
     } else {
       header.headerLabel.text = "10,000 steps per day streak"
     }
@@ -136,14 +140,16 @@ extension BadgesCollectionViewController {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
 
     if section == 0 {
-        if (isChallengeCompledted && finalMedalBadge != nil) || (stepsBadges.count == 0 && achievementBadges.count == 0) {
+        if (isChallengeCompledted && finalMedalBadge != nil) {
           /// Hiding Top Section Header
           return CGSize(width: view.frame.width, height: 0)
-        } else if stepsBadges.count == 0 {
+        } else if stepsBadges.count == 0 && achievementBadges.count != 0 {
           /// Making top header bigger to show bottom header in the middle
           return CGSize(width: view.frame.width, height: (view.frame.height/2) - 100)
-        }
-    } else if achievementBadges.count != 0 || stepsBadges.count != 0 {
+        } else if stepsBadges.count == 0 && achievementBadges.count == 0 {
+          return CGSize(width: view.frame.width, height: 44)
+      }
+    } else if section == 1 && (achievementBadges.count != 0 || stepsBadges.count != 0) {
       return CGSize(width: view.frame.width, height: 44)
     }
     return CGSize(width: view.frame.width, height: 0)
