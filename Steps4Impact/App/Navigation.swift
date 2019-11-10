@@ -68,8 +68,8 @@ class Navigation: UITabBarController {
     _ = NotificationCenter.default.addObserver(forName: .receivedNotification,
                                            object: nil,
                                            queue: nil) { [weak self] (_) in
-      guard let this = self else { return }
-      this.notifications.tabBarItem.badgeValue = "1"
+      guard let `self` = self else { return }
+      self.notifications.tabBarItem.badgeValue = "1"
     }
   }
 
