@@ -64,15 +64,34 @@ class DashboardViewController: TableViewController {
     }
   }
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-    // Asking for push notification permission after login
-    AppController.shared.askForPushNotificationPermissions()
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    askForNotificationPermission()
   }
 
   deinit {
     NotificationCenter.default.removeObserver(self)
+  }
+
+  private func askForNotificationPermission() {
+    UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+      DispatchQueue.main.async {
+        guard settings.authorizationStatus == .notDetermined,
+          !UIApplication.shared.isRegisteredForRemoteNotifications else { return }
+        let controller = UIAlertController(
+          title: Strings.NotificationsPermission.title,
+          message: Strings.NotificationsPermission.message, preferredStyle: .alert)
+        controller.addAction(UIAlertAction(
+          title: Strings.NotificationsPermission.proceed, style: .default,
+          handler: { (_) in
+            AppController.shared.askForPushNotificationPermissions()
+        }))
+        controller.addAction(UIAlertAction(
+          title: Strings.NotificationsPermission.cancel,
+          style: .cancel, handler: nil))
+        self.present(controller, animated: true, completion: nil)
+      }
+    }
   }
 
   override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
