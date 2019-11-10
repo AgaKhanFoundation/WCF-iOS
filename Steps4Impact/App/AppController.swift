@@ -34,9 +34,14 @@ import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
 import HealthKit
+import FirebaseCore
+import FirebaseMessaging
+import FirebaseInstanceID
 
-class AppController {
+class AppController: NSObject {
   static let shared = AppController()
+
+  private override init() { }
 
   var window: UIWindow?
   var navigation: UITabBarController = Navigation()
@@ -55,6 +60,9 @@ class AppController {
 
     // Setup Telemetry
     AppEvents.activateApp()
+
+    // Initialize Firebase
+    FirebaseApp.configure()
 
     // Setup Window
     window?.frame = UIScreen.main.bounds
@@ -244,5 +252,32 @@ class AppController {
     let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
     activityVC.popoverPresentationController?.sourceView = shareButton
     viewController.present(activityVC, animated: true, completion: nil)
+  }
+
+  func registerForRemoteNotifications() {
+    UIApplication.shared.registerForRemoteNotifications()
+    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
+      print("Permission granted: \(granted)")
+    }
+    Messaging.messaging().delegate = self
+  }
+
+  func didReceivePushNotification(deviceToken: Data) {
+    Messaging.messaging().apnsToken = deviceToken
+    // TODO Faisal: Save Messaging.messaging().fcmToken to current user's profile
+  }
+
+  func didReceivePushNotification(with userInfo: [AnyHashable: Any]) {
+    NotificationCenter.default.post(name: .receivedNotification, object: nil, userInfo: userInfo)
+  }
+}
+
+extension AppController: MessagingDelegate {
+  func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+    // TODO: Save to current user's profile
+  }
+
+  func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+    NotificationCenter.default.post(name: .receivedNotification, object: nil, userInfo: remoteMessage.appData)
   }
 }

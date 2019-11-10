@@ -37,6 +37,8 @@ extension NSNotification.Name {
     NSNotification.Name(rawValue: "steps4impact.event-changed")
   static let commitmentChanged: NSNotification.Name =
     NSNotification.Name(rawValue: "steps4impact.commitment-changed")
+  static let receivedNotification: NSNotification.Name =
+    NSNotification.Name(rawValue: "steps4impact.received-notification")
 }
 
 class DashboardViewController: TableViewController {
@@ -62,8 +64,38 @@ class DashboardViewController: TableViewController {
     }
   }
 
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    askForNotificationPermission()
+  }
+
   deinit {
     NotificationCenter.default.removeObserver(self)
+  }
+
+  private func askForNotificationPermission() {
+    UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+      DispatchQueue.main.async {
+        if settings.authorizationStatus == .authorized {
+          AppController.shared.registerForRemoteNotifications()
+        }
+        guard settings.authorizationStatus == .notDetermined else {
+          return
+        }
+        let controller = UIAlertController(
+          title: Strings.NotificationsPermission.title,
+          message: Strings.NotificationsPermission.message, preferredStyle: .alert)
+        controller.addAction(UIAlertAction(
+          title: Strings.NotificationsPermission.proceed, style: .default,
+          handler: { (_) in
+            AppController.shared.registerForRemoteNotifications()
+        }))
+        controller.addAction(UIAlertAction(
+          title: Strings.NotificationsPermission.cancel,
+          style: .cancel, handler: nil))
+        self.present(controller, animated: true, completion: nil)
+      }
+    }
   }
 
   override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
