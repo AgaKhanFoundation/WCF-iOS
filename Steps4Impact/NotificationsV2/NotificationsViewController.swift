@@ -49,12 +49,19 @@ class NotificationsViewController: TableViewController {
 
     title = Strings.Notifications.title
     dataSource = NotificationsDataSource()
-    fetchSavedNotifications()
 
     _ = NotificationCenter.default.addObserver(
     forName: .receivedNotification, object: nil, queue: nil) { [weak self] (notification) in
       self?.didReceive(notification: notification.userInfo)
     }
+  }
+
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    guard let dataSource = dataSource as? NotificationsDataSource else { return }
+    dataSource.notifications.forEach({ $0.seen = true })
+    self.navigationController?.tabBarItem.badgeValue = nil
+    saveToPlist()
   }
 
   private func didReceive(notification userInfo: [AnyHashable: Any]?) {
@@ -65,7 +72,7 @@ class NotificationsViewController: TableViewController {
       let dataSource = dataSource as? NotificationsDataSource else { return }
     let notification = NotificationV2(title: title, body: body, seen: false)
     dataSource.notifications.insert(notification, at: 0)
-    saveToPlist(notification: notification)
+    saveToPlist()
     reload()
   }
 
@@ -83,29 +90,46 @@ class NotificationsViewController: TableViewController {
     return data.compactMap { return NotificationV2.instance(from: $0) }
   }
 
-  private func saveToPlist(notification: NotificationV2) {
-    guard let plistURL = plistURL, let dataSource = dataSource as? NotificationsDataSource else { return }
+  private func saveToPlist() {
+    guard let plistURL = plistURL,
+      let dataSource = dataSource as? NotificationsDataSource else {
+        return
+    }
     do {
+      let plist = dataSource.notifications.compactMap { $0.jsonString() }
       let plistData = try PropertyListSerialization.data(
-        fromPropertyList: dataSource.notifications.compactMap { $0.jsonString() },
-        format: .xml, options: 0)
+        fromPropertyList: plist, format: .xml, options: 0)
       try plistData.write(to: plistURL)
     } catch {
       print("Error writing plist: ", error)
     }
   }
 
-  private func fetchSavedNotifications() {
+  func fetchSavedNotifications() {
     guard let dataSource = dataSource as? NotificationsDataSource else { return }
-    dataSource.notifications = readFromPlist()
+    let notifications = readFromPlist()
+    dataSource.notifications = notifications
+    let unseenCount = notifications.filter({ !$0.seen }).count
+    if unseenCount > 0 {
+      self.navigationController?.tabBarItem.badgeValue = "\(unseenCount)"
+    } else {
+      self.navigationController?.tabBarItem.badgeValue = nil
+    }
     reload()
   }
 }
 
-struct NotificationV2: Codable {
+class NotificationV2: NSObject, Codable {
   var title: String
   var body: String
   var seen: Bool
+
+  init(title: String, body: String, seen: Bool = false) {
+    self.title = title
+    self.body = body
+    self.seen = seen
+    super.init()
+  }
 
   func jsonString() -> String? {
     let jsonEncoder = JSONEncoder()
