@@ -30,12 +30,14 @@
 import UIKit
 
 class NotificationsViewController: TableViewController {
+  private let filename = "notifications.plist"
+
   private lazy var plistURL: URL? = {
     do {
       var documentURL = try FileManager.default.url(
         for: .documentDirectory, in: .userDomainMask,
         appropriateFor: nil, create: false)
-      return documentURL.appendingPathComponent("notifications.plist")
+      return documentURL.appendingPathComponent(filename)
     } catch {
       print(error)
     }
@@ -59,9 +61,9 @@ class NotificationsViewController: TableViewController {
     guard let aps = userInfo?["aps"] as? [AnyHashable: Any],
       let alert = aps["alert"] as? [AnyHashable: Any],
       let title = alert["title"] as? String,
-      let body = alert["body"] as? String else { return }
-    guard let dataSource = dataSource as? NotificationsDataSource else { return }
-    let notification = NotificationV2(title: title, body: body)
+      let body = alert["body"] as? String,
+      let dataSource = dataSource as? NotificationsDataSource else { return }
+    let notification = NotificationV2(title: title, body: body, seen: false)
     dataSource.notifications.insert(notification, at: 0)
     saveToPlist(notification: notification)
     reload()
@@ -103,6 +105,7 @@ class NotificationsViewController: TableViewController {
 struct NotificationV2: Codable {
   var title: String
   var body: String
+  var seen: Bool
 
   func jsonString() -> String? {
     let jsonEncoder = JSONEncoder()
