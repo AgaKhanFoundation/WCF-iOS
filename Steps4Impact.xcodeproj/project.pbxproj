@@ -115,7 +115,6 @@
 		A5865EB32377617500C551E9 /* BadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5865EB22377617500C551E9 /* BadgeCell.swift */; };
 		A5865EB5237761BF00C551E9 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5865EB4237761BF00C551E9 /* HeaderCell.swift */; };
 		A5865EB7237762C400C551E9 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5865EB6237762C400C551E9 /* Badge.swift */; };
-		A5865EB923777B5900C551E9 /* DemoRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5865EB823777B5900C551E9 /* DemoRecords.swift */; };
 		A5A8E15F2370670500988F71 /* BadgeCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A8E15E2370670500988F71 /* BadgeCollectionDataSource.swift */; };
 		C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */; };
 		C92244C7234AD68A0098A333 /* OAuthFitbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244C6234AD68A0098A333 /* OAuthFitbit.swift */; };
@@ -296,7 +295,6 @@
 		A5865EB22377617500C551E9 /* BadgeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCell.swift; sourceTree = "<group>"; };
 		A5865EB4237761BF00C551E9 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		A5865EB6237762C400C551E9 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
-		A5865EB823777B5900C551E9 /* DemoRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoRecords.swift; sourceTree = "<group>"; };
 		A5A8E15E2370670500988F71 /* BadgeCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCollectionDataSource.swift; sourceTree = "<group>"; };
 		C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		C92244C6234AD68A0098A333 /* OAuthFitbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthFitbit.swift; sourceTree = "<group>"; };
@@ -720,7 +718,6 @@
 				A5865EB22377617500C551E9 /* BadgeCell.swift */,
 				A5865EB4237761BF00C551E9 /* HeaderCell.swift */,
 				A5865EB6237762C400C551E9 /* Badge.swift */,
-				A5865EB823777B5900C551E9 /* DemoRecords.swift */,
 			);
 			path = BadgesV2;
 			sourceTree = "<group>";
@@ -1173,7 +1170,6 @@
 				F0F8EDD52210C71600321A6D /* ActivityCard.swift in Sources */,
 				2622C09423249D680092B145 /* DashboardDataSource.swift in Sources */,
 				267FAE2E2325CF590014222D /* SettingsActionCell.swift in Sources */,
-				A5865EB923777B5900C551E9 /* DemoRecords.swift in Sources */,
 				F017B6952276C9C60023E84B /* OnboardingJourney.swift in Sources */,
 				265DE5732332FBA9009DDA5A /* JoinTeam.swift in Sources */,
 				F0320B6E222F678500EABAD6 /* SegmentedView.swift in Sources */,
