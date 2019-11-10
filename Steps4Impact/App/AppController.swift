@@ -254,7 +254,7 @@ class AppController: NSObject {
     viewController.present(activityVC, animated: true, completion: nil)
   }
 
-  func askForPushNotificationPermissions() {
+  func registerForRemoteNotifications() {
     UIApplication.shared.registerForRemoteNotifications()
     UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
       print("Permission granted: \(granted)")
@@ -264,6 +264,7 @@ class AppController: NSObject {
 
   func didReceivePushNotification(deviceToken: Data) {
     Messaging.messaging().apnsToken = deviceToken
+    // TODO Faisal: Save Messaging.messaging().fcmToken to current user's profile
   }
 
   func didReceivePushNotification(with userInfo: [AnyHashable: Any]) {

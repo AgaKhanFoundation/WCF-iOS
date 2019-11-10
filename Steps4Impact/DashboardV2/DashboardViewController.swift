@@ -76,15 +76,19 @@ class DashboardViewController: TableViewController {
   private func askForNotificationPermission() {
     UNUserNotificationCenter.current().getNotificationSettings { (settings) in
       DispatchQueue.main.async {
-        guard settings.authorizationStatus == .notDetermined,
-          !UIApplication.shared.isRegisteredForRemoteNotifications else { return }
+        if settings.authorizationStatus == .authorized {
+          AppController.shared.registerForRemoteNotifications()
+        }
+        guard settings.authorizationStatus == .notDetermined else {
+          return
+        }
         let controller = UIAlertController(
           title: Strings.NotificationsPermission.title,
           message: Strings.NotificationsPermission.message, preferredStyle: .alert)
         controller.addAction(UIAlertAction(
           title: Strings.NotificationsPermission.proceed, style: .default,
           handler: { (_) in
-            AppController.shared.askForPushNotificationPermissions()
+            AppController.shared.registerForRemoteNotifications()
         }))
         controller.addAction(UIAlertAction(
           title: Strings.NotificationsPermission.cancel,
