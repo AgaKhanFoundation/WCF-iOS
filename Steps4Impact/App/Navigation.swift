@@ -60,10 +60,19 @@ class Navigation: UITabBarController {
                      image: Assets.tabbarNotificationsUnselected.image,
                      selectedImage: Assets.tabbarNotificationsSelected.image)
 
-    // FIXME(compnerd) enumerate the notifications
-    self.notifications.tabBarItem.badgeValue = "0"
+    if let controller = notifications.viewControllers.first as? NotificationsViewController {
+      controller.fetchSavedNotifications()
+    }
 
     self.viewControllers = [dashboard, challenge, leaderboard, notifications]
+
+    _ = NotificationCenter.default.addObserver(forName: .receivedNotification,
+                                           object: nil,
+                                           queue: nil) { [weak self] (_) in
+      guard let `self` = self else { return }
+      let oldValue = Int(self.notifications.tabBarItem.badgeValue ?? "0") ?? 0
+      self.notifications.tabBarItem.badgeValue = "\(oldValue + 1)"
+    }
   }
 
   required init?(coder aDecoder: NSCoder) {

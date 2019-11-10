@@ -108,6 +108,7 @@
 		26FE24532322332D00E01B9B /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE24522322332D00E01B9B /* UITableView.swift */; };
 		26FE2455232234A300E01B9B /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2454232234A300E01B9B /* EmptyCell.swift */; };
 		3AAA32A023655CB5002B7479 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAA329F23655CB5002B7479 /* LoginButton.swift */; };
+		3AFD516923774C4300CD3989 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AFD516823774C4300CD3989 /* GoogleService-Info.plist */; };
 		7A7C5B5BCE64FE425FE48D17 /* Pods_Steps4ImpactTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644A965BB27AB6174A19603E /* Pods_Steps4ImpactTests.framework */; };
 		885A50211F181C0FFD544AAA /* Pods_Steps4Impact.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E04420449F9B74A2501CBBEA /* Pods_Steps4Impact.framework */; };
 		A5123F1F2381B51E00C3E9DE /* JourneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5123F1E2381B51E00C3E9DE /* JourneyViewController.swift */; };
@@ -305,6 +306,7 @@
 		307EFC69C033D08671C5E6C6 /* Pods-steps4impact.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impact.release.xcconfig"; path = "Target Support Files/Pods-steps4impact/Pods-steps4impact.release.xcconfig"; sourceTree = "<group>"; };
 		31082B36DD919D9631B44E5E /* Pods-Steps4Impact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steps4Impact.debug.xcconfig"; path = "Target Support Files/Pods-Steps4Impact/Pods-Steps4Impact.debug.xcconfig"; sourceTree = "<group>"; };
 		3AAA329F23655CB5002B7479 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
+		3AFD516823774C4300CD3989 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		644A965BB27AB6174A19603E /* Pods_Steps4ImpactTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Steps4ImpactTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D885FB78222CE09537F0C6A /* Pods-steps4impact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impact.debug.xcconfig"; path = "Target Support Files/Pods-steps4impact/Pods-steps4impact.debug.xcconfig"; sourceTree = "<group>"; };
 		A5123F1E2381B51E00C3E9DE /* JourneyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyViewController.swift; sourceTree = "<group>"; };
@@ -536,6 +538,7 @@
 		2611A50B2335FF930030E77E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3AFD516823774C4300CD3989 /* GoogleService-Info.plist */,
 				26388A6A2348293700C83AC2 /* Localizable.strings */,
 				262BE89D2338817D0087DDDF /* Steps4Impact.entitlements */,
 				269E34D51E765828000726C2 /* Info.plist */,
@@ -1032,6 +1035,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				269E34D11E765828000726C2 /* Assets.xcassets in Resources */,
+				3AFD516923774C4300CD3989 /* GoogleService-Info.plist in Resources */,
 				269E34FD1E7658F2000726C2 /* Launch.storyboard in Resources */,
 				26388A682348293700C83AC2 /* Localizable.strings in Resources */,
 			);

@@ -126,6 +126,10 @@
 // Notifications
 "Notifications.title" = "Notifications";
 "Notifications.youHaveNoNotifications" = "You don't have any notifications right now.";
+"Notifications.Permission.title" = "Push Notifications";
+"Notifications.Permission.message" = "Would you like to receive push notifications?";
+"Notifications.Permission.proceed" = "Proceed";
+"Notifications.Permission.cancel" = "Later";
 
 // Settings
 "Settings.title" = "Settings";
