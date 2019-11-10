@@ -62,10 +62,9 @@ class AppController {
     window?.makeKeyAndVisible()
 
     // Select Default View
+    // TODO(samisuteria) add check for akf profile?
     if Facebook.id.isEmpty {
       transition(to: .login)
-    } else if !UserInfo.AKFProfileCreated {
-      transition(to: .akf)
     } else if !UserInfo.onboardingComplete {
       transition(to: .onboarding)
     } else {
