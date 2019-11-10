@@ -44,9 +44,9 @@ class LoginButton: FBLoginButton {
   }
 
   private func commonInit() {
-    self.imageView?.snp.makeConstraints { (make) in
-      make.leading.equalToSuperview().inset(Style.Padding.p32)
-      make.centerY.equalToSuperview()
+    self.imageView?.snp.makeConstraints { (maker) in
+      maker.leading.equalToSuperview().inset(Style.Padding.p32)
+      maker.centerY.equalToSuperview()
     }
     self.constraints
       .filter { $0.firstAttribute == .height && $0.constant == 28 }
