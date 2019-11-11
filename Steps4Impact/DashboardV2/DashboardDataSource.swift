@@ -42,6 +42,9 @@ class DashboardDataSource: TableViewDataSource {
   private var teamName: String = " "
   private var eventName: String = " "
   private var eventTimeline: String = " "
+  private var milesCountDay: Int = 0
+  private var milesCountWeek: Int = 0
+  private var commitment: Int = 0
 
   enum DashboardContext: Context {
     case inviteSupporters
@@ -62,6 +65,7 @@ class DashboardDataSource: TableViewDataSource {
         self?.eventTimeline = DataFormatters
           .formatDateRange(value: (start: event.challengePhase.start, end: event.challengePhase.end))
       }
+      self?.commitment = participant?.currentEvent?.commitment?.miles ?? 0
       self?.configure()
       self?.completion?()
     }.disposed(by: disposeBag)
@@ -83,20 +87,13 @@ class DashboardDataSource: TableViewDataSource {
     AKFCausesService.getParticipant(fbid: facebookService.id) { [weak self] (result) in
       self?.cache.participantRelay.accept(Participant(json: result.response))
     }
+    getStepCounts { [weak self] in
+      self?.configure()
+      completion()
+    }
   }
 
   func configure() {
-    var activityCellContext: CellContext =
-        EmptyActivityCellContext(title: Strings.Dashboard.Activity.title,
-                                 body: Strings.Dashboard.Activity.disconnected,
-                                 ctaTitle: Strings.Dashboard.Activity.connect)
-    if UserInfo.pedometerSource != nil {
-      activityCellContext =
-        InfoCellContext(
-          title: Strings.Dashboard.Activity.title,
-          body: Strings.Dashboard.ChallengeProgress.unavailable)
-    }
-
     cells = [[
       ProfileCardCellContext(
         imageURL: imageURL,
@@ -105,7 +102,7 @@ class DashboardDataSource: TableViewDataSource {
         eventName: eventName,
         eventTimeline: eventTimeline,
         disclosureLabel: Strings.Dashboard.badges),
-      activityCellContext,
+      activityCell,
       InfoCellContext(
         title: Strings.Dashboard.ChallengeProgress.title,
         body: Strings.Dashboard.ChallengeProgress.unavailable),
@@ -115,5 +112,69 @@ class DashboardDataSource: TableViewDataSource {
         disclosureTitle: Strings.Dashboard.FundraisingProgress.invite,
         context: DashboardContext.inviteSupporters)
     ]]
+  }
+
+  private var activityCell: CellContext {
+    if UserInfo.pedometerSource != nil {
+      return ActivityCardCellContext(title: Strings.Dashboard.Activity.title,
+                                     milesDayCount: milesCountDay,
+                                     milesWeekCount: milesCountWeek,
+                                     commitment: commitment)
+    } else {
+      return EmptyActivityCellContext(title: Strings.Dashboard.Activity.title,
+                                      body: Strings.Dashboard.Activity.disconnected,
+                                      ctaTitle: Strings.Dashboard.Activity.connect)
+    }
+  }
+
+  private func getStepCounts(completion: @escaping () -> Void) { // swiftlint:disable:this cyclomatic_complexity
+    let now = Date()
+    guard
+      let dayInterval = Calendar.current.dateInterval(of: .day, for: now),
+      let weekInterval = Calendar.current.dateInterval(of: .weekOfYear, for: now)
+    else { return }
+
+    switch UserInfo.pedometerSource {
+    case .healthKit:
+      HealthKitDataProvider().retrieveDistance(forInterval: dayInterval) { [weak self] (result) in
+        switch result {
+        case .success(let count):
+          self?.milesCountDay = count
+          completion()
+        case .failure:
+          break
+        }
+      }
+      HealthKitDataProvider().retrieveDistance(forInterval: weekInterval) { [weak self] (result) in
+        switch result {
+        case .success(let count):
+          self?.milesCountWeek = count
+          completion()
+        case .failure:
+          break
+        }
+      }
+    case .fitbit:
+      FitbitDataProvider().retrieveDistance(forInterval: dayInterval) { [weak self] (result) in
+        switch result {
+        case .success(let count):
+          self?.milesCountDay = count
+          completion()
+        case .failure:
+          break
+        }
+      }
+      FitbitDataProvider().retrieveDistance(forInterval: weekInterval) { [weak self] (result) in
+        switch result {
+        case .success(let count):
+          self?.milesCountWeek = count
+          completion()
+        case .failure:
+          break
+        }
+      }
+    case .none:
+      break
+    }
   }
 }

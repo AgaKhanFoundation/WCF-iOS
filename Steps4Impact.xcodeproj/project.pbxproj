@@ -77,6 +77,8 @@
 		269E35181E7669FB000726C2 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35171E7669FB000726C2 /* Strings.swift */; };
 		269E35241E767807000726C2 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35231E767807000726C2 /* Team.swift */; };
 		269E35291E767AE1000726C2 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35281E767AE1000726C2 /* Collection.swift */; };
+		269F95272377994B0089CDD1 /* ActivityCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269F95262377994B0089CDD1 /* ActivityCardCell.swift */; };
+		269F95292378FB0E0089CDD1 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269F95282378FB0E0089CDD1 /* CircularProgressView.swift */; };
 		26A475A32353E63400059764 /* AppInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A475A22353E63400059764 /* AppInfoCell.swift */; };
 		26A9829523CABAA200A5BD35 /* JourneyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9829423CABAA200A5BD35 /* JourneyDetailViewController.swift */; };
 		26A9829723CABABF00A5BD35 /* ImageButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9829623CABABF00A5BD35 /* ImageButtonCell.swift */; };
@@ -254,6 +256,8 @@
 		269E35171E7669FB000726C2 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		269E35231E767807000726C2 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		269E35281E767AE1000726C2 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		269F95262377994B0089CDD1 /* ActivityCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCardCell.swift; sourceTree = "<group>"; };
+		269F95282378FB0E0089CDD1 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		26A475A22353E63400059764 /* AppInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoCell.swift; sourceTree = "<group>"; };
 		26A9829423CABAA200A5BD35 /* JourneyDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyDetailViewController.swift; sourceTree = "<group>"; };
 		26A9829623CABABF00A5BD35 /* ImageButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageButtonCell.swift; sourceTree = "<group>"; };
@@ -379,7 +383,7 @@
 				F0C6D50C1EA3071A008E3B82 /* SelectionButton.swift */,
 				260BF5912324B2C6005F0882 /* View.swift */,
 				265DE5632332BDAA009DDA5A /* WebImageView.swift */,
-				26A9829C23CABB8D00A5BD35 /* CellImageButtonView.swift */,
+				269F95282378FB0E0089CDD1 /* CircularProgressView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -403,6 +407,7 @@
 				F078D9D92334453F00EF0BAD /* ConnectedActivityCardCell.swift */,
 				260BF5992324CFA6005F0882 /* EmptyActivityCardCell.swift */,
 				260BF5942324B3FC005F0882 /* ProfileCardCell.swift */,
+				269F95262377994B0089CDD1 /* ActivityCardCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1156,6 +1161,7 @@
 				26FE24472322295300E01B9B /* ViewController.swift in Sources */,
 				F06254C11ECD5D1700168DD6 /* Participant.swift in Sources */,
 				A5D2E7CB23D24A7C00C3011D /* Challenge.swift in Sources */,
+				269F95292378FB0E0089CDD1 /* CircularProgressView.swift in Sources */,
 				26A475A32353E63400059764 /* AppInfoCell.swift in Sources */,
 				F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */,
 				F00403191EC3FB7D005E6F10 /* (null) in Sources */,
@@ -1260,6 +1266,7 @@
 				2622C0962324A0490092B145 /* TableViewCell.swift in Sources */,
 				F017B6972276D0C60023E84B /* OnboardingDashboard.swift in Sources */,
 				F0F8EDD72210C7C700321A6D /* FundraisingCard.swift in Sources */,
+				269F95272377994B0089CDD1 /* ActivityCardCell.swift in Sources */,
 				267FAE2A2325C9210014222D /* SettingsSwitchCell.swift in Sources */,
 				A5123F1F2381B51E00C3E9DE /* JourneyViewController.swift in Sources */,
 				F0CBDA521EA6FF1D00BB34F1 /* Sponsor.swift in Sources */,

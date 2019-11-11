@@ -67,7 +67,8 @@ extension UITableView {
       LeaderboardPodiumCell.self,
       LeaderboardCell.self,
       LeaderboardHeaderCell.self,
-      ExpandCollapseCell.self
+      ExpandCollapseCell.self,
+      ActivityCardCell.self
     ].forEach { register($0) }
   }
 
