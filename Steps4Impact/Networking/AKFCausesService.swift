@@ -150,7 +150,10 @@ class AKFCausesService: Service {
     shared.request(.patch, endpoint: .participant(fbId: fbid),
                    parameters: JSON(["team_id": "null"]), completion: completion)
   }
-
+  static func editTeamName(teamId: Int, name: String, completion: ServiceRequestCompletion? = nil) {
+    shared.request(.patch, endpoint: .team(teamId: teamId),
+                   parameters: JSON(["name": name]), completion: completion)
+  }
   static func performAPIHealthCheck(completion: ServiceRequestCompletion? = nil) {
     shared.request(endpoint: .healthcheck, completion: completion)
   }

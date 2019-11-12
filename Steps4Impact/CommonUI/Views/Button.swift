@@ -98,7 +98,7 @@ class Button: UIButton {
         if let value = title {
           setAttributedTitle(NSAttributedString(string: value, attributes: [
             .underlineStyle: 1.0,
-            .font: Style.Typography.footnote.font!,
+            .font: Style.Typography.footnote.font!, // swiftlint:disable:this force_unwrapping
             .foregroundColor: Style.Colors.grey
           ]), for: .normal)
         } else {
@@ -120,7 +120,7 @@ class Button: UIButton {
     default:
       font = Style.Typography.bodyBold.font
     }
-    titleLabel?.font = font!
+    titleLabel?.font = font
   }
 
   func commonInit() {
@@ -149,7 +149,8 @@ class Button: UIButton {
 
     // this is to center the title in the actual button
     // descender is the part under the font for lowercase and is a negative number
-    titleEdgeInsets = UIEdgeInsets(top: -titleLabel!.font.descender / 2, left: 0, bottom: 0, right: 0)
+    let topInset = -(titleLabel?.font.descender ?? 2.0)
+    titleEdgeInsets = UIEdgeInsets(top: topInset / 2.0, left: 0, bottom: 0, right: 0)
   }
 
   private func updateColors() {

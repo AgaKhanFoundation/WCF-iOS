@@ -56,7 +56,7 @@ class AKFLoginViewController: ViewController {
       make.width.height.equalToSuperview()
     }
     webview.configuration.userContentController.add(self, name: AKFLoginViewController.LoginCompletedHandlerKey)
-    webview.load(URLRequest(url: URL(string: "https://www.akfusa.org/steps4impact/?fbid=\(Facebook.id)")!))
+    webview.load(URLRequest(url: URL(string: "https://www.akfusa.org/steps4impact/?fbid=\(Facebook.id)")!)) // swiftlint:disable:this force_unwrapping line_length
     webview.navigationDelegate = self
   }
 }

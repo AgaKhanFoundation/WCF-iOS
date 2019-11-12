@@ -29,6 +29,7 @@
 
 import UIKit
 import FacebookCore
+import FacebookLogin
 import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
@@ -62,10 +63,9 @@ class AppController {
 
     // Select Default View
     print("Facebook Id: \(Facebook.id)")
+    // TODO(samisuteria) add check for akf profile?
     if Facebook.id.isEmpty {
       transition(to: .login)
-    } else if !UserInfo.AKFProfileCreated {
-      transition(to: .akf)
     } else if !UserInfo.onboardingComplete {
       transition(to: .onboarding)
     } else {
@@ -149,20 +149,21 @@ class AppController {
   }
 
   private func healthCheckHealth() {
-    if HKHealthStore.isHealthDataAvailable() {
-      switch HKHealthStore().authorizationStatus(for: ConnectSourceViewController.steps) {
-      case .notDetermined:
-        return
-      case .sharingAuthorized:
-        UserInfo.pedometerSource = .healthKit
-        return
-      case .sharingDenied:
-        fallthrough
-      @unknown default:
-        break
+    if UserInfo.pedometerSource == .healthKit {
+      if HKHealthStore.isHealthDataAvailable() {
+        switch HKHealthStore().authorizationStatus(for: ConnectSourceViewController.steps) {
+        case .notDetermined:
+          return
+        case .sharingAuthorized:
+          UserInfo.pedometerSource = .healthKit
+          return
+        case .sharingDenied:
+          fallthrough
+        @unknown default:
+          break
+        }
       }
     }
-    UserInfo.pedometerSource = nil
   }
 
   private func updateRecords() {
@@ -171,27 +172,33 @@ class AppController {
 
     let group: DispatchGroup = DispatchGroup()
 
+    var sourceName: String?
     var source: Source?
     var provider: PedometerDataProvider?
 
     switch pedometer {
     case .fitbit:
-      break
+      provider = FitbitDataProvider()
+      sourceName = "Fitbit"
     case .healthKit:
-      group.enter()
       provider = HealthKitDataProvider()
-      AKFCausesService.getSourceByName(source: "HealthKit") { (result) in
-        source = Source(json: result.response)
-        group.leave()
-      }
+      sourceName = "HealthKit"
+    }
+
+    guard let name = sourceName else { return }
+
+    group.enter()
+    AKFCausesService.getSourceByName(source: name) { (result) in
+      source = Source(json: result.response)
+      group.leave()
     }
     group.wait()
 
     guard let sourceID = source?.id else { return }
 
     AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
-      if let participant = Participant(json: result.response) {
-        guard let start = (participant.records?.sorted { $0.date! < $1.date! }.last?.date
+      if let participant = Participant(json: result.response), let participantId = participant.id {
+        guard let start = (participant.records?.sorted { $0.date! < $1.date! }.last?.date // swiftlint:disable:this force_unwrapping line_length
                             ?? participant.currentEvent?.challengePhase.start) else { return }
 
         guard start < Date(timeIntervalSinceNow: 0) else { return }
@@ -203,7 +210,7 @@ class AppController {
           case .failure(let error):
             print("unable to query pedometer: \(error)")
           case .success(let steps):
-            AKFCausesService.createRecord(for: participant.id!, dated: interval.end,
+            AKFCausesService.createRecord(for: participantId, dated: interval.end,
                                           steps: steps, sourceID: sourceID)
           }
         }
@@ -215,6 +222,8 @@ class AppController {
     AKFCausesService.performAPIHealthCheck { (result) in
       switch result {
       case .failed:
+        let loginManager = LoginManager()
+        loginManager.logOut()
         self.transition(to: .login)
         if let view = self.window?.rootViewController {
           let alert = AlertViewController()

@@ -36,6 +36,7 @@
 		2622C09423249D680092B145 /* DashboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C09323249D680092B145 /* DashboardDataSource.swift */; };
 		2622C0962324A0490092B145 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2622C0952324A0490092B145 /* TableViewCell.swift */; };
 		262418342336EA5700454EF2 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262418332336EA5700454EF2 /* OnboardingViewController.swift */; };
+		262C89E423713C5E004411C3 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262C89E323713C5E004411C3 /* String.swift */; };
 		2635EB8B2338AAD400BC50E9 /* EmptyLeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2635EB8A2338AAD400BC50E9 /* EmptyLeaderboardCell.swift */; };
 		2635EB8E2338B57800BC50E9 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2635EB8D2338B57800BC50E9 /* NotificationsViewController.swift */; };
 		26388A682348293700C83AC2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 26388A6A2348293700C83AC2 /* Localizable.strings */; };
@@ -77,6 +78,7 @@
 		269E35241E767807000726C2 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35231E767807000726C2 /* Team.swift */; };
 		269E35291E767AE1000726C2 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35281E767AE1000726C2 /* Collection.swift */; };
 		26A475A32353E63400059764 /* AppInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A475A22353E63400059764 /* AppInfoCell.swift */; };
+		26B2793823765FFA000CEE94 /* Keyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B2793723765FFA000CEE94 /* Keyboardable.swift */; };
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
 		26E9C0FA233838A700800E8A /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9C0F9233838A700800E8A /* OnboardingPageViewController.swift */; };
 		26E9C0FC2338533E00800E8A /* UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9C0FB2338533E00800E8A /* UIPageViewController.swift */; };
@@ -88,6 +90,7 @@
 		26FE2451232231FB00E01B9B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2450232231FB00E01B9B /* TableViewController.swift */; };
 		26FE24532322332D00E01B9B /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE24522322332D00E01B9B /* UITableView.swift */; };
 		26FE2455232234A300E01B9B /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2454232234A300E01B9B /* EmptyCell.swift */; };
+		3AAA32A023655CB5002B7479 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAA329F23655CB5002B7479 /* LoginButton.swift */; };
 		7A7C5B5BCE64FE425FE48D17 /* Pods_Steps4ImpactTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644A965BB27AB6174A19603E /* Pods_Steps4ImpactTests.framework */; };
 		885A50211F181C0FFD544AAA /* Pods_Steps4Impact.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E04420449F9B74A2501CBBEA /* Pods_Steps4Impact.framework */; };
 		A53E7B3D236F576C006BD6D9 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E7B3C236F576C006BD6D9 /* CollectionViewController.swift */; };
@@ -102,6 +105,9 @@
 		C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */; };
 		C92244C7234AD68A0098A333 /* OAuthFitbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244C6234AD68A0098A333 /* OAuthFitbit.swift */; };
 		C92244C9234AD7840098A333 /* FitbitAuthorizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244C8234AD7840098A333 /* FitbitAuthorizeViewController.swift */; };
+		C92244D3235D47B90098A333 /* FitbitDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244D2235D47B90098A333 /* FitbitDataProvider.swift */; };
+		C92244D5235D4B670098A333 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244D4235D4B670098A333 /* UserDefaults.swift */; };
+		C9BAEED0235D5C4E00A8D7AF /* FitbitStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BAEECF235D5C4E00A8D7AF /* FitbitStep.swift */; };
 		F00403191EC3FB7D005E6F10 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004031C1EC52772005E6F10 /* AppConfig.swift */; };
 		F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */; };
@@ -192,6 +198,7 @@
 		2622C0952324A0490092B145 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		262418332336EA5700454EF2 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		262BE89D2338817D0087DDDF /* Steps4Impact.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Steps4Impact.entitlements; sourceTree = "<group>"; };
+		262C89E323713C5E004411C3 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		2635EB8A2338AAD400BC50E9 /* EmptyLeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyLeaderboardCell.swift; sourceTree = "<group>"; };
 		2635EB8D2338B57800BC50E9 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		26388A692348293700C83AC2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -236,6 +243,7 @@
 		269E35231E767807000726C2 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		269E35281E767AE1000726C2 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		26A475A22353E63400059764 /* AppInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoCell.swift; sourceTree = "<group>"; };
+		26B2793723765FFA000CEE94 /* Keyboardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboardable.swift; sourceTree = "<group>"; };
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		26E9C0F9233838A700800E8A /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
 		26E9C0FB2338533E00800E8A /* UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageViewController.swift; sourceTree = "<group>"; };
@@ -249,6 +257,7 @@
 		26FE2454232234A300E01B9B /* EmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCell.swift; sourceTree = "<group>"; };
 		307EFC69C033D08671C5E6C6 /* Pods-steps4impact.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impact.release.xcconfig"; path = "Target Support Files/Pods-steps4impact/Pods-steps4impact.release.xcconfig"; sourceTree = "<group>"; };
 		31082B36DD919D9631B44E5E /* Pods-Steps4Impact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steps4Impact.debug.xcconfig"; path = "Target Support Files/Pods-Steps4Impact/Pods-Steps4Impact.debug.xcconfig"; sourceTree = "<group>"; };
+		3AAA329F23655CB5002B7479 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		644A965BB27AB6174A19603E /* Pods_Steps4ImpactTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Steps4ImpactTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D885FB78222CE09537F0C6A /* Pods-steps4impact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impact.debug.xcconfig"; path = "Target Support Files/Pods-steps4impact/Pods-steps4impact.debug.xcconfig"; sourceTree = "<group>"; };
 		A53E7B3C236F576C006BD6D9 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
@@ -262,6 +271,9 @@
 		C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		C92244C6234AD68A0098A333 /* OAuthFitbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthFitbit.swift; sourceTree = "<group>"; };
 		C92244C8234AD7840098A333 /* FitbitAuthorizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitbitAuthorizeViewController.swift; sourceTree = "<group>"; };
+		C92244D2235D47B90098A333 /* FitbitDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitbitDataProvider.swift; sourceTree = "<group>"; };
+		C92244D4235D4B670098A333 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		C9BAEECF235D5C4E00A8D7AF /* FitbitStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FitbitStep.swift; sourceTree = "<group>"; };
 		CF9EDF06C6BFB060D8FD292A /* Pods-Steps4ImpactTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steps4ImpactTests.release.xcconfig"; path = "Target Support Files/Pods-Steps4ImpactTests/Pods-Steps4ImpactTests.release.xcconfig"; sourceTree = "<group>"; };
 		D119AEC4C6C2D75E13B09A89 /* Pods-steps4impactTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impactTests.debug.xcconfig"; path = "Target Support Files/Pods-steps4impactTests/Pods-steps4impactTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E04420449F9B74A2501CBBEA /* Pods_Steps4Impact.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Steps4Impact.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -436,6 +448,7 @@
 			children = (
 				F078D9D42333EC3000EF0BAD /* AKFLogin.swift */,
 				269E35061E765C68000726C2 /* LoginViewController.swift */,
+				3AAA329F23655CB5002B7479 /* LoginButton.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -446,6 +459,7 @@
 				26FE244A23222DF400E01B9B /* Cells.swift */,
 				26FE244C23222E8500E01B9B /* Context.swift */,
 				F02FB49F1E9187B30097481D /* PedometerDataProvider.swift */,
+				26B2793723765FFA000CEE94 /* Keyboardable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -686,6 +700,7 @@
 				F0CBDA4D1EA6FCAB00BB34F1 /* Supporter.swift */,
 				269E35231E767807000726C2 /* Team.swift */,
 				F02F1733234B9B3E008A1CD6 /* Commitment.swift */,
+				C9BAEECF235D5C4E00A8D7AF /* FitbitStep.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -723,6 +738,8 @@
 				269E35081E765F24000726C2 /* UIView.swift */,
 				26570DDC234B0B930016F189 /* RxSwift.swift */,
 				A53E7B3E236F58D2006BD6D9 /* UICollectionView.swift */,
+				262C89E323713C5E004411C3 /* String.swift */,
+				C92244D4235D4B670098A333 /* UserDefaults.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -731,6 +748,7 @@
 			isa = PBXGroup;
 			children = (
 				F02FB4A11E9188E40097481D /* HealthKitDataProvider.swift */,
+				C92244D2235D47B90098A333 /* FitbitDataProvider.swift */,
 			);
 			path = Integration;
 			sourceTree = "<group>";
@@ -914,6 +932,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" lint --strict\n";
 		};
 		5AFD5020B3FA67ADEDA7F81C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1048,7 +1067,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AAA32A023655CB5002B7479 /* LoginButton.swift in Sources */,
 				F0D16A3C2218AD810081440C /* Challenge.swift in Sources */,
+				26B2793823765FFA000CEE94 /* Keyboardable.swift in Sources */,
 				F017B68E227686A60023E84B /* OnboardingWelcome.swift in Sources */,
 				260BF5B22324FD37005F0882 /* SettingsDataSource.swift in Sources */,
 				F0A992D81EAC3812001621A6 /* ProgressRing.swift in Sources */,
@@ -1084,6 +1105,7 @@
 				260BF59A2324CFA6005F0882 /* EmptyActivityCardCell.swift in Sources */,
 				260BF5A12324D0BE005F0882 /* DisclosureCell.swift in Sources */,
 				26570DDD234B0B930016F189 /* RxSwift.swift in Sources */,
+				C9BAEED0235D5C4E00A8D7AF /* FitbitStep.swift in Sources */,
 				F0F8EDD52210C71600321A6D /* ActivityCard.swift in Sources */,
 				2622C09423249D680092B145 /* DashboardDataSource.swift in Sources */,
 				267FAE2E2325CF590014222D /* SettingsActionCell.swift in Sources */,
@@ -1097,10 +1119,12 @@
 				269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */,
 				266DA27B2339E54000035CC5 /* ChallengeTeamProgressCell.swift in Sources */,
 				26570DDB234B01010016F189 /* FacebookService.swift in Sources */,
+				C92244D5235D4B670098A333 /* UserDefaults.swift in Sources */,
 				265FE47A2349A0A400215391 /* Cache.swift in Sources */,
 				269E350E1E76664F000726C2 /* Async.swift in Sources */,
 				265DE5752333015F009DDA5A /* JoinTeamCell.swift in Sources */,
 				A5865EB5237761BF00C551E9 /* HeaderCell.swift in Sources */,
+				C92244D3235D47B90098A333 /* FitbitDataProvider.swift in Sources */,
 				F0DE162C221F8DD900FF17C9 /* Result.swift in Sources */,
 				F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */,
 				260BF5A92324F7D1005F0882 /* UIColor.swift in Sources */,
@@ -1136,6 +1160,7 @@
 				F02C5DB6233FFA820028FDA9 /* DeviceInformationCell.swift in Sources */,
 				269E35241E767807000726C2 /* Team.swift in Sources */,
 				A53E7B3F236F58D2006BD6D9 /* UICollectionView.swift in Sources */,
+				262C89E423713C5E004411C3 /* String.swift in Sources */,
 				260BF5972324C023005F0882 /* CellDisclosureView.swift in Sources */,
 				260BF5B52324FE32005F0882 /* SettingsProfileCell.swift in Sources */,
 				2676B3C42331D45000CB0A31 /* AlertModalAnimations.swift in Sources */,
@@ -1371,8 +1396,15 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aalim.WalkingChallenge;
+				CURRENT_PROJECT_VERSION = 266;
+				DEVELOPMENT_TEAM = 6SQ8F32998;
+				INFOPLIST_FILE = "Steps4Impact/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akf.WalkingChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1391,7 +1423,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aalim.WalkingChallenge;
+				CURRENT_PROJECT_VERSION = 266;
+				DEVELOPMENT_TEAM = 6SQ8F32998;
+				INFOPLIST_FILE = "Steps4Impact/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akf.WalkingChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

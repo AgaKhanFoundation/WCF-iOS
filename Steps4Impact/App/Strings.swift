@@ -166,6 +166,9 @@ struct Strings {
     static let leaveBody = NSLocalizedString("TeamSettings.leaveBody", comment: "")
     static let deleteTeam = NSLocalizedString("TeamSettings.deleteTeam", comment: "")
     static let deleteTeamBody = NSLocalizedString("TeamSettings.deleteTeamBody", comment: "")
+    static let editTeamNameMessage = NSLocalizedString("TeamSettings.editTeamNameMessage", comment: "")
+    static let editTeamName = NSLocalizedString("TeamSettings.editTeamName", comment: "")
+    static let update = NSLocalizedString("TeamSettings.update", comment: "")
   }
 
   struct ConnectSource {

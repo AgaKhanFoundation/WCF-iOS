@@ -45,6 +45,9 @@ enum Assets: String {
   case AKFLogo = "AKFLogo"
   case logo = "logo"
 
+  // Navigation Bar
+  case backIcon = "back-icon"
+
   // Onboarding
   case onboardingLoginPeople = "login-couple"
   case onboardingCreateTeam = "create-team"

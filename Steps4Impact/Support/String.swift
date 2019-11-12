@@ -27,43 +27,11 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
 
-import Quick
-import Nimble
-@testable import Steps4Impact
+import Foundation
 
-class LocalizationSpec: QuickSpec {
-  override func spec() {
-    describe("Localization") {
-      var englishLocalization: [String: String]!
-      var otherLocalizations: [[String: String]?]!
-      let localizations = ["hi"]
-
-      beforeEach {
-        let englishFile = Bundle.main.url(
-          forResource: "Localizable",
-          withExtension: "strings",
-          subdirectory: nil,
-          localization: "en")! // swiftlint:disable:this force_unwrapping
-        englishLocalization = NSDictionary(
-          contentsOf: englishFile) as? [String: String]
-        otherLocalizations = localizations
-          .map { Bundle.main.url(
-            forResource: "Localizable",
-            withExtension: "strings",
-            subdirectory: nil,
-            localization: $0)! } // swiftlint:disable:this force_unwrapping
-          .map { NSDictionary(contentsOf: $0) as? [String: String] }
-      }
-
-      it("should be able to parse localization file") {
-        expect(englishLocalization).toNot(beNil())
-      }
-
-      it("should have the same keys for all localizations") {
-        for localization in otherLocalizations {
-          expect(localization?.keys).to(equal(englishLocalization.keys))
-        }
-      }
-    }
+extension String {
+  init?(data: Data?, encoding: Encoding) {
+    guard let data = data else { return nil }
+    self.init(data: data, encoding: encoding)
   }
 }

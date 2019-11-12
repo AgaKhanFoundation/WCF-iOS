@@ -29,39 +29,34 @@
 
 import Foundation
 
-extension Date {
-  static let formatter: ISO8601DateFormatter = {
-    let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
-    formatter.formatOptions = [.withFractionalSeconds, .withInternetDateTime]
-    return formatter
-  }()
+struct FitbitStep: Codable {
+  var date: String
+  var steps: Int
 
-  private var components: DateComponents {
-    return Calendar.current.dateComponents([.year, .month, .day, .hour,
-                                            .second], from: self)
+  enum CodingKeys: String, CodingKey {
+      case date = "dateTime"
+      case steps = "value"
   }
 
-  private static func from(components: DateComponents) -> Date {
-    return Calendar.current.date(from: components) ?? Date()
+  init?(json: JSON) {
+    guard let theDate = json["dateTime"]?.stringValue,
+      let value = json["value"]?.stringValue,
+      let intValue = Int(value) else { return nil }
+
+    date = theDate
+    steps = intValue
   }
 
-  var startOfDay: Date {
-      var components = self.components
-      components.hour = 0
-      components.minute = 0
-      components.second = 0
-      return .from(components: components)
+  init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+
+    date = try container.decode(String.self, forKey: .date)
+    steps = try container.decode(Int.self, forKey: .steps)
   }
 
-  var endOfDay: Date {
-      var components = self.components
-      components.hour = 23
-      components.minute = 59
-      components.second = 59
-      return .from(components: components)
-  }
-
-  func daysUntil(_ date: Date) -> Int {
-    return Calendar.current.dateComponents([.day], from: self, to: date).day ?? 0
+  func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(date, forKey: .date)
+    try container.encode(steps, forKey: .steps)
   }
 }

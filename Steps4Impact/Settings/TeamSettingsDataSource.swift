@@ -33,6 +33,7 @@ import RxSwift
 enum TeamSettingsContext: Context {
   case invite
   case delete
+  case editname
 }
 
 enum TeamMembersContext: Context {
@@ -152,6 +153,10 @@ class TeamSettingsDataSource: TableViewDataSource {
 
     if isLead {
       cells.append([
+        SettingsActionCellContext(
+          title: "Edit Team Name",
+          buttonStyle: .plain,
+          context: TeamSettingsContext.editname),
         SettingsActionCellContext(
           title: "Delete Team",
           buttonStyle: .destructive,

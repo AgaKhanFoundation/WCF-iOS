@@ -27,43 +27,39 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
 
-import Quick
-import Nimble
-@testable import Steps4Impact
+import Foundation
+import OAuthSwift
 
-class LocalizationSpec: QuickSpec {
-  override func spec() {
-    describe("Localization") {
-      var englishLocalization: [String: String]!
-      var otherLocalizations: [[String: String]?]!
-      let localizations = ["hi"]
-
-      beforeEach {
-        let englishFile = Bundle.main.url(
-          forResource: "Localizable",
-          withExtension: "strings",
-          subdirectory: nil,
-          localization: "en")! // swiftlint:disable:this force_unwrapping
-        englishLocalization = NSDictionary(
-          contentsOf: englishFile) as? [String: String]
-        otherLocalizations = localizations
-          .map { Bundle.main.url(
-            forResource: "Localizable",
-            withExtension: "strings",
-            subdirectory: nil,
-            localization: $0)! } // swiftlint:disable:this force_unwrapping
-          .map { NSDictionary(contentsOf: $0) as? [String: String] }
-      }
-
-      it("should be able to parse localization file") {
-        expect(englishLocalization).toNot(beNil())
-      }
-
-      it("should have the same keys for all localizations") {
-        for localization in otherLocalizations {
-          expect(localization?.keys).to(equal(englishLocalization.keys))
+class FitbitDataProvider: PedometerDataProvider {
+  func retrieveStepCount(forInterval interval: DateInterval,
+                         _ completion: @escaping (Result<Int, PedometerDataProvider.Error>) -> Void) {
+    OAuthFitbit.shared.fetchSteps(forInterval: interval) { result in
+      switch result {
+      case .success(let response):
+        let steps = FitbitDataProvider.steps(fromResponse: response)
+        if steps == -1 {
+          // FIXME: handle error situation
+          return
         }
+
+        completion(.success(steps))
+      case .failure(let error):
+        print(error.description)
       }
     }
+  }
+
+  func retrieveDistance(forInterval interval: DateInterval,
+                        _ completion: @escaping (Result<Int, PedometerDataProviderError>) -> Void) {
+  }
+
+  private static func steps(fromResponse response: OAuthSwiftResponse) -> Int {
+    guard let jsonDict = try? response.jsonObject() else { return -1 }
+
+    let json = JSON(jsonDict)
+    guard let array = json?["activities-steps"]?.arrayValue else { return -1 }
+
+    let stepsObjs = array.compactMap({ FitbitStep(json: $0) })
+    return stepsObjs.reduce(0, { $0 + $1.steps })
   }
 }

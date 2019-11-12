@@ -34,28 +34,28 @@ struct Style {
 
   struct Colors {
     // Standard
-    static let black = UIColor(named: "black")!
-    static let blue = UIColor(named: "blue")!
-    static let green = UIColor(named: "green")!
-    static let grey = UIColor(named: "grey")!
-    static let red = UIColor(named: "red")!
-    static let white = UIColor(named: "white")!
+    static let black = UIColor(named: "black")! // swiftlint:disable:this force_unwrapping
+    static let blue = UIColor(named: "blue")! // swiftlint:disable:this force_unwrapping
+    static let green = UIColor(named: "green")! // swiftlint:disable:this force_unwrapping
+    static let grey = UIColor(named: "grey")! // swiftlint:disable:this force_unwrapping
+    static let red = UIColor(named: "red")! // swiftlint:disable:this force_unwrapping
+    static let white = UIColor(named: "white")! // swiftlint:disable:this force_unwrapping
 
     // New Colours
-    static let FoundationGreen = UIColor(named: "FoundationGreen")!
-    static let RubineRed = UIColor(named: "RubineRed")!
-    static let DeepTurquoise = UIColor(named: "DeepTurquoise")!
-    static let EarthyGold = UIColor(named: "EarthyGold")!
-    static let SpringGreen = UIColor(named: "SpringGreen")!
-    static let VerdantGreen = UIColor(named: "VerdantGreen")!
+    static let FoundationGreen = UIColor(named: "FoundationGreen")! // swiftlint:disable:this force_unwrapping
+    static let RubineRed = UIColor(named: "RubineRed")! // swiftlint:disable:this force_unwrapping
+    static let DeepTurquoise = UIColor(named: "DeepTurquoise")! // swiftlint:disable:this force_unwrapping
+    static let EarthyGold = UIColor(named: "EarthyGold")! // swiftlint:disable:this force_unwrapping
+    static let SpringGreen = UIColor(named: "SpringGreen")! // swiftlint:disable:this force_unwrapping
+    static let VerdantGreen = UIColor(named: "VerdantGreen")! // swiftlint:disable:this force_unwrapping
 
     // UI
-    static let FoundationGrey = UIColor(named: "FoundationGrey")!
-    static let Silver = UIColor(named: "Silver")!
-    static let Background = UIColor(named: "Background")!
-    static let Shadow = UIColor(named: "Shadow")!
-    static let Seperator = UIColor(named: "Seperator")!
-    static let Destructive = UIColor(named: "Destructive")!
+    static let FoundationGrey = UIColor(named: "FoundationGrey")! // swiftlint:disable:this force_unwrapping
+    static let Silver = UIColor(named: "Silver")! // swiftlint:disable:this force_unwrapping
+    static let Background = UIColor(named: "Background")! // swiftlint:disable:this force_unwrapping
+    static let Shadow = UIColor(named: "Shadow")! // swiftlint:disable:this force_unwrapping
+    static let Seperator = UIColor(named: "Seperator")! // swiftlint:disable:this force_unwrapping
+    static let Destructive = UIColor(named: "Destructive")! // swiftlint:disable:this force_unwrapping
   }
 
   enum Typography {

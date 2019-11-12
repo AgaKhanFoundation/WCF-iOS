@@ -71,17 +71,39 @@ extension TeamSettingsViewController: SettingsActionCellDelegate {
           viewController: self,
           shareButton: button,
           string: Strings.Share.item)
+    case .editname:
+      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+        guard
+          let participant = Participant(json: result.response),
+          let team = participant.team,
+          let teamId = team.id
+        else { return }
+
+        let alert = TextAlertViewController()
+        alert.title = Strings.TeamSettings.editTeamName
+        alert.body = Strings.TeamSettings.editTeamNameMessage
+        alert.value = team.name
+        alert.add(.init(title: Strings.TeamSettings.update, handler: {
+          guard let newName = alert.value else { return }
+          AKFCausesService.editTeamName(teamId: teamId, name: newName) { (result) in
+            guard !result.isSuccess else { return }
+            NotificationCenter.default.post(name: .teamChanged, object: nil)
+          }
+        }))
+        alert.add(.cancel())
+        AppController.shared.present(alert: alert, in: self, completion: nil)
+      }
     case .delete:
       AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
         guard let participant = Participant(json: result.response) else { return }
-        guard participant.team != nil else { return }
+        guard let teamId = participant.team?.id else { return }
 
         let alert: AlertViewController = AlertViewController()
         alert.title = Strings.TeamSettings.deleteTeam
         alert.body = Strings.TeamSettings.deleteTeamBody
         alert.add(AlertAction.cancel())
         alert.add(AlertAction(title: "Delete", style: .destructive, shouldDismiss: false) { [weak self] in
-          AKFCausesService.deleteTeam(team: (participant.team?.id)!) { (_) in
+          AKFCausesService.deleteTeam(team: teamId) { (_) in
             onMain {
               alert.dismiss(animated: true, completion: nil)
               self?.navigationController?.popViewController(animated: true)
