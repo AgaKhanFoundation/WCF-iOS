@@ -100,6 +100,8 @@ extension ChallengeViewController: DisclosureCellDelegate {
     case .inviteSupporters:
       AppController.shared.shareTapped(viewController: self, shareButton: nil,
                                        string: Strings.InviteSupporters.request)
+    case .showJourneyView:
+      print("Journey View")
     }
   }
 }
@@ -145,6 +147,7 @@ extension ChallengeViewController: ChallengeTeamProgressCellDelegate {
 enum ChallengeContext: Context {
   case inviteFriends
   case inviteSupporters
+  case showJourneyView
 }
 
 class ChallengeDataSource: TableViewDataSource {
@@ -200,7 +203,7 @@ class ChallengeDataSource: TableViewDataSource {
     }
   }
 
-  func configure() {
+  func configure() { // swiftlint:disable:this function_body_length
     guard participant?.team != nil else {
       configureNoTeamCells()
       return
@@ -215,21 +218,41 @@ class ChallengeDataSource: TableViewDataSource {
     formatter.dateStyle = .medium
     formatter.timeZone = TimeZone(abbreviation: "GMT")
 
-    cells = [[
-      InfoCellContext(
-        asset: .challengeJourney,
-        title: "Journey",
-        body: "Your journey begins in \(Date().daysUntil(event.challengePhase.start)) days on \(formatter.string(from: event.challengePhase.start))!"), // swiftlint:disable:this line_length
+    cells = []
+
+    let daysUntilStart = Date().daysUntil(event.challengePhase.start)
+
+    if daysUntilStart > 0 {
+      cells.append([
+        InfoCellContext(
+          asset: .challengeJourney,
+          title: "Journey",
+          body: "Your journey begins in \(Date().daysUntil(event.challengePhase.start)) days on \(formatter.string(from: event.challengePhase.start))!") // swiftlint:disable:this line_length
+      ])
+    } else {
+      guard let milestonesCompleted = event.commitment?.miles else { return }
+      print(milestonesCompleted)
+      cells.append([
+        DisclosureCellContext(
+          asset: .inviteFriends,
+          title: "Journey",
+          body: "\(milestonesCompleted) out of 10 milestones completed",
+          disclosureTitle: "View milestone details",
+          context: ChallengeContext.showJourneyView)
+      ])
+    }
+
+    cells.append([
       ChallengeTeamProgressCellContext(
-        teamName: team.name ?? "",
-        teamLeadName: teamCreator ?? "",
-        teamMemberImageURLS: teamImages,
-        yourCommittedMiles: participant?.currentEvent?.commitment?.miles ?? 0,
-        teamCommittedMiles: teamMembers.compactMap({ $0.currentEvent?.commitment?.miles }).reduce(0, +),
-        totalMiles: 5500,
-        disclosureTitle: "View Breakdown",
-        isEditingHidden: false)
-    ]]
+      teamName: team.name ?? "",
+      teamLeadName: teamCreator ?? "",
+      teamMemberImageURLS: teamImages,
+      yourCommittedMiles: participant?.currentEvent?.commitment?.miles ?? 0,
+      teamCommittedMiles: teamMembers.compactMap({ $0.currentEvent?.commitment?.miles }).reduce(0, +),
+      totalMiles: 5500,
+      disclosureTitle: "View Breakdown",
+      isEditingHidden: false)
+    ])
 
     let spots = event.teamLimit - team.members.count
     if spots > 0 {
