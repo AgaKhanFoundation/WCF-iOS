@@ -168,6 +168,17 @@ extension UITextField {
   }
 }
 
+extension UITextView {
+  convenience init(_ typography: Style.Typography, color: UIColor? = nil) {
+    self.init()
+    font = typography.font
+    textColor = Style.Colors.black
+    if let color = color {
+      textColor = color
+    }
+  }
+}
+
 extension CALayer {
   func addShadow() {
     self.shadowColor = Style.Colors.white.cgColor

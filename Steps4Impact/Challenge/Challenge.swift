@@ -102,6 +102,8 @@ extension ChallengeViewController: DisclosureCellDelegate {
                                        string: Strings.InviteSupporters.request)
     case .showJourneyView:
       print("Journey View")
+      
+      navigationController?.pushViewController(JourneyDetailViewController(), animated: true)
     }
   }
 }
@@ -157,6 +159,7 @@ class ChallengeDataSource: TableViewDataSource {
   private var teamCreator: String?
   private var teamImages: [URL?] = []
   private var teamMembers: [Participant] = []
+  private var achievement: Achievement?
 
   func reload(completion: @escaping () -> Void) {
     let group: DispatchGroup = DispatchGroup()
@@ -165,11 +168,21 @@ class ChallengeDataSource: TableViewDataSource {
     self.teamCreator = nil
     self.teamImages = []
     self.teamMembers = []
+    self.achievement = nil
 
     group.enter()
     AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
       if let participant = Participant(json: result.response), let team = participant.team {
         self?.participant = participant
+
+        group.enter()
+        AKFCausesService.getAchievement { (result) in
+          if let achievement = Achievement(json: result.response) {
+            self?.achievement = achievement
+          }
+          print("Check getAchievement")
+          group.leave()
+        }
 
         for member in team.members {
           group.enter()
@@ -203,6 +216,18 @@ class ChallengeDataSource: TableViewDataSource {
     }
   }
 
+  func getCurrentMilestone(numSteps: Int) -> Int {
+    var currMilestone = -1
+    for milestone in self.achievement!.milestones {
+      if numSteps > milestone.distance! {
+        currMilestone += 1
+      } else {
+        break
+      }
+    }
+    return currMilestone
+  }
+
   func configure() { // swiftlint:disable:this function_body_length
     guard participant?.team != nil else {
       configureNoTeamCells()
@@ -230,8 +255,7 @@ class ChallengeDataSource: TableViewDataSource {
           body: "Your journey begins in \(Date().daysUntil(event.challengePhase.start)) days on \(formatter.string(from: event.challengePhase.start))!") // swiftlint:disable:this line_length
       ])
     } else {
-      guard let milestonesCompleted = event.commitment?.miles else { return }
-      print(milestonesCompleted)
+      let milestonesCompleted = getCurrentMilestone(numSteps: event.defaultStepCount) // swiftlint:disable:this line_length
       cells.append([
         DisclosureCellContext(
           asset: .inviteFriends,
@@ -286,3 +310,5 @@ class ChallengeDataSource: TableViewDataSource {
     ]]
   }
 }
+
+
