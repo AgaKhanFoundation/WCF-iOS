@@ -55,8 +55,25 @@ class CreateTeamViewController: ViewController {
     navigationItem.rightBarButtonItem?.isEnabled = false
 
     label.text = Strings.Challenge.CreateTeam.formTitle
+    teamPhotoTextField.text = Strings.Challenge.CreateTeam.teamPhotoText
+    teamVisibilityTextField.text = Strings.Challenge.CreateTeam.teamVisibilityText
+
+    visibilityTextView.text = Strings.Challenge.CreateTeam.visibilityBodyOn
+    visibilityTextView.isScrollEnabled = false
+    visibilityTextView.isSelectable = false
+    visibilityTextView.isEditable = false
+    visibilityTextView.backgroundColor = UIColor.clear
+
+    //imgButton.frame = CGRect(x: 10, y: 10, width: 50, height: 50)
+    imgButton.clipsToBounds = true
+    imgButton.setImage(Assets.onboardingLoginPeople.image, for: .normal)
+    imgButton.addTarget(self, action: #selector(imgButtonTapped), for: .touchUpInside)
+    privateSwitch.isOn = true
+
+    textField.delegate = self
     textField.placeholder = Strings.Challenge.CreateTeam.formPlaceholder
     textField.addTarget(self, action: #selector(teamNameChanged(_:)), for: .editingChanged)
+    privateSwitch.addTarget(self, action: #selector(switchStateDidChange(_:)), for: .valueChanged)
     seperatorView.backgroundColor = Style.Colors.FoundationGreen
 
     view.addSubview(label) {
@@ -75,9 +92,41 @@ class CreateTeamViewController: ViewController {
       $0.height.equalTo(1)
     }
 
+    view.addSubview(teamPhotoTextField) {
+      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
+      $0.top.equalTo(seperatorView.snp.bottom).offset(Style.Padding.p16)
+    }
+
+    imgButton.contentMode = .scaleAspectFit
+    imgButton.layer.cornerRadius = 0.5 * Style.Size.s128
+    view.addSubview(imgButton) { (make) in
+      make.centerX.equalToSuperview()
+      make.top.equalTo(teamPhotoTextField.snp.bottom).offset(Style.Padding.p32)
+      make.height.width.equalTo(Style.Size.s128)
+    }
+
+    stackView.axis  = NSLayoutConstraint.Axis.horizontal
+    stackView.distribution  = UIStackView.Distribution.fillProportionally
+    stackView.alignment = UIStackView.Alignment.center
+    stackView.spacing   = 16.0
+
+    stackView.addArrangedSubview(teamVisibilityTextField)
+    stackView.addArrangedSubview(privateSwitch)
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+
+    view.addSubview(stackView) {
+      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
+      $0.top.equalTo(imgButton.snp.bottom).offset(Style.Padding.p16)
+    }
+
+    view.addSubview(visibilityTextView) {
+      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
+      $0.top.equalTo(stackView.snp.bottom)
+    }
+
     view.addSubview(activityView) {
       $0.centerX.equalToSuperview()
-      $0.top.equalTo(seperatorView.snp.bottom).offset(Style.Padding.p24)
+      $0.top.equalTo(visibilityTextView.snp.bottom).offset(Style.Padding.p24)
     }
 
     onBackground {
@@ -94,6 +143,11 @@ class CreateTeamViewController: ViewController {
     }
   }
 
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+      self.view.endEditing(true)
+      return false
+  }
+
   @objc
   func closeButtonTapped() {
     dismiss(animated: true, completion: nil)
@@ -105,6 +159,42 @@ class CreateTeamViewController: ViewController {
     teamName = newValue
 
     navigationItem.rightBarButtonItem?.isEnabled = teamName.count > 3
+  }
+
+  @objc
+  func switchStateDidChange(_ sender: UISwitch) {
+    if sender.isOn == true {
+      visibilityTextView.text = Strings.Challenge.CreateTeam.visibilityBodyOn
+    } else {
+      visibilityTextView.text = Strings.Challenge.CreateTeam.visibilityBodyOff
+    }
+  }
+
+  @objc
+  func imgButtonTapped() {
+    if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+      print("Button capture")
+
+      imagePicker.delegate = self
+      imagePicker.sourceType = .photoLibrary
+      imagePicker.allowsEditing = false
+
+      present(imagePicker, animated: true, completion: nil)
+    }
+  }
+
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+      dismiss(animated: true, completion: nil)
+  }
+
+  // swiftlint:disable:next colon
+  func imagePickerController(_ picker: UIImagePickerController,
+                             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+      print("\(info)")
+      if let image = info[.originalImage] as? UIImage {
+          imgButton.setImage(image, for: .normal)
+          dismiss(animated: true, completion: nil)
+      }
   }
 
   @objc
