@@ -36,14 +36,19 @@ protocol ImageButtonCellDelegate: class {
 
 struct ImageButtonCellContext: CellContext {
   let identifier: String = DisclosureCell.identifier
-  let image: UIImage
+  let imgImage: UIImageView = UIImageView(frame: .zero)
   let title: String
   let body: String?
   let disclosureTitle: String
   let context: Context?
 
-  init(image: UIImage? = nil, title: String, body: String?, disclosureTitle: String, context: Context? = nil) {
-    self.image = image!
+  init(image: String, title: String, body: String?, disclosureTitle: String, context: Context? = nil) {
+    onBackground {
+      guard let url = URL(string: image) else { return }
+        if let data = try? Data(contentsOf: url) {
+          onMain { self.imgImage.image = UIImage(data: data) }
+        }
+    }
     self.title = title
     self.body = body
     self.disclosureTitle = disclosureTitle

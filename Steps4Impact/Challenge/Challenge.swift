@@ -30,6 +30,7 @@
 import UIKit
 import Foundation
 import NotificationCenter
+import SDWebImage
 
 class ChallengeViewController: TableViewController {
   override func commonInit() {
@@ -102,7 +103,7 @@ extension ChallengeViewController: DisclosureCellDelegate {
                                        string: Strings.InviteSupporters.request)
     case .showJourneyView:
       print("Journey View")
-      
+
       navigationController?.pushViewController(JourneyDetailViewController(), animated: true)
     }
   }
@@ -257,8 +258,8 @@ class ChallengeDataSource: TableViewDataSource {
     } else {
       let milestonesCompleted = getCurrentMilestone(numSteps: event.defaultStepCount) // swiftlint:disable:this line_length
       cells.append([
-        DisclosureCellContext(
-          asset: .inviteFriends,
+        ImageButtonCellContext(
+          image: mapImage,
           title: "Journey",
           body: "\(milestonesCompleted) out of 10 milestones completed",
           disclosureTitle: "View milestone details",
