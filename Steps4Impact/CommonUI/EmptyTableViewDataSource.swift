@@ -44,5 +44,3 @@ class EmptyCollectionViewDataSource: CollectionViewDataSource {
     // Left blank on purpose
   }
 }
-
-

@@ -89,7 +89,8 @@ class DashboardViewController: TableViewController {
 
 extension DashboardViewController: ProfileCardCellDelegate {
   func profileDisclosureTapped() {
-    navigationController?.pushViewController(BadgesCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout()), animated: true)
+    let badgeVC = BadgesCollectionViewController()
+    navigationController?.pushViewController(badgeVC, animated: true)
   }
 }
 

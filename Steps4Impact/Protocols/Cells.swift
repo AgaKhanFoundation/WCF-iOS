@@ -42,7 +42,7 @@ protocol ReusableCell: class {
 }
 
 typealias ConfigurableTableViewCell = ConfigurableCell & TableViewCell & ReusableCell
-typealias ConfigurableCollectionViewCell = ConfigurableCell & CollectionViewCell
+typealias ConfigurableCollectionViewCell = ConfigurableCell & CollectionViewCell & ReusableCell
 
 protocol ListDataSource {
   var cells: [[CellContext]] { get set }
