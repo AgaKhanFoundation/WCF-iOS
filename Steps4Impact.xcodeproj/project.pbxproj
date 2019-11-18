@@ -114,7 +114,6 @@
 		A57A29FD236E408E002AA380 /* BadgesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57A29FB236E408E002AA380 /* BadgesCollectionViewController.swift */; };
 		A5865EB32377617500C551E9 /* BadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5865EB22377617500C551E9 /* BadgeCell.swift */; };
 		A5865EB5237761BF00C551E9 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5865EB4237761BF00C551E9 /* HeaderCell.swift */; };
-		A5865EB7237762C400C551E9 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5865EB6237762C400C551E9 /* Badge.swift */; };
 		A5A8E15F2370670500988F71 /* BadgeCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A8E15E2370670500988F71 /* BadgeCollectionDataSource.swift */; };
 		C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */; };
 		C92244C7234AD68A0098A333 /* OAuthFitbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244C6234AD68A0098A333 /* OAuthFitbit.swift */; };
@@ -294,7 +293,6 @@
 		A57A29FB236E408E002AA380 /* BadgesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesCollectionViewController.swift; sourceTree = "<group>"; };
 		A5865EB22377617500C551E9 /* BadgeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCell.swift; sourceTree = "<group>"; };
 		A5865EB4237761BF00C551E9 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
-		A5865EB6237762C400C551E9 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		A5A8E15E2370670500988F71 /* BadgeCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCollectionDataSource.swift; sourceTree = "<group>"; };
 		C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		C92244C6234AD68A0098A333 /* OAuthFitbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthFitbit.swift; sourceTree = "<group>"; };
@@ -709,15 +707,22 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		A550395E23823FE500788157 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A5865EB22377617500C551E9 /* BadgeCell.swift */,
+				A5865EB4237761BF00C551E9 /* HeaderCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		A57A29FA236E404C002AA380 /* BadgesV2 */ = {
 			isa = PBXGroup;
 			children = (
+				A550395E23823FE500788157 /* Cells */,
 				A57A29FB236E408E002AA380 /* BadgesCollectionViewController.swift */,
 				A53E7B3C236F576C006BD6D9 /* CollectionViewController.swift */,
 				A5A8E15E2370670500988F71 /* BadgeCollectionDataSource.swift */,
-				A5865EB22377617500C551E9 /* BadgeCell.swift */,
-				A5865EB4237761BF00C551E9 /* HeaderCell.swift */,
-				A5865EB6237762C400C551E9 /* Badge.swift */,
 			);
 			path = BadgesV2;
 			sourceTree = "<group>";
@@ -902,7 +907,7 @@
 					};
 					269E34C51E765828000726C2 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 77MLE67A45;
+						DevelopmentTeam = 6SQ8F32998;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1262,7 +1267,6 @@
 				F0D2378C23387BC100F41DB4 /* InviteSupportersViewController.swift in Sources */,
 				269E35071E765C68000726C2 /* LoginViewController.swift in Sources */,
 				26388A6F23482D2300C83AC2 /* Assets.swift in Sources */,
-				A5865EB7237762C400C551E9 /* Badge.swift in Sources */,
 				263EF530232A106400A00414 /* TeamSettingsDataSource.swift in Sources */,
 				265DE5642332BDAA009DDA5A /* WebImageView.swift in Sources */,
 				F017B691227699440023E84B /* Onboarding.swift in Sources */,
@@ -1481,12 +1485,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Steps4Impact/Supporting Files/Steps4Impact.entitlements";
-				CURRENT_PROJECT_VERSION = 265;
-				DEVELOPMENT_TEAM = 77MLE67A45;
+				CURRENT_PROJECT_VERSION = 266;
+				DEVELOPMENT_TEAM = 6SQ8F32998;
 				INFOPLIST_FILE = "Steps4Impact/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.aalim.WalkingChallenge;
+				MARKETING_VERSION = 1.0.5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akf.WalkingChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;

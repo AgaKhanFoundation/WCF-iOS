@@ -94,6 +94,11 @@ struct Strings {
   struct Badges {
     static let title = NSLocalizedString("Badges.title", comment: "")
     static let empty = NSLocalizedString("Badges.empty", comment: "")
+
+    struct HeaderTittes {       // swiftlint:disable:this nesting
+      static let noBadges = NSLocalizedString("Badges.HeaderTitles.noBadges", comment: "")
+      static let bottomSectionTitle = NSLocalizedString("Badges.HeaderTitles.bottomSectionTitle", comment: "")
+    }
   }
 
   struct ProfileCard {
