@@ -13,7 +13,6 @@ class BadgesCollectionDataSource : CollectionViewDataSource {
 
   var completion: (() -> Void)?
   var refresh : Bool = true
-  var dataSource : BadgesCollectionDataSource?
   var records: [Record]? {
     didSet {
         self.records = self.records?.sorted(by: { (r1, r2) -> Bool in
@@ -43,40 +42,43 @@ class BadgesCollectionDataSource : CollectionViewDataSource {
     guard let event = event else {
         return
     }
-
     let now = Date()
     isChallengeCompleted = event.challengePhase.end < now
-
     /// Removing all earlier cells during refereh()
     stepsBadges.removeAll()
     achievementBadges.removeAll()
+    cells.removeAll()
 
     /// Configure DailySteps , Streak  and Personal Prpgress badges
     configureBadges()
 
     /// Configure Team Progress badge
     configureTeamProgressBadge()
-    
-    if let badge = streakBadge {
+
+    if let badge = personalProgressBadge {
       achievementBadges.append(badge)
     }
-    if let badge = personalProgressBadge {
+    if let badge = streakBadge {
       achievementBadges.append(badge)
     }
     if let badge = teamProgressBadge {
       achievementBadges.append(badge)
     }
+    if let badge = finalMedalBadge {
+      cells.append([badge])
+    } else {
+      cells.append(stepsBadges)
+    }
+    cells.append(achievementBadges)
   }
 
   func configureBadges() {
 
     var badgesCount = 0
     var totalSteps = 0
-
     guard let records = records else { return }
 
     for record in records {
-
       if let distance = record.distance {
 
         /// Check for Daily Steps Badges
@@ -267,16 +269,63 @@ class BadgesCollectionDataSource : CollectionViewDataSource {
   }
 
   func reload(completion: @escaping () -> Void) {
-
     self.completion = completion
     AKFCausesService.getParticipant(fbid: FacebookService.shared.id) { (result) in
       if let participant = Participant(json: result.response), let records = participant.records {
         self.records = records
         self.configure()
         completion()
-      } else {
-        completion()
       }
     }
   }
+  
 }
+//MARK:- Badges Types and Categpory Ranges
+enum BadgeType {
+  case steps
+  case streak
+  case teamProgress
+  case personalProgress
+  case finalMedal
+  case unknown
+}
+
+enum FinalMedalType : String {
+  case silver = "Silver"
+  case gold = "Gold"
+  case platinum = "Platinum"
+  case champion = "Champion"
+  case unknown = ""
+}
+
+enum EligibiltyRange : Int {
+
+  case completed_daily_10000_Steps
+  case completed_daily_15000_Steps
+  case completed_daily_20000_Steps
+  case completed_daily_25000_Steps
+  case completed_50_miles
+  case completed_100_Miles
+  case completed_250_Miles
+  case completed_500_miles
+  case completed_25percent_journey
+  case completed_50percent_journey
+  case completed_75percent_journey
+
+  var range : Range<Int> {
+        switch self {
+        case .completed_daily_10000_Steps : return 10000..<15000
+        case .completed_daily_15000_Steps : return 15000..<20000
+        case .completed_daily_20000_Steps : return 20000..<25000
+        case .completed_daily_25000_Steps : return 25000 ..< 100000
+        case .completed_50_miles : return (2000*50) ..< (2000*100)
+        case .completed_100_Miles : return (2000*100) ..< (2000*250)
+        case .completed_250_Miles : return (2000*250) ..< (2000*500)
+        case .completed_500_miles : return (2000*500) ..< (2000*1000)
+        case .completed_25percent_journey: return 1375..<2750
+        case .completed_50percent_journey: return 2750..<4125
+        case .completed_75percent_journey: return 41255..<5500
+        }
+    }
+}
+

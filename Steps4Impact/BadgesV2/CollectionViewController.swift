@@ -10,41 +10,34 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class CollectionViewController: UICollectionViewController {
+class CollectionViewController: ViewController {
 
   var dataSource: CollectionViewDataSource? = EmptyCollectionViewDataSource()
 
+  let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
   let refreshControl = UIRefreshControl()
 
   // Cached Heights
   var heights = [IndexPath: CGFloat]()
-  
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    configureView()
-  }
-
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
     reload()
   }
 
-  func configureView() {
+  override func configureView() {
     view.backgroundColor = Style.Colors.Background
     extendedLayoutIncludesOpaqueBars = true
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     refreshControl.tintColor = Style.Colors.black
     refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-  }
-
-  func commonInit() {
-     // Override point for subclasses - need to call super.commonInit() first
-     // Hide name next to back button
+    collectionView.configure(with: self)
+    view.addSubview(collectionView) {
+      $0.edges.equalTo(view.safeAreaLayoutGuide)
+    }
   }
 
   override func viewDidAppear(_ animated: Bool) {
-
     super.viewDidAppear(animated)
     // Bug related to https://github.com/lionheart/openradar-mirror/issues/20208
     collectionView.refreshControl = refreshControl
@@ -69,4 +62,19 @@ class CollectionViewController: UICollectionViewController {
    func handle(context: Context) {
      // Override point for subclasses
    }
+}
+
+extension CollectionViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+  func numberOfSections(in collectionView: UICollectionView) -> Int {
+    return dataSource?.numberOfSections() ?? 0
+  }
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return dataSource?.numberOfItems(in: section) ?? 0
+  }
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    return collectionView.dequeueAndConfigureReusableCell(dataSource: dataSource, indexPath: indexPath)
+  }
+  func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    return collectionView.dequeueAndConfigureReusableCell(dataSource: dataSource, indexPath: indexPath)
+  }
 }

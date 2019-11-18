@@ -62,7 +62,6 @@ class AppController {
     window?.makeKeyAndVisible()
 
     // Select Default View
-    print("Facebook Id: \(Facebook.id)")
     // TODO(samisuteria) add check for akf profile?
     if Facebook.id.isEmpty {
       transition(to: .login)
@@ -167,7 +166,6 @@ class AppController {
   }
 
   private func updateRecords() {
-    
     guard let pedometer = UserInfo.pedometerSource else { return }
 
     let group: DispatchGroup = DispatchGroup()
