@@ -61,7 +61,9 @@ extension UITableView {
       EmptyLeaderboardCell.self,
       ChallengeTeamProgressCell.self,
       ConnectDeviceInformationCell.self,
-      AppInfoCell.self
+      AppInfoCell.self,
+      MilestoneCell.self,
+      CurrentMilestoneCell.self,
     ].forEach { register($0) }
   }
 
