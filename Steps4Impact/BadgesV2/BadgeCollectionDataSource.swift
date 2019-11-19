@@ -55,10 +55,10 @@ class BadgesCollectionDataSource : CollectionViewDataSource {
     /// Configure Team Progress badge
     configureTeamProgressBadge()
 
-    if let badge = personalProgressBadge {
+    if let badge = streakBadge {
       achievementBadges.append(badge)
     }
-    if let badge = streakBadge {
+    if let badge = personalProgressBadge {
       achievementBadges.append(badge)
     }
     if let badge = teamProgressBadge {
