@@ -62,6 +62,8 @@ extension UITableView {
       ChallengeTeamProgressCell.self,
       ConnectDeviceInformationCell.self,
       AppInfoCell.self,
+      MilestoneCell.self,
+      CurrentMilestoneCell.self,
       LeaderboardPodiumCell.self,
       LeaderboardCell.self,
       LeaderboardHeaderCell.self,
