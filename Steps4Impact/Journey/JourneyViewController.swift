@@ -10,24 +10,21 @@ import UIKit
 
 class JourneyViewController: TableViewController {
 
-  let topProgressView : UIView = {
+  let topProgressView: UIView = {
     let view = UIView()
-    view.translatesAutoresizingMaskIntoConstraints = false
     view.backgroundColor = .white
     view.alpha = 1
     view.layer.applySketchShadow(color: Style.Colors.FoundationGrey, alpha: 1, x: 0, y: -5, blur: 8, spread: 0)
     return view
   }()
 
-  let progressLabel : UILabel = {
+  let progressLabel: UILabel = {
     let label = UILabel(typography: .smallRegular)
-    label.translatesAutoresizingMaskIntoConstraints = false
     label.textAlignment = .center
     label.numberOfLines = 2
     label.textColor = Style.Colors.FoundationGreen
     return label
   }()
-  
 
   override func commonInit() {
     super.commonInit()
@@ -35,11 +32,11 @@ class JourneyViewController: TableViewController {
   }
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = "Journey"
+    title = Strings.Journey.title
     navigationController?.navigationBar.prefersLargeTitles = false
     view.backgroundColor = .white
     tableView.backgroundColor = .white
-    tableView.contentInset = UIEdgeInsets(top: Style.Size.s64 + Style.Padding.p4, left: 0, bottom: 0, right: 0)
+    tableView.contentInset = UIEdgeInsets(top: Style.Size.s64 + Style.Padding.p12, left: 0, bottom: 0, right: 0)
 
     topProgressView.addSubview(progressLabel) {
       $0.top.equalToSuperview().offset(Style.Padding.p8)
@@ -56,16 +53,14 @@ class JourneyViewController: TableViewController {
 
   override func reload() {
     dataSource?.reload { [weak self] in
-      if let ds = self?.dataSource as? JourneyDataSource {
-        self?.progressLabel.text = "\(ds.distanceConveredToNextMilestone) / \(ds.distanceToNextMilestone) mi remaining to reach \(ds.nameOfNextMilestone)"
+      if let dataSource = self?.dataSource as? JourneyDataSource {
+        let nextMilestoneDistance = dataSource.distanceToNextMilestone
+        let distanceRemaining = nextMilestoneDistance - dataSource.distanceCoveredToNextMilestone
+        let nextMilestone = dataSource.nameOfNextMilestone
+        let progressLabelText = "\(distanceRemaining) / \(nextMilestoneDistance) mi remaining to reach \(nextMilestone)"
+        self?.progressLabel.text = progressLabelText
       }
       self?.tableView.reloadOnMain()
-    }
-  }
-
-  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
-    if let _ = cell as? MilestoneCell {
     }
   }
 }
