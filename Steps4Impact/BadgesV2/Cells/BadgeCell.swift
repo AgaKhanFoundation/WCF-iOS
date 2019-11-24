@@ -26,7 +26,7 @@ protocol BadgeCellDelegate: class {
 
 class BadgeCell: ConfigurableCollectionViewCell {
   static var identifier: String = "BadgeCell"
-
+  
   func configure(context: CellContext) {
     guard let badge = context as? Badge else { return }
     var isDateAvailable : Bool = false
@@ -35,12 +35,12 @@ class BadgeCell: ConfigurableCollectionViewCell {
       isDateAvailable = true
       formattedDateString = dateFormatter.string(from: date)
     }
-
+    
     badgeImageView.alpha = 1
     badgeLabel.alpha = 1
     finalMedalImageView.alpha = 0
     finalMedalLabel.alpha = 0
-
+    
     switch badge.badgeType {
     case .steps:
       badgeLabel.text = #"\#(badge.stepsCompleted) steps completed \#(isDateAvailable ? "on \(formattedDateString)" : "")"#
@@ -66,91 +66,87 @@ class BadgeCell: ConfigurableCollectionViewCell {
       break
     }
   }
-
+  
   let dateFormatter : DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .long
     formatter.timeStyle = .none
     return formatter
   }()
-
+  
   weak var delegate : BadgeCellDelegate?
-
+  
   let badgeImageView: UIImageView = {
     let imageView = UIImageView()
-    imageView.image = UIImage(named: "badge_icon")
+    imageView.image = Assets.badgeIcon.image
     imageView.contentMode = .scaleAspectFit
-    imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.layer.borderWidth = 1
     imageView.layer.borderColor = UIColor(hex: 0x00A85D).cgColor
     imageView.layer.cornerRadius = 36
     return imageView
   }()
-
+  
   let finalMedalImageView: UIImageView = {
-     let imageView = UIImageView()
-     imageView.image = UIImage(named: "badge_icon")
-     imageView.contentMode = .scaleAspectFit
-     imageView.translatesAutoresizingMaskIntoConstraints = false
-     imageView.layer.borderWidth = 1
+    let imageView = UIImageView()
+    imageView.image = Assets.badgeIcon.image
+    imageView.contentMode = .scaleAspectFit
+    imageView.layer.borderWidth = 1
     imageView.layer.borderColor = UIColor(hex: 0x00A85D).cgColor
-     imageView.layer.cornerRadius = 75
-     return imageView
-   }()
-
-    let finalMedalLabel: UILabel = {
-      let label = UILabel(typography: .headerTitle)
-      label.textAlignment = .center
-      label.sizeToFit()
-      label.translatesAutoresizingMaskIntoConstraints = false
-      label.numberOfLines = 0
-      label.textColor = UIColor(hex: 0x363F44)
-      return label
-    }()
-
-  let badgeLabel: UILabel = {
-    let label = UILabel(typography: .footnote)
+    imageView.layer.cornerRadius = 75
+    return imageView
+  }()
+  
+  let finalMedalLabel: UILabel = {
+    let label = UILabel(typography: .headerTitle)
     label.textAlignment = .center
     label.sizeToFit()
-    label.translatesAutoresizingMaskIntoConstraints = false
     label.numberOfLines = 0
     label.textColor = UIColor(hex: 0x363F44)
     return label
   }()
-
+  
+  let badgeLabel: UILabel = {
+    let label = UILabel(typography: .footnote)
+    label.textAlignment = .center
+    label.sizeToFit()
+    label.numberOfLines = 0
+    label.textColor = UIColor(hex: 0x363F44)
+    return label
+  }()
+  
   override func commonInit() {
     super.commonInit()
-
+    
     contentView.addSubview(badgeImageView) {
       $0.width.height.equalTo(72)
       $0.centerX.equalToSuperview()
       $0.top.equalToSuperview().offset(Style.Padding.p24)
     }
-
+    
     contentView.addSubview(badgeLabel) {
       $0.top.equalTo(badgeImageView.snp.bottom).offset(Style.Padding.p8)
       $0.bottom.equalToSuperview().inset(Style.Padding.p8)
       $0.leading.equalToSuperview().offset(Style.Padding.p4)
       $0.trailing.equalToSuperview().inset(Style.Padding.p4)
     }
-
+    
     contentView.addSubview(finalMedalImageView) {
       $0.width.height.equalTo(150)
       $0.centerX.equalToSuperview()
       $0.top.equalToSuperview().offset(Style.Padding.p48)
     }
-
+    
     contentView.addSubview(finalMedalLabel) {
       $0.top.equalTo(finalMedalImageView.snp.bottom).offset(Style.Padding.p12)
       $0.bottom.equalToSuperview().inset(Style.Padding.p12)
       $0.leading.equalToSuperview().offset(Style.Padding.p16)
       $0.trailing.equalToSuperview().inset(Style.Padding.p16)
     }
-
+    
     badgeImageView.alpha = 1
     badgeLabel.alpha = 1
     finalMedalImageView.alpha = 0
     finalMedalLabel.alpha = 0
   }
-
+  
 }

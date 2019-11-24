@@ -70,6 +70,8 @@
 // Badges
 "Badges.title" = "Badges";
 "Badges.empty" = "Come back often to check on what badges you've earned";
+"Badges.HeaderTitles.noBadges" = "No Badges earned yet!";
+"Badges.HeaderTitles.bottomSectionTitle" = "10,000 steps per day streak";
 
 // ProfileCard
 "ProfileCard.challengeTimeline" = "Challenge Timeline";

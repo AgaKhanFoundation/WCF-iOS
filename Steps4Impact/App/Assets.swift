@@ -48,6 +48,9 @@ enum Assets: String {
   // Navigation Bar
   case backIcon = "back-icon"
 
+  // Badges
+  case badgeIcon = "badge_icon"
+
   // Onboarding
   case onboardingLoginPeople = "login-couple"
   case onboardingCreateTeam = "create-team"

@@ -11,20 +11,20 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class CollectionViewController: ViewController {
-
+  
   var dataSource: CollectionViewDataSource? = EmptyCollectionViewDataSource()
-
+  
   let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
   let refreshControl = UIRefreshControl()
-
+  
   // Cached Heights
   var heights = [IndexPath: CGFloat]()
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     reload()
   }
-
+  
   override func configureView() {
     view.backgroundColor = Style.Colors.Background
     extendedLayoutIncludesOpaqueBars = true
@@ -36,32 +36,32 @@ class CollectionViewController: ViewController {
       $0.edges.equalTo(view.safeAreaLayoutGuide)
     }
   }
-
+  
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     // Bug related to https://github.com/lionheart/openradar-mirror/issues/20208
     collectionView.refreshControl = refreshControl
   }
-
+  
   @objc func refresh() {
-     refreshControl.beginRefreshing()
-     dataSource?.reload { [weak self] in
-       onMain {
-         self?.refreshControl.endRefreshing()
-         self?.collectionView.reloadData()
-       }
-     }
-   }
-
-   func reload() {
-     dataSource?.reload { [weak self] in
-       self?.collectionView.reloadOnMain()
-     }
-   }
-
-   func handle(context: Context) {
-     // Override point for subclasses
-   }
+    refreshControl.beginRefreshing()
+    dataSource?.reload { [weak self] in
+      onMain {
+        self?.refreshControl.endRefreshing()
+        self?.collectionView.reloadData()
+      }
+    }
+  }
+  
+  func reload() {
+    dataSource?.reload { [weak self] in
+      self?.collectionView.reloadOnMain()
+    }
+  }
+  
+  func handle(context: Context) {
+    // Override point for subclasses
+  }
 }
 
 extension CollectionViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

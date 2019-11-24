@@ -9,11 +9,11 @@
 import UIKit
 
 class BadgesCollectionViewController: CollectionViewController {
-
+  
   var finalMedalBadge = Badge(finalMedalAchieved: .unknown, badgeType: .finalMedal)
-
+  
   var isChallengeCompledted : Bool = false
-
+  
   override func commonInit() {
     super.commonInit()
     title = Strings.Badges.title
@@ -21,7 +21,7 @@ class BadgesCollectionViewController: CollectionViewController {
     setupCollectionView()
   }
   
-	func setupCollectionView() {
+  func setupCollectionView() {
     if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
       layout.minimumLineSpacing = 0
       layout.minimumInteritemSpacing = 0
@@ -31,14 +31,14 @@ class BadgesCollectionViewController: CollectionViewController {
     collectionView.register(HeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCell.identifier)
     collectionView.backgroundColor = .white
   }
-
+  
   override func reload() {
     dataSource?.reload { [weak self] in
       self?.updateSources(from: self?.dataSource)
       self?.collectionView.reloadOnMain()
     }
   }
-
+  
   @objc override func refresh() {
     refreshControl.beginRefreshing()
     dataSource?.reload { [weak self] in
@@ -47,7 +47,7 @@ class BadgesCollectionViewController: CollectionViewController {
       self?.collectionView.reloadOnMain()
     }
   }
-
+  
   func updateSources(from dataSource: CollectionViewDataSource?) {
     if let dataSource = dataSource, let badgeDataSource = dataSource as? BadgesCollectionDataSource {
       isChallengeCompledted = badgeDataSource.isChallengeCompleted
@@ -64,7 +64,7 @@ extension BadgesCollectionViewController {
       cell.delegate = self
     }
   }
-
+  
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     if indexPath.section == 0, isChallengeCompledted, finalMedalBadge.finalMedalAchieved != .unknown {
       return CGSize(width: view.frame.width, height: (view.frame.height/2) - 100)
@@ -72,37 +72,37 @@ extension BadgesCollectionViewController {
       return CGSize(width: view.frame.width/3, height: 160)
     }
   }
-
+  
   override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderCell.identifier, for: indexPath) as? HeaderCell else { return UICollectionViewCell() }
-      if indexPath.section == 0 {
-        if dataSource?.numberOfItems(in: 0) == 0 && dataSource?.numberOfItems(in: 1) == 0 {
-          header.headerLabel.text = "No Badges earned yet!"
-        } else {
-          header.headerLabel.text = ""
-        }
+    if indexPath.section == 0 {
+      if dataSource?.numberOfItems(in: 0) == 0 && dataSource?.numberOfItems(in: 1) == 0 {
+        header.headerLabel.text = Strings.Badges.HeaderTittes.noBadges
       } else {
-        header.headerLabel.text = "10,000 steps per day streak"
+        header.headerLabel.text = ""
       }
-      return header
+    } else {
+      header.headerLabel.text = Strings.Badges.HeaderTittes.bottomSectionTitle
+    }
+    return header
   }
-
+  
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-      if section == 0 {
-          if (isChallengeCompledted && finalMedalBadge.finalMedalAchieved != .unknown) {
-            /// Hiding Top Section Header
-            return CGSize(width: view.frame.width, height: 0)
-          } else if dataSource?.numberOfItems(in: 0) == 0 && dataSource?.numberOfItems(in: 1) != 0 {
-            /// Making top header bigger to show bottom header in the middle
-            return CGSize(width: view.frame.width, height: (view.frame.height/2) - 100)
-          } else if dataSource?.numberOfItems(in: 0) == 0 && dataSource?.numberOfItems(in: 1) == 0 {
-            return CGSize(width: view.frame.width, height: 44)
-        }
-      } else if section == 1 && (dataSource?.numberOfItems(in: 1) != 0 || dataSource?.numberOfItems(in: 0) != 0) {
+    if section == 0 {
+      if (isChallengeCompledted && finalMedalBadge.finalMedalAchieved != .unknown) {
+        /// Hiding Top Section Header
+        return CGSize(width: view.frame.width, height: 0)
+      } else if dataSource?.numberOfItems(in: 0) == 0 && dataSource?.numberOfItems(in: 1) != 0 {
+        /// Making top header bigger to show bottom header in the middle
+        return CGSize(width: view.frame.width, height: (view.frame.height/2) - 100)
+      } else if dataSource?.numberOfItems(in: 0) == 0 && dataSource?.numberOfItems(in: 1) == 0 {
         return CGSize(width: view.frame.width, height: 44)
       }
-      return CGSize(width: view.frame.width, height: 0)
+    } else if section == 1 && (dataSource?.numberOfItems(in: 1) != 0 || dataSource?.numberOfItems(in: 0) != 0) {
+      return CGSize(width: view.frame.width, height: 44)
     }
+    return CGSize(width: view.frame.width, height: 0)
+  }
 }
 
 extension BadgesCollectionViewController : BadgeCellDelegate {
