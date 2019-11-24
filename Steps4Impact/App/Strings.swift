@@ -87,6 +87,10 @@ struct Strings {
     }
   }
 
+  struct Journey {
+    static let title = NSLocalizedString("Journey.title", comment: "")
+  }
+
   struct Badges {
     static let title = NSLocalizedString("Badges.title", comment: "")
     static let empty = NSLocalizedString("Badges.empty", comment: "")

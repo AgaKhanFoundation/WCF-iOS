@@ -63,7 +63,7 @@ extension UITableView {
       ConnectDeviceInformationCell.self,
       AppInfoCell.self,
       MilestoneCell.self,
-      CurrentMilestoneCell.self,
+      CurrentMilestoneCell.self
     ].forEach { register($0) }
   }
 
