@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-struct CurrentMilestoneContext : CellContext {
+struct CurrentMilestoneContext: CellContext {
   var identifier: String = CurrentMilestoneCell.identifier
   var sequence = 0
   var distance = 0
@@ -21,81 +21,67 @@ struct CurrentMilestoneContext : CellContext {
   var subTitle = ""
   var media = ""
   var content = ""
-  var status : MilestoneStatus = .current
-  var progress : CGFloat = 0.0
+  var status: MilestoneStatus = .current
+  var progress: CGFloat = 0.0
 }
 
 class CurrentMilestoneCell: ConfigurableTableViewCell {
 
   static let identifier: String = "CurrentMilestoneCell"
 
-  let circle : UIView = {
+  let circle: UIView = {
     var view = UIView(frame: .zero)
-    view.translatesAutoresizingMaskIntoConstraints = false
-    view.layer.cornerRadius = 12
+    view.layer.cornerRadius = Style.Size.s12
+    view.backgroundColor = Style.Colors.FoundationGreen
     return view
   }()
 
-  let verticalBar : UIView = {
+  let verticalBar: UIView = {
     var view = UIView(frame: .zero)
-    view.translatesAutoresizingMaskIntoConstraints = false
-    view.frame.size.width = 2
+    view.frame.size.width = Style.Padding.p2
+    view.backgroundColor = Style.Colors.Seperator
     return view
   }()
 
-  let verticalProgressBar : UIView = {
+  let verticalProgressBar: UIView = {
     var view = UIView(frame: .zero)
-    view.translatesAutoresizingMaskIntoConstraints = false
-    view.frame.size.width = 2
+    view.frame.size.width = Style.Padding.p2
     return view
   }()
 
-  let progressCircle : UIView = {
+  let progressCircle: UIView = {
     var view = UIView(frame: .zero)
-    view.translatesAutoresizingMaskIntoConstraints = false
-    view.layer.cornerRadius = 12
+    view.layer.cornerRadius = Style.Size.s12
     view.layer.applySketchShadow(color: Style.Colors.FoundationGreen, alpha: 0.5, x: 0, y: 0, blur: 8, spread: 0)
     return view
   }()
 
-  let milestoneCountLabel : UILabel = {
-    var label = UILabel()
-    label.translatesAutoresizingMaskIntoConstraints = false
-    label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+  let milestoneCountLabel: UILabel = {
+    var label = UILabel(typography: .smallRegular)
+    label.textColor = Style.Colors.black
     return label
   }()
 
-  let milestoneNameButton : UIButton = {
+  let milestoneNameButton: UIButton = {
     var button = UIButton()
-    button.translatesAutoresizingMaskIntoConstraints = false
     button.contentHorizontalAlignment = .left
-    button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+    button.setTitleColor(Style.Colors.blue, for: .normal)
+    button.titleLabel?.font = UIFont.systemFont(ofSize: Style.Size.s16, weight: .regular)
     return button
   }()
 
   let containerRectangle = CardViewV2()
 
-  let journeyMapImageView : UIImageView = {
+  let journeyMapImageView: UIImageView = {
     let imagevIew = UIImageView()
-    imagevIew.translatesAutoresizingMaskIntoConstraints = false
     imagevIew.contentMode = .scaleAspectFill
+    imagevIew.image = Assets.journeyEmpty.image
     imagevIew.clipsToBounds = true
     return imagevIew
   }()
 
   override func commonInit() {
     super.commonInit()
-
-    circle.backgroundColor = Style.Colors.FoundationGreen
-    verticalBar.backgroundColor = Style.Colors.Seperator
-    containerRectangle.backgroundColor = Style.Colors.white
-
-    milestoneCountLabel.text = "Milestone 1/10"
-    milestoneNameButton.setTitle("Karachi, Pakistan", for: .normal)
-    milestoneCountLabel.textColor = Style.Colors.black
-    milestoneNameButton.setTitleColor(Style.Colors.blue, for: .normal)
-    journeyMapImageView.image = UIImage(named: "journey_map_test")
-
     contentView.addSubview(circle) {
       $0.top.equalToSuperview()
       $0.leading.equalToSuperview().offset(Style.Padding.p16)
@@ -128,7 +114,7 @@ class CurrentMilestoneCell: ConfigurableTableViewCell {
     }
     contentView.addSubview(verticalBar) {
       $0.top.bottom.equalToSuperview()
-      $0.centerX.equalTo(circle.snp.centerX)
+      $0.centerX.equalTo(circle)
       $0.width.equalTo(Style.Padding.p2)
     }
     contentView.addSubview(progressCircle) {
@@ -138,7 +124,7 @@ class CurrentMilestoneCell: ConfigurableTableViewCell {
     }
     contentView.addSubview(verticalProgressBar) {
       $0.top.equalToSuperview()
-      $0.centerX.equalTo(circle.snp.centerX)
+      $0.centerX.equalTo(circle)
       $0.width.equalTo(Style.Padding.p2)
       $0.bottom.equalTo(progressCircle.snp.top)
     }
@@ -150,9 +136,6 @@ class CurrentMilestoneCell: ConfigurableTableViewCell {
     guard let currentMilestone = context as? CurrentMilestoneContext else { return }
 
     let progressForCell = contentView.frame.height * (currentMilestone.progress/100)
-
-    progressCircle.alpha = 0
-
     circle.backgroundColor = Style.Colors.FoundationGreen
     verticalBar.backgroundColor = Style.Colors.Seperator
 
@@ -173,8 +156,7 @@ class CurrentMilestoneCell: ConfigurableTableViewCell {
       verticalBar.isHidden = false
     }
     milestoneNameButton.setTitle("\(currentMilestone.name)", for: .normal)
-    
-    progressCircle.alpha = 1
+
     UIView.animate(withDuration: 1) {
       self.progressCircle.snp.remakeConstraints { (make) in
         make.top.equalToSuperview().offset(progressForCell)

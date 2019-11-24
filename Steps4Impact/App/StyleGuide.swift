@@ -108,6 +108,7 @@ struct Style {
 
   struct Size {
     static let s8: CGFloat = 8                                                  // swiftlint:disable:this identifier_name line_length
+    static let s12: CGFloat = 12
     static let s16: CGFloat = 16
     static let s24: CGFloat = 24
     static let s32: CGFloat = 32
