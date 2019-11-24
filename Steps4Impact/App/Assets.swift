@@ -57,6 +57,9 @@ enum Assets: String {
   // Leaderboard
   case leaderboardEmpty = "leaderboard-empty"
 
+  // Journey
+  case journeyEmpty = "journey_map_test"
+
   // Tab Bar
   case tabbarDashboardSelected = "tabbar-dashboard-selected"
   case tabbarDashboardUnselected = "tabbar-dashboard-unselected"

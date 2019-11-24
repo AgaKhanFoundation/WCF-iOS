@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct MilestoneContext : CellContext {
+struct MilestoneContext: CellContext {
   var identifier: String = MilestoneCell.identifier
   var sequence = 0
   var distance = 0
@@ -20,41 +20,36 @@ struct MilestoneContext : CellContext {
   var subTitle = ""
   var media = ""
   var content = ""
-  var status : MilestoneStatus = .notCompleted
+  var status: MilestoneStatus = .notCompleted
 }
 
 class MilestoneCell: ConfigurableTableViewCell {
 
   static let identifier: String = "MilestoneCell"
 
-  let circle : UIView = {
-     var view = UIView(frame: .zero)
-     view.translatesAutoresizingMaskIntoConstraints = false
-     view.layer.cornerRadius = 12
-     return view
-   }()
+  let circle: UIView = {
+    var view = UIView(frame: .zero)
+    view.layer.cornerRadius = Style.Size.s12
+    return view
+  }()
 
-   let verticalBar : UIView = {
-     var view = UIView(frame: .zero)
-     view.translatesAutoresizingMaskIntoConstraints = false
-     view.frame.size.width = 2
-     return view
-   }()
+  let verticalBar: UIView = {
+    var view = UIView(frame: .zero)
+    view.frame.size.width = Style.Padding.p2
+    return view
+  }()
 
-   let milestoneCountLabel : UILabel = {
-     var label = UILabel()
-     label.translatesAutoresizingMaskIntoConstraints = false
-     label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-     return label
-   }()
+  let milestoneCountLabel: UILabel = {
+    var label = UILabel(typography: .smallRegular)
+    return label
+  }()
 
-   let milestoneNameButton : UIButton = {
-     var button = UIButton()
-     button.translatesAutoresizingMaskIntoConstraints = false
+  let milestoneNameButton: UIButton = {
+    var button = UIButton()
     button.contentHorizontalAlignment = .left
-    button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-     return button
-   }()
+    button.titleLabel?.font = UIFont.systemFont(ofSize: Style.Size.s16, weight: .regular)
+    return button
+  }()
 
   override func commonInit() {
     super.commonInit()
@@ -79,7 +74,7 @@ class MilestoneCell: ConfigurableTableViewCell {
     }
     contentView.addSubview(verticalBar) {
       $0.top.bottom.equalToSuperview()
-      $0.centerX.equalTo(circle.snp.centerX)
+      $0.centerX.equalTo(circle)
       $0.width.equalTo(Style.Padding.p2)
     }
     contentView.bringSubviewToFront(circle)
@@ -95,15 +90,16 @@ class MilestoneCell: ConfigurableTableViewCell {
       verticalBar.backgroundColor = Style.Colors.Seperator
       milestoneCountLabel.textColor = Style.Colors.FoundationGrey
       milestoneNameButton.setTitleColor(Style.Colors.black, for: .normal)
-      break
     case .completed:
       circle.backgroundColor = Style.Colors.FoundationGreen
       verticalBar.backgroundColor = Style.Colors.FoundationGreen
       milestoneCountLabel.textColor = Style.Colors.black
       milestoneNameButton.setTitleColor(Style.Colors.blue, for: .normal)
-      break
-    default:
-      break
+    case .current:
+      circle.backgroundColor = Style.Colors.FoundationGreen
+      verticalBar.backgroundColor = Style.Colors.FoundationGreen
+      milestoneCountLabel.textColor = Style.Colors.black
+      milestoneNameButton.setTitleColor(Style.Colors.blue, for: .normal)
     }
 
     if milestone.sequence == 0 {
