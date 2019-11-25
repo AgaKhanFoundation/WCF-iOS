@@ -63,8 +63,9 @@ class JourneyDetailViewController: ViewController {
 
     titleLabel.text = "Nairobi, Kenya"
     subtitleLabel.text = "Aga Khan Garden | May 2019"
-    bodyText.text = "Viola is a Grade 9 student at Joy Primary School in Mathare, a notoriously poor neighborhood in Nairobi, Kenya. There, few families have books. Even schools lack suitable reading material. Across Kenya, only 2 percent of public schools have libraries. Before, Viola and her friends had very few chances to practice reading. The whole school had just a box of a few textbooks. When Viola first arrived several years ago, she was far behind her peers, with no way to catch up. was not good at reading,she admits. That changed when Joy School gained a library, thanks to a Kenyan nonprofit that raised funds for libraries with its Start-A-Library campaign, supported by the Aga Khan Foundation and the Yetu Initiative. The new library at Joy brought in 1,000 storybooks, and Viola started devouring them. Viola is a Grade 9 student at Joy Primary School in Mathare, a notoriously poor neighborhood in Nairobi, Kenya. There, few families have books. Even schools lack suitable reading material. Across Kenya, only 2 percent of public schools have libraries. Before, Viola and her friends had very few chances to practice reading. The whole school had just a box of a few textbooks. When Viola first arrived several years ago, she was far behind her peers, with no way to catch up. was not good at reading,she admits. That changed when Joy School gained a library, thanks to a Kenyan nonprofit that raised funds for libraries with its Start-A-Library campaign, supported by the Aga Khan Foundation and the Yetu Initiative. The new library at Joy brought in 1,000 storybooks, and Viola started devouring them." // swiftlint:disable:this line_length
+    let htmlText = "<p>Dr. Zainab Samad was only 13 years old when she knew she wanted to become a doctor. She was able to fulfill her dream by attending medical school at the Aga Khan University. Growing up, she didn’t see many female leaders in her field and despite her passion for medicine, the idea of playing a leading role at a university was a leap beyond her imagination. Nevertheless, after years of studying at AKU and abroad, Dr. Samad eventually returned to Karachi to lead the Medicine Department at AKU. She’s the youngest person ever to hold that position, and the first woman.</p><p>Zainab’s journey to new heights was long, but she hopes that it will inspire other women to follow in her footsteps. “AKU has had female chairs in other departments, including Obstetrics-Gynecology and Anesthesia,” she said. \"I hope it means we’ll have more.\"</p><p>Aga Khan University became the leading healthcare institution in Pakistan and influences healthcare practice and policy across the country. AKU Hospital will continue to develop skills of healthcare professionals like Zainab to deliver world-class care.</p><br><br>Read Zainab’s story here:<br><a href=\"https://www.akfusa.org/our-stories/reaching-new-heights-in-national-healthcare/\" target=\"_blank\">https://www.akfusa.org/our-stories/reaching-new-heights-in-national-healthcare/</a>." // swiftlint:disable:this line_length
 
+    bodyText.text = htmlText.htmlToAttributedString?.string
     dismissView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissViewTapped(_:))))
 
     view.addSubview(dismissView) {
@@ -86,7 +87,7 @@ class JourneyDetailViewController: ViewController {
       $0.leading.trailing.equalToSuperview().offset(Style.Padding.p12)
       $0.top.equalTo(detailImage.snp.bottom).offset(Style.Padding.p8)
     }
-    
+
     containerView.addSubview(subtitleLabel) {
       $0.leading.trailing.equalToSuperview().offset(Style.Padding.p12)
       $0.top.equalTo(titleLabel.snp.bottom).offset(Style.Padding.p8)
@@ -106,7 +107,7 @@ class JourneyDetailViewController: ViewController {
     guard isDismissable, gesture.state == .ended else { return }
     dismiss(animated: true, completion: dismissBlock)
   }
-  
+
   @objc
   func buttonTapped(_ sender: ActionButton) {
     if sender.shouldDismiss {
@@ -115,9 +116,23 @@ class JourneyDetailViewController: ViewController {
       sender.handler?()
     }
   }
-  
+
 }
 
 extension JourneyDetailViewController: Keyboardable {}
 
-
+extension String {
+  var htmlToAttributedString: NSAttributedString? {
+    guard let data = data(using: .utf8) else { return NSAttributedString() }
+    do {
+      return try NSAttributedString(data: data,
+                                    options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], // swiftlint:disable:this line_length
+                                    documentAttributes: nil)
+    } catch {
+      return NSAttributedString()
+    }
+  }
+  var htmlToString: String {
+    return htmlToAttributedString?.string ?? ""
+  }
+}

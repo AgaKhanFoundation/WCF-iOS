@@ -244,5 +244,4 @@ class AppController {
     activityVC.popoverPresentationController?.sourceView = shareButton
     viewController.present(activityVC, animated: true, completion: nil)
   }
-  
 }
