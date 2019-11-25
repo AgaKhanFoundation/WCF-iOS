@@ -30,16 +30,23 @@
 import UIKit
 import NotificationCenter
 
-class CreateTeamViewController: ViewController {
+class CreateTeamViewController: ViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate { // swiftlint:disable:this line_length
   private let label = UILabel(typography: .title)
   private let textField = UITextField(.bodyRegular)
+  private let teamPhotoTextField = UILabel(typography: .title)
+  private let teamVisibilityTextField = UILabel(typography: .title)
   private let seperatorView = UIView()
+  private let visibilityTextView = UITextView()
   private let activityView = UIActivityIndicatorView(style: .gray)
   private var teamName: String = ""
+  private let imgButton = UIButton(type: .custom)
+  private var imagePicker = UIImagePickerController()
+  private var privateSwitch = UISwitch()
+  private let stackView = UIStackView()
 
   private var event: Event?
 
-  override func configureView() {
+  override func configureView() { // swiftlint:disable:this function_body_length
     super.configureView()
     title = Strings.Challenge.CreateTeam.title
     navigationItem.leftBarButtonItem = UIBarButtonItem(
@@ -108,7 +115,7 @@ class CreateTeamViewController: ViewController {
     stackView.axis  = NSLayoutConstraint.Axis.horizontal
     stackView.distribution  = UIStackView.Distribution.fillProportionally
     stackView.alignment = UIStackView.Alignment.center
-    stackView.spacing   = 16.0
+    stackView.spacing = 16.0
 
     stackView.addArrangedSubview(teamVisibilityTextField)
     stackView.addArrangedSubview(privateSwitch)
@@ -132,9 +139,8 @@ class CreateTeamViewController: ViewController {
     onBackground {
       AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
         guard let participant = Participant(json: result.response),
-          let eventId = participant.currentEvent?.id else {
-          return
-        }
+              let eventId = participant.currentEvent?.id
+        else { return }
 
         AKFCausesService.getEvent(event: eventId) { (result) in
           self.event = Event(json: result.response)

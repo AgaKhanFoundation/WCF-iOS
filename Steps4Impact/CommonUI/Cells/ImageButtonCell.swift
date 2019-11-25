@@ -31,27 +31,23 @@ import UIKit
 import SnapKit
 
 protocol ImageButtonCellDelegate: class {
-  func disclosureCellTapped(context: Context?)
+  func imageButtonCellTapped(context: Context?)
 }
 
 struct ImageButtonCellContext: CellContext {
   let identifier: String = DisclosureCell.identifier
-  let imgImage: UIImageView = UIImageView(frame: .zero)
+  var imgImage: WebImageView = WebImageView(image: Assets.placeholder.image)
   let title: String
   let body: String?
-  let disclosureTitle: String
+  let imageButtonTitle: String
   let context: Context?
+  let mapURL: URL
 
-  init(image: String, title: String, body: String?, disclosureTitle: String, context: Context? = nil) {
-    onBackground {
-      guard let url = URL(string: image) else { return }
-        if let data = try? Data(contentsOf: url) {
-          onMain { self.imgImage.image = UIImage(data: data) }
-        }
-    }
+  init(mapURL: URL, title: String, body: String?, disclosureTitle: String, context: Context? = nil) {
+    self.mapURL = mapURL
     self.title = title
     self.body = body
-    self.disclosureTitle = disclosureTitle
+    self.imageButtonTitle = disclosureTitle
     self.context = context
   }
 }
@@ -60,19 +56,19 @@ class ImageButtonCell: ConfigurableTableViewCell {
   static let identifier = "ImageButtonCell"
 
   private let cardView = CardViewV2()
-  private let cellImageView = UIImageView()
+  private var cellImageView = WebImageView()
   private let titleLabel = UILabel(typography: .title)
   private let bodyLabel = UILabel(typography: .bodyRegular)
-  private let disclosureView = CellDisclosureView()
+  private let imageButtonView = CellImageButtonView()
   private var context: Context?
 
-  weak var delegate: DisclosureCellDelegate?
+  weak var delegate: ImageButtonCellDelegate?
 
   override func commonInit() {
     super.commonInit()
 
     cellImageView.contentMode = .scaleAspectFit
-    disclosureView.delegate = self
+    //imageButtonView.delegate = self
 
     contentView.addSubview(cardView) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)
@@ -89,32 +85,38 @@ class ImageButtonCell: ConfigurableTableViewCell {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
     }
 
-    cardView.addSubview(disclosureView) {
+    cardView.addSubview(imageButtonView) {
       $0.leading.trailing.bottom.equalToSuperview()
     }
 
     cardView.addSubview(bodyLabel) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
       $0.top.equalTo(stackView.snp.bottom).offset(Style.Padding.p32)
-      $0.bottom.equalTo(disclosureView.snp.top).offset(-Style.Padding.p32)
+      $0.bottom.equalTo(imageButtonView.snp.top).offset(-Style.Padding.p32)
     }
   }
 
   func configure(context: CellContext) {
-    guard let context = context as? DisclosureCellContext else { return }
+    guard let context = context as? ImageButtonCellContext else { return }
 
-    cellImageView.image = context.asset?.image
-    cellImageView.isHidden = context.asset == nil
+    let imageView = WebImageView()
+    imageView.fadeInImage(imageURL: URL(string: "http://wcf.x10host.com/challenge1_1_v1.png"),
+                          placeHolderImage: Assets.placeholder.image)
+    cellImageView = imageView
     titleLabel.text = context.title
     bodyLabel.text = context.body
     self.context = context.context
-    disclosureView.configure(context: CellDisclosureContext(label: context.disclosureTitle))
+    imageButtonView.configure(context: CellImageButtonContext(label: context.imageButtonTitle))
+  }
+
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    cellImageView.stopLoading()
   }
 }
 
 extension ImageButtonCell: CellDisclosureViewDelegate {
   func cellDisclosureTapped() {
-    delegate?.disclosureCellTapped(context: context)
+    delegate?.imageButtonCellTapped(context: context)
   }
 }
-

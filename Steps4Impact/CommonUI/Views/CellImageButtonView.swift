@@ -27,32 +27,51 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-import Foundation
+import UIKit
 
-struct Milestone {
-  let sequence: Int?
-  let distance: Int?
-  let name: String?
-  let flagName: String?
-  let journeyMap: String?
-  let description: String?
-  let title: String?
-  let subtitle: String?
-  let media: String?
-  let content: String?
+protocol CellImageButtonViewDelegate: class {
+  func cellImageButtonViewTapped()
+}
 
-  init?(json: JSON?) {
-    guard let json = json else { return nil }
+struct CellImageButtonContext: Context {
+  let label: String
+}
 
-    self.sequence = json["sequence"]?.intValue
-    self.distance = json["distance"]?.intValue
-    self.name = json["name"]?.stringValue
-    self.flagName = json["flagName"]?.stringValue
-    self.journeyMap = json["journeyMap"]?.stringValue
-    self.description = json["description"]?.stringValue
-    self.title = json["title"]?.stringValue
-    self.subtitle = json["subtitle"]?.stringValue
-    self.media = json["media"]?.stringValue
-    self.content = json["content"]?.stringValue
+class CellImageButtonView: View {
+  private let seperatorLineView = UIView()
+  private let label = UILabel(typography: .smallRegularBlue)
+  private let imageButtonImageView = WebImageView(image: Assets.disclosure.image)
+
+  weak var delegate: CellImageButtonViewDelegate?
+
+  override func commonInit() {
+    addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewTapped)))
+    seperatorLineView.backgroundColor = Style.Colors.Seperator
+
+    addSubview(seperatorLineView) {
+      $0.leading.trailing.top.equalToSuperview()
+      $0.height.equalTo(1)
+    }
+
+    addSubview(imageButtonImageView) {
+      $0.centerY.equalToSuperview()
+      $0.trailing.equalToSuperview().inset(Style.Padding.p16)
+      $0.height.equalTo(16)
+      $0.width.equalTo(10)
+    }
+
+    addSubview(label) {
+      $0.top.bottom.leading.equalToSuperview().inset(Style.Padding.p16)
+      $0.trailing.equalTo(imageButtonImageView.snp.leading).offset(-Style.Padding.p16)
+    }
+  }
+
+  func configure(context: CellImageButtonContext) {
+    label.text = context.label
+  }
+
+  @objc
+  func viewTapped() {
+    delegate?.cellImageButtonViewTapped()
   }
 }

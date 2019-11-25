@@ -102,7 +102,6 @@ extension ChallengeViewController: DisclosureCellDelegate {
       AppController.shared.shareTapped(viewController: self, shareButton: nil,
                                        string: Strings.InviteSupporters.request)
     case .showJourneyView:
-      print("Journey View")
 
       navigationController?.pushViewController(JourneyDetailViewController(), animated: true)
     }
@@ -181,7 +180,6 @@ class ChallengeDataSource: TableViewDataSource {
           if let achievement = Achievement(json: result.response) {
             self?.achievement = achievement
           }
-          print("Check getAchievement")
           group.leave()
         }
 
@@ -219,8 +217,8 @@ class ChallengeDataSource: TableViewDataSource {
 
   func getCurrentMilestone(numSteps: Int) -> Int {
     var currMilestone = -1
-    for milestone in self.achievement!.milestones {
-      if numSteps > milestone.distance! {
+    for milestone in self.achievement?.milestones ?? [] {
+      if numSteps > milestone.distance ?? 0 {
         currMilestone += 1
       } else {
         break
@@ -258,8 +256,8 @@ class ChallengeDataSource: TableViewDataSource {
     } else {
       let milestonesCompleted = getCurrentMilestone(numSteps: event.defaultStepCount) // swiftlint:disable:this line_length
       cells.append([
-        ImageButtonCellContext(
-          image: mapImage,
+        DisclosureCellContext(
+          asset: .challengeJourney,
           title: "Journey",
           body: "\(milestonesCompleted) out of 10 milestones completed",
           disclosureTitle: "View milestone details",
@@ -311,5 +309,3 @@ class ChallengeDataSource: TableViewDataSource {
     ]]
   }
 }
-
-
