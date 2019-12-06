@@ -39,6 +39,7 @@ enum AKFCausesEndPoint {
   case events
   case record(recordId: Int)
   case records
+  case leaderboard(eventId : Int)
   case source(sourceId: Int)
   case sources
   case commitment
@@ -66,6 +67,8 @@ extension AKFCausesEndPoint {
       return "/records/\(recordId)"
     case .records:
       return "/records"
+    case .leaderboard(let eventId):
+      return "/teams/stats/\(eventId)"
     case .source(let sourceId):
       return "/sources/\(sourceId)"
     case .sources:
@@ -167,6 +170,10 @@ class AKFCausesService: Service {
 
   static func getRecord(record: Int, completion: ServiceRequestCompletion? = nil) {
     shared.request(endpoint: .record(recordId: record), completion: completion)
+  }
+
+  static func getLeaderboard(eventId: Int, completion: ServiceRequestCompletion? = nil) {
+    shared.request(endpoint: .leaderboard(eventId: eventId), completion: completion)
   }
 
   static func createRecord(for participantID: Int,

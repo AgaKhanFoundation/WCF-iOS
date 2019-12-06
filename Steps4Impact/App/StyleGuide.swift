@@ -128,7 +128,8 @@ struct Style {
 }
 
 extension UILabel {
-  convenience init(typography: Style.Typography, color: UIColor? = nil) {
+  convenience init(
+    typography: Style.Typography, color: UIColor? = nil) {
     self.init()
     self.font = typography.font
     switch typography {
