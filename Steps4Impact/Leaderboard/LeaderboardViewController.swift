@@ -30,9 +30,52 @@
 import UIKit
 
 class LeaderboardViewController: TableViewController {
+
+  var isListCollapsed = true
+
   override func commonInit() {
     super.commonInit()
-    title = Strings.Leaderboard.title
     dataSource = LeaderboardDataSource()
+  }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    title = "Leaderboard"
+    view.backgroundColor = .white
+    tableView.backgroundColor = .white
+  }
+
+  override func reload() {
+    dataSource?.reload { [weak self] in
+      self?.tableView.reloadOnMain()
+    }
+  }
+}
+
+extension LeaderboardViewController {
+
+  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
+//    if let cell = cell as? LeaderboardCell {
+//      if cell.rankLabel ==
+//    }
+  }
+
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if indexPath.section == 2 {
+      let sections = IndexSet.init(integer: indexPath.section)
+      if isListCollapsed {
+        // Expand the list
+        isListCollapsed = false
+        if let dataSource = dataSource as? LeaderboardDataSource {
+          dataSource.cells[2] = dataSource.expandListDataSource
+        }
+        tableView.reloadSections(sections, with: .fade)
+
+      } else {
+        isListCollapsed = true
+        dataSource?.cells[2] = [ExpandCollapseCellContext()]
+        tableView.reloadSections(sections, with: .fade)
+      }
+    }
   }
 }

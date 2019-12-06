@@ -61,7 +61,11 @@ extension UITableView {
       EmptyLeaderboardCell.self,
       ChallengeTeamProgressCell.self,
       ConnectDeviceInformationCell.self,
-      AppInfoCell.self
+      AppInfoCell.self,
+      LeaderboardPodiumCell.self,
+      LeaderboardCell.self,
+      LeaderboardHeaderCell.self,
+      ExpandCollapseCell.self
     ].forEach { register($0) }
   }
 
