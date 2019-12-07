@@ -36,7 +36,7 @@ class LeaderboardDataSource: TableViewDataSource {
   var allTeams = [DemoLeaderboard]()
   var myTeamRank: Int?
   var myTeamId = 15
-  var expandListDataSource: [CellContext] = [ExpandCollapseCellContext()]
+  var expandListDataSource: [CellContext] = []
 
   func reload(completion: @escaping () -> Void) {
     self.completion = completion
@@ -46,8 +46,8 @@ class LeaderboardDataSource: TableViewDataSource {
 
           if let teams = result.response?.arrayValue {
             for _ in teams {
-//              guard let newLeaderboard = Leaderboard(json: team) else { return }
-//              self.allTeams.append(newLeaderboard)
+              //              guard let newLeaderboard = Leaderboard(json: team) else { return }
+              //              self.allTeams.append(newLeaderboard)
               self.configure()
               completion()
             }
@@ -62,30 +62,35 @@ class LeaderboardDataSource: TableViewDataSource {
 
   func configure() {
     cells.removeAll()
-    let podium = LeaderboardPodiumContext(firstTeamName: allTeams[safe: 0]?.name ?? "abc",
-                                          firstTeamDistance: allTeams[safe: 0]?.distance ?? 10000,
-                                          secondTeamName: allTeams[safe: 1]?.name ?? "abc",
-                                          secondTeamDistance: allTeams[safe: 1]?.distance ?? 10000,
-                                          thirdTeamName: allTeams[safe: 2]?.name ?? "abc",
-                                          thirdTeamDistance: allTeams[safe: 2]?.distance ?? 10000)
+    expandListDataSource.removeAll()
+//    let podium = LeaderboardPodiumContext(firstTeamName: allTeams[safe: 0]?.name ?? "abc",
+//                                          firstTeamDistance: allTeams[safe: 0]?.distance ?? 10000,
+//                                          secondTeamName: allTeams[safe: 1]?.name ?? "abc",
+//                                          secondTeamDistance: allTeams[safe: 1]?.distance ?? 10000,
+//                                          thirdTeamName: allTeams[safe: 2]?.name ?? "abc",
+//                                          thirdTeamDistance: allTeams[safe: 2]?.distance ?? 10000)
+    let count = allTeams.count > 2 ? 3 : allTeams.count
+    let podium = LeaderboardPodiumContext(count: count, data: allTeams)
     cells.append([podium])
     var rankTableList = [CellContext]()
+    myTeamRank = nil
     if allTeams.count > 3 {
       rankTableList.append(LeaderboardHeaderCellContext())
       for i in 3..<allTeams.count {
+
+        // Checking if current Team is in the leaderboard and note the current team's rank
         if allTeams[i].id == myTeamId {
           myTeamRank = i+1
         }
-//        if i < 6 {
-//          let leaderboard = LeaderboardContext(rank: i+1, teamName: allTeams[i].name ?? "", teamDistance: allTeams[i].distance ?? 0, isMyTeam: allTeams[i].id == myTeamId)
-//          rankTableList.append(leaderboard)
-//        } else
-          if i == 6 && myTeamRank == nil {
-            cells.append(rankTableList)
-            rankTableList.removeAll()
-            rankTableList.append(ExpandCollapseCellContext())
-            let leaderboard = LeaderboardContext(rank: i+1, teamName: allTeams[i].name ?? "", teamDistance: allTeams[i].distance ?? 0, isMyTeam: allTeams[i].id == myTeamId)
-            expandListDataSource.append(leaderboard)
+
+        // Adding a new section for expand/collapse rows to the list only if the current team's rank is not in top 6
+        if i == 6 && myTeamRank == nil {
+          cells.append(rankTableList)
+          rankTableList.removeAll()
+          rankTableList.append(ExpandCollapseCellContext())
+          expandListDataSource.append(ExpandCollapseCellContext(titletext: "Collapse"))
+          let leaderboard = LeaderboardContext(rank: i+1, teamName: allTeams[i].name ?? "", teamDistance: allTeams[i].distance ?? 0, isMyTeam: allTeams[i].id == myTeamId)
+          expandListDataSource.append(leaderboard)
         } else if i > 6 && myTeamRank == nil {
           let leaderboard = LeaderboardContext(rank: i+1, teamName: allTeams[i].name ?? "", teamDistance: allTeams[i].distance ?? 0, isMyTeam: allTeams[i].id == myTeamId)
           expandListDataSource.append(leaderboard)
@@ -95,11 +100,12 @@ class LeaderboardDataSource: TableViewDataSource {
           let leaderboard = LeaderboardContext(rank: i+1, teamName: allTeams[i].name ?? "", teamDistance: allTeams[i].distance ?? 0, isMyTeam: allTeams[i].id == myTeamId)
           rankTableList.append(leaderboard)
         } else {
-//          else if let _ = myTeamRank, i > 6 {
           let leaderboard = LeaderboardContext(rank: i+1, teamName: allTeams[i].name ?? "", teamDistance: allTeams[i].distance ?? 0, isMyTeam: allTeams[i].id == myTeamId)
           rankTableList.append(leaderboard)
         }
       }
+
+      // If my team is not present in the leaderboard, remove the expand/collapse section and merge all in one list
       if myTeamRank == nil {
         expandListDataSource.removeFirst()
         rankTableList = cells.removeLast()
