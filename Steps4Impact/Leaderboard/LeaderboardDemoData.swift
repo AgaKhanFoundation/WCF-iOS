@@ -15,7 +15,7 @@ struct DemoLeaderboard {
   var distance: Int?
   static func getRecords() -> [DemoLeaderboard] {
     var res = [DemoLeaderboard]()
-    for i in 0..<2 {
+    for i in 0..<20 {
       let new = DemoLeaderboard(id: i+1, name: "Dolemite is My Name and fucking up mother fuckers is my name", distance: 2000)
       res.append(new)
     }
