@@ -25,23 +25,22 @@ class LeaderboardHeaderCell: ConfigurableTableViewCell {
   static var identifier: String = "LeaderboardHeaderCell"
 
   let headerNameTitleLabel: UILabel = {
-    let label = UILabel(typography: .subtitleBold, color: Style.Colors.black)
+    let label = UILabel(typography: .rowTitleSemiBold, color: Style.Colors.black)
     label.textAlignment = .left
     return label
   }()
 
   let headerDistanceTitleLabel: UILabel = {
-    let label = UILabel(typography: .subtitleBold, color: Style.Colors.black)
+    let label = UILabel(typography: .rowTitleSemiBold, color: Style.Colors.black)
     label.textAlignment = .center
     return label
   }()
 
-//  let lineView: UIView = {
-//    let view = UIView()
-//    view.translatesAutoresizingMaskIntoConstraints = false
-//    view.backgroundColor = UIColor(hex: 0xF1F1F1)
-//    return view
-//  }()
+  let lineView: UIView = {
+    let view = UIView()
+    view.backgroundColor = Style.Colors.Seperator
+    return view
+  }()
 
   override func commonInit() {
     super.commonInit()
@@ -57,6 +56,12 @@ class LeaderboardHeaderCell: ConfigurableTableViewCell {
       $0.width.equalTo(Style.Size.s64)
       $0.height.equalTo(Style.Size.s24)
       $0.centerY.equalToSuperview()
+    }
+
+    contentView.addSubview(lineView) {
+      $0.leading.trailing.equalToSuperview()
+      $0.bottom.equalToSuperview()
+      $0.height.equalTo(0.5)
     }
   }
 }
@@ -75,25 +80,32 @@ class ExpandCollapseCell: ConfigurableTableViewCell {
   static var identifier: String = "ExpandCollapseCell"
 
   let titleLabel: UILabel = {
-    let label = UILabel(typography: .subtitleBold, color: Style.Colors.black)
+    let label = UILabel(typography: .bodyRegular, color: Style.Colors.grey)
     label.textAlignment = .center
     return label
   }()
 
-//  let lineView: UIView = {
-//    let view = UIView()
-//    view.translatesAutoresizingMaskIntoConstraints = false
-//    view.backgroundColor = UIColor(hex: 0xF1F1F1)
-//    return view
-//  }()
+  let lineView: UIView = {
+    let view = UIView()
+    view.backgroundColor = Style.Colors.Seperator
+    return view
+  }()
 
   override func commonInit() {
     super.commonInit()
 
    contentView.addSubview(titleLabel) {
-      $0.top.trailing.bottom.leading.equalToSuperview()
+      $0.trailing.leading.equalToSuperview()
+      $0.top.equalToSuperview().offset(Style.Padding.p4)
+      $0.bottom.equalToSuperview().inset(Style.Padding.p4)
       $0.height.equalTo(Style.Size.s32)
       $0.centerY.equalToSuperview()
+    }
+
+    contentView.addSubview(lineView) {
+      $0.leading.trailing.equalToSuperview()
+      $0.bottom.equalToSuperview()
+      $0.height.equalTo(0.5)
     }
   }
 }

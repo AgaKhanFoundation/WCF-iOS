@@ -61,6 +61,8 @@ struct Style {
   enum Typography {
     case headerTitle
     case title
+    case rowTitleRegular
+    case rowTitleSemiBold
     case subtitleRegular
     case subtitleBold
     case bodyRegular
@@ -78,6 +80,10 @@ struct Style {
         return UIFont.boldSystemFont(ofSize: 32)
       case .title:
         return UIFont.boldSystemFont(ofSize: 20)
+      case .rowTitleRegular:
+        return UIFont.systemFont(ofSize: 18, weight: .regular)
+      case .rowTitleSemiBold:
+        return UIFont.systemFont(ofSize: 18, weight: .semibold)
       case .subtitleRegular:
         return UIFont.systemFont(ofSize: 16)
       case .subtitleBold:
@@ -119,6 +125,7 @@ struct Style {
     static let p8: CGFloat = 8                                                  // swiftlint:disable:this identifier_name line_length
     static let p12: CGFloat = 12
     static let p16: CGFloat = 16
+    static let p20: CGFloat = 20
     static let p24: CGFloat = 24
     static let p32: CGFloat = 32
     static let p40: CGFloat = 40
