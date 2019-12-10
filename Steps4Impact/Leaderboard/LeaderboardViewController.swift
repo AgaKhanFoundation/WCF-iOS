@@ -39,7 +39,7 @@ class LeaderboardViewController: TableViewController {
   }
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = "Leaderboard"
+    title = Strings.Leaderboard.title
     view.backgroundColor = .white
     tableView.backgroundColor = .white
   }

@@ -33,9 +33,9 @@ class LeaderboardDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
   var completion: (() -> Void)?
 
-  var allTeams = [DemoLeaderboard]()
+  var allTeams = [Leaderboard]()
   var myTeamRank: Int?
-  var myTeamId = 15
+  var myTeamId = 55
   var expandListDataSource: [CellContext] = []
 
   func reload(completion: @escaping () -> Void) {
@@ -45,30 +45,21 @@ class LeaderboardDataSource: TableViewDataSource {
         AKFCausesService.getLeaderboard(eventId: event.id!) { (result) in
 
           if let teams = result.response?.arrayValue {
-            for _ in teams {
-              //              guard let newLeaderboard = Leaderboard(json: team) else { return }
-              //              self.allTeams.append(newLeaderboard)
-              self.configure()
-              completion()
+            for team in teams {
+              guard let newLeaderboard = Leaderboard(json: team) else { return }
+              self.allTeams.append(newLeaderboard)
             }
+            self.configure()
+            completion()
           }
         }
       }
     }
-    allTeams = DemoLeaderboard.getRecords()
-    self.configure()
-    completion()
   }
 
   func configure() {
     cells.removeAll()
     expandListDataSource.removeAll()
-//    let podium = LeaderboardPodiumContext(firstTeamName: allTeams[safe: 0]?.name ?? "abc",
-//                                          firstTeamDistance: allTeams[safe: 0]?.distance ?? 10000,
-//                                          secondTeamName: allTeams[safe: 1]?.name ?? "abc",
-//                                          secondTeamDistance: allTeams[safe: 1]?.distance ?? 10000,
-//                                          thirdTeamName: allTeams[safe: 2]?.name ?? "abc",
-//                                          thirdTeamDistance: allTeams[safe: 2]?.distance ?? 10000)
     let count = allTeams.count > 2 ? 3 : allTeams.count
     let podium = LeaderboardPodiumContext(count: count, data: allTeams)
     cells.append([podium])
@@ -113,7 +104,7 @@ class LeaderboardDataSource: TableViewDataSource {
       }
     }
     cells.append(rankTableList)
-    if cells.count == 0 {
+    if allTeams.count == 0 {
       cells = [[
         EmptyLeaderboardCellContext(body: Strings.Leaderboard.empty)
         ]]

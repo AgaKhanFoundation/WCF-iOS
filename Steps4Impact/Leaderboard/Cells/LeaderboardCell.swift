@@ -21,23 +21,25 @@ struct LeaderboardContext: CellContext {
 class LeaderboardCell: ConfigurableTableViewCell {
   static var identifier: String = "LeaderboardCell"
   var rankLabel: UILabel = {
-    let label = UILabel(typography: .title, color: Style.Colors.FoundationGrey)
-  //  label.backgroundColor = .green
-
+    let label = UILabel(typography: .rowTitleRegular, color: Style.Colors.FoundationGrey)
     label.textAlignment = .left
     return label
   }()
   var teamNameLabel: UILabel = {
-    let label = UILabel(typography: .title, color: Style.Colors.FoundationGrey)
-   // label.backgroundColor = .green
+    let label = UILabel(typography: .rowTitleRegular, color: Style.Colors.FoundationGrey)
     label.textAlignment = .left
     return label
   }()
   var teamDistanceLabel: UILabel = {
     let label = UILabel(typography: .bodyRegular, color: Style.Colors.grey)
     label.textAlignment = .right
-  //  label.backgroundColor = .green
     return label
+  }()
+
+  let lineView: UIView = {
+    let view = UIView()
+    view.backgroundColor = Style.Colors.Seperator
+    return view
   }()
 
   override func commonInit() {
@@ -52,7 +54,7 @@ class LeaderboardCell: ConfigurableTableViewCell {
 
     contentView.addSubview(teamNameLabel) {
       $0.leading.equalTo(rankLabel.snp.trailing).offset(Style.Padding.p8)
-      $0.bottom.equalToSuperview().inset(Style.Padding.p8)
+      $0.bottom.equalToSuperview().inset(Style.Padding.p20)
       $0.centerY.equalToSuperview()
       
     }
@@ -62,6 +64,12 @@ class LeaderboardCell: ConfigurableTableViewCell {
       $0.width.equalTo(Style.Size.s64)
       $0.height.equalTo(Style.Size.s24)
       $0.centerY.equalToSuperview()
+    }
+
+    contentView.addSubview(lineView) {
+      $0.leading.trailing.equalToSuperview()
+      $0.bottom.equalToSuperview()
+      $0.height.equalTo(0.5)
     }
   }
 
