@@ -45,7 +45,7 @@ class LeaderboardHeaderCell: ConfigurableTableViewCell {
   override func commonInit() {
     super.commonInit()
 
-   contentView.addSubview(headerNameTitleLabel) {
+    contentView.addSubview(headerNameTitleLabel) {
       $0.leading.equalToSuperview().offset(Style.Padding.p64)
       $0.height.equalTo(Style.Size.s32)
       $0.centerY.equalToSuperview()
@@ -94,7 +94,7 @@ class ExpandCollapseCell: ConfigurableTableViewCell {
   override func commonInit() {
     super.commonInit()
 
-   contentView.addSubview(titleLabel) {
+    contentView.addSubview(titleLabel) {
       $0.trailing.leading.equalToSuperview()
       $0.top.equalToSuperview().offset(Style.Padding.p4)
       $0.bottom.equalToSuperview().inset(Style.Padding.p4)
@@ -109,4 +109,3 @@ class ExpandCollapseCell: ConfigurableTableViewCell {
     }
   }
 }
-

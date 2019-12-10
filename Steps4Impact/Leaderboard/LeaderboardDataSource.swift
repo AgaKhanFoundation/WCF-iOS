@@ -35,26 +35,39 @@ class LeaderboardDataSource: TableViewDataSource {
 
   var allTeams = [Leaderboard]()
   var myTeamRank: Int?
-  var myTeamId = 55
+  var myTeamId: Int = -1
   var expandListDataSource: [CellContext] = []
 
   func reload(completion: @escaping () -> Void) {
     self.completion = completion
     AKFCausesService.getParticipant(fbid: FacebookService.shared.id) { (result) in
       if let participant = Participant(json: result.response), let event = participant.events?.first {
-        AKFCausesService.getLeaderboard(eventId: event.id!) { (result) in
-
-          if let teams = result.response?.arrayValue {
-            for team in teams {
-              guard let newLeaderboard = Leaderboard(json: team) else { return }
-              self.allTeams.append(newLeaderboard)
+        if let teamId = participant.team?.id {
+          self.myTeamId = teamId
+        }
+        if let eventId = event.id {
+          AKFCausesService.getLeaderboard(eventId: eventId) { (result) in
+            if let teams = result.response?.arrayValue {
+              for team in teams {
+                guard let newLeaderboard = Leaderboard(json: team) else { return }
+                self.allTeams.append(newLeaderboard)
+              }
+              self.configure()
+              completion()
             }
-            self.configure()
-            completion()
           }
         }
       }
     }
+  }
+
+  func newLeaderboardContext(for row: Int) -> LeaderboardContext {
+    let rank = row+1
+    let name = allTeams[row].name ?? ""
+    let distance = allTeams[row].distance ?? 0
+    let isMyTeam = allTeams[row].id == myTeamId
+    let context = LeaderboardContext(rank: rank, teamName: name, teamDistance: distance, isMyTeam: isMyTeam)
+    return context
   }
 
   func configure() {
@@ -67,32 +80,28 @@ class LeaderboardDataSource: TableViewDataSource {
     myTeamRank = nil
     if allTeams.count > 3 {
       rankTableList.append(LeaderboardHeaderCellContext())
-      for i in 3..<allTeams.count {
+      for index in 3..<allTeams.count {
 
         // Checking if current Team is in the leaderboard and note the current team's rank
-        if allTeams[i].id == myTeamId {
-          myTeamRank = i+1
+        if allTeams[index].id == myTeamId {
+          myTeamRank = index+1
         }
 
         // Adding a new section for expand/collapse rows to the list only if the current team's rank is not in top 6
-        if i == 6 && myTeamRank == nil {
+        if index == 6 && myTeamRank == nil {
           cells.append(rankTableList)
           rankTableList.removeAll()
           rankTableList.append(ExpandCollapseCellContext())
           expandListDataSource.append(ExpandCollapseCellContext(titletext: "Collapse"))
-          let leaderboard = LeaderboardContext(rank: i+1, teamName: allTeams[i].name ?? "", teamDistance: allTeams[i].distance ?? 0, isMyTeam: allTeams[i].id == myTeamId)
-          expandListDataSource.append(leaderboard)
-        } else if i > 6 && myTeamRank == nil {
-          let leaderboard = LeaderboardContext(rank: i+1, teamName: allTeams[i].name ?? "", teamDistance: allTeams[i].distance ?? 0, isMyTeam: allTeams[i].id == myTeamId)
-          expandListDataSource.append(leaderboard)
-        } else if allTeams[i].id == myTeamId && i > 6 {
+          expandListDataSource.append(newLeaderboardContext(for: index))
+        } else if index > 6 && myTeamRank == nil {
+          expandListDataSource.append(newLeaderboardContext(for: index))
+        } else if allTeams[index].id == myTeamId && index > 6 {
           cells.append(rankTableList)
           rankTableList.removeAll()
-          let leaderboard = LeaderboardContext(rank: i+1, teamName: allTeams[i].name ?? "", teamDistance: allTeams[i].distance ?? 0, isMyTeam: allTeams[i].id == myTeamId)
-          rankTableList.append(leaderboard)
+          rankTableList.append(newLeaderboardContext(for: index))
         } else {
-          let leaderboard = LeaderboardContext(rank: i+1, teamName: allTeams[i].name ?? "", teamDistance: allTeams[i].distance ?? 0, isMyTeam: allTeams[i].id == myTeamId)
-          rankTableList.append(leaderboard)
+          rankTableList.append(newLeaderboardContext(for: index))
         }
       }
 

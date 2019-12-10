@@ -15,7 +15,6 @@ struct LeaderboardContext: CellContext {
   var teamName: String = ""
   var teamDistance: Int = 0
   var isMyTeam: Bool = false
-  
 }
 
 class LeaderboardCell: ConfigurableTableViewCell {
@@ -35,7 +34,6 @@ class LeaderboardCell: ConfigurableTableViewCell {
     label.textAlignment = .right
     return label
   }()
-
   let lineView: UIView = {
     let view = UIView()
     view.backgroundColor = Style.Colors.Seperator
@@ -56,7 +54,7 @@ class LeaderboardCell: ConfigurableTableViewCell {
       $0.leading.equalTo(rankLabel.snp.trailing).offset(Style.Padding.p8)
       $0.bottom.equalToSuperview().inset(Style.Padding.p20)
       $0.centerY.equalToSuperview()
-      
+
     }
     contentView.addSubview(teamDistanceLabel) {
       $0.trailing.equalToSuperview().inset(Style.Padding.p16)
@@ -65,7 +63,6 @@ class LeaderboardCell: ConfigurableTableViewCell {
       $0.height.equalTo(Style.Size.s24)
       $0.centerY.equalToSuperview()
     }
-
     contentView.addSubview(lineView) {
       $0.leading.trailing.equalToSuperview()
       $0.bottom.equalToSuperview()
