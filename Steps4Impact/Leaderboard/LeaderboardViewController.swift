@@ -32,6 +32,7 @@ import UIKit
 class LeaderboardViewController: TableViewController {
 
   var isListCollapsed = true
+  var myTeamId: Int?
 
   override func commonInit() {
     super.commonInit()

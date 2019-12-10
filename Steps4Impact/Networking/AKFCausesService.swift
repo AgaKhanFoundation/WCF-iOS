@@ -39,7 +39,7 @@ enum AKFCausesEndPoint {
   case events
   case record(recordId: Int)
   case records
-  case leaderboard(eventId : Int)
+  case leaderboard(eventId: Int)
   case source(sourceId: Int)
   case sources
   case commitment

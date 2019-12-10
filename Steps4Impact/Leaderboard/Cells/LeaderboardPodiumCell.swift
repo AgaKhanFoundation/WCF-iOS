@@ -24,7 +24,6 @@ class LeaderboardPodiumCell: ConfigurableTableViewCell {
     stack.distribution = .fillEqually
     return stack
   }()
-
   override func commonInit() {
     super.commonInit()
     contentView.addSubview(stackView) {
@@ -37,15 +36,15 @@ class LeaderboardPodiumCell: ConfigurableTableViewCell {
     for view in stackView.arrangedSubviews {
       view.removeFromSuperview()
     }
-    for i in 0..<podiumCellContext.count {
+    for index in 0..<podiumCellContext.count {
 
       let teamNameLabel = TeamNameLabel()
       let teamDistanceLabel = TeamDistanceLabel()
-      let rankView = RankView(rank: i+1)
+      let rankView = RankView(rank: index+1)
       let podiumView = UIView(frame: .zero)
 
       podiumView.addSubview(rankView) {
-        $0.top.equalToSuperview().offset(Style.Padding.p12 + CGFloat(i * 30))
+        $0.top.equalToSuperview().offset(Style.Padding.p12 + CGFloat(index * 30))
         $0.centerX.equalToSuperview()
         $0.width.height.equalTo(90)
       }
@@ -58,11 +57,11 @@ class LeaderboardPodiumCell: ConfigurableTableViewCell {
         $0.top.equalTo(teamNameLabel.snp.bottom).offset(Style.Padding.p4)
         $0.leading.equalToSuperview().offset(Style.Padding.p4)
         $0.trailing.equalToSuperview().inset(Style.Padding.p4)
-        if i == podiumCellContext.count-1 {
+        if index == podiumCellContext.count-1 {
           $0.bottom.equalToSuperview().inset(Style.Padding.p12)
         }
       }
-      if i == 1 && podiumCellContext.count == 3 {
+      if index == 1 && podiumCellContext.count == 3 {
         let lastIndex = stackView.arrangedSubviews.count-1
         let firstPodiumView = stackView.arrangedSubviews[lastIndex]
         stackView.insertArrangedSubview(podiumView, at: 0)
@@ -71,8 +70,8 @@ class LeaderboardPodiumCell: ConfigurableTableViewCell {
         stackView.addArrangedSubview(podiumView)
       }
 
-      teamNameLabel.text = podiumCellContext.data[i].name
-      teamDistanceLabel.text = "\(podiumCellContext.data[i].distance ?? 0) mi"
+      teamNameLabel.text = podiumCellContext.data[index].name
+      teamDistanceLabel.text = "\(podiumCellContext.data[index].distance ?? 0) mi"
     }
   }
 }

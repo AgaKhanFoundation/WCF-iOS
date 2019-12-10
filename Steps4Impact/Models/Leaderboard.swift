@@ -9,7 +9,7 @@
 import Foundation
 
 struct Leaderboard {
-  var id: Int?
+  var id: Int?                                                                        // swiftlint:disable:this identifier_name line_length
   var name: String?
   var commitment: Int?
   var distance: Int?
