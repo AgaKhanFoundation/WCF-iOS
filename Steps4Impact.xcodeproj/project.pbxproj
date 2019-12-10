@@ -96,7 +96,6 @@
 		A594DC89238B624A003B5EF7 /* LeaderboardPodiumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594DC88238B624A003B5EF7 /* LeaderboardPodiumCell.swift */; };
 		A594DC8B238B6620003B5EF7 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594DC8A238B6620003B5EF7 /* LeaderboardCell.swift */; };
 		A594DC8D238B6DBA003B5EF7 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594DC8C238B6DBA003B5EF7 /* Leaderboard.swift */; };
-		A5C78A49238D974500EF9394 /* LeaderboardDemoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C78A48238D974500EF9394 /* LeaderboardDemoData.swift */; };
 		A5E291A6238EEF6700F61954 /* HeaderCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E291A5238EEF6700F61954 /* HeaderCells.swift */; };
 		C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */; };
 		C92244C7234AD68A0098A333 /* OAuthFitbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244C6234AD68A0098A333 /* OAuthFitbit.swift */; };
@@ -259,7 +258,6 @@
 		A594DC88238B624A003B5EF7 /* LeaderboardPodiumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardPodiumCell.swift; sourceTree = "<group>"; };
 		A594DC8A238B6620003B5EF7 /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
 		A594DC8C238B6DBA003B5EF7 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
-		A5C78A48238D974500EF9394 /* LeaderboardDemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardDemoData.swift; sourceTree = "<group>"; };
 		A5E291A5238EEF6700F61954 /* HeaderCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCells.swift; sourceTree = "<group>"; };
 		C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		C92244C6234AD68A0098A333 /* OAuthFitbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthFitbit.swift; sourceTree = "<group>"; };
@@ -740,7 +738,6 @@
 				2635EB892338AAC800BC50E9 /* Cells */,
 				265DE56B2332E492009DDA5A /* LeaderboardDataSource.swift */,
 				F0E6878E22251B7800454340 /* LeaderboardViewController.swift */,
-				A5C78A48238D974500EF9394 /* LeaderboardDemoData.swift */,
 			);
 			path = Leaderboard;
 			sourceTree = "<group>";
@@ -1142,7 +1139,6 @@
 				260BF5972324C023005F0882 /* CellDisclosureView.swift in Sources */,
 				260BF5B52324FE32005F0882 /* SettingsProfileCell.swift in Sources */,
 				2676B3C42331D45000CB0A31 /* AlertModalAnimations.swift in Sources */,
-				A5C78A49238D974500EF9394 /* LeaderboardDemoData.swift in Sources */,
 				C92244C7234AD68A0098A333 /* OAuthFitbit.swift in Sources */,
 				260BF5A52324D914005F0882 /* Button.swift in Sources */,
 				260BF5AB2324F805005F0882 /* CGFloat.swift in Sources */,
