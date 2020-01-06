@@ -93,7 +93,6 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    print("\(dataSource?.numberOfItems(in: section) ?? 0)")
     return dataSource?.numberOfItems(in: section) ?? 0
   }
 

@@ -1,40 +1,69 @@
-//
-//  LeaderboardCell.swift
-//  Steps4Impact
-//
-//  Created by Aalim Mulji on 11/24/19.
-//  Copyright © 2019 AKDN. All rights reserved.
-//
+/**
+* Copyright © 2019 Aga Khan Foundation
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions are met:
+*
+* 1. Redistributions of source code must retain the above copyright notice,
+*    this list of conditions and the following disclaimer.
+*
+* 2. Redistributions in binary form must reproduce the above copyright notice,
+*    this list of conditions and the following disclaimer in the documentation
+*    and/or other materials provided with the distribution.
+*
+* 3. The name of the author may not be used to endorse or promote products
+*    derived from this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE AUTHOR "AS IS" AND ANY EXPRESS OR IMPLIED
+* WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+* EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+* SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+* PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+* OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+* WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+* OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+* ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+**/
 
 import Foundation
 import UIKit
 
 struct LeaderboardContext: CellContext {
-  var identifier: String = LeaderboardCell.identifier
-  var rank: Int = 0
-  var teamName: String = ""
-  var teamDistance: Int = 0
-  var isMyTeam: Bool = false
+  let identifier: String = LeaderboardCell.identifier
+  let rank: Int
+  let teamName: String
+  let teamDistance: Int
+  let isMyTeam: Bool
+
+  init(rank: Int = 0, teamName: String = "", teamDistance: Int = 0, isMyTeam: Bool = false) {
+    self.rank = rank
+    self.teamName = teamName
+    self.teamDistance = teamDistance
+    self.isMyTeam = isMyTeam
+  }
 }
 
 class LeaderboardCell: ConfigurableTableViewCell {
   static var identifier: String = "LeaderboardCell"
-  var rankLabel: UILabel = {
+
+  private let rankLabel: UILabel = {
     let label = UILabel(typography: .rowTitleRegular, color: Style.Colors.FoundationGrey)
     label.textAlignment = .left
     return label
   }()
-  var teamNameLabel: UILabel = {
+  private let teamNameLabel: UILabel = {
     let label = UILabel(typography: .rowTitleRegular, color: Style.Colors.FoundationGrey)
     label.textAlignment = .left
     return label
   }()
-  var teamDistanceLabel: UILabel = {
+  private let teamDistanceLabel: UILabel = {
     let label = UILabel(typography: .bodyRegular, color: Style.Colors.grey)
     label.textAlignment = .right
     return label
   }()
-  let lineView: UIView = {
+  private let lineView: UIView = {
     let view = UIView()
     view.backgroundColor = Style.Colors.Seperator
     return view
@@ -71,7 +100,6 @@ class LeaderboardCell: ConfigurableTableViewCell {
   }
 
   func configure(context: CellContext) {
-
     guard let cellContext = context as? LeaderboardContext else { return }
 
     if cellContext.isMyTeam {
@@ -86,6 +114,5 @@ class LeaderboardCell: ConfigurableTableViewCell {
     rankLabel.text = "\(cellContext.rank)."
     teamNameLabel.text = "\(cellContext.teamName)"
     teamDistanceLabel.text = "\(cellContext.teamDistance) mi"
-
   }
 }

@@ -92,7 +92,7 @@ class LeaderboardDataSource: TableViewDataSource {
           cells.append(rankTableList)
           rankTableList.removeAll()
           rankTableList.append(ExpandCollapseCellContext())
-          expandListDataSource.append(ExpandCollapseCellContext(titletext: "Collapse"))
+          expandListDataSource.append(ExpandCollapseCellContext(titleText: "Collapse"))
           expandListDataSource.append(newLeaderboardContext(for: index))
         } else if index > 6 && myTeamRank == nil {
           expandListDataSource.append(newLeaderboardContext(for: index))
