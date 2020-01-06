@@ -1,42 +1,68 @@
-//
-//  LeaderboardHeaderCell.swift
-//  Steps4Impact
-//
-//  Created by Aalim Mulji on 11/27/19.
-//  Copyright © 2019 AKDN. All rights reserved.
-//
+/**
+* Copyright © 2019 Aga Khan Foundation
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions are met:
+*
+* 1. Redistributions of source code must retain the above copyright notice,
+*    this list of conditions and the following disclaimer.
+*
+* 2. Redistributions in binary form must reproduce the above copyright notice,
+*    this list of conditions and the following disclaimer in the documentation
+*    and/or other materials provided with the distribution.
+*
+* 3. The name of the author may not be used to endorse or promote products
+*    derived from this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE AUTHOR "AS IS" AND ANY EXPRESS OR IMPLIED
+* WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+* EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+* SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+* PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+* OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+* WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+* OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+* ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+**/
 
 import Foundation
 import UIKit
 
 struct LeaderboardHeaderCellContext: CellContext {
-  var identifier: String = LeaderboardHeaderCell.identifier
-  var teamTitle: String = "Team Name"
-  var distanceTitle: String = "Miles"
+  let identifier: String = LeaderboardHeaderCell.identifier
+  let teamTitle: String
+  let distanceTitle: String
+
+  init(teamTitle: String = "Team Name", distanceTitle: String = "Miles") {
+    self.teamTitle = teamTitle
+    self.distanceTitle = distanceTitle
+  }
 }
 
 class LeaderboardHeaderCell: ConfigurableTableViewCell {
+  static var identifier: String = "LeaderboardHeaderCell"
+
   func configure(context: CellContext) {
     guard let context = context as? LeaderboardHeaderCellContext else { return }
     headerNameTitleLabel.text = context.teamTitle
     headerDistanceTitleLabel.text = context.distanceTitle
   }
 
-  static var identifier: String = "LeaderboardHeaderCell"
-
-  let headerNameTitleLabel: UILabel = {
+  private let headerNameTitleLabel: UILabel = {
     let label = UILabel(typography: .rowTitleSemiBold, color: Style.Colors.black)
     label.textAlignment = .left
     return label
   }()
 
-  let headerDistanceTitleLabel: UILabel = {
+  private let headerDistanceTitleLabel: UILabel = {
     let label = UILabel(typography: .rowTitleSemiBold, color: Style.Colors.black)
     label.textAlignment = .center
     return label
   }()
 
-  let lineView: UIView = {
+  private let lineView: UIView = {
     let view = UIView()
     view.backgroundColor = Style.Colors.Seperator
     return view
@@ -67,25 +93,29 @@ class LeaderboardHeaderCell: ConfigurableTableViewCell {
 }
 
 struct ExpandCollapseCellContext: CellContext {
-  var identifier: String = ExpandCollapseCell.identifier
-  var titletext: String = "Expand"
+  let identifier: String = ExpandCollapseCell.identifier
+  let titleText: String
+
+  init(titleText: String = "Expand") {
+    self.titleText = titleText
+  }
 }
 
 class ExpandCollapseCell: ConfigurableTableViewCell {
-  func configure(context: CellContext) {
-    guard let context = context as? ExpandCollapseCellContext else { return }
-    titleLabel.text = context.titletext
-  }
-
   static var identifier: String = "ExpandCollapseCell"
 
-  let titleLabel: UILabel = {
+  func configure(context: CellContext) {
+    guard let context = context as? ExpandCollapseCellContext else { return }
+    titleLabel.text = context.titleText
+  }
+
+  private let titleLabel: UILabel = {
     let label = UILabel(typography: .bodyRegular, color: Style.Colors.grey)
     label.textAlignment = .center
     return label
   }()
 
-  let lineView: UIView = {
+  private let lineView: UIView = {
     let view = UIView()
     view.backgroundColor = Style.Colors.Seperator
     return view
