@@ -38,19 +38,6 @@ enum MilestoneStatus {
   case completed
 }
 
-struct Milestone {
-  var sequence = 0
-  var distance = 0
-  var name = ""
-  var flagName = ""
-  var journeyMap = ""
-  var description = ""
-  var title = ""
-  var subTitle = ""
-  var media = ""
-  var content = ""
-}
-
 class JourneyDataSource: TableViewDataSource {
   var cells = [[CellContext]]()
   var completion: (() -> Void)?
@@ -124,7 +111,7 @@ class JourneyDataSource: TableViewDataSource {
                             journeyMap: milestones[index].journeyMap,
                             description: milestones[index].description,
                             title: milestones[index].title,
-                            subTitle: milestones[index].subTitle,
+                            subTitle: milestones[index].subtitle,
                             media: milestones[index].media,
                             content: milestones[index].content,
                             status: status)
@@ -138,7 +125,7 @@ class JourneyDataSource: TableViewDataSource {
                                    journeyMap: milestones[index].journeyMap,
                                    description: milestones[index].description,
                                    title: milestones[index].title,
-                                   subTitle: milestones[index].subTitle,
+                                   subTitle: milestones[index].subtitle,
                                    media: milestones[index].media,
                                    content: milestones[index].content,
                                    status: .current)
