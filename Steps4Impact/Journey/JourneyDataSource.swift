@@ -58,7 +58,7 @@ class JourneyDataSource: TableViewDataSource {
   var distanceToNextMilestone = 0
   var distanceCoveredToNextMilestone = 0
   var nameOfNextMilestone = ""
-  var milestones = MilestoneDetails.milestones()
+  var milestones: [Milestone] = []
 
   func reload(completion: @escaping () -> Void) {
     self.completion = completion
