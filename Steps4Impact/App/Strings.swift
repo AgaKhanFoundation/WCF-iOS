@@ -127,6 +127,10 @@ struct Strings {
       static let errorBody = NSLocalizedString("Challenge.CreateTeam.errorBody", comment: "")
       static let successTitle = NSLocalizedString("Challenge.CreateTeam.successTitle", comment: "")
       static let `continue` = NSLocalizedString("Challenge.CreateTeam.continue", comment: "")
+      static let visibilityBodyOn = ""
+      static let visibilityBodyOff = ""
+      static let teamPhotoText = ""
+      static let teamVisibilityText = ""
     }
 
     struct JoinTeam { // swiftlint:disable:this nesting
