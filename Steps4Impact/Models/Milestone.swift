@@ -30,29 +30,41 @@
 import Foundation
 
 struct Milestone {
-  let sequence: Int?
-  let distance: Int?
-  let name: String?
-  let flagName: String?
-  let journeyMap: String?
-  let description: String?
-  let title: String?
-  let subtitle: String?
-  let media: String?
-  let content: String?
-
+  let sequence: Int
+  let distance: Int
+  let name: String
+  let flagName: String
+  let journeyMap: String
+  let description: String
+  let title: String
+  let subtitle: String
+  let media: String
+  let content: String
+  
   init?(json: JSON?) {
-    guard let json = json else { return nil }
+    guard
+      let json = json,
+      let sequence = json["sequence"]?.intValue,
+      let distance = json["distance"]?.intValue,
+      let name = json["name"]?.stringValue,
+      let flagName = json["flagName"]?.stringValue,
+      let journeyMap = json["journeyMap"]?.stringValue,
+      let description = json["description"]?.stringValue,
+      let title = json["title"]?.stringValue,
+      let subtitle = json["subtitle"]?.stringValue,
+      let media = json["media"]?.stringValue,
+      let content = json["content"]?.stringValue
+    else { return nil }
 
-    self.sequence = json["sequence"]?.intValue
-    self.distance = json["distance"]?.intValue
-    self.name = json["name"]?.stringValue
-    self.flagName = json["flagName"]?.stringValue
-    self.journeyMap = json["journeyMap"]?.stringValue
-    self.description = json["description"]?.stringValue
-    self.title = json["title"]?.stringValue
-    self.subtitle = json["subtitle"]?.stringValue
-    self.media = json["media"]?.stringValue
-    self.content = json["content"]?.stringValue
+    self.sequence = sequence
+    self.distance = distance
+    self.name = name
+    self.flagName = flagName
+    self.journeyMap = journeyMap
+    self.description = description
+    self.title = title
+    self.subtitle = subtitle
+    self.media = media
+    self.content = content
   }
 }

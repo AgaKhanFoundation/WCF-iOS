@@ -218,7 +218,7 @@ class ChallengeDataSource: TableViewDataSource {
   func getCurrentMilestone(numSteps: Int) -> Int {
     var currMilestone = -1
     for milestone in self.achievement?.milestones ?? [] {
-      if numSteps > milestone.distance ?? 0 {
+      if numSteps > milestone.distance {
         currMilestone += 1
       } else {
         break
