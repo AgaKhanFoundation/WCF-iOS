@@ -78,6 +78,11 @@
 		269E35241E767807000726C2 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35231E767807000726C2 /* Team.swift */; };
 		269E35291E767AE1000726C2 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E35281E767AE1000726C2 /* Collection.swift */; };
 		26A475A32353E63400059764 /* AppInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A475A22353E63400059764 /* AppInfoCell.swift */; };
+		26A9829523CABAA200A5BD35 /* JourneyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9829423CABAA200A5BD35 /* JourneyDetailViewController.swift */; };
+		26A9829723CABABF00A5BD35 /* ImageButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9829623CABABF00A5BD35 /* ImageButtonCell.swift */; };
+		26A9829923CABAD800A5BD35 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9829823CABAD800A5BD35 /* Achievement.swift */; };
+		26A9829B23CABAE800A5BD35 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9829A23CABAE800A5BD35 /* Milestone.swift */; };
+		26A9829D23CABB8D00A5BD35 /* CellImageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9829C23CABB8D00A5BD35 /* CellImageButtonView.swift */; };
 		26B2793823765FFA000CEE94 /* Keyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B2793723765FFA000CEE94 /* Keyboardable.swift */; };
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
 		26E9C0FA233838A700800E8A /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9C0F9233838A700800E8A /* OnboardingPageViewController.swift */; };
@@ -242,6 +247,11 @@
 		269E35231E767807000726C2 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		269E35281E767AE1000726C2 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		26A475A22353E63400059764 /* AppInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoCell.swift; sourceTree = "<group>"; };
+		26A9829423CABAA200A5BD35 /* JourneyDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyDetailViewController.swift; sourceTree = "<group>"; };
+		26A9829623CABABF00A5BD35 /* ImageButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageButtonCell.swift; sourceTree = "<group>"; };
+		26A9829823CABAD800A5BD35 /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
+		26A9829A23CABAE800A5BD35 /* Milestone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
+		26A9829C23CABB8D00A5BD35 /* CellImageButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellImageButtonView.swift; sourceTree = "<group>"; };
 		26B2793723765FFA000CEE94 /* Keyboardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboardable.swift; sourceTree = "<group>"; };
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		26E9C0F9233838A700800E8A /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
@@ -353,6 +363,7 @@
 				F0C6D50C1EA3071A008E3B82 /* SelectionButton.swift */,
 				260BF5912324B2C6005F0882 /* View.swift */,
 				265DE5632332BDAA009DDA5A /* WebImageView.swift */,
+				26A9829C23CABB8D00A5BD35 /* CellImageButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -500,6 +511,7 @@
 				26FE2454232234A300E01B9B /* EmptyCell.swift */,
 				260BF5A22324D4B7005F0882 /* InfoCell.swift */,
 				2622C0952324A0490092B145 /* TableViewCell.swift */,
+				26A9829623CABABF00A5BD35 /* ImageButtonCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -698,6 +710,7 @@
 		F058BD8322276F54006C7F20 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				26A9829823CABAD800A5BD35 /* Achievement.swift */,
 				F0681D261ED53CA70029278E /* Cause.swift */,
 				F03D77DD1EA83B0800A70230 /* Event.swift */,
 				F06254C01ECD5D1700168DD6 /* Participant.swift */,
@@ -709,6 +722,7 @@
 				F02F1733234B9B3E008A1CD6 /* Commitment.swift */,
 				C9BAEECF235D5C4E00A8D7AF /* FitbitStep.swift */,
 				A594DC8C238B6DBA003B5EF7 /* Leaderboard.swift */,
+				26A9829A23CABAE800A5BD35 /* Milestone.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -721,6 +735,7 @@
 				265DE5722332FBA9009DDA5A /* JoinTeam.swift */,
 				265DE56D2332F633009DDA5A /* Cells */,
 				F02C5DB32339D4F70028FDA9 /* CreateTeamSuccessViewController.swift */,
+				26A9829423CABAA200A5BD35 /* JourneyDetailViewController.swift */,
 			);
 			path = Challenge;
 			sourceTree = "<group>";
@@ -1108,6 +1123,7 @@
 				26FE244D23222E8500E01B9B /* Context.swift in Sources */,
 				265DE56C2332E492009DDA5A /* LeaderboardDataSource.swift in Sources */,
 				F0CF39861EE0E903006A7462 /* Record.swift in Sources */,
+				26A9829923CABAD800A5BD35 /* Achievement.swift in Sources */,
 				260BF59A2324CFA6005F0882 /* EmptyActivityCardCell.swift in Sources */,
 				260BF5A12324D0BE005F0882 /* DisclosureCell.swift in Sources */,
 				26570DDD234B0B930016F189 /* RxSwift.swift in Sources */,
@@ -1149,6 +1165,7 @@
 				A594DC8B238B6620003B5EF7 /* LeaderboardCell.swift in Sources */,
 				F02FB4A01E9187B30097481D /* PedometerDataProvider.swift in Sources */,
 				F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */,
+				26A9829523CABAA200A5BD35 /* JourneyDetailViewController.swift in Sources */,
 				26FE24532322332D00E01B9B /* UITableView.swift in Sources */,
 				F078D9E02334964200EF0BAD /* ConnectSourceDataSource.swift in Sources */,
 				265DE5712332FB38009DDA5A /* CreateTeam.swift in Sources */,
@@ -1178,6 +1195,7 @@
 				F078D9D52333EC3000EF0BAD /* AKFLogin.swift in Sources */,
 				2668B06B2361936300309B9D /* AppSecrets.generated.swift in Sources */,
 				F0F8EDD92210C7FA00321A6D /* ChallengeCard.swift in Sources */,
+				26A9829B23CABAE800A5BD35 /* Milestone.swift in Sources */,
 				2676B3CA2331F18B00CB0A31 /* TeamSettingsHeaderCell.swift in Sources */,
 				2611A5082335FF290030E77E /* Service.swift in Sources */,
 				F078D9DC233478E900EF0BAD /* ConnectSourceViewController.swift in Sources */,
@@ -1188,6 +1206,7 @@
 				F0CBDA4E1EA6FCAB00BB34F1 /* Supporter.swift in Sources */,
 				A594DC89238B624A003B5EF7 /* LeaderboardPodiumCell.swift in Sources */,
 				260BF5922324B2C6005F0882 /* View.swift in Sources */,
+				26A9829D23CABB8D00A5BD35 /* CellImageButtonView.swift in Sources */,
 				2606948B1E7DD1A200BFED76 /* Date.swift in Sources */,
 				F017B6932276B99A0023E84B /* OnboardingCreateTeam.swift in Sources */,
 				260BF5952324B3FC005F0882 /* ProfileCardCell.swift in Sources */,
@@ -1206,6 +1225,7 @@
 				F0CF39881EE0EA98006A7462 /* Source.swift in Sources */,
 				C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */,
 				260BF5902324B28D005F0882 /* CardView.swift in Sources */,
+				26A9829723CABABF00A5BD35 /* ImageButtonCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
