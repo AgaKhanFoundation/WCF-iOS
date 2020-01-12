@@ -193,9 +193,8 @@ class CreateTeamViewController: ViewController, UINavigationControllerDelegate, 
       dismiss(animated: true, completion: nil)
   }
 
-  // swiftlint:disable:next colon
   func imagePickerController(_ picker: UIImagePickerController,
-                             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+                             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
       print("\(info)")
       if let image = info[.originalImage] as? UIImage {
           imgButton.setImage(image, for: .normal)
