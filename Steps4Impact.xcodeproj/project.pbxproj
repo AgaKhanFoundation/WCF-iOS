@@ -106,7 +106,6 @@
 		A53E7B3F236F58D2006BD6D9 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E7B3E236F58D2006BD6D9 /* UICollectionView.swift */; };
 		A53E7B41236F59F0006BD6D9 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E7B40236F59F0006BD6D9 /* CollectionViewCell.swift */; };
 		A57A29FC236E408E002AA380 /* BadgesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57A29FB236E408E002AA380 /* BadgesCollectionViewController.swift */; };
-		A57A29FD236E408E002AA380 /* BadgesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57A29FB236E408E002AA380 /* BadgesCollectionViewController.swift */; };
 		A5865EB32377617500C551E9 /* BadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5865EB22377617500C551E9 /* BadgeCell.swift */; };
 		A5865EB5237761BF00C551E9 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5865EB4237761BF00C551E9 /* HeaderCell.swift */; };
 		A594DC89238B624A003B5EF7 /* LeaderboardPodiumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594DC88238B624A003B5EF7 /* LeaderboardPodiumCell.swift */; };
@@ -1117,7 +1116,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2611A4EF2335F8350030E77E /* Steps4ImpactSpec.swift in Sources */,
-				A57A29FD236E408E002AA380 /* BadgesCollectionViewController.swift in Sources */,
 				26388A7123492F5600C83AC2 /* LocalizationSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
