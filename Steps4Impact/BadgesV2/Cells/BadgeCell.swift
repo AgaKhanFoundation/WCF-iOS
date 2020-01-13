@@ -9,15 +9,15 @@
 import Foundation
 import UIKit
 
-struct Badge : CellContext {
+struct Badge: CellContext {
   var identifier: String = BadgeCell.identifier
-  var stepsCompleted : Int = 0
-  var streak : Int = 0
-  var teamProgress : Int = 0
-  var personalProgress : Int = 0
-  var finalMedalAchieved : FinalMedalType = .unknown
-  var date : Date?
-  var badgeType : BadgeType = .unknown
+  var stepsCompleted: Int = 0
+  var streak: Int = 0
+  var teamProgress: Int = 0
+  var personalProgress: Int = 0
+  var finalMedalAchieved: FinalMedalType = .unknown
+  var date: Date?
+  var badgeType: BadgeType = .unknown
 }
 
 protocol BadgeCellDelegate: class {
@@ -26,56 +26,50 @@ protocol BadgeCellDelegate: class {
 
 class BadgeCell: ConfigurableCollectionViewCell {
   static var identifier: String = "BadgeCell"
-  
+
   func configure(context: CellContext) {
     guard let badge = context as? Badge else { return }
-    var isDateAvailable : Bool = false
-    var formattedDateString : String = ""
+    var isDateAvailable: Bool = false
+    var formattedDateString: String = ""
     if let date = badge.date {
       isDateAvailable = true
       formattedDateString = dateFormatter.string(from: date)
     }
-    
+
     badgeImageView.alpha = 1
     badgeLabel.alpha = 1
     finalMedalImageView.alpha = 0
     finalMedalLabel.alpha = 0
-    
+
     switch badge.badgeType {
-    case .steps:
+    case .steps:                                  // swiftlint:disable:next line_length
       badgeLabel.text = #"\#(badge.stepsCompleted) steps completed \#(isDateAvailable ? "on \(formattedDateString)" : "")"#
-      break
-    case .streak:
+    case .streak:                                 // swiftlint:disable:next line_length
       badgeLabel.text = #"\#(badge.streak) days streak completed \#(isDateAvailable ? "on \(formattedDateString)" : "")"#
-      break
-    case .personalProgress:
+    case .personalProgress:                       // swiftlint:disable:next line_length
       badgeLabel.text = #"Completed \#(badge.personalProgress) miles \#(isDateAvailable ? "on \(formattedDateString)" : "")"#
-      break
     case .teamProgress:
       badgeLabel.text = "Team completed \(badge.teamProgress)% of journey"
-      break
     case .finalMedal:
       badgeImageView.alpha = 0
       badgeLabel.alpha = 0
       finalMedalImageView.alpha = 1
       finalMedalLabel.alpha = 1
       finalMedalLabel.text = "\(badge.finalMedalAchieved.rawValue) Level Badge"
-      break
     default:
       badgeLabel.text = ""
-      break
     }
   }
-  
-  let dateFormatter : DateFormatter = {
+
+  let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .long
     formatter.timeStyle = .none
     return formatter
   }()
-  
-  weak var delegate : BadgeCellDelegate?
-  
+
+  weak var delegate: BadgeCellDelegate?
+
   let badgeImageView: UIImageView = {
     let imageView = UIImageView()
     imageView.image = Assets.badgeIcon.image
@@ -85,7 +79,7 @@ class BadgeCell: ConfigurableCollectionViewCell {
     imageView.layer.cornerRadius = 36
     return imageView
   }()
-  
+
   let finalMedalImageView: UIImageView = {
     let imageView = UIImageView()
     imageView.image = Assets.badgeIcon.image
@@ -95,7 +89,7 @@ class BadgeCell: ConfigurableCollectionViewCell {
     imageView.layer.cornerRadius = 75
     return imageView
   }()
-  
+
   let finalMedalLabel: UILabel = {
     let label = UILabel(typography: .headerTitle)
     label.textAlignment = .center
@@ -104,7 +98,7 @@ class BadgeCell: ConfigurableCollectionViewCell {
     label.textColor = UIColor(hex: 0x363F44)
     return label
   }()
-  
+
   let badgeLabel: UILabel = {
     let label = UILabel(typography: .footnote)
     label.textAlignment = .center
@@ -113,40 +107,34 @@ class BadgeCell: ConfigurableCollectionViewCell {
     label.textColor = UIColor(hex: 0x363F44)
     return label
   }()
-  
+
   override func commonInit() {
     super.commonInit()
-    
     contentView.addSubview(badgeImageView) {
       $0.width.height.equalTo(72)
       $0.centerX.equalToSuperview()
       $0.top.equalToSuperview().offset(Style.Padding.p24)
     }
-    
     contentView.addSubview(badgeLabel) {
       $0.top.equalTo(badgeImageView.snp.bottom).offset(Style.Padding.p8)
       $0.bottom.equalToSuperview().inset(Style.Padding.p8)
       $0.leading.equalToSuperview().offset(Style.Padding.p4)
       $0.trailing.equalToSuperview().inset(Style.Padding.p4)
     }
-    
     contentView.addSubview(finalMedalImageView) {
       $0.width.height.equalTo(150)
       $0.centerX.equalToSuperview()
       $0.top.equalToSuperview().offset(Style.Padding.p48)
     }
-    
     contentView.addSubview(finalMedalLabel) {
       $0.top.equalTo(finalMedalImageView.snp.bottom).offset(Style.Padding.p12)
       $0.bottom.equalToSuperview().inset(Style.Padding.p12)
       $0.leading.equalToSuperview().offset(Style.Padding.p16)
       $0.trailing.equalToSuperview().inset(Style.Padding.p16)
     }
-    
     badgeImageView.alpha = 1
     badgeLabel.alpha = 1
     finalMedalImageView.alpha = 0
     finalMedalLabel.alpha = 0
   }
-  
 }

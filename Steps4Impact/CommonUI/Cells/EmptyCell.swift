@@ -47,7 +47,7 @@ class EmptyCell: ConfigurableTableViewCell {
 
 class EmptyCollectionViewCell: ConfigurableCollectionViewCell {
 
-  static var identifier : String = "Empty Cell"
+  static var identifier: String = "Empty Cell"
 
   override func commonInit() {
     backgroundColor = nil

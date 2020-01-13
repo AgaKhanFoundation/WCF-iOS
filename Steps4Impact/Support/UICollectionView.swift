@@ -6,13 +6,12 @@
 //  Copyright © 2019 AKDN. All rights reserved.
 //
 
-
 import Foundation
 
 import UIKit
 
 extension UICollectionView {
-
+  // swiftlint:disable:next line_length
   func configure<V>(with viewController: V) where V: UICollectionViewDataSource & UICollectionViewDelegateFlowLayout & UICollectionViewDelegate {
      backgroundColor = Steps4Impact.Style.Colors.Background
      delegate = viewController
@@ -22,7 +21,7 @@ extension UICollectionView {
 
    func registerAllCells() {
      [
-       BadgeCell.self,
+       BadgeCell.self
      ].forEach { register($0) }
    }
 
@@ -36,8 +35,9 @@ extension UICollectionView {
     }
   }
 
+  // swiftlint:disable:next line_length
   func dequeueAndConfigureReusableCell(dataSource: CollectionViewDataSource?, indexPath: IndexPath) -> ConfigurableCollectionViewCell {
-      guard let cellContext = dataSource?.cell(for: indexPath),
+      guard let cellContext = dataSource?.cell(for: indexPath), // swiftlint:disable:next line_length
         let cell = dequeueReusableCell(withReuseIdentifier: cellContext.identifier, for: indexPath) as? ConfigurableCollectionViewCell
         else {
           assertionFailure("Trying to dequeue a cell that was not registered")
@@ -48,4 +48,3 @@ extension UICollectionView {
       return cell
     }
   }
-

@@ -54,7 +54,7 @@ class TableViewController: ViewController {
 
   override func configureView() {
     super.configureView()
-    
+
     extendedLayoutIncludesOpaqueBars = true
     refreshControl.tintColor = Style.Colors.black
     refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)

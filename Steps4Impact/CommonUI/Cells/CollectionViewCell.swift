@@ -6,12 +6,11 @@
 //  Copyright © 2019 AKDN. All rights reserved.
 //
 
-
 import Foundation
 
 import UIKit
 
-class CollectionViewCell : UICollectionViewCell {
+class CollectionViewCell: UICollectionViewCell {
 //
 //  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 //    super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,4 +32,3 @@ class CollectionViewCell : UICollectionViewCell {
     backgroundColor = nil
   }
 }
-
