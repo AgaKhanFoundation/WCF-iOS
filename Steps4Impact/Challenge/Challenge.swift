@@ -105,7 +105,7 @@ extension ChallengeViewController: DisclosureCellDelegate {
       let journeyVC = JourneyViewController()
       if let journeyDataSource = journeyVC.dataSource as? JourneyDataSource, let challengeDataSource = self.dataSource as? ChallengeDataSource {
         journeyDataSource.milestones = challengeDataSource.milestones ?? []
-        journeyDataSource.totalDistance = 8580000 //challengeDataSource.teamTotalSteps
+        journeyDataSource.totalDistance = challengeDataSource.teamTotalSteps
       }
       navigationController?.pushViewController(journeyVC, animated: true)
     }
@@ -240,7 +240,7 @@ class ChallengeDataSource: TableViewDataSource {
       return
     }
 
-    guard let event = participant?.currentEvent,
+    guard let event = participant?.events?.first,
           let team = participant?.team else {
       return
     }
@@ -268,10 +268,22 @@ class ChallengeDataSource: TableViewDataSource {
       ])
     } else {
 
+      // If need to get the sum of only the last record of every team member
+//      teamTotalSteps = teamMembers.reduce(0, { (total, team) -> Int in
+//        guard let records = team.records, records.count > 0 else { return total + 0 }
+//        return total + (records[0].distance ?? 0)
+//      })
+
+      // If we need to get sum of all records of every team member
       teamTotalSteps = teamMembers.reduce(0, { (total, team) -> Int in
-        guard let records = team.records, records.count > 0 else { return total + 0 }
-        return total + (records[0].distance ?? 0)
+        guard let records = team.records else { return total + 0 }
+        var sum = 0
+        for record in records {
+          sum += (record.distance ?? 0)
+        }
+        return total + sum
       })
+
       let milestonesCompleted = getCurrentMilestone(numSteps: teamTotalSteps)
       cells.append([
         DisclosureCellContext(
@@ -315,6 +327,7 @@ class ChallengeDataSource: TableViewDataSource {
         disclosureTitle: "Invite supporters to pledge",
         context: ChallengeContext.inviteSupporters)
     ])
+
   }
 
   private func configureNoTeamCells() {
