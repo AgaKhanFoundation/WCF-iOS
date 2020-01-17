@@ -55,7 +55,7 @@ class LeaderboardViewController: TableViewController {
 extension LeaderboardViewController {
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    if indexPath.section == 2 {
+    if indexPath.section == 2, indexPath.row == 0 {
       let sections = IndexSet.init(integer: indexPath.section)
       if isListCollapsed {
         // Expand the list

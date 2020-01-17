@@ -113,6 +113,7 @@
 		A594DC8D238B6DBA003B5EF7 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594DC8C238B6DBA003B5EF7 /* Leaderboard.swift */; };
 		A5A8E15F2370670500988F71 /* BadgeCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A8E15E2370670500988F71 /* BadgeCollectionDataSource.swift */; };
 		A5D2E7C723D1A30D00C3011D /* MilestonesDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2E7C623D1A30C00C3011D /* MilestonesDetails.swift */; };
+		A5D2E7CB23D24A7C00C3011D /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2E7CA23D24A7C00C3011D /* Challenge.swift */; };
 		A5E291A6238EEF6700F61954 /* HeaderCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E291A5238EEF6700F61954 /* HeaderCells.swift */; };
 		C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */; };
 		C92244C7234AD68A0098A333 /* OAuthFitbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244C6234AD68A0098A333 /* OAuthFitbit.swift */; };
@@ -151,7 +152,6 @@
 		F0CBDA521EA6FF1D00BB34F1 /* Sponsor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */; };
 		F0CF39861EE0E903006A7462 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF39851EE0E903006A7462 /* Record.swift */; };
 		F0CF39881EE0EA98006A7462 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF39871EE0EA98006A7462 /* Source.swift */; };
-		F0D16A3C2218AD810081440C /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D16A3B2218AD810081440C /* Challenge.swift */; };
 		F0D2378C23387BC100F41DB4 /* InviteSupportersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D2378B23387BC100F41DB4 /* InviteSupportersViewController.swift */; };
 		F0DE162C221F8DD900FF17C9 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DE162B221F8DD900FF17C9 /* Result.swift */; };
 		F0E6878F22251B7800454340 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6878E22251B7800454340 /* LeaderboardViewController.swift */; };
@@ -292,6 +292,7 @@
 		A594DC8C238B6DBA003B5EF7 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
 		A5A8E15E2370670500988F71 /* BadgeCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCollectionDataSource.swift; sourceTree = "<group>"; };
 		A5D2E7C623D1A30C00C3011D /* MilestonesDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MilestonesDetails.swift; sourceTree = "<group>"; };
+		A5D2E7CA23D24A7C00C3011D /* Challenge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		A5E291A5238EEF6700F61954 /* HeaderCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCells.swift; sourceTree = "<group>"; };
 		C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		C92244C6234AD68A0098A333 /* OAuthFitbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthFitbit.swift; sourceTree = "<group>"; };
@@ -332,7 +333,6 @@
 		F0CBDA511EA6FF1D00BB34F1 /* Sponsor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sponsor.swift; sourceTree = "<group>"; };
 		F0CF39851EE0E903006A7462 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		F0CF39871EE0EA98006A7462 /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
-		F0D16A3B2218AD810081440C /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		F0D2378B23387BC100F41DB4 /* InviteSupportersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteSupportersViewController.swift; sourceTree = "<group>"; };
 		F0DE162B221F8DD900FF17C9 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		F0E6878E22251B7800454340 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
@@ -769,7 +769,7 @@
 		F0D16A3A2218AD530081440C /* Challenge */ = {
 			isa = PBXGroup;
 			children = (
-				F0D16A3B2218AD810081440C /* Challenge.swift */,
+				A5D2E7CA23D24A7C00C3011D /* Challenge.swift */,
 				265DE5702332FB38009DDA5A /* CreateTeam.swift */,
 				265DE5722332FBA9009DDA5A /* JoinTeam.swift */,
 				265DE56D2332F633009DDA5A /* Cells */,
@@ -1128,7 +1128,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AAA32A023655CB5002B7479 /* LoginButton.swift in Sources */,
-				F0D16A3C2218AD810081440C /* Challenge.swift in Sources */,
 				26B2793823765FFA000CEE94 /* Keyboardable.swift in Sources */,
 				F017B68E227686A60023E84B /* OnboardingWelcome.swift in Sources */,
 				260BF5B22324FD37005F0882 /* SettingsDataSource.swift in Sources */,
@@ -1156,6 +1155,7 @@
 				F02FB4A21E9188E40097481D /* HealthKitDataProvider.swift in Sources */,
 				26FE24472322295300E01B9B /* ViewController.swift in Sources */,
 				F06254C11ECD5D1700168DD6 /* Participant.swift in Sources */,
+				A5D2E7CB23D24A7C00C3011D /* Challenge.swift in Sources */,
 				26A475A32353E63400059764 /* AppInfoCell.swift in Sources */,
 				F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */,
 				F00403191EC3FB7D005E6F10 /* (null) in Sources */,

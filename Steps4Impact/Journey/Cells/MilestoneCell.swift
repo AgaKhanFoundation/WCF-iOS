@@ -96,16 +96,19 @@ class MilestoneCell: ConfigurableTableViewCell {
       verticalBar.backgroundColor = Style.Colors.Seperator
       milestoneCountLabel.textColor = Style.Colors.FoundationGrey
       milestoneNameButton.setTitleColor(Style.Colors.black, for: .normal)
+      milestoneNameButton.isEnabled = false
     case .completed:
       circle.backgroundColor = Style.Colors.FoundationGreen
       verticalBar.backgroundColor = Style.Colors.FoundationGreen
       milestoneCountLabel.textColor = Style.Colors.black
       milestoneNameButton.setTitleColor(Style.Colors.blue, for: .normal)
+      milestoneNameButton.isEnabled = true
     case .current:
       circle.backgroundColor = Style.Colors.FoundationGreen
       verticalBar.backgroundColor = Style.Colors.FoundationGreen
       milestoneCountLabel.textColor = Style.Colors.black
       milestoneNameButton.setTitleColor(Style.Colors.blue, for: .normal)
+      milestoneNameButton.isEnabled = true
     }
 
     if milestone.sequence == 0 {
