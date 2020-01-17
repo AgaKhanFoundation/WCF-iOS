@@ -44,7 +44,7 @@ class JourneyDataSource: TableViewDataSource {
   var totalDistance = 0
   var distanceToNextMilestone = 0
   var distanceCoveredToNextMilestone = 0
-  var nameOfNextMilestone = ""
+  var nameOfNextMilestone: String?
   var milestones: [Milestone] = []
 
   func reload(completion: @escaping () -> Void) {
@@ -72,7 +72,7 @@ class JourneyDataSource: TableViewDataSource {
     case MilestoneRanges.milestone8.range:
       configureCellsWithCurrentMilestone(at: 7)
     default:
-      break
+      configureCellsWithCurrentMilestone(at: 8)
     }
   }
 

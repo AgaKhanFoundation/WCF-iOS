@@ -28,6 +28,7 @@ struct CurrentMilestoneContext: CellContext {
 class CurrentMilestoneCell: ConfigurableTableViewCell {
 
   static let identifier: String = "CurrentMilestoneCell"
+  weak var delegate: MilestoneNameButtonDelegate?
 
   let circle: UIView = {
     var view = UIView(frame: .zero)
@@ -72,13 +73,15 @@ class CurrentMilestoneCell: ConfigurableTableViewCell {
 
   let containerRectangle = CardViewV2()
 
-  let journeyMapImageView: UIImageView = {
-    let imagevIew = UIImageView()
-    imagevIew.contentMode = .scaleAspectFill
-    imagevIew.image = Assets.journeyEmpty.image
-    imagevIew.clipsToBounds = true
-    return imagevIew
-  }()
+  let journeyMapImageView = WebImageView()
+//  let journeyMapImageView: UIImageView = {
+//    let imagevIew = UIImageView()
+//    imagevIew.contentMode = .scaleAspectFill
+//    imagevIew.image = Assets.journeyEmpty.image
+//    imagevIew.clipsToBounds = true
+//    return imagevIew
+//  }()
+
 
   override func commonInit() {
     super.commonInit()
@@ -128,6 +131,7 @@ class CurrentMilestoneCell: ConfigurableTableViewCell {
       $0.width.equalTo(Style.Padding.p2)
       $0.bottom.equalTo(progressCircle.snp.top)
     }
+    milestoneNameButton.addTarget(self, action: #selector(milestoneNameButtonPressed), for: .touchUpInside)
     contentView.bringSubviewToFront(circle)
   }
 
@@ -156,6 +160,7 @@ class CurrentMilestoneCell: ConfigurableTableViewCell {
       verticalBar.isHidden = false
     }
     milestoneNameButton.setTitle("\(currentMilestone.name)", for: .normal)
+    journeyMapImageView.fadeInImage(imageURL: URL(string: currentMilestone.journeyMap), placeHolderImage: Assets.journeyEmpty.image)
 
     UIView.animate(withDuration: 1) {
       self.progressCircle.snp.remakeConstraints { (make) in
@@ -165,5 +170,9 @@ class CurrentMilestoneCell: ConfigurableTableViewCell {
       }
       self.contentView.layoutSubviews()
     }
+  }
+
+  @objc func milestoneNameButtonPressed(button: UIButton) {
+    delegate?.milestoneNameButtonTapped()
   }
 }

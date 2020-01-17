@@ -106,7 +106,7 @@ class LeaderboardDataSource: TableViewDataSource {
       }
 
       // If my team is not present in the leaderboard, remove the expand/collapse section and merge all in one list
-      if myTeamRank == nil {
+      if myTeamRank == nil && allTeams.count >= 7 {
         expandListDataSource.removeFirst()
         rankTableList = cells.removeLast()
         rankTableList.append(contentsOf: expandListDataSource)

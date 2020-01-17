@@ -112,6 +112,7 @@
 		A594DC8B238B6620003B5EF7 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594DC8A238B6620003B5EF7 /* LeaderboardCell.swift */; };
 		A594DC8D238B6DBA003B5EF7 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594DC8C238B6DBA003B5EF7 /* Leaderboard.swift */; };
 		A5A8E15F2370670500988F71 /* BadgeCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A8E15E2370670500988F71 /* BadgeCollectionDataSource.swift */; };
+		A5D2E7C723D1A30D00C3011D /* MilestonesDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2E7C623D1A30C00C3011D /* MilestonesDetails.swift */; };
 		A5E291A6238EEF6700F61954 /* HeaderCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E291A5238EEF6700F61954 /* HeaderCells.swift */; };
 		C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */; };
 		C92244C7234AD68A0098A333 /* OAuthFitbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244C6234AD68A0098A333 /* OAuthFitbit.swift */; };
@@ -290,6 +291,7 @@
 		A594DC8A238B6620003B5EF7 /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
 		A594DC8C238B6DBA003B5EF7 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
 		A5A8E15E2370670500988F71 /* BadgeCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCollectionDataSource.swift; sourceTree = "<group>"; };
+		A5D2E7C623D1A30C00C3011D /* MilestonesDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MilestonesDetails.swift; sourceTree = "<group>"; };
 		A5E291A5238EEF6700F61954 /* HeaderCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCells.swift; sourceTree = "<group>"; };
 		C9203B8F1EC41D9C00AC3C9E /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		C92244C6234AD68A0098A333 /* OAuthFitbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthFitbit.swift; sourceTree = "<group>"; };
@@ -688,6 +690,7 @@
 		A5123F1D2381B4F700C3E9DE /* Journey */ = {
 			isa = PBXGroup;
 			children = (
+				A5D2E7C623D1A30C00C3011D /* MilestonesDetails.swift */,
 				A5123F202381B5F300C3E9DE /* Cells */,
 				A5123F1E2381B51E00C3E9DE /* JourneyViewController.swift */,
 				A5123F232381B63300C3E9DE /* JourneyDataSource.swift */,
@@ -1168,6 +1171,7 @@
 				A594DC8D238B6DBA003B5EF7 /* Leaderboard.swift in Sources */,
 				C9BAEED0235D5C4E00A8D7AF /* FitbitStep.swift in Sources */,
 				F0F8EDD52210C71600321A6D /* ActivityCard.swift in Sources */,
+				A5D2E7C723D1A30D00C3011D /* MilestonesDetails.swift in Sources */,
 				2622C09423249D680092B145 /* DashboardDataSource.swift in Sources */,
 				267FAE2E2325CF590014222D /* SettingsActionCell.swift in Sources */,
 				F017B6952276C9C60023E84B /* OnboardingJourney.swift in Sources */,
