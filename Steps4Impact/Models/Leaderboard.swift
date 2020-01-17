@@ -23,4 +23,8 @@ struct Leaderboard {
     self.distance = json["distance"]?.intValue
     self.hidden = json["hidden"]?.intValue
   }
+
+  public var miles: Int? {
+    return (distance ?? 1)/2000
+  }
 }

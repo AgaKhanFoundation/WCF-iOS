@@ -164,30 +164,36 @@ class JoinTeamDataSource: TableViewDataSource {
   private var teams: [Team] = []
   private var event: Event?
   private var filter: String?
+  private(set) var teamLimit: Int?
 
   func reload(completion: @escaping () -> Void) {
     AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
-      guard let participant = Participant(json: result.response),
-            let event = participant.currentEvent else {
-        return
+      guard let participant = Participant(json: result.response) else { return }
+
+      if let event = participant.currentEvent {
+        self?.event = event
       }
 
-      self?.event = event
+      if let events = participant.events, events.count > 0 {
+        self?.teamLimit = events[0].teamLimit
+      }
+
 
       AKFCausesService.getTeams { [weak self] (result) in
-        guard let teams = result.response?.arrayValue else { return }
-        self?.teams = teams
-          .compactMap { Team(json: $0) }
-          .filter { $0.members.count < event.teamLimit }
-          .sorted { $0.members.count > $1.members.count }
+        if let teams = result.response?.arrayValue {
+          self?.teams = teams.compactMap { Team(json: $0) }
+            .filter { $0.members.count < (self?.teamLimit ?? 11) }
+            .sorted { $0.members.count > $1.members.count }
 
-        self?.configure()
-        completion()
+
+          self?.configure()
+          completion()
+        } else {
+          self?.configure()
+          completion()
+        }
       }
     }
-
-    configure()
-    completion()
   }
 
   func configure() {
@@ -200,10 +206,10 @@ class JoinTeamDataSource: TableViewDataSource {
       guard
         let name = $0.name,
         let id = $0.id, // swiftlint:disable:this identifier_name
-        let event = self.event
+        let teamLimit = self.teamLimit
       else { return nil }
       return JoinTeamCellContext(
-        event: event,
+        teamLimit: teamLimit,
         teamName: name,
         memberCount: $0.members.count,
         context: JoinTeamContext.team(id: id))

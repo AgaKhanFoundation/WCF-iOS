@@ -64,7 +64,7 @@ class LeaderboardDataSource: TableViewDataSource {
   func newLeaderboardContext(for row: Int) -> LeaderboardContext {
     let rank = row+1
     let name = allTeams[row].name ?? ""
-    let distance = allTeams[row].distance ?? 0
+    let distance = allTeams[row].miles ?? 0
     let isMyTeam = allTeams[row].id == myTeamId
     let context = LeaderboardContext(rank: rank, teamName: name, teamDistance: distance, isMyTeam: isMyTeam)
     return context
@@ -73,6 +73,7 @@ class LeaderboardDataSource: TableViewDataSource {
   func configure() {
     cells.removeAll()
     expandListDataSource.removeAll()
+    allTeams = allTeams.sorted(by: { ($0.distance ?? 0) > ($1.distance ?? 0) })
     let count = allTeams.count > 2 ? 3 : allTeams.count
     let podium = LeaderboardPodiumContext(count: count, data: allTeams)
     cells.append([podium])

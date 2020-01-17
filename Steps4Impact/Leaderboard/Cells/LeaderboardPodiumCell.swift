@@ -100,7 +100,7 @@ class LeaderboardPodiumCell: ConfigurableTableViewCell {
       }
 
       teamNameLabel.text = podiumCellContext.data[index].name
-      teamDistanceLabel.text = "\(podiumCellContext.data[index].distance ?? 0) mi"
+      teamDistanceLabel.text = "\(podiumCellContext.data[index].miles ?? 0) mi"
     }
   }
 }
