@@ -54,13 +54,34 @@ class JourneyViewController: TableViewController {
   override func reload() {
     dataSource?.reload { [weak self] in
       if let dataSource = self?.dataSource as? JourneyDataSource {
-        let nextMilestoneDistance = dataSource.distanceToNextMilestone
-        let distanceRemaining = nextMilestoneDistance - dataSource.distanceCoveredToNextMilestone
-        let nextMilestone = dataSource.nameOfNextMilestone
-        let progressLabelText = "\(distanceRemaining) / \(nextMilestoneDistance) mi remaining to reach \(nextMilestone)"
-        self?.progressLabel.text = progressLabelText
+                if let nextMilestone = dataSource.nameOfNextMilestone {
+          let nextMilestoneDistance = dataSource.distanceToNextMilestone
+          let distanceRemaining = nextMilestoneDistance - dataSource.distanceCoveredToNextMilestone
+          let progressLabelText = "\(distanceRemaining) / \(nextMilestoneDistance) mi remaining to reach \(nextMilestone)"
+          self?.progressLabel.text = progressLabelText
+        } else {
+          self?.progressLabel.text = "All Milestones Completed"
+        }
       }
       self?.tableView.reloadOnMain()
     }
   }
 }
+
+extension JourneyViewController {
+  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    if let cell = cell as? MilestoneCell {
+      cell.delegate = self
+    }
+    if let cell = cell as? CurrentMilestoneCell {
+      cell.delegate = self
+    }
+  }
+}
+
+extension JourneyViewController: MilestoneNameButtonDelegate {
+  func milestoneNameButtonTapped() {
+    navigationController?.pushViewController(JourneyDetailViewController(), animated: true)
+  }
+}
+

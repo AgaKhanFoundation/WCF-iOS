@@ -102,8 +102,12 @@ extension ChallengeViewController: DisclosureCellDelegate {
       AppController.shared.shareTapped(viewController: self, shareButton: nil,
                                        string: Strings.InviteSupporters.request)
     case .showJourneyView:
-
-      navigationController?.pushViewController(JourneyDetailViewController(), animated: true)
+      let journeyVC = JourneyViewController()
+      if let journeyDataSource = journeyVC.dataSource as? JourneyDataSource, let challengeDataSource = self.dataSource as? ChallengeDataSource {
+        journeyDataSource.milestones = challengeDataSource.milestones ?? []
+        journeyDataSource.totalDistance = 8580000 //challengeDataSource.teamTotalSteps
+      }
+      navigationController?.pushViewController(journeyVC, animated: true)
     }
   }
 }
@@ -155,11 +159,14 @@ enum ChallengeContext: Context {
 class ChallengeDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
 
-  private var participant: Participant?
+  private(set) var participant: Participant?
   private var teamCreator: String?
   private var teamImages: [URL?] = []
+  private(set) var teamTotalSteps = 0
   private var teamMembers: [Participant] = []
-  private var achievement: Achievement?
+  private(set) var achievement: Achievement?
+  private(set) var milestones: [Milestone]?
+
 
   func reload(completion: @escaping () -> Void) {
     let group: DispatchGroup = DispatchGroup()
@@ -217,8 +224,8 @@ class ChallengeDataSource: TableViewDataSource {
 
   func getCurrentMilestone(numSteps: Int) -> Int {
     var currMilestone = -1
-    for milestone in self.achievement?.milestones ?? [] {
-      if numSteps > milestone.distance {
+    for milestone in self.milestones ?? [] {
+      if numSteps >= milestone.distance {
         currMilestone += 1
       } else {
         break
@@ -244,6 +251,12 @@ class ChallengeDataSource: TableViewDataSource {
 
     cells = []
 
+    if let milestones = achievement?.milestones, milestones.count < 9 {
+      self.milestones = MilestoneDetails.dictionary.compactMap({ Milestone(json: JSON($0))})
+    } else {
+      self.milestones = achievement?.milestones
+    }
+
     let daysUntilStart = Date().daysUntil(event.challengePhase.start)
 
     if daysUntilStart > 0 {
@@ -254,7 +267,12 @@ class ChallengeDataSource: TableViewDataSource {
           body: "Your journey begins in \(Date().daysUntil(event.challengePhase.start)) days on \(formatter.string(from: event.challengePhase.start))!") // swiftlint:disable:this line_length
       ])
     } else {
-      let milestonesCompleted = getCurrentMilestone(numSteps: event.defaultStepCount) // swiftlint:disable:this line_length
+
+      teamTotalSteps = teamMembers.reduce(0, { (total, team) -> Int in
+        guard let records = team.records, records.count > 0 else { return total + 0 }
+        return total + (records[0].distance ?? 0)
+      })
+      let milestonesCompleted = getCurrentMilestone(numSteps: teamTotalSteps)
       cells.append([
         DisclosureCellContext(
           asset: .challengeJourney,

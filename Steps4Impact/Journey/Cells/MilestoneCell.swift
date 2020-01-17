@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol MilestoneNameButtonDelegate: class {
+  func milestoneNameButtonTapped()
+}
+
 struct MilestoneContext: CellContext {
   var identifier: String = MilestoneCell.identifier
   var sequence = 0
@@ -26,6 +30,7 @@ struct MilestoneContext: CellContext {
 class MilestoneCell: ConfigurableTableViewCell {
 
   static let identifier: String = "MilestoneCell"
+  weak var delegate: MilestoneNameButtonDelegate?
 
   let circle: UIView = {
     var view = UIView(frame: .zero)
@@ -77,6 +82,7 @@ class MilestoneCell: ConfigurableTableViewCell {
       $0.centerX.equalTo(circle)
       $0.width.equalTo(Style.Padding.p2)
     }
+    milestoneNameButton.addTarget(self, action: #selector(milestoneNameButtonPressed), for: .touchUpInside)
     contentView.bringSubviewToFront(circle)
   }
 
@@ -116,5 +122,9 @@ class MilestoneCell: ConfigurableTableViewCell {
       verticalBar.isHidden = false
     }
     milestoneNameButton.setTitle("\(milestone.name)", for: .normal)
+  }
+
+  @objc func milestoneNameButtonPressed(button: UIButton) {
+    delegate?.milestoneNameButtonTapped()
   }
 }
