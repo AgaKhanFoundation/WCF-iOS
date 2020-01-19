@@ -80,8 +80,12 @@ extension JourneyViewController {
 }
 
 extension JourneyViewController: MilestoneNameButtonDelegate {
-  func milestoneNameButtonTapped() {
-    navigationController?.pushViewController(JourneyDetailViewController(), animated: true)
+  func milestoneNameButtonTapped(sequence: Int) {
+    let journeyDetailVC = JourneyDetailViewController()
+    if let dataSource = dataSource as? JourneyDataSource {
+      journeyDetailVC.milestone = dataSource.milestones[sequence]
+    }
+    navigationController?.pushViewController(journeyDetailVC, animated: true)
   }
 }
 

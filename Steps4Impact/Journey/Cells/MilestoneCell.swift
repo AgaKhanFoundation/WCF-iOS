@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MilestoneNameButtonDelegate: class {
-  func milestoneNameButtonTapped()
+  func milestoneNameButtonTapped(sequence: Int)
 }
 
 struct MilestoneContext: CellContext {
@@ -125,9 +125,10 @@ class MilestoneCell: ConfigurableTableViewCell {
       verticalBar.isHidden = false
     }
     milestoneNameButton.setTitle("\(milestone.name)", for: .normal)
+    milestoneNameButton.tag = milestone.sequence
   }
 
   @objc func milestoneNameButtonPressed(button: UIButton) {
-    delegate?.milestoneNameButtonTapped()
+    delegate?.milestoneNameButtonTapped(sequence: button.tag)
   }
 }

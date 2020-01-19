@@ -160,6 +160,7 @@ class CurrentMilestoneCell: ConfigurableTableViewCell {
       verticalBar.isHidden = false
     }
     milestoneNameButton.setTitle("\(currentMilestone.name)", for: .normal)
+    milestoneNameButton.tag = currentMilestone.sequence
     journeyMapImageView.fadeInImage(imageURL: URL(string: currentMilestone.journeyMap), placeHolderImage: Assets.journeyEmpty.image)
 
     UIView.animate(withDuration: 1) {
@@ -173,6 +174,7 @@ class CurrentMilestoneCell: ConfigurableTableViewCell {
   }
 
   @objc func milestoneNameButtonPressed(button: UIButton) {
-    delegate?.milestoneNameButtonTapped()
+
+    delegate?.milestoneNameButtonTapped(sequence: button.tag)
   }
 }
