@@ -47,7 +47,7 @@ class JourneyDetailViewController: ViewController {
 //  private let detailImage = UIImageView()
   private let titleLabel = UILabel(typography: .headerTitle)
   private let subtitleLabel = UILabel(typography: .title)
-//  private let bodyText = UITextView()
+  private let bodyText = UITextView()
 //
 //  // Keyboardable
 //  var bottomConstraint: Constraint?
@@ -116,18 +116,42 @@ class JourneyDetailViewController: ViewController {
     }
 
     // Configure imageMarqueePageControl
-    imageMarqueePageControl.currentPageIndicatorTintColor = .darkGray
-    imageMarqueePageControl.pageIndicatorTintColor = .lightGray
+    imageMarqueePageControl.currentPageIndicatorTintColor = Style.Colors.FoundationGreen
+    imageMarqueePageControl.pageIndicatorTintColor = Style.Colors.Seperator
 
     view.addSubview(imageMarqueePageControl) {
-      $0.top.equalTo(imageMarqueeScrollView.snp.bottom).offset(Style.Padding.p16)
+      $0.top.equalTo(imageMarqueeScrollView.snp.bottom).offset(Style.Padding.p8)
       $0.width.equalTo(Style.Size.s128)
       $0.height.equalTo(Style.Size.s16)
       $0.centerX.equalToSuperview()
     }
 
+    view.addSubview(titleLabel) {
+      $0.top.equalTo(imageMarqueePageControl.snp.bottom).offset(Style.Padding.p16)
+      $0.leading.equalToSuperview().offset(Style.Padding.p12)
+      $0.trailing.equalToSuperview().inset(Style.Padding.p12)
+    }
+
+    view.addSubview(subtitleLabel) {
+      $0.top.equalTo(titleLabel.snp.bottom).offset(Style.Padding.p8)
+      $0.leading.equalToSuperview().offset(Style.Padding.p12)
+      $0.trailing.equalToSuperview().inset(Style.Padding.p12)
+    }
+
+    view.addSubview(bodyText) {
+      $0.top.equalTo(subtitleLabel.snp.bottom).offset(Style.Padding.p12)
+      $0.leading.equalToSuperview().offset(Style.Padding.p12)
+      $0.trailing.bottom.equalToSuperview().inset(Style.Padding.p12)
+    }
+
     // Configure Views
     if let milestone = milestone {
+
+
+      titleLabel.text = milestone.name
+      subtitleLabel.text = milestone.subtitle
+      bodyText.text = milestone.content
+
       let mediaURLs = milestone.getMediaURLs()
       print("mediaURLs: \(mediaURLs)")
       imageMarqueePageControl.numberOfPages = mediaURLs.count
@@ -155,7 +179,6 @@ class JourneyDetailViewController: ViewController {
     } else {
       /// Set default values.
     }
-    
   }
 }
 
