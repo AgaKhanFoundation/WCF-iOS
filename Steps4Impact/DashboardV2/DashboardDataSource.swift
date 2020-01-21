@@ -103,14 +103,14 @@ class DashboardDataSource: TableViewDataSource {
         eventTimeline: eventTimeline,
         disclosureLabel: Strings.Dashboard.badges),
       activityCell,
-      InfoCellContext(
-        title: Strings.Dashboard.ChallengeProgress.title,
-        body: Strings.Dashboard.ChallengeProgress.unavailable),
-      DisclosureCellContext(
-        title: Strings.Dashboard.FundraisingProgress.title,
-        body: Strings.Dashboard.FundraisingProgress.unavailable,
-        disclosureTitle: Strings.Dashboard.FundraisingProgress.invite,
-        context: DashboardContext.inviteSupporters)
+//      InfoCellContext(
+//        title: Strings.Dashboard.ChallengeProgress.title,
+//        body: Strings.Dashboard.ChallengeProgress.unavailable),
+//      DisclosureCellContext(
+//        title: Strings.Dashboard.FundraisingProgress.title,
+//        body: Strings.Dashboard.FundraisingProgress.unavailable,
+//        disclosureTitle: Strings.Dashboard.FundraisingProgress.invite,
+//        context: DashboardContext.inviteSupporters)
     ]]
   }
 
