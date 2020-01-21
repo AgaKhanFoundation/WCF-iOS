@@ -122,36 +122,45 @@ class SettingsViewController: TableViewController {
   private func updatePersonalMileCommitment() {
     AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
       guard let participant = Participant(json: result.response) else { return }
-
-      let alert = TextAlertViewController()
-      alert.title = "Personal mile commitment"
-      alert.value = "\(participant.currentEvent?.commitment?.miles ?? 0)"
-      alert.suffix = "Miles"
-      alert.add(.init(title: "Save", style: .primary, shouldDismiss: false) {
-        if let cid = participant.currentEvent?.commitment?.id {
-          AKFCausesService.setCommitment(cid, toSteps: (Int(alert.value ?? "0") ?? 0) * 2000) { (result) in
-            alert.dismiss(animated: true) {
-              if !result.isSuccess {
-                let alert: AlertViewController = AlertViewController()
-                alert.title = "Update Failed"
-                alert.body = "Could not update commitment.  Please try again later."
-                alert.add(.okay())
-                onMain {
-                  AppController.shared.present(alert: alert, in: self, completion: nil)
+      if let _ = participant.currentEvent {
+        let alert = TextAlertViewController()
+        alert.title = "Personal mile commitment"
+        alert.value = "\(participant.currentEvent?.commitment?.miles ?? 0)"
+        alert.suffix = "Miles"
+        alert.add(.init(title: "Save", style: .primary, shouldDismiss: false) {
+          if let cid = participant.currentEvent?.commitment?.id {
+            AKFCausesService.setCommitment(cid, toSteps: (Int(alert.value ?? "0") ?? 0) * 2000) { (result) in
+              alert.dismiss(animated: true) {
+                if !result.isSuccess {
+                  let alert: AlertViewController = AlertViewController()
+                  alert.title = "Update Failed"
+                  alert.body = "Could not update commitment.  Please try again later."
+                  alert.add(.okay())
+                  onMain {
+                    AppController.shared.present(alert: alert, in: self, completion: nil)
+                  }
+                  return
                 }
-                return
-              }
 
-              NotificationCenter.default.post(name: .commitmentChanged, object: nil)
-              onMain {
-                self.reload()
+                NotificationCenter.default.post(name: .commitmentChanged, object: nil)
+                onMain {
+                  self.reload()
+                }
               }
             }
           }
-        }
-      })
-      alert.add(.cancel())
-      AppController.shared.present(alert: alert, in: self, completion: nil)
+        })
+        alert.add(.cancel())
+        AppController.shared.present(alert: alert, in: self, completion: nil)
+      } else {
+        let alert = AlertViewController()
+        alert.title = "No Event Available"
+        alert.body = "Can't update commitment when there is no event available"
+        alert.add(.okay({
+          alert.dismiss(animated: true, completion: nil)
+        }))
+        AppController.shared.present(alert: alert, in: self, completion: nil)
+      }
     }
   }
 }
