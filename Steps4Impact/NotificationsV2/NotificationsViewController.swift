@@ -117,6 +117,17 @@ class NotificationsViewController: TableViewController {
     }
     reload()
   }
+
+  func fetchNotifications() {
+    AKFCausesService.getNotifications(fbId: Facebook.id, eventId: 0) { (result) in
+      guard let notificationsJSON = result.response?.arrayValue else { return }
+      var notifications = [Notification]()
+      for json in notificationsJSON {
+        guard let notification = Notification(json: json) else { continue }
+        notifications.append(notification)
+      }
+    }
+  }
 }
 
 class NotificationV2: NSObject, Codable {

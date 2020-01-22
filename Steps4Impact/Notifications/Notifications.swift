@@ -73,12 +73,12 @@ class NotificationView: UITableViewCell {
   }
 }
 
-struct Notification {
-  var renderer: String { return NotificationView.identifier }
-
-  var date: Date
-  var message: String
-}
+//struct Notification {
+//  var renderer: String { return NotificationView.identifier }
+//
+//  var date: Date
+//  var message: String
+//}
 
 class Notifications: UIViewController {
   private let lblTitle: UILabel = UILabel(typography: .headerTitle)
