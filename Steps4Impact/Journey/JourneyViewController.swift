@@ -84,4 +84,3 @@ extension JourneyViewController: MilestoneNameButtonDelegate {
     navigationController?.pushViewController(JourneyDetailViewController(), animated: true)
   }
 }
-

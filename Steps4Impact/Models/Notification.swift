@@ -9,7 +9,7 @@
 import UIKit
 
 struct Notification {
-  let id: Int
+  let identifier: Int
   let notificationId: Int
   let message: String
   let messageDate: Date
@@ -20,7 +20,7 @@ struct Notification {
 
   init?(json: JSON?) {
     guard let json = json else { return nil }
-    guard let id = json["id"]?.intValue,
+    guard let identifier = json["id"]?.intValue,
       let notificationId = json["notification_id"]?.intValue,
       let message = json["message"]?.stringValue,
       let priority = json["priority"]?.intValue,
@@ -31,7 +31,7 @@ struct Notification {
     let dateFormatter = ISO8601DateFormatter()
     guard let messageDate = dateFormatter.date(from: messageDateStr),
       let expiryDate = dateFormatter.date(from: expiryDateStr) else { return nil }
-    self.id = id
+    self.identifier = identifier
     self.notificationId = notificationId
     self.message = message
     self.messageDate = messageDate
@@ -39,5 +39,21 @@ struct Notification {
     self.eventId = eventId
     self.expiryDate = expiryDate
     self.readFlag = readFlag
+  }
+
+  var formattedMessageDate: String {
+    let difference = Date().timeIntervalSince(messageDate)
+    switch difference {
+      case 0..<60:
+        return "Now"
+      case 60..<3600:
+        return "\(Int(difference)/60)m"
+      case 3600..<86400:
+        return "\(Int(difference)/3600)h"
+      case 86400..<604800:
+        return "\(Int(difference)/86400)d"
+      default:
+        return "\(Int(difference)/604800)w"
+    }
   }
 }
