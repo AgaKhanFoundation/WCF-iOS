@@ -83,9 +83,9 @@ extension AKFCausesEndPoint {
     case .achievement:
       return "/achievement"
     case .notifications(let fbId, let eventId):
-      return "notifications/participant/\(fbid)/event/\(eventId)"
+      return "notifications/participant/\(fbId)/event/\(eventId)"
     case .notification(let notificationId):
-      return "notifications/participant/\(id)"
+      return "notifications/participant/\(notificationId)"
     }
   }
 }

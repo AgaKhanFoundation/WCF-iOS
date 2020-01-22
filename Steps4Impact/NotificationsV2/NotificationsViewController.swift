@@ -58,7 +58,7 @@ class NotificationsViewController: TableViewController {
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    guard let dataSource = dataSource as? NotificationsDataSource else { return }
+    guard let dataSource = dataSource as? NotificationsDataSourceV2 else { return }
     dataSource.notifications.forEach({ $0.seen = true })
     self.navigationController?.tabBarItem.badgeValue = nil
     saveToPlist()
@@ -69,7 +69,7 @@ class NotificationsViewController: TableViewController {
       let alert = aps["alert"] as? [AnyHashable: Any],
       let title = alert["title"] as? String,
       let body = alert["body"] as? String,
-      let dataSource = dataSource as? NotificationsDataSource else { return }
+      let dataSource = dataSource as? NotificationsDataSourceV2 else { return }
     let notification = NotificationV2(title: title, body: body, seen: false)
     dataSource.notifications.insert(notification, at: 0)
     saveToPlist()
@@ -92,7 +92,7 @@ class NotificationsViewController: TableViewController {
 
   private func saveToPlist() {
     guard let plistURL = plistURL,
-      let dataSource = dataSource as? NotificationsDataSource else {
+      let dataSource = dataSource as? NotificationsDataSourceV2 else {
         return
     }
     do {
@@ -106,7 +106,7 @@ class NotificationsViewController: TableViewController {
   }
 
   func fetchSavedNotifications() {
-    guard let dataSource = dataSource as? NotificationsDataSource else { return }
+    guard let dataSource = dataSource as? NotificationsDataSourceV2 else { return }
     let notifications = readFromPlist()
     dataSource.notifications = notifications
     let unseenCount = notifications.filter({ !$0.seen }).count
@@ -126,6 +126,16 @@ class NotificationsViewController: TableViewController {
         guard let notification = Notification(json: json) else { continue }
         notifications.append(notification)
       }
+
+      guard let dataSource = self.dataSource as? NotificationsDataSource else { return }
+      dataSource.notifications = notifications
+      let unseenCount = notifications.filter({ !$0.readFlag }).count
+      if unseenCount > 0 {
+        self.navigationController?.tabBarItem.badgeValue = "\(unseenCount)"
+      } else {
+        self.navigationController?.tabBarItem.badgeValue = nil
+      }
+      self.reload()
     }
   }
 }
@@ -163,7 +173,7 @@ class NotificationV2: NSObject, Codable {
   }
 }
 
-class NotificationsDataSource: TableViewDataSource {
+class NotificationsDataSourceV2: TableViewDataSource {
   var cells: [[CellContext]] = []
   var notifications = [NotificationV2]()
 
@@ -181,6 +191,33 @@ class NotificationsDataSource: TableViewDataSource {
     cells = [notificationCells]
   }
 
+  private func configureNoNotificationCells() {
+    cells = [[
+      InfoCellContext(
+        title: Strings.Notifications.title,
+        body: Strings.Notifications.youHaveNoNotifications)
+      ]]
+  }
+}
+
+class NotificationsDataSource: TableViewDataSource {
+  var cells: [[CellContext]] = []
+  var notifications = [Notification]()
+  
+  func configure() {
+    guard notifications.count > 0 else {
+      configureNoNotificationCells()
+      return
+    }
+    var notificationCells = [InfoCellContext]()
+    for notification in notifications {
+      notificationCells.append(
+        InfoCellContext(title: notification.messageDate.description, body: notification.message)
+      )
+    }
+    cells = [notificationCells]
+  }
+  
   private func configureNoNotificationCells() {
     cells = [[
       InfoCellContext(
