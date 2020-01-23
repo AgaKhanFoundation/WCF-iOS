@@ -138,6 +138,18 @@ class NotificationsViewController: TableViewController {
       self.reload()
     }
   }
+
+  override func handle(context: Context) {
+    guard let context = context as? NotificationContext else { return }
+    switch context {
+      case .none:
+        return
+      case .markRead(let notificationId):
+        AKFCausesService.updateNotification(notificationId: notificationId, readFlag: true)
+        // Update dataSource
+        self.reload()
+    }
+  }
 }
 
 class NotificationV2: NSObject, Codable {
@@ -209,10 +221,15 @@ class NotificationsDataSource: TableViewDataSource {
       configureNoNotificationCells()
       return
     }
-    var notificationCells = [InfoCellContext]()
+    var notificationCells = [NotificationCellContext]()
     for notification in notifications {
       notificationCells.append(
-        InfoCellContext(title: notification.messageDate.description, body: notification.message)
+        NotificationCellContext(
+          message: notification.message,
+          timeDelta: notification.formattedMessageDate,
+          backgroundColor: notification.backgroundColor,
+          context: notification.context
+        )
       )
     }
     cells = [notificationCells]
@@ -220,9 +237,11 @@ class NotificationsDataSource: TableViewDataSource {
   
   private func configureNoNotificationCells() {
     cells = [[
-      InfoCellContext(
-        title: Strings.Notifications.title,
-        body: Strings.Notifications.youHaveNoNotifications)
+      NotificationCellContext(
+        message: Strings.Notifications.title,
+        timeDelta: Strings.Notifications.youHaveNoNotifications,
+        backgroundColor: .read,
+        context: .none)
       ]]
   }
 }

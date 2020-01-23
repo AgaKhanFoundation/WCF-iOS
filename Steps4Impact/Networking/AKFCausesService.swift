@@ -228,8 +228,9 @@ class AKFCausesService: Service {
     shared.request(endpoint: .notifications(fbId: fbId, eventId: eventId), completion: completion)
   }
 
-  static func updateNotification(notificationId: Int, completion: ServiceRequestCompletion? = nil) {
-    shared.request(endpoint: .notification(notificationId: notificationId), completion: completion)
+  static func updateNotification(notificationId: Int, readFlag: Bool, completion: ServiceRequestCompletion? = nil) {
+    shared.request(endpoint: .notification(notificationId: notificationId),
+                   parameters: JSON(["read_flag": readFlag]), completion: completion)
   }
 }
 
