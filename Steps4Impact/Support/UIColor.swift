@@ -64,6 +64,18 @@ extension UIColor {
     return (red, green, blue, alpha)
   }
 
+  static var read: UIColor {
+    get {
+      return UIColor.init(displayP3Red: 246.0/255.0, green: 248.0/255.0, blue: 250.0/255.0, alpha: 1.0)
+    }
+  }
+  
+  static var unread: UIColor {
+    get {
+      return UIColor.init(displayP3Red: 234.0/255.0, green: 244.0/255.0, blue: 239.0/255.0, alpha: 1.0)
+    }
+  }
+
   /**
    Init a color with a hex value
    Format: 0xXXXXXX

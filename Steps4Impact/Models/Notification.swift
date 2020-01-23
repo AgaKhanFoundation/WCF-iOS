@@ -56,4 +56,12 @@ struct Notification {
         return "\(Int(difference)/604800)w"
     }
   }
+
+  var backgroundColor: UIColor {
+    return readFlag ? .read : .unread
+  }
+
+  var context: NotificationContext {
+    return readFlag ? .none : .markRead(notificationId: identifier)
+  }
 }
