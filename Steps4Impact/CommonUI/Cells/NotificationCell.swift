@@ -64,6 +64,7 @@ class NotificationCell: ConfigurableTableViewCell, Contextable {
   
   override func commonInit() {
     super.commonInit()
+    timeDeltaLabel.textColor = .gray
     
     contentView.addSubview(cardView) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)

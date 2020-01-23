@@ -54,6 +54,8 @@ class NotificationsViewController: TableViewController {
     forName: .receivedNotification, object: nil, queue: nil) { [weak self] (notification) in
       self?.didReceive(notification: notification.userInfo)
     }
+  
+    fetchNotifications()
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -142,14 +144,14 @@ class NotificationsViewController: TableViewController {
   override func handle(context: Context) {
     guard let context = context as? NotificationContext else { return }
     switch context {
-      case .none:
-        return
-      case .markRead(let identifier):
-        AKFCausesService.updateNotification(identifier: identifier, readFlag: true)
-        guard let dataSource = self.dataSource as? NotificationsDataSource else { return }
-        guard let index = dataSource.notifications.firstIndex(where: { $0.identifier == identifier }) else { return }
-        dataSource.notifications[index].readFlag = true
-        self.reload()
+    case .none:
+      return
+    case .markRead(let identifier):
+      AKFCausesService.updateNotification(identifier: identifier, readFlag: true)
+      guard let dataSource = self.dataSource as? NotificationsDataSource else { return }
+      guard let index = dataSource.notifications.firstIndex(where: { $0.identifier == identifier }) else { return }
+      dataSource.notifications[index].readFlag = true
+      self.reload()
     }
   }
 }
