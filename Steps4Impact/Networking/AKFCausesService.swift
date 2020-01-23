@@ -46,7 +46,7 @@ enum AKFCausesEndPoint {
   case commitments(id: Int) // swiftlint:disable:this identifier_name
   case achievement
   case notifications(fbId: String, eventId: Int)
-  case notification(notificationId: Int)
+  case notification(identifier: Int)
 }
 
 extension AKFCausesEndPoint {
@@ -84,8 +84,8 @@ extension AKFCausesEndPoint {
       return "/achievement"
     case .notifications(let fbId, let eventId):
       return "notifications/participant/\(fbId)/event/\(eventId)"
-    case .notification(let notificationId):
-      return "notifications/participant/\(notificationId)"
+    case .notification(let identifier):
+      return "notifications/participant/\(identifier)"
     }
   }
 }
@@ -227,8 +227,8 @@ class AKFCausesService: Service {
     shared.request(endpoint: .notifications(fbId: fbId, eventId: eventId), completion: completion)
   }
 
-  static func updateNotification(notificationId: Int, readFlag: Bool, completion: ServiceRequestCompletion? = nil) {
-    shared.request(endpoint: .notification(notificationId: notificationId),
+  static func updateNotification(identifier: Int, readFlag: Bool, completion: ServiceRequestCompletion? = nil) {
+    shared.request(endpoint: .notification(identifier: identifier),
                    parameters: JSON(["read_flag": readFlag]), completion: completion)
   }
 }

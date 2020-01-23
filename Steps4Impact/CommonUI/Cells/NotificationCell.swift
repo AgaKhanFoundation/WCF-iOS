@@ -51,7 +51,7 @@ struct NotificationCellContext: CellContext {
 
 enum NotificationContext: Context {
   case none
-  case markRead(notificationId: Int)
+  case markRead(identifier: Int)
 }
 
 class NotificationCell: ConfigurableTableViewCell, Contextable {
