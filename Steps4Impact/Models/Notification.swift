@@ -44,16 +44,16 @@ struct Notification {
   var formattedMessageDate: String {
     let difference = Date().timeIntervalSince(messageDate)
     switch difference {
-      case 0..<60:
-        return "Now"
-      case 60..<3600:
-        return "\(Int(difference)/60)m"
-      case 3600..<86400:
-        return "\(Int(difference)/3600)h"
-      case 86400..<604800:
-        return "\(Int(difference)/86400)d"
-      default:
-        return "\(Int(difference)/604800)w"
+    case 0..<60:
+      return "Now"
+    case 60..<3600:
+      return "\(Int(difference)/60)m"
+    case 3600..<86400:
+      return "\(Int(difference)/3600)h"
+    case 86400..<604800:
+      return "\(Int(difference)/86400)d"
+    default:
+      return "\(Int(difference)/604800)w"
     }
   }
 
@@ -62,6 +62,6 @@ struct Notification {
   }
 
   var context: NotificationContext {
-    return readFlag ? .none : .markRead(notificationId: identifier)
+    return readFlag ? .none : .markRead(identifier: identifier)
   }
 }

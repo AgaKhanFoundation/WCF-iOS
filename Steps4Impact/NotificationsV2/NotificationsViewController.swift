@@ -144,9 +144,11 @@ class NotificationsViewController: TableViewController {
     switch context {
       case .none:
         return
-      case .markRead(let notificationId):
-        AKFCausesService.updateNotification(notificationId: notificationId, readFlag: true)
-        // Update dataSource
+      case .markRead(let identifier):
+        AKFCausesService.updateNotification(identifier: identifier, readFlag: true)
+        guard let dataSource = self.dataSource as? NotificationsDataSource else { return }
+        guard let index = dataSource.notifications.firstIndex(where: { $0.identifier == identifier }) else { return }
+        dataSource.notifications[index].readFlag = true
         self.reload()
     }
   }
