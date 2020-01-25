@@ -132,10 +132,13 @@ struct Strings {
       static let errorBody = NSLocalizedString("Challenge.CreateTeam.errorBody", comment: "")
       static let successTitle = NSLocalizedString("Challenge.CreateTeam.successTitle", comment: "")
       static let `continue` = NSLocalizedString("Challenge.CreateTeam.continue", comment: "")
-      static let visibilityBodyOn = ""
-      static let visibilityBodyOff = ""
-      static let teamPhotoText = ""
-      static let teamVisibilityText = ""
+      static let visibilityBodyOn = NSLocalizedString("Challenge.CreateTeam.visibilityBodyOn", comment: "")
+      static let visibilityBodyOff = NSLocalizedString("Challenge.CreateTeam.visibilityBodyOff", comment: "")
+      static let teamVisibilityTitleText = NSLocalizedString("Challenge.CreateTeam.teamVisibilityTitleText", comment: "")
+      static let teamVisibilitySwitchStatusPublic = NSLocalizedString("Challenge.CreateTeam.teamVisibilitySwitchStatusPublic", comment: "")
+      static let teamVisibilitySwitchStatusPrivate = NSLocalizedString("Challenge.CreateTeam.teamVisibilitySwitchStatusPrivate", comment: "")
+      static let uploadTeamPhotoLabelText = NSLocalizedString("Challenge.CreateTeam.uploadTeamPhotoLabelText", comment: "")
+      static let uploadImageButtonText = NSLocalizedString("Challenge.CreateTeam.uploadImageButtonText", comment: "")
     }
 
     struct JoinTeam { // swiftlint:disable:this nesting

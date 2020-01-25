@@ -116,6 +116,7 @@ struct Style {
     static let s48: CGFloat = 48
     static let s56: CGFloat = 56
     static let s64: CGFloat = 64
+    static let s75: CGFloat = 75
     static let s96: CGFloat = 96
     static let s128: CGFloat = 128
   }

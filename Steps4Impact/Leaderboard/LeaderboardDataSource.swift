@@ -48,6 +48,7 @@ class LeaderboardDataSource: TableViewDataSource {
         if let eventId = event.id {
           AKFCausesService.getLeaderboard(eventId: eventId) { (result) in
             if let teams = result.response?.arrayValue {
+              self.allTeams.removeAll()
               for team in teams {
                 guard let newLeaderboard = Leaderboard(json: team) else { return }
                 self.allTeams.append(newLeaderboard)

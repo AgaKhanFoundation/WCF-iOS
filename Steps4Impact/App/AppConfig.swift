@@ -34,11 +34,11 @@ struct AppConfig {
     if UserInfo.isStaging {
       return URLComponents(string: "https://staging.step4change.org")! // swiftlint:disable:this force_unwrapping
     } else {
-      #if DEBUG
-        return URLComponents(string: "https://dev.step4change.org")! // swiftlint:disable:this force_unwrapping
-      #else
+//      #if DEBUG
+//        return URLComponents(string: "https://dev.step4change.org")! // swiftlint:disable:this force_unwrapping
+//      #else
         return URLComponents(string: "http://step4change.org")! // swiftlint:disable:this force_unwrapping
-      #endif
+//      #endif
     }
   }
 
@@ -46,11 +46,11 @@ struct AppConfig {
     if UserInfo.isStaging {
       return AppSecrets.stagingPassword
     } else {
-      #if DEBUG
-        return AppSecrets.devPassword
-      #else
+//      #if DEBUG
+//        return AppSecrets.devPassword
+//      #else
         return AppSecrets.prodPassword
-      #endif
+//      #endif
     }
   }
 

@@ -76,6 +76,8 @@ enum Assets: String {
   case circumflex = "circumflex"
   case invertedCircumflex = "inverted-circumflex"
 
+  case uploadImageIcon = "uploadImageIcon"
+
   case placeholder
 
   var image: UIImage? {
