@@ -67,10 +67,13 @@ extension TeamSettingsViewController: SettingsActionCellDelegate {
     guard let context = context as? TeamSettingsContext else { return }
     switch context {
     case .invite:
+      let ds = dataSource as? TeamSettingsDataSource
+      let context = ds?.cells[safe: 0]?[safe: 0] as? TeamSettingsHeaderCellContext
+      let teamName = context?.team
       AppController.shared.shareTapped(
           viewController: self,
           shareButton: button,
-          string: Strings.Share.item)
+          string: Strings.Share.item(teamName: teamName ?? ""))
     case .editname:
       AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
         guard

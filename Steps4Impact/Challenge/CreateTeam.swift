@@ -32,12 +32,10 @@ import NotificationCenter
 
 class CreateTeamViewController: ViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate { // swiftlint:disable:this line_length
 
-  // top section
   private let teamNameLabel = UILabel(typography: .title)
   private let teamNameTextField = UITextField(.bodyRegular)
   private let seperatorView = UIView()
 
-  // mid section
   private let uploadTeamPhotoLabel = UILabel(typography: .rowTitleRegular)
   private let teamPhotoImageView: UIImageView = {
     let imageview = UIImageView()
@@ -60,7 +58,6 @@ class CreateTeamViewController: ViewController, UINavigationControllerDelegate, 
     return button
   }()
 
-  // bottom sec
   private let teamVisibilityTitleLabel = UILabel(typography: .bodyRegular)
   private var teamVisibilitySwitch = UISwitch()
   private var teamVisibilitySwitchStatusLabel = UILabel(typography: .bodyRegular)
@@ -154,49 +151,6 @@ class CreateTeamViewController: ViewController, UINavigationControllerDelegate, 
       $0.trailing.equalToSuperview().inset(Style.Size.s32)
       $0.leading.equalToSuperview().offset(Style.Size.s32)
     }
-//
-//    visibilityTextView.text = Strings.Challenge.CreateTeam.visibilityBodyOn
-//    visibilityTextView.isScrollEnabled = false
-//    visibilityTextView.isSelectable = false
-//    visibilityTextView.isEditable = false
-//    visibilityTextView.backgroundColor = UIColor.clear
-
-    //imgButton.frame = CGRect(x: 10, y: 10, width: 50, height: 50)
-//    uploadImageButton.clipsToBounds = true
-//    uploadImageButton.setImage(Assets.onboardingLoginPeople.image, for: .normal)
-
-//    uploadImageButton.contentMode = .scaleAspectFit
-//    uploadImageButton.layer.cornerRadius = 0.5 * Style.Size.s128
-
-//    view.addSubview(uploadImageButton) { (make) in
-//      make.centerX.equalToSuperview()
-//      make.top.equalTo(uploadTeamPhotoLabel.snp.bottom).offset(Style.Padding.p32)
-//      make.height.width.equalTo(Style.Size.s128)
-//    }
-//
-//    stackView.axis = NSLayoutConstraint.Axis.horizontal
-//    stackView.distribution  = UIStackView.Distribution.fillProportionally
-//    stackView.alignment = UIStackView.Alignment.center
-//    stackView.spacing = 16.0
-//
-//    stackView.addArrangedSubview(teamVisibilityTitleLabel)
-//    stackView.addArrangedSubview(teamVisibilitySwitch)
-//    stackView.translatesAutoresizingMaskIntoConstraints = false
-//
-//    view.addSubview(stackView) {
-//      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
-//      $0.top.equalTo(uploadImageButton.snp.bottom).offset(Style.Padding.p16)
-//    }
-//
-//    view.addSubview(visibilityTextView) {
-//      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
-//      $0.top.equalTo(stackView.snp.bottom)
-//    }
-//
-//    view.addSubview(activityView) {
-//      $0.centerX.equalToSuperview()
-//      $0.top.equalTo(visibilityTextView.snp.bottom).offset(Style.Padding.p24)
-//    }
 
     onBackground {
       AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
@@ -290,8 +244,11 @@ class CreateTeamViewController: ViewController, UINavigationControllerDelegate, 
                                       onMain {
                                         guard let `self` = self else { return }
                                         switch result {
+
+                                          
                                         case .success:
-                                          self.navigationController?.setViewControllers([CreateTeamSuccessViewController(for: self.event)],
+                                          // swiftlint:disable:next line_length
+                                          self.navigationController?.setViewControllers([CreateTeamSuccessViewController(for: self.event, teamName: self.teamName.trimmingCharacters(in: .whitespaces))],
                                                                                         animated: true)
                                           NotificationCenter.default.post(name: .teamChanged, object: nil)
                                         case .failed:
