@@ -203,6 +203,8 @@ struct Strings {
   }
 
   struct Share {
-    static let item = NSLocalizedString("Share.item", comment: "")
+    static func item(teamName: String) -> String {
+      return String(format: NSLocalizedString("Share.item", comment: ""), teamName)
+    }
   }
 }

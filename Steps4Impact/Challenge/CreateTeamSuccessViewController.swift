@@ -38,9 +38,11 @@ class CreateTeamSuccessViewController: ViewController {
   private let btnContinue: Button = Button(style: .secondary)
 
   private let event: Event?
+  private var teamName = ""
 
-  public init(for event: Event?) {
+  public init(for event: Event?, teamName: String) {
     self.event = event
+    self.teamName = teamName
     super.init(nibName: nil, bundle: nil)
   }
 
@@ -113,7 +115,7 @@ class CreateTeamSuccessViewController: ViewController {
     AppController.shared.shareTapped(
       viewController: self,
       shareButton: inviteButton,
-      string: Strings.Share.item)
+      string: Strings.Share.item(teamName: teamName))
   }
 
   @objc
