@@ -124,7 +124,7 @@
 		C92244D3235D47B90098A333 /* FitbitDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244D2235D47B90098A333 /* FitbitDataProvider.swift */; };
 		C92244D5235D4B670098A333 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244D4235D4B670098A333 /* UserDefaults.swift */; };
 		C9BAEED0235D5C4E00A8D7AF /* FitbitStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BAEECF235D5C4E00A8D7AF /* FitbitStep.swift */; };
-		F00403191EC3FB7D005E6F10 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		F00403191EC3FB7D005E6F10 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004031C1EC52772005E6F10 /* AppConfig.swift */; };
 		F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */; };
 		F017B68E227686A60023E84B /* OnboardingWelcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017B68D227686A60023E84B /* OnboardingWelcome.swift */; };
@@ -1170,7 +1170,7 @@
 				269F95292378FB0E0089CDD1 /* CircularProgressView.swift in Sources */,
 				26A475A32353E63400059764 /* AppInfoCell.swift in Sources */,
 				F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */,
-				F00403191EC3FB7D005E6F10 /* BuildFile in Sources */,
+				F00403191EC3FB7D005E6F10 /* (null) in Sources */,
 				F0A992D61EABF037001621A6 /* Formatters.swift in Sources */,
 				2622C09023249A4B0092B145 /* UIRefreshControl.swift in Sources */,
 				A58E21D723DE85CF00929E86 /* AZSClient.swift in Sources */,
@@ -1479,7 +1479,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Steps4Impact/Supporting Files/Steps4Impact.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 269;
+				CURRENT_PROJECT_VERSION = 270;
 				DEVELOPMENT_TEAM = 6SQ8F32998;
 				INFOPLIST_FILE = "Steps4Impact/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1503,7 +1503,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Steps4Impact/Supporting Files/Steps4Impact.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 269;
+				CURRENT_PROJECT_VERSION = 270;
 				DEVELOPMENT_TEAM = 6SQ8F32998;
 				INFOPLIST_FILE = "Steps4Impact/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
