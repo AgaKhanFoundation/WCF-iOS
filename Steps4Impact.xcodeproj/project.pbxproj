@@ -110,6 +110,7 @@
 		A57A29FC236E408E002AA380 /* BadgesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57A29FB236E408E002AA380 /* BadgesCollectionViewController.swift */; };
 		A5865EB32377617500C551E9 /* BadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5865EB22377617500C551E9 /* BadgeCell.swift */; };
 		A5865EB5237761BF00C551E9 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5865EB4237761BF00C551E9 /* HeaderCell.swift */; };
+		A58E21D723DE85CF00929E86 /* AZSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58E21D623DE85CF00929E86 /* AZSClient.swift */; };
 		A594DC89238B624A003B5EF7 /* LeaderboardPodiumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594DC88238B624A003B5EF7 /* LeaderboardPodiumCell.swift */; };
 		A594DC8B238B6620003B5EF7 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594DC8A238B6620003B5EF7 /* LeaderboardCell.swift */; };
 		A594DC8D238B6DBA003B5EF7 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594DC8C238B6DBA003B5EF7 /* Leaderboard.swift */; };
@@ -291,6 +292,7 @@
 		A57A29FB236E408E002AA380 /* BadgesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesCollectionViewController.swift; sourceTree = "<group>"; };
 		A5865EB22377617500C551E9 /* BadgeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCell.swift; sourceTree = "<group>"; };
 		A5865EB4237761BF00C551E9 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		A58E21D623DE85CF00929E86 /* AZSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AZSClient.swift; sourceTree = "<group>"; };
 		A594DC88238B624A003B5EF7 /* LeaderboardPodiumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardPodiumCell.swift; sourceTree = "<group>"; };
 		A594DC8A238B6620003B5EF7 /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
 		A594DC8C238B6DBA003B5EF7 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 				26570DDA234B01010016F189 /* FacebookService.swift */,
 				2611A5032335FF290030E77E /* JSON.swift */,
 				2611A5042335FF290030E77E /* Service.swift */,
+				A58E21D623DE85CF00929E86 /* AZSClient.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -985,7 +988,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "# Check for secrets.sh for local\nif [ -f ./secrets.sh ]\nthen\nsource ./secrets.sh\nfi\n\n# Generate Secrets File\n\"${PODS_ROOT}\"/Sourcery/bin/sourcery \\\n--templates ./Templates/*.stencil \\\n--sources ./Steps4Impact \\\n--output ./Generated/ \\\n--args devPassword=\\\"$API_DEV_PASSWORD\\\" \\\n--args stagingPassword=\\\"$API_STAGING_PASSWORD\\\" \\\n--args prodPassword=\\\"$API_PROD_PASSWORD\\\"\n";
+			shellScript = "# Check for secrets.sh for local\nif [ -f ./secrets.sh ]\nthen\nsource ./secrets.sh\nfi\n\n# Generate Secrets File\n\"${PODS_ROOT}\"/Sourcery/bin/sourcery \\\n--templates ./Templates/*.stencil \\\n--sources ./Steps4Impact \\\n--output ./Generated/ \\\n--args devPassword=\\\"$API_DEV_PASSWORD\\\" \\\n--args stagingPassword=\\\"$API_STAGING_PASSWORD\\\" \\\n--args prodPassword=\\\"$API_PROD_PASSWORD\\\" \\\n--args azureAccKey=\\\"$AZURE_ACC_KEY\\\"\n";
 		};
 		26AFC9E21EA6508C002E6D2A /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1056,6 +1059,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Steps4Impact/Pods-Steps4Impact-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AZSClient/AZSClient.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
@@ -1064,7 +1068,8 @@
 				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/OAuthSwift/OAuthSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -1074,6 +1079,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AZSClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
@@ -1082,7 +1088,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OAuthSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -1168,6 +1175,7 @@
 				F00403191EC3FB7D005E6F10 /* (null) in Sources */,
 				F0A992D61EABF037001621A6 /* Formatters.swift in Sources */,
 				2622C09023249A4B0092B145 /* UIRefreshControl.swift in Sources */,
+				A58E21D723DE85CF00929E86 /* AZSClient.swift in Sources */,
 				26FE244D23222E8500E01B9B /* Context.swift in Sources */,
 				265DE56C2332E492009DDA5A /* LeaderboardDataSource.swift in Sources */,
 				F0CF39861EE0E903006A7462 /* Record.swift in Sources */,

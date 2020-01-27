@@ -152,6 +152,10 @@ class CreateTeamViewController: ViewController, UINavigationControllerDelegate, 
       $0.leading.equalToSuperview().offset(Style.Size.s32)
     }
 
+    view.addSubview(activityView) {
+      $0.centerX.centerY.equalToSuperview()
+    }
+
     onBackground {
       AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
         guard let participant = Participant(json: result.response),
@@ -226,39 +230,48 @@ class CreateTeamViewController: ViewController, UINavigationControllerDelegate, 
     activityView.startAnimating()
     navigationItem.rightBarButtonItem?.isEnabled = false
     teamNameTextField.isEnabled = false
+    guard let imageData = self.teamPhotoImageView.image?.jpegData(compressionQuality: 0.25) else { return }
 
-    AKFCausesService.createTeam(name: teamName.trimmingCharacters(in: .whitespaces),
-                                lead: Facebook.id) { [weak self] (result) in
-                                  onMain {
-                                    guard let `self` = self else { return }
-                                    self.activityView.stopAnimating()
-                                    self.teamNameTextField.isEnabled = true
-                                    self.navigationItem.rightBarButtonItem?.isEnabled = true
+    AZSClient.uploadImage(data: imageData, teamName: teamName) { (error, success) in
+      if let err = error {
+        print("Image cannot be uploaded: \(err)")
+        self.showErrorAlert()
+      } else {
+        print(self.teamName, " uploaded!")
 
-                                    guard let teamID = Team(json: result.response)?.id else {
-                                      self.showErrorAlert()
-                                      return
-                                    }
-
-                                    AKFCausesService.joinTeam(fbid: Facebook.id, team: teamID) { [weak self] (result) in
+        AKFCausesService.createTeam(name: self.teamName.trimmingCharacters(in: .whitespaces), imageName: self.teamName,
+                                    lead: Facebook.id) { [weak self] (result) in
                                       onMain {
                                         guard let `self` = self else { return }
-                                        switch result {
+                                        self.activityView.stopAnimating()
+                                        self.teamNameTextField.isEnabled = true
+                                        self.navigationItem.rightBarButtonItem?.isEnabled = true
 
-                                          
-                                        case .success:
-                                          // swiftlint:disable:next line_length
-                                          self.navigationController?.setViewControllers([CreateTeamSuccessViewController(for: self.event, teamName: self.teamName.trimmingCharacters(in: .whitespaces))],
-                                                                                        animated: true)
-                                          NotificationCenter.default.post(name: .teamChanged, object: nil)
-                                        case .failed:
-                                          // If creating a team is successful but joining fails - delete it.
-                                          AKFCausesService.deleteTeam(team: teamID)
+                                        guard let teamID = Team(json: result.response)?.id else {
                                           self.showErrorAlert()
+                                          return
+                                        }
+
+                                        AKFCausesService.joinTeam(fbid: Facebook.id, team: teamID) { [weak self] (result) in
+                                          onMain {
+                                            guard let `self` = self else { return }
+                                            switch result {
+
+                                            case .success:
+                                              // swiftlint:disable:next line_length
+                                              self.navigationController?.setViewControllers([CreateTeamSuccessViewController(for: self.event, teamName: self.teamName.trimmingCharacters(in: .whitespaces))],
+                                                                                            animated: true)
+                                              NotificationCenter.default.post(name: .teamChanged, object: nil)
+                                            case .failed:
+                                              // If creating a team is successful but joining fails - delete it.
+                                              AKFCausesService.deleteTeam(team: teamID)
+                                              self.showErrorAlert()
+                                            }
+                                          }
                                         }
                                       }
-                                    }
-                                  }
+        }
+      }
     }
   }
 
