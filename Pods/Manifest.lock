@@ -7,6 +7,7 @@ PODS:
   - AppCenter/Core (2.3.0)
   - AppCenter/Crashes (2.3.0):
     - AppCenter/Core
+  - AZSClient (0.2.6)
   - FacebookCore (0.9.0):
     - FBSDKCoreKit (~> 5.0)
   - FacebookLogin (0.9.0):
@@ -104,6 +105,7 @@ PODS:
 
 DEPENDENCIES:
   - AppCenter (~> 2.3.0)
+  - AZSClient
   - FacebookCore (~> 0.9.0)
   - FacebookLogin (~> 0.9.0)
   - FacebookShare (~> 0.9.0)
@@ -124,8 +126,9 @@ DEPENDENCIES:
   - SwiftLint (~> 0.35.0)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - AppCenter
+    - AZSClient
     - FacebookCore
     - FacebookLogin
     - FacebookShare
@@ -133,6 +136,7 @@ SPEC REPOS:
     - FBSDKLoginKit
     - FBSDKShareKit
     - FirebaseAnalyticsInterop
+    - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCoreDiagnosticsInterop
     - FirebaseInstanceID
@@ -145,20 +149,19 @@ SPEC REPOS:
     - OAuthSwift
     - Protobuf
     - Quick
-    - SDWebImage
-    - SnapKit
-    - SwiftLint
-  trunk:
-    - FirebaseCore
     - RxBlocking
     - RxCocoa
     - RxRelay
     - RxSwift
     - RxTest
+    - SDWebImage
+    - SnapKit
     - Sourcery
+    - SwiftLint
 
 SPEC CHECKSUMS:
   AppCenter: 9784d2fc998c9bd0b8fbaf4fb9ed69526d12ce1a
+  AZSClient: efd576cabf56f97e38cb1b614739f4b0c1906392
   FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
   FacebookLogin: 6cee9fd6e1fe976fe8f7eec199e27b28b14f5d63
   FacebookShare: 85968ad1b1606c4944fb154924e425fd29184ea5
@@ -189,6 +192,6 @@ SPEC CHECKSUMS:
   Sourcery: 3ed61be7c8a1218fce349266139379dba477efe0
   SwiftLint: 5553187048b900c91aa03552807681bb6b027846
 
-PODFILE CHECKSUM: 2ef5f512b72f8d07906febbefbd4e620d06e5b94
+PODFILE CHECKSUM: f830b25b078bd36405ec2bfd37760619938c8f91
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4
