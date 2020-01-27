@@ -82,7 +82,6 @@ class CurrentMilestoneCell: ConfigurableTableViewCell {
 //    return imagevIew
 //  }()
 
-
   override func commonInit() {
     super.commonInit()
     contentView.addSubview(circle) {
@@ -160,6 +159,7 @@ class CurrentMilestoneCell: ConfigurableTableViewCell {
       verticalBar.isHidden = false
     }
     milestoneNameButton.setTitle("\(currentMilestone.name)", for: .normal)
+    // swiftlint:disable:next line_length
     journeyMapImageView.fadeInImage(imageURL: URL(string: currentMilestone.journeyMap), placeHolderImage: Assets.journeyEmpty.image)
 
     UIView.animate(withDuration: 1) {

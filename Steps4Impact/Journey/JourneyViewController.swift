@@ -57,6 +57,7 @@ class JourneyViewController: TableViewController {
         if let nextMilestone = dataSource.nameOfNextMilestone {
           let nextMilestoneDistance = dataSource.distanceToNextMilestone
           let distanceRemaining = nextMilestoneDistance - dataSource.distanceCoveredToNextMilestone
+          // swiftlint:disable:next line_length
           let progressLabelText = "\(Int(distanceRemaining/2000)) / \(Int(nextMilestoneDistance/2000)) mi remaining to reach \(nextMilestone)"
           self?.progressLabel.text = progressLabelText
         } else {
