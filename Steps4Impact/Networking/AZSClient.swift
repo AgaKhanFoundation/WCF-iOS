@@ -12,6 +12,7 @@ import AZSClient
 class AZSClient {
 
   static let accKey = String(AppSecrets.azureAccKey.reversed())
+  static let serverURL = "https://teamimages.blob.core.windows.net/"
   static let containerName = "teamimages-dev"
   static let accountName = "teamimages"
   static let folderName: String = {
@@ -53,5 +54,9 @@ class AZSClient {
     } catch {
         print("Error in creating account: \(error)")
     }
+  }
+
+  static func buildImageURL(for imageName: String) -> String {
+    return "\(serverURL)\(containerName)/\(folderName)\(imageName).jpg"
   }
 }

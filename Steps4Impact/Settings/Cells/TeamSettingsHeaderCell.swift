@@ -38,6 +38,16 @@ struct TeamSettingsHeaderCellContext: CellContext {
 class TeamSettingsHeaderCell: ConfigurableTableViewCell {
   static let identifier = "TeamSettingsHeaderCell"
 
+  private let teamImageView: WebImageView = {
+    let webImageView = WebImageView()
+    webImageView.layer.cornerRadius = 48
+    webImageView.image = Assets.uploadImageIcon.image
+    webImageView.layer.borderWidth = 1
+    webImageView.layer.borderColor = UIColor.lightGray.cgColor
+    webImageView.clipsToBounds = true
+    webImageView.contentMode = .scaleAspectFill
+    return webImageView
+  }()
   private let teamLabel = UILabel(typography: .title)
   private let eventLabel = UILabel(typography: .bodyRegular)
 
@@ -47,18 +57,29 @@ class TeamSettingsHeaderCell: ConfigurableTableViewCell {
     teamLabel.textAlignment = .center
     eventLabel.textAlignment = .center
 
+    contentView.addSubview(teamImageView) {
+      $0.height.width.equalTo(Style.Size.s96)
+      $0.centerY.equalToSuperview()
+      $0.leading.equalToSuperview().offset(Style.Padding.p16)
+    }
+
     contentView.addSubview(teamLabel) {
-      $0.leading.trailing.top.equalToSuperview().inset(Style.Padding.p32)
+      $0.leading.equalTo(teamImageView.snp.trailing).offset(Style.Padding.p32)
+      $0.top.equalToSuperview().offset(Style.Padding.p32)
     }
 
     contentView.addSubview(eventLabel) {
       $0.top.equalTo(teamLabel.snp.bottom).offset(Style.Padding.p8)
-      $0.leading.trailing.bottom.equalToSuperview().inset(Style.Padding.p32)
+      $0.leading.equalTo(teamImageView.snp.trailing).offset(Style.Padding.p32)
+      $0.bottom.equalToSuperview().inset(Style.Padding.p32)
     }
   }
 
   func configure(context: CellContext) {
     guard let context = context as? TeamSettingsHeaderCellContext else { return }
+    let teamImageURLString = AZSClient.buildImageURL(for: context.team)
+
+    teamImageView.fadeInImage(imageURL: URL(string: teamImageURLString), placeHolderImage: Assets.uploadImageIcon.image)
     teamLabel.text = context.team
     eventLabel.text = context.event
   }
