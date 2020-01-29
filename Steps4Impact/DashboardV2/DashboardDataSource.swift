@@ -103,6 +103,9 @@ class DashboardDataSource: TableViewDataSource {
         eventTimeline: eventTimeline,
         disclosureLabel: Strings.Dashboard.badges),
       activityCell
+//      InfoCellContext(
+//        title: Strings.Dashboard.ChallengeProgress.title,
+//        body: Strings.Dashboard.ChallengeProgress.unavailable)
     ]]
   }
 
