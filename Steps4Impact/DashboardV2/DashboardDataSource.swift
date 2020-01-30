@@ -42,6 +42,7 @@ class DashboardDataSource: TableViewDataSource {
   private var teamName: String = " "
   private var eventName: String = " "
   private var eventTimeline: String = " "
+  private var eventLengthInDays: Int = 1
   private var milesCountDay: Int = 0
   private var milesCountWeek: Int = 0
   private var commitment: Int = 0
@@ -65,6 +66,7 @@ class DashboardDataSource: TableViewDataSource {
         self?.eventName = event.name
         self?.eventTimeline = DataFormatters
           .formatDateRange(value: (start: event.challengePhase.start, end: event.challengePhase.end))
+        self?.eventLengthInDays = event.lengthInDays
       }
       self?.commitment = participant?.currentEvent?.commitment?.miles ?? 0
       self?.configure()
@@ -112,7 +114,8 @@ class DashboardDataSource: TableViewDataSource {
       return ActivityCardCellContext(title: Strings.Dashboard.Activity.title,
                                      milesDayCount: milesCountDay,
                                      milesWeekCount: milesCountWeek,
-                                     commitment: commitment)
+                                     commitment: commitment,
+                                     eventLengthInDays: eventLengthInDays)
     } else {
       return EmptyActivityCellContext(title: Strings.Dashboard.Activity.title,
                                       body: Strings.Dashboard.Activity.disconnected,
