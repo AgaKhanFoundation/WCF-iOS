@@ -69,3 +69,7 @@ struct Event {
     self.commitment = Commitment(json: json["participant_event"])
   }
 }
+
+extension Event {
+  var lengthInDays: Int { challengePhase.start.daysUntil(challengePhase.end) }
+}
