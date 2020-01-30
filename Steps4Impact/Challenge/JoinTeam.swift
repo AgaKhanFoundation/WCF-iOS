@@ -59,7 +59,6 @@ class JoinTeamViewController: TableViewController {
 
   private func configureSearchController() {
     searchController.searchResultsUpdater = self
-    searchController.dimsBackgroundDuringPresentation = false
     searchController.hidesNavigationBarDuringPresentation = false
     navigationItem.hidesSearchBarWhenScrolling = false
     navigationItem.searchController = searchController
