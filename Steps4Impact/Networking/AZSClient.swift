@@ -56,7 +56,7 @@ class AZSClient {
     }
   }
 
-  static func buildImageURL(for imageName: String) -> String {
+  static func buildImageURL(from imageName: String) -> String {
     return "\(serverURL)\(containerName)/\(folderName)\(imageName).jpg"
   }
 }

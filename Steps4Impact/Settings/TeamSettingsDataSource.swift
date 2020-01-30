@@ -124,7 +124,7 @@ class TeamSettingsDataSource: TableViewDataSource {
 
   func configure() {
     cells = [[
-      TeamSettingsHeaderCellContext(team: self.teamName, event: self.eventName),
+      TeamSettingsHeaderCellContext(team: self.teamName, event: self.eventName, isLead: isLead),
       SettingsTitleCellContext(title: "Team Members")
     ]]
 
