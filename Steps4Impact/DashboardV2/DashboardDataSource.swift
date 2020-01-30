@@ -45,6 +45,7 @@ class DashboardDataSource: TableViewDataSource {
   private var milesCountDay: Int = 0
   private var milesCountWeek: Int = 0
   private var commitment: Int = 0
+  private var healthKitDataProvider = HealthKitDataProvider()
 
   enum DashboardContext: Context {
     case inviteSupporters
@@ -128,7 +129,7 @@ class DashboardDataSource: TableViewDataSource {
 
     switch UserInfo.pedometerSource {
     case .healthKit:
-      HealthKitDataProvider().retrieveDistance(forInterval: dayInterval) { [weak self] (result) in
+      healthKitDataProvider.retrieveDistance(forInterval: dayInterval) { [weak self] (result) in
         switch result {
         case .success(let count):
           self?.milesCountDay = count
@@ -137,7 +138,7 @@ class DashboardDataSource: TableViewDataSource {
           break
         }
       }
-      HealthKitDataProvider().retrieveDistance(forInterval: weekInterval) { [weak self] (result) in
+      healthKitDataProvider.retrieveDistance(forInterval: weekInterval) { [weak self] (result) in
         switch result {
         case .success(let count):
           self?.milesCountWeek = count
