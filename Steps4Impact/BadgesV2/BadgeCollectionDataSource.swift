@@ -28,6 +28,7 @@ class BadgesCollectionDataSource: CollectionViewDataSource {
 
   var event: Event?
   var team: Team?
+  var eventDuration: Int = 0
   var stepsBadges = [Badge]()
   var achievementBadges = [Badge]()
   var streakBadge: Badge?
@@ -41,6 +42,7 @@ class BadgesCollectionDataSource: CollectionViewDataSource {
     guard let event = event else {
       return
     }
+    eventDuration = Calendar.current.dateComponents([.day], from: event.challengePhase.start, to: event.challengePhase.end).day ?? 0
     let now = Date()
     isChallengeCompleted = event.challengePhase.end < now
     /// Removing all earlier cells during refereh()
@@ -180,7 +182,7 @@ class BadgesCollectionDataSource: CollectionViewDataSource {
     }
     /// Check for Final Medal Badge
     if isChallengeCompleted {
-      switch badgesCount {
+      switch (badgesCount/eventDuration)*100 {
       case 25..<50:
         createFinalMedalBadge(for: FinalMedalType.silver)
       case 50..<75:
