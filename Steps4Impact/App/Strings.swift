@@ -184,6 +184,7 @@ struct Strings {
     static let deleteTeamBody = NSLocalizedString("TeamSettings.deleteTeamBody", comment: "")
     static let editTeamNameMessage = NSLocalizedString("TeamSettings.editTeamNameMessage", comment: "")
     static let editTeamName = NSLocalizedString("TeamSettings.editTeamName", comment: "")
+    static let editImage = NSLocalizedString("TeamSettings.editImage", comment: "")
     static let update = NSLocalizedString("TeamSettings.update", comment: "")
   }
 

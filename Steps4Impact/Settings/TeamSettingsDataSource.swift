@@ -105,6 +105,7 @@ class TeamSettingsDataSource: TableViewDataSource {
 
     AKFCausesService.getParticipant(fbid: facebookService.id) { [weak self] (result) in
       let participant = Participant(json: result.response)
+
       self?.cache.participantRelay.accept(participant)
 
       if let eventId = participant?.currentEvent?.id {
@@ -122,9 +123,11 @@ class TeamSettingsDataSource: TableViewDataSource {
     }
   }
 
+  
+
   func configure() {
     cells = [[
-      TeamSettingsHeaderCellContext(team: self.teamName, event: self.eventName),
+      TeamSettingsHeaderCellContext(team: self.teamName, event: self.eventName, isLead: isLead),
       SettingsTitleCellContext(title: "Team Members")
     ]]
 

@@ -44,18 +44,23 @@ class BadgeCell: ConfigurableCollectionViewCell {
     switch badge.badgeType {
     case .steps:                                  // swiftlint:disable:next line_length
       badgeLabel.text = #"\#(badge.stepsCompleted) steps completed \#(isDateAvailable ? "on \(formattedDateString)" : "")"#
+      badgeImageView.image = BadgesAssets.steps(count: badge.stepsCompleted).image
     case .streak:                                 // swiftlint:disable:next line_length
       badgeLabel.text = #"\#(badge.streak) days streak completed \#(isDateAvailable ? "on \(formattedDateString)" : "")"#
+      badgeImageView.image = BadgesAssets.dailyStreak(count: badge.streak).image
     case .personalProgress:                       // swiftlint:disable:next line_length
       badgeLabel.text = #"Completed \#(badge.personalProgress) miles \#(isDateAvailable ? "on \(formattedDateString)" : "")"#
+      badgeImageView.image = BadgesAssets.personalProgress(miles: badge.personalProgress).image
     case .teamProgress:
       badgeLabel.text = "Team completed \(badge.teamProgress)% of journey"
+      badgeImageView.image = BadgesAssets.teamProgress(progress: badge.teamProgress).image
     case .finalMedal:
       badgeImageView.alpha = 0
       badgeLabel.alpha = 0
       finalMedalImageView.alpha = 1
       finalMedalLabel.alpha = 1
       finalMedalLabel.text = "\(badge.finalMedalAchieved.rawValue) Level Badge"
+      finalMedalImageView.image = BadgesAssets.finalMedal(level: badge.finalMedalAchieved.rawValue).image
     default:
       badgeLabel.text = ""
     }
