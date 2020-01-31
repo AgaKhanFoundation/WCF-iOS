@@ -33,6 +33,7 @@ import HealthKit
 
 class ConnectSourceViewController: TableViewController {
   static let steps = HKSampleType.quantityType(forIdentifier: .stepCount)! // swiftlint:disable:this force_unwrapping
+  static let distance = HKSampleType.quantityType(forIdentifier: .distanceWalkingRunning)! // swiftlint:disable:this force_unwrapping
 
   override func commonInit() {
     super.commonInit()
@@ -57,9 +58,15 @@ class ConnectSourceViewController: TableViewController {
   }
 
   private func requestHealthKitAccess() {
-    HKHealthStore().requestAuthorization(toShare: [ConnectSourceViewController.steps],
-                                         read: [ConnectSourceViewController.steps]) { [weak self] (_, _) in
-      UserInfo.pedometerSource = .healthKit
+    let typesToRead: Set<HKObjectType> = [ConnectSourceViewController.steps, ConnectSourceViewController.distance]
+    
+    HKHealthStore().requestAuthorization(toShare: [], read: typesToRead) { [weak self] (success, error) in
+      if success && error == nil {
+        UserInfo.pedometerSource = .healthKit
+      } else {
+        UserInfo.pedometerSource = nil
+      }
+
       onMain {
         self?.reload()
       }

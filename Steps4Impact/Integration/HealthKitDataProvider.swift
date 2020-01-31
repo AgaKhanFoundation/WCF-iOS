@@ -34,49 +34,54 @@ class HealthKitDataProvider: PedometerDataProvider {
 
   func retrieveStepCount(forInterval interval: DateInterval,
                          _ completion: @escaping (Result<Int, PedometerDataProvider.Error>) -> Void) {
-    return retrieve(.stepCount, forInterval: interval, completion)
+    return retrieve(.stepCount, forInterval: interval, unit: .count(), completion)
   }
 
   func retrieveDistance(forInterval interval: DateInterval,
                         _ completion: @escaping (Result<Int, PedometerDataProviderError>) -> Void) {
-    return retrieve(.distanceWalkingRunning, forInterval: interval, completion)
+    return retrieve(.distanceWalkingRunning, forInterval: interval, unit: .mile(), completion)
   }
 
-  private func retrieve(_ typeid: HKQuantityTypeIdentifier, forInterval: DateInterval,
+  private func retrieve(_ typeid: HKQuantityTypeIdentifier,
+                        forInterval: DateInterval,
+                        unit: HKUnit,
                         _ completion: @escaping (Result<Int, PedometerDataProvider.Error>) -> Void) {
     guard
       let quantityType = HKSampleType.quantityType(forIdentifier: typeid)
     else { return completion(.failure(.quantityType)) }
-
-    switch HK.authorizationStatus(for: quantityType) {
-    case .sharingDenied:
-      return completion(.failure(.sharingDenied))
-    case .notDetermined:
-      HK.requestAuthorization(toShare: nil, read: [quantityType]) { (success: Bool, error: Error?) in
-        guard success, error == nil else {
-          print("Error getting HealthKit access: \(String(describing: error))")
-          return completion(.failure(.sharingNotAuthorized))
+    
+    HK.getRequestStatusForAuthorization(toShare: [], read: [quantityType]) { [weak self] (status, error) in
+      guard let strongSelf = self, error == nil else { return completion(.failure(.unknown)) }
+      
+      switch status {
+      case .unknown:
+        completion(.failure(.unknown))
+      case .shouldRequest:
+        strongSelf.HK.requestAuthorization(toShare: nil, read: [quantityType]) { (success: Bool, error: Error?) in
+          guard success, error == nil else {
+            print("Error getting HealthKit access: \(String(describing: error))")
+            return completion(.failure(.sharingNotAuthorized))
+          }
+          strongSelf.retrieve(typeid, forInterval: forInterval, unit: unit, completion)
         }
+      case .unnecessary:
+        strongSelf.query(sampleType: quantityType, interval: forInterval, unit: unit, completion: completion)
+      @unknown default:
+        completion(.failure(.unknown))
       }
-      fallthrough
-    case .sharingAuthorized:
-      query(sampleType: quantityType, interval: forInterval, completion: completion)
-    @unknown default:
-      completion(.failure(.unknown))
     }
   }
 
-  private func query(sampleType: HKSampleType, interval: DateInterval,
+  private func query(sampleType: HKSampleType, interval: DateInterval, unit: HKUnit,
                      completion: @escaping (Result<Int, PedometerDataProvider.Error>) -> Void) {
     let predicate = HKQuery.predicateForSamples(withStart: interval.start,
                                                 end: interval.end, options: [])
 
-    let query = HKSampleQuery(sampleType: sampleType, predicate: predicate,
-                              limit: 0, sortDescriptors: nil) { (_: HKSampleQuery, samples: [HKSample]?, _: Error?) in
+    let query = HKSampleQuery(sampleType: sampleType, predicate: predicate, limit: 0, sortDescriptors: nil) { (_: HKSampleQuery, samples: [HKSample]?, _: Error?) in
         guard let samples = samples as? [HKQuantitySample] else {
           return completion(.failure(.resultsNotPresent))
         }
-        completion(.success(Int(samples.reduce(0, { $0 + $1.quantity.doubleValue(for: .count()) }))))
+        completion(.success(Int(samples.reduce(0, { $0 + $1.quantity.doubleValue(for: unit) }))))
     }
 
     HK.execute(query)

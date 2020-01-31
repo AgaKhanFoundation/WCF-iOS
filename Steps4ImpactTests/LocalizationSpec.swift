@@ -35,7 +35,7 @@ class LocalizationSpec: QuickSpec {
   override func spec() {
     describe("Localization") {
       var englishLocalization: [String: String]!
-      var otherLocalizations: [[String: String]?]!
+      var otherLocalizations: [[String: String]]!
       let localizations = ["hi"]
 
       beforeEach {
@@ -52,16 +52,23 @@ class LocalizationSpec: QuickSpec {
             withExtension: "strings",
             subdirectory: nil,
             localization: $0)! } // swiftlint:disable:this force_unwrapping
-          .map { NSDictionary(contentsOf: $0) as? [String: String] }
+          .compactMap { NSDictionary(contentsOf: $0) as? [String: String] }
       }
 
       it("should be able to parse localization file") {
         expect(englishLocalization).toNot(beNil())
       }
+      
+      it("should have the right number of other localizations") {
+        expect(otherLocalizations.count).to(equal(localizations.count))
+      }
 
       it("should have the same keys for all localizations") {
+        let englishKeysSet = Set(englishLocalization.keys)
         for localization in otherLocalizations {
-          expect(localization?.keys).to(equal(englishLocalization.keys))
+          expect(localization.keys.count).to(equal(englishLocalization.keys.count))
+          let differenceSet = englishKeysSet.symmetricDifference(localization.keys)
+          expect(differenceSet).to(equal(Set([])))
         }
       }
     }

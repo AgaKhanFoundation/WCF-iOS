@@ -103,6 +103,12 @@
 "Challenge.CreateTeam.successTitle" = "Your team has been created!";
 "Challenge.CreateTeam.continue" = "Continue";
 "Challenge.CreateTeam.uploadTeamPhotoLabelText" = "Upload a team photo";
+"Challenge.CreateTeam.uploadImageButtonText" = "Upload Image";
+"Challenge.CreateTeam.teamVisibilitySwitchStatusPrivate" = "Private";
+"Challenge.CreateTeam.teamVisibilitySwitchStatusPublic" = "Public";
+"Challenge.CreateTeam.teamVisibilityTitleText" = "Team Visibility";
+"Challenge.CreateTeam.visibilityBodyOn" = "Your team is discoverable. Any participant can find and join your team.";
+"Challenge.CreateTeam.visibilityBodyOff" = "Your team is invite-only. Turn on team visibilty to allow anyone to find and join your team.";
 "Challenge.JoinTeam.title" = "Join a Team";
 "Challenge.TeamNeededCard.title" = "You will need a Team";
 "Challenge.TeamNeededCard.body" = "Participating in a challenge is always more fun with friends";

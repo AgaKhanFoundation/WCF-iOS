@@ -36,6 +36,7 @@ struct ActivityCardCellContext: CellContext {
   let milesDayCount: Int
   let milesWeekCount: Int
   let commitment: Int
+  let eventLengthInDays: Int
 }
 
 class ActivityCardCell: ConfigurableTableViewCell {
@@ -46,14 +47,19 @@ class ActivityCardCell: ConfigurableTableViewCell {
   private let buttonView = ActivityCardCellButtonView()
   private let currentLabel = UILabel(typography: .bodyRegular) // TODO(samisuteria) replace with day/week selector
   private let progressView = CircularProgressView()
+  private let headerLabel = UILabel(typography: .headerTitle, color: Style.Colors.FoundationGreen)
+  private let subtitleLabel = UILabel(typography: .subtitleRegular, color: Style.Colors.Silver)
   private var milesDayCount: Int = 0
   private var milesWeekCount: Int = 0
   private var commitment: Int = 0
+  private var eventLengthInDays: Int = 1
 
   override func commonInit() {
     super.commonInit()
     currentLabel.textAlignment = .center
     buttonView.delegate = self
+    headerLabel.textAlignment = .center
+    subtitleLabel.textAlignment = .center
 
     contentView.addSubview(cardView) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)
@@ -82,6 +88,15 @@ class ActivityCardCell: ConfigurableTableViewCell {
       $0.top.equalTo(currentLabel.snp.bottom).offset(Style.Padding.p16)
       $0.bottom.equalToSuperview().inset(Style.Padding.p32)
     }
+    
+    cardView.addSubview(headerLabel) {
+      $0.center.equalTo(progressView)
+    }
+    
+    cardView.addSubview(subtitleLabel) {
+      $0.centerX.equalTo(headerLabel)
+      $0.top.equalTo(headerLabel.snp.bottom)
+    }
   }
 
   func configure(context: CellContext) {
@@ -91,17 +106,23 @@ class ActivityCardCell: ConfigurableTableViewCell {
     milesDayCount = context.milesDayCount
     milesWeekCount = context.milesWeekCount
     commitment = context.commitment
+    eventLengthInDays = context.eventLengthInDays
     updateProgressBar()
   }
 
   private func updateProgressBar() {
     guard commitment > 0 else { return }
+    let dailyCommitment = commitment / eventLengthInDays
     var progress: CGFloat = 0.0
     switch buttonView.state {
     case .day:
-      progress = CGFloat(milesDayCount) / CGFloat(commitment)
+      progress = CGFloat(milesDayCount) / CGFloat(dailyCommitment)
+      headerLabel.text = "\(milesDayCount)"
+      subtitleLabel.text = "/\(dailyCommitment) miles"
     case .week:
-      progress = CGFloat(milesWeekCount) / CGFloat(commitment * 7)
+      progress = CGFloat(milesWeekCount) / CGFloat(dailyCommitment * 7)
+      headerLabel.text = "\(milesWeekCount)"
+      subtitleLabel.text = "/\(dailyCommitment * 7) miles"
     }
     progress = max(0, progress)
     progress = min(1.0, progress)
@@ -183,8 +204,8 @@ class ActivityCardCellButtonView: View {
     }
 
     setNeedsLayout()
-    UIView.animate(withDuration: 0.3) {
+    UIView.animate(withDuration: 0.3, delay: 0.0, options: [.beginFromCurrentState], animations: {
       self.layoutIfNeeded()
-    }
+    }, completion: nil)
   }
 }

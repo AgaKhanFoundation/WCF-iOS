@@ -58,7 +58,7 @@ class CircularProgressView: View {
                             endAngle: .pi * 2,
                             clockwise: true)
     backgroundLayer.path = path.cgPath
-    backgroundLayer.strokeColor = Style.Colors.grey.cgColor
+    backgroundLayer.strokeColor = Style.Colors.Silver.cgColor
     backgroundLayer.lineWidth = lineWidth
     backgroundLayer.fillColor = UIColor.clear.cgColor
     layer.addSublayer(backgroundLayer)
