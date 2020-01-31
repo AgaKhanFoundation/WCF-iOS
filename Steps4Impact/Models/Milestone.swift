@@ -67,4 +67,16 @@ struct Milestone {
     self.media = media
     self.content = content
   }
+
+  func getMediaURLs() -> [String] {
+    var result = [String]()
+    let splitMedia = self.media.split(separator: " ")
+    for mediaURL in splitMedia {
+      let url = mediaURL.split(separator: ":", maxSplits: 1, omittingEmptySubsequences: true)[safe: 1]
+      if let url = url {
+        result.append(String(url))
+      }
+    }
+    return result
+  }
 }

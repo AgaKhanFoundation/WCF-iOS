@@ -63,6 +63,7 @@ enum Assets: String {
 
   // Journey
   case journeyEmpty = "journey_map_test"
+  case journeyDetailMock = "journeyDetailMock"
 
   // Tab Bar
   case tabbarDashboardSelected = "tabbar-dashboard-selected"

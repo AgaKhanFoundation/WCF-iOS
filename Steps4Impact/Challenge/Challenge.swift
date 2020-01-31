@@ -325,14 +325,14 @@ class ChallengeDataSource: TableViewDataSource {
       ])
     }
 
-    cells.append([
-      DisclosureCellContext(
-        asset: .inviteSupporters,
-        title: "Fundraise while you stay fit",
-        body: "Did you know your friends and family can support you by donating to the cause?",
-        disclosureTitle: "Invite supporters to pledge",
-        context: ChallengeContext.inviteSupporters)
-    ])
+//    cells.append([
+//      DisclosureCellContext(
+//        asset: .inviteSupporters,
+//        title: "Fundraise while you stay fit",
+//        body: "Did you know your friends and family can support you by donating to the cause?",
+//        disclosureTitle: "Invite supporters to pledge",
+//        context: ChallengeContext.inviteSupporters)
+//    ])
 
   }
 

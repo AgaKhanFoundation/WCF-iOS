@@ -186,7 +186,7 @@ struct MilestoneDetails {
       "description": "",
       "title": "Sara, a young girl who dreams of becoming a doctor",
       "subtitle": "Meet Sara",
-      "media": "photo::http://wcf.x10host.com/3.Badakshan.png video:https://youtu.be/W__4h4p6Zp8",
+      "media": "photo:http://wcf.x10host.com/3.Badakshan.png video:https://youtu.be/W__4h4p6Zp8",
       "content": "Sara is seven years old and lives in one of the world 2019s most remote."
     ],
     [
