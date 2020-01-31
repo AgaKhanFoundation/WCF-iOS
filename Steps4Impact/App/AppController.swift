@@ -38,6 +38,8 @@ import HealthKit
 class AppController {
   static let shared = AppController()
 
+  static let isTestRun = true
+
   var window: UIWindow?
   var navigation: UITabBarController = Navigation()
 

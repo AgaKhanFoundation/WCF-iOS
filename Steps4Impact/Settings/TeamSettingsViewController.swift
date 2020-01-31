@@ -31,6 +31,11 @@ import UIKit
 import NotificationCenter
 
 class TeamSettingsViewController: TableViewController {
+
+  weak var headerCellReference: TeamSettingsHeaderCell?
+  private let activityView = UIActivityIndicatorView(style: .gray)
+
+  private let imagePicker = UIImagePickerController()
   override func commonInit() {
     super.commonInit()
 
@@ -41,7 +46,11 @@ class TeamSettingsViewController: TableViewController {
 
     _ = NotificationCenter.default.addObserver(forName: .teamChanged,
                                                object: nil, queue: nil) { [weak self] (_) in
-      self?.reload()
+                                                self?.reload()
+    }
+
+    view.addSubview(activityView) {
+      $0.centerX.centerY.equalToSuperview()
     }
   }
 
@@ -59,6 +68,9 @@ class TeamSettingsViewController: TableViewController {
     if let cell = cell as? TeamSettingsMemberCell {
       cell.delegate = self
     }
+    if let cell = cell as? TeamSettingsHeaderCell {
+      cell.delegate = self
+    }
   }
 }
 
@@ -71,16 +83,16 @@ extension TeamSettingsViewController: SettingsActionCellDelegate {
       let context = ds?.cells[safe: 0]?[safe: 0] as? TeamSettingsHeaderCellContext
       let teamName = context?.team
       AppController.shared.shareTapped(
-          viewController: self,
-          shareButton: button,
-          string: Strings.Share.item(teamName: teamName ?? ""))
+        viewController: self,
+        shareButton: button,
+        string: Strings.Share.item(teamName: teamName ?? ""))
     case .editname:
       AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
         guard
           let participant = Participant(json: result.response),
           let team = participant.team,
           let teamId = team.id
-        else { return }
+          else { return }
 
         let alert = TextAlertViewController()
         alert.title = Strings.TeamSettings.editTeamName
@@ -195,3 +207,58 @@ extension TeamSettingsViewController: TeamSettingsDataSourceDelegate {
     tableView.reloadOnMain()
   }
 }
+
+extension TeamSettingsViewController: TeamSettingsHeaderCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+  func editImageButtonPressed(cell: TeamSettingsHeaderCell) {
+    if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+      print("Button capture")
+
+      imagePicker.delegate = self
+      imagePicker.sourceType = .photoLibrary
+      imagePicker.allowsEditing = false
+      headerCellReference = cell
+      present(imagePicker, animated: true, completion: nil)
+    }
+  }
+
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    dismiss(animated: true, completion: nil)
+  }
+
+  func imagePickerController(_ picker: UIImagePickerController,
+                             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+    print("\(info)")
+    if let image = info[.originalImage] as? UIImage {
+      if let cell = headerCellReference {
+        cell.teamImageView.contentMode = .scaleAspectFill
+        cell.teamImageView.image = image
+        activityView.startAnimating()
+        guard let imageData = image.jpegData(compressionQuality: 0.25), let teamName = cell.teamLabel.text else { return }
+        AZSClient.uploadImage(data: imageData, teamName: teamName) { (error, success) in
+          if let err = error {
+            print("Image cannot be uploaded: \(err)")
+            self.showErrorAlert()
+            onMain {
+              self.activityView.stopAnimating()
+            }
+          } else {
+            onMain {
+              self.activityView.stopAnimating()
+            }
+          }
+        }
+      }
+      dismiss(animated: true, completion: nil)
+    }
+  }
+
+  private func showErrorAlert() {
+    let alert = AlertViewController()
+    alert.title = Strings.Challenge.CreateTeam.errorTitle
+    alert.body = Strings.Challenge.CreateTeam.errorBody
+    alert.add(.okay())
+    AppController.shared.present(alert: alert, in: self, completion: nil)
+  }
+}
+

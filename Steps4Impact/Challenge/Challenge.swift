@@ -254,7 +254,11 @@ class ChallengeDataSource: TableViewDataSource {
     cells = []
 
     if let milestones = achievement?.milestones, milestones.count < 9 {
-      self.milestones = MilestoneDetails.dictionary.compactMap({ Milestone(json: JSON($0))})
+      if AppController.isTestRun {
+        self.milestones = MilestoneDetails.testRunDictionary.compactMap({ Milestone(json: JSON($0))})
+      } else {
+        self.milestones = MilestoneDetails.dictionary.compactMap({ Milestone(json: JSON($0))})
+      }
     } else {
       self.milestones = achievement?.milestones
     }
@@ -291,7 +295,7 @@ class ChallengeDataSource: TableViewDataSource {
         DisclosureCellContext(
           asset: .challengeJourney,
           title: "Journey",
-          body: "\(milestonesCompleted) out of 10 milestones completed",
+          body: "\(milestonesCompleted) out of 8 milestones completed",
           disclosureTitle: "View milestone details",
           context: ChallengeContext.showJourneyView)
       ])

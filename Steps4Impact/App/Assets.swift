@@ -30,6 +30,7 @@
 import UIKit
 
 enum Assets: String {
+
   // UI
   case gear = "GearIcon"
   case disclosure = "BlueBackButton"
@@ -89,5 +90,32 @@ enum Assets: String {
     default:
       return UIImage(named: self.rawValue)
     }
+  }
+}
+
+enum BadgesAssets {
+  case dailyStreak(count: Int)
+  case personalProgress(miles: Int)
+  case steps(count: Int)
+  case teamProgress(progress: Int)
+  case finalMedal(level: String)
+
+  public var rawValue: String {
+    switch self {
+    case .dailyStreak(let count):
+      return "dailyStreak\(count)"
+    case .personalProgress(let miles):
+      return "\(miles)mi"
+    case .steps(let steps):
+      return "\(steps)steps"
+    case .teamProgress(let progress):
+      return "\(progress)progress"
+    case .finalMedal(let level):
+      return "\(level)"
+    }
+  }
+
+  var image: UIImage? {
+    return UIImage(named: self.rawValue)
   }
 }

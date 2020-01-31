@@ -28,6 +28,8 @@ class BadgesCollectionDataSource: CollectionViewDataSource {
 
   var event: Event?
   var team: Team?
+  var teamMembers: [Participant] = []
+  var eventDuration: Int = 0
   var stepsBadges = [Badge]()
   var achievementBadges = [Badge]()
   var streakBadge: Badge?
@@ -41,6 +43,7 @@ class BadgesCollectionDataSource: CollectionViewDataSource {
     guard let event = event else {
       return
     }
+    eventDuration = Calendar.current.dateComponents([.day], from: event.challengePhase.start, to: event.challengePhase.end).day ?? 0
     let now = Date()
     isChallengeCompleted = event.challengePhase.end < now
     /// Removing all earlier cells during refereh()
@@ -180,7 +183,7 @@ class BadgesCollectionDataSource: CollectionViewDataSource {
     }
     /// Check for Final Medal Badge
     if isChallengeCompleted {
-      switch badgesCount {
+      switch (badgesCount/eventDuration)*100 {
       case 25..<50:
         createFinalMedalBadge(for: FinalMedalType.silver)
       case 50..<75:
@@ -196,13 +199,15 @@ class BadgesCollectionDataSource: CollectionViewDataSource {
   }
   /// Calculating Team Progress Badge
   func configureTeamProgressBadge() {
-    guard let team = team else { return }
-    var teamTotalSteps = 0
-    for participant in team.members {
-      guard let records = participant.records else { return }
-      teamTotalSteps += records.reduce(0) { $0 + ($1.distance ?? 0) }
-    }
-    switch teamTotalSteps {
+    let teamTotalSteps = teamMembers.reduce(0, { (total, team) -> Int in
+      guard let records = team.records else { return total + 0 }
+      var sum = 0
+      for record in records {
+        sum += (record.distance ?? 0)
+      }
+      return total + sum
+    })
+    switch teamTotalSteps/2000 {
     case EligibiltyRange.completed_25percent_journey.range:
       createTeamProgressBadge(for: 25)
     case EligibiltyRange.completed_50percent_journey.range:
@@ -232,12 +237,25 @@ class BadgesCollectionDataSource: CollectionViewDataSource {
   }
   func reload(completion: @escaping () -> Void) {
     self.completion = completion
+    let group: DispatchGroup = DispatchGroup()
     AKFCausesService.getParticipant(fbid: FacebookService.shared.id) { (result) in
-      if let participant = Participant(json: result.response), let records = participant.records {
+      if let participant = Participant(json: result.response), let records = participant.records, let team = participant.team {
+        self.teamMembers.removeAll()
+        for member in team.members {
+          group.enter()
+          AKFCausesService.getParticipant(fbid: member.fbid) { (result) in
+            if let participant = Participant(json: result.response) {
+              self.teamMembers.append(participant)
+            }
+            group.leave()
+          }
+        }
         self.records = records
         self.event = participant.events?.first
-        self.configure()
-        completion()
+        group.notify(queue: .global()) { [weak self] in
+          self?.configure()
+          completion()
+        }
       }
     }
   }
@@ -286,7 +304,7 @@ enum EligibiltyRange: Int {
     case .completed_500_miles : return (2000*500) ..< (2000*1000)
     case .completed_25percent_journey: return 1375..<2750
     case .completed_50percent_journey: return 2750..<4125
-    case .completed_75percent_journey: return 41255..<5500
+    case .completed_75percent_journey: return 4125..<5500
     }
   }
 }

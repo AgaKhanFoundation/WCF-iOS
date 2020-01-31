@@ -30,6 +30,18 @@ enum MilestoneRanges: Int {
     case .milestone8 : return 10200000 ..< 11000000
     }
   }
+  var testRunRange: Range<Int> {
+    switch self {
+    case .milestone1 : return 0 ..< 164182
+    case .milestone2 : return 164182 ..< 325818
+    case .milestone3 : return 325818 ..< 386273
+    case .milestone4 : return 386273 ..< 449909
+    case .milestone5 : return 449909 ..< 511000
+    case .milestone6 : return 511000 ..< 567000
+    case .milestone7 : return 567000 ..< 649091
+    case .milestone8 : return 649091 ..< 700000
+    }
+  }
 }
 
 enum MilestoneStatus {
@@ -54,26 +66,49 @@ class JourneyDataSource: TableViewDataSource {
   }
 
   func configure() {
-    switch totalDistance {
-    case MilestoneRanges.milestone1.range:
-      configureCellsWithCurrentMilestone(at: 0)
-    case MilestoneRanges.milestone2.range:
-      configureCellsWithCurrentMilestone(at: 1)
-    case MilestoneRanges.milestone3.range:
-      configureCellsWithCurrentMilestone(at: 2)
-    case MilestoneRanges.milestone4.range:
-      configureCellsWithCurrentMilestone(at: 3)
-    case MilestoneRanges.milestone5.range:
-      configureCellsWithCurrentMilestone(at: 4)
-    case MilestoneRanges.milestone6.range:
-      configureCellsWithCurrentMilestone(at: 5)
-    case MilestoneRanges.milestone7.range:
-      configureCellsWithCurrentMilestone(at: 6)
-    case MilestoneRanges.milestone8.range:
-      configureCellsWithCurrentMilestone(at: 7)
-    default:
-      configureCellsWithCurrentMilestone(at: 8)
-    }
+    if AppController.isTestRun {
+      switch totalDistance {
+      case MilestoneRanges.milestone1.testRunRange:
+        configureCellsWithCurrentMilestone(at: 0)
+      case MilestoneRanges.milestone2.testRunRange:
+        configureCellsWithCurrentMilestone(at: 1)
+      case MilestoneRanges.milestone3.testRunRange:
+        configureCellsWithCurrentMilestone(at: 2)
+      case MilestoneRanges.milestone4.testRunRange:
+        configureCellsWithCurrentMilestone(at: 3)
+      case MilestoneRanges.milestone5.testRunRange:
+        configureCellsWithCurrentMilestone(at: 4)
+      case MilestoneRanges.milestone6.testRunRange:
+        configureCellsWithCurrentMilestone(at: 5)
+      case MilestoneRanges.milestone7.testRunRange:
+        configureCellsWithCurrentMilestone(at: 6)
+      case MilestoneRanges.milestone8.testRunRange:
+        configureCellsWithCurrentMilestone(at: 7)
+      default:
+        configureCellsWithCurrentMilestone(at: 8)
+      }
+    } else {
+        switch totalDistance {
+        case MilestoneRanges.milestone1.range:
+          configureCellsWithCurrentMilestone(at: 0)
+        case MilestoneRanges.milestone2.range:
+          configureCellsWithCurrentMilestone(at: 1)
+        case MilestoneRanges.milestone3.range:
+          configureCellsWithCurrentMilestone(at: 2)
+        case MilestoneRanges.milestone4.range:
+          configureCellsWithCurrentMilestone(at: 3)
+        case MilestoneRanges.milestone5.range:
+          configureCellsWithCurrentMilestone(at: 4)
+        case MilestoneRanges.milestone6.range:
+          configureCellsWithCurrentMilestone(at: 5)
+        case MilestoneRanges.milestone7.range:
+          configureCellsWithCurrentMilestone(at: 6)
+        case MilestoneRanges.milestone8.range:
+          configureCellsWithCurrentMilestone(at: 7)
+        default:
+          configureCellsWithCurrentMilestone(at: 8)
+        }
+      }
   }
 
   func configureCellsWithCurrentMilestone(at milestone: Int) {

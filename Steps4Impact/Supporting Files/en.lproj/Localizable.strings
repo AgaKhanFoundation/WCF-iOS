@@ -139,6 +139,7 @@
 "TeamSettings.update" = "Update";
 "TeamSettings.leave" = "Leave Team?";
 "TeamSettings.editTeamName" = "Edit Team Name";
+"TeamSettings.editImage" = "Edit Image";
 "TeamSettings.editTeamNameMessage" = "Please enter a new team name";
 "TeamSettings.leaveBody" = "This will remove your data linked to the team. You will not be able to participate in the challenge.";
 "TeamSettings.deleteTeam" = "Delete Team?";
