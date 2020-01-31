@@ -102,6 +102,13 @@
 "Challenge.CreateTeam.errorBody" = "Could not create team - perhaps try a different name";
 "Challenge.CreateTeam.successTitle" = "Your team has been created!";
 "Challenge.CreateTeam.continue" = "Continue";
+"Challenge.CreateTeam.uploadTeamPhotoLabelText" = "Upload a team photo";
+"Challenge.CreateTeam.uploadImageButtonText" = "Upload Image";
+"Challenge.CreateTeam.teamVisibilitySwitchStatusPrivate" = "Private";
+"Challenge.CreateTeam.teamVisibilitySwitchStatusPublic" = "Public";
+"Challenge.CreateTeam.teamVisibilityTitleText" = "Team Visibility";
+"Challenge.CreateTeam.visibilityBodyOn" = "Your team is discoverable. Any participant can find and join your team.";
+"Challenge.CreateTeam.visibilityBodyOff" = "Your team is invite-only. Turn on team visibilty to allow anyone to find and join your team.";
 "Challenge.JoinTeam.title" = "Join a Team";
 "Challenge.TeamNeededCard.title" = "You will need a Team";
 "Challenge.TeamNeededCard.body" = "Participating in a challenge is always more fun with friends";
@@ -151,4 +158,4 @@
 "InviteSupporters.request" = "Want to join me in supporting a good cause? I am participating in Aga Khan Foundation's (AKF) steps4impact challenge. You can support me by pledging http://www.akfusa.org/steps4impactpledge.\nAll proceeds will be donated to AKF. Learn about AKF https://www.akfusa.org/ Thank you for your support.";
 
 // Share
-"Share.item" = "Hey! I  created a team for the AKF Walk Challenge on the new Aga Khan Foundation app, Steps4Impact, and I want you on my team!\nDownload the app here:\nhttp://rebrand.ly/steps4impact-iphone\nhttp://rebrand.ly/steps4impact-android";
+"Share.item" = "Hey! I created a team %@ for the AKF Walk Challenge on the new Aga Khan Foundation app, Steps4Impact, and I want you on my team!\nDownload the app here:\nhttp://rebrand.ly/steps4impact-iphone\nhttp://rebrand.ly/steps4impact-android";

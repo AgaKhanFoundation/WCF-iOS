@@ -42,9 +42,11 @@ class DashboardDataSource: TableViewDataSource {
   private var teamName: String = " "
   private var eventName: String = " "
   private var eventTimeline: String = " "
+  private var eventLengthInDays: Int = 1
   private var milesCountDay: Int = 0
   private var milesCountWeek: Int = 0
   private var commitment: Int = 0
+  private var healthKitDataProvider = HealthKitDataProvider()
 
   enum DashboardContext: Context {
     case inviteSupporters
@@ -64,6 +66,7 @@ class DashboardDataSource: TableViewDataSource {
         self?.eventName = event.name
         self?.eventTimeline = DataFormatters
           .formatDateRange(value: (start: event.challengePhase.start, end: event.challengePhase.end))
+        self?.eventLengthInDays = event.lengthInDays
       }
       self?.commitment = participant?.currentEvent?.commitment?.miles ?? 0
       self?.configure()
@@ -102,15 +105,7 @@ class DashboardDataSource: TableViewDataSource {
         eventName: eventName,
         eventTimeline: eventTimeline,
         disclosureLabel: Strings.Dashboard.badges),
-      activityCell,
-      InfoCellContext(
-        title: Strings.Dashboard.ChallengeProgress.title,
-        body: Strings.Dashboard.ChallengeProgress.unavailable),
-      DisclosureCellContext(
-        title: Strings.Dashboard.FundraisingProgress.title,
-        body: Strings.Dashboard.FundraisingProgress.unavailable,
-        disclosureTitle: Strings.Dashboard.FundraisingProgress.invite,
-        context: DashboardContext.inviteSupporters)
+      activityCell
     ]]
   }
 
@@ -119,7 +114,8 @@ class DashboardDataSource: TableViewDataSource {
       return ActivityCardCellContext(title: Strings.Dashboard.Activity.title,
                                      milesDayCount: milesCountDay,
                                      milesWeekCount: milesCountWeek,
-                                     commitment: commitment)
+                                     commitment: commitment,
+                                     eventLengthInDays: eventLengthInDays)
     } else {
       return EmptyActivityCellContext(title: Strings.Dashboard.Activity.title,
                                       body: Strings.Dashboard.Activity.disconnected,
@@ -136,7 +132,7 @@ class DashboardDataSource: TableViewDataSource {
 
     switch UserInfo.pedometerSource {
     case .healthKit:
-      HealthKitDataProvider().retrieveDistance(forInterval: dayInterval) { [weak self] (result) in
+      healthKitDataProvider.retrieveDistance(forInterval: dayInterval) { [weak self] (result) in
         switch result {
         case .success(let count):
           self?.milesCountDay = count
@@ -145,7 +141,7 @@ class DashboardDataSource: TableViewDataSource {
           break
         }
       }
-      HealthKitDataProvider().retrieveDistance(forInterval: weekInterval) { [weak self] (result) in
+      healthKitDataProvider.retrieveDistance(forInterval: weekInterval) { [weak self] (result) in
         switch result {
         case .success(let count):
           self?.milesCountWeek = count

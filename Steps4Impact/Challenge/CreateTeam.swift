@@ -31,17 +31,40 @@ import UIKit
 import NotificationCenter
 
 class CreateTeamViewController: ViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate { // swiftlint:disable:this line_length
-  private let label = UILabel(typography: .title)
-  private let textField = UITextField(.bodyRegular)
-  private let teamPhotoTextField = UILabel(typography: .title)
-  private let teamVisibilityTextField = UILabel(typography: .title)
+
+  private let teamNameLabel = UILabel(typography: .title)
+  private let teamNameTextField = UITextField(.bodyRegular)
   private let seperatorView = UIView()
-  private let visibilityTextView = UITextView()
-  private let activityView = UIActivityIndicatorView(style: .gray)
-  private var teamName: String = ""
-  private let imgButton = UIButton(type: .custom)
+
+  private let uploadTeamPhotoLabel = UILabel(typography: .rowTitleRegular)
+  private let teamPhotoImageView: UIImageView = {
+    let imageview = UIImageView()
+    imageview.layer.cornerRadius = 64
+    imageview.layer.borderWidth = 1
+    imageview.layer.borderColor = UIColor.lightGray.cgColor
+    imageview.clipsToBounds = true
+    imageview.contentMode = .center
+    imageview.image = Assets.uploadImageIcon.image
+    return imageview
+  }()
   private var imagePicker = UIImagePickerController()
-  private var privateSwitch = UISwitch()
+  private let uploadImageButton: UIButton = {
+    let button = UIButton(type: .custom)
+    button.addTarget(self, action: #selector(uploadImageButtonTapped), for: .touchUpInside)
+    button.setTitle(Strings.Challenge.CreateTeam.uploadImageButtonText, for: .normal)
+    button.setTitleColor(.blue, for: .normal)
+    button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+    button.layer.backgroundColor = .none
+    return button
+  }()
+
+  private let teamVisibilityTitleLabel = UILabel(typography: .bodyRegular)
+  private var teamVisibilitySwitch = UISwitch()
+  private var teamVisibilitySwitchStatusLabel = UILabel(typography: .bodyRegular)
+  private let visibilityBodyLabel = UILabel(typography: .smallRegular, color: .gray)
+  private let activityView = UIActivityIndicatorView(style: .gray)
+
+  private var teamName: String = ""
   private let stackView = UIStackView()
 
   private var event: Event?
@@ -61,86 +84,83 @@ class CreateTeamViewController: ViewController, UINavigationControllerDelegate, 
       action: #selector(createTapped))
     navigationItem.rightBarButtonItem?.isEnabled = false
 
-    label.text = Strings.Challenge.CreateTeam.formTitle
-    teamPhotoTextField.text = Strings.Challenge.CreateTeam.teamPhotoText
-    teamVisibilityTextField.text = Strings.Challenge.CreateTeam.teamVisibilityText
-
-    visibilityTextView.text = Strings.Challenge.CreateTeam.visibilityBodyOn
-    visibilityTextView.isScrollEnabled = false
-    visibilityTextView.isSelectable = false
-    visibilityTextView.isEditable = false
-    visibilityTextView.backgroundColor = UIColor.clear
-
-    //imgButton.frame = CGRect(x: 10, y: 10, width: 50, height: 50)
-    imgButton.clipsToBounds = true
-    imgButton.setImage(Assets.onboardingLoginPeople.image, for: .normal)
-    imgButton.addTarget(self, action: #selector(imgButtonTapped), for: .touchUpInside)
-    privateSwitch.isOn = true
-
-    textField.delegate = self
-    textField.placeholder = Strings.Challenge.CreateTeam.formPlaceholder
-    textField.addTarget(self, action: #selector(teamNameChanged(_:)), for: .editingChanged)
-    privateSwitch.addTarget(self, action: #selector(switchStateDidChange(_:)), for: .valueChanged)
-    seperatorView.backgroundColor = Style.Colors.FoundationGreen
-
-    view.addSubview(label) {
+    teamNameLabel.text = Strings.Challenge.CreateTeam.formTitle
+    view.addSubview(teamNameLabel) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
       $0.top.equalTo(view.safeAreaLayoutGuide).inset(Style.Padding.p32)
     }
 
-    view.addSubview(textField) {
+    teamNameTextField.delegate = self
+    teamNameTextField.placeholder = Strings.Challenge.CreateTeam.formPlaceholder
+    teamNameTextField.addTarget(self, action: #selector(teamNameChanged(_:)), for: .editingChanged)
+    view.addSubview(teamNameTextField) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
-      $0.top.equalTo(label.snp.bottom).offset(Style.Padding.p16)
+      $0.top.equalTo(teamNameLabel.snp.bottom).offset(Style.Padding.p16)
     }
 
+    seperatorView.backgroundColor = Style.Colors.FoundationGreen
     view.addSubview(seperatorView) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
-      $0.top.equalTo(textField.snp.bottom)
+      $0.top.equalTo(teamNameTextField.snp.bottom)
       $0.height.equalTo(1)
     }
 
-    view.addSubview(teamPhotoTextField) {
+    uploadTeamPhotoLabel.text = Strings.Challenge.CreateTeam.uploadTeamPhotoLabelText
+    view.addSubview(uploadTeamPhotoLabel) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
-      $0.top.equalTo(seperatorView.snp.bottom).offset(Style.Padding.p16)
+      $0.top.equalTo(seperatorView.snp.bottom).offset(Style.Padding.p32)
     }
 
-    imgButton.contentMode = .scaleAspectFit
-    imgButton.layer.cornerRadius = 0.5 * Style.Size.s128
-    view.addSubview(imgButton) { (make) in
-      make.centerX.equalToSuperview()
-      make.top.equalTo(teamPhotoTextField.snp.bottom).offset(Style.Padding.p32)
-      make.height.width.equalTo(Style.Size.s128)
+    view.addSubview(teamPhotoImageView) {
+      $0.top.equalTo(uploadTeamPhotoLabel.snp.bottom).offset(Style.Padding.p16)
+      $0.height.width.equalTo(Style.Size.s128)
+      $0.centerX.equalToSuperview()
     }
 
-    stackView.axis  = NSLayoutConstraint.Axis.horizontal
-    stackView.distribution  = UIStackView.Distribution.fillProportionally
-    stackView.alignment = UIStackView.Alignment.center
-    stackView.spacing = 16.0
-
-    stackView.addArrangedSubview(teamVisibilityTextField)
-    stackView.addArrangedSubview(privateSwitch)
-    stackView.translatesAutoresizingMaskIntoConstraints = false
-
-    view.addSubview(stackView) {
-      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
-      $0.top.equalTo(imgButton.snp.bottom).offset(Style.Padding.p16)
+    view.addSubview(uploadImageButton) {
+      $0.top.equalTo(teamPhotoImageView.snp.bottom).offset(Style.Padding.p12)
+      $0.width.equalTo(Style.Size.s128)
+      $0.height.equalTo(Style.Size.s40)
+      $0.centerX.equalToSuperview()
     }
 
-    view.addSubview(visibilityTextView) {
-      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p32)
-      $0.top.equalTo(stackView.snp.bottom)
+    teamVisibilitySwitch.isOn = true
+    teamVisibilitySwitch.addTarget(self, action: #selector(switchStateDidChange(_:)), for: .valueChanged)
+    view.addSubview(teamVisibilitySwitch) {
+      $0.top.equalTo(uploadImageButton.snp.bottom).offset(Style.Padding.p16)
+      $0.trailing.equalToSuperview().inset(Style.Padding.p32)
+    }
+
+    teamVisibilitySwitchStatusLabel.text = Strings.Challenge.CreateTeam.teamVisibilitySwitchStatusPublic
+    teamVisibilitySwitchStatusLabel.textAlignment = .left
+    view.addSubview(teamVisibilitySwitchStatusLabel) {
+      $0.top.equalTo(uploadImageButton.snp.bottom).offset(Style.Padding.p20)
+      $0.trailing.equalToSuperview().inset(Style.Size.s75)
+      $0.width.equalTo(Style.Size.s64)
+    }
+
+    teamVisibilityTitleLabel.text = Strings.Challenge.CreateTeam.teamVisibilityTitleText
+    view.addSubview(teamVisibilityTitleLabel) {
+      $0.top.equalTo(uploadImageButton.snp.bottom).offset(Style.Size.s16)
+      $0.leading.equalToSuperview().offset(Style.Size.s32)
+    }
+
+    visibilityBodyLabel.text = Strings.Challenge.CreateTeam.visibilityBodyOn
+    view.addSubview(visibilityBodyLabel) {
+      $0.top.equalTo(teamVisibilityTitleLabel.snp.bottom).offset(Style.Padding.p16)
+      $0.trailing.equalToSuperview().inset(Style.Size.s32)
+      $0.leading.equalToSuperview().offset(Style.Size.s32)
     }
 
     view.addSubview(activityView) {
-      $0.centerX.equalToSuperview()
-      $0.top.equalTo(visibilityTextView.snp.bottom).offset(Style.Padding.p24)
+      $0.centerX.centerY.equalToSuperview()
     }
 
     onBackground {
       AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
         guard let participant = Participant(json: result.response),
-              let eventId = participant.currentEvent?.id
-        else { return }
+          let eventId = participant.currentEvent?.id
+          else { return }
 
         AKFCausesService.getEvent(event: eventId) { (result) in
           self.event = Event(json: result.response)
@@ -150,8 +170,8 @@ class CreateTeamViewController: ViewController, UINavigationControllerDelegate, 
   }
 
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-      self.view.endEditing(true)
-      return false
+    self.view.endEditing(true)
+    return false
   }
 
   @objc
@@ -170,14 +190,16 @@ class CreateTeamViewController: ViewController, UINavigationControllerDelegate, 
   @objc
   func switchStateDidChange(_ sender: UISwitch) {
     if sender.isOn == true {
-      visibilityTextView.text = Strings.Challenge.CreateTeam.visibilityBodyOn
+      visibilityBodyLabel.text = Strings.Challenge.CreateTeam.visibilityBodyOn
+      teamVisibilitySwitchStatusLabel.text = Strings.Challenge.CreateTeam.teamVisibilitySwitchStatusPublic
     } else {
-      visibilityTextView.text = Strings.Challenge.CreateTeam.visibilityBodyOff
+      visibilityBodyLabel.text = Strings.Challenge.CreateTeam.visibilityBodyOff
+      teamVisibilitySwitchStatusLabel.text = Strings.Challenge.CreateTeam.teamVisibilitySwitchStatusPrivate
     }
   }
 
   @objc
-  func imgButtonTapped() {
+  func uploadImageButtonTapped() {
     if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
       print("Button capture")
 
@@ -190,51 +212,64 @@ class CreateTeamViewController: ViewController, UINavigationControllerDelegate, 
   }
 
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-      dismiss(animated: true, completion: nil)
+    dismiss(animated: true, completion: nil)
   }
 
   func imagePickerController(_ picker: UIImagePickerController,
                              didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-      print("\(info)")
-      if let image = info[.originalImage] as? UIImage {
-          imgButton.setImage(image, for: .normal)
-          dismiss(animated: true, completion: nil)
-      }
+    print("\(info)")
+    if let image = info[.originalImage] as? UIImage {
+      teamPhotoImageView.contentMode = .scaleAspectFill
+      teamPhotoImageView.image = image
+      dismiss(animated: true, completion: nil)
+    }
   }
 
   @objc
   func createTapped() {
     activityView.startAnimating()
     navigationItem.rightBarButtonItem?.isEnabled = false
-    textField.isEnabled = false
+    teamNameTextField.isEnabled = false
+    guard let imageData = self.teamPhotoImageView.image?.jpegData(compressionQuality: 0.25) else { return }
 
-    AKFCausesService.createTeam(name: teamName.trimmingCharacters(in: .whitespaces),
-                                lead: Facebook.id) { [weak self] (result) in
-      onMain {
-        guard let `self` = self else { return }
-        self.activityView.stopAnimating()
-        self.textField.isEnabled = true
-        self.navigationItem.rightBarButtonItem?.isEnabled = true
+    AZSClient.uploadImage(data: imageData, teamName: teamName) { (error, success) in
+      if let err = error {
+        print("Image cannot be uploaded: \(err)")
+        self.showErrorAlert()
+      } else {
+        print(self.teamName, " uploaded!")
 
-        guard let teamID = Team(json: result.response)?.id else {
-          self.showErrorAlert()
-          return
-        }
+        AKFCausesService.createTeam(name: self.teamName.trimmingCharacters(in: .whitespaces), imageName: self.teamName,
+                                    lead: Facebook.id) { [weak self] (result) in
+                                      onMain {
+                                        guard let `self` = self else { return }
+                                        self.activityView.stopAnimating()
+                                        self.teamNameTextField.isEnabled = true
+                                        self.navigationItem.rightBarButtonItem?.isEnabled = true
 
-        AKFCausesService.joinTeam(fbid: Facebook.id, team: teamID) { [weak self] (result) in
-          onMain {
-            guard let `self` = self else { return }
-            switch result {
-            case .success:
-              self.navigationController?.setViewControllers([CreateTeamSuccessViewController(for: self.event)],
-                                                            animated: true)
-              NotificationCenter.default.post(name: .teamChanged, object: nil)
-            case .failed:
-              // If creating a team is successful but joining fails - delete it.
-              AKFCausesService.deleteTeam(team: teamID)
-              self.showErrorAlert()
-            }
-          }
+                                        guard let teamID = Team(json: result.response)?.id else {
+                                          self.showErrorAlert()
+                                          return
+                                        }
+
+                                        AKFCausesService.joinTeam(fbid: Facebook.id, team: teamID) { [weak self] (result) in
+                                          onMain {
+                                            guard let `self` = self else { return }
+                                            switch result {
+
+                                            case .success:
+                                              // swiftlint:disable:next line_length
+                                              self.navigationController?.setViewControllers([CreateTeamSuccessViewController(for: self.event, teamName: self.teamName.trimmingCharacters(in: .whitespaces))],
+                                                                                            animated: true)
+                                              NotificationCenter.default.post(name: .teamChanged, object: nil)
+                                            case .failed:
+                                              // If creating a team is successful but joining fails - delete it.
+                                              AKFCausesService.deleteTeam(team: teamID)
+                                              self.showErrorAlert()
+                                            }
+                                          }
+                                        }
+                                      }
         }
       }
     }

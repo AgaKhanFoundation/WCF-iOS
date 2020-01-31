@@ -96,8 +96,10 @@ extension ChallengeViewController: DisclosureCellDelegate {
     guard let context = context as? ChallengeContext else { return }
     switch context {
     case .inviteFriends:
+      let ds = dataSource as? ChallengeDataSource
+      let teamName = ds?.participant?.team?.name
       AppController.shared.shareTapped(viewController: self, shareButton: nil,
-                                       string: Strings.Share.item)
+                                       string: Strings.Share.item(teamName: teamName ?? ""))
     case .inviteSupporters:
       AppController.shared.shareTapped(viewController: self, shareButton: nil,
                                        string: Strings.InviteSupporters.request)
