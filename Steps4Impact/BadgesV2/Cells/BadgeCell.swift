@@ -79,8 +79,6 @@ class BadgeCell: ConfigurableCollectionViewCell {
     let imageView = UIImageView()
     imageView.image = Assets.badgeIcon.image
     imageView.contentMode = .scaleAspectFit
-    imageView.layer.borderWidth = 1
-    imageView.layer.borderColor = UIColor(hex: 0x00A85D).cgColor
     imageView.layer.cornerRadius = 36
     return imageView
   }()
@@ -89,8 +87,6 @@ class BadgeCell: ConfigurableCollectionViewCell {
     let imageView = UIImageView()
     imageView.image = Assets.badgeIcon.image
     imageView.contentMode = .scaleAspectFit
-    imageView.layer.borderWidth = 1
-    imageView.layer.borderColor = UIColor(hex: 0x00A85D).cgColor
     imageView.layer.cornerRadius = 75
     return imageView
   }()
