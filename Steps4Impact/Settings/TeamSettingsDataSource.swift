@@ -146,13 +146,15 @@ class TeamSettingsDataSource: TableViewDataSource {
                                       context: context)
       ])
     }
-
-    cells.append([
-      SettingsActionCellContext(
-        title: "Invite \(self.eventTeamLimit - self.team.count) new team members",
-        buttonStyle: .plain,
-        context: TeamSettingsContext.invite)
-    ])
+    let spots = eventTeamLimit - team.count
+    if spots > 0 && isLead {
+      cells.append([
+        SettingsActionCellContext(
+          title: "Invite \(self.eventTeamLimit - self.team.count) new team members",
+          buttonStyle: .plain,
+          context: TeamSettingsContext.invite)
+      ])
+    }
 
     if isLead {
       cells.append([
