@@ -85,8 +85,8 @@ extension JourneyViewController: MilestoneNameButtonDelegate {
     let journeyDetailVC = JourneyDetailViewController()
     if let dataSource = dataSource as? JourneyDataSource {
       journeyDetailVC.milestone = dataSource.milestones[sequence]
+      //navigationController?.pushViewController(journeyDetailVC, animated: true)
     }
-    navigationController?.pushViewController(journeyDetailVC, animated: true)
   }
 }
 
