@@ -310,7 +310,7 @@ class ChallengeDataSource: TableViewDataSource {
       teamMemberImageURLS: teamImages,
       yourCommittedMiles: participant?.currentEvent?.commitment?.miles ?? 0,
       teamCommittedMiles: teamMembers.compactMap({ $0.currentEvent?.commitment?.miles }).reduce(0, +),
-      totalMiles: 5500,
+      totalMiles: (event.defaultStepCount/2000) * event.teamLimit,
       disclosureTitle: "View Breakdown",
       isEditingHidden: false)
     ])

@@ -41,8 +41,8 @@ class BadgesCollectionViewController: CollectionViewController {
       self?.updateSources(from: self?.dataSource)
       onMain {
         self?.activityView.stopAnimating()
-        self?.collectionView.reloadOnMain()
       }
+      self?.collectionView.reloadOnMain()
     }
   }
   @objc override func refresh() {
