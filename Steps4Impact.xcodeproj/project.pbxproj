@@ -703,6 +703,7 @@
 				A5123F202381B5F300C3E9DE /* Cells */,
 				A5123F1E2381B51E00C3E9DE /* JourneyViewController.swift */,
 				A5123F232381B63300C3E9DE /* JourneyDataSource.swift */,
+				26A9829423CABAA200A5BD35 /* JourneyDetailViewController.swift */,
 			);
 			path = Journey;
 			sourceTree = "<group>";
@@ -783,7 +784,6 @@
 				265DE5722332FBA9009DDA5A /* JoinTeam.swift */,
 				265DE56D2332F633009DDA5A /* Cells */,
 				F02C5DB32339D4F70028FDA9 /* CreateTeamSuccessViewController.swift */,
-				26A9829423CABAA200A5BD35 /* JourneyDetailViewController.swift */,
 			);
 			path = Challenge;
 			sourceTree = "<group>";

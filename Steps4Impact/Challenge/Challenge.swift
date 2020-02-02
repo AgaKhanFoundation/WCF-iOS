@@ -168,6 +168,7 @@ class ChallengeDataSource: TableViewDataSource {
   private var teamMembers: [Participant] = []
   private(set) var achievement: Achievement?
   private(set) var milestones: [Milestone]?
+  private(set) var isLead: Bool = false
 
 
   func reload(completion: @escaping () -> Void) {
@@ -183,6 +184,7 @@ class ChallengeDataSource: TableViewDataSource {
     AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
       if let participant = Participant(json: result.response), let team = participant.team {
         self?.participant = participant
+        self?.isLead = participant.team?.creator == Facebook.id
 
         group.enter()
         AKFCausesService.getAchievement { (result) in
@@ -308,13 +310,13 @@ class ChallengeDataSource: TableViewDataSource {
       teamMemberImageURLS: teamImages,
       yourCommittedMiles: participant?.currentEvent?.commitment?.miles ?? 0,
       teamCommittedMiles: teamMembers.compactMap({ $0.currentEvent?.commitment?.miles }).reduce(0, +),
-      totalMiles: 5500,
+      totalMiles: (event.defaultStepCount/2000) * event.teamLimit,
       disclosureTitle: "View Breakdown",
       isEditingHidden: false)
     ])
 
     let spots = event.teamLimit - team.members.count
-    if spots > 0 {
+    if spots > 0 && isLead {
       cells.append([
         DisclosureCellContext(
           asset: .inviteFriends,

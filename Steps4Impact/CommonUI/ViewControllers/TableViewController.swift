@@ -35,6 +35,7 @@ class TableViewController: ViewController {
   // Views
   let tableView = UITableView()
   private let refreshControl = UIRefreshControl()
+  private let activityView = UIActivityIndicatorView(style: .gray)
 
   // Cached Heights
   var heights = [IndexPath: CGFloat]()
@@ -62,6 +63,9 @@ class TableViewController: ViewController {
     view.addSubview(tableView) {
       $0.edges.equalTo(view.safeAreaLayoutGuide)
     }
+    view.addSubview(activityView) {
+      $0.centerX.centerY.equalToSuperview()
+    }
   }
 
   // MARK: - Actions
@@ -78,7 +82,11 @@ class TableViewController: ViewController {
   }
 
   func reload() {
+    activityView.startAnimating()
     dataSource?.reload { [weak self] in
+      onMain {
+        self?.activityView.stopAnimating()
+      }
       self?.tableView.reloadOnMain()
     }
   }
