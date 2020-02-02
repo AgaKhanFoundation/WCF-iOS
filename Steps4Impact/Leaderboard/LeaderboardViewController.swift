@@ -37,6 +37,14 @@ class LeaderboardViewController: TableViewController {
   override func commonInit() {
     super.commonInit()
     dataSource = LeaderboardDataSource()
+    _ = NotificationCenter.default.addObserver(forName: .teamChanged,
+                                               object: nil, queue: nil) { [weak self] (_) in
+                                                self?.reload()
+    }
+  }
+
+  deinit {
+    NotificationCenter.default.removeObserver(self)
   }
   override func viewDidLoad() {
     super.viewDidLoad()
