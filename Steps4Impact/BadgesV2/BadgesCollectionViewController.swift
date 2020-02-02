@@ -12,12 +12,17 @@ class BadgesCollectionViewController: CollectionViewController {
 
   var finalMedalBadge = Badge(finalMedalAchieved: .unknown, badgeType: .finalMedal)
   var isChallengeCompledted: Bool = false
+  private let activityView = UIActivityIndicatorView(style: .gray)
 
   override func commonInit() {
     super.commonInit()
     title = Strings.Badges.title
     dataSource = BadgesCollectionDataSource()
     setupCollectionView()
+
+    view.addSubview(activityView) {
+      $0.centerX.centerY.equalToSuperview()
+    }
   }
   func setupCollectionView() {
     if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -31,9 +36,13 @@ class BadgesCollectionViewController: CollectionViewController {
     collectionView.backgroundColor = .white
   }
   override func reload() {
+    activityView.startAnimating()
     dataSource?.reload { [weak self] in
       self?.updateSources(from: self?.dataSource)
-      self?.collectionView.reloadOnMain()
+      onMain {
+        self?.activityView.stopAnimating()
+        self?.collectionView.reloadOnMain()
+      }
     }
   }
   @objc override func refresh() {
