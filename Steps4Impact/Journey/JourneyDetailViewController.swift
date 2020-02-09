@@ -46,10 +46,12 @@ class JourneyDetailViewController: ViewController {
     return textView
   }()
 
+  var shareText = ""
+
   override func configureView() {
     super.configureView()
 
-    print("Tab Bar height: \(self.tabBarController!.tabBar.frame.size.height)")
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
 
     // Configure imageMarqueeScrollView
     imageMarqueeScrollView.delegate = self
@@ -97,6 +99,8 @@ class JourneyDetailViewController: ViewController {
 
     // Configure Views
     if let milestone = milestone {
+      // Adding milestone subtitle to share message text
+      shareText = milestone.subtitle
       titleLabel.text = milestone.name
       subtitleLabel.text = milestone.subtitle
       bodyText.attributedText = getContentAttributedText(from: milestone.content)
@@ -157,6 +161,8 @@ extension JourneyDetailViewController: UIScrollViewDelegate {
           .foregroundColor: UIColor.blue,
           .underlineStyle: NSUnderlineStyle.single.rawValue
       ]
+      // Appending reference url to share message text
+      shareText += ": \(stringURL)"
       let partone = NSMutableAttributedString(string: String(split[0]))
       let parttwo = NSMutableAttributedString(attributedString: attributedString)
       let result = NSMutableAttributedString()
@@ -166,6 +172,14 @@ extension JourneyDetailViewController: UIScrollViewDelegate {
     } else {
       return NSMutableAttributedString(string: stringtext)
     }
+  }
+
+
+  @objc func shareButtonTapped() {
+    AppController.shared.shareTapped(
+    viewController: self,
+    shareButton: nil,
+    string: shareText)
   }
 }
 
