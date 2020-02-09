@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>UIUserInterfaceStyle</key>
+	<string>light</string>
 	<key>CFBundleDisplayName</key>
 	<string>steps4impact</string>
 	<key>CFBundleExecutable</key>
