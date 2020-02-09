@@ -66,7 +66,19 @@ class JoinTeamViewController: TableViewController {
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let context = (tableView.cellForRow(at: indexPath) as? Contextable)?.context else { return }
-    handle(context: context)
+    if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark {
+      tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
+      tableView.deselectRow(at: indexPath, animated: true)
+      selectedId = nil
+    } else {
+      tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+      handle(context: context)
+    }
+  }
+
+  func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
+    selectedId = nil
   }
 
   // MARK: - Actions
