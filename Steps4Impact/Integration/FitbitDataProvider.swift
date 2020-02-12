@@ -31,6 +31,14 @@ import Foundation
 import OAuthSwift
 
 class FitbitDataProvider: PedometerDataProvider {
+  func retrieveStepCount(forInterval interval: DateInterval, _ completion: @escaping PedometerDataCompletion) {
+    // TODO
+  }
+  
+  func retrieveDistance(forInterval interval: DateInterval, _ completion: @escaping PedometerDataCompletion) {
+    // TODO
+  }
+  
   func retrieveStepCount(forInterval interval: DateInterval,
                          _ completion: @escaping (Result<Int, PedometerDataProvider.Error>) -> Void) {
     OAuthFitbit.shared.fetchSteps(forInterval: interval) { result in

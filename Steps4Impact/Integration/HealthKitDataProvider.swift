@@ -30,60 +30,75 @@
 import HealthKit
 
 class HealthKitDataProvider: PedometerDataProvider {
-  private let HK: HKHealthStore = HKHealthStore()                               // swiftlint:disable:this identifier_name line_length
-
-  func retrieveStepCount(forInterval interval: DateInterval,
-                         _ completion: @escaping (Result<Int, PedometerDataProvider.Error>) -> Void) {
-    return retrieve(.stepCount, forInterval: interval, unit: .count(), completion)
+  private let healthStore = HKHealthStore()
+  
+  func retrieveStepCount(forInterval interval: DateInterval, _ completion: @escaping PedometerDataCompletion) {
+    retrieve(.stepCount, interval: interval, unit: .count(), completion: completion)
   }
-
-  func retrieveDistance(forInterval interval: DateInterval,
-                        _ completion: @escaping (Result<Int, PedometerDataProviderError>) -> Void) {
-    return retrieve(.distanceWalkingRunning, forInterval: interval, unit: .mile(), completion)
+  
+  func retrieveDistance(forInterval interval: DateInterval, _ completion: @escaping PedometerDataCompletion) {
+    retrieve(.distanceWalkingRunning, interval: interval, unit: .mile(), completion: completion)
   }
-
-  private func retrieve(_ typeid: HKQuantityTypeIdentifier,
-                        forInterval: DateInterval,
+  
+  private func retrieve(_ typeId: HKQuantityTypeIdentifier,
+                        interval: DateInterval,
                         unit: HKUnit,
-                        _ completion: @escaping (Result<Int, PedometerDataProvider.Error>) -> Void) {
-    guard
-      let quantityType = HKSampleType.quantityType(forIdentifier: typeid)
-    else { return completion(.failure(.quantityType)) }
+                        completion: @escaping PedometerDataCompletion) {
+    guard let quantityType = HKSampleType.quantityType(forIdentifier: typeId) else {
+      return completion(.failure(.quantityType))
+    }
     
-    HK.getRequestStatusForAuthorization(toShare: [], read: [quantityType]) { [weak self] (status, error) in
-      guard let strongSelf = self, error == nil else { return completion(.failure(.unknown)) }
+    healthStore.getRequestStatusForAuthorization(toShare: [], read: [quantityType]) { [weak self] (status, error) in
+      guard let `self` = self, error == nil else { return completion(.failure(.unknown)) }
       
       switch status {
       case .unknown:
         completion(.failure(.unknown))
       case .shouldRequest:
-        strongSelf.HK.requestAuthorization(toShare: nil, read: [quantityType]) { (success: Bool, error: Error?) in
+        self.healthStore.requestAuthorization(toShare: nil, read: [quantityType]) { (success, error) in
           guard success, error == nil else {
-            print("Error getting HealthKit access: \(String(describing: error))")
-            return completion(.failure(.sharingNotAuthorized))
+            completion(.failure(.sharingNotAuthorized))
+            return
           }
-          strongSelf.retrieve(typeid, forInterval: forInterval, unit: unit, completion)
+          self.retrieve(typeId, interval: interval, unit: unit, completion: completion)
         }
       case .unnecessary:
-        strongSelf.query(sampleType: quantityType, interval: forInterval, unit: unit, completion: completion)
+        self.query(quantityType: quantityType, interval: interval, unit: unit, completion: completion)
       @unknown default:
         completion(.failure(.unknown))
       }
     }
   }
-
-  private func query(sampleType: HKSampleType, interval: DateInterval, unit: HKUnit,
-                     completion: @escaping (Result<Int, PedometerDataProvider.Error>) -> Void) {
-    let predicate = HKQuery.predicateForSamples(withStart: interval.start,
-                                                end: interval.end, options: [])
-
-    let query = HKSampleQuery(sampleType: sampleType, predicate: predicate, limit: 0, sortDescriptors: nil) { (_: HKSampleQuery, samples: [HKSample]?, _: Error?) in
-        guard let samples = samples as? [HKQuantitySample] else {
-          return completion(.failure(.resultsNotPresent))
+  
+  private func query(quantityType: HKQuantityType,
+                     interval: DateInterval,
+                     unit: HKUnit,
+                     completion: @escaping PedometerDataCompletion) {
+    
+    let query = HKStatisticsCollectionQuery(quantityType: quantityType,
+                                            quantitySamplePredicate: nil,
+                                            options: .cumulativeSum,
+                                            anchorDate: interval.start,
+                                            intervalComponents: DateComponents(day: 1))
+    query.initialResultsHandler = { (query, results, error) in
+      guard error == nil, let results = results else {
+        completion(.failure(.resultsNotPresent))
+        return
+      }
+      
+      var pedometerData = [PedometerData]()
+      
+      results.enumerateStatistics(from: interval.start, to: interval.end) { (statistics, _) in
+        if let quantity = statistics.sumQuantity() {
+          pedometerData.append(PedometerData(date: statistics.startDate, count: quantity.doubleValue(for: unit)))
         }
-        completion(.success(Int(samples.reduce(0, { $0 + $1.quantity.doubleValue(for: unit) }))))
+                
+        if interval.end.timeIntervalSince(statistics.endDate) <= 0, pedometerData.count != 0 {
+          completion(.success(pedometerData))
+        }
+      }
     }
-
-    HK.execute(query)
+    
+    healthStore.execute(query)
   }
 }
