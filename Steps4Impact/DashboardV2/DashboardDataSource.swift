@@ -41,12 +41,16 @@ class DashboardDataSource: TableViewDataSource {
   private var imageURL: URL?
   private var teamName: String = " "
   private var eventName: String = " "
-  private var eventTimeline: String = " "
+  private var eventTimeline: DateInterval = DateInterval(start: Date(), duration: 0)
+  private var eventTimelineString: String = " "
   private var eventLengthInDays: Int = 1
   private var milesCountDay: Int = 0
   private var milesCountWeek: Int = 0
   private var commitment: Int = 0
+  private var pedometerStepsData: [PedometerData] = []
+  private var pedometerDistanceData: [PedometerData] = []
   private var healthKitDataProvider = HealthKitDataProvider()
+  private var fitBitDataProvider = FitbitDataProvider()
 
   enum DashboardContext: Context {
     case inviteSupporters
@@ -59,18 +63,21 @@ class DashboardDataSource: TableViewDataSource {
       cache.participantRelay)
 
     update.subscribeOnNext { [weak self] (names, imageURLs, participant) in
-      self?.name = names["me"] ?? " "
-      self?.imageURL = imageURLs["me"]
-      self?.teamName = participant?.team?.name ?? " "
+      guard let `self` = self else { return }
+      self.name = names["me"] ?? " "
+      self.imageURL = imageURLs["me"]
+      self.teamName = participant?.team?.name ?? " "
       if let event = participant?.currentEvent {
-        self?.eventName = event.name
-        self?.eventTimeline = DataFormatters
+        self.eventName = event.name
+        self.eventTimeline = DateInterval(start: event.teamFormationPhase.start, end: event.challengePhase.end)
+        self.eventTimelineString = DataFormatters
           .formatDateRange(value: (start: event.challengePhase.start, end: event.challengePhase.end))
-        self?.eventLengthInDays = event.lengthInDays
+        self.eventLengthInDays = event.lengthInDays
       }
-      self?.commitment = participant?.currentEvent?.commitment?.miles ?? 0
-      self?.configure()
-      self?.completion?()
+      self.commitment = participant?.currentEvent?.commitment?.miles ?? 0
+      self.configure()
+      self.completion?()
+      self.getPedometerData()
     }.disposed(by: disposeBag)
   }
 
@@ -80,7 +87,7 @@ class DashboardDataSource: TableViewDataSource {
     self.imageURL = nil
     self.teamName = " "
     self.eventName = " "
-    self.eventTimeline = " "
+    self.eventTimelineString = " "
 
     configure()
     completion()
@@ -89,10 +96,6 @@ class DashboardDataSource: TableViewDataSource {
     facebookService.getProfileImageURL(fbid: "me")
     AKFCausesService.getParticipant(fbid: facebookService.id) { [weak self] (result) in
       self?.cache.participantRelay.accept(Participant(json: result.response))
-    }
-    getStepCounts { [weak self] in
-      self?.configure()
-      completion()
     }
   }
 
@@ -103,20 +106,17 @@ class DashboardDataSource: TableViewDataSource {
         name: name,
         teamName: teamName,
         eventName: eventName,
-        eventTimeline: eventTimeline,
+        eventTimeline: eventTimelineString,
         disclosureLabel: Strings.Dashboard.badges),
       activityCell
-//      InfoCellContext(
-//        title: Strings.Dashboard.ChallengeProgress.title,
-//        body: Strings.Dashboard.ChallengeProgress.unavailable)
     ]]
   }
 
   private var activityCell: CellContext {
     if UserInfo.pedometerSource != nil {
       return ActivityCardCellContext(title: Strings.Dashboard.Activity.title,
-                                     milesDayCount: milesCountDay,
-                                     milesWeekCount: milesCountWeek,
+                                     stepsData: pedometerStepsData,
+                                     milesData: pedometerDistanceData,
                                      commitment: commitment,
                                      eventLengthInDays: eventLengthInDays)
     } else {
@@ -125,55 +125,44 @@ class DashboardDataSource: TableViewDataSource {
                                       ctaTitle: Strings.Dashboard.Activity.connect)
     }
   }
+  
+  private func setStepsData(_ result: Result<[PedometerData], PedometerDataProviderError>) {
+    switch result {
+    case .success(let data):
+      pedometerStepsData = data
+    case .failure(let error):
+      print(error)
+      pedometerStepsData = []
+    }
+    
+    configure()
+    completion?()
+  }
+  
+  private func setDistanceData(_ result: Result<[PedometerData], PedometerDataProviderError>) {
+    switch result {
+    case .success(let data):
+      pedometerDistanceData = data
+    case .failure(let error):
+      print(error)
+      pedometerStepsData = []
+    }
+    
+    configure()
+    completion?()
+  }
 
-  private func getStepCounts(completion: @escaping () -> Void) { // swiftlint:disable:this cyclomatic_complexity
-    let now = Date()
-    guard
-      let dayInterval = Calendar.current.dateInterval(of: .day, for: now),
-      let weekInterval = Calendar.current.dateInterval(of: .weekOfYear, for: now)
-    else { return }
-
+  private func getPedometerData() {
     switch UserInfo.pedometerSource {
     case .healthKit:
-      healthKitDataProvider.retrieveDistance(forInterval: dayInterval) { [weak self] (result) in
-        switch result {
-        case .success(let count):
-          self?.milesCountDay = count
-          completion()
-        case .failure:
-          break
-        }
-      }
-      healthKitDataProvider.retrieveDistance(forInterval: weekInterval) { [weak self] (result) in
-        switch result {
-        case .success(let count):
-          self?.milesCountWeek = count
-          completion()
-        case .failure:
-          break
-        }
-      }
+      healthKitDataProvider.retrieveStepCount(forInterval: eventTimeline, setStepsData)
+      healthKitDataProvider.retrieveDistance(forInterval: eventTimeline, setDistanceData)
     case .fitbit:
-      FitbitDataProvider().retrieveDistance(forInterval: dayInterval) { [weak self] (result) in
-        switch result {
-        case .success(let count):
-          self?.milesCountDay = count
-          completion()
-        case .failure:
-          break
-        }
-      }
-      FitbitDataProvider().retrieveDistance(forInterval: weekInterval) { [weak self] (result) in
-        switch result {
-        case .success(let count):
-          self?.milesCountWeek = count
-          completion()
-        case .failure:
-          break
-        }
-      }
+      fitBitDataProvider.retrieveStepCount(forInterval: eventTimeline, setStepsData)
+      fitBitDataProvider.retrieveDistance(forInterval: eventTimeline, setDistanceData)
     case .none:
-      break
+      pedometerStepsData = []
+      pedometerDistanceData = []
     }
   }
 }

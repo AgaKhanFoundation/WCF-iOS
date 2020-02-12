@@ -44,6 +44,14 @@
 		26388A7123492F5600C83AC2 /* LocalizationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26388A7023492F5600C83AC2 /* LocalizationSpec.swift */; };
 		263EF52E232A105C00A00414 /* TeamSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263EF52D232A105C00A00414 /* TeamSettingsViewController.swift */; };
 		263EF530232A106400A00414 /* TeamSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263EF52F232A106400A00414 /* TeamSettingsDataSource.swift */; };
+		264AE86823F3B0FD00377D67 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE86723F3B0FD00377D67 /* ActivityView.swift */; };
+		264AE86B23F3B66500377D67 /* ActivityUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE86A23F3B66500377D67 /* ActivityUnitView.swift */; };
+		264AE86D23F3B83B00377D67 /* ActivityTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE86C23F3B83B00377D67 /* ActivityTimeView.swift */; };
+		264AE86F23F3B84800377D67 /* ActivityDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE86E23F3B84800377D67 /* ActivityDateView.swift */; };
+		264AE87123F3B85100377D67 /* ActivityProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE87023F3B85100377D67 /* ActivityProgressView.swift */; };
+		264AE87323F3B85900377D67 /* ActivityGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE87223F3B85900377D67 /* ActivityGraphView.swift */; };
+		264AE87523F3C20900377D67 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE87423F3C20900377D67 /* UIButton.swift */; };
+		264AE87723F3EACE00377D67 /* VerticalProgressLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE87623F3EACE00377D67 /* VerticalProgressLineView.swift */; };
 		26570DD9234AE83E0016F189 /* TextAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26570DD8234AE83E0016F189 /* TextAlertViewController.swift */; };
 		26570DDB234B01010016F189 /* FacebookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26570DDA234B01010016F189 /* FacebookService.swift */; };
 		26570DDD234B0B930016F189 /* RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26570DDC234B0B930016F189 /* RxSwift.swift */; };
@@ -85,6 +93,7 @@
 		26A9829723CABABF00A5BD35 /* ImageButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9829623CABABF00A5BD35 /* ImageButtonCell.swift */; };
 		26A9829923CABAD800A5BD35 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9829823CABAD800A5BD35 /* Achievement.swift */; };
 		26A9829B23CABAE800A5BD35 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9829A23CABAE800A5BD35 /* Milestone.swift */; };
+		26AD5BCF23F141E7005EC5A6 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD5BCE23F141E7005EC5A6 /* RadioButton.swift */; };
 		26B2793823765FFA000CEE94 /* Keyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B2793723765FFA000CEE94 /* Keyboardable.swift */; };
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
 		26E9C0FA233838A700800E8A /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9C0F9233838A700800E8A /* OnboardingPageViewController.swift */; };
@@ -222,6 +231,14 @@
 		26388A7023492F5600C83AC2 /* LocalizationSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationSpec.swift; sourceTree = "<group>"; };
 		263EF52D232A105C00A00414 /* TeamSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsViewController.swift; sourceTree = "<group>"; };
 		263EF52F232A106400A00414 /* TeamSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsDataSource.swift; sourceTree = "<group>"; };
+		264AE86723F3B0FD00377D67 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		264AE86A23F3B66500377D67 /* ActivityUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityUnitView.swift; sourceTree = "<group>"; };
+		264AE86C23F3B83B00377D67 /* ActivityTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTimeView.swift; sourceTree = "<group>"; };
+		264AE86E23F3B84800377D67 /* ActivityDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDateView.swift; sourceTree = "<group>"; };
+		264AE87023F3B85100377D67 /* ActivityProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityProgressView.swift; sourceTree = "<group>"; };
+		264AE87223F3B85900377D67 /* ActivityGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityGraphView.swift; sourceTree = "<group>"; };
+		264AE87423F3C20900377D67 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		264AE87623F3EACE00377D67 /* VerticalProgressLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalProgressLineView.swift; sourceTree = "<group>"; };
 		26570DD8234AE83E0016F189 /* TextAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAlertViewController.swift; sourceTree = "<group>"; };
 		26570DDA234B01010016F189 /* FacebookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookService.swift; sourceTree = "<group>"; };
 		26570DDC234B0B930016F189 /* RxSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwift.swift; sourceTree = "<group>"; };
@@ -265,6 +282,7 @@
 		26A9829623CABABF00A5BD35 /* ImageButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageButtonCell.swift; sourceTree = "<group>"; };
 		26A9829823CABAD800A5BD35 /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		26A9829A23CABAE800A5BD35 /* Milestone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
+		26AD5BCE23F141E7005EC5A6 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		26B2793723765FFA000CEE94 /* Keyboardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboardable.swift; sourceTree = "<group>"; };
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		26E9C0F9233838A700800E8A /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
@@ -387,6 +405,8 @@
 				265DE5632332BDAA009DDA5A /* WebImageView.swift */,
 				269F95282378FB0E0089CDD1 /* CircularProgressView.swift */,
 				26619C3023D3DB3F00ABC93F /* CellImageButtonView.swift */,
+				26AD5BCE23F141E7005EC5A6 /* RadioButton.swift */,
+				264AE87623F3EACE00377D67 /* VerticalProgressLineView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -400,6 +420,7 @@
 				26FE244823222B6400E01B9B /* DashboardViewController.swift */,
 				F0D2378B23387BC100F41DB4 /* InviteSupportersViewController.swift */,
 				260BF59F2324CFCE005F0882 /* Cells */,
+				264AE86923F3B10200377D67 /* Views */,
 			);
 			path = DashboardV2;
 			sourceTree = "<group>";
@@ -580,6 +601,19 @@
 				2635EB8D2338B57800BC50E9 /* NotificationsViewController.swift */,
 			);
 			path = NotificationsV2;
+			sourceTree = "<group>";
+		};
+		264AE86923F3B10200377D67 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				264AE86723F3B0FD00377D67 /* ActivityView.swift */,
+				264AE86C23F3B83B00377D67 /* ActivityTimeView.swift */,
+				264AE86E23F3B84800377D67 /* ActivityDateView.swift */,
+				264AE87023F3B85100377D67 /* ActivityProgressView.swift */,
+				264AE87223F3B85900377D67 /* ActivityGraphView.swift */,
+				264AE86A23F3B66500377D67 /* ActivityUnitView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		265DE56D2332F633009DDA5A /* Cells */ = {
@@ -811,6 +845,7 @@
 				262C89E323713C5E004411C3 /* String.swift */,
 				C92244D4235D4B670098A333 /* UserDefaults.swift */,
 				A53E7B3E236F58D2006BD6D9 /* UICollectionView.swift */,
+				264AE87423F3C20900377D67 /* UIButton.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -1148,6 +1183,7 @@
 				A5123F222381B60B00C3E9DE /* MilestoneCell.swift in Sources */,
 				A5123F242381B63300C3E9DE /* JourneyDataSource.swift in Sources */,
 				267FAE282325C1660014222D /* SettingsDisclosureCell.swift in Sources */,
+				26AD5BCF23F141E7005EC5A6 /* RadioButton.swift in Sources */,
 				F0F8EDD12210C65C00321A6D /* CardViewSupport.swift in Sources */,
 				260BF5A32324D4B7005F0882 /* InfoCell.swift in Sources */,
 				26E9C0FC2338533E00800E8A /* UIPageViewController.swift in Sources */,
@@ -1196,6 +1232,7 @@
 				262418342336EA5700454EF2 /* OnboardingViewController.swift in Sources */,
 				269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */,
 				266DA27B2339E54000035CC5 /* ChallengeTeamProgressCell.swift in Sources */,
+				264AE87323F3B85900377D67 /* ActivityGraphView.swift in Sources */,
 				26570DDB234B01010016F189 /* FacebookService.swift in Sources */,
 				C92244D5235D4B670098A333 /* UserDefaults.swift in Sources */,
 				265FE47A2349A0A400215391 /* Cache.swift in Sources */,
@@ -1206,10 +1243,13 @@
 				F0DE162C221F8DD900FF17C9 /* Result.swift in Sources */,
 				F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */,
 				260BF5A92324F7D1005F0882 /* UIColor.swift in Sources */,
+				264AE86823F3B0FD00377D67 /* ActivityView.swift in Sources */,
 				A5E291A6238EEF6700F61954 /* HeaderCells.swift in Sources */,
 				260BF5A72324D99A005F0882 /* UIImage.swift in Sources */,
+				264AE87523F3C20900377D67 /* UIButton.swift in Sources */,
 				F02C5DB42339D4F70028FDA9 /* CreateTeamSuccessViewController.swift in Sources */,
 				A5A8E15F2370670500988F71 /* BadgeCollectionDataSource.swift in Sources */,
+				264AE87723F3EACE00377D67 /* VerticalProgressLineView.swift in Sources */,
 				2635EB8E2338B57800BC50E9 /* NotificationsViewController.swift in Sources */,
 				265DE56F2332F645009DDA5A /* TeamNeededCell.swift in Sources */,
 				A5123F262381C9CE00C3E9DE /* CurrentMilestoneCell.swift in Sources */,
@@ -1242,6 +1282,7 @@
 				269E350C1E765F73000726C2 /* StyleGuide.swift in Sources */,
 				F02C5DB6233FFA820028FDA9 /* DeviceInformationCell.swift in Sources */,
 				269E35241E767807000726C2 /* Team.swift in Sources */,
+				264AE87123F3B85100377D67 /* ActivityProgressView.swift in Sources */,
 				262C89E423713C5E004411C3 /* String.swift in Sources */,
 				A53E7B3F236F58D2006BD6D9 /* UICollectionView.swift in Sources */,
 				260BF5972324C023005F0882 /* CellDisclosureView.swift in Sources */,
@@ -1258,9 +1299,11 @@
 				26A9829B23CABAE800A5BD35 /* Milestone.swift in Sources */,
 				2676B3CA2331F18B00CB0A31 /* TeamSettingsHeaderCell.swift in Sources */,
 				2611A5082335FF290030E77E /* Service.swift in Sources */,
+				264AE86D23F3B83B00377D67 /* ActivityTimeView.swift in Sources */,
 				F078D9DC233478E900EF0BAD /* ConnectSourceViewController.swift in Sources */,
 				F0E6878F22251B7800454340 /* LeaderboardViewController.swift in Sources */,
 				269E34EC1E7658E6000726C2 /* AppController.swift in Sources */,
+				264AE86B23F3B66500377D67 /* ActivityUnitView.swift in Sources */,
 				26FE2451232231FB00E01B9B /* TableViewController.swift in Sources */,
 				F02FB49E1E9180CE0097481D /* Preferences.swift in Sources */,
 				A53E7B41236F59F0006BD6D9 /* CollectionViewCell.swift in Sources */,
@@ -1279,6 +1322,7 @@
 				F0CBDA521EA6FF1D00BB34F1 /* Sponsor.swift in Sources */,
 				F0D2378C23387BC100F41DB4 /* InviteSupportersViewController.swift in Sources */,
 				269E35071E765C68000726C2 /* LoginViewController.swift in Sources */,
+				264AE86F23F3B84800377D67 /* ActivityDateView.swift in Sources */,
 				26388A6F23482D2300C83AC2 /* Assets.swift in Sources */,
 				263EF530232A106400A00414 /* TeamSettingsDataSource.swift in Sources */,
 				265DE5642332BDAA009DDA5A /* WebImageView.swift in Sources */,

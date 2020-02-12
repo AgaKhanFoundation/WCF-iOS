@@ -28,54 +28,37 @@
  **/
 
 import UIKit
-import SnapKit
 
-struct ActivityCardCellContext: CellContext {
-  let identifier: String = ActivityCardCell.identifier
-  let title: String
-  let stepsData: [PedometerData]
-  let milesData: [PedometerData]
-  let commitment: Int
-  let eventLengthInDays: Int
-}
-
-class ActivityCardCell: ConfigurableTableViewCell {
-  static let identifier: String = "ActivityCardCell"
+class VerticalProgressLineView: View {
+  // State
+  var progress: CGFloat = 0.0 { didSet { redraw() }}
+  private var lineWdith: CGFloat = 15
   
   // Views
-  private let cardView = CardViewV2()
-  private let titleLabel = UILabel(typography: .title)
-  private let activityView = ActivityView()
+  private let progressView = View()
   
   override func commonInit() {
     super.commonInit()
     
-    titleLabel.numberOfLines = 1
+    progressView.backgroundColor = Style.Colors.FoundationGreen
     
-    contentView.addSubview(cardView) {
-      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)
-      $0.top.bottom.equalToSuperview().inset(Style.Padding.p12)
-    }
-    
-    cardView.addSubview(titleLabel) {
-      $0.top.equalToSuperview().inset(Style.Padding.p32)
-      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
-    }
-    
-    cardView.addSubview(activityView) {
-      $0.top.equalTo(titleLabel.snp.bottom).offset(Style.Padding.p16)
-      $0.leading.trailing.equalToSuperview()
-      $0.bottom.equalToSuperview().inset(Style.Padding.p16)
+    addSubview(progressView) {
+      $0.leading.trailing.bottom.equalToSuperview()
+      $0.width.equalTo(lineWdith)
+      $0.height.equalToSuperview().multipliedBy(progress)
     }
   }
   
-  func configure(context: CellContext) {
-    guard let context = context as? ActivityCardCellContext else { return }
-    titleLabel.text = context.title
-    activityView.configure(data: ActivityData(
-      milesData: context.milesData,
-      stepsData: context.stepsData,
-      commitment: context.commitment,
-      eventLengthInDays: context.eventLengthInDays))
+  private func redraw() {
+    progressView.snp.remakeConstraints {
+      $0.leading.trailing.bottom.equalToSuperview()
+      $0.width.equalTo(lineWdith)
+      $0.height.equalToSuperview().multipliedBy(progress)
+    }
+    
+    setNeedsLayout()
+    UIView.animate(withDuration: 0.3, delay: 0, options: [.beginFromCurrentState], animations: {
+      self.layoutIfNeeded()
+    }, completion: nil)
   }
 }
