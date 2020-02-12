@@ -33,4 +33,11 @@ extension UIStackView {
   func addArrangedSubviews(_ views: UIView...) {
     views.forEach { addArrangedSubview($0) }
   }
+  
+  convenience init(axis: NSLayoutConstraint.Axis, spacing: CGFloat, alignment: Alignment) {
+    self.init()
+    self.axis = axis
+    self.spacing = spacing
+    self.alignment = alignment
+  }
 }
