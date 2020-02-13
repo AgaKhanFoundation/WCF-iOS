@@ -36,6 +36,8 @@ enum Assets: String {
   case disclosure = "BlueBackButton"
   case close = "close"
   case checkmark = "checkmark"
+  case chevronRight = "chevron_right"
+  case chevronLeft = "chevron_left"
 
   // Challenge
   case challengeJourney = "challenge-journey"

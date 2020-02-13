@@ -167,56 +167,58 @@ class AppController {
       }
     }
   }
-
+  
+//TODO(samisuteria): fix records
   private func updateRecords() {
-    guard let pedometer = UserInfo.pedometerSource else { return }
-
-    let group: DispatchGroup = DispatchGroup()
-
-    var sourceName: String?
-    var source: Source?
-    var provider: PedometerDataProvider?
-
-    switch pedometer {
-    case .fitbit:
-      provider = FitbitDataProvider()
-      sourceName = "Fitbit"
-    case .healthKit:
-      provider = HealthKitDataProvider()
-      sourceName = "HealthKit"
-    }
-
-    guard let name = sourceName else { return }
-
-    group.enter()
-    AKFCausesService.getSourceByName(source: name) { (result) in
-      source = Source(json: result.response)
-      group.leave()
-    }
-    group.wait()
-
-    guard let sourceID = source?.id else { return }
-
-    AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
-      if let participant = Participant(json: result.response), let participantId = participant.id {
-        guard let start = (participant.records?.sorted { $0.date! < $1.date! }.last?.date // swiftlint:disable:this force_unwrapping line_length
-                            ?? participant.currentEvent?.challengePhase.start) else { return }
-
-        guard start < Date(timeIntervalSinceNow: 0) else { return }
-
-        let interval: DateInterval = DateInterval(start: start, end: Date.init(timeIntervalSinceNow: 0))
-
-        provider?.retrieveStepCount(forInterval: interval) { (result) in
-          switch result {
-          case .failure(let error):
-            print("unable to query pedometer: \(error)")
-          case .success(let steps):
-            AKFCausesService.createRecord(for: participantId, dated: interval.end,
-                                          steps: steps, sourceID: sourceID)
-          }
-        }
-      }
-    }
+//    guard let pedometer = UserInfo.pedometerSource else { return }
+//
+//    let group: DispatchGroup = DispatchGroup()
+//
+//    var sourceName: String?
+//    var source: Source?
+//    var provider: PedometerDataProvider?
+//
+//    switch pedometer {
+//    case .fitbit:
+//      provider = FitbitDataProvider()
+//      sourceName = "Fitbit"
+//    case .healthKit:
+//      provider = HealthKitDataProvider()
+//      sourceName = "HealthKit"
+//    }
+//
+//    guard let name = sourceName else { return }
+//
+//    group.enter()
+//    AKFCausesService.getSourceByName(source: name) { (result) in
+//      source = Source(json: result.response)
+//      group.leave()
+//    }
+//    group.wait()
+//
+//
+//    guard let sourceID = source?.id else { return }
+//
+//    AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+//      if let participant = Participant(json: result.response), let participantId = participant.id {
+//        guard let start = (participant.records?.sorted { $0.date! < $1.date! }.last?.date // swiftlint:disable:this force_unwrapping line_length
+//                            ?? participant.currentEvent?.challengePhase.start) else { return }
+//
+//        guard start < Date(timeIntervalSinceNow: 0) else { return }
+//
+//        let interval: DateInterval = DateInterval(start: start, end: Date.init(timeIntervalSinceNow: 0))
+//
+//        provider?.retrieveStepCount(forInterval: interval) { (result) in
+//          switch result {
+//          case .failure(let error):
+//            print("unable to query pedometer: \(error)")
+//          case .success(let steps):
+////            AKFCausesService.createRecord(for: participantId, dated: interval.end,
+////                                          steps: steps, sourceID: sourceID)
+//          }
+//        }
+//      }
+//    }
   }
 
   private func healthCheckServer() {

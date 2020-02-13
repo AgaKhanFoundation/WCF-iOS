@@ -29,15 +29,36 @@
 
 import UIKit
 
-extension UIStackView {
-  func addArrangedSubviews(_ views: UIView...) {
-    views.forEach { addArrangedSubview($0) }
+class VerticalProgressLineView: View {
+  // State
+  var progress: CGFloat = 0.0 { didSet { redraw() }}
+  private var lineWdith: CGFloat = 15
+  
+  // Views
+  private let progressView = View()
+  
+  override func commonInit() {
+    super.commonInit()
+    
+    progressView.backgroundColor = Style.Colors.FoundationGreen
+    
+    addSubview(progressView) {
+      $0.leading.trailing.bottom.equalToSuperview()
+      $0.width.equalTo(lineWdith)
+      $0.height.equalToSuperview().multipliedBy(progress)
+    }
   }
   
-  convenience init(axis: NSLayoutConstraint.Axis, spacing: CGFloat, alignment: Alignment) {
-    self.init()
-    self.axis = axis
-    self.spacing = spacing
-    self.alignment = alignment
+  private func redraw() {
+    progressView.snp.remakeConstraints {
+      $0.leading.trailing.bottom.equalToSuperview()
+      $0.width.equalTo(lineWdith)
+      $0.height.equalToSuperview().multipliedBy(progress)
+    }
+    
+    setNeedsLayout()
+    UIView.animate(withDuration: 0.3, delay: 0, options: [.beginFromCurrentState], animations: {
+      self.layoutIfNeeded()
+    }, completion: nil)
   }
 }

@@ -37,11 +37,22 @@ enum PedometerDataProviderError: Error {
   case unknown
 }
 
+struct PedometerData {
+  let date: Date
+  let count: Double
+}
+
+extension Array where Element == PedometerData {
+  var indexOfToday: Int? {
+    firstIndex { $0.date.endOfDay == Date().endOfDay }
+  }
+}
+
+typealias PedometerDataCompletion = (Result<[PedometerData], PedometerDataProviderError>) -> Void
+
 protocol PedometerDataProvider {
   typealias Error = PedometerDataProviderError
 
-  func retrieveStepCount(forInterval interval: DateInterval,
-                         _ completion: @escaping (Result<Int, PedometerDataProvider.Error>) -> Void)
-  func retrieveDistance(forInterval interval: DateInterval,
-                        _ completion: @escaping (Result<Int, PedometerDataProvider.Error>) -> Void)
+  func retrieveStepCount(forInterval interval: DateInterval, _ completion: @escaping PedometerDataCompletion)
+  func retrieveDistance(forInterval interval: DateInterval, _ completion: @escaping PedometerDataCompletion)
 }

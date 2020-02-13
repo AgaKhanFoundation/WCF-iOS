@@ -27,47 +27,63 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
 
-import Foundation
-import OAuthSwift
+import UIKit
 
-class FitbitDataProvider: PedometerDataProvider {
-  func retrieveStepCount(forInterval interval: DateInterval, _ completion: @escaping PedometerDataCompletion) {
-    // TODO
+protocol RadioButtonDelegate: class {
+  func radioButtonTapped(radioButton: RadioButton)
+}
+
+class RadioButton: View {
+  enum State {
+    case selected
+    case unselected
   }
   
-  func retrieveDistance(forInterval interval: DateInterval, _ completion: @escaping PedometerDataCompletion) {
-    // TODO
-  }
+  var state: State = .unselected { didSet { update() }}
+  var title: String? { didSet { button.title = title }}
+  weak var delegate: RadioButtonDelegate?
   
-  func retrieveStepCount(forInterval interval: DateInterval,
-                         _ completion: @escaping (Result<Int, PedometerDataProvider.Error>) -> Void) {
-    OAuthFitbit.shared.fetchSteps(forInterval: interval) { result in
-      switch result {
-      case .success(let response):
-        let steps = FitbitDataProvider.steps(fromResponse: response)
-        if steps == -1 {
-          // FIXME: handle error situation
-          return
-        }
-
-        completion(.success(steps))
-      case .failure(let error):
-        print(error.description)
-      }
+  private let button = Button(style: .plain)
+  private let circleView = View()
+  
+  override func commonInit() {
+    super.commonInit()
+    circleView.layer.borderColor = Style.Colors.FoundationGreen.cgColor
+    circleView.layer.borderWidth = 2
+    circleView.layer.cornerRadius = 8
+    button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    
+    let tapGesture = UITapGestureRecognizer()
+    circleView.addGestureRecognizer(tapGesture)
+    
+    addSubview(button) {
+      $0.top.bottom.trailing.equalToSuperview()
+    }
+    
+    addSubview(circleView) {
+      $0.leading.equalToSuperview()
+      $0.trailing.equalTo(button.snp.leading).offset(Style.Padding.p8)
+      $0.centerY.equalToSuperview()
+      $0.height.width.equalTo(16)
     }
   }
-
-  func retrieveDistance(forInterval interval: DateInterval,
-                        _ completion: @escaping (Result<Int, PedometerDataProviderError>) -> Void) {
+  
+  private func update() {
+    switch state {
+    case .selected:
+      circleView.backgroundColor = Style.Colors.FoundationGreen
+    case .unselected:
+      circleView.backgroundColor = nil
+    }
   }
-
-  private static func steps(fromResponse response: OAuthSwiftResponse) -> Int {
-    guard let jsonDict = try? response.jsonObject() else { return -1 }
-
-    let json = JSON(jsonDict)
-    guard let array = json?["activities-steps"]?.arrayValue else { return -1 }
-
-    let stepsObjs = array.compactMap({ FitbitStep(json: $0) })
-    return stepsObjs.reduce(0, { $0 + $1.steps })
+  
+  @objc
+  func buttonTapped() {
+    delegate?.radioButtonTapped(radioButton: self)
+  }
+  
+  @objc
+  func radioTapped() {
+    delegate?.radioButtonTapped(radioButton: self)
   }
 }

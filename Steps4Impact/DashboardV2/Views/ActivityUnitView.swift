@@ -27,47 +27,56 @@
 * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
 
-import Foundation
-import OAuthSwift
+import UIKit
 
-class FitbitDataProvider: PedometerDataProvider {
-  func retrieveStepCount(forInterval interval: DateInterval, _ completion: @escaping PedometerDataCompletion) {
-    // TODO
-  }
-  
-  func retrieveDistance(forInterval interval: DateInterval, _ completion: @escaping PedometerDataCompletion) {
-    // TODO
-  }
-  
-  func retrieveStepCount(forInterval interval: DateInterval,
-                         _ completion: @escaping (Result<Int, PedometerDataProvider.Error>) -> Void) {
-    OAuthFitbit.shared.fetchSteps(forInterval: interval) { result in
-      switch result {
-      case .success(let response):
-        let steps = FitbitDataProvider.steps(fromResponse: response)
-        if steps == -1 {
-          // FIXME: handle error situation
-          return
-        }
+protocol ActivityUnitViewDelegate: class {
+  func activityUnitViewTapped(unit: ActivityUnit)
+}
 
-        completion(.success(steps))
-      case .failure(let error):
-        print(error.description)
-      }
+class ActivityUnitView: View {
+  private let stackView = UIStackView(axis: .horizontal,
+                                      spacing: Style.Padding.p8,
+                                      alignment: .fill)
+  private let milesRadioButton = RadioButton()
+  private let stepsRadioButton = RadioButton()
+  
+  weak var delegate: ActivityUnitViewDelegate?
+  
+  override func commonInit() {
+    super.commonInit()
+    
+    milesRadioButton.title = "Miles"
+    stepsRadioButton.title = "Steps"
+    milesRadioButton.delegate = self
+    stepsRadioButton.delegate = self
+    stackView.addArrangedSubviews(milesRadioButton, stepsRadioButton)
+    addSubview(stackView) {
+      $0.top.leading.equalToSuperview().inset(Style.Padding.p16)
+      $0.bottom.equalToSuperview()
     }
   }
-
-  func retrieveDistance(forInterval interval: DateInterval,
-                        _ completion: @escaping (Result<Int, PedometerDataProviderError>) -> Void) {
+  
+  func configure(state: ActivityState) {
+    switch state.unit {
+    case .miles:
+      milesRadioButton.state = .selected
+      stepsRadioButton.state = .unselected
+    case .steps:
+      milesRadioButton.state = .unselected
+      stepsRadioButton.state = .selected
+    }
   }
+}
 
-  private static func steps(fromResponse response: OAuthSwiftResponse) -> Int {
-    guard let jsonDict = try? response.jsonObject() else { return -1 }
-
-    let json = JSON(jsonDict)
-    guard let array = json?["activities-steps"]?.arrayValue else { return -1 }
-
-    let stepsObjs = array.compactMap({ FitbitStep(json: $0) })
-    return stepsObjs.reduce(0, { $0 + $1.steps })
+extension ActivityUnitView: RadioButtonDelegate {
+  func radioButtonTapped(radioButton: RadioButton) {
+    switch radioButton {
+    case milesRadioButton:
+      delegate?.activityUnitViewTapped(unit: .miles)
+    case stepsRadioButton:
+      delegate?.activityUnitViewTapped(unit: .steps)
+    default:
+      break
+    }
   }
 }
