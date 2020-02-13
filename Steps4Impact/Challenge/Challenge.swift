@@ -116,7 +116,7 @@ extension ChallengeViewController: DisclosureCellDelegate {
 
 extension ChallengeViewController: ChallengeTeamProgressCellDelegate {
   func challengeTeamProgressDisclosureTapped() {
-    // TODO(compnerd) view breakdown
+    navigationController?.pushViewController(TeamBreakdownViewController(), animated: true)
   }
 
   func challengeTeamProgressEditTapped() {

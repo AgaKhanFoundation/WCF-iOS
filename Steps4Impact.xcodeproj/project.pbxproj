@@ -107,6 +107,10 @@
 		A53E7B3D236F576C006BD6D9 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E7B3C236F576C006BD6D9 /* CollectionViewController.swift */; };
 		A53E7B3F236F58D2006BD6D9 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E7B3E236F58D2006BD6D9 /* UICollectionView.swift */; };
 		A53E7B41236F59F0006BD6D9 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E7B40236F59F0006BD6D9 /* CollectionViewCell.swift */; };
+		A557933423F1C8B1005B4F91 /* TeamBreakdownHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A557933323F1C8B1005B4F91 /* TeamBreakdownHeaderCell.swift */; };
+		A55BD64123F3C9900005947C /* TeamBreakdownMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55BD64023F3C9900005947C /* TeamBreakdownMemberCell.swift */; };
+		A5790D4523F1C5B80026D1EE /* TeamBreakdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5790D4423F1C5B80026D1EE /* TeamBreakdownViewController.swift */; };
+		A5790D4823F1C62C0026D1EE /* TeamBreakdownDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5790D4723F1C62C0026D1EE /* TeamBreakdownDataSource.swift */; };
 		A57A29FC236E408E002AA380 /* BadgesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57A29FB236E408E002AA380 /* BadgesCollectionViewController.swift */; };
 		A5865EB32377617500C551E9 /* BadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5865EB22377617500C551E9 /* BadgeCell.swift */; };
 		A5865EB5237761BF00C551E9 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5865EB4237761BF00C551E9 /* HeaderCell.swift */; };
@@ -289,6 +293,10 @@
 		A53E7B3C236F576C006BD6D9 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		A53E7B3E236F58D2006BD6D9 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		A53E7B40236F59F0006BD6D9 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		A557933323F1C8B1005B4F91 /* TeamBreakdownHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBreakdownHeaderCell.swift; sourceTree = "<group>"; };
+		A55BD64023F3C9900005947C /* TeamBreakdownMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBreakdownMemberCell.swift; sourceTree = "<group>"; };
+		A5790D4423F1C5B80026D1EE /* TeamBreakdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBreakdownViewController.swift; sourceTree = "<group>"; };
+		A5790D4723F1C62C0026D1EE /* TeamBreakdownDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBreakdownDataSource.swift; sourceTree = "<group>"; };
 		A57A29FB236E408E002AA380 /* BadgesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesCollectionViewController.swift; sourceTree = "<group>"; };
 		A5865EB22377617500C551E9 /* BadgeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCell.swift; sourceTree = "<group>"; };
 		A5865EB4237761BF00C551E9 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
@@ -726,6 +734,25 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		A557933223F1C854005B4F91 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A557933323F1C8B1005B4F91 /* TeamBreakdownHeaderCell.swift */,
+				A55BD64023F3C9900005947C /* TeamBreakdownMemberCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		A5790D4623F1C6060026D1EE /* TeamBreakdown */ = {
+			isa = PBXGroup;
+			children = (
+				A557933223F1C854005B4F91 /* Cells */,
+				A5790D4423F1C5B80026D1EE /* TeamBreakdownViewController.swift */,
+				A5790D4723F1C62C0026D1EE /* TeamBreakdownDataSource.swift */,
+			);
+			path = TeamBreakdown;
+			sourceTree = "<group>";
+		};
 		A57A29FA236E404C002AA380 /* BadgesV2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -779,6 +806,7 @@
 		F0D16A3A2218AD530081440C /* Challenge */ = {
 			isa = PBXGroup;
 			children = (
+				A5790D4623F1C6060026D1EE /* TeamBreakdown */,
 				A5D2E7CA23D24A7C00C3011D /* Challenge.swift */,
 				265DE5702332FB38009DDA5A /* CreateTeam.swift */,
 				265DE5722332FBA9009DDA5A /* JoinTeam.swift */,
@@ -1147,12 +1175,14 @@
 				F0E6879222251C0600454340 /* Notifications.swift in Sources */,
 				A5123F222381B60B00C3E9DE /* MilestoneCell.swift in Sources */,
 				A5123F242381B63300C3E9DE /* JourneyDataSource.swift in Sources */,
+				A557933423F1C8B1005B4F91 /* TeamBreakdownHeaderCell.swift in Sources */,
 				267FAE282325C1660014222D /* SettingsDisclosureCell.swift in Sources */,
 				F0F8EDD12210C65C00321A6D /* CardViewSupport.swift in Sources */,
 				260BF5A32324D4B7005F0882 /* InfoCell.swift in Sources */,
 				26E9C0FC2338533E00800E8A /* UIPageViewController.swift in Sources */,
 				2676B3C62331DA1500CB0A31 /* AlertViewController.swift in Sources */,
 				269E35091E765F24000726C2 /* UIView.swift in Sources */,
+				A5790D4523F1C5B80026D1EE /* TeamBreakdownViewController.swift in Sources */,
 				26E9C0FA233838A700800E8A /* OnboardingPageViewController.swift in Sources */,
 				2622C09223249CA10092B145 /* EmptyTableViewDataSource.swift in Sources */,
 				A53E7B3D236F576C006BD6D9 /* CollectionViewController.swift in Sources */,
@@ -1160,6 +1190,7 @@
 				2611A5072335FF290030E77E /* JSON.swift in Sources */,
 				2611A50D2335FFDC0030E77E /* SponsorshipDataSource.swift in Sources */,
 				26FE2455232234A300E01B9B /* EmptyCell.swift in Sources */,
+				A5790D4823F1C62C0026D1EE /* TeamBreakdownDataSource.swift in Sources */,
 				F078D9DE23347DEE00EF0BAD /* ConnectSourceCell.swift in Sources */,
 				26FE244923222B6400E01B9B /* DashboardViewController.swift in Sources */,
 				26FE2445232228E600E01B9B /* NavigationController.swift in Sources */,
@@ -1285,6 +1316,7 @@
 				F017B691227699440023E84B /* Onboarding.swift in Sources */,
 				F0CF39881EE0EA98006A7462 /* Source.swift in Sources */,
 				C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */,
+				A55BD64123F3C9900005947C /* TeamBreakdownMemberCell.swift in Sources */,
 				A5865EB32377617500C551E9 /* BadgeCell.swift in Sources */,
 				260BF5902324B28D005F0882 /* CardView.swift in Sources */,
 				26A9829723CABABF00A5BD35 /* ImageButtonCell.swift in Sources */,
