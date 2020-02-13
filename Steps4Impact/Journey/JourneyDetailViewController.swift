@@ -37,10 +37,21 @@ class JourneyDetailViewController: ViewController {
   var imageMarqueePageControl = UIPageControl()
   private let titleLabel = UILabel(typography: .headerTitle)
   private let subtitleLabel = UILabel(typography: .title)
-  private let bodyText = UITextView()
+  private let bodyText: UITextView = {
+    let textView = UITextView()
+    textView.isUserInteractionEnabled = true
+    textView.isEditable = false
+    textView.isScrollEnabled = true
+    textView.contentInset = .zero
+    return textView
+  }()
+
+  var shareText = ""
 
   override func configureView() {
     super.configureView()
+
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
 
     // Configure imageMarqueeScrollView
     imageMarqueeScrollView.delegate = self
@@ -54,6 +65,7 @@ class JourneyDetailViewController: ViewController {
       $0.centerX.equalToSuperview()
       $0.height.width.equalTo(view.frame.width)
     }
+    view.backgroundColor = .white
 
     // Configure imageMarqueePageControl
     imageMarqueePageControl.currentPageIndicatorTintColor = Style.Colors.FoundationGreen
@@ -82,13 +94,16 @@ class JourneyDetailViewController: ViewController {
       $0.top.equalTo(subtitleLabel.snp.bottom).offset(Style.Padding.p12)
       $0.leading.equalToSuperview().offset(Style.Padding.p12)
       $0.trailing.bottom.equalToSuperview().inset(Style.Padding.p12)
+      $0.bottom.equalToSuperview().inset(self.tabBarController?.tabBar.frame.size.height ?? 0)
     }
 
     // Configure Views
     if let milestone = milestone {
+      // Adding milestone subtitle to share message text
+      shareText = milestone.subtitle
       titleLabel.text = milestone.name
       subtitleLabel.text = milestone.subtitle
-      bodyText.text = milestone.content
+      bodyText.attributedText = getContentAttributedText(from: milestone.content)
 
       let mediaURLs = milestone.getMediaURLs()
       print("mediaURLs: \(mediaURLs)")
@@ -126,5 +141,70 @@ extension JourneyDetailViewController: UIScrollViewDelegate {
     let currentPage = Int(scrollView.contentOffset.x/pageWidth)
     imageMarqueePageControl.currentPage = currentPage
   }
+
+
+  // Get string text from html
+  func getContentAttributedText(from htmlstring: String) -> NSMutableAttributedString {
+    let stringtext = htmlstring.html2String
+    let split = stringtext.components(separatedBy: "https")
+
+    if split.count > 1 {
+      let stringURL = "https\(String(split[1]))"
+      let attributedString = NSMutableAttributedString(string: stringURL)
+      let url = URL(string: stringURL)!
+
+      // Set the 'click here' substring to be the link
+      attributedString.setAttributes([.link: url], range: NSMakeRange(0, stringURL.count))
+
+      // Set how links should appear: blue and underlined
+      self.bodyText.linkTextAttributes = [
+          .foregroundColor: UIColor.blue,
+          .underlineStyle: NSUnderlineStyle.single.rawValue
+      ]
+      // Appending reference url to share message text
+      shareText += ": \(stringURL)"
+      let partone = NSMutableAttributedString(string: String(split[0]))
+      let parttwo = NSMutableAttributedString(attributedString: attributedString)
+      let result = NSMutableAttributedString()
+      result.append(partone)
+      result.append(parttwo)
+      return result
+    } else {
+      return NSMutableAttributedString(string: stringtext)
+    }
+  }
+
+
+  @objc func shareButtonTapped() {
+    AppController.shared.shareTapped(
+    viewController: self,
+    shareButton: nil,
+    string: shareText)
+  }
+}
+
+
+
+extension Data {
+    var html2AttributedString: NSAttributedString? {
+        do {
+            return try NSAttributedString(data: self, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
+        } catch {
+            print("error:", error)
+            return  nil
+        }
+    }
+    var html2String: String {
+        return html2AttributedString?.string ?? ""
+    }
+}
+
+extension String {
+    var html2AttributedString: NSAttributedString? {
+        return Data(utf8).html2AttributedString
+    }
+    var html2String: String {
+        return html2AttributedString?.string ?? ""
+    }
 }
 
