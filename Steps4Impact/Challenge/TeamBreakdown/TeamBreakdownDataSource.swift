@@ -64,6 +64,7 @@ class TeamBreakdownDataSource: TableViewDataSource {
     teamImages.removeAll()
     teamMemberNames.removeAll()
     let group: DispatchGroup = DispatchGroup()
+    let serialQueue = DispatchQueue(label: "Serial")
     AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
       if let participant = Participant(json: result.response), let team = participant.team {
         self?.leadId = team.creator ?? "0"
@@ -71,15 +72,19 @@ class TeamBreakdownDataSource: TableViewDataSource {
         self?.teamMembers.removeAll()
         for member in team.members {
 
-          group.enter()
-          Facebook.profileImage(for: member.fbid) { (url) in
-            self?.teamImages.append(url)
-            group.leave()
+          serialQueue.async {
+            group.enter()
+            Facebook.profileImage(for: member.fbid) { (url) in
+              self?.teamImages.append(url)
+              group.leave()
+            }
           }
-          group.enter()
-          Facebook.getRealName(for: member.fbid) { (name) in
-            self?.teamMemberNames.append(name ?? "")
-            group.leave()
+          serialQueue.async {
+            group.enter()
+            Facebook.getRealName(for: member.fbid) { (name) in
+              self?.teamMemberNames.append(name ?? "")
+              group.leave()
+            }
           }
           group.enter()
           AKFCausesService.getParticipant(fbid: member.fbid) { (result) in
@@ -89,10 +94,10 @@ class TeamBreakdownDataSource: TableViewDataSource {
             group.leave()
           }
         }
-        group.notify(queue: .global()) { [weak self] in
-          self?.configure()
-          completion()
-        }
+      }
+      group.notify(queue: .global()) { [weak self] in
+        self?.configure()
+        completion()
       }
     }
   }

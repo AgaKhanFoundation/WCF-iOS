@@ -113,7 +113,7 @@ class TeamBreakdownMemberCell: ConfigurableTableViewCell, Contextable {
     guard let context = context as? TeamBreakdownMemberCellContext else { return }
     countLabel.text = "\(context.count)."
     nameLabel.text = context.name
-    milesValueLabel.text = "\(context.personalCommitment)/\(context.personalTotalMiles) miles"
+    milesValueLabel.text = "\(context.personalTotalMiles)/\(context.personalCommitment) miles"
     nameLabel.textColor = context.isLead ? Style.Colors.FoundationGreen : .black
     //lblLead.isHidden = !context.isLead
     seperatorView.isHidden = context.isLastItem
