@@ -66,6 +66,7 @@
 		265FE47A2349A0A400215391 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FE4792349A0A400215391 /* Cache.swift */; };
 		26619C3123D3DB3F00ABC93F /* CellImageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26619C3023D3DB3F00ABC93F /* CellImageButtonView.swift */; };
 		2668B06B2361936300309B9D /* AppSecrets.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2668B0692361936300309B9D /* AppSecrets.generated.swift */; };
+		266CF4B323F651C9007C848D /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266CF4B223F651C9007C848D /* DateFormatter.swift */; };
 		266DA27B2339E54000035CC5 /* ChallengeTeamProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266DA27A2339E54000035CC5 /* ChallengeTeamProgressCell.swift */; };
 		2676B3C42331D45000CB0A31 /* AlertModalAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C32331D45000CB0A31 /* AlertModalAnimations.swift */; };
 		2676B3C62331DA1500CB0A31 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C52331DA1500CB0A31 /* AlertViewController.swift */; };
@@ -257,6 +258,7 @@
 		265FE4792349A0A400215391 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		26619C3023D3DB3F00ABC93F /* CellImageButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellImageButtonView.swift; sourceTree = "<group>"; };
 		2668B0692361936300309B9D /* AppSecrets.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSecrets.generated.swift; sourceTree = "<group>"; };
+		266CF4B223F651C9007C848D /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		266DA27A2339E54000035CC5 /* ChallengeTeamProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeTeamProgressCell.swift; sourceTree = "<group>"; };
 		2676B3C32331D45000CB0A31 /* AlertModalAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalAnimations.swift; sourceTree = "<group>"; };
 		2676B3C52331DA1500CB0A31 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
@@ -874,6 +876,7 @@
 				C92244D4235D4B670098A333 /* UserDefaults.swift */,
 				A53E7B3E236F58D2006BD6D9 /* UICollectionView.swift */,
 				264AE87423F3C20900377D67 /* UIButton.swift */,
+				266CF4B223F651C9007C848D /* DateFormatter.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -1353,6 +1356,7 @@
 				F0CBDA521EA6FF1D00BB34F1 /* Sponsor.swift in Sources */,
 				F0D2378C23387BC100F41DB4 /* InviteSupportersViewController.swift in Sources */,
 				269E35071E765C68000726C2 /* LoginViewController.swift in Sources */,
+				266CF4B323F651C9007C848D /* DateFormatter.swift in Sources */,
 				264AE86F23F3B84800377D67 /* ActivityDateView.swift in Sources */,
 				26388A6F23482D2300C83AC2 /* Assets.swift in Sources */,
 				263EF530232A106400A00414 /* TeamSettingsDataSource.swift in Sources */,
