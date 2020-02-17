@@ -113,6 +113,7 @@
 		A5123F222381B60B00C3E9DE /* MilestoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5123F212381B60B00C3E9DE /* MilestoneCell.swift */; };
 		A5123F242381B63300C3E9DE /* JourneyDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5123F232381B63300C3E9DE /* JourneyDataSource.swift */; };
 		A5123F262381C9CE00C3E9DE /* CurrentMilestoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5123F252381C9CE00C3E9DE /* CurrentMilestoneCell.swift */; };
+		A529214323F7281700545051 /* MiniChallengeProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529214223F7281700545051 /* MiniChallengeProgressCell.swift */; };
 		A53E7B3D236F576C006BD6D9 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E7B3C236F576C006BD6D9 /* CollectionViewController.swift */; };
 		A53E7B3F236F58D2006BD6D9 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E7B3E236F58D2006BD6D9 /* UICollectionView.swift */; };
 		A53E7B41236F59F0006BD6D9 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E7B40236F59F0006BD6D9 /* CollectionViewCell.swift */; };
@@ -308,6 +309,7 @@
 		A5123F212381B60B00C3E9DE /* MilestoneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneCell.swift; sourceTree = "<group>"; };
 		A5123F232381B63300C3E9DE /* JourneyDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyDataSource.swift; sourceTree = "<group>"; };
 		A5123F252381C9CE00C3E9DE /* CurrentMilestoneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentMilestoneCell.swift; sourceTree = "<group>"; };
+		A529214223F7281700545051 /* MiniChallengeProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniChallengeProgressCell.swift; sourceTree = "<group>"; };
 		A53E7B3C236F576C006BD6D9 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		A53E7B3E236F58D2006BD6D9 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		A53E7B40236F59F0006BD6D9 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 				260BF5992324CFA6005F0882 /* EmptyActivityCardCell.swift */,
 				260BF5942324B3FC005F0882 /* ProfileCardCell.swift */,
 				269F95262377994B0089CDD1 /* ActivityCardCell.swift */,
+				A529214223F7281700545051 /* MiniChallengeProgressCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1360,6 +1363,7 @@
 				F017B691227699440023E84B /* Onboarding.swift in Sources */,
 				F0CF39881EE0EA98006A7462 /* Source.swift in Sources */,
 				C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */,
+				A529214323F7281700545051 /* MiniChallengeProgressCell.swift in Sources */,
 				A55BD64123F3C9900005947C /* TeamBreakdownMemberCell.swift in Sources */,
 				A5865EB32377617500C551E9 /* BadgeCell.swift in Sources */,
 				260BF5902324B28D005F0882 /* CardView.swift in Sources */,

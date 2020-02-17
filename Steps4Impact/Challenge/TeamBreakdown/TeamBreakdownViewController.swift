@@ -29,10 +29,10 @@ class TeamBreakdownViewController: TableViewController {
   override func reload() {
     activityView.startAnimating()
     dataSource?.reload { [weak self] in
-      if let dataSource = self?.dataSource as? TeamBreakdownDataSource, let teamName = dataSource.teamName {
-        self?.title = teamName
-      }
       onMain {
+        if let dataSource = self?.dataSource as? TeamBreakdownDataSource, let teamName = dataSource.teamName {
+          self?.title = teamName
+        }
         self?.activityView.stopAnimating()
       }
       self?.tableView.reloadOnMain()

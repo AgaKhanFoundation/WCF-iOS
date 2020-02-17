@@ -36,6 +36,7 @@ struct Participant {
   let events: [Event]?
   let preferredCause: Cause?
   let records: [Record]?
+  var teamMembers = [Participant]()
 
   init?(json: JSON?) {
     guard let json = json else { return nil }
@@ -53,4 +54,22 @@ struct Participant {
   public var currentEvent: Event? {
     return self.events?.filter { $0.challengePhase.end > Date(timeIntervalSinceNow: 0) }.first
   }
+
+  public var currentTeamProgressInMiles: Int {
+    return (teamMembers.reduce(0, { (total, member) -> Int in
+        guard let records = member.records else { return total + 0 }
+        var sum = 0
+        for record in records {
+          sum += (record.distance ?? 0)
+        }
+        return total + sum
+      }))/2000
+  }
+
+  public var totalTeamCommitmentInMiles: Int {
+    return (teamMembers.reduce(0) { (total, member) -> Int in
+      return total + (member.currentEvent?.commitment?.steps ?? 0)
+    })/2000
+  }
+
 }
