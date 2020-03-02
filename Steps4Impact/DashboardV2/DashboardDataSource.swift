@@ -140,7 +140,7 @@ class DashboardDataSource: TableViewDataSource {
   }
 
   private var currentEventStatus: String {
-    guard let event = event else { return "" }
+    guard let event = event else { return "no event data available" }
     let differenceOfDays = Calendar.current.dateComponents([.day], from: event.challengePhase.start, to: Date()).day
     if event.challengePhase.end < Date() {
       return "Event is completed!"
