@@ -30,27 +30,32 @@
 import Foundation
 
 struct FitbitStep: Codable {
-  var date: String
+  var date: Date
   var steps: Int
-
+  
+  static let dateFormatter = DateFormatter(format: "yyyy-MM-dd")
+  
   enum CodingKeys: String, CodingKey {
       case date = "dateTime"
       case steps = "value"
   }
 
   init?(json: JSON) {
-    guard let theDate = json["dateTime"]?.stringValue,
+    guard
+      let rawDate = json["dateTime"]?.stringValue,
+      let date = FitbitStep.dateFormatter.date(from: rawDate),
       let value = json["value"]?.stringValue,
-      let intValue = Int(value) else { return nil }
+      let steps = Int(value)
+    else { return nil }
 
-    date = theDate
-    steps = intValue
+    self.date = date
+    self.steps = steps
   }
 
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    date = try container.decode(String.self, forKey: .date)
+    date = try container.decode(Date.self, forKey: .date)
     steps = try container.decode(Int.self, forKey: .steps)
   }
 

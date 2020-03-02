@@ -32,42 +32,40 @@ import OAuthSwift
 
 class FitbitDataProvider: PedometerDataProvider {
   func retrieveStepCount(forInterval interval: DateInterval, _ completion: @escaping PedometerDataCompletion) {
-    // TODO
+    OAuthFitbit.shared.fetchSteps(forInterval: interval) { [weak self] (result) in
+      guard
+        let `self` = self,
+        case .success(let response) = result,
+        let steps = self.convert(response: response)
+      else { return completion(.failure(.unknown)) }
+      
+      completion(.success(steps))
+    }
   }
   
   func retrieveDistance(forInterval interval: DateInterval, _ completion: @escaping PedometerDataCompletion) {
-    // TODO
-  }
-  
-  func retrieveStepCount(forInterval interval: DateInterval,
-                         _ completion: @escaping (Result<Int, PedometerDataProvider.Error>) -> Void) {
-    OAuthFitbit.shared.fetchSteps(forInterval: interval) { result in
-      switch result {
-      case .success(let response):
-        let steps = FitbitDataProvider.steps(fromResponse: response)
-        if steps == -1 {
-          // FIXME: handle error situation
-          return
-        }
-
-        completion(.success(steps))
-      case .failure(let error):
-        print(error.description)
-      }
+    OAuthFitbit.shared.fetchSteps(forInterval: interval) { [weak self] (result) in
+      guard
+        let `self` = self,
+        case .success(let response) = result,
+        let steps = self.convert(response: response)
+      else { return completion(.failure(.unknown)) }
+      
+      let miles = steps
+        .map { PedometerData(date: $0.date, count: $0.count / 2000) }
+      
+      completion(.success(miles))
     }
   }
-
-  func retrieveDistance(forInterval interval: DateInterval,
-                        _ completion: @escaping (Result<Int, PedometerDataProviderError>) -> Void) {
-  }
-
-  private static func steps(fromResponse response: OAuthSwiftResponse) -> Int {
-    guard let jsonDict = try? response.jsonObject() else { return -1 }
-
-    let json = JSON(jsonDict)
-    guard let array = json?["activities-steps"]?.arrayValue else { return -1 }
-
-    let stepsObjs = array.compactMap({ FitbitStep(json: $0) })
-    return stepsObjs.reduce(0, { $0 + $1.steps })
+  
+  private func convert(response: OAuthSwiftResponse) -> [PedometerData]? {
+    guard
+      let jsonObject = try? response.jsonObject(),
+      let activitySteps = JSON(jsonObject)?["activities-steps"]?.arrayValue
+    else { return nil }
+    
+    return activitySteps
+      .compactMap { return FitbitStep(json: $0) }
+      .map { return PedometerData(date: $0.date, count: Double($0.steps)) }
   }
 }
