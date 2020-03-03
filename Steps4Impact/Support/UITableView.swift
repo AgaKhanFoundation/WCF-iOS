@@ -70,7 +70,8 @@ extension UITableView {
       ExpandCollapseCell.self,
       ActivityCardCell.self,
       TeamBreakdownHeaderCell.self,
-      TeamBreakdownMemberCell.self
+      TeamBreakdownMemberCell.self,
+      MiniChallengeProgressCell.self
     ].forEach { register($0) }
   }
 

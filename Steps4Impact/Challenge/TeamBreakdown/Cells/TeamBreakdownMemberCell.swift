@@ -58,7 +58,7 @@ struct TeamBreakdownMemberCellContext: CellContext {
 }
 
 class TeamBreakdownMemberCell: ConfigurableTableViewCell, Contextable {
-  static let identifier = "TeamSettingsMemberCell"
+  static let identifier = "TeamBreakdownMemberCell"
 
   private let countLabel = UILabel(typography: .bodyRegular)
   private let profileImageView = WebImageView(image: Assets.placeholder.image)

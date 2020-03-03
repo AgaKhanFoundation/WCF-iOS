@@ -37,6 +37,8 @@ class Cache {
   typealias FacebookID = String
   typealias FacebookName = String
   typealias FacebookProfileImageURL = URL
+  typealias PersonalProgress = Int
+  typealias PersonalCommitment = Int
 
   let facebookNamesRelay = BehaviorRelay<[FacebookID: FacebookName]>(value: [:])
   private var facebookNames = [FacebookID: FacebookName]()
@@ -50,6 +52,20 @@ class Cache {
   func update(fbid: FacebookID, url: FacebookProfileImageURL) {
     facebookProfileImageURLs[fbid] = url
     facebookProfileImageURLsRelay.accept(facebookProfileImageURLs)
+  }
+
+  let personalProgressRelay = BehaviorRelay<[FacebookID: PersonalProgress]>(value: [:])
+  private var personalProgresses = [FacebookID: PersonalProgress]()
+  func update(fbid: FacebookID, progress: PersonalProgress) {
+    personalProgresses[fbid] = progress
+    personalProgressRelay.accept(personalProgresses)
+  }
+
+  let personalCommitmentRelay = BehaviorRelay<[FacebookID: PersonalCommitment]>(value: [:])
+  private var personalCommitments = [FacebookID: PersonalCommitment]()
+  func update(fbid: FacebookID, commitment: PersonalCommitment) {
+    personalCommitments[fbid] = commitment
+    personalCommitmentRelay.accept(personalCommitments)
   }
 
   let participantRelay = BehaviorRelay<Participant?>(value: nil)

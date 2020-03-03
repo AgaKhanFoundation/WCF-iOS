@@ -47,6 +47,8 @@ class DashboardDataSource: TableViewDataSource {
   private var milesCountDay: Int = 0
   private var milesCountWeek: Int = 0
   private var commitment: Int = 0
+  private(set) var participant: Participant?
+  private(set) var event: Event?
   private var pedometerStepsData: [PedometerData] = []
   private var pedometerDistanceData: [PedometerData] = []
   private var healthKitDataProvider = HealthKitDataProvider()
@@ -97,6 +99,27 @@ class DashboardDataSource: TableViewDataSource {
     AKFCausesService.getParticipant(fbid: facebookService.id) { [weak self] (result) in
       self?.cache.participantRelay.accept(Participant(json: result.response))
     }
+    let group: DispatchGroup = DispatchGroup()
+    AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
+      if var participant = Participant(json: result.response), let team = participant.team {
+        self?.event = participant.currentEvent
+
+        for member in team.members {
+          group.enter()
+          AKFCausesService.getParticipant(fbid: member.fbid) { (result) in
+            if let part = Participant(json: result.response) {
+              participant.teamMembers.append(part)
+            }
+            group.leave()
+          }
+        }
+        group.notify(queue: .global()) { [weak self] in
+          self?.participant = participant
+          self?.configure()
+          completion()
+        }
+      }
+    }
   }
 
   func configure() {
@@ -108,10 +131,26 @@ class DashboardDataSource: TableViewDataSource {
         eventName: eventName,
         eventTimeline: eventTimelineString,
         disclosureLabel: Strings.Dashboard.badges),
-      activityCell
+      activityCell,
+      MiniChallengeProgressCellContext(title: "Challenge Progress",
+                                       teamProgressMiles: participant?.currentTeamProgressInMiles ?? 0,
+                                       totalMiles: participant?.totalTeamCommitmentInMiles ?? 0,
+                                       status: currentEventStatus)
     ]]
   }
 
+  private var currentEventStatus: String {
+    guard let event = event else { return "no event data available" }
+    let differenceOfDays = Calendar.current.dateComponents([.day], from: event.challengePhase.start, to: Date()).day
+    if event.challengePhase.end < Date() {
+      return "Event is completed!"
+    } else if event.challengePhase.start < Date() {
+      return "You have completed \(differenceOfDays ?? 0) days!"
+    } else {
+      return "You have \(String(describing: abs(differenceOfDays ?? 0))) days remaining!"
+    }
+  }
+  
   private var activityCell: CellContext {
     if UserInfo.pedometerSource != nil {
       return ActivityCardCellContext(title: Strings.Dashboard.Activity.title,
