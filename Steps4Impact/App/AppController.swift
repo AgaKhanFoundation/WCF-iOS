@@ -41,6 +41,7 @@ import FirebaseInstanceID
 class AppController: NSObject {
   static let shared = AppController()
 
+  static let isTestRun = true
   private override init() { }
 
   var window: UIWindow?
