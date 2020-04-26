@@ -55,9 +55,9 @@ class JourneyViewController: TableViewController {
     dataSource?.reload { [weak self] in
       if let dataSource = self?.dataSource as? JourneyDataSource {
         if let nextMilestone = dataSource.nameOfNextMilestone {
-          let nextMilestoneDistance = dataSource.distanceToNextMilestone
-          let distanceRemaining = nextMilestoneDistance - dataSource.distanceCoveredToNextMilestone
-          let progressLabelText = "\(distanceRemaining) / \(nextMilestoneDistance) mi remaining to reach \(nextMilestone)"
+          let nextMilestoneDist = dataSource.distanceToNextMilestone
+          let distRemain = nextMilestoneDist - dataSource.distanceCoveredToNextMilestone
+          let progressLabelText = "\(distRemain) / \(nextMilestoneDist) mi remaining to reach \(nextMilestone)"
           self?.progressLabel.text = progressLabelText
         } else {
           self?.progressLabel.text = "All Milestones Completed"
