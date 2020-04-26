@@ -10,7 +10,7 @@ target 'Steps4Impact' do
   pod 'FBSDKLoginKit', '~> 5.6.0'
   pod 'FBSDKShareKit', '~> 5.6.0'
   pod 'SnapKit', '~> 5.0.1'
-  pod 'SwiftLint', '~> 0.35.0'
+  pod 'SwiftLint', '~> 0.38.2'
   pod 'FirebaseMessaging', '~> 4.1.4'
   pod 'AppCenter', '~> 2.3.0'
   pod 'SDWebImage', '~> 5.1.1'

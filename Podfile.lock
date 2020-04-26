@@ -101,7 +101,7 @@ PODS:
   - SDWebImage/Core (5.1.1)
   - SnapKit (5.0.1)
   - Sourcery (0.17.0)
-  - SwiftLint (0.35.0)
+  - SwiftLint (0.38.2)
 
 DEPENDENCIES:
   - AppCenter (~> 2.3.0)
@@ -123,7 +123,7 @@ DEPENDENCIES:
   - SDWebImage (~> 5.1.1)
   - SnapKit (~> 5.0.1)
   - Sourcery (~> 0.17.0)
-  - SwiftLint (~> 0.35.0)
+  - SwiftLint (~> 0.38.2)
 
 SPEC REPOS:
   trunk:
@@ -149,6 +149,10 @@ SPEC REPOS:
     - OAuthSwift
     - Protobuf
     - Quick
+    - SDWebImage
+    - SnapKit
+  trunk:
+    - FirebaseCore
     - RxBlocking
     - RxCocoa
     - RxRelay
@@ -190,8 +194,8 @@ SPEC CHECKSUMS:
   SDWebImage: 96d7f03415ccb28d299d765f93557ff8a617abd8
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Sourcery: 3ed61be7c8a1218fce349266139379dba477efe0
-  SwiftLint: 5553187048b900c91aa03552807681bb6b027846
+  SwiftLint: 8f5d2f903e1c9bcbc832fd16771e80a263ac6cbb
 
-PODFILE CHECKSUM: f830b25b078bd36405ec2bfd37760619938c8f91
+PODFILE CHECKSUM: 1e8ae5afd494a227017a817bfae7ca774d1b66f6
 
 COCOAPODS: 1.8.4

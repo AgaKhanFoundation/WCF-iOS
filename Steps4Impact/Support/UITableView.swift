@@ -71,7 +71,7 @@ extension UITableView {
       ActivityCardCell.self,
       TeamBreakdownHeaderCell.self,
       TeamBreakdownMemberCell.self,
-      MiniChallengeProgressCell.self
+      MiniChallengeProgressCell.self,
       NotificationCell.self
     ].forEach { register($0) }
   }
