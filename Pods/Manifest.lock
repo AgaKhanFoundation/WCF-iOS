@@ -149,10 +149,6 @@ SPEC REPOS:
     - OAuthSwift
     - Protobuf
     - Quick
-    - SDWebImage
-    - SnapKit
-  trunk:
-    - FirebaseCore
     - RxBlocking
     - RxCocoa
     - RxRelay
@@ -196,6 +192,6 @@ SPEC CHECKSUMS:
   Sourcery: 3ed61be7c8a1218fce349266139379dba477efe0
   SwiftLint: 8f5d2f903e1c9bcbc832fd16771e80a263ac6cbb
 
-PODFILE CHECKSUM: 1e8ae5afd494a227017a817bfae7ca774d1b66f6
+PODFILE CHECKSUM: 28aa85d7b93a27c9f9f6b1b8cad678e239cbd65a
 
 COCOAPODS: 1.8.4
