@@ -30,22 +30,222 @@
 import UIKit
 
 class NotificationsViewController: TableViewController {
+  private let filename = "notifications.plist"
+
+  private lazy var plistURL: URL? = {
+    do {
+      var documentURL = try FileManager.default.url(
+        for: .documentDirectory, in: .userDomainMask,
+        appropriateFor: nil, create: false)
+      return documentURL.appendingPathComponent(filename)
+    } catch {
+      print(error)
+    }
+    return nil
+  }()
+
   override func commonInit() {
     super.commonInit()
 
     title = Strings.Notifications.title
     dataSource = NotificationsDataSource()
+
+    _ = NotificationCenter.default.addObserver(
+    forName: .receivedNotification, object: nil, queue: nil) { [weak self] (notification) in
+      self?.didReceive(notification: notification.userInfo)
+    }
+  
+    fetchNotifications()
+  }
+
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    guard let dataSource = dataSource as? NotificationsDataSourceV2 else { return }
+    dataSource.notifications.forEach({ $0.seen = true })
+    self.navigationController?.tabBarItem.badgeValue = nil
+    saveToPlist()
+  }
+
+  private func didReceive(notification userInfo: [AnyHashable: Any]?) {
+    guard let aps = userInfo?["aps"] as? [AnyHashable: Any],
+      let alert = aps["alert"] as? [AnyHashable: Any],
+      let title = alert["title"] as? String,
+      let body = alert["body"] as? String,
+      let dataSource = dataSource as? NotificationsDataSourceV2 else { return }
+    let notification = NotificationV2(title: title, body: body, seen: false)
+    dataSource.notifications.insert(notification, at: 0)
+    saveToPlist()
+    reload()
+  }
+
+  private func readFromPlist() -> [NotificationV2] {
+    guard let plistURL = plistURL else { return [] }
+    var plistData: [String]?
+    do {
+      let data = try Data(contentsOf: plistURL)
+      plistData = try PropertyListSerialization.propertyList(
+        from: data, format: nil) as? [String]
+    } catch {
+      print("Error reading plist: ", error)
+    }
+    guard let data = plistData else { return [] }
+    return data.compactMap { return NotificationV2.instance(from: $0) }
+  }
+
+  private func saveToPlist() {
+    guard let plistURL = plistURL,
+      let dataSource = dataSource as? NotificationsDataSourceV2 else {
+        return
+    }
+    do {
+      let plist = dataSource.notifications.compactMap { $0.jsonString() }
+      let plistData = try PropertyListSerialization.data(
+        fromPropertyList: plist, format: .xml, options: 0)
+      try plistData.write(to: plistURL)
+    } catch {
+      print("Error writing plist: ", error)
+    }
+  }
+
+  func fetchSavedNotifications() {
+    guard let dataSource = dataSource as? NotificationsDataSourceV2 else { return }
+    let notifications = readFromPlist()
+    dataSource.notifications = notifications
+    let unseenCount = notifications.filter({ !$0.seen }).count
+    if unseenCount > 0 {
+      self.navigationController?.tabBarItem.badgeValue = "\(unseenCount)"
+    } else {
+      self.navigationController?.tabBarItem.badgeValue = nil
+    }
+    reload()
+  }
+
+  func fetchNotifications() {
+    AKFCausesService.getNotifications(fbId: Facebook.id, eventId: 0) { (result) in
+      guard let notificationsJSON = result.response?.arrayValue else { return }
+      var notifications = [Notification]()
+      for json in notificationsJSON {
+        guard let notification = Notification(json: json) else { continue }
+        notifications.append(notification)
+      }
+
+      guard let dataSource = self.dataSource as? NotificationsDataSource else { return }
+      dataSource.notifications = notifications
+      let unseenCount = notifications.filter({ !$0.readFlag }).count
+      if unseenCount > 0 {
+        self.navigationController?.tabBarItem.badgeValue = "\(unseenCount)"
+      } else {
+        self.navigationController?.tabBarItem.badgeValue = nil
+      }
+      self.reload()
+    }
+  }
+
+  override func handle(context: Context) {
+    guard let context = context as? NotificationContext else { return }
+    switch context {
+    case .none:
+      return
+    case .markRead(let identifier):
+      AKFCausesService.updateNotification(identifier: identifier, readFlag: true)
+      guard let dataSource = self.dataSource as? NotificationsDataSource else { return }
+      guard let index = dataSource.notifications.firstIndex(where: { $0.identifier == identifier }) else { return }
+      dataSource.notifications[index].readFlag = true
+      self.reload()
+    }
+  }
+}
+
+class NotificationV2: NSObject, Codable {
+  var title: String
+  var body: String
+  var seen: Bool
+
+  init(title: String, body: String, seen: Bool = false) {
+    self.title = title
+    self.body = body
+    self.seen = seen
+    super.init()
+  }
+
+  func jsonString() -> String? {
+    let jsonEncoder = JSONEncoder()
+    do {
+      let object = try jsonEncoder.encode(self)
+      return String(data: object, encoding: .utf8)
+    } catch {
+      return nil
+    }
+  }
+
+  static func instance(from jsonString: String) -> NotificationV2? {
+    let jsonDecoder = JSONDecoder()
+    guard let jsonData = jsonString.data(using: .utf8) else { return nil }
+    do {
+      return try jsonDecoder.decode(NotificationV2.self, from: jsonData)
+    } catch {
+      return nil
+    }
+  }
+}
+
+class NotificationsDataSourceV2: TableViewDataSource {
+  var cells: [[CellContext]] = []
+  var notifications = [NotificationV2]()
+
+  func configure() {
+    guard notifications.count > 0 else {
+      configureNoNotificationCells()
+      return
+    }
+    var notificationCells = [InfoCellContext]()
+    for notification in notifications {
+      notificationCells.append(
+        InfoCellContext(title: notification.title, body: notification.body)
+      )
+    }
+    cells = [notificationCells]
+  }
+
+  private func configureNoNotificationCells() {
+    cells = [[
+      InfoCellContext(
+        title: Strings.Notifications.title,
+        body: Strings.Notifications.youHaveNoNotifications)
+      ]]
   }
 }
 
 class NotificationsDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
-
+  var notifications = [Notification]()
+  
   func configure() {
+    guard notifications.count > 0 else {
+      configureNoNotificationCells()
+      return
+    }
+    var notificationCells = [NotificationCellContext]()
+    for notification in notifications {
+      notificationCells.append(
+        NotificationCellContext(
+          message: notification.message,
+          timeDelta: notification.formattedMessageDate,
+          backgroundColor: notification.backgroundColor,
+          context: notification.context
+        )
+      )
+    }
+    cells = [notificationCells]
+  }
+  
+  private func configureNoNotificationCells() {
     cells = [[
-        InfoCellContext(
-          title: Strings.Notifications.title,
-          body: Strings.Notifications.youHaveNoNotifications)
-    ]]
+      NotificationCellContext(
+        message: Strings.Notifications.title,
+        timeDelta: Strings.Notifications.youHaveNoNotifications,
+        backgroundColor: .read,
+        context: .none)
+      ]]
   }
 }

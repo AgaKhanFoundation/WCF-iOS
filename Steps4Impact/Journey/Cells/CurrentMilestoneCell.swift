@@ -108,6 +108,11 @@ class CurrentMilestoneCell: ConfigurableTableViewCell {
       $0.trailing.equalToSuperview().inset(Style.Padding.p12)
       $0.height.width.equalTo(Style.Size.s128)
     }
+
+    initContentView()
+  }
+
+  private func initContentView() {
     contentView.addSubview(containerRectangle) {
       $0.top.equalToSuperview()
       $0.leading.equalTo(circle.snp.trailing).offset(Style.Padding.p8)
@@ -161,7 +166,10 @@ class CurrentMilestoneCell: ConfigurableTableViewCell {
     milestoneNameButton.setTitle("\(currentMilestone.name)", for: .normal)
     milestoneNameButton.tag = currentMilestone.sequence
     // swiftlint:disable:next line_length
-    journeyMapImageView.fadeInImage(imageURL: URL(string: currentMilestone.journeyMap), placeHolderImage: Assets.journeyEmpty.image)
+    journeyMapImageView.fadeInImage(
+      imageURL: URL(string: currentMilestone.journeyMap),
+      placeHolderImage: Assets.journeyEmpty.image
+    )
 
     UIView.animate(withDuration: 1) {
       self.progressCircle.snp.remakeConstraints { (make) in

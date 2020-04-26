@@ -168,6 +168,13 @@ struct Strings {
     static let youHaveNoNotifications = NSLocalizedString("Notifications.youHaveNoNotifications", comment: "")
   }
 
+  struct NotificationsPermission {
+    static let title = NSLocalizedString("Notifications.Permission.title", comment: "")
+    static let message = NSLocalizedString("Notifications.Permission.message", comment: "")
+    static let proceed = NSLocalizedString("Notifications.Permission.proceed", comment: "")
+    static let cancel = NSLocalizedString("Notifications.Permission.cancel", comment: "")
+  }
+
   struct Settings {
     static let title = NSLocalizedString("Settings.title", comment: "")
     static let delete = NSLocalizedString("Settings.delete", comment: "")

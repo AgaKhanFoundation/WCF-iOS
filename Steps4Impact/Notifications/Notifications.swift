@@ -66,14 +66,14 @@ class NotificationView: UITableViewCell {
   }
 
   func render(_ context: Any) {
-    guard let data = context as? Notification else { return }
+    guard let data = context as? NotificationV1 else { return }
     lblMessage.text = data.message
     // FIXME(compnerd) render this according to the UX style
     lblDate.text = data.date.description
   }
 }
 
-struct Notification {
+struct NotificationV1 {
   var renderer: String { return NotificationView.identifier }
 
   var date: Date
@@ -84,7 +84,7 @@ class Notifications: UIViewController {
   private let lblTitle: UILabel = UILabel(typography: .headerTitle)
   private let tblNotifications: UITableView = UITableView(frame: .zero)
   private let uvwNotificationsBackground: UIView = UIView(frame: .zero)
-  private var arrNotifications: [Notification] = []
+  private var arrNotifications: [NotificationV1] = []
 
   override func viewDidLoad() {
     super.viewDidLoad()
