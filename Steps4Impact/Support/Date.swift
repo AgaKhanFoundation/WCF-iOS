@@ -64,4 +64,13 @@ extension Date {
   func daysUntil(_ date: Date) -> Int {
     return Calendar.current.dateComponents([.day], from: self, to: date).day ?? 0
   }
+  
+  func timeAgo() -> String? {
+    let formatter = DateComponentsFormatter()
+    formatter.unitsStyle = .abbreviated
+    formatter.allowedUnits = [.year, .month, .day, .hour, .minute, .second]
+    formatter.zeroFormattingBehavior = .dropAll
+    formatter.maximumUnitCount = 1
+    return formatter.string(from: self, to: Date())
+  }
 }
