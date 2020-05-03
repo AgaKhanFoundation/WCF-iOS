@@ -94,6 +94,7 @@
 		26A9829723CABABF00A5BD35 /* ImageButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9829623CABABF00A5BD35 /* ImageButtonCell.swift */; };
 		26A9829923CABAD800A5BD35 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9829823CABAD800A5BD35 /* Achievement.swift */; };
 		26A9829B23CABAE800A5BD35 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9829A23CABAE800A5BD35 /* Milestone.swift */; };
+		26AA2CED245E5138000638D4 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA2CEC245E5138000638D4 /* Notification.swift */; };
 		26AA2CEF245E5434000638D4 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA2CEE245E5434000638D4 /* NotificationCell.swift */; };
 		26AD5BCF23F141E7005EC5A6 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD5BCE23F141E7005EC5A6 /* RadioButton.swift */; };
 		26B2793823765FFA000CEE94 /* Keyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B2793723765FFA000CEE94 /* Keyboardable.swift */; };
@@ -290,6 +291,7 @@
 		26A9829623CABABF00A5BD35 /* ImageButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageButtonCell.swift; sourceTree = "<group>"; };
 		26A9829823CABAD800A5BD35 /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		26A9829A23CABAE800A5BD35 /* Milestone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
+		26AA2CEC245E5138000638D4 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		26AA2CEE245E5434000638D4 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		26AD5BCE23F141E7005EC5A6 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		26B2793723765FFA000CEE94 /* Keyboardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboardable.swift; sourceTree = "<group>"; };
@@ -841,6 +843,7 @@
 				C9BAEECF235D5C4E00A8D7AF /* FitbitStep.swift */,
 				A594DC8C238B6DBA003B5EF7 /* Leaderboard.swift */,
 				26A9829A23CABAE800A5BD35 /* Milestone.swift */,
+				26AA2CEC245E5138000638D4 /* Notification.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1266,6 +1269,7 @@
 				F017B6952276C9C60023E84B /* OnboardingJourney.swift in Sources */,
 				265DE5732332FBA9009DDA5A /* JoinTeam.swift in Sources */,
 				F0320B6E222F678500EABAD6 /* SegmentedView.swift in Sources */,
+				26AA2CED245E5138000638D4 /* Notification.swift in Sources */,
 				A57A29FC236E408E002AA380 /* BadgesCollectionViewController.swift in Sources */,
 				2676B3C82331E1B400CB0A31 /* ActionButton.swift in Sources */,
 				F02F1734234B9B3E008A1CD6 /* Commitment.swift in Sources */,
