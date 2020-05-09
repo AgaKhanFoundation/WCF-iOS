@@ -257,6 +257,7 @@ class BadgesCollectionDataSource: CollectionViewDataSource {
           completion()
         }
       }
+      completion()
     }
   }
 }
