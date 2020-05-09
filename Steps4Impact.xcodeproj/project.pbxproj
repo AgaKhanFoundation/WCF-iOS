@@ -115,6 +115,8 @@
 		A5123F242381B63300C3E9DE /* JourneyDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5123F232381B63300C3E9DE /* JourneyDataSource.swift */; };
 		A5123F262381C9CE00C3E9DE /* CurrentMilestoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5123F252381C9CE00C3E9DE /* CurrentMilestoneCell.swift */; };
 		A529214323F7281700545051 /* MiniChallengeProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529214223F7281700545051 /* MiniChallengeProgressCell.swift */; };
+		A52E332D24676929008FAF71 /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52E332C24676929008FAF71 /* PushNotificationManager.swift */; };
+		A52E332F24677057008FAF71 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A52E332E24677057008FAF71 /* GoogleService-Info.plist */; };
 		A53E7B3D236F576C006BD6D9 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E7B3C236F576C006BD6D9 /* CollectionViewController.swift */; };
 		A53E7B3F236F58D2006BD6D9 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E7B3E236F58D2006BD6D9 /* UICollectionView.swift */; };
 		A53E7B41236F59F0006BD6D9 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E7B40236F59F0006BD6D9 /* CollectionViewCell.swift */; };
@@ -312,6 +314,8 @@
 		A5123F232381B63300C3E9DE /* JourneyDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyDataSource.swift; sourceTree = "<group>"; };
 		A5123F252381C9CE00C3E9DE /* CurrentMilestoneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentMilestoneCell.swift; sourceTree = "<group>"; };
 		A529214223F7281700545051 /* MiniChallengeProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniChallengeProgressCell.swift; sourceTree = "<group>"; };
+		A52E332C24676929008FAF71 /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
+		A52E332E24677057008FAF71 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A53E7B3C236F576C006BD6D9 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		A53E7B3E236F58D2006BD6D9 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		A53E7B40236F59F0006BD6D9 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -536,6 +540,7 @@
 		2611A50B2335FF930030E77E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A52E332E24677057008FAF71 /* GoogleService-Info.plist */,
 				26388A6A2348293700C83AC2 /* Localizable.strings */,
 				262BE89D2338817D0087DDDF /* Steps4Impact.entitlements */,
 				269E34D51E765828000726C2 /* Info.plist */,
@@ -680,6 +685,7 @@
 		269E34C81E765828000726C2 /* Steps4Impact */ = {
 			isa = PBXGroup;
 			children = (
+				A52E332B246768DA008FAF71 /* PushNotifications */,
 				A5123F1D2381B4F700C3E9DE /* Journey */,
 				A57A29FA236E404C002AA380 /* BadgesV2 */,
 				2668B0672361936300309B9D /* Generated */,
@@ -762,6 +768,14 @@
 				A5123F252381C9CE00C3E9DE /* CurrentMilestoneCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		A52E332B246768DA008FAF71 /* PushNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				A52E332C24676929008FAF71 /* PushNotificationManager.swift */,
+			);
+			path = PushNotifications;
 			sourceTree = "<group>";
 		};
 		A550395E23823FE500788157 /* Cells */ = {
@@ -1032,6 +1046,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				269E34D11E765828000726C2 /* Assets.xcassets in Resources */,
+				A52E332F24677057008FAF71 /* GoogleService-Info.plist in Resources */,
 				269E34FD1E7658F2000726C2 /* Launch.storyboard in Resources */,
 				26388A682348293700C83AC2 /* Localizable.strings in Resources */,
 			);
@@ -1351,6 +1366,7 @@
 				F017B6932276B99A0023E84B /* OnboardingCreateTeam.swift in Sources */,
 				260BF5952324B3FC005F0882 /* ProfileCardCell.swift in Sources */,
 				2622C0962324A0490092B145 /* TableViewCell.swift in Sources */,
+				A52E332D24676929008FAF71 /* PushNotificationManager.swift in Sources */,
 				F017B6972276D0C60023E84B /* OnboardingDashboard.swift in Sources */,
 				F0F8EDD72210C7C700321A6D /* FundraisingCard.swift in Sources */,
 				269F95272377994B0089CDD1 /* ActivityCardCell.swift in Sources */,

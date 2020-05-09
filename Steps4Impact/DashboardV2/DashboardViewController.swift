@@ -61,6 +61,12 @@ class DashboardViewController: TableViewController {
       self?.reload()
     }
   }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    let pushManager = PushNotificationManager()
+    pushManager.registerForPushNotifications()
+  }
 
   deinit {
     NotificationCenter.default.removeObserver(self)
