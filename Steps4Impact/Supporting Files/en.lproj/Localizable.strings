@@ -161,3 +161,11 @@
 
 // Share
 "Share.item" = "Hey! I created a team %@ for the AKF Walk Challenge on the new Aga Khan Foundation app, Steps4Impact, and I want you on my team!\nDownload the app here:\nhttp://rebrand.ly/steps4impact-iphone\nhttp://rebrand.ly/steps4impact-android";
+
+// Notifications
+"Notifications.title" = "Notifications";
+"Notifications.youHaveNoNotifications" = "You don't have any notifications right now.";
+"Notifications.Permission.title" = "Push Notifications";
+"Notifications.Permission.message" = "Would you like to receive push notifications?";
+"Notifications.Permission.proceed" = "Proceed";
+"Notifications.Permission.cancel" = "Later";

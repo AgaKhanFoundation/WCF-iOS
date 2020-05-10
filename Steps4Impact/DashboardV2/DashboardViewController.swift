@@ -64,8 +64,34 @@ class DashboardViewController: TableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.askForPushNotificationIfNeeded()
+  }
+  
+  private func askForPushNotificationIfNeeded() {
     let pushManager = PushNotificationManager()
-    pushManager.registerForPushNotifications()
+    UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+      DispatchQueue.main.async {
+        if settings.authorizationStatus == .authorized {
+          pushManager.updateFirestorePushTokenIfNeeded()
+        }
+        guard settings.authorizationStatus == .notDetermined else {
+          return
+        }
+        let controller = UIAlertController(
+          title: Strings.NotificationsPermission.title,
+          message: Strings.NotificationsPermission.message, preferredStyle: .alert)
+        controller.addAction(UIAlertAction(
+          title: Strings.NotificationsPermission.proceed, style: .default,
+          handler: { (_) in
+            pushManager.registerForPushNotifications()
+        }))
+        controller.addAction(UIAlertAction(
+          title: Strings.NotificationsPermission.cancel,
+          style: .cancel, handler: nil))
+        self.present(controller, animated: true, completion: nil)
+      }
+    }
+    
   }
 
   deinit {
