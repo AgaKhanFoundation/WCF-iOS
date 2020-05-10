@@ -208,4 +208,11 @@ struct Strings {
       return String(format: NSLocalizedString("Share.item", comment: ""), teamName)
     }
   }
+  
+  struct NotificationsPermission {
+    static let title = NSLocalizedString("Notifications.Permission.title", comment: "")
+    static let message = NSLocalizedString("Notifications.Permission.message", comment: "")
+    static let proceed = NSLocalizedString("Notifications.Permission.proceed", comment: "")
+    static let cancel = NSLocalizedString("Notifications.Permission.cancel", comment: "")
+  }
 }

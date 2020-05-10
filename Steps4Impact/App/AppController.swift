@@ -34,6 +34,7 @@ import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
 import HealthKit
+import FirebaseCore
 
 class AppController {
   static let shared = AppController()
@@ -57,6 +58,9 @@ class AppController {
 
     // Setup Telemetry
     AppEvents.activateApp()
+    
+    // Firebase App Configure
+    FirebaseApp.configure()
 
     // Setup Window
     window?.frame = UIScreen.main.bounds

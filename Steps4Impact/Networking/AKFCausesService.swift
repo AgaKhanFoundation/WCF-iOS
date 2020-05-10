@@ -45,6 +45,8 @@ enum AKFCausesEndPoint {
   case commitment
   case commitments(id: Int) // swiftlint:disable:this identifier_name
   case achievement
+  case fcmtoken(fbId: String)
+  case createfcmtoken
 }
 
 extension AKFCausesEndPoint {
@@ -80,6 +82,10 @@ extension AKFCausesEndPoint {
       return "/commitments/\(cid)"
     case .achievement:
       return "/achievement"
+    case .fcmtoken(let fbId):
+      return "/fcmtokens/participant/\(fbId)"
+    case .createfcmtoken:
+      return "/fcmtokens"
     }
   }
 }
@@ -215,6 +221,24 @@ class AKFCausesService: Service {
                             completion: ServiceRequestCompletion? = nil) {
     shared.request(.patch, endpoint: .commitments(id: commitment),
                    parameters: JSON(["commitment": steps]),
+                   completion: completion)
+  }
+  
+  static func setFCMToken(fbId: String, token: String,
+                          completion: ServiceRequestCompletion? = nil) {
+    shared.request(.patch, endpoint: .fcmtoken(fbId: fbId),
+                   parameters: JSON(["fcm_token": token]),
+                   completion: completion)
+  }
+  
+  static func getFCMToken(fbId: String, completion: ServiceRequestCompletion? = nil) {
+    shared.request(.get, endpoint: .fcmtoken(fbId: fbId),
+                   completion: completion)
+  }
+  
+  static func createFCMToken(fbId: String, token: String, completion: ServiceRequestCompletion? = nil) {
+    shared.request(.post, endpoint: .createfcmtoken,
+                   parameters: JSON(["fcm_token": token, "fbid": fbId]),
                    completion: completion)
   }
 }
