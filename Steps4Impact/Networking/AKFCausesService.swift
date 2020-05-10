@@ -46,6 +46,8 @@ enum AKFCausesEndPoint {
   case commitment
   case commitments(id: Int) // swiftlint:disable:this identifier_name
   case achievement
+  case fcmtoken(fbId: String)
+  case createfcmtoken
   case notifications(fbId: String, eventId: Int)
   case notification(id: Int)
 }
@@ -85,6 +87,10 @@ extension AKFCausesEndPoint {
       return "/commitments/\(cid)"
     case .achievement:
       return "/achievement"
+    case .fcmtoken(let fbId):
+      return "/fcmtokens/participant/\(fbId)"
+    case .createfcmtoken:
+      return "/fcmtokens"
     case .notifications(fbId: let fbId, eventId: let eventId):
       return "/notifications/participant/\(fbId)/event/\(eventId)"
     case .notification(id: let id):
@@ -232,14 +238,30 @@ class AKFCausesService: Service {
                    completion: completion)
   }
   
+  static func setFCMToken(fbId: String, token: String,
+                          completion: ServiceRequestCompletion? = nil) {
+    shared.request(.patch, endpoint: .fcmtoken(fbId: fbId),
+                   parameters: JSON(["fcm_token": token]),
+                   completion: completion)
+  }
+  
+  static func getFCMToken(fbId: String, completion: ServiceRequestCompletion? = nil) {
+    shared.request(.get, endpoint: .fcmtoken(fbId: fbId),
+                   completion: completion)
+  }
+  
+  static func createFCMToken(fbId: String, token: String, completion: ServiceRequestCompletion? = nil) {
+    shared.request(.post, endpoint: .createfcmtoken,
+                   parameters: JSON(["fcm_token": token, "fbid": fbId]), completion: completion)
+  }
+  
   static func getNotifications(fbId: String, eventId: Int, completion: ServiceRequestCompletion? = nil) {
     shared.request(.get, endpoint: .notifications(fbId: fbId, eventId: eventId), completion: completion)
   }
   
   static func readNotification(id: Int, completion: ServiceRequestCompletion? = nil) {
     shared.request(.patch, endpoint: .notification(id: id),
-                   parameters: JSON(["read_flag": true]),
-                   completion: completion)
+                   parameters: JSON(["read_flag": true]), completion: completion)
   }
 }
 

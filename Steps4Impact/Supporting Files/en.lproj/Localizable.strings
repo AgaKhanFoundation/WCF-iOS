@@ -164,6 +164,15 @@
 // Share
 "Share.item" = "Hey! I created a team %@ for the AKF Walk Challenge on the new Aga Khan Foundation app, Steps4Impact, and I want you on my team!\nDownload the app here:\nhttp://rebrand.ly/steps4impact-iphone\nhttp://rebrand.ly/steps4impact-android";
 
+// Notifications
+"Notifications.title" = "Notifications";
+"Notifications.youHaveNoNotifications" = "You don't have any notifications right now.";
+"Notifications.Permission.title" = "Stay in the Loop";
+"Notifications.Permission.message" = "Turn on Notifications to get updates about team progress, leaderboard, badges and new challenges";
+"Notifications.Permission.discloreText" = "Turn on Notifications";
+"Notifications.Permission.proceed" = "Proceed";
+"Notifications.Permission.cancel" = "Later";
+
 // Commitment
 "CommitmentAlert.title" = "Personal mile commitment";
 "CommitmentAlert.Failure.title" = "Update Failed";
