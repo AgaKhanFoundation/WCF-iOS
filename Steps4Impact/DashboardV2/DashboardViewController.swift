@@ -69,6 +69,7 @@ class DashboardViewController: TableViewController {
   
   private func askForPushNotificationIfNeeded() {
     let pushManager = PushNotificationManager()
+    
     UNUserNotificationCenter.current().getNotificationSettings { (settings) in
       DispatchQueue.main.async {
         if settings.authorizationStatus == .authorized {
@@ -77,21 +78,17 @@ class DashboardViewController: TableViewController {
         guard settings.authorizationStatus == .notDetermined else {
           return
         }
-        let controller = UIAlertController(
-          title: Strings.NotificationsPermission.title,
-          message: Strings.NotificationsPermission.message, preferredStyle: .alert)
-        controller.addAction(UIAlertAction(
-          title: Strings.NotificationsPermission.proceed, style: .default,
-          handler: { (_) in
-            pushManager.registerForPushNotifications()
-        }))
-        controller.addAction(UIAlertAction(
-          title: Strings.NotificationsPermission.cancel,
-          style: .cancel, handler: nil))
-        self.present(controller, animated: true, completion: nil)
+        
+        let permissionPrompt: AlertViewController = AlertViewController()
+        permissionPrompt.title = Strings.NotificationsPermission.title
+        permissionPrompt.body = Strings.NotificationsPermission.message
+        permissionPrompt.add(.init(title: Strings.NotificationsPermission.proceed, style: .primary, shouldDismiss: true) {
+          pushManager.registerForPushNotifications()
+          })
+        permissionPrompt.add(.init(title: Strings.NotificationsPermission.cancel, style: .secondary, shouldDismiss: true, handler: nil))
+        AppController.shared.present(alert: permissionPrompt, in: self, completion: nil)
       }
     }
-    
   }
 
   deinit {
