@@ -46,6 +46,10 @@ struct AlertAction {
   static func cancel(_ handler: (() -> Void)? = nil) -> AlertAction {
     return AlertAction(title: "Cancel", style: .secondary, handler: handler)
   }
+  
+  static func later(_ handler: (() -> Void)? = nil) -> AlertAction {
+    return AlertAction(title: "later", style: .secondary, handler: handler)
+  }
 
   static func delete(_ handler: (() -> Void)? = nil) -> AlertAction {
     return AlertAction(title: "Delete", style: .destructive, handler: handler)
