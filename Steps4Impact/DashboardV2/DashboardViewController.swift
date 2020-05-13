@@ -64,10 +64,10 @@ class DashboardViewController: TableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.askForPushNotificationIfNeeded()
+    self.askForPushNotificationPermissionIfNeeded()
   }
   
-  private func askForPushNotificationIfNeeded() {
+  private func askForPushNotificationPermissionIfNeeded() {
     let pushManager = PushNotificationManager()
     
     UNUserNotificationCenter.current().getNotificationSettings { (settings) in
