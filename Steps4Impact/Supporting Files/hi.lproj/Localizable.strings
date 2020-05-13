@@ -165,7 +165,7 @@
 // Notifications
 "Notifications.title" = "Notifications";
 "Notifications.youHaveNoNotifications" = "You don't have any notifications right now.";
-"Notifications.Permission.title" = "Push Notifications";
-"Notifications.Permission.message" = "Would you like to receive push notifications?";
+"Notifications.Permission.title" = "Allow Steps4Impact to send you push notifications";
+"Notifications.Permission.message" = "Step4Impact will send you updates about team progress, leaderboard and new challenges";
 "Notifications.Permission.proceed" = "Proceed";
 "Notifications.Permission.cancel" = "Later";
