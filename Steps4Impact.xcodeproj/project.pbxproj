@@ -110,8 +110,6 @@
 		26FE24532322332D00E01B9B /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE24522322332D00E01B9B /* UITableView.swift */; };
 		26FE2455232234A300E01B9B /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2454232234A300E01B9B /* EmptyCell.swift */; };
 		3AAA32A023655CB5002B7479 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAA329F23655CB5002B7479 /* LoginButton.swift */; };
-		7A7C5B5BCE64FE425FE48D17 /* Pods_Steps4ImpactTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644A965BB27AB6174A19603E /* Pods_Steps4ImpactTests.framework */; };
-		885A50211F181C0FFD544AAA /* Pods_Steps4Impact.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E04420449F9B74A2501CBBEA /* Pods_Steps4Impact.framework */; };
 		A5123F1F2381B51E00C3E9DE /* JourneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5123F1E2381B51E00C3E9DE /* JourneyViewController.swift */; };
 		A5123F222381B60B00C3E9DE /* MilestoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5123F212381B60B00C3E9DE /* MilestoneCell.swift */; };
 		A5123F242381B63300C3E9DE /* JourneyDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5123F232381B63300C3E9DE /* JourneyDataSource.swift */; };
@@ -141,7 +139,7 @@
 		C92244D3235D47B90098A333 /* FitbitDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244D2235D47B90098A333 /* FitbitDataProvider.swift */; };
 		C92244D5235D4B670098A333 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244D4235D4B670098A333 /* UserDefaults.swift */; };
 		C9BAEED0235D5C4E00A8D7AF /* FitbitStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BAEECF235D5C4E00A8D7AF /* FitbitStep.swift */; };
-		F00403191EC3FB7D005E6F10 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		F00403191EC3FB7D005E6F10 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004031C1EC52772005E6F10 /* AppConfig.swift */; };
 		F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */; };
 		F017B68E227686A60023E84B /* OnboardingWelcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017B68D227686A60023E84B /* OnboardingWelcome.swift */; };
@@ -195,9 +193,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		020D0DFBB98F71EA58A2FE41 /* Pods-steps4impactTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impactTests.release.xcconfig"; path = "Target Support Files/Pods-steps4impactTests/Pods-steps4impactTests.release.xcconfig"; sourceTree = "<group>"; };
-		0C455ECDAFD1CB04BB087641 /* Pods-Steps4ImpactTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steps4ImpactTests.debug.xcconfig"; path = "Target Support Files/Pods-Steps4ImpactTests/Pods-Steps4ImpactTests.debug.xcconfig"; sourceTree = "<group>"; };
-		1D1F104434F267C2C6769905 /* Pods-Steps4Impact.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steps4Impact.release.xcconfig"; path = "Target Support Files/Pods-Steps4Impact/Pods-Steps4Impact.release.xcconfig"; sourceTree = "<group>"; };
 		2606948A1E7DD1A200BFED76 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		260BF58B2324B17D005F0882 /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
 		260BF58F2324B28D005F0882 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -306,11 +301,7 @@
 		26FE2450232231FB00E01B9B /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		26FE24522322332D00E01B9B /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		26FE2454232234A300E01B9B /* EmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCell.swift; sourceTree = "<group>"; };
-		307EFC69C033D08671C5E6C6 /* Pods-steps4impact.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impact.release.xcconfig"; path = "Target Support Files/Pods-steps4impact/Pods-steps4impact.release.xcconfig"; sourceTree = "<group>"; };
-		31082B36DD919D9631B44E5E /* Pods-Steps4Impact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steps4Impact.debug.xcconfig"; path = "Target Support Files/Pods-Steps4Impact/Pods-Steps4Impact.debug.xcconfig"; sourceTree = "<group>"; };
 		3AAA329F23655CB5002B7479 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
-		644A965BB27AB6174A19603E /* Pods_Steps4ImpactTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Steps4ImpactTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7D885FB78222CE09537F0C6A /* Pods-steps4impact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impact.debug.xcconfig"; path = "Target Support Files/Pods-steps4impact/Pods-steps4impact.debug.xcconfig"; sourceTree = "<group>"; };
 		A5123F1E2381B51E00C3E9DE /* JourneyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyViewController.swift; sourceTree = "<group>"; };
 		A5123F212381B60B00C3E9DE /* MilestoneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneCell.swift; sourceTree = "<group>"; };
 		A5123F232381B63300C3E9DE /* JourneyDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyDataSource.swift; sourceTree = "<group>"; };
@@ -340,9 +331,6 @@
 		C92244D2235D47B90098A333 /* FitbitDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitbitDataProvider.swift; sourceTree = "<group>"; };
 		C92244D4235D4B670098A333 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		C9BAEECF235D5C4E00A8D7AF /* FitbitStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FitbitStep.swift; sourceTree = "<group>"; };
-		CF9EDF06C6BFB060D8FD292A /* Pods-Steps4ImpactTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steps4ImpactTests.release.xcconfig"; path = "Target Support Files/Pods-Steps4ImpactTests/Pods-Steps4ImpactTests.release.xcconfig"; sourceTree = "<group>"; };
-		D119AEC4C6C2D75E13B09A89 /* Pods-steps4impactTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impactTests.debug.xcconfig"; path = "Target Support Files/Pods-steps4impactTests/Pods-steps4impactTests.debug.xcconfig"; sourceTree = "<group>"; };
-		E04420449F9B74A2501CBBEA /* Pods_Steps4Impact.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Steps4Impact.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F004031C1EC52772005E6F10 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressStepsView.swift; sourceTree = "<group>"; };
 		F017B68D227686A60023E84B /* OnboardingWelcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWelcome.swift; sourceTree = "<group>"; };
@@ -390,7 +378,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A7C5B5BCE64FE425FE48D17 /* Pods_Steps4ImpactTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,7 +386,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */,
-				885A50211F181C0FFD544AAA /* Pods_Steps4Impact.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,14 +712,6 @@
 		693EA03CC2AC5E248782CE98 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7D885FB78222CE09537F0C6A /* Pods-steps4impact.debug.xcconfig */,
-				307EFC69C033D08671C5E6C6 /* Pods-steps4impact.release.xcconfig */,
-				D119AEC4C6C2D75E13B09A89 /* Pods-steps4impactTests.debug.xcconfig */,
-				020D0DFBB98F71EA58A2FE41 /* Pods-steps4impactTests.release.xcconfig */,
-				31082B36DD919D9631B44E5E /* Pods-Steps4Impact.debug.xcconfig */,
-				1D1F104434F267C2C6769905 /* Pods-Steps4Impact.release.xcconfig */,
-				0C455ECDAFD1CB04BB087641 /* Pods-Steps4ImpactTests.debug.xcconfig */,
-				CF9EDF06C6BFB060D8FD292A /* Pods-Steps4ImpactTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -742,8 +720,6 @@
 			isa = PBXGroup;
 			children = (
 				26C5E3611E7DCAF70053DE3E /* HealthKit.framework */,
-				E04420449F9B74A2501CBBEA /* Pods_Steps4Impact.framework */,
-				644A965BB27AB6174A19603E /* Pods_Steps4ImpactTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -936,11 +912,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2611A4F52335F8350030E77E /* Build configuration list for PBXNativeTarget "Steps4ImpactTests" */;
 			buildPhases = (
-				A16BF170E311CB807A51AC21 /* [CP] Check Pods Manifest.lock */,
 				2611A4E82335F8350030E77E /* Sources */,
 				2611A4E92335F8350030E77E /* Frameworks */,
 				2611A4EA2335F8350030E77E /* Resources */,
-				5AFD5020B3FA67ADEDA7F81C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -956,13 +930,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 269E34E31E765828000726C2 /* Build configuration list for PBXNativeTarget "Steps4Impact" */;
 			buildPhases = (
-				C534CC0111F4BC7DD5A332BC /* [CP] Check Pods Manifest.lock */,
 				2668B06223617B2800309B9D /* Generate Secrets */,
 				269E34C21E765828000726C2 /* Sources */,
 				269E34C31E765828000726C2 /* Frameworks */,
 				269E34C41E765828000726C2 /* Resources */,
 				26AFC9E21EA6508C002E6D2A /* SwiftLint */,
-				A9D5D03D7E9F3ABB7953FB45 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1079,124 +1051,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" lint\n";
 		};
-		5AFD5020B3FA67ADEDA7F81C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Steps4ImpactTests/Pods-Steps4ImpactTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
-				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
-				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Steps4ImpactTests/Pods-Steps4ImpactTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A16BF170E311CB807A51AC21 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Steps4ImpactTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A9D5D03D7E9F3ABB7953FB45 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Steps4Impact/Pods-Steps4Impact-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AZSClient/AZSClient.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/OAuthSwift/OAuthSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AZSClient.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OAuthSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Steps4Impact/Pods-Steps4Impact-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C534CC0111F4BC7DD5A332BC /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Steps4Impact-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1249,7 +1103,7 @@
 				269F95292378FB0E0089CDD1 /* CircularProgressView.swift in Sources */,
 				26A475A32353E63400059764 /* AppInfoCell.swift in Sources */,
 				F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */,
-				F00403191EC3FB7D005E6F10 /* (null) in Sources */,
+				F00403191EC3FB7D005E6F10 /* BuildFile in Sources */,
 				F0A992D61EABF037001621A6 /* Formatters.swift in Sources */,
 				2622C09023249A4B0092B145 /* UIRefreshControl.swift in Sources */,
 				A58E21D723DE85CF00929E86 /* AZSClient.swift in Sources */,
@@ -1408,7 +1262,6 @@
 /* Begin XCBuildConfiguration section */
 		2611A4F32335F8350030E77E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C455ECDAFD1CB04BB087641 /* Pods-Steps4ImpactTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1432,7 +1285,6 @@
 		};
 		2611A4F42335F8350030E77E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF9EDF06C6BFB060D8FD292A /* Pods-Steps4ImpactTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1564,7 +1416,6 @@
 		};
 		269E34E41E765828000726C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 31082B36DD919D9631B44E5E /* Pods-Steps4Impact.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1588,7 +1439,6 @@
 		};
 		269E34E51E765828000726C2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D1F104434F267C2C6769905 /* Pods-Steps4Impact.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

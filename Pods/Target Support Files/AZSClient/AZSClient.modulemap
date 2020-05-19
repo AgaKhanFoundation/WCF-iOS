@@ -1,6 +1,0 @@
-framework module AZSClient {
-  umbrella header "AZSClient-umbrella.h"
-
-  export *
-  module * { export * }
-}
