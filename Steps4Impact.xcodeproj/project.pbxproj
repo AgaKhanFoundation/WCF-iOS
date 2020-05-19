@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -99,6 +99,19 @@
 		26AD5BCF23F141E7005EC5A6 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD5BCE23F141E7005EC5A6 /* RadioButton.swift */; };
 		26B2793823765FFA000CEE94 /* Keyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B2793723765FFA000CEE94 /* Keyboardable.swift */; };
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
+		26E8DC2424737CD40053F947 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 26E8DC2324737CD40053F947 /* SnapKit */; };
+		26E8DC2824737DA30053F947 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 26E8DC2724737DA30053F947 /* Quick */; };
+		26E8DC2B24737DC30053F947 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 26E8DC2A24737DC30053F947 /* Nimble */; };
+		26E8DC2E24737E6F0053F947 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 26E8DC2D24737E6F0053F947 /* RxSwift */; };
+		26E8DC3024737E6F0053F947 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 26E8DC2F24737E6F0053F947 /* RxTest */; };
+		26E8DC3224737E6F0053F947 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 26E8DC3124737E6F0053F947 /* RxRelay */; };
+		26E8DC3424737E6F0053F947 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 26E8DC3324737E6F0053F947 /* RxCocoa */; };
+		26E8DC3624737E6F0053F947 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 26E8DC3524737E6F0053F947 /* RxBlocking */; };
+		26E8DC39247383120053F947 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 26E8DC38247383120053F947 /* FacebookCore */; };
+		26E8DC3B247383120053F947 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 26E8DC3A247383120053F947 /* FacebookLogin */; };
+		26E8DC3D247383120053F947 /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = 26E8DC3C247383120053F947 /* FacebookShare */; };
+		26E8DC402473835D0053F947 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 26E8DC3F2473835D0053F947 /* SDWebImage */; };
+		26E8DC43247384260053F947 /* OAuthSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 26E8DC42247384260053F947 /* OAuthSwift */; };
 		26E9C0FA233838A700800E8A /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9C0F9233838A700800E8A /* OnboardingPageViewController.swift */; };
 		26E9C0FC2338533E00800E8A /* UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9C0FB2338533E00800E8A /* UIPageViewController.swift */; };
 		26FE2445232228E600E01B9B /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2444232228E600E01B9B /* NavigationController.swift */; };
@@ -139,7 +152,7 @@
 		C92244D3235D47B90098A333 /* FitbitDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244D2235D47B90098A333 /* FitbitDataProvider.swift */; };
 		C92244D5235D4B670098A333 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244D4235D4B670098A333 /* UserDefaults.swift */; };
 		C9BAEED0235D5C4E00A8D7AF /* FitbitStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BAEECF235D5C4E00A8D7AF /* FitbitStep.swift */; };
-		F00403191EC3FB7D005E6F10 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		F00403191EC3FB7D005E6F10 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004031C1EC52772005E6F10 /* AppConfig.swift */; };
 		F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */; };
 		F017B68E227686A60023E84B /* OnboardingWelcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017B68D227686A60023E84B /* OnboardingWelcome.swift */; };
@@ -378,6 +391,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26E8DC2824737DA30053F947 /* Quick in Frameworks */,
+				26E8DC3624737E6F0053F947 /* RxBlocking in Frameworks */,
+				26E8DC3024737E6F0053F947 /* RxTest in Frameworks */,
+				26E8DC2B24737DC30053F947 /* Nimble in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,7 +402,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26E8DC2E24737E6F0053F947 /* RxSwift in Frameworks */,
+				26E8DC39247383120053F947 /* FacebookCore in Frameworks */,
+				26E8DC43247384260053F947 /* OAuthSwift in Frameworks */,
+				26E8DC3D247383120053F947 /* FacebookShare in Frameworks */,
 				26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */,
+				26E8DC3424737E6F0053F947 /* RxCocoa in Frameworks */,
+				26E8DC3224737E6F0053F947 /* RxRelay in Frameworks */,
+				26E8DC402473835D0053F947 /* SDWebImage in Frameworks */,
+				26E8DC3B247383120053F947 /* FacebookLogin in Frameworks */,
+				26E8DC2424737CD40053F947 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -922,6 +948,12 @@
 				2611A4F22335F8350030E77E /* PBXTargetDependency */,
 			);
 			name = Steps4ImpactTests;
+			packageProductDependencies = (
+				26E8DC2724737DA30053F947 /* Quick */,
+				26E8DC2A24737DC30053F947 /* Nimble */,
+				26E8DC2F24737E6F0053F947 /* RxTest */,
+				26E8DC3524737E6F0053F947 /* RxBlocking */,
+			);
 			productName = steps4impactTests;
 			productReference = 2611A4EC2335F8350030E77E /* Steps4ImpactTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -941,6 +973,17 @@
 			dependencies = (
 			);
 			name = Steps4Impact;
+			packageProductDependencies = (
+				26E8DC2324737CD40053F947 /* SnapKit */,
+				26E8DC2D24737E6F0053F947 /* RxSwift */,
+				26E8DC3124737E6F0053F947 /* RxRelay */,
+				26E8DC3324737E6F0053F947 /* RxCocoa */,
+				26E8DC38247383120053F947 /* FacebookCore */,
+				26E8DC3A247383120053F947 /* FacebookLogin */,
+				26E8DC3C247383120053F947 /* FacebookShare */,
+				26E8DC3F2473835D0053F947 /* SDWebImage */,
+				26E8DC42247384260053F947 /* OAuthSwift */,
+			);
 			productName = WalkingChallenge;
 			productReference = 269E34C61E765828000726C2 /* Steps4Impact.app */;
 			productType = "com.apple.product-type.application";
@@ -987,6 +1030,15 @@
 				hi,
 			);
 			mainGroup = 269E34BD1E765828000726C2;
+			packageReferences = (
+				26E8DC2224737CD40053F947 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				26E8DC2624737DA30053F947 /* XCRemoteSwiftPackageReference "Quick" */,
+				26E8DC2924737DC30053F947 /* XCRemoteSwiftPackageReference "Nimble" */,
+				26E8DC2C24737E6F0053F947 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				26E8DC37247383120053F947 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				26E8DC3E2473835D0053F947 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				26E8DC41247384260053F947 /* XCRemoteSwiftPackageReference "OAuthSwift" */,
+			);
 			productRefGroup = 269E34C71E765828000726C2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1035,7 +1087,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "# Check for secrets.sh for local\nif [ -f ./secrets.sh ]\nthen\nsource ./secrets.sh\nfi\n\n# Generate Secrets File\n\"${PODS_ROOT}\"/Sourcery/bin/sourcery \\\n--templates ./Templates/*.stencil \\\n--sources ./Steps4Impact \\\n--output ./Generated/ \\\n--args devPassword=\\\"$API_DEV_PASSWORD\\\" \\\n--args stagingPassword=\\\"$API_STAGING_PASSWORD\\\" \\\n--args prodPassword=\\\"$API_PROD_PASSWORD\\\" \\\n--args azureAccKey=\\\"$AZURE_ACC_KEY\\\"\n";
+			shellScript = "# Check for secrets.sh for local\nif [ -f ./secrets.sh ]; then\n    source ./secrets.sh\nelse\n    echo \"error: secrets.sh missing\"\nfi\n\nif which sourcery >/dev/null; then\n\n# Generate Secrets File\nsourcery \\\n--templates ./Templates/*.stencil \\\n--sources ./Steps4Impact \\\n--output ./Generated/ \\\n--args devPassword=\\\"$API_DEV_PASSWORD\\\" \\\n--args stagingPassword=\\\"$API_STAGING_PASSWORD\\\" \\\n--args prodPassword=\\\"$API_PROD_PASSWORD\\\" \\\n--args azureAccKey=\\\"$AZURE_ACC_KEY\\\"\n\nelse\n    echo \"error: sourcery not installed\"\nfi\n";
 		};
 		26AFC9E21EA6508C002E6D2A /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1048,8 +1100,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" lint\n";
+			shellPath = /bin/bash;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint lint\nelse\n    echo \"error: swiftlint not installed\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1103,7 +1155,7 @@
 				269F95292378FB0E0089CDD1 /* CircularProgressView.swift in Sources */,
 				26A475A32353E63400059764 /* AppInfoCell.swift in Sources */,
 				F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */,
-				F00403191EC3FB7D005E6F10 /* BuildFile in Sources */,
+				F00403191EC3FB7D005E6F10 /* (null) in Sources */,
 				F0A992D61EABF037001621A6 /* Formatters.swift in Sources */,
 				2622C09023249A4B0092B145 /* UIRefreshControl.swift in Sources */,
 				A58E21D723DE85CF00929E86 /* AZSClient.swift in Sources */,
@@ -1272,7 +1324,11 @@
 				DEVELOPMENT_TEAM = 6SQ8F32998;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Steps4ImpactTests/Supporting Files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.afk.steps4impactTests;
@@ -1295,7 +1351,11 @@
 				DEVELOPMENT_TEAM = 6SQ8F32998;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Steps4ImpactTests/Supporting Files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.afk.steps4impactTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1409,7 +1469,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1425,7 +1486,10 @@
 				CURRENT_PROJECT_VERSION = 275;
 				DEVELOPMENT_TEAM = 6SQ8F32998;
 				INFOPLIST_FILE = "Steps4Impact/Supporting Files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.akf.WalkingChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1448,7 +1512,10 @@
 				CURRENT_PROJECT_VERSION = 275;
 				DEVELOPMENT_TEAM = 6SQ8F32998;
 				INFOPLIST_FILE = "Steps4Impact/Supporting Files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.akf.WalkingChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1490,6 +1557,133 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		26E8DC2224737CD40053F947 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = exactVersion;
+				version = 5.0.1;
+			};
+		};
+		26E8DC2624737DA30053F947 /* XCRemoteSwiftPackageReference "Quick" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Quick";
+			requirement = {
+				kind = exactVersion;
+				version = 2.2.0;
+			};
+		};
+		26E8DC2924737DC30053F947 /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble";
+			requirement = {
+				kind = exactVersion;
+				version = 8.0.9;
+			};
+		};
+		26E8DC2C24737E6F0053F947 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = exactVersion;
+				version = 5.1.1;
+			};
+		};
+		26E8DC37247383120053F947 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = exactVersion;
+				version = 7.0.0;
+			};
+		};
+		26E8DC3E2473835D0053F947 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = exactVersion;
+				version = 5.8.0;
+			};
+		};
+		26E8DC41247384260053F947 /* XCRemoteSwiftPackageReference "OAuthSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OAuthSwift/OAuthSwift";
+			requirement = {
+				kind = exactVersion;
+				version = 2.1.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		26E8DC2324737CD40053F947 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26E8DC2224737CD40053F947 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		26E8DC2724737DA30053F947 /* Quick */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26E8DC2624737DA30053F947 /* XCRemoteSwiftPackageReference "Quick" */;
+			productName = Quick;
+		};
+		26E8DC2A24737DC30053F947 /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26E8DC2924737DC30053F947 /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
+		};
+		26E8DC2D24737E6F0053F947 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26E8DC2C24737E6F0053F947 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		26E8DC2F24737E6F0053F947 /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26E8DC2C24737E6F0053F947 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
+		};
+		26E8DC3124737E6F0053F947 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26E8DC2C24737E6F0053F947 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		26E8DC3324737E6F0053F947 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26E8DC2C24737E6F0053F947 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		26E8DC3524737E6F0053F947 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26E8DC2C24737E6F0053F947 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		26E8DC38247383120053F947 /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26E8DC37247383120053F947 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		26E8DC3A247383120053F947 /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26E8DC37247383120053F947 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
+		26E8DC3C247383120053F947 /* FacebookShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26E8DC37247383120053F947 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookShare;
+		};
+		26E8DC3F2473835D0053F947 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26E8DC3E2473835D0053F947 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		26E8DC42247384260053F947 /* OAuthSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26E8DC41247384260053F947 /* XCRemoteSwiftPackageReference "OAuthSwift" */;
+			productName = OAuthSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 269E34BE1E765828000726C2 /* Project object */;
 }
