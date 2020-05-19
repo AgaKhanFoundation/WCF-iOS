@@ -2,12 +2,18 @@ Current Status: [![Build Status](https://dev.azure.com/steps4impact/steps4impact
 
 ## Getting Started
 
-- Built using Xcode 11.1 on Swift 5.0
-- Open `Steps4Impact.xcworkspace`
+Install the following packages/applications: 
+
+- `Xcode 11.4.1` from Mac App Store or [Apple Developer](https://developer.apple.com/develop/)
+- [Homebrew](https://brew.sh) package manager
+- `SwiftLint 0.39.2` from Homebrew `brew install swiftlint`
+- `Sourcery 0.17.0` from Homebrew `brew install sourcery`
+
+- Open `Steps4Impact.xcodeproj`
 
 ## Adding Dependencies
 
-- Managed by Cocoapods v1.8.3
+- Managed by Xcode's Swift Package Manager
 
 ## Testing
 
