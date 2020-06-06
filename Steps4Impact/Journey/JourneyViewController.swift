@@ -14,7 +14,6 @@ class JourneyViewController: TableViewController {
     let view = UIView()
     view.backgroundColor = .white
     view.alpha = 1
-    view.layer.applySketchShadow(color: Style.Colors.FoundationGrey, alpha: 1, x: 0, y: -5, blur: 8, spread: 0)
     return view
   }()
 
@@ -33,7 +32,6 @@ class JourneyViewController: TableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     title = Strings.Journey.title
-    navigationController?.navigationBar.prefersLargeTitles = false
     view.backgroundColor = .white
     tableView.backgroundColor = .white
     tableView.contentInset = UIEdgeInsets(top: Style.Size.s64 + Style.Padding.p12, left: 0, bottom: 0, right: 0)
@@ -89,4 +87,3 @@ extension JourneyViewController: MilestoneNameButtonDelegate {
     }
   }
 }
-
