@@ -65,6 +65,12 @@ class JourneyViewController: TableViewController {
         }
       }
       self?.tableView.reloadOnMain()
+      if let dataSource = self?.dataSource as? JourneyDataSource,
+        let indexPath = dataSource.indexPathOfCurrentMilestone {
+        onMain {
+          self?.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
+      }
     }
   }
 }
