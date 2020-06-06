@@ -22,7 +22,7 @@ class JourneyViewController: TableViewController {
     let label = UILabel(typography: .smallRegular)
     label.textAlignment = .center
     label.numberOfLines = 2
-    label.textColor = Style.Colors.FoundationGreen
+    label.textColor = Style.Colors.FoundationGrey
     return label
   }()
 
@@ -57,9 +57,14 @@ class JourneyViewController: TableViewController {
         if let nextMilestone = dataSource.nameOfNextMilestone {
           let nextMilestoneDistance = dataSource.distanceToNextMilestone
           let distanceRemaining = nextMilestoneDistance - dataSource.distanceCoveredToNextMilestone
+          let progressLabelText = NSMutableAttributedString()
+          let boldAttribute = [
+            NSAttributedString.Key.font: Style.Typography.smallBold.font as Any
+          ]
           // swiftlint:disable:next line_length
-          let progressLabelText = "\(Int(distanceRemaining/2000)) / \(Int(nextMilestoneDistance/2000)) mi remaining to reach \(nextMilestone)"
-          self?.progressLabel.text = progressLabelText
+          progressLabelText.append(NSAttributedString(string: "\(Int(distanceRemaining/2000))/\(Int(nextMilestoneDistance/2000)) mi", attributes: boldAttribute))
+          progressLabelText.append(NSAttributedString(string: " remaining to reach\n \(nextMilestone)"))
+          self?.progressLabel.attributedText = progressLabelText
         } else {
           self?.progressLabel.text = "All Milestones Completed"
         }
