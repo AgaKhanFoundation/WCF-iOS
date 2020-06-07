@@ -80,22 +80,25 @@ class JourneyDetailViewController: ViewController {
 
     view.addSubview(titleLabel) {
       $0.top.equalTo(imageMarqueePageControl.snp.bottom).offset(Style.Padding.p16)
-      $0.leading.equalToSuperview().offset(Style.Padding.p12)
-      $0.trailing.equalToSuperview().inset(Style.Padding.p12)
+      $0.leading.equalToSuperview().offset(Style.Padding.p24)
+      $0.trailing.equalToSuperview().inset(Style.Padding.p24)
     }
 
     view.addSubview(subtitleLabel) {
       $0.top.equalTo(titleLabel.snp.bottom).offset(Style.Padding.p8)
-      $0.leading.equalToSuperview().offset(Style.Padding.p12)
-      $0.trailing.equalToSuperview().inset(Style.Padding.p12)
+      $0.leading.equalToSuperview().offset(Style.Padding.p24)
+      $0.trailing.equalToSuperview().inset(Style.Padding.p24)
     }
 
     view.addSubview(bodyText) {
-      $0.top.equalTo(subtitleLabel.snp.bottom).offset(Style.Padding.p12)
-      $0.leading.equalToSuperview().offset(Style.Padding.p12)
-      $0.trailing.bottom.equalToSuperview().inset(Style.Padding.p12)
+      $0.top.equalTo(subtitleLabel.snp.bottom).offset(Style.Padding.p16)
+      $0.leading.equalToSuperview().offset(Style.Padding.p24)
+      $0.trailing.bottom.equalToSuperview().inset(Style.Padding.p24)
       $0.bottom.equalToSuperview().inset(self.tabBarController?.tabBar.frame.size.height ?? 0)
     }
+    
+    titleLabel.textColor = Style.Colors.FoundationGrey
+    subtitleLabel.textColor = Style.Colors.FoundationGrey
 
     // Configure Views
     if let milestone = milestone {
@@ -146,6 +149,7 @@ extension JourneyDetailViewController: UIScrollViewDelegate {
   // Get string text from html
   func getContentAttributedText(from htmlstring: String) -> NSMutableAttributedString {
     let stringtext = htmlstring.html2String
+    let result = NSMutableAttributedString()
     let split = stringtext.components(separatedBy: "https")
 
     if split.count > 1 {
@@ -165,13 +169,17 @@ extension JourneyDetailViewController: UIScrollViewDelegate {
       shareText += ": \(stringURL)"
       let partone = NSMutableAttributedString(string: String(split[0]))
       let parttwo = NSMutableAttributedString(attributedString: attributedString)
-      let result = NSMutableAttributedString()
       result.append(partone)
       result.append(parttwo)
-      return result
     } else {
-      return NSMutableAttributedString(string: stringtext)
+      result.append(NSMutableAttributedString(string: stringtext))
     }
+    
+    let paragraphStyle = NSMutableParagraphStyle()
+    paragraphStyle.lineSpacing = Style.Size.s8
+    result.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, result.length))
+    result.addAttribute(.font, value: Style.Typography.smallRegular.font as Any, range: NSMakeRange(0, result.length))
+    return result
   }
 
 
