@@ -96,8 +96,8 @@ extension JourneyDetailCell {
     let result = NSMutableAttributedString()
     let split = stringtext.components(separatedBy: "https")
     
-    if split.count > 1 {
-      let stringURL = "https\(String(split[1]))"
+    if let urlString = split[safe: 1] {
+      let stringURL = "https\(urlString)"
       let attributedString = NSMutableAttributedString(string: stringURL)
       if let url = URL(string: stringURL) {
         // Set the 'click here' substring to be the link
@@ -110,7 +110,7 @@ extension JourneyDetailCell {
         .underlineStyle: NSUnderlineStyle.single.rawValue
       ]
       delegate?.didGetShareText("\(milestone.subtitle): \(stringURL)")
-      let partone = NSMutableAttributedString(string: String(split[0]))
+      let partone = NSMutableAttributedString(string: split[safe: 0] ?? "")
       let parttwo = NSMutableAttributedString(attributedString: attributedString)
       result.append(partone)
       result.append(parttwo)

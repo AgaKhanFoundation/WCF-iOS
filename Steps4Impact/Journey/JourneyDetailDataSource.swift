@@ -34,10 +34,9 @@ class JourneyDetailDataSource: TableViewDataSource {
   var milestone: Milestone?
   
   func configure() {
-    cells.removeAll()
-    var result = [CellContext]()
-    result.append(JourneyImageMarqueeContext(milestone: self.milestone))
-    result.append(JourneyDetailContext(milestone: self.milestone))
-    cells.append(result)
+    cells = [[
+      JourneyImageMarqueeContext(milestone: self.milestone),
+      JourneyDetailContext(milestone: self.milestone)
+    ]]
   }
 }
