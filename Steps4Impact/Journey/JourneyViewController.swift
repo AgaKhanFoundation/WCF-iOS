@@ -25,6 +25,7 @@ class JourneyViewController: TableViewController {
     label.textColor = Style.Colors.FoundationGreen
     return label
   }()
+  var viewDisplayed = false
 
   override func commonInit() {
     super.commonInit()
@@ -66,6 +67,11 @@ class JourneyViewController: TableViewController {
       self?.tableView.reloadOnMain()
     }
   }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    viewDisplayed = true
+  }
 }
 
 extension JourneyViewController {
@@ -75,6 +81,12 @@ extension JourneyViewController {
     }
     if let cell = cell as? CurrentMilestoneCell {
       cell.delegate = self
+    }
+  }
+  
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    if viewDisplayed && scrollView.contentOffset.y + scrollView.contentInset.top < 0 {
+      topProgressView.frame.origin.y = Style.Size.s64 + abs(scrollView.contentOffset.y)
     }
   }
 }
