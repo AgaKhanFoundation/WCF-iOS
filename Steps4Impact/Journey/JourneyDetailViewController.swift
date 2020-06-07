@@ -30,159 +30,50 @@
 import UIKit
 import SnapKit
 
-class JourneyDetailViewController: ViewController {
+class JourneyDetailViewController: TableViewController {
 
   var milestone: Milestone?
-  var imageMarqueeScrollView = UIScrollView()
-  var imageMarqueePageControl = UIPageControl()
-  private let titleLabel = UILabel(typography: .headerTitle)
-  private let subtitleLabel = UILabel(typography: .title)
-  private let bodyText: UITextView = {
-    let textView = UITextView()
-    textView.isUserInteractionEnabled = true
-    textView.isEditable = false
-    textView.isScrollEnabled = true
-    textView.contentInset = .zero
-    return textView
-  }()
-
   var shareText = ""
+  
+  override func commonInit() {
+    super.commonInit()
+    dataSource = JourneyDetailDataSource()
+  }
 
   override func configureView() {
     super.configureView()
 
-    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
-
-    // Configure imageMarqueeScrollView
-    imageMarqueeScrollView.delegate = self
-    imageMarqueeScrollView.showsHorizontalScrollIndicator = false
-    imageMarqueeScrollView.showsVerticalScrollIndicator = false
-    imageMarqueeScrollView.isPagingEnabled = true
-    imageMarqueeScrollView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width)
-
-    view.addSubview(imageMarqueeScrollView) {
-      $0.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height)
-      $0.centerX.equalToSuperview()
-      $0.height.width.equalTo(view.frame.width)
-    }
-    view.backgroundColor = .white
-
-    // Configure imageMarqueePageControl
-    imageMarqueePageControl.currentPageIndicatorTintColor = Style.Colors.FoundationGreen
-    imageMarqueePageControl.pageIndicatorTintColor = Style.Colors.Seperator
-
-    view.addSubview(imageMarqueePageControl) {
-      $0.top.equalTo(imageMarqueeScrollView.snp.bottom).offset(Style.Padding.p8)
-      $0.width.equalTo(Style.Size.s128)
-      $0.height.equalTo(Style.Size.s16)
-      $0.centerX.equalToSuperview()
-    }
-
-    view.addSubview(titleLabel) {
-      $0.top.equalTo(imageMarqueePageControl.snp.bottom).offset(Style.Padding.p16)
-      $0.leading.equalToSuperview().offset(Style.Padding.p24)
-      $0.trailing.equalToSuperview().inset(Style.Padding.p24)
-    }
-
-    view.addSubview(subtitleLabel) {
-      $0.top.equalTo(titleLabel.snp.bottom).offset(Style.Padding.p8)
-      $0.leading.equalToSuperview().offset(Style.Padding.p24)
-      $0.trailing.equalToSuperview().inset(Style.Padding.p24)
-    }
-
-    view.addSubview(bodyText) {
-      $0.top.equalTo(subtitleLabel.snp.bottom).offset(Style.Padding.p16)
-      $0.leading.equalToSuperview().offset(Style.Padding.p24)
-      $0.trailing.bottom.equalToSuperview().inset(Style.Padding.p24)
-      $0.bottom.equalToSuperview().inset(self.tabBarController?.tabBar.frame.size.height ?? 0)
-    }
+    navigationItem.rightBarButtonItem = UIBarButtonItem(
+      barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
+    tableView.backgroundColor = .white
     
-    titleLabel.textColor = Style.Colors.FoundationGrey
-    subtitleLabel.textColor = Style.Colors.FoundationGrey
-
-    // Configure Views
-    if let milestone = milestone {
-      // Adding milestone subtitle to share message text
-      shareText = milestone.subtitle
-      titleLabel.text = milestone.name
-      subtitleLabel.text = milestone.subtitle
-      bodyText.attributedText = getContentAttributedText(from: milestone.content)
-
-      let mediaURLs = milestone.getMediaURLs()
-      print("mediaURLs: \(mediaURLs)")
-      imageMarqueePageControl.numberOfPages = mediaURLs.count
-      imageMarqueePageControl.currentPage = 0
-      imageMarqueePageControl.isHidden = mediaURLs.count < 2
-
-      if mediaURLs.count == 0 {
-        let imageView = WebImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.fadeInImage(imageURL: URL(string: ""), placeHolderImage: Assets.journeyDetailMock.image)
-        let xPosition = self.view.frame.width
-        imageView.frame = CGRect(x: xPosition, y: 0, width: self.imageMarqueeScrollView.frame.width, height: self.imageMarqueeScrollView.frame.height)
-        imageMarqueeScrollView.addSubview(imageView)
-      } else {
-        imageMarqueeScrollView.contentSize.width = imageMarqueeScrollView.frame.width * CGFloat(mediaURLs.count)
-        for i in 0..<mediaURLs.count {                                                                      // swiftlint:disable:this variable_name
-          let imageView = WebImageView()
-          imageView.contentMode = .scaleAspectFit
-          imageView.fadeInImage(imageURL: URL(string: mediaURLs[i]), placeHolderImage: Assets.journeyDetailMock.image)
-          let xPosition = self.view.frame.width * CGFloat(i)
-          imageView.frame = CGRect(x: xPosition, y: 0, width: self.imageMarqueeScrollView.frame.width, height: self.imageMarqueeScrollView.frame.height)
-          imageMarqueeScrollView.addSubview(imageView)
-        }
-      }
-    } else {
-      /// Set default values.
+    if let dataSource = dataSource as? JourneyDetailDataSource {
+      dataSource.milestone = self.milestone
+    }
+  }
+  
+  override func reload() {
+    dataSource?.reload { [weak self] in
+      self?.tableView.reloadOnMain()
     }
   }
 }
 
-extension JourneyDetailViewController: UIScrollViewDelegate {
-  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    let pageWidth = view.frame.width
-    let currentPage = Int(scrollView.contentOffset.x/pageWidth)
-    imageMarqueePageControl.currentPage = currentPage
-  }
-
-
-  // Get string text from html
-  func getContentAttributedText(from htmlstring: String) -> NSMutableAttributedString {
-    let stringtext = htmlstring.html2String
-    let result = NSMutableAttributedString()
-    let split = stringtext.components(separatedBy: "https")
-
-    if split.count > 1 {
-      let stringURL = "https\(String(split[1]))"
-      let attributedString = NSMutableAttributedString(string: stringURL)
-      let url = URL(string: stringURL)!
-
-      // Set the 'click here' substring to be the link
-      attributedString.setAttributes([.link: url], range: NSMakeRange(0, stringURL.count))
-
-      // Set how links should appear: blue and underlined
-      self.bodyText.linkTextAttributes = [
-          .foregroundColor: UIColor.blue,
-          .underlineStyle: NSUnderlineStyle.single.rawValue
-      ]
-      // Appending reference url to share message text
-      shareText += ": \(stringURL)"
-      let partone = NSMutableAttributedString(string: String(split[0]))
-      let parttwo = NSMutableAttributedString(attributedString: attributedString)
-      result.append(partone)
-      result.append(parttwo)
-    } else {
-      result.append(NSMutableAttributedString(string: stringtext))
+extension JourneyDetailViewController {
+  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    if let cell = cell as? JourneyDetailCell {
+      cell.delegate = self
     }
-    
-    let paragraphStyle = NSMutableParagraphStyle()
-    paragraphStyle.lineSpacing = Style.Size.s8
-    result.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, result.length))
-    result.addAttribute(.font, value: Style.Typography.smallRegular.font as Any, range: NSMakeRange(0, result.length))
-    return result
   }
+}
 
+extension JourneyDetailViewController: JourneyDetailDelegate {
+  func didGetShareText(_ shareText: String) {
+    self.shareText = shareText
+  }
+}
 
+extension JourneyDetailViewController {
   @objc func shareButtonTapped() {
     AppController.shared.shareTapped(
     viewController: self,
@@ -190,29 +81,3 @@ extension JourneyDetailViewController: UIScrollViewDelegate {
     string: shareText)
   }
 }
-
-
-
-extension Data {
-    var html2AttributedString: NSAttributedString? {
-        do {
-            return try NSAttributedString(data: self, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
-        } catch {
-            print("error:", error)
-            return  nil
-        }
-    }
-    var html2String: String {
-        return html2AttributedString?.string ?? ""
-    }
-}
-
-extension String {
-    var html2AttributedString: NSAttributedString? {
-        return Data(utf8).html2AttributedString
-    }
-    var html2String: String {
-        return html2AttributedString?.string ?? ""
-    }
-}
-
