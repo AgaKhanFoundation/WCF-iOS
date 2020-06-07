@@ -14,6 +14,7 @@ class JourneyViewController: TableViewController {
     let view = UIView()
     view.backgroundColor = .white
     view.alpha = 1
+    view.layer.applySketchShadow(color: Style.Colors.FoundationGrey, alpha: 0.2, x: 0, y: 2, blur: 3, spread: 0)
     return view
   }()
 
