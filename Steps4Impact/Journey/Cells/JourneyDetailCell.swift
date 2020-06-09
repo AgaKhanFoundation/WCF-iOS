@@ -122,7 +122,9 @@ extension JourneyDetailCell {
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.lineSpacing = Style.Size.s8
     result.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, result.length))
-    result.addAttribute(.font, value: Style.Typography.smallRegular.font as Any, range: NSMakeRange(0, result.length))
+    if let font = Style.Typography.smallRegular.font {
+      result.addAttribute(.font, value: font, range: NSMakeRange(0, result.length))
+    }
     return result
   }
 }
