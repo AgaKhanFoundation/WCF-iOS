@@ -72,7 +72,9 @@ extension UITableView {
       TeamBreakdownHeaderCell.self,
       TeamBreakdownMemberCell.self,
       MiniChallengeProgressCell.self,
-      NotificationCell.self
+      NotificationCell.self,
+      JourneyDetailCell.self,
+      JourneyImageMarqueeCell.self
     ].forEach { register($0) }
   }
 
