@@ -57,6 +57,7 @@ class JourneyDataSource: TableViewDataSource {
   var distanceToNextMilestone = 0
   var distanceCoveredToNextMilestone = 0
   var nameOfNextMilestone: String?
+  var indexPathOfCurrentMilestone: IndexPath?
   var milestones: [Milestone] = []
 
   func reload(completion: @escaping () -> Void) {
@@ -130,6 +131,9 @@ class JourneyDataSource: TableViewDataSource {
           lastMilestone.progress = progress
           result.append(lastMilestone)
           nameOfNextMilestone = milestones[index].name
+          if milestone - 1 >= 0 {
+            indexPathOfCurrentMilestone = IndexPath(row: milestone - 1, section: cells.count)
+          }
         }
         let temp = newMilestone(for: index, status: .notCompleted)
         result.append(temp)
