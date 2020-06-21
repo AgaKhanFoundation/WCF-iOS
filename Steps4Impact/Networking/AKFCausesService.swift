@@ -244,15 +244,16 @@ class AKFCausesService: Service {
   
   static func createFCMToken(fbId: String, token: String, completion: ServiceRequestCompletion? = nil) {
     shared.request(.post, endpoint: .createfcmtoken,
-                   parameters: JSON(["fcm_token": token, "fbid": fbId]),
+                   parameters: JSON(["fcm_token": token, "fbid": fbId]), completion: completion)
+  }
+  
   static func getNotifications(fbId: String, eventId: Int, completion: ServiceRequestCompletion? = nil) {
     shared.request(.get, endpoint: .notifications(fbId: fbId, eventId: eventId), completion: completion)
   }
   
   static func readNotification(id: Int, completion: ServiceRequestCompletion? = nil) {
     shared.request(.patch, endpoint: .notification(id: id),
-                   parameters: JSON(["read_flag": true]),
-                   completion: completion)
+                   parameters: JSON(["read_flag": true]), completion: completion)
   }
 }
 
