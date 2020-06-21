@@ -47,6 +47,8 @@ enum AKFCausesEndPoint {
   case achievement
   case fcmtoken(fbId: String)
   case createfcmtoken
+  case notifications(fbId: String, eventId: Int)
+  case notification(id: Int)
 }
 
 extension AKFCausesEndPoint {
@@ -86,6 +88,10 @@ extension AKFCausesEndPoint {
       return "/fcmtokens/participant/\(fbId)"
     case .createfcmtoken:
       return "/fcmtokens"
+    case .notifications(fbId: let fbId, eventId: let eventId):
+      return "/notifications/participant/\(fbId)/event/\(eventId)"
+    case .notification(id: let id):
+      return "/notifications/notification/\(id)"
     }
   }
 }
@@ -239,6 +245,13 @@ class AKFCausesService: Service {
   static func createFCMToken(fbId: String, token: String, completion: ServiceRequestCompletion? = nil) {
     shared.request(.post, endpoint: .createfcmtoken,
                    parameters: JSON(["fcm_token": token, "fbid": fbId]),
+  static func getNotifications(fbId: String, eventId: Int, completion: ServiceRequestCompletion? = nil) {
+    shared.request(.get, endpoint: .notifications(fbId: fbId, eventId: eventId), completion: completion)
+  }
+  
+  static func readNotification(id: Int, completion: ServiceRequestCompletion? = nil) {
+    shared.request(.patch, endpoint: .notification(id: id),
+                   parameters: JSON(["read_flag": true]),
                    completion: completion)
   }
 }

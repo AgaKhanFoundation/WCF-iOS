@@ -94,6 +94,8 @@
 		26A9829723CABABF00A5BD35 /* ImageButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9829623CABABF00A5BD35 /* ImageButtonCell.swift */; };
 		26A9829923CABAD800A5BD35 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9829823CABAD800A5BD35 /* Achievement.swift */; };
 		26A9829B23CABAE800A5BD35 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9829A23CABAE800A5BD35 /* Milestone.swift */; };
+		26AA2CED245E5138000638D4 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA2CEC245E5138000638D4 /* Notification.swift */; };
+		26AA2CEF245E5434000638D4 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA2CEE245E5434000638D4 /* NotificationCell.swift */; };
 		26AD5BCF23F141E7005EC5A6 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD5BCE23F141E7005EC5A6 /* RadioButton.swift */; };
 		26B2793823765FFA000CEE94 /* Keyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B2793723765FFA000CEE94 /* Keyboardable.swift */; };
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
@@ -107,6 +109,9 @@
 		26FE2451232231FB00E01B9B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2450232231FB00E01B9B /* TableViewController.swift */; };
 		26FE24532322332D00E01B9B /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE24522322332D00E01B9B /* UITableView.swift */; };
 		26FE2455232234A300E01B9B /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2454232234A300E01B9B /* EmptyCell.swift */; };
+		3A5A12E3248C979300D181BF /* JourneyDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5A12E2248C979300D181BF /* JourneyDetailDataSource.swift */; };
+		3A5A12E5248C985900D181BF /* JourneyImageMarqueeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5A12E4248C985900D181BF /* JourneyImageMarqueeCell.swift */; };
+		3A5A12E7248C9B5B00D181BF /* JourneyDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5A12E6248C9B5B00D181BF /* JourneyDetailCell.swift */; };
 		3AAA32A023655CB5002B7479 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAA329F23655CB5002B7479 /* LoginButton.swift */; };
 		7A7C5B5BCE64FE425FE48D17 /* Pods_Steps4ImpactTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644A965BB27AB6174A19603E /* Pods_Steps4ImpactTests.framework */; };
 		885A50211F181C0FFD544AAA /* Pods_Steps4Impact.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E04420449F9B74A2501CBBEA /* Pods_Steps4Impact.framework */; };
@@ -291,6 +296,8 @@
 		26A9829623CABABF00A5BD35 /* ImageButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageButtonCell.swift; sourceTree = "<group>"; };
 		26A9829823CABAD800A5BD35 /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		26A9829A23CABAE800A5BD35 /* Milestone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
+		26AA2CEC245E5138000638D4 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		26AA2CEE245E5434000638D4 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		26AD5BCE23F141E7005EC5A6 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		26B2793723765FFA000CEE94 /* Keyboardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboardable.swift; sourceTree = "<group>"; };
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -306,6 +313,9 @@
 		26FE2454232234A300E01B9B /* EmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCell.swift; sourceTree = "<group>"; };
 		307EFC69C033D08671C5E6C6 /* Pods-steps4impact.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impact.release.xcconfig"; path = "Target Support Files/Pods-steps4impact/Pods-steps4impact.release.xcconfig"; sourceTree = "<group>"; };
 		31082B36DD919D9631B44E5E /* Pods-Steps4Impact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steps4Impact.debug.xcconfig"; path = "Target Support Files/Pods-Steps4Impact/Pods-Steps4Impact.debug.xcconfig"; sourceTree = "<group>"; };
+		3A5A12E2248C979300D181BF /* JourneyDetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyDetailDataSource.swift; sourceTree = "<group>"; };
+		3A5A12E4248C985900D181BF /* JourneyImageMarqueeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyImageMarqueeCell.swift; sourceTree = "<group>"; };
+		3A5A12E6248C9B5B00D181BF /* JourneyDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyDetailCell.swift; sourceTree = "<group>"; };
 		3AAA329F23655CB5002B7479 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		644A965BB27AB6174A19603E /* Pods_Steps4ImpactTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Steps4ImpactTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D885FB78222CE09537F0C6A /* Pods-steps4impact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impact.debug.xcconfig"; path = "Target Support Files/Pods-steps4impact/Pods-steps4impact.debug.xcconfig"; sourceTree = "<group>"; };
@@ -617,6 +627,7 @@
 			isa = PBXGroup;
 			children = (
 				2635EB8D2338B57800BC50E9 /* NotificationsViewController.swift */,
+				26AA2CEE245E5434000638D4 /* NotificationCell.swift */,
 			);
 			path = NotificationsV2;
 			sourceTree = "<group>";
@@ -757,6 +768,7 @@
 				A5123F1E2381B51E00C3E9DE /* JourneyViewController.swift */,
 				A5123F232381B63300C3E9DE /* JourneyDataSource.swift */,
 				26A9829423CABAA200A5BD35 /* JourneyDetailViewController.swift */,
+				3A5A12E2248C979300D181BF /* JourneyDetailDataSource.swift */,
 			);
 			path = Journey;
 			sourceTree = "<group>";
@@ -766,6 +778,8 @@
 			children = (
 				A5123F212381B60B00C3E9DE /* MilestoneCell.swift */,
 				A5123F252381C9CE00C3E9DE /* CurrentMilestoneCell.swift */,
+				3A5A12E4248C985900D181BF /* JourneyImageMarqueeCell.swift */,
+				3A5A12E6248C9B5B00D181BF /* JourneyDetailCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -852,6 +866,7 @@
 				C9BAEECF235D5C4E00A8D7AF /* FitbitStep.swift */,
 				A594DC8C238B6DBA003B5EF7 /* Leaderboard.swift */,
 				26A9829A23CABAE800A5BD35 /* Milestone.swift */,
+				26AA2CEC245E5138000638D4 /* Notification.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1278,6 +1293,7 @@
 				F017B6952276C9C60023E84B /* OnboardingJourney.swift in Sources */,
 				265DE5732332FBA9009DDA5A /* JoinTeam.swift in Sources */,
 				F0320B6E222F678500EABAD6 /* SegmentedView.swift in Sources */,
+				26AA2CED245E5138000638D4 /* Notification.swift in Sources */,
 				A57A29FC236E408E002AA380 /* BadgesCollectionViewController.swift in Sources */,
 				2676B3C82331E1B400CB0A31 /* ActionButton.swift in Sources */,
 				F02F1734234B9B3E008A1CD6 /* Commitment.swift in Sources */,
@@ -1290,6 +1306,7 @@
 				265FE47A2349A0A400215391 /* Cache.swift in Sources */,
 				269E350E1E76664F000726C2 /* Async.swift in Sources */,
 				265DE5752333015F009DDA5A /* JoinTeamCell.swift in Sources */,
+				3A5A12E7248C9B5B00D181BF /* JourneyDetailCell.swift in Sources */,
 				C92244D3235D47B90098A333 /* FitbitDataProvider.swift in Sources */,
 				A5865EB5237761BF00C551E9 /* HeaderCell.swift in Sources */,
 				F0DE162C221F8DD900FF17C9 /* Result.swift in Sources */,
@@ -1332,6 +1349,7 @@
 				260BF58C2324B17D005F0882 /* CALayer.swift in Sources */,
 				26FE244B23222DF400E01B9B /* Cells.swift in Sources */,
 				269E350C1E765F73000726C2 /* StyleGuide.swift in Sources */,
+				3A5A12E5248C985900D181BF /* JourneyImageMarqueeCell.swift in Sources */,
 				F02C5DB6233FFA820028FDA9 /* DeviceInformationCell.swift in Sources */,
 				269E35241E767807000726C2 /* Team.swift in Sources */,
 				264AE87123F3B85100377D67 /* ActivityProgressView.swift in Sources */,
@@ -1368,6 +1386,7 @@
 				2622C0962324A0490092B145 /* TableViewCell.swift in Sources */,
 				A52E332D24676929008FAF71 /* PushNotificationManager.swift in Sources */,
 				F017B6972276D0C60023E84B /* OnboardingDashboard.swift in Sources */,
+				26AA2CEF245E5434000638D4 /* NotificationCell.swift in Sources */,
 				F0F8EDD72210C7C700321A6D /* FundraisingCard.swift in Sources */,
 				269F95272377994B0089CDD1 /* ActivityCardCell.swift in Sources */,
 				267FAE2A2325C9210014222D /* SettingsSwitchCell.swift in Sources */,
@@ -1383,6 +1402,7 @@
 				F017B691227699440023E84B /* Onboarding.swift in Sources */,
 				F0CF39881EE0EA98006A7462 /* Source.swift in Sources */,
 				C9203B901EC41D9C00AC3C9E /* UIImageView.swift in Sources */,
+				3A5A12E3248C979300D181BF /* JourneyDetailDataSource.swift in Sources */,
 				A529214323F7281700545051 /* MiniChallengeProgressCell.swift in Sources */,
 				A55BD64123F3C9900005947C /* TeamBreakdownMemberCell.swift in Sources */,
 				A5865EB32377617500C551E9 /* BadgeCell.swift in Sources */,

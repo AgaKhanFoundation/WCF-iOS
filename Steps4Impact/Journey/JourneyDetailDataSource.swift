@@ -27,50 +27,16 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-import Foundation
+import UIKit
 
-extension Date {
-  static let formatter: ISO8601DateFormatter = {
-    let formatter: ISO8601DateFormatter = ISO8601DateFormatter()
-    formatter.formatOptions = [.withFractionalSeconds, .withInternetDateTime]
-    return formatter
-  }()
-
-  private var components: DateComponents {
-    return Calendar.current.dateComponents([.year, .month, .day, .hour,
-                                            .second], from: self)
-  }
-
-  private static func from(components: DateComponents) -> Date {
-    return Calendar.current.date(from: components) ?? Date()
-  }
-
-  var startOfDay: Date {
-      var components = self.components
-      components.hour = 0
-      components.minute = 0
-      components.second = 0
-      return .from(components: components)
-  }
-
-  var endOfDay: Date {
-      var components = self.components
-      components.hour = 23
-      components.minute = 59
-      components.second = 59
-      return .from(components: components)
-  }
-
-  func daysUntil(_ date: Date) -> Int {
-    return Calendar.current.dateComponents([.day], from: self, to: date).day ?? 0
-  }
+class JourneyDetailDataSource: TableViewDataSource {
+  var cells = [[CellContext]]()
+  var milestone: Milestone?
   
-  func timeAgo() -> String? {
-    let formatter = DateComponentsFormatter()
-    formatter.unitsStyle = .abbreviated
-    formatter.allowedUnits = [.year, .month, .day, .hour, .minute, .second]
-    formatter.zeroFormattingBehavior = .dropAll
-    formatter.maximumUnitCount = 1
-    return formatter.string(from: self, to: Date())
+  func configure() {
+    cells = [[
+      JourneyImageMarqueeContext(milestone: self.milestone),
+      JourneyDetailContext(milestone: self.milestone)
+    ]]
   }
 }

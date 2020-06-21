@@ -28,6 +28,7 @@
  **/
 
 import UIKit
+import RxSwift
 
 class NotificationsViewController: TableViewController {
   override func commonInit() {
@@ -39,13 +40,43 @@ class NotificationsViewController: TableViewController {
 }
 
 class NotificationsDataSource: TableViewDataSource {
+  let cache = Cache.shared
   var cells: [[CellContext]] = []
-
+  var disposeBag = DisposeBag()
+  
+  init() {
+    
+    cache.participantRelay.subscribeOnNext { [weak self] (participant: Participant?) in
+      guard let fbId = participant?.fbid, let eventId = participant?.currentEvent?.id else { return }
+      
+      AKFCausesService.getNotifications(fbId: fbId, eventId: eventId) { (result) in
+        print(result)
+        dump(self)
+      }
+    }.disposed(by: disposeBag)
+    
+  }
+  
   func configure() {
-    cells = [[
-        InfoCellContext(
-          title: Strings.Notifications.title,
-          body: Strings.Notifications.youHaveNoNotifications)
-    ]]
+    cells = [[]]
+  }
+  
+  private func testData() -> [NotificationCellInfo] {
+    [
+      NotificationCellInfo(title: "FirstName LastName has joined your team",
+                           date: Date(), isRead: false, isFirst: true),
+      NotificationCellInfo(title: "You have been removed from [Team Name] Team.",
+                           date: Date(timeIntervalSinceNow: -10*60), isRead: false),
+      NotificationCellInfo(title: "Challenge [name of challenge] has ended.",
+                           date: Date(timeIntervalSinceNow: -1*60*60)),
+      NotificationCellInfo(title: "FirstName LastName has joined the team.",
+                           date: Date(timeIntervalSinceNow: -1*24*60*60)),
+      NotificationCellInfo(title: "Abigal Gates is going to Nike run club with 80 others.",
+                           date: Date(timeIntervalSinceNow: -7*24*60*60)),
+      NotificationCellInfo(title: "Last notification from long ago",
+                           date: Date(timeIntervalSinceNow: -35*24*60*60)),
+      NotificationCellInfo(title: "Notification from so long ago",
+                           date: Date(timeIntervalSinceNow: -100*24*60*60), isLast: true)
+    ]
   }
 }
