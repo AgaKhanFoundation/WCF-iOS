@@ -101,7 +101,7 @@ class AppController {
       case .login:
         // Rebuild navigation so data is wiped on logout
         AppController.shared.navigation = Navigation()
-        return LoginViewController()
+        return LoginV2ViewController()
       case .akf: return AKFLoginViewController()
       case .onboarding: return OnboardingViewController()
       case .navigation: return AppController.shared.navigation

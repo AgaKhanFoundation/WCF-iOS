@@ -74,6 +74,7 @@
 		2676B3CA2331F18B00CB0A31 /* TeamSettingsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C92331F18B00CB0A31 /* TeamSettingsHeaderCell.swift */; };
 		2676B3CC2331F3D400CB0A31 /* TeamSettingsMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3CB2331F3D400CB0A31 /* TeamSettingsMemberCell.swift */; };
 		267C145424A81EB600A36C62 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 267C145324A81EB600A36C62 /* GoogleService-Info.plist */; };
+		267C145724A8251C00A36C62 /* LoginV2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267C145624A8251C00A36C62 /* LoginV2ViewController.swift */; };
 		267FAE282325C1660014222D /* SettingsDisclosureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267FAE272325C1660014222D /* SettingsDisclosureCell.swift */; };
 		267FAE2A2325C9210014222D /* SettingsSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267FAE292325C9210014222D /* SettingsSwitchCell.swift */; };
 		267FAE2E2325CF590014222D /* SettingsActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267FAE2D2325CF590014222D /* SettingsActionCell.swift */; };
@@ -145,7 +146,7 @@
 		C92244D3235D47B90098A333 /* FitbitDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244D2235D47B90098A333 /* FitbitDataProvider.swift */; };
 		C92244D5235D4B670098A333 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92244D4235D4B670098A333 /* UserDefaults.swift */; };
 		C9BAEED0235D5C4E00A8D7AF /* FitbitStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BAEECF235D5C4E00A8D7AF /* FitbitStep.swift */; };
-		F00403191EC3FB7D005E6F10 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		F00403191EC3FB7D005E6F10 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F004031D1EC52772005E6F10 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004031C1EC52772005E6F10 /* AppConfig.swift */; };
 		F01515281EE7A6E100F56B73 /* ProgressStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01515271EE7A6E100F56B73 /* ProgressStepsView.swift */; };
 		F017B68E227686A60023E84B /* OnboardingWelcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017B68D227686A60023E84B /* OnboardingWelcome.swift */; };
@@ -273,6 +274,7 @@
 		2676B3C92331F18B00CB0A31 /* TeamSettingsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsHeaderCell.swift; sourceTree = "<group>"; };
 		2676B3CB2331F3D400CB0A31 /* TeamSettingsMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsMemberCell.swift; sourceTree = "<group>"; };
 		267C145324A81EB600A36C62 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		267C145624A8251C00A36C62 /* LoginV2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginV2ViewController.swift; sourceTree = "<group>"; };
 		267FAE272325C1660014222D /* SettingsDisclosureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDisclosureCell.swift; sourceTree = "<group>"; };
 		267FAE292325C9210014222D /* SettingsSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSwitchCell.swift; sourceTree = "<group>"; };
 		267FAE2D2325CF590014222D /* SettingsActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsActionCell.swift; sourceTree = "<group>"; };
@@ -669,6 +671,14 @@
 			path = Animators;
 			sourceTree = "<group>";
 		};
+		267C145524A8250700A36C62 /* LoginV2 */ = {
+			isa = PBXGroup;
+			children = (
+				267C145624A8251C00A36C62 /* LoginV2ViewController.swift */,
+			);
+			path = LoginV2;
+			sourceTree = "<group>";
+		};
 		269E34BD1E765828000726C2 = {
 			isa = PBXGroup;
 			children = (
@@ -706,6 +716,7 @@
 				F0E6878C2225154700454340 /* Integration */,
 				F0E6878D22251B4700454340 /* Leaderboard */,
 				2611A5092335FF460030E77E /* Login */,
+				267C145524A8250700A36C62 /* LoginV2 */,
 				F058BD8322276F54006C7F20 /* Models */,
 				2611A4F82335FEEA0030E77E /* Networking */,
 				F0E6879022251BEE00454340 /* Notifications */,
@@ -1260,7 +1271,7 @@
 				269F95292378FB0E0089CDD1 /* CircularProgressView.swift in Sources */,
 				26A475A32353E63400059764 /* AppInfoCell.swift in Sources */,
 				F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */,
-				F00403191EC3FB7D005E6F10 /* BuildFile in Sources */,
+				F00403191EC3FB7D005E6F10 /* (null) in Sources */,
 				F0A992D61EABF037001621A6 /* Formatters.swift in Sources */,
 				2622C09023249A4B0092B145 /* UIRefreshControl.swift in Sources */,
 				A58E21D723DE85CF00929E86 /* AZSClient.swift in Sources */,
@@ -1279,6 +1290,7 @@
 				267FAE2E2325CF590014222D /* SettingsActionCell.swift in Sources */,
 				F017B6952276C9C60023E84B /* OnboardingJourney.swift in Sources */,
 				265DE5732332FBA9009DDA5A /* JoinTeam.swift in Sources */,
+				267C145724A8251C00A36C62 /* LoginV2ViewController.swift in Sources */,
 				F0320B6E222F678500EABAD6 /* SegmentedView.swift in Sources */,
 				26AA2CED245E5138000638D4 /* Notification.swift in Sources */,
 				A57A29FC236E408E002AA380 /* BadgesCollectionViewController.swift in Sources */,
