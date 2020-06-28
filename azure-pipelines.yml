@@ -16,6 +16,16 @@ pool:
   vmImage: 'macOS-10.14'
 
 steps:
+- task: DownloadSecureFile@1
+  name: GooglePlist
+  displayName: 'Download Firebase Credentials'
+  inputs:
+    secureFile: 'GoogleService-Info.plist'
+
+- script: |
+    echo $(GooglePlist.secureFilePath)
+    cp $(GooglePlist.secureFilePath) '$(Pipeline.Workspace)/s/Steps4Impact/Supporting Files/'
+
 - task: Xcode@5
   inputs:
     actions: 'build'
