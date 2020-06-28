@@ -33,6 +33,7 @@ enum AKFCausesEndPoint {
   case healthcheck
   case participant(fbId: String)
   case participants
+  case participantSocial(fbId: String)
   case team(teamId: Int)
   case teams
   case event(eventId: Int)
@@ -58,6 +59,8 @@ extension AKFCausesEndPoint {
       return "/participants/\(fbid)"
     case .participants:
       return "/participants"
+    case .participantSocial(let fbId):
+      return "/participants/\(fbId)/social"
     case .team(let teamId):
       return "/teams/\(teamId)"
     case .teams:
@@ -126,6 +129,11 @@ class AKFCausesService: Service {
   static func deleteParticipant(fbid: String,
                                 completion: ServiceRequestCompletion? = nil) {
     shared.request(.delete, endpoint: .participant(fbId: fbid), completion: completion)
+  }
+  
+  static func getParticipantSocial(fbid: String,
+                                   completion: ServiceRequestCompletion? = nil) {
+    shared.request(endpoint: .participantSocial(fbId: fbid), completion: completion)
   }
 
   static func createTeam(name: String, imageName: String = "", lead fbid: String, hidden: Bool = false,
