@@ -238,7 +238,7 @@ class BadgesCollectionDataSource: CollectionViewDataSource {
   func reload(completion: @escaping () -> Void) {
     self.completion = completion
     let group: DispatchGroup = DispatchGroup()
-    AKFCausesService.getParticipant(fbid: FacebookService.shared.id) { (result) in
+    AKFCausesService.getParticipant(fbid: User.id) { (result) in
       if let participant = Participant(json: result.response), let records = participant.records, let team = participant.team {
         self.teamMembers.removeAll()
         for member in team.members {

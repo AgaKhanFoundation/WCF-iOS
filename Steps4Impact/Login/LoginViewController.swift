@@ -112,7 +112,7 @@ extension LoginViewController: LoginButtonDelegate {
     guard let result = result else { return }
     if result.isCancelled { return }
 
-    AKFCausesService.createParticipant(fbid: Facebook.id) { [weak self] (_) in
+    AKFCausesService.createParticipant(fbid: User.id) { [weak self] (_) in
       onMain {
         AppController.shared.login()
       }
@@ -121,13 +121,13 @@ extension LoginViewController: LoginButtonDelegate {
   }
 
   private func addParticipantToDefaultEventIfNeeded() {
-    AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+    AKFCausesService.getParticipant(fbid: User.id) { (result) in
       if let participant = Participant(json: result.response), participant.currentEvent == nil {
         AKFCausesService.getEvents { (result) in
           let events = result.response?.arrayValue?.compactMap { Event(json: $0) }
 
           if let event = events?.first, let eventID = event.id {
-            AKFCausesService.joinEvent(fbid: Facebook.id, eventID: eventID, steps: event.defaultStepCount) { _ in
+            AKFCausesService.joinEvent(fbid: User.id, eventID: eventID, steps: event.defaultStepCount) { _ in
               NotificationCenter.default.post(name: .eventChanged, object: nil)
             }
           }

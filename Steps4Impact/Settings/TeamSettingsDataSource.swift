@@ -46,7 +46,6 @@ protocol TeamSettingsDataSourceDelegate: class {
 
 class TeamSettingsDataSource: TableViewDataSource {
   var cache = Cache.shared
-  var facebookService = FacebookService.shared
   var disposeBag = DisposeBag()
   var cells: [[CellContext]] = []
   var completion: (() -> Void)?
@@ -69,8 +68,8 @@ class TeamSettingsDataSource: TableViewDataSource {
 
   init() {
     let update = Observable.combineLatest(
-      cache.facebookNamesRelay,
-      cache.facebookProfileImageURLsRelay,
+      cache.socialDisplayNamesRelay,
+      cache.socialProfileImageURLsRelay,
       cache.participantRelay,
       cache.currentEventRelay
     )
@@ -78,7 +77,7 @@ class TeamSettingsDataSource: TableViewDataSource {
     update.subscribeOnNext { [weak self] (names, imageURLs, participant, currentEvent) in
       guard let participant = participant else { return }
       self?.delegate?.updated(team: participant.team)
-      self?.isLead = participant.team?.creator == self?.facebookService.id
+      self?.isLead = participant.team?.creator == User.id
       self?.teamName = participant.team?.name ?? " "
 
       if let event = participant.currentEvent {
@@ -103,7 +102,7 @@ class TeamSettingsDataSource: TableViewDataSource {
     configure()
     completion()
 
-    AKFCausesService.getParticipant(fbid: facebookService.id) { [weak self] (result) in
+    AKFCausesService.getParticipant(fbid: User.id) { [weak self] (result) in
       let participant = Participant(json: result.response)
 
       self?.cache.participantRelay.accept(participant)
@@ -116,8 +115,7 @@ class TeamSettingsDataSource: TableViewDataSource {
 
       if let team = participant?.team {
         for teamMember in team.members {
-          self?.facebookService.getRealName(fbid: teamMember.fbid)
-          self?.facebookService.getProfileImageURL(fbid: teamMember.fbid)
+          self?.cache.fetchSocialInfo(fbid: teamMember.fbid)
         }
       }
     }

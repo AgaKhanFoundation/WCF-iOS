@@ -120,7 +120,7 @@ extension ChallengeViewController: ChallengeTeamProgressCellDelegate {
   }
 
   func challengeTeamProgressEditTapped() {
-    AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+    AKFCausesService.getParticipant(fbid: User.id) { (result) in
       guard let participant = Participant(json: result.response) else { return }
 
       let alert = TextAlertViewController()
@@ -181,10 +181,10 @@ class ChallengeDataSource: TableViewDataSource {
     self.achievement = nil
 
     group.enter()
-    AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
+    AKFCausesService.getParticipant(fbid: User.id) { [weak self] (result) in
       if let participant = Participant(json: result.response), let team = participant.team {
         self?.participant = participant
-        self?.isLead = participant.team?.creator == Facebook.id
+        self?.isLead = participant.team?.creator == User.id
 
         group.enter()
         AKFCausesService.getAchievement { (result) in
