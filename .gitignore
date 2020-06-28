@@ -103,6 +103,7 @@ iOSInjectionProject/
 
 # Secrets Related
 secrets.sh
+Steps4Impact/Supporting Files/GoogleService-Info.plist
 
 # Sourcery Generated Code
 Generated/*.generated.swift
