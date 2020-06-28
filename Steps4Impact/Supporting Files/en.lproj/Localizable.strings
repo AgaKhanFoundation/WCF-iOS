@@ -40,6 +40,7 @@
 "AKFCausesServiceError.unableToConnect" = "Unable to access AKF Causes at this time.  Please try again later.";
 
 // Login
+"Login.title" = "Sign in with";
 "Login.conditions" = "Terms and Conditions Apply";
 
 // Welcome
