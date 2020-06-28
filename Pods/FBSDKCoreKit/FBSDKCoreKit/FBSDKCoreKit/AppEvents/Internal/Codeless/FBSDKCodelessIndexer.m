@@ -16,6 +16,10 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#import "TargetConditionals.h"
+
+#if !TARGET_OS_TV
+
 #import "FBSDKCodelessIndexer.h"
 
 #import <objc/runtime.h>
@@ -24,9 +28,9 @@
 
 #import <UIKit/UIKit.h>
 
-#import <FBSDKCoreKit/FBSDKCoreKit+Internal.h>
-#import <FBSDKCoreKit/FBSDKGraphRequest.h>
-#import <FBSDKCoreKit/FBSDKSettings.h>
+#import "FBSDKCoreKit+Internal.h"
+#import "FBSDKGraphRequest.h"
+#import "FBSDKSettings.h"
 
 @implementation FBSDKCodelessIndexer
 
@@ -312,7 +316,10 @@ static NSString *_lastTreeHash;
 
   NSArray *windows = [UIApplication sharedApplication].windows;
   for (UIWindow *window in windows) {
-    NSDictionary *tree = [FBSDKCodelessIndexer recursiveCaptureTree:window];
+    NSDictionary *tree = [FBSDKViewHierarchy recursiveCaptureTreeWithCurrentNode:window
+                                                                      targetNode:nil
+                                                                   objAddressSet:nil
+                                                                            hash:YES];
     if (tree) {
       if (window.isKeyWindow) {
         [trees insertObject:tree atIndex:0];
@@ -343,28 +350,6 @@ static NSString *_lastTreeHash;
   }
 
   return tree;
-}
-
-+ (NSDictionary<NSString *, id> *)recursiveCaptureTree:(NSObject *)obj
-{
-  if (!obj) {
-    return nil;
-  }
-
-  NSMutableDictionary *result = [FBSDKViewHierarchy getDetailAttributesOf:obj];
-
-  NSArray *children = [FBSDKViewHierarchy getChildren:obj];
-  NSMutableArray *childrenTrees = [NSMutableArray array];
-  for (NSObject *child in children) {
-    NSDictionary *objTree = [self recursiveCaptureTree:child];
-    [childrenTrees addObject:objTree];
-  }
-
-  if (childrenTrees.count > 0) {
-    [result setValue:[childrenTrees copy] forKey:CODELESS_VIEW_TREE_CHILDREN_KEY];
-  }
-
-  return [result copy];
 }
 
 + (UIImage *)screenshot {
@@ -406,3 +391,5 @@ static NSString *_lastTreeHash;
 }
 
 @end
+
+#endif

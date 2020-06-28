@@ -16,6 +16,10 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#import "TargetConditionals.h"
+
+#if !TARGET_OS_TV
+
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -31,13 +35,13 @@ NS_SWIFT_NAME(AppLinkTarget)
 + (instancetype)new NS_UNAVAILABLE;
 
 /** Creates a FBSDKAppLinkTarget with the given app site and target URL. */
-+ (instancetype)appLinkTargetWithURL:(NSURL *)url
++ (instancetype)appLinkTargetWithURL:(nullable NSURL *)url
                           appStoreId:(nullable NSString *)appStoreId
                              appName:(NSString *)appName
 NS_SWIFT_NAME(init(url:appStoreId:appName:));
 
 /** The URL prefix for this app link target */
-@property (nonatomic, strong, readonly) NSURL *URL;
+@property (nonatomic, strong, readonly, nullable) NSURL *URL;
 
 /** The app ID for the app store */
 @property (nonatomic, copy, readonly, nullable) NSString *appStoreId;
@@ -48,3 +52,5 @@ NS_SWIFT_NAME(init(url:appStoreId:appName:));
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

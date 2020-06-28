@@ -16,6 +16,10 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#import "TargetConditionals.h"
+
+#if !TARGET_OS_TV
+
 #import "FBSDKWebDialog.h"
 
 #import "FBSDKAccessToken.h"
@@ -25,6 +29,7 @@
 #import "FBSDKSettings.h"
 #import "FBSDKTypeUtility.h"
 #import "FBSDKWebDialogView.h"
+#import "FBSDKInternalUtility.h"
 
 #define FBSDK_WEB_DIALOG_SHOW_ANIMATION_DURATION 0.2
 #define FBSDK_WEB_DIALOG_DISMISS_ANIMATION_DURATION 0.3
@@ -263,7 +268,7 @@ static FBSDKWebDialog *g_currentDialog = nil;
   // iOS 8 simply adjusts the application frame to adapt to the current orientation and deprecated the concept of
   // interface orientations
   if ([FBSDKInternalUtility shouldManuallyAdjustOrientation]) {
-    switch ([UIApplication sharedApplication].statusBarOrientation) {
+    switch (FBSDKInternalUtility.statusBarOrientation) {
       case UIInterfaceOrientationLandscapeLeft:
         return CGAffineTransformMakeRotation(M_PI * 1.5);
       case UIInterfaceOrientationLandscapeRight:
@@ -299,7 +304,7 @@ static FBSDKWebDialog *g_currentDialog = nil;
   applicationFrame.size.height -= insets.top + insets.bottom;
 
   if ([FBSDKInternalUtility shouldManuallyAdjustOrientation]) {
-    switch ([UIApplication sharedApplication].statusBarOrientation) {
+    switch (FBSDKInternalUtility.statusBarOrientation) {
       case UIInterfaceOrientationLandscapeLeft:
       case UIInterfaceOrientationLandscapeRight:
         return CGRectMake(0, 0, CGRectGetHeight(applicationFrame), CGRectGetWidth(applicationFrame));
@@ -342,3 +347,5 @@ static FBSDKWebDialog *g_currentDialog = nil;
 }
 
 @end
+
+#endif

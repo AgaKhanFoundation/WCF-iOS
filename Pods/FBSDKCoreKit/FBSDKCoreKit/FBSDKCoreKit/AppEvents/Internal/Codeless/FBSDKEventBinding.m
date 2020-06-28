@@ -16,17 +16,20 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#import "TargetConditionals.h"
+
+#if !TARGET_OS_TV
+
 #import "FBSDKEventBinding.h"
 
-#import <FBSDKCoreKit/FBSDKAppEvents.h>
-#import <FBSDKCoreKit/FBSDKUtility.h>
-
+#import "FBSDKAppEvents.h"
 #import "FBSDKAppEventsUtility.h"
-#import "FBSDKCodelessMacros.h"
 #import "FBSDKCodelessParameterComponent.h"
 #import "FBSDKCodelessPathComponent.h"
 #import "FBSDKSwizzler.h"
+#import "FBSDKUtility.h"
 #import "FBSDKViewHierarchy.h"
+#import "FBSDKViewHierarchyMacros.h"
 
 #define CODELESS_PATH_TYPE_ABSOLUTE  @"absolute"
 #define CODELESS_PATH_TYPE_RELATIVE  @"relative"
@@ -74,7 +77,7 @@
                                            pathType:component.pathType
                                          sourceView:sourceView];
     }
-    if (text) {
+    if (text.length > 0) {
       if ([component.name isEqualToString:PARAMETER_NAME_PRICE]) {
         NSNumber *value = [FBSDKAppEventsUtility getNumberValue:text];
         params[component.name] = value;
@@ -256,6 +259,42 @@ pathComponent:(FBSDKCodelessPathComponent *)component
   return nil;
 }
 
+- (BOOL)isEqualToBinding:(FBSDKEventBinding *)binding
+{
+  if (_path.count != binding.path.count ||
+      _parameters.count != binding.parameters.count) {
+    return NO;
+  }
+
+  NSString *current = [NSString stringWithFormat:@"%@|%@|%@|%@",
+                       _eventName ?: @"",
+                       _eventType ?: @"",
+                       _appVersion ?: @"",
+                       _pathType ?: @""];
+  NSString *compared = [NSString stringWithFormat:@"%@|%@|%@|%@",
+                        binding.eventName ?: @"",
+                        binding.eventType ?: @"",
+                        binding.appVersion ?: @"",
+                        binding.pathType ?: @""];
+  if (![current isEqualToString:compared]) {
+    return NO;
+  }
+
+  for (int i = 0; i < _path.count; i++) {
+    if (![_path[i] isEqualToPath:binding.path[i]]) {
+      return NO;
+    }
+  }
+
+  for (int i = 0; i < _parameters.count; i++) {
+    if (![_parameters[i] isEqualToParameter:binding.parameters[i]]) {
+      return NO;
+    }
+  }
+
+  return YES;
+}
+
 //  MARK: - find event parameters via relative path
 + (NSString *)findParameterOfPath:(NSArray *)path
                          pathType:(NSString *)pathType
@@ -275,3 +314,5 @@ pathComponent:(FBSDKCodelessPathComponent *)component
 }
 
 @end
+
+#endif
