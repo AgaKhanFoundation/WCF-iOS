@@ -16,9 +16,13 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#import "TargetConditionals.h"
+
+#if !TARGET_OS_TV
+
 #import "FBSDKBridgeAPI.h"
 
-#import <FBSDKCoreKit/FBSDKCoreKit+Internal.h>
+#import "FBSDKCoreKit+Internal.h"
 
 typedef void (^FBSDKAuthenticationCompletionHandler)(NSURL *_Nullable callbackURL, NSError *_Nullable error);
 
@@ -72,6 +76,22 @@ typedef void (^FBSDKAuthenticationCompletionHandler)(NSURL *_Nullable callbackUR
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+  // Handle the case where the app is backgrounded while the "ExampleApp wants to use facebook.com to Sign In" alert is still open
+  // Call the completion handler with a Cancel
+  if (@available(iOS 11.0, *)) {
+    if (!_active && (_authenticationSession != nil)) {
+      [_authenticationSession cancel];
+      _authenticationSession = nil;
+      NSString *errorDomain;
+      if (@available(iOS 12.0, *)) {
+        errorDomain = @"com.apple.AuthenticationServices.WebAuthenticationSession";
+      } else {
+        errorDomain = @"com.apple.SafariServices.Authentication";
+      }
+      NSError *error = [FBSDKError errorWithDomain:errorDomain code:1 message:nil];
+      _authenticationSessionCompletionHandler(nil, error);
+    }
+  }
   //  _expectingBackground can be YES if the caller started doing work (like login)
   // within the app delegate's lifecycle like openURL, in which case there
   // might have been a "didBecomeActive" event pending that we want to ignore.
@@ -100,6 +120,16 @@ typedef void (^FBSDKAuthenticationCompletionHandler)(NSURL *_Nullable callbackUR
 {
   id<FBSDKURLOpening> pendingURLOpen = _pendingURLOpen;
 
+  if ([pendingURLOpen respondsToSelector:@selector(shouldStopPropagationOfURL:)]
+      && [pendingURLOpen shouldStopPropagationOfURL:url]) {
+    return YES;
+  }
+
+  BOOL canOpenURL = [pendingURLOpen canOpenURL:url
+                                forApplication:application
+                             sourceApplication:sourceApplication
+                                    annotation:annotation];
+
   void (^completePendingOpenURLBlock)(void) = ^{
     self->_pendingURLOpen = nil;
     [pendingURLOpen application:application
@@ -119,15 +149,28 @@ typedef void (^FBSDKAuthenticationCompletionHandler)(NSURL *_Nullable callbackUR
       if (_authenticationSession != nil) {
         [_authenticationSession cancel];
         _authenticationSession = nil;
+
+        // This check is needed in case another sdk / message / ad etc... tries to open the app
+        // during the login flow.
+        // This dismisses the authentication browser without triggering any login callbacks.
+        // Hence we need to explicitly call the authentication session's completion handler.
+        if (!canOpenURL) {
+          NSString *errorMessage = [[NSString alloc]
+                                    initWithFormat:@"Login attempt cancelled by alternate call to openURL from: %@",
+                                    url];
+          NSError *loginError = [[NSError alloc]
+                                 initWithDomain:FBSDKErrorDomain
+                                 code:FBSDKErrorBridgeAPIInterruption
+                                 userInfo:@{FBSDKErrorLocalizedDescriptionKey: errorMessage}];
+          _authenticationSessionCompletionHandler(url, loginError);
+          _authenticationSessionCompletionHandler = nil;
+        }
       }
     }
     completePendingOpenURLBlock();
   }
 
-  if ([pendingURLOpen canOpenURL:url
-                  forApplication:application
-               sourceApplication:sourceApplication
-                      annotation:annotation]) {
+  if (canOpenURL) {
     return YES;
   }
 
@@ -337,8 +380,9 @@ didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> *
   _authenticationSessionCompletionHandler = ^ (NSURL *aURL, NSError *error) {
     FBSDKBridgeAPI *strongSelf = weakSelf;
     strongSelf->_isRequestingSFAuthenticationSession = NO;
-    handler(error == nil, error);
-    if (error == nil) {
+    BOOL didSucceed = (error == nil && aURL != nil);
+    handler(didSucceed, error);
+    if (didSucceed) {
       [strongSelf application:[UIApplication sharedApplication] openURL:aURL sourceApplication:@"com.apple" annotation:nil];
     }
     strongSelf->_authenticationSession = nil;
@@ -433,3 +477,5 @@ didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> *
 }
 
 @end
+
+#endif

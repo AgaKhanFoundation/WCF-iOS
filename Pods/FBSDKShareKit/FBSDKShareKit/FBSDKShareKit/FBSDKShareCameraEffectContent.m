@@ -16,11 +16,15 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#import "TargetConditionals.h"
+
+#if !TARGET_OS_TV
+
 #import "FBSDKShareCameraEffectContent.h"
 
 #import "FBSDKCameraEffectArguments+Internal.h"
 #import "FBSDKCameraEffectTextures+Internal.h"
-#ifdef COCOAPODS
+#ifdef FBSDKCOCOAPODS
 #import <FBSDKCoreKit/FBSDKCoreKit+Internal.h>
 #else
 #import "FBSDKCoreKit+Internal.h"
@@ -98,7 +102,11 @@ static NSString *const kFBSDKShareCameraEffectContentUUIDKey = @"uuid";
         texturesDataDict[key] = imageData;
       }
     }];
-    effectTexturesData = [NSKeyedArchiver archivedDataWithRootObject:texturesDataDict];
+    #if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_11_0
+      effectTexturesData = [NSKeyedArchiver archivedDataWithRootObject:texturesDataDict requiringSecureCoding:YES error:NULL];
+    #else
+      effectTexturesData = [NSKeyedArchiver archivedDataWithRootObject:texturesDataDict];
+    #endif
   }
   [FBSDKBasicUtility dictionary:updatedParameters
                       setObject:effectTexturesData
@@ -241,3 +249,5 @@ static NSString *const kFBSDKShareCameraEffectContentUUIDKey = @"uuid";
 }
 
 @end
+
+#endif

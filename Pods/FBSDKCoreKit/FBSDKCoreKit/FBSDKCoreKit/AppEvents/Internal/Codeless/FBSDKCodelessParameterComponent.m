@@ -16,10 +16,14 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#import "TargetConditionals.h"
+
+#if !TARGET_OS_TV
+
 #import "FBSDKCodelessParameterComponent.h"
 
-#import "FBSDKCodelessMacros.h"
 #import "FBSDKCodelessPathComponent.h"
+#import "FBSDKViewHierarchyMacros.h"
 
 @implementation FBSDKCodelessParameterComponent
 
@@ -41,4 +45,34 @@
   return self;
 }
 
+- (BOOL)isEqualToParameter:(FBSDKCodelessParameterComponent *)parameter
+{
+  if (_path.count != parameter.path.count) {
+    return NO;
+  }
+
+  NSString *current = [NSString stringWithFormat:@"%@|%@|%@",
+                       _name ?: @"",
+                       _value ?: @"",
+                       _pathType ?: @""];
+  NSString *compared = [NSString stringWithFormat:@"%@|%@|%@",
+                        parameter.name ?: @"",
+                        parameter.value ?: @"",
+                        parameter.pathType ?: @""];
+
+  if (![current isEqualToString:compared]) {
+    return NO;
+  }
+
+  for (int i = 0; i < _path.count; i++) {
+    if (![_path[i] isEqualToPath:parameter.path[i]]) {
+      return NO;
+    }
+  }
+
+  return YES;
+}
+
 @end
+
+#endif

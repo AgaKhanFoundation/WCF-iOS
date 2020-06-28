@@ -16,10 +16,15 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#import "TargetConditionals.h"
+
+#if !TARGET_OS_TV
+
 #import "FBSDKAppLinkReturnToRefererView.h"
 
 #import "FBSDKAppLink.h"
 #import "FBSDKAppLinkTarget.h"
+#import "FBSDKInternalUtility.h"
 
 static const CGFloat FBSDKMarginX = 8.5f;
 static const CGFloat FBSDKMarginY = 8.5f;
@@ -156,7 +161,7 @@ static const CGFloat FBSDKCloseButtonHeight = 12.0;
             break;
     }
     if (include && !application.statusBarHidden) {
-        BOOL landscape = UIInterfaceOrientationIsLandscape(application.statusBarOrientation);
+        BOOL landscape = UIInterfaceOrientationIsLandscape(FBSDKInternalUtility.statusBarOrientation);
         CGRect statusBarFrame = application.statusBarFrame;
         return landscape ? CGRectGetWidth(statusBarFrame) : CGRectGetHeight(statusBarFrame);
     }
@@ -264,3 +269,5 @@ static const CGFloat FBSDKCloseButtonHeight = 12.0;
 }
 
 @end
+
+#endif
