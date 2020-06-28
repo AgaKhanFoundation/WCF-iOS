@@ -27,7 +27,6 @@
 		260BF5B923250414005F0882 /* SettingsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5B823250414005F0882 /* SettingsTitleCell.swift */; };
 		2611A4EF2335F8350030E77E /* Steps4ImpactSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A4EE2335F8350030E77E /* Steps4ImpactSpec.swift */; };
 		2611A5052335FF290030E77E /* AKFCausesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A5012335FF290030E77E /* AKFCausesService.swift */; };
-		2611A5062335FF290030E77E /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A5022335FF290030E77E /* Facebook.swift */; };
 		2611A5072335FF290030E77E /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A5032335FF290030E77E /* JSON.swift */; };
 		2611A5082335FF290030E77E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A5042335FF290030E77E /* Service.swift */; };
 		2611A50D2335FFDC0030E77E /* SponsorshipDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611A50C2335FFDC0030E77E /* SponsorshipDataSource.swift */; };
@@ -53,7 +52,6 @@
 		264AE87523F3C20900377D67 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE87423F3C20900377D67 /* UIButton.swift */; };
 		264AE87723F3EACE00377D67 /* VerticalProgressLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE87623F3EACE00377D67 /* VerticalProgressLineView.swift */; };
 		26570DD9234AE83E0016F189 /* TextAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26570DD8234AE83E0016F189 /* TextAlertViewController.swift */; };
-		26570DDB234B01010016F189 /* FacebookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26570DDA234B01010016F189 /* FacebookService.swift */; };
 		26570DDD234B0B930016F189 /* RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26570DDC234B0B930016F189 /* RxSwift.swift */; };
 		265DE5642332BDAA009DDA5A /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5632332BDAA009DDA5A /* WebImageView.swift */; };
 		265DE5662332D663009DDA5A /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DE5652332D663009DDA5A /* BadgesViewController.swift */; };
@@ -221,7 +219,6 @@
 		2611A4EE2335F8350030E77E /* Steps4ImpactSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Steps4ImpactSpec.swift; sourceTree = "<group>"; };
 		2611A4F02335F8350030E77E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2611A5012335FF290030E77E /* AKFCausesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKFCausesService.swift; sourceTree = "<group>"; };
-		2611A5022335FF290030E77E /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
 		2611A5032335FF290030E77E /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		2611A5042335FF290030E77E /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		2611A50C2335FFDC0030E77E /* SponsorshipDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SponsorshipDataSource.swift; sourceTree = "<group>"; };
@@ -249,7 +246,6 @@
 		264AE87423F3C20900377D67 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		264AE87623F3EACE00377D67 /* VerticalProgressLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalProgressLineView.swift; sourceTree = "<group>"; };
 		26570DD8234AE83E0016F189 /* TextAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAlertViewController.swift; sourceTree = "<group>"; };
-		26570DDA234B01010016F189 /* FacebookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookService.swift; sourceTree = "<group>"; };
 		26570DDC234B0B930016F189 /* RxSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwift.swift; sourceTree = "<group>"; };
 		265DE5632332BDAA009DDA5A /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
 		265DE5652332D663009DDA5A /* BadgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
@@ -509,8 +505,6 @@
 			isa = PBXGroup;
 			children = (
 				2611A5012335FF290030E77E /* AKFCausesService.swift */,
-				2611A5022335FF290030E77E /* Facebook.swift */,
-				26570DDA234B01010016F189 /* FacebookService.swift */,
 				2611A5032335FF290030E77E /* JSON.swift */,
 				2611A5042335FF290030E77E /* Service.swift */,
 				A58E21D623DE85CF00929E86 /* AZSClient.swift */,
@@ -1279,7 +1273,6 @@
 				269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */,
 				266DA27B2339E54000035CC5 /* ChallengeTeamProgressCell.swift in Sources */,
 				264AE87323F3B85900377D67 /* ActivityGraphView.swift in Sources */,
-				26570DDB234B01010016F189 /* FacebookService.swift in Sources */,
 				C92244D5235D4B670098A333 /* UserDefaults.swift in Sources */,
 				265FE47A2349A0A400215391 /* Cache.swift in Sources */,
 				269E350E1E76664F000726C2 /* Async.swift in Sources */,
@@ -1303,7 +1296,6 @@
 				2611A5052335FF290030E77E /* AKFCausesService.swift in Sources */,
 				2635EB8B2338AAD400BC50E9 /* EmptyLeaderboardCell.swift in Sources */,
 				2676B3CC2331F3D400CB0A31 /* TeamSettingsMemberCell.swift in Sources */,
-				2611A5062335FF290030E77E /* Facebook.swift in Sources */,
 				269E35291E767AE1000726C2 /* Collection.swift in Sources */,
 				260BF5B7232502A9005F0882 /* UIStackView.swift in Sources */,
 				F078D9DA2334453F00EF0BAD /* ConnectedActivityCardCell.swift in Sources */,
