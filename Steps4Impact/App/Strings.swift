@@ -47,6 +47,7 @@ struct Strings {
   }
 
   struct Login {
+    static let title = NSLocalizedString("Login.title", comment: "")
     static let conditions = NSLocalizedString("Login.conditions", comment: "")
   }
 
