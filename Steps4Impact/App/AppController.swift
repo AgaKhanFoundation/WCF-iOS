@@ -69,8 +69,7 @@ class AppController {
 
     // Select Default View
     // TODO(samisuteria) add check for akf profile?
-    let currentUser = Auth.auth().currentUser
-    if currentUser == nil {
+    if User.id.isEmpty {
       transition(to: .login)
     } else if !UserInfo.onboardingComplete {
       transition(to: .onboarding)
