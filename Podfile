@@ -9,6 +9,7 @@ target 'Steps4Impact' do
   pod 'FBSDKCoreKit', '~> 7.0.0'
   pod 'FBSDKLoginKit', '~> 7.0.0'
   pod 'FBSDKShareKit', '~> 7.0.0'
+  pod 'Firebase/Analytics', '~> 6.26.0'
   pod 'Firebase/Auth', "~> 6.26.0"
   pod 'Firebase/Messaging', '~> 6.26.0'
   pod 'OAuthSwift', '~> 2.0.0'
