@@ -27,8 +27,8 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-import FacebookCore
-import FacebookShare
+import FBSDKCoreKit
+import FBSDKShareKit
 
 struct Friend {
   let fbid: String

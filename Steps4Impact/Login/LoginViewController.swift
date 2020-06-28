@@ -28,8 +28,8 @@
  **/
 
 import SnapKit
-import FacebookLogin
-import FacebookCore
+import FBSDKLoginKit
+import FBSDKCoreKit
 import SafariServices
 import NotificationCenter
 

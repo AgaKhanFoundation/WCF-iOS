@@ -28,7 +28,7 @@
  **/
 
 import UIKit
-import FacebookLogin
+import FBSDKLoginKit
 import NotificationCenter
 
 class SettingsViewController: TableViewController {

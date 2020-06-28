@@ -28,8 +28,8 @@
  **/
 
 import UIKit
-import FacebookCore
-import FacebookLogin
+import FBSDKCoreKit
+import FBSDKLoginKit
 import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
