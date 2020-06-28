@@ -87,7 +87,7 @@ extension TeamSettingsViewController: SettingsActionCellDelegate {
         shareButton: button,
         string: Strings.Share.item(teamName: teamName ?? ""))
     case .editname:
-      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+      AKFCausesService.getParticipant(fbid: User.id) { (result) in
         guard
           let participant = Participant(json: result.response),
           let team = participant.team,
@@ -109,7 +109,7 @@ extension TeamSettingsViewController: SettingsActionCellDelegate {
         AppController.shared.present(alert: alert, in: self, completion: nil)
       }
     case .delete:
-      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+      AKFCausesService.getParticipant(fbid: User.id) { (result) in
         guard let participant = Participant(json: result.response) else { return }
         guard let teamId = participant.team?.id else { return }
 
@@ -171,7 +171,7 @@ extension TeamSettingsViewController: TeamSettingsMemberCellDelegate {
 extension TeamSettingsViewController: TeamSettingsDataSourceDelegate {
   func updated(team: Team?) {
     onMain {
-      if team?.creator == Facebook.id && team?.members.count ?? 0 > 1 {
+      if team?.creator == User.id && team?.members.count ?? 0 > 1 {
         self.navigationItem.rightBarButtonItem =
           UIBarButtonItem(title: Strings.TeamSettings.edit, style: .plain,
                           target: self, action: #selector(self.editTapped))

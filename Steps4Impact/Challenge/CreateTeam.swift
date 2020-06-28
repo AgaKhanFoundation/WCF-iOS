@@ -157,7 +157,7 @@ class CreateTeamViewController: ViewController, UINavigationControllerDelegate, 
     }
 
     onBackground {
-      AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+      AKFCausesService.getParticipant(fbid: User.id) { (result) in
         guard let participant = Participant(json: result.response),
           let eventId = participant.currentEvent?.id
           else { return }
@@ -244,7 +244,7 @@ class CreateTeamViewController: ViewController, UINavigationControllerDelegate, 
         print(self.teamName, " uploaded!")
 
         AKFCausesService.createTeam(name: self.teamName.trimmingCharacters(in: .whitespaces), imageName: self.teamName,
-                                    lead: Facebook.id) { [weak self] (result) in
+                                    lead: User.id) { [weak self] (result) in
                                       onMain {
                                         guard let `self` = self else { return }
                                         self.activityView.stopAnimating()
@@ -256,7 +256,7 @@ class CreateTeamViewController: ViewController, UINavigationControllerDelegate, 
                                           return
                                         }
 
-                                        AKFCausesService.joinTeam(fbid: Facebook.id, team: teamID) { [weak self] (result) in
+                                        AKFCausesService.joinTeam(fbid: User.id, team: teamID) { [weak self] (result) in
                                           onMain {
                                             guard let `self` = self else { return }
                                             switch result {

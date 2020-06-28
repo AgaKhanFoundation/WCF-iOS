@@ -32,7 +32,6 @@ import RxSwift
 
 class DashboardDataSource: TableViewDataSource {
   var cache = Cache.shared
-  var facebookService = FacebookService.shared
   var disposeBag = DisposeBag()
   var cells = [[CellContext]]()
   var completion: (() -> Void)?
@@ -60,8 +59,8 @@ class DashboardDataSource: TableViewDataSource {
 
   init() {
     let update = Observable.combineLatest(
-      cache.facebookNamesRelay,
-      cache.facebookProfileImageURLsRelay,
+      cache.socialDisplayNamesRelay,
+      cache.socialProfileImageURLsRelay,
       cache.participantRelay)
 
     update.subscribeOnNext { [weak self] (names, imageURLs, participant) in
@@ -94,13 +93,12 @@ class DashboardDataSource: TableViewDataSource {
     configure()
     completion()
 
-    facebookService.getRealName(fbid: "me")
-    facebookService.getProfileImageURL(fbid: "me")
-    AKFCausesService.getParticipant(fbid: facebookService.id) { [weak self] (result) in
+    cache.fetchSocialInfo(fbid: User.id)
+    AKFCausesService.getParticipant(fbid: User.id) { [weak self] (result) in
       self?.cache.participantRelay.accept(Participant(json: result.response))
     }
     let group: DispatchGroup = DispatchGroup()
-    AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
+    AKFCausesService.getParticipant(fbid: User.id) { [weak self] (result) in
       if var participant = Participant(json: result.response), let team = participant.team {
         self?.event = participant.currentEvent
 

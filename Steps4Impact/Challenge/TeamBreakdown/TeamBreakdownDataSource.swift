@@ -11,7 +11,6 @@ import RxSwift
 
 class TeamBreakdownDataSource: TableViewDataSource {
   var cache = Cache.shared
-  var facebookService = FacebookService.shared
   var disposeBag = DisposeBag()
   var cells: [[CellContext]] = []
   var completion: (() -> Void)?
@@ -34,8 +33,8 @@ class TeamBreakdownDataSource: TableViewDataSource {
 
   init() {
     let update = Observable.combineLatest(
-      cache.facebookNamesRelay,
-      cache.facebookProfileImageURLsRelay,
+      cache.socialDisplayNamesRelay,
+      cache.socialProfileImageURLsRelay,
       cache.participantRelay,
       cache.personalProgressRelay,
       cache.personalCommitmentRelay
@@ -44,7 +43,7 @@ class TeamBreakdownDataSource: TableViewDataSource {
     update.subscribeOnNext { [weak self] (names, imageURLs, participant,
       personalProgresses, personalCommitments) in
       guard let participant = participant else { return }
-      self?.isLead = participant.team?.creator == self?.facebookService.id
+      self?.isLead = participant.team?.creator == User.id
       self?.teamName = participant.team?.name ?? " "
 
       let members = participant.team?.members.map {
@@ -95,15 +94,14 @@ class TeamBreakdownDataSource: TableViewDataSource {
     configure()
     completion()
 
-    AKFCausesService.getParticipant(fbid: facebookService.id) { [weak self] (result) in
+    AKFCausesService.getParticipant(fbid: User.id) { [weak self] (result) in
       let participant = Participant(json: result.response)
 
       self?.cache.participantRelay.accept(participant)
 
       if let team = participant?.team {
         for teamMember in team.members {
-          self?.facebookService.getRealName(fbid: teamMember.fbid)
-          self?.facebookService.getProfileImageURL(fbid: teamMember.fbid)
+          self?.cache.fetchSocialInfo(fbid: teamMember.fbid)
           AKFCausesService.getParticipant(fbid: teamMember.fbid) { (result) in
             if let participant = Participant(json: result.response) {
               let personalTotal = participant.records?.reduce(0) { $0 + ($1.distance ?? 0) }

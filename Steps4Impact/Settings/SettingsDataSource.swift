@@ -32,7 +32,6 @@ import RxSwift
 
 class SettingsDataSource: TableViewDataSource {
   var cache = Cache.shared
-  var facebookService = FacebookService.shared
   var disposeBag = DisposeBag()
   var cells: [[CellContext]] = []
   var completion: (() -> Void)?
@@ -57,8 +56,8 @@ class SettingsDataSource: TableViewDataSource {
 
   init() {
     let update = Observable.combineLatest(
-      cache.facebookNamesRelay,
-      cache.facebookProfileImageURLsRelay,
+      cache.socialDisplayNamesRelay,
+      cache.socialProfileImageURLsRelay,
       cache.participantRelay
     )
 
@@ -81,10 +80,9 @@ class SettingsDataSource: TableViewDataSource {
     self.completion = completion
     configure()
     completion()
-
-    facebookService.getRealName(fbid: "me")
-    facebookService.getProfileImageURL(fbid: "me")
-    AKFCausesService.getParticipant(fbid: facebookService.id) { [weak self] (result) in
+    
+    cache.fetchSocialInfo(fbid: User.id)
+    AKFCausesService.getParticipant(fbid: User.id) { [weak self] (result) in
       self?.cache.participantRelay.accept(Participant(json: result.response))
     }
   }

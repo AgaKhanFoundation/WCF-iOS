@@ -92,7 +92,7 @@ class SettingsViewController: TableViewController {
     alert.body = Strings.TeamSettings.leaveBody
     alert.add(AlertAction(title: "Cancel", style: .secondary))
     alert.add(AlertAction(title: "Leave", style: .destructive, shouldDismiss: false) { [weak self] in
-      AKFCausesService.leaveTeam(fbid: Facebook.id) { (_) in
+      AKFCausesService.leaveTeam(fbid: User.id) { (_) in
         NotificationCenter.default.post(name: .teamChanged, object: nil)
         onMain {
           alert.dismiss(animated: true, completion: nil)
@@ -109,7 +109,7 @@ class SettingsViewController: TableViewController {
     alert.body = Strings.Settings.deleteBody
     alert.add(AlertAction.cancel())
     alert.add(AlertAction(title: "Delete", style: .destructive, shouldDismiss: false) { [weak self] in
-      AKFCausesService.deleteParticipant(fbid: Facebook.id) { (_) in
+      AKFCausesService.deleteParticipant(fbid: User.id) { (_) in
         onMain {
           alert.dismiss(animated: true, completion: nil)
         }
@@ -120,7 +120,7 @@ class SettingsViewController: TableViewController {
   }
 
   private func updatePersonalMileCommitment() {
-    AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+    AKFCausesService.getParticipant(fbid: User.id) { (result) in
       guard let participant = Participant(json: result.response) else { return }
       if let _ = participant.currentEvent {
         let alert = TextAlertViewController()
