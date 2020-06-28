@@ -1,5 +1,5 @@
 /**
-* Copyright © 2019 Aga Khan Foundation
+* Copyright © 2020 Aga Khan Foundation
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without
@@ -138,15 +138,15 @@ extension LoginV2ViewController {
   
   private func addParticipantToDefaultEventIfNeeded(fbid: String) {
     AKFCausesService.getParticipant(fbid: fbid) { (result) in
-      if let participant = Participant(json: result.response), participant.currentEvent == nil {
-        AKFCausesService.getEvents { (result) in
-          let events = result.response?.arrayValue?.compactMap { Event(json: $0) }
-
-          if let event = events?.first, let eventID = event.id {
-            AKFCausesService.joinEvent(fbid: fbid, eventID: eventID, steps: event.defaultStepCount) { _ in
-              NotificationCenter.default.post(name: .eventChanged, object: nil)
-            }
-          }
+      guard let participant = Participant(json: result.response) else { return }
+      guard participant.currentEvent == nil else { return }
+      
+      AKFCausesService.getEvents { (result) in
+        let events = result.response?.arrayValue?.compactMap { Event(json: $0) }
+        guard let event = events?.first, let eventID = event.id else { return }
+        
+        AKFCausesService.joinEvent(fbid: fbid, eventID: eventID, steps: event.defaultStepCount) { _ in
+          NotificationCenter.default.post(name: .eventChanged, object: nil)
         }
       }
     }
@@ -166,25 +166,35 @@ extension LoginV2ViewController {
 
 // Social Logins
 extension LoginV2ViewController {
+  private func handleFirebaseErrors(error: Error?) {
+    guard let error = error else {
+      showFirebaseLoginErrorAlert(body: "Unknown Error")
+      return
+    }
+    
+    // There could be multiple errors why Firebase doesn't link the user's social cred account
+    // List is here: https://firebase.google.com/docs/reference/ios/firebaseauth/api/reference/Enums/FIRAuthErrorCode
+    // Common one Firebase discusses is accounts with MFA turned on
+    // TODO(samisuteria): Handle MFA related errors
+    showFirebaseLoginErrorAlert(body: error.localizedDescription)
+  }
+  
   private func linkFirebase(_ credential: AuthCredential) {
     Auth.auth().signIn(with: credential) { [weak self] (result: AuthDataResult?, error: Error?) in
       guard let `self` = self else { return }
       
-      guard let error = error else {
-        if let result = result {
-          // User is signed in
-          self.linkAKFBackend(fbid: result.user.uid)
-        } else {
-          // This shouldn't happen and we don't have a way to recover except trying again.
-          self.showFirebaseLoginErrorAlert(body: "Unknown Error")
-        }
-        
+      guard error == nil else {
+        self.handleFirebaseErrors(error: error)
         return
       }
       
-      // Don't handle errors
-      // TODO(samisuteria): Handle MFA related errors
-      self.showFirebaseLoginErrorAlert(body: error.localizedDescription)
+      guard let result = result else {
+        // This shouldn't happen if error == nil and we don't have a way to recover except trying again.
+        self.showFirebaseLoginErrorAlert(body: "Unknown Error")
+        return
+      }
+      
+      self.linkAKFBackend(fbid: result.user.uid)
     }
   }
   
@@ -197,7 +207,6 @@ extension LoginV2ViewController {
       case .success(granted: _, declined: _, token: let accessToken):
         let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
         self.linkFirebase(credential)
-        print(credential)
       case .failed(let error):
         let alert = AlertViewController()
         alert.title = "Error"
