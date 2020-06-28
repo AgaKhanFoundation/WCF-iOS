@@ -39,6 +39,11 @@ enum Assets: String {
   case chevronRight = "chevron_right"
   case chevronLeft = "chevron_left"
 
+  // Login
+  case squareApple = "login-square-apple"
+  case squareFacebook = "login-square-facebook"
+  case squareGoogle = "login-square-google"
+  
   // Challenge
   case challengeJourney = "challenge-journey"
   case inviteFriends = "invite-friends"
