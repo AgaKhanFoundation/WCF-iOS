@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "login-square-apple.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
