@@ -181,12 +181,7 @@
 		F0DE162C221F8DD900FF17C9 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DE162B221F8DD900FF17C9 /* Result.swift */; };
 		F0E6878F22251B7800454340 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6878E22251B7800454340 /* LeaderboardViewController.swift */; };
 		F0E6879222251C0600454340 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6879122251C0600454340 /* Notifications.swift */; };
-		F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F8EDCD220F865200321A6D /* Dashboard.swift */; };
 		F0F8EDD12210C65C00321A6D /* CardViewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F8EDD02210C65C00321A6D /* CardViewSupport.swift */; };
-		F0F8EDD32210C68E00321A6D /* ProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F8EDD22210C68E00321A6D /* ProfileCard.swift */; };
-		F0F8EDD52210C71600321A6D /* ActivityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F8EDD42210C71600321A6D /* ActivityCard.swift */; };
-		F0F8EDD72210C7C700321A6D /* FundraisingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F8EDD62210C7C700321A6D /* FundraisingCard.swift */; };
-		F0F8EDD92210C7FA00321A6D /* ChallengeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F8EDD82210C7FA00321A6D /* ChallengeCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -387,12 +382,7 @@
 		F0DE162B221F8DD900FF17C9 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		F0E6878E22251B7800454340 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		F0E6879122251C0600454340 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
-		F0F8EDCD220F865200321A6D /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		F0F8EDD02210C65C00321A6D /* CardViewSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewSupport.swift; sourceTree = "<group>"; };
-		F0F8EDD22210C68E00321A6D /* ProfileCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCard.swift; sourceTree = "<group>"; };
-		F0F8EDD42210C71600321A6D /* ActivityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCard.swift; sourceTree = "<group>"; };
-		F0F8EDD62210C7C700321A6D /* FundraisingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundraisingCard.swift; sourceTree = "<group>"; };
-		F0F8EDD82210C7FA00321A6D /* ChallengeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -711,7 +701,6 @@
 				2611A50E233601DC0030E77E /* App */,
 				F0D16A3A2218AD530081440C /* Challenge */,
 				26FE2443232228D300E01B9B /* CommonUI */,
-				F0F8EDCF2210C62700321A6D /* Dashboard */,
 				260BF5982324C939005F0882 /* DashboardV2 */,
 				F0E6878C2225154700454340 /* Integration */,
 				F0E6878D22251B4700454340 /* Leaderboard */,
@@ -938,18 +927,6 @@
 				F0E6879122251C0600454340 /* Notifications.swift */,
 			);
 			path = Notifications;
-			sourceTree = "<group>";
-		};
-		F0F8EDCF2210C62700321A6D /* Dashboard */ = {
-			isa = PBXGroup;
-			children = (
-				F0F8EDD42210C71600321A6D /* ActivityCard.swift */,
-				F0F8EDD82210C7FA00321A6D /* ChallengeCard.swift */,
-				F0F8EDCD220F865200321A6D /* Dashboard.swift */,
-				F0F8EDD62210C7C700321A6D /* FundraisingCard.swift */,
-				F0F8EDD22210C68E00321A6D /* ProfileCard.swift */,
-			);
-			path = Dashboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1270,7 +1247,6 @@
 				A5D2E7CB23D24A7C00C3011D /* Challenge.swift in Sources */,
 				269F95292378FB0E0089CDD1 /* CircularProgressView.swift in Sources */,
 				26A475A32353E63400059764 /* AppInfoCell.swift in Sources */,
-				F0F8EDCE220F865200321A6D /* Dashboard.swift in Sources */,
 				F00403191EC3FB7D005E6F10 /* (null) in Sources */,
 				F0A992D61EABF037001621A6 /* Formatters.swift in Sources */,
 				2622C09023249A4B0092B145 /* UIRefreshControl.swift in Sources */,
@@ -1284,7 +1260,6 @@
 				26570DDD234B0B930016F189 /* RxSwift.swift in Sources */,
 				A594DC8D238B6DBA003B5EF7 /* Leaderboard.swift in Sources */,
 				C9BAEED0235D5C4E00A8D7AF /* FitbitStep.swift in Sources */,
-				F0F8EDD52210C71600321A6D /* ActivityCard.swift in Sources */,
 				A5D2E7C723D1A30D00C3011D /* MilestonesDetails.swift in Sources */,
 				2622C09423249D680092B145 /* DashboardDataSource.swift in Sources */,
 				267FAE2E2325CF590014222D /* SettingsActionCell.swift in Sources */,
@@ -1338,7 +1313,6 @@
 				260BF5B923250414005F0882 /* SettingsTitleCell.swift in Sources */,
 				C92244C9234AD7840098A333 /* FitbitAuthorizeViewController.swift in Sources */,
 				26619C3123D3DB3F00ABC93F /* CellImageButtonView.swift in Sources */,
-				F0F8EDD32210C68E00321A6D /* ProfileCard.swift in Sources */,
 				260BF5B02324FD31005F0882 /* SettingsViewController.swift in Sources */,
 				F0A0A5FE2210EC3600F20315 /* Navigation.swift in Sources */,
 				265DE5682332D66E009DDA5A /* BadgesDataSource.swift in Sources */,
@@ -1364,7 +1338,6 @@
 				269E35181E7669FB000726C2 /* Strings.swift in Sources */,
 				F078D9D52333EC3000EF0BAD /* AKFLogin.swift in Sources */,
 				2668B06B2361936300309B9D /* AppSecrets.generated.swift in Sources */,
-				F0F8EDD92210C7FA00321A6D /* ChallengeCard.swift in Sources */,
 				26A9829B23CABAE800A5BD35 /* Milestone.swift in Sources */,
 				2676B3CA2331F18B00CB0A31 /* TeamSettingsHeaderCell.swift in Sources */,
 				2611A5082335FF290030E77E /* Service.swift in Sources */,
@@ -1385,7 +1358,6 @@
 				2622C0962324A0490092B145 /* TableViewCell.swift in Sources */,
 				F017B6972276D0C60023E84B /* OnboardingDashboard.swift in Sources */,
 				26AA2CEF245E5434000638D4 /* NotificationCell.swift in Sources */,
-				F0F8EDD72210C7C700321A6D /* FundraisingCard.swift in Sources */,
 				269F95272377994B0089CDD1 /* ActivityCardCell.swift in Sources */,
 				267FAE2A2325C9210014222D /* SettingsSwitchCell.swift in Sources */,
 				A5123F1F2381B51E00C3E9DE /* JourneyViewController.swift in Sources */,
