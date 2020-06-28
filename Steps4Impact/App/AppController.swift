@@ -30,6 +30,7 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
+import Firebase
 import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
@@ -57,6 +58,9 @@ class AppController {
 
     // Setup Telemetry
     AppEvents.activateApp()
+    
+    // Setup Firebase
+    
 
     // Setup Window
     window?.frame = UIScreen.main.bounds
