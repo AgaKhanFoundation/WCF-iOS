@@ -193,14 +193,22 @@ class ChallengeDataSource: TableViewDataSource {
           }
           group.leave()
         }
-
+        
+        // TODO(samisuteria): update this to relay/cache system
         for member in team.members {
           group.enter()
-          Facebook.profileImage(for: member.fbid) { (url) in
-            self?.teamImages.append(url)
+          AKFCausesService.getParticipantSocial(fbid: member.fbid) { [weak self] (result) in
+            if
+              let response = result.response?.dictionaryValue,
+              let photoURLRaw = response["photoURL"]?.stringValue,
+              let photoURL = URL(string: photoURLRaw) {
+              self?.teamImages.append(photoURL)
+            }
+            
             group.leave()
           }
-
+          
+          // TODO(samisuteria): update this to relay/cache system
           group.enter()
           AKFCausesService.getParticipant(fbid: member.fbid) { (result) in
             if let participant = Participant(json: result.response) {
@@ -209,11 +217,16 @@ class ChallengeDataSource: TableViewDataSource {
             group.leave()
           }
         }
-
-        group.enter()
-        Facebook.getRealName(for: team.creator!) { (name) in // swiftlint:disable:this force_unwrapping
-          self?.teamCreator = name
-          group.leave()
+        
+        // TODO(samisuteria): update this to relay/cache system
+        if let creator = team.creator {
+          group.enter()
+          AKFCausesService.getParticipantSocial(fbid: creator) { (result) in
+            if let name = result.response?.dictionaryValue?["displayName"]?.stringValue {
+              self?.teamCreator = name
+            }
+            group.leave()
+          }
         }
       }
 
