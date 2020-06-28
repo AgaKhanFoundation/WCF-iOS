@@ -75,6 +75,7 @@
 		2676B3CC2331F3D400CB0A31 /* TeamSettingsMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3CB2331F3D400CB0A31 /* TeamSettingsMemberCell.swift */; };
 		267C145424A81EB600A36C62 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 267C145324A81EB600A36C62 /* GoogleService-Info.plist */; };
 		267C145724A8251C00A36C62 /* LoginV2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267C145624A8251C00A36C62 /* LoginV2ViewController.swift */; };
+		267C145B24A83FD900A36C62 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267C145A24A83FD900A36C62 /* User.swift */; };
 		267FAE282325C1660014222D /* SettingsDisclosureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267FAE272325C1660014222D /* SettingsDisclosureCell.swift */; };
 		267FAE2A2325C9210014222D /* SettingsSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267FAE292325C9210014222D /* SettingsSwitchCell.swift */; };
 		267FAE2E2325CF590014222D /* SettingsActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267FAE2D2325CF590014222D /* SettingsActionCell.swift */; };
@@ -270,6 +271,7 @@
 		2676B3CB2331F3D400CB0A31 /* TeamSettingsMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsMemberCell.swift; sourceTree = "<group>"; };
 		267C145324A81EB600A36C62 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		267C145624A8251C00A36C62 /* LoginV2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginV2ViewController.swift; sourceTree = "<group>"; };
+		267C145A24A83FD900A36C62 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		267FAE272325C1660014222D /* SettingsDisclosureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDisclosureCell.swift; sourceTree = "<group>"; };
 		267FAE292325C9210014222D /* SettingsSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSwitchCell.swift; sourceTree = "<group>"; };
 		267FAE2D2325CF590014222D /* SettingsActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsActionCell.swift; sourceTree = "<group>"; };
@@ -564,6 +566,7 @@
 				269E35171E7669FB000726C2 /* Strings.swift */,
 				269E350B1E765F73000726C2 /* StyleGuide.swift */,
 				C92244C6234AD68A0098A333 /* OAuthFitbit.swift */,
+				267C145A24A83FD900A36C62 /* User.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -1268,6 +1271,7 @@
 				267C145724A8251C00A36C62 /* LoginV2ViewController.swift in Sources */,
 				F0320B6E222F678500EABAD6 /* SegmentedView.swift in Sources */,
 				26AA2CED245E5138000638D4 /* Notification.swift in Sources */,
+				267C145B24A83FD900A36C62 /* User.swift in Sources */,
 				A57A29FC236E408E002AA380 /* BadgesCollectionViewController.swift in Sources */,
 				2676B3C82331E1B400CB0A31 /* ActionButton.swift in Sources */,
 				F02F1734234B9B3E008A1CD6 /* Commitment.swift in Sources */,
