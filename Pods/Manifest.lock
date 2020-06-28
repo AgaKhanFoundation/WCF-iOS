@@ -22,14 +22,28 @@ PODS:
     - FBSDKShareKit/Share (= 7.0.0)
   - FBSDKShareKit/Share (7.0.0):
     - FBSDKCoreKit (~> 7.0.0)
+  - Firebase/Analytics (6.26.0):
+    - Firebase/Core
   - Firebase/Auth (6.26.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.5.3)
+  - Firebase/Core (6.26.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 6.6.0)
   - Firebase/CoreOnly (6.26.0):
     - FirebaseCore (= 6.7.2)
   - Firebase/Messaging (6.26.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 4.4.1)
+  - FirebaseAnalytics (6.6.0):
+    - FirebaseCore (~> 6.7)
+    - FirebaseInstallations (~> 1.3)
+    - GoogleAppMeasurement (= 6.6.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (~> 1.30905.0)
   - FirebaseAnalyticsInterop (1.5.0)
   - FirebaseAuth (6.5.3):
     - FirebaseAuthInterop (~> 1.0)
@@ -69,6 +83,12 @@ PODS:
     - GoogleUtilities/Reachability (~> 6.5)
     - GoogleUtilities/UserDefaults (~> 6.5)
     - Protobuf (>= 3.9.2, ~> 3.9)
+  - GoogleAppMeasurement (6.6.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (~> 1.30905.0)
   - GoogleDataTransport (6.2.1)
   - GoogleDataTransportCCTSupport (3.1.0):
     - GoogleDataTransport (~> 6.1)
@@ -81,6 +101,8 @@ PODS:
     - PromisesObjC (~> 1.2)
   - GoogleUtilities/Logger (6.6.0):
     - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (6.6.0):
+    - GoogleUtilities/Logger
   - GoogleUtilities/Network (6.6.0):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
@@ -124,6 +146,7 @@ DEPENDENCIES:
   - FBSDKCoreKit (~> 7.0.0)
   - FBSDKLoginKit (~> 7.0.0)
   - FBSDKShareKit (~> 7.0.0)
+  - Firebase/Analytics (~> 6.26.0)
   - Firebase/Auth (~> 6.26.0)
   - Firebase/Messaging (~> 6.26.0)
   - Nimble (~> 8.0.4)
@@ -146,6 +169,7 @@ SPEC REPOS:
     - FBSDKLoginKit
     - FBSDKShareKit
     - Firebase
+    - FirebaseAnalytics
     - FirebaseAnalyticsInterop
     - FirebaseAuth
     - FirebaseAuthInterop
@@ -155,6 +179,7 @@ SPEC REPOS:
     - FirebaseInstallations
     - FirebaseInstanceID
     - FirebaseMessaging
+    - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
@@ -182,6 +207,7 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 5d1e321dc45ab1fa09198b77fc17c32a06f008c0
   FBSDKShareKit: 7ec93bf49516a91513d64863f54121155bbd7f78
   Firebase: 7cf5f9c67f03cb3b606d1d6535286e1080e57eb6
+  FirebaseAnalytics: 96634d356482d4f3af8fe459a0ebf19a99c71b75
   FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
   FirebaseAuth: 7047aec89c0b17ecd924a550c853f0c27ac6015e
   FirebaseAuthInterop: a0f37ae05833af156e72028f648d313f7e7592e9
@@ -191,6 +217,7 @@ SPEC CHECKSUMS:
   FirebaseInstallations: 6f5f680e65dc374397a483c32d1799ba822a395b
   FirebaseInstanceID: cef67c4967c7cecb56ea65d8acbb4834825c587b
   FirebaseMessaging: 29543feb343b09546ab3aa04d008ee8595b43c44
+  GoogleAppMeasurement: 67458367830514fb20fd9e233496f1eef9d90185
   GoogleDataTransport: 9a8a16f79feffc7f42096743de2a7c4815e84020
   GoogleDataTransportCCTSupport: d70a561f7d236af529fee598835caad5e25f6d3d
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
@@ -211,6 +238,6 @@ SPEC CHECKSUMS:
   Sourcery: 3ed61be7c8a1218fce349266139379dba477efe0
   SwiftLint: 5553187048b900c91aa03552807681bb6b027846
 
-PODFILE CHECKSUM: e521d43257974750e2f2053b0ae0f9cd27f1bd57
+PODFILE CHECKSUM: b8673c9757fb69a834e03f69b5c5ae2a15b7af3d
 
 COCOAPODS: 1.9.3
