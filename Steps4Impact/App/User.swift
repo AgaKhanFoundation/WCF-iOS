@@ -32,4 +32,12 @@ import FirebaseAuth
 
 struct User {
   static var id: String { Auth.auth().currentUser?.uid ?? ""}
+  
+  static func signOut() throws {
+    try Auth.auth().signOut()
+  }
+  
+  static func delete() {
+    Auth.auth().currentUser?.delete(completion: nil)
+  }
 }
