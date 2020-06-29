@@ -12,6 +12,7 @@ target 'Steps4Impact' do
   pod 'Firebase/Analytics', '~> 6.26.0'
   pod 'Firebase/Auth', "~> 6.26.0"
   pod 'Firebase/Messaging', '~> 6.26.0'
+  pod 'GoogleSignIn', '~> 5.0.2'
   pod 'OAuthSwift', '~> 2.0.0'
 
   # App
