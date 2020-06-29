@@ -137,6 +137,7 @@ class AppController {
   }
 
   func logout() {
+    try? User.signOut()
     transition(to: .login)
   }
 

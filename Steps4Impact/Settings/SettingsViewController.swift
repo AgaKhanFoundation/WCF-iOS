@@ -28,7 +28,6 @@
  **/
 
 import UIKit
-import FBSDKLoginKit
 import NotificationCenter
 
 class SettingsViewController: TableViewController {
@@ -81,9 +80,7 @@ class SettingsViewController: TableViewController {
   }
 
   private func logout() {
-    let loginManager = LoginManager()
-    loginManager.logOut()
-    AppController.shared.transition(to: .login)
+    AppController.shared.logout()
   }
 
   private func leaveTeam() {
@@ -113,6 +110,7 @@ class SettingsViewController: TableViewController {
         onMain {
           alert.dismiss(animated: true, completion: nil)
         }
+        User.delete()
         self?.logout()
       }
     })
