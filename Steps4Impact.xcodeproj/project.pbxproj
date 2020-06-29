@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2606948B1E7DD1A200BFED76 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2606948A1E7DD1A200BFED76 /* Date.swift */; };
+		2608A49B24A9629A00E9C9C9 /* GoogleSignInDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A49A24A9629A00E9C9C9 /* GoogleSignInDelegate.swift */; };
 		260BF58C2324B17D005F0882 /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF58B2324B17D005F0882 /* CALayer.swift */; };
 		260BF5902324B28D005F0882 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF58F2324B28D005F0882 /* CardView.swift */; };
 		260BF5922324B2C6005F0882 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BF5912324B2C6005F0882 /* View.swift */; };
@@ -198,6 +199,7 @@
 		0C455ECDAFD1CB04BB087641 /* Pods-Steps4ImpactTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steps4ImpactTests.debug.xcconfig"; path = "Target Support Files/Pods-Steps4ImpactTests/Pods-Steps4ImpactTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1D1F104434F267C2C6769905 /* Pods-Steps4Impact.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Steps4Impact.release.xcconfig"; path = "Target Support Files/Pods-Steps4Impact/Pods-Steps4Impact.release.xcconfig"; sourceTree = "<group>"; };
 		2606948A1E7DD1A200BFED76 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		2608A49A24A9629A00E9C9C9 /* GoogleSignInDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInDelegate.swift; sourceTree = "<group>"; };
 		260BF58B2324B17D005F0882 /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
 		260BF58F2324B28D005F0882 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		260BF5912324B2C6005F0882 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
@@ -662,6 +664,7 @@
 			isa = PBXGroup;
 			children = (
 				267C145624A8251C00A36C62 /* LoginV2ViewController.swift */,
+				2608A49A24A9629A00E9C9C9 /* GoogleSignInDelegate.swift */,
 			);
 			path = LoginV2;
 			sourceTree = "<group>";
@@ -1387,6 +1390,7 @@
 				264AE86F23F3B84800377D67 /* ActivityDateView.swift in Sources */,
 				26388A6F23482D2300C83AC2 /* Assets.swift in Sources */,
 				263EF530232A106400A00414 /* TeamSettingsDataSource.swift in Sources */,
+				2608A49B24A9629A00E9C9C9 /* GoogleSignInDelegate.swift in Sources */,
 				265DE5642332BDAA009DDA5A /* WebImageView.swift in Sources */,
 				F017B691227699440023E84B /* Onboarding.swift in Sources */,
 				F0CF39881EE0EA98006A7462 /* Source.swift in Sources */,

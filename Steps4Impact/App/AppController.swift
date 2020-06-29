@@ -88,11 +88,15 @@ class AppController {
   }
 
   func can(_ app: UIApplication, open url: URL, with options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
-    return ApplicationDelegate.shared.application(
-      app,
-      open: url,
-      sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
-      annotation: options)
+    if GIDSignIn.sharedInstance()?.handle(url) == true {
+      return true
+    } else {
+      return ApplicationDelegate.shared.application(
+        app,
+        open: url,
+        sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+        annotation: options)
+    }
   }
 
   enum ViewController {
