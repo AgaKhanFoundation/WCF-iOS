@@ -32,6 +32,7 @@ import SnapKit
 import FBSDKLoginKit
 import FirebaseAuth
 import SafariServices
+import GoogleSignIn
 
 class LoginV2ViewController: ViewController {
   private let logoImageView = UIImageView(asset: .logo)
@@ -71,8 +72,22 @@ class LoginV2ViewController: ViewController {
                                   action: #selector(facebookLoginButtonTapped),
                                   for: .touchUpInside)
     
-    // TODO(samisuteria): Add google and apple in a future PR
-    googleLoginButton.isHidden = true
+    googleLoginButton.addTarget(self,
+                                action: #selector(googleLoginButtonTapped),
+                                for: .touchUpInside)
+    
+    // Setup Notifications for Google Sign In since it doesn't have a completion block.
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(handleGoogleSignInSuccess(notification:)),
+                                           name: .googleSignInSuccess,
+                                           object: nil)
+    
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(handleGoogleSignInFailure(notification:)),
+                                           name: .googleSigninFailure,
+                                           object: nil)
+    
+    // TODO(samisuteria): Add apple in a future PR
     appleLoginButton.isHidden = true
   }
   
@@ -101,6 +116,10 @@ class LoginV2ViewController: ViewController {
       $0.top.equalTo(view.safeAreaLayoutGuide).inset(Style.Padding.p32)
       $0.leading.trailing.bottom.equalToSuperview().inset(Style.Padding.p32)
     }
+  }
+  
+  deinit {
+    NotificationCenter.default.removeObserver(self)
   }
   
   // MARK: - Actions
@@ -199,6 +218,22 @@ extension LoginV2ViewController {
   }
   
   @objc
+  private func handleGoogleSignInSuccess(notification: Foundation.Notification) {
+    guard let credentials = notification.object as? AuthCredential else {
+      // This shouldn't happen at this point
+      handleFirebaseErrors(error: nil)
+      return
+    }
+    
+    linkFirebase(credentials)
+  }
+  
+  @objc
+  private func handleGoogleSignInFailure(notification: Foundation.Notification) {
+    handleFirebaseErrors(error: notification.object as? Error)
+  }
+  
+  @objc
   private func facebookLoginButtonTapped() {
     let loginManager = LoginManager()
     loginManager.logIn(permissions: [.publicProfile], viewController: self) { [weak self] (result) in
@@ -221,5 +256,11 @@ extension LoginV2ViewController {
         AppController.shared.present(alert: alert, in: self, completion: nil)
       }
     }
+  }
+  
+  @objc
+  private func googleLoginButtonTapped() {
+    GIDSignIn.sharedInstance()?.presentingViewController = self
+    GIDSignIn.sharedInstance()?.signIn()
   }
 }
