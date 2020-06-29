@@ -33,6 +33,7 @@ import FBSDKLoginKit
 import FirebaseAuth
 import SafariServices
 import GoogleSignIn
+import AuthenticationServices
 
 class LoginV2ViewController: ViewController {
   private let logoImageView = UIImageView(asset: .logo)
@@ -50,6 +51,8 @@ class LoginV2ViewController: ViewController {
   private let buttonStackView = UIStackView(axis: .horizontal,
                                             spacing: Style.Padding.p32,
                                             alignment: .center)
+  
+  private var currentAppleNonce: String?
   
   override func commonInit() {
     super.commonInit()
@@ -87,8 +90,10 @@ class LoginV2ViewController: ViewController {
                                            name: .googleSigninFailure,
                                            object: nil)
     
-    // TODO(samisuteria): Add apple in a future PR
-    appleLoginButton.isHidden = true
+    
+    appleLoginButton.addTarget(self,
+                               action: #selector(appleLoginButtonTapped),
+                               for: .touchUpInside)
   }
   
   override func configureView() {
@@ -262,5 +267,54 @@ extension LoginV2ViewController {
   private func googleLoginButtonTapped() {
     GIDSignIn.sharedInstance()?.presentingViewController = self
     GIDSignIn.sharedInstance()?.signIn()
+  }
+  
+  @objc
+  private func appleLoginButtonTapped() {
+    if #available(iOS 13, *) {
+      let appleHelper = AppleSignInHelper(delegate: self, presentationContextProvider: self)
+      appleHelper.startSignInWithAppleFlow()
+      currentAppleNonce = appleHelper.currentNonce
+    } else {
+      let alert = AlertViewController()
+      alert.title = "Error"
+      alert.body = "Apple Sign In is only available on iOS 13 and above."
+      alert.add(.okay())
+      AppController.shared.present(alert: alert, in: self, completion: nil)
+    }
+  }
+}
+
+@available(iOS 13.0, *)
+extension LoginV2ViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+  func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+    return AppController.shared.window ?? UIWindow()
+  }
+  
+  func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+    guard
+      let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
+      let nonce = currentAppleNonce,
+      let appleIDToken = appleIDCredential.identityToken,
+      let idTokenString = String(data: appleIDToken, encoding: .utf8)
+    else {
+      let alert = AlertViewController()
+      alert.title = "Error"
+      alert.body = "Unable to Sign in with Apple"
+      alert.add(.okay())
+      AppController.shared.present(alert: alert, in: self, completion: nil)
+      return
+    }
+    
+    let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
+    linkFirebase(credential)
+  }
+  
+  func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+    let alert = AlertViewController()
+    alert.title = "Error"
+    alert.body = "Unable to Sign in with Apple: \(error.localizedDescription)"
+    alert.add(.okay())
+    AppController.shared.present(alert: alert, in: self, completion: nil)
   }
 }
