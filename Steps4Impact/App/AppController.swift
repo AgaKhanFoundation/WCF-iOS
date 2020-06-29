@@ -35,12 +35,14 @@ import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
 import HealthKit
+import GoogleSignIn
 
 class AppController {
   static let shared = AppController()
 
   static let isTestRun = true
 
+  private let googleSignInDelegate = GoogleSignInDelegate()
   var window: UIWindow?
   var navigation: UITabBarController = Navigation()
 
@@ -61,6 +63,10 @@ class AppController {
     
     // Setup Firebase
     FirebaseApp.configure()
+    
+    // Setup Google Sign In
+    GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
+    GIDSignIn.sharedInstance()?.delegate = googleSignInDelegate
 
     // Setup Window
     window?.frame = UIScreen.main.bounds
