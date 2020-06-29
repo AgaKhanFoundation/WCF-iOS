@@ -103,6 +103,7 @@
 		26C5E3621E7DCAF70053DE3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C5E3611E7DCAF70053DE3E /* HealthKit.framework */; };
 		26E9C0FA233838A700800E8A /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9C0F9233838A700800E8A /* OnboardingPageViewController.swift */; };
 		26E9C0FC2338533E00800E8A /* UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9C0FB2338533E00800E8A /* UIPageViewController.swift */; };
+		26F04F0B24A97ABD00BFEBEB /* AppleSignInHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F04F0A24A97ABD00BFEBEB /* AppleSignInHelpers.swift */; };
 		26FE2445232228E600E01B9B /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE2444232228E600E01B9B /* NavigationController.swift */; };
 		26FE24472322295300E01B9B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE24462322295300E01B9B /* ViewController.swift */; };
 		26FE244923222B6400E01B9B /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE244823222B6400E01B9B /* DashboardViewController.swift */; };
@@ -300,6 +301,7 @@
 		26C5E3611E7DCAF70053DE3E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		26E9C0F9233838A700800E8A /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
 		26E9C0FB2338533E00800E8A /* UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageViewController.swift; sourceTree = "<group>"; };
+		26F04F0A24A97ABD00BFEBEB /* AppleSignInHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInHelpers.swift; sourceTree = "<group>"; };
 		26FE2444232228E600E01B9B /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		26FE24462322295300E01B9B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		26FE244823222B6400E01B9B /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -665,6 +667,7 @@
 			children = (
 				267C145624A8251C00A36C62 /* LoginV2ViewController.swift */,
 				2608A49A24A9629A00E9C9C9 /* GoogleSignInDelegate.swift */,
+				26F04F0A24A97ABD00BFEBEB /* AppleSignInHelpers.swift */,
 			);
 			path = LoginV2;
 			sourceTree = "<group>";
@@ -1350,6 +1353,7 @@
 				264AE87123F3B85100377D67 /* ActivityProgressView.swift in Sources */,
 				262C89E423713C5E004411C3 /* String.swift in Sources */,
 				A53E7B3F236F58D2006BD6D9 /* UICollectionView.swift in Sources */,
+				26F04F0B24A97ABD00BFEBEB /* AppleSignInHelpers.swift in Sources */,
 				260BF5972324C023005F0882 /* CellDisclosureView.swift in Sources */,
 				260BF5B52324FE32005F0882 /* SettingsProfileCell.swift in Sources */,
 				2676B3C42331D45000CB0A31 /* AlertModalAnimations.swift in Sources */,
