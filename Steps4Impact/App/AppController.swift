@@ -139,11 +139,11 @@ class AppController {
 
   func login() {
     // TODO: Add check to go to akf sign up form 
-    if !UserInfo.onboardingComplete {
+   // if !UserInfo.onboardingComplete {
       transition(to: .onboarding)
-    } else {
-      transition(to: .navigation)
-    }
+//    } else {
+//      transition(to: .navigation)
+//    }
   }
 
   func logout() {
