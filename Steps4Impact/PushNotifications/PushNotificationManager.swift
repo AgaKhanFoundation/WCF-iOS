@@ -77,9 +77,10 @@ class PushNotificationManager: NSObject, UNUserNotificationCenterDelegate, Messa
     updateFirestorePushTokenIfNeeded()
   }
   
-  func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-    print("Message Date: ", remoteMessage.appData)
-  }
+  // 'MessagingRemoteMessage' is deprecated: FCM direct channel is deprecated, please use APNs for downstream message handling.
+//  func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+//    print("Message Date: ", remoteMessage.appData)
+//  }
   
   // Receive displayed notifications for iOS 10 devices.
   func userNotificationCenter(_ center: UNUserNotificationCenter,
