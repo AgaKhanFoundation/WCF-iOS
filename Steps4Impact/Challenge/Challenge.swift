@@ -283,7 +283,7 @@ class ChallengeDataSource: TableViewDataSource {
     if daysUntilStart > 0 {
       cells.append([
         InfoCellContext(
-          asset: .challengeJourney,
+          asset: .onboardingJourney,
           title: "Journey",
           body: "Your journey begins in \(Date().daysUntil(event.challengePhase.start)) days on \(formatter.string(from: event.challengePhase.start))!") // swiftlint:disable:this line_length
       ])
@@ -308,7 +308,7 @@ class ChallengeDataSource: TableViewDataSource {
       let milestonesCompleted = getCurrentMilestone(numSteps: teamTotalSteps)
       cells.append([
         DisclosureCellContext(
-          asset: .challengeJourney,
+          asset: .onboardingJourney,
           title: "Journey",
           body: "\(milestonesCompleted) out of 8 milestones completed",
           disclosureTitle: "View milestone details",

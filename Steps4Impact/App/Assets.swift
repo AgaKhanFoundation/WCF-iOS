@@ -45,7 +45,7 @@ enum Assets: String {
   case squareGoogle = "login-square-google"
   
   // Challenge
-  case challengeJourney = "challenge-journey"
+//  case challengeJourney = "challenge-journey"
   case inviteFriends = "invite-friends"
   case inviteSupporters = "invite-supporters"
 
@@ -70,7 +70,7 @@ enum Assets: String {
 
   // Journey
   case journeyEmpty = "journey_map_test"
-  case journeyDetailMock = "journeyDetailMock"
+//  case journeyDetailMock = "journeyDetailMock"
 
   // Tab Bar
   case tabbarDashboardSelected = "tabbar-dashboard-selected"
