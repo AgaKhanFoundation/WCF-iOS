@@ -62,7 +62,7 @@ enum Assets: String {
   // Onboarding
   case onboardingLoginPeople = "login-couple"
   case onboardingCreateTeam = "create-team"
-  case onboardingJourney = "journey"
+  case onboardingJourney = "challenge-journey"
   case onboardingDashboard = "dashboard"
 
   // Leaderboard
