@@ -78,7 +78,7 @@ class TeamBreakdownMemberCell: ConfigurableTableViewCell, Contextable {
     contentView.addSubview(countLabel) {
       $0.leading.equalToSuperview().inset(Style.Padding.p32)
       $0.centerY.equalToSuperview()
-      $0.width.equalToSuperview().dividedBy(20)
+      $0.width.equalTo(24)
     }
 
     contentView.addSubview(profileImageView) {
