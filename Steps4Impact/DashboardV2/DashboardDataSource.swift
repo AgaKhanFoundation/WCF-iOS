@@ -74,8 +74,17 @@ class DashboardDataSource: TableViewDataSource {
         self.eventTimelineString = DataFormatters
           .formatDateRange(value: (start: event.challengePhase.start, end: event.challengePhase.end))
         self.eventLengthInDays = event.lengthInDays
+        self.commitment = event.commitment?.miles ?? 300
+      } else {
+        self.eventName = "No Current Event"
+        let monthsInSeconds: Double = 60 * 60 * 24 * 30
+        self.eventTimeline = DateInterval(
+          start: Date(timeIntervalSinceNow: -monthsInSeconds),
+          end: Date(timeIntervalSinceNow: monthsInSeconds))
+        self.eventTimelineString = "Last 2 Months"
+        self.eventLengthInDays = self.eventTimeline.start.daysUntil(self.eventTimeline.end)
+        self.commitment = 300
       }
-      self.commitment = participant?.currentEvent?.commitment?.miles ?? 0
       self.configure()
       self.completion?()
       self.getPedometerData()
