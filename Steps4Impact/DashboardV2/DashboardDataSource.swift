@@ -80,11 +80,11 @@ class DashboardDataSource: TableViewDataSource {
         self.eventLengthInDays = event.lengthInDays
         self.commitment = event.commitment?.miles ?? self.defaultCommitment
       } else {
-        self.eventName = "No Current Event"
+        self.eventName = Strings.Dashboard.NoCurrentEvent.name
         self.eventTimeline = DateInterval(
           start: Date(timeIntervalSinceNow: -self.monthsInSeconds),
           end: Date(timeIntervalSinceNow: self.monthsInSeconds))
-        self.eventTimelineString = "Last 2 Months"
+        self.eventTimelineString = Strings.Dashboard.NoCurrentEvent.timeline
         self.eventLengthInDays = self.eventTimeline.start.daysUntil(self.eventTimeline.end)
         self.commitment = self.defaultCommitment
       }

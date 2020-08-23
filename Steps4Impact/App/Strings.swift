@@ -86,6 +86,11 @@ struct Strings {
       static let unavailable = NSLocalizedString("Dashboard.FundraisingProgress.unavailable", comment: "")
       static let invite = NSLocalizedString("Dashboard.FundraisingProgress.invite", comment: "")
     }
+    
+    struct NoCurrentEvent { // swiftlint:disable:this nesting
+      static let name = NSLocalizedString("Dashboard.NoCurrentEvent.name", comment: "")
+      static let timeline = NSLocalizedString("Dashboard.NoCurrentEvent.timeline", comment: "")
+    }
   }
 
   struct Journey {
