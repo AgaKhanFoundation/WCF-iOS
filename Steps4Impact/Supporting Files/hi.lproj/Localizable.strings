@@ -67,6 +67,8 @@
 "Dashboard.FundraisingProgress.title" = "Fundraising Progress";
 "Dashboard.FundraisingProgress.unavailable" = "No data available. You will be able to see your progress once the challenge has started.";
 "Dashboard.FundraisingProgress.invite" = "Invite supporters to pledge";
+"Dashboard.NoCurrentEvent.name" = "No Current Event";
+"Dashboard.NoCurrentEvent.timeline" = "Last 2 Months";
 
 // Journey
 "Journey.title" = "Journey";
