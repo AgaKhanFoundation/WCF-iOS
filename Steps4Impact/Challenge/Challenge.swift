@@ -124,7 +124,7 @@ extension ChallengeViewController: ChallengeTeamProgressCellDelegate {
       guard let participant = Participant(json: result.response) else { return }
       if let _ = participant.currentEvent {
         let alert = TextAlertViewController()
-        alert.title = "Personal mile commitment"
+        alert.title = Strings.CommitmentAlert.title
         alert.value = "\(participant.currentEvent?.commitment?.miles ?? 0)"
         alert.suffix = "Miles"
         alert.add(.init(title: "Save", style: .primary, shouldDismiss: false) {
@@ -135,8 +135,8 @@ extension ChallengeViewController: ChallengeTeamProgressCellDelegate {
                   NotificationCenter.default.post(name: .commitmentChanged, object: nil)
                 } else {
                   let alert: AlertViewController = AlertViewController()
-                  alert.title = "Update Failed"
-                  alert.body = "Could not update commitment.  Please try again later."
+                  alert.title = Strings.CommitmentAlert.Failure.title
+                  alert.body = Strings.CommitmentAlert.Failure.body
                   alert.add(.okay())
                   onMain {
                     AppController.shared.present(alert: alert, in: self, completion: nil)
@@ -150,8 +150,8 @@ extension ChallengeViewController: ChallengeTeamProgressCellDelegate {
         AppController.shared.present(alert: alert, in: self, completion: nil)
       } else {
         let alert = AlertViewController()
-        alert.title = "No Event Available"
-        alert.body = "Can't update commitment when there is no event available"
+        alert.title = Strings.CommitmentAlert.Fallback.title
+        alert.body = Strings.CommitmentAlert.Fallback.body
         alert.add(.okay({
           alert.dismiss(animated: true, completion: nil)
         }))
