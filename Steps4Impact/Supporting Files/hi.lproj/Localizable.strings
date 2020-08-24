@@ -164,3 +164,9 @@
 // Share
 "Share.item" = "Hey! I created a team for the AKF Walk Challenge on the new Aga Khan Foundation app, Steps4Impact, and I want you on my team!\nDownload the app here:\nhttp://rebrand.ly/steps4impact-iphone\nhttp://rebrand.ly/steps4impact-android";
 
+// Commitment
+"CommitmentAlert.title" = "Personal mile commitment";
+"CommitmentAlert.Failure.title" = "Update Failed";
+"CommitmentAlert.Failure.body" = "Could not update commitment.  Please try again later.";
+"CommitmentAlert.Fallback.title" = "No Event Available";
+"CommitmentAlert.Fallback.body" = "Can't update commitment when there is no event available";   

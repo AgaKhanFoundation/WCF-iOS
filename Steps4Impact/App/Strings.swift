@@ -214,4 +214,16 @@ struct Strings {
       return String(format: NSLocalizedString("Share.item", comment: ""), teamName)
     }
   }
+  
+  struct CommitmentAlert {
+    static let title = NSLocalizedString("CommitmentAlert.title", comment: "")
+    struct Failure {
+      static let title = NSLocalizedString("CommitmentAlert.Failure.title", comment: "")
+      static let body = NSLocalizedString("CommitmentAlert.Failure.body", comment: "")
+    }
+    struct Fallback {
+      static let title = NSLocalizedString("CommitmentAlert.Fallback.title", comment: "")
+      static let body = NSLocalizedString("CommitmentAlert.Fallback.body", comment: "")
+    }
+  }
 }
