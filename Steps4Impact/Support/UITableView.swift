@@ -74,7 +74,8 @@ extension UITableView {
       MiniChallengeProgressCell.self,
       NotificationCell.self,
       JourneyDetailCell.self,
-      JourneyImageMarqueeCell.self
+      JourneyImageMarqueeCell.self,
+      NotificationPermissionCell.self,
     ].forEach { register($0) }
   }
 

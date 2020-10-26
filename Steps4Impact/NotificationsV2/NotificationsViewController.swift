@@ -43,6 +43,7 @@ class NotificationsDataSource: TableViewDataSource {
   let cache = Cache.shared
   var cells: [[CellContext]] = []
   var disposeBag = DisposeBag()
+  var completion: (() -> Void)?
   
   init() {
     
@@ -51,14 +52,30 @@ class NotificationsDataSource: TableViewDataSource {
       
       AKFCausesService.getNotifications(fbId: fbId, eventId: eventId) { (result) in
         print(result)
+        self?.configure()
         dump(self)
       }
     }.disposed(by: disposeBag)
     
   }
   
+  func reload(completion: @escaping () -> Void) {
+    configure()
+    self.completion = completion
+  }
+  
   func configure() {
     cells = [[]]
+    UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+      DispatchQueue.main.async {
+        if settings.authorizationStatus != .authorized {
+          self.cells.insert([NotificationPermissionCellContext(title: "Stay in the Loop", description: "Turn on notification to stay updated", disclosureText: "Turn on Notifications")], at: 0)
+          self.completion?()
+        } else {
+          self.completion?()
+        }
+      }
+    }
   }
   
   private func testData() -> [NotificationCellInfo] {

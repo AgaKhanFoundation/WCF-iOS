@@ -9,18 +9,26 @@
 import Foundation
 import UIKit
 
-class NotificationPermissionView: UIView {
+protocol NotificationPermissionCellDelegate: class{
+  func turnOnNotifictions()
+}
+
+struct NotificationPermissionCellContext: CellContext {
+  let identifier: String = NotificationPermissionCell.identifier
+  let title: String
+  let description: String
+  let disclosureText: String
+}
+
+class NotificationPermissionCell: ConfigurableTableViewCell {
+  static var identifier: String = "NotificationPermissionCell"
   
-  let header: UILabel = {
-    let label = UILabel()
-    label.translatesAutoresizingMaskIntoConstraints = false
-    label.text = "Stay in the Loop"
-    label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-    label.textAlignment = .left
-    label.baselineAdjustment = .alignCenters
-    label.numberOfLines = 1
-    return label
-  }()
+  private let cardView = CardViewV2()
+  private let disclosureView = CellDisclosureView()
+  
+  weak var delegate: NotificationPermissionCellDelegate?
+  
+  let headerLabel = UILabel(typography: .title)
   
   let closeButton: UIImageView = {
     let imageView = UIImageView()
@@ -30,21 +38,40 @@ class NotificationPermissionView: UIView {
     return imageView
   }()
   
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-//    setupUI()
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
-  func setupUI() {
-    addSubview(header) {
-      $0.leading.equalToSuperview().offset(Style.Padding.p16)
-      $0.trailing.equalToSuperview().inset(Style.Padding.p16)
-      $0.height.equalTo(Style.Size.s24)
-      $0.top.equalToSuperview().offset(Style.Padding.p20)
+  override func commonInit() {
+    super.commonInit()
+    
+    disclosureView.delegate = self
+    
+    contentView.addSubview(cardView) {
+      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p24)
+      $0.top.bottom.equalToSuperview().inset(Style.Padding.p12)
     }
+    
+    cardView.addSubview(headerLabel) {
+      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
+      $0.top.equalToSuperview().offset(Style.Padding.p20)
+      
+    }
+    cardView.addSubview(disclosureView) {
+      $0.top.equalTo(headerLabel.snp.bottom).offset(Style.Padding.p20)
+      $0.leading.trailing.bottom.equalToSuperview()
+    }
+  }
+  
+  func configure(context: CellContext) {
+    guard let context = context as? NotificationPermissionCellContext else {
+      return
+    }
+    
+    headerLabel.text = context.title
+    disclosureView.configure(context: CellDisclosureContext(label: context.disclosureText))
+  }
+  
+}
+
+extension NotificationPermissionCell: CellDisclosureViewDelegate {
+  func cellDisclosureTapped() {
+    delegate?.turnOnNotifictions()
   }
 }

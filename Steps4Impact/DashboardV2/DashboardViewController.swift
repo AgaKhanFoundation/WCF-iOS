@@ -79,26 +79,28 @@ class DashboardViewController: TableViewController {
           return
         }
         
-        if self.canShowPrompt {
-          let permissionPrompt: AlertViewController = AlertViewController()
-          permissionPrompt.title = Strings.NotificationsPermission.title
-          permissionPrompt.body = Strings.NotificationsPermission.message
-          permissionPrompt.add(.init(title: Strings.NotificationsPermission.proceed, style: .primary, shouldDismiss: true) {
-            pushManager.registerForPushNotifications()
-            })
-          permissionPrompt.add(.later({
-            //current date
-            let currentDate = Date()
-            let calendar = Calendar.current
-            
-            //add 1 day to the date:
-            let newDate = calendar.date(byAdding: .day, value: 1, to: currentDate)
-            UserDefaults.standard.setValue(newDate, forKey: "waitingDate")
-            
-            //prompt disabled for a day
-          }))
-          AppController.shared.present(alert: permissionPrompt, in: self, completion: nil)
-        }
+        pushManager.registerForPushNotifications()
+        
+//        if self.canShowPrompt {
+//          let permissionPrompt: AlertViewController = AlertViewController()
+//          permissionPrompt.title = Strings.NotificationsPermission.title
+//          permissionPrompt.body = Strings.NotificationsPermission.message
+//          permissionPrompt.add(.init(title: Strings.NotificationsPermission.proceed, style: .primary, shouldDismiss: true) {
+//            pushManager.registerForPushNotifications()
+//            })
+//          permissionPrompt.add(.later({
+//            //current date
+//            let currentDate = Date()
+//            let calendar = Calendar.current
+//            
+//            //add 1 day to the date:
+//            let newDate = calendar.date(byAdding: .day, value: 1, to: currentDate)
+//            UserDefaults.standard.setValue(newDate, forKey: "waitingDate")
+//            
+//            //prompt disabled for a day
+//          }))
+//          AppController.shared.present(alert: permissionPrompt, in: self, completion: nil)
+//        }
       }
     }
   }

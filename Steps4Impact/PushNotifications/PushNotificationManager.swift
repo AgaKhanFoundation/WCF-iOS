@@ -38,7 +38,7 @@ class PushNotificationManager: NSObject, UNUserNotificationCenterDelegate, Messa
     
     AKFCausesService.getFCMToken(fbId: User.id) { (result) in
       if result.isSuccess {
-        // TODO: check FCM Token, if different then call PATCH
+        // TODO: check FCM Token, if different only then call PATCH
         AKFCausesService.setFCMToken(fbId: User.id, token: fcmToken) { (result) in
           print(result)
         }
