@@ -28,8 +28,7 @@
  **/
 
 import UIKit
-import FacebookLogin
-import FacebookCore
+import FBSDKLoginKit
 import SnapKit
 
 class LoginButton: FBLoginButton {

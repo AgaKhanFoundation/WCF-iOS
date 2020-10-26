@@ -40,6 +40,7 @@
 "AKFCausesServiceError.unableToConnect" = "Unable to access AKF Causes at this time.  Please try again later.";
 
 // Login
+"Login.title" = "Sign in with";
 "Login.conditions" = "Terms and Conditions Apply";
 
 // Welcome
@@ -66,6 +67,8 @@
 "Dashboard.FundraisingProgress.title" = "Fundraising Progress";
 "Dashboard.FundraisingProgress.unavailable" = "No data available. You will be able to see your progress once the challenge has started.";
 "Dashboard.FundraisingProgress.invite" = "Invite supporters to pledge";
+"Dashboard.NoCurrentEvent.name" = "No Current Event";
+"Dashboard.NoCurrentEvent.timeline" = "Last 2 Months";
 
 // Journey
 "Journey.title" = "Journey";
@@ -168,3 +171,10 @@
 "Notifications.Permission.message" = "Step4Impact will send you updates about team progress, leaderboard and new challenges";
 "Notifications.Permission.proceed" = "Proceed";
 "Notifications.Permission.cancel" = "Later";
+
+// Commitment
+"CommitmentAlert.title" = "Personal mile commitment";
+"CommitmentAlert.Failure.title" = "Update Failed";
+"CommitmentAlert.Failure.body" = "Could not update commitment.  Please try again later.";
+"CommitmentAlert.Fallback.title" = "No Event Available";
+"CommitmentAlert.Fallback.body" = "Can't update commitment when there is no event available";   

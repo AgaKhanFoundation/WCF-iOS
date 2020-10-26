@@ -2,12 +2,12 @@ Current Status: [![Build Status](https://dev.azure.com/steps4impact/steps4impact
 
 ## Getting Started
 
-- Built using Xcode 11.1 on Swift 5.0
+- Built using Xcode 11.5 on Swift 5.2.4
 - Open `Steps4Impact.xcworkspace`
 
 ## Adding Dependencies
 
-- Managed by Cocoapods v1.8.3
+- Managed by Cocoapods v1.9.3
 
 ## Testing
 

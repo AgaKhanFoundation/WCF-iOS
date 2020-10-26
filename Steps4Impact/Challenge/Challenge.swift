@@ -120,34 +120,43 @@ extension ChallengeViewController: ChallengeTeamProgressCellDelegate {
   }
 
   func challengeTeamProgressEditTapped() {
-    AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+    AKFCausesService.getParticipant(fbid: User.id) { (result) in
       guard let participant = Participant(json: result.response) else { return }
-
-      let alert = TextAlertViewController()
-      alert.title = "Personal mile commitment"
-      alert.value = "\(participant.currentEvent?.commitment?.miles ?? 0)"
-      alert.suffix = "Miles"
-      alert.add(.init(title: "Save", style: .primary, shouldDismiss: false) {
-        if let cid = participant.currentEvent?.commitment?.id {
-          AKFCausesService.setCommitment(cid, toSteps: (Int(alert.value ?? "0") ?? 0) * 2000) { (result) in
-            alert.dismiss(animated: true) {
-              if result.isSuccess {
-                NotificationCenter.default.post(name: .commitmentChanged, object: nil)
-              } else {
-                let alert: AlertViewController = AlertViewController()
-                alert.title = "Update Failed"
-                alert.body = "Could not update commitment.  Please try again later."
-                alert.add(.okay())
-                onMain {
-                  AppController.shared.present(alert: alert, in: self, completion: nil)
+      if let _ = participant.currentEvent {
+        let alert = TextAlertViewController()
+        alert.title = Strings.CommitmentAlert.title
+        alert.value = "\(participant.currentEvent?.commitment?.miles ?? 0)"
+        alert.suffix = "Miles"
+        alert.add(.init(title: "Save", style: .primary, shouldDismiss: false) {
+          if let cid = participant.currentEvent?.commitment?.id {
+            AKFCausesService.setCommitment(cid, toSteps: (Int(alert.value ?? "0") ?? 0) * 2000) { (result) in
+              alert.dismiss(animated: true) {
+                if result.isSuccess {
+                  NotificationCenter.default.post(name: .commitmentChanged, object: nil)
+                } else {
+                  let alert: AlertViewController = AlertViewController()
+                  alert.title = Strings.CommitmentAlert.Failure.title
+                  alert.body = Strings.CommitmentAlert.Failure.body
+                  alert.add(.okay())
+                  onMain {
+                    AppController.shared.present(alert: alert, in: self, completion: nil)
+                  }
                 }
               }
             }
           }
-        }
-      })
-      alert.add(.cancel())
-      AppController.shared.present(alert: alert, in: self, completion: nil)
+        })
+        alert.add(.cancel())
+        AppController.shared.present(alert: alert, in: self, completion: nil)
+      } else {
+        let alert = AlertViewController()
+        alert.title = Strings.CommitmentAlert.Fallback.title
+        alert.body = Strings.CommitmentAlert.Fallback.body
+        alert.add(.okay({
+          alert.dismiss(animated: true, completion: nil)
+        }))
+        AppController.shared.present(alert: alert, in: self, completion: nil)
+      }
     }
   }
 }
@@ -181,10 +190,10 @@ class ChallengeDataSource: TableViewDataSource {
     self.achievement = nil
 
     group.enter()
-    AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
+    AKFCausesService.getParticipant(fbid: User.id) { [weak self] (result) in
       if let participant = Participant(json: result.response), let team = participant.team {
         self?.participant = participant
-        self?.isLead = participant.team?.creator == Facebook.id
+        self?.isLead = participant.team?.creator == User.id
 
         group.enter()
         AKFCausesService.getAchievement { (result) in
@@ -193,14 +202,22 @@ class ChallengeDataSource: TableViewDataSource {
           }
           group.leave()
         }
-
+        
+        // TODO(samisuteria): update this to relay/cache system
         for member in team.members {
           group.enter()
-          Facebook.profileImage(for: member.fbid) { (url) in
-            self?.teamImages.append(url)
+          AKFCausesService.getParticipantSocial(fbid: member.fbid) { [weak self] (result) in
+            if
+              let response = result.response?.dictionaryValue,
+              let photoURLRaw = response["photoURL"]?.stringValue,
+              let photoURL = URL(string: photoURLRaw) {
+              self?.teamImages.append(photoURL)
+            }
+            
             group.leave()
           }
-
+          
+          // TODO(samisuteria): update this to relay/cache system
           group.enter()
           AKFCausesService.getParticipant(fbid: member.fbid) { (result) in
             if let participant = Participant(json: result.response) {
@@ -209,11 +226,16 @@ class ChallengeDataSource: TableViewDataSource {
             group.leave()
           }
         }
-
-        group.enter()
-        Facebook.getRealName(for: team.creator!) { (name) in // swiftlint:disable:this force_unwrapping
-          self?.teamCreator = name
-          group.leave()
+        
+        // TODO(samisuteria): update this to relay/cache system
+        if let creator = team.creator {
+          group.enter()
+          AKFCausesService.getParticipantSocial(fbid: creator) { (result) in
+            if let name = result.response?.dictionaryValue?["displayName"]?.stringValue {
+              self?.teamCreator = name
+            }
+            group.leave()
+          }
         }
       }
 
@@ -270,7 +292,7 @@ class ChallengeDataSource: TableViewDataSource {
     if daysUntilStart > 0 {
       cells.append([
         InfoCellContext(
-          asset: .challengeJourney,
+          asset: .onboardingJourney,
           title: "Journey",
           body: "Your journey begins in \(Date().daysUntil(event.challengePhase.start)) days on \(formatter.string(from: event.challengePhase.start))!") // swiftlint:disable:this line_length
       ])
@@ -295,7 +317,7 @@ class ChallengeDataSource: TableViewDataSource {
       let milestonesCompleted = getCurrentMilestone(numSteps: teamTotalSteps)
       cells.append([
         DisclosureCellContext(
-          asset: .challengeJourney,
+          asset: .onboardingJourney,
           title: "Journey",
           body: "\(milestonesCompleted) out of 8 milestones completed",
           disclosureTitle: "View milestone details",

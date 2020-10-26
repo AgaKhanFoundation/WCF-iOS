@@ -38,17 +38,9 @@ NS_SWIFT_NAME(InvalidObjectHandler);
  @param invalidObjectHandler Handles objects that are invalid, returning a replacement value or nil to ignore.
  @return A JSON string or nil if the object cannot be converted to JSON.
  */
-+ (NSString *)JSONStringForObject:(id)object
-                            error:(NSError *__autoreleasing *)errorRef
-             invalidObjectHandler:(nullable FBSDKInvalidObjectHandler)invalidObjectHandler;
-
-/**
- Sets an object for a key in a dictionary if it is not nil.
- @param dictionary The dictionary to set the value for.
- @param object The value to set.
- @param key The key to set the value for.
- */
-+ (void)dictionary:(NSMutableDictionary<NSString *, id> *)dictionary setObject:(id)object forKey:(id<NSCopying>)key;
++ (nullable NSString *)JSONStringForObject:(id)object
+                                     error:(NSError *__autoreleasing *)errorRef
+                      invalidObjectHandler:(nullable FBSDKInvalidObjectHandler)invalidObjectHandler;
 
 /**
  Sets an object for a key in a dictionary if it is not nil.
@@ -64,20 +56,13 @@ setJSONStringForObject:(id)object
              error:(NSError *__autoreleasing *)errorRef;
 
 /**
- Adds an object to an array if it is not nil.
- @param array The array to add the object to.
- @param object The object to add to the array.
- */
-+ (void)array:(NSMutableArray *)array addObject:(id)object;
-
-/**
  Converts a JSON string into an object
  @param string The JSON string to convert.
  @param errorRef If an error occurs, upon return contains an NSError object that describes the problem.
  @return An NSDictionary, NSArray, NSString or NSNumber containing the object representation, or nil if the string
  cannot be converted.
  */
-+ (id)objectForJSONString:(NSString *)string error:(NSError *__autoreleasing *)errorRef;
++ (nullable id)objectForJSONString:(NSString *)string error:(NSError *__autoreleasing *)errorRef;
 
 /**
  Constructs a query string from a dictionary.
@@ -123,7 +108,7 @@ setJSONStringForObject:(id)object
  @param data The raw data.
  @return nil if unable to gzip the data, otherwise gzipped data.
  */
-+ (NSData *)gzip:(NSData *)data;
++ (nullable NSData *)gzip:(NSData *)data;
 
 + (NSString *)anonymousID;
 + (NSString *)persistenceFilePath:(NSString *)filename;

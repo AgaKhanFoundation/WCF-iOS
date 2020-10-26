@@ -32,7 +32,6 @@ import RxSwift
 
 class DashboardDataSource: TableViewDataSource {
   var cache = Cache.shared
-  var facebookService = FacebookService.shared
   var disposeBag = DisposeBag()
   var cells = [[CellContext]]()
   var completion: (() -> Void)?
@@ -54,14 +53,18 @@ class DashboardDataSource: TableViewDataSource {
   private var healthKitDataProvider = HealthKitDataProvider()
   private var fitBitDataProvider = FitbitDataProvider()
 
+  // Constants
+  private let monthsInSeconds: Double = 60 * 60 * 24 * 30
+  private let defaultCommitment = 300 // in miles, comes out to 10,000 steps per day for 2 months
+  
   enum DashboardContext: Context {
     case inviteSupporters
   }
 
   init() {
     let update = Observable.combineLatest(
-      cache.facebookNamesRelay,
-      cache.facebookProfileImageURLsRelay,
+      cache.socialDisplayNamesRelay,
+      cache.socialProfileImageURLsRelay,
       cache.participantRelay)
 
     update.subscribeOnNext { [weak self] (names, imageURLs, participant) in
@@ -75,8 +78,16 @@ class DashboardDataSource: TableViewDataSource {
         self.eventTimelineString = DataFormatters
           .formatDateRange(value: (start: event.challengePhase.start, end: event.challengePhase.end))
         self.eventLengthInDays = event.lengthInDays
+        self.commitment = event.commitment?.miles ?? self.defaultCommitment
+      } else {
+        self.eventName = Strings.Dashboard.NoCurrentEvent.name
+        self.eventTimeline = DateInterval(
+          start: Date(timeIntervalSinceNow: -self.monthsInSeconds),
+          end: Date(timeIntervalSinceNow: self.monthsInSeconds))
+        self.eventTimelineString = Strings.Dashboard.NoCurrentEvent.timeline
+        self.eventLengthInDays = self.eventTimeline.start.daysUntil(self.eventTimeline.end)
+        self.commitment = self.defaultCommitment
       }
-      self.commitment = participant?.currentEvent?.commitment?.miles ?? 0
       self.configure()
       self.completion?()
       self.getPedometerData()
@@ -94,13 +105,12 @@ class DashboardDataSource: TableViewDataSource {
     configure()
     completion()
 
-    facebookService.getRealName(fbid: "me")
-    facebookService.getProfileImageURL(fbid: "me")
-    AKFCausesService.getParticipant(fbid: facebookService.id) { [weak self] (result) in
+    cache.fetchSocialInfo(fbid: User.id)
+    AKFCausesService.getParticipant(fbid: User.id) { [weak self] (result) in
       self?.cache.participantRelay.accept(Participant(json: result.response))
     }
     let group: DispatchGroup = DispatchGroup()
-    AKFCausesService.getParticipant(fbid: Facebook.id) { [weak self] (result) in
+    AKFCausesService.getParticipant(fbid: User.id) { [weak self] (result) in
       if var participant = Participant(json: result.response), let team = participant.team {
         self?.event = participant.currentEvent
 

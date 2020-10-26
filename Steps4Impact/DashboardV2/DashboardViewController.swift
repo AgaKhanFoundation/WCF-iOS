@@ -112,6 +112,11 @@ class DashboardViewController: TableViewController {
     }
     return true
   }()
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    reload()
+  }
 
   deinit {
     NotificationCenter.default.removeObserver(self)

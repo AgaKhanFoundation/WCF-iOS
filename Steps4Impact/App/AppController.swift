@@ -28,19 +28,22 @@
  **/
 
 import UIKit
-import FacebookCore
-import FacebookLogin
+import FBSDKCoreKit
+import FBSDKLoginKit
+import Firebase
 import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
 import HealthKit
 import FirebaseCore
+import GoogleSignIn
 
 class AppController {
   static let shared = AppController()
 
   static let isTestRun = true
 
+  private let googleSignInDelegate = GoogleSignInDelegate()
   var window: UIWindow?
   var navigation: UITabBarController = Navigation()
 
@@ -59,8 +62,12 @@ class AppController {
     // Setup Telemetry
     AppEvents.activateApp()
     
-    // Firebase App Configure
+    // Setup Firebase
     FirebaseApp.configure()
+    
+    // Setup Google Sign In
+    GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
+    GIDSignIn.sharedInstance()?.delegate = googleSignInDelegate
 
     // Setup Window
     window?.frame = UIScreen.main.bounds
@@ -69,8 +76,7 @@ class AppController {
 
     // Select Default View
     // TODO(samisuteria) add check for akf profile?
-    print("Facebook Id: \(Facebook.id)")
-    if Facebook.id.isEmpty {
+    if User.id.isEmpty {
       transition(to: .login)
     } else if !UserInfo.onboardingComplete {
       transition(to: .onboarding)
@@ -83,11 +89,15 @@ class AppController {
   }
 
   func can(_ app: UIApplication, open url: URL, with options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
-    return ApplicationDelegate.shared.application(
-      app,
-      open: url,
-      sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
-      annotation: options)
+    if GIDSignIn.sharedInstance()?.handle(url) == true {
+      return true
+    } else {
+      return ApplicationDelegate.shared.application(
+        app,
+        open: url,
+        sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+        annotation: options)
+    }
   }
 
   enum ViewController {
@@ -101,7 +111,7 @@ class AppController {
       case .login:
         // Rebuild navigation so data is wiped on logout
         AppController.shared.navigation = Navigation()
-        return LoginViewController()
+        return LoginV2ViewController()
       case .akf: return AKFLoginViewController()
       case .onboarding: return OnboardingViewController()
       case .navigation: return AppController.shared.navigation
@@ -138,6 +148,7 @@ class AppController {
   }
 
   func logout() {
+    try? User.signOut()
     transition(to: .login)
   }
 

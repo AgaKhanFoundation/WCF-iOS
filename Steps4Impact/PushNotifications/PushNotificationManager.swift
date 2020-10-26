@@ -36,15 +36,15 @@ class PushNotificationManager: NSObject, UNUserNotificationCenterDelegate, Messa
   func updateFirestorePushTokenIfNeeded() {
     guard let fcmToken = Messaging.messaging().fcmToken else { return }
     
-    AKFCausesService.getFCMToken(fbId: Facebook.id) { (result) in
+    AKFCausesService.getFCMToken(fbId: User.id) { (result) in
       if result.isSuccess {
         // TODO: check FCM Token, if different then call PATCH
-        AKFCausesService.setFCMToken(fbId: Facebook.id, token: fcmToken) { (result) in
+        AKFCausesService.setFCMToken(fbId: User.id, token: fcmToken) { (result) in
           print(result)
         }
         return
       }
-      AKFCausesService.createFCMToken(fbId: Facebook.id, token: fcmToken) { (result) in
+      AKFCausesService.createFCMToken(fbId: User.id, token: fcmToken) { (result) in
         print(result)
       }
     }
@@ -56,9 +56,9 @@ class PushNotificationManager: NSObject, UNUserNotificationCenterDelegate, Messa
     updateFirestorePushTokenIfNeeded()
   }
   
-  func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-    print("Message Date: ", remoteMessage.appData)
-  }
+//  func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+//    print("Message Date: ", remoteMessage.appData)
+//  }
   
   // Receive displayed notifications for iOS 10 devices.
   func userNotificationCenter(_ center: UNUserNotificationCenter,

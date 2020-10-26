@@ -84,7 +84,7 @@ class JourneyImageMarqueeCell: ConfigurableTableViewCell {
     if mediaURLs.count == 0 {
       let imageView = WebImageView()
       imageView.contentMode = .scaleAspectFit
-      imageView.fadeInImage(imageURL: URL(string: ""), placeHolderImage: Assets.journeyDetailMock.image)
+      imageView.fadeInImage(imageURL: URL(string: ""), placeHolderImage: Assets.onboardingJourney.image)
       let xPosition = contentView.frame.width
       imageView.frame = CGRect(
         x: xPosition, y: 0,
@@ -96,7 +96,7 @@ class JourneyImageMarqueeCell: ConfigurableTableViewCell {
       for i in 0..<mediaURLs.count { // swiftlint:disable:this variable_name
         let imageView = WebImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.fadeInImage(imageURL: URL(string: mediaURLs[i]), placeHolderImage: Assets.journeyDetailMock.image)
+        imageView.fadeInImage(imageURL: URL(string: mediaURLs[i]), placeHolderImage: Assets.onboardingJourney.image)
         let xPosition = imageMarqueeScrollView.frame.width * CGFloat(i)
         imageView.frame = CGRect(
           x: xPosition, y: 0,

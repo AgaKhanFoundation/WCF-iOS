@@ -28,7 +28,6 @@
  **/
 
 import UIKit
-import FacebookLogin
 import NotificationCenter
 
 class SettingsViewController: TableViewController {
@@ -81,9 +80,7 @@ class SettingsViewController: TableViewController {
   }
 
   private func logout() {
-    let loginManager = LoginManager()
-    loginManager.logOut()
-    AppController.shared.transition(to: .login)
+    AppController.shared.logout()
   }
 
   private func leaveTeam() {
@@ -92,7 +89,7 @@ class SettingsViewController: TableViewController {
     alert.body = Strings.TeamSettings.leaveBody
     alert.add(AlertAction(title: "Cancel", style: .secondary))
     alert.add(AlertAction(title: "Leave", style: .destructive, shouldDismiss: false) { [weak self] in
-      AKFCausesService.leaveTeam(fbid: Facebook.id) { (_) in
+      AKFCausesService.leaveTeam(fbid: User.id) { (_) in
         NotificationCenter.default.post(name: .teamChanged, object: nil)
         onMain {
           alert.dismiss(animated: true, completion: nil)
@@ -109,10 +106,11 @@ class SettingsViewController: TableViewController {
     alert.body = Strings.Settings.deleteBody
     alert.add(AlertAction.cancel())
     alert.add(AlertAction(title: "Delete", style: .destructive, shouldDismiss: false) { [weak self] in
-      AKFCausesService.deleteParticipant(fbid: Facebook.id) { (_) in
+      AKFCausesService.deleteParticipant(fbid: User.id) { (_) in
         onMain {
           alert.dismiss(animated: true, completion: nil)
         }
+        User.delete()
         self?.logout()
       }
     })
@@ -120,11 +118,11 @@ class SettingsViewController: TableViewController {
   }
 
   private func updatePersonalMileCommitment() {
-    AKFCausesService.getParticipant(fbid: Facebook.id) { (result) in
+    AKFCausesService.getParticipant(fbid: User.id) { (result) in
       guard let participant = Participant(json: result.response) else { return }
       if let _ = participant.currentEvent {
         let alert = TextAlertViewController()
-        alert.title = "Personal mile commitment"
+        alert.title = Strings.CommitmentAlert.title
         alert.value = "\(participant.currentEvent?.commitment?.miles ?? 0)"
         alert.suffix = "Miles"
         alert.add(.init(title: "Save", style: .primary, shouldDismiss: false) {
@@ -133,8 +131,8 @@ class SettingsViewController: TableViewController {
               alert.dismiss(animated: true) {
                 if !result.isSuccess {
                   let alert: AlertViewController = AlertViewController()
-                  alert.title = "Update Failed"
-                  alert.body = "Could not update commitment.  Please try again later."
+                  alert.title = Strings.CommitmentAlert.Failure.title
+                  alert.body = Strings.CommitmentAlert.Failure.body
                   alert.add(.okay())
                   onMain {
                     AppController.shared.present(alert: alert, in: self, completion: nil)
@@ -154,8 +152,8 @@ class SettingsViewController: TableViewController {
         AppController.shared.present(alert: alert, in: self, completion: nil)
       } else {
         let alert = AlertViewController()
-        alert.title = "No Event Available"
-        alert.body = "Can't update commitment when there is no event available"
+        alert.title = Strings.CommitmentAlert.Fallback.title
+        alert.body = Strings.CommitmentAlert.Fallback.body
         alert.add(.okay({
           alert.dismiss(animated: true, completion: nil)
         }))

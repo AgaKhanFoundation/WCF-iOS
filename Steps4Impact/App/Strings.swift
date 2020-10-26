@@ -47,6 +47,7 @@ struct Strings {
   }
 
   struct Login {
+    static let title = NSLocalizedString("Login.title", comment: "")
     static let conditions = NSLocalizedString("Login.conditions", comment: "")
   }
 
@@ -84,6 +85,11 @@ struct Strings {
       static let title = NSLocalizedString("Dashboard.FundraisingProgress.title", comment: "")
       static let unavailable = NSLocalizedString("Dashboard.FundraisingProgress.unavailable", comment: "")
       static let invite = NSLocalizedString("Dashboard.FundraisingProgress.invite", comment: "")
+    }
+    
+    struct NoCurrentEvent { // swiftlint:disable:this nesting
+      static let name = NSLocalizedString("Dashboard.NoCurrentEvent.name", comment: "")
+      static let timeline = NSLocalizedString("Dashboard.NoCurrentEvent.timeline", comment: "")
     }
   }
 
@@ -214,5 +220,17 @@ struct Strings {
     static let message = NSLocalizedString("Notifications.Permission.message", comment: "")
     static let proceed = NSLocalizedString("Notifications.Permission.proceed", comment: "")
     static let cancel = NSLocalizedString("Notifications.Permission.cancel", comment: "")
+  }
+  
+  struct CommitmentAlert {
+    static let title = NSLocalizedString("CommitmentAlert.title", comment: "")
+    struct Failure {
+      static let title = NSLocalizedString("CommitmentAlert.Failure.title", comment: "")
+      static let body = NSLocalizedString("CommitmentAlert.Failure.body", comment: "")
+    }
+    struct Fallback {
+      static let title = NSLocalizedString("CommitmentAlert.Fallback.title", comment: "")
+      static let body = NSLocalizedString("CommitmentAlert.Fallback.body", comment: "")
+    }
   }
 }

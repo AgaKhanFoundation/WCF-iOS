@@ -40,7 +40,7 @@ class LeaderboardDataSource: TableViewDataSource {
 
   func reload(completion: @escaping () -> Void) {
     self.completion = completion
-    AKFCausesService.getParticipant(fbid: FacebookService.shared.id) { (result) in
+    AKFCausesService.getParticipant(fbid: User.id) { (result) in
       if let participant = Participant(json: result.response), let event = participant.events?.first {
         if let teamId = participant.team?.id {
           self.myTeamId = teamId

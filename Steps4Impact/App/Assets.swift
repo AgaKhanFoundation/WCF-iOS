@@ -39,8 +39,13 @@ enum Assets: String {
   case chevronRight = "chevron_right"
   case chevronLeft = "chevron_left"
 
+  // Login
+  case squareApple = "login-square-apple"
+  case squareFacebook = "login-square-facebook"
+  case squareGoogle = "login-square-google"
+  
   // Challenge
-  case challengeJourney = "challenge-journey"
+//  case challengeJourney = "challenge-journey"
   case inviteFriends = "invite-friends"
   case inviteSupporters = "invite-supporters"
 
@@ -57,7 +62,7 @@ enum Assets: String {
   // Onboarding
   case onboardingLoginPeople = "login-couple"
   case onboardingCreateTeam = "create-team"
-  case onboardingJourney = "journey"
+  case onboardingJourney = "challenge-journey"
   case onboardingDashboard = "dashboard"
 
   // Leaderboard
@@ -65,7 +70,7 @@ enum Assets: String {
 
   // Journey
   case journeyEmpty = "journey_map_test"
-  case journeyDetailMock = "journeyDetailMock"
+//  case journeyDetailMock = "journeyDetailMock"
 
   // Tab Bar
   case tabbarDashboardSelected = "tabbar-dashboard-selected"
