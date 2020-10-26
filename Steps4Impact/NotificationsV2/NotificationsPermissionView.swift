@@ -29,6 +29,7 @@ class NotificationPermissionCell: ConfigurableTableViewCell {
   weak var delegate: NotificationPermissionCellDelegate?
   
   let headerLabel = UILabel(typography: .title)
+  let descriptionLabel = UILabel(typography: .smallRegular, color: Style.Colors.FoundationGrey.withAlphaComponent(0.5))
   
   let closeButton: UIImageView = {
     let imageView = UIImageView()
@@ -51,10 +52,15 @@ class NotificationPermissionCell: ConfigurableTableViewCell {
     cardView.addSubview(headerLabel) {
       $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
       $0.top.equalToSuperview().offset(Style.Padding.p20)
-      
     }
+    
+    cardView.addSubview(descriptionLabel) {
+      $0.leading.trailing.equalToSuperview().inset(Style.Padding.p16)
+      $0.top.equalTo(headerLabel.snp.bottom).offset(Style.Padding.p8)
+    }
+  
     cardView.addSubview(disclosureView) {
-      $0.top.equalTo(headerLabel.snp.bottom).offset(Style.Padding.p20)
+      $0.top.equalTo(descriptionLabel.snp.bottom).offset(Style.Padding.p20)
       $0.leading.trailing.bottom.equalToSuperview()
     }
   }
@@ -65,6 +71,7 @@ class NotificationPermissionCell: ConfigurableTableViewCell {
     }
     
     headerLabel.text = context.title
+    descriptionLabel.text = context.description
     disclosureView.configure(context: CellDisclosureContext(label: context.disclosureText))
   }
   

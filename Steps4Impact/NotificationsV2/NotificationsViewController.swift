@@ -31,11 +31,22 @@ import UIKit
 import RxSwift
 
 class NotificationsViewController: TableViewController {
+  
+  var hasClosedNotificationPermissionCell = false
   override func commonInit() {
     super.commonInit()
 
     title = Strings.Notifications.title
     dataSource = NotificationsDataSource()
+  }
+  
+  
+  override func viewWillAppear(_ animated: Bool) {
+    
+  }
+  
+  override func reload() {
+    
   }
 }
 
@@ -69,7 +80,9 @@ class NotificationsDataSource: TableViewDataSource {
     UNUserNotificationCenter.current().getNotificationSettings { (settings) in
       DispatchQueue.main.async {
         if settings.authorizationStatus != .authorized {
-          self.cells.insert([NotificationPermissionCellContext(title: "Stay in the Loop", description: "Turn on notification to stay updated", disclosureText: "Turn on Notifications")], at: 0)
+          self.cells.insert([NotificationPermissionCellContext(title: "Stay in the Loop",
+                                                               description: "Turn on Notifications to get updates about team progress, leaderboard, badges and new challenges",
+                                                               disclosureText: "Turn on Notifications")], at: 0)
           self.completion?()
         } else {
           self.completion?()
