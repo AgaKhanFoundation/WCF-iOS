@@ -41,7 +41,7 @@ class NotificationPermissionCell: ConfigurableTableViewCell {
   
   override func commonInit() {
     super.commonInit()
-    
+    backgroundColor = .clear
     disclosureView.delegate = self
     
     contentView.addSubview(cardView) {

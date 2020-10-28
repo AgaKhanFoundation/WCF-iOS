@@ -42,11 +42,13 @@ class NotificationsViewController: TableViewController {
   
   
   override func viewWillAppear(_ animated: Bool) {
-    
+    super.viewWillAppear(animated)
   }
   
   override func reload() {
-    
+    dataSource?.reload { [weak self] in
+      self?.tableView.reloadOnMain()
+    }
   }
 }
 
