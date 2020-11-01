@@ -118,16 +118,23 @@ extension ConnectSourceViewController: ConnectSourceCellDelegate {
       case .healthkit:
         // Just to ask for permission
         if HKHealthStore.isHealthDataAvailable() {
-          switch HKHealthStore().authorizationStatus(for: ConnectSourceViewController.steps) {
-          case .notDetermined:
-            requestHealthKitAccess()
-          case .sharingDenied:
-            UserInfo.pedometerSource = nil
-            requestHealthKitUpdate()
-          case .sharingAuthorized:
-            UserInfo.pedometerSource = .healthKit
-          @unknown default:
-            UserInfo.pedometerSource = nil
+          let typesToRead: Set<HKObjectType> = [ConnectSourceViewController.steps, ConnectSourceViewController.distance]
+          
+          HKHealthStore().getRequestStatusForAuthorization(toShare: [], read: typesToRead) { [weak self] (status, error) in
+            guard let `self` = self else { return }
+            
+            switch status {
+            case .unknown:
+              UserInfo.pedometerSource = nil
+              self.requestHealthKitUpdate()
+            case .shouldRequest:
+              self.requestHealthKitAccess()
+            case .unnecessary:
+              UserInfo.pedometerSource = .healthKit
+            @unknown default:
+              UserInfo.pedometerSource = nil
+              self.requestHealthKitUpdate()
+            }
           }
         }
       }
