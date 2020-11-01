@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 
-protocol NotificationPermissionCellDelegate: class{
+protocol NotificationPermissionCellDelegate: class {
   func turnOnNotifictions()
+  func close()
 }
 
 struct NotificationPermissionCellContext: CellContext {
@@ -31,10 +32,20 @@ class NotificationPermissionCell: ConfigurableTableViewCell {
   let headerLabel = UILabel(typography: .title)
   let descriptionLabel = UILabel(typography: .smallRegular, color: Style.Colors.FoundationGrey.withAlphaComponent(0.5))
   
+//  let crossButton: UIButton = {
+//    let button = UIButton(type: .system)
+//    button.translatesAutoresizingMaskIntoConstraints = false
+//    button.setBackgroundImage(Assets.close.image, for: .normal)
+//    button.contentMode = .scaleAspectFill
+//
+//    button.addTarget(self, action: #selector(crossButtonTapped), for: .touchUpInside)
+//    return button
+//  }()
+//
   let closeButton: UIImageView = {
     let imageView = UIImageView()
     imageView.translatesAutoresizingMaskIntoConstraints = false
-    imageView.image = UIImage(named: "close")
+    imageView.image = Assets.close.image
     imageView.contentMode = .scaleAspectFit
     return imageView
   }()
@@ -63,6 +74,15 @@ class NotificationPermissionCell: ConfigurableTableViewCell {
       $0.top.equalTo(descriptionLabel.snp.bottom).offset(Style.Padding.p20)
       $0.leading.trailing.bottom.equalToSuperview()
     }
+    
+    cardView.addSubview(closeButton) {
+      $0.trailing.top.equalToSuperview().inset(Style.Padding.p16)
+      $0.top.equalToSuperview().offset(Style.Padding.p24)
+      $0.height.width.equalTo(Style.Size.s16)
+    }
+    
+    closeButton.isUserInteractionEnabled = true
+    closeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closeButtonTapped)))
   }
   
   func configure(context: CellContext) {
@@ -73,6 +93,11 @@ class NotificationPermissionCell: ConfigurableTableViewCell {
     headerLabel.text = context.title
     descriptionLabel.text = context.description
     disclosureView.configure(context: CellDisclosureContext(label: context.disclosureText))
+  }
+  
+  @objc func closeButtonTapped() {
+     print("close")
+    delegate?.close()
   }
   
 }

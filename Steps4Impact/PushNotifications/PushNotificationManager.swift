@@ -13,6 +13,9 @@ import UserNotifications
 
 class PushNotificationManager: NSObject, UNUserNotificationCenterDelegate, MessagingDelegate {
   
+  static let shared = PushNotificationManager()
+  private override init() {}
+  
   let gcmMessageIDKey = "gcm.message_id"
   func registerForPushNotifications() {
     if #available(iOS 10.0, *) {

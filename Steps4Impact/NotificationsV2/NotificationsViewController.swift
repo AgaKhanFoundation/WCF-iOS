@@ -39,16 +39,42 @@ class NotificationsViewController: TableViewController {
     title = Strings.Notifications.title
     dataSource = NotificationsDataSource()
   }
-  
-  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    checkAppPermission()
   }
   
   override func reload() {
     dataSource?.reload { [weak self] in
       self?.tableView.reloadOnMain()
     }
+  }
+  
+  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
+    if let cell = cell as? NotificationPermissionCell {
+      cell.delegate = self
+    }
+  }
+  
+  func checkAppPermission() {
+    func reloadIfNeeded() {
+      if let _ = dataSource?.cells.first as? [NotificationPermissionCellContext] {
+        if UIApplication.shared.isRegisteredForRemoteNotifications {
+          dataSource?.cells.remove(at: 0)
+          tableView.reloadOnMain()
+        }
+      } else {
+        if !UIApplication.shared.isRegisteredForRemoteNotifications {
+          if let ds = dataSource as? NotificationsDataSource {
+            dataSource?.cells.insert([ds.notificationPermissionCellContext], at: 0)
+            tableView.reloadOnMain()
+          }
+        }
+      }
+    }
+    
+    reloadIfNeeded()
   }
 }
 
@@ -57,6 +83,10 @@ class NotificationsDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
   var disposeBag = DisposeBag()
   var completion: (() -> Void)?
+  
+  let notificationPermissionCellContext = NotificationPermissionCellContext(title: "Stay in the Loop",
+                                                                            description: "Turn on Notifications to get updates about team progress, leaderboard, badges and new challenges",
+                                                                            disclosureText: "Turn on Notifications")
   
   init() {
     
@@ -74,24 +104,28 @@ class NotificationsDataSource: TableViewDataSource {
   
   func reload(completion: @escaping () -> Void) {
     configure()
-    self.completion = completion
+    completion()
+  }
+  
+  func addNotificationPermissionCellIfNeeded() {
+    
   }
   
   func configure() {
     cells = [[]]
-    UNUserNotificationCenter.current().getNotificationSettings { (settings) in
-      DispatchQueue.main.async {
-        if settings.authorizationStatus != .authorized {
-          self.cells.insert([NotificationPermissionCellContext(title: "Stay in the Loop",
-                                                               description: "Turn on Notifications to get updates about team progress, leaderboard, badges and new challenges",
-                                                               disclosureText: "Turn on Notifications")], at: 0)
-          self.completion?()
-        } else {
-          self.completion?()
-        }
-      }
+    if !UIApplication.shared.isRegisteredForRemoteNotifications {
+//    UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+//      DispatchQueue.main.async {
+//        if settings.authorizationStatus != .authorized {
+          self.cells.insert([notificationPermissionCellContext], at: 0)
+//          self.completion?()
+//        } else {
+//          self.completion?()
+//        }
+//      }
     }
   }
+
   
   private func testData() -> [NotificationCellInfo] {
     [
@@ -110,5 +144,25 @@ class NotificationsDataSource: TableViewDataSource {
       NotificationCellInfo(title: "Notification from so long ago",
                            date: Date(timeIntervalSinceNow: -100*24*60*60), isLast: true)
     ]
+  }
+}
+extension NotificationsViewController: NotificationPermissionCellDelegate {
+  func turnOnNotifictions() {
+     guard let url = URL(string: UIApplication.openSettingsURLString) else {
+      return
+    }
+    
+    UIApplication.shared.open(url, options: [:]) { (success) in
+      if success {
+        
+      }
+    }
+  }
+  
+  func close() {
+    if let _ = dataSource?.cells.first as? [NotificationPermissionCellContext] {
+      dataSource?.cells.remove(at: 0)
+      tableView.reloadOnMain()
+    }
   }
 }

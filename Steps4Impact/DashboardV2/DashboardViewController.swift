@@ -68,19 +68,18 @@ class DashboardViewController: TableViewController {
   }
   
   private func askForPushNotificationPermissionIfNeeded() {
-    let pushManager = PushNotificationManager()
+//    let pushManager = PushNotificationManager()
     
     UNUserNotificationCenter.current().getNotificationSettings { (settings) in
       DispatchQueue.main.async {
         if settings.authorizationStatus == .authorized {
-          pushManager.updateFirestorePushTokenIfNeeded()
+          PushNotificationManager.shared.updateFirestorePushTokenIfNeeded()
         }
         guard settings.authorizationStatus == .notDetermined else {
           return
         }
-        
-        pushManager.registerForPushNotifications()
-        
+//
+        PushNotificationManager.shared.registerForPushNotifications()
 //        if self.canShowPrompt {
 //          let permissionPrompt: AlertViewController = AlertViewController()
 //          permissionPrompt.title = Strings.NotificationsPermission.title
