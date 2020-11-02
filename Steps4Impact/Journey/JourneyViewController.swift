@@ -14,7 +14,7 @@ class JourneyViewController: TableViewController {
     let view = UIView()
     view.backgroundColor = .white
     view.alpha = 1
-    view.layer.applySketchShadow(color: Style.Colors.FoundationGrey, alpha: 1, x: 0, y: -5, blur: 8, spread: 0)
+    view.layer.applySketchShadow(color: Style.Colors.FoundationGrey, alpha: 0.2, x: 0, y: 2, blur: 3, spread: 0)
     return view
   }()
 
@@ -25,6 +25,7 @@ class JourneyViewController: TableViewController {
     label.textColor = Style.Colors.FoundationGrey
     return label
   }()
+  var viewDisplayed = false
 
   override func commonInit() {
     super.commonInit()
@@ -33,7 +34,6 @@ class JourneyViewController: TableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     title = Strings.Journey.title
-    navigationController?.navigationBar.prefersLargeTitles = false
     view.backgroundColor = .white
     tableView.backgroundColor = .white
     tableView.contentInset = UIEdgeInsets(top: Style.Size.s64 + Style.Padding.p12, left: 0, bottom: 0, right: 0)
@@ -78,6 +78,11 @@ class JourneyViewController: TableViewController {
       }
     }
   }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    viewDisplayed = true
+  }
 }
 
 extension JourneyViewController {
@@ -87,6 +92,12 @@ extension JourneyViewController {
     }
     if let cell = cell as? CurrentMilestoneCell {
       cell.delegate = self
+    }
+  }
+  
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    if viewDisplayed && scrollView.contentOffset.y + scrollView.contentInset.top < 0 {
+      topProgressView.frame.origin.y = Style.Size.s64 + abs(scrollView.contentOffset.y)
     }
   }
 }
@@ -100,4 +111,3 @@ extension JourneyViewController: MilestoneNameButtonDelegate {
     }
   }
 }
-
