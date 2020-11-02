@@ -72,7 +72,6 @@
 		2676B3C82331E1B400CB0A31 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C72331E1B400CB0A31 /* ActionButton.swift */; };
 		2676B3CA2331F18B00CB0A31 /* TeamSettingsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3C92331F18B00CB0A31 /* TeamSettingsHeaderCell.swift */; };
 		2676B3CC2331F3D400CB0A31 /* TeamSettingsMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2676B3CB2331F3D400CB0A31 /* TeamSettingsMemberCell.swift */; };
-		267C145424A81EB600A36C62 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 267C145324A81EB600A36C62 /* GoogleService-Info.plist */; };
 		267C145724A8251C00A36C62 /* LoginV2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267C145624A8251C00A36C62 /* LoginV2ViewController.swift */; };
 		267C145B24A83FD900A36C62 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267C145A24A83FD900A36C62 /* User.swift */; };
 		267FAE282325C1660014222D /* SettingsDisclosureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267FAE272325C1660014222D /* SettingsDisclosureCell.swift */; };
@@ -270,7 +269,6 @@
 		2676B3C72331E1B400CB0A31 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		2676B3C92331F18B00CB0A31 /* TeamSettingsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsHeaderCell.swift; sourceTree = "<group>"; };
 		2676B3CB2331F3D400CB0A31 /* TeamSettingsMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsMemberCell.swift; sourceTree = "<group>"; };
-		267C145324A81EB600A36C62 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		267C145624A8251C00A36C62 /* LoginV2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginV2ViewController.swift; sourceTree = "<group>"; };
 		267C145A24A83FD900A36C62 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		267FAE272325C1660014222D /* SettingsDisclosureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDisclosureCell.swift; sourceTree = "<group>"; };
@@ -544,7 +542,6 @@
 		2611A50B2335FF930030E77E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				267C145324A81EB600A36C62 /* GoogleService-Info.plist */,
 				26388A6A2348293700C83AC2 /* Localizable.strings */,
 				262BE89D2338817D0087DDDF /* Steps4Impact.entitlements */,
 				269E34D51E765828000726C2 /* Info.plist */,
@@ -1056,7 +1053,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				269E34D11E765828000726C2 /* Assets.xcassets in Resources */,
-				267C145424A81EB600A36C62 /* GoogleService-Info.plist in Resources */,
 				269E34FD1E7658F2000726C2 /* Launch.storyboard in Resources */,
 				26388A682348293700C83AC2 /* Localizable.strings in Resources */,
 			);
