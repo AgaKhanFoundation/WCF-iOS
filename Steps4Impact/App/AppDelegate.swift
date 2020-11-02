@@ -47,4 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    options: [UIApplication.OpenURLOptionsKey:Any]) -> Bool {    // swiftlint:disable:this colon line_length
     return appController.can(app, open: url, with: options)
   }
+  
+  func applicationWillEnterForeground(_ application: UIApplication) {
+    PushNotificationManager.shared.updateFirestorePushTokenIfNeeded()
+  }
 }

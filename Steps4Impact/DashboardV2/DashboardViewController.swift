@@ -68,7 +68,6 @@ class DashboardViewController: TableViewController {
   }
   
   private func askForPushNotificationPermissionIfNeeded() {
-//    let pushManager = PushNotificationManager()
     
     UNUserNotificationCenter.current().getNotificationSettings { (settings) in
       DispatchQueue.main.async {
@@ -78,41 +77,10 @@ class DashboardViewController: TableViewController {
         guard settings.authorizationStatus == .notDetermined else {
           return
         }
-//
         PushNotificationManager.shared.registerForPushNotifications()
-//        if self.canShowPrompt {
-//          let permissionPrompt: AlertViewController = AlertViewController()
-//          permissionPrompt.title = Strings.NotificationsPermission.title
-//          permissionPrompt.body = Strings.NotificationsPermission.message
-//          permissionPrompt.add(.init(title: Strings.NotificationsPermission.proceed, style: .primary, shouldDismiss: true) {
-//            pushManager.registerForPushNotifications()
-//            })
-//          permissionPrompt.add(.later({
-//            //current date
-//            let currentDate = Date()
-//            let calendar = Calendar.current
-//            
-//            //add 1 day to the date:
-//            let newDate = calendar.date(byAdding: .day, value: 1, to: currentDate)
-//            UserDefaults.standard.setValue(newDate, forKey: "waitingDate")
-//            
-//            //prompt disabled for a day
-//          }))
-//          AppController.shared.present(alert: permissionPrompt, in: self, completion: nil)
-//        }
       }
     }
   }
-  
-  private var canShowPrompt: Bool = {
-    if let waitingDate = UserDefaults.standard.value(forKey: "waitingDate") as? Date {
-      let currentDate = Date()
-      if currentDate.compare(waitingDate) == .orderedDescending {
-        return false
-      }
-    }
-    return true
-  }()
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)

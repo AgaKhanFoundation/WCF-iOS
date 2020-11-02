@@ -32,16 +32,6 @@ class NotificationPermissionCell: ConfigurableTableViewCell {
   let headerLabel = UILabel(typography: .title)
   let descriptionLabel = UILabel(typography: .smallRegular, color: Style.Colors.FoundationGrey.withAlphaComponent(0.5))
   
-//  let crossButton: UIButton = {
-//    let button = UIButton(type: .system)
-//    button.translatesAutoresizingMaskIntoConstraints = false
-//    button.setBackgroundImage(Assets.close.image, for: .normal)
-//    button.contentMode = .scaleAspectFill
-//
-//    button.addTarget(self, action: #selector(crossButtonTapped), for: .touchUpInside)
-//    return button
-//  }()
-//
   let closeButton: UIImageView = {
     let imageView = UIImageView()
     imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -76,9 +66,9 @@ class NotificationPermissionCell: ConfigurableTableViewCell {
     }
     
     cardView.addSubview(closeButton) {
-      $0.trailing.top.equalToSuperview().inset(Style.Padding.p16)
+      $0.trailing.equalToSuperview().inset(Style.Padding.p16)
       $0.top.equalToSuperview().offset(Style.Padding.p24)
-      $0.height.width.equalTo(Style.Size.s16)
+      $0.height.width.equalTo(Style.Size.s14)
     }
     
     closeButton.isUserInteractionEnabled = true
@@ -96,7 +86,6 @@ class NotificationPermissionCell: ConfigurableTableViewCell {
   }
   
   @objc func closeButtonTapped() {
-     print("close")
     delegate?.close()
   }
   
