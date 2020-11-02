@@ -106,14 +106,13 @@ class NotificationsDataSource: TableViewDataSource {
     completion()
   }
   
-  func canShowPrompt() -> Bool {
-    
-//    if let data = UserDefaults.standard.value(forKey: "waitingDate"), let waitingDate = data as? Date {
-//      let currentDate = Date()
-//      if currentDate.compare(waitingDate) == .orderedAscending {
-//        return false
-//      }
-//    }
+  func canShowPrompt() -> Bool {    
+    if let data = UserDefaults.standard.value(forKey: "waitingDate"), let waitingDate = data as? Date {
+      let currentDate = Date()
+      if currentDate.compare(waitingDate) == .orderedAscending {
+        return false
+      }
+    }
     return true
   }
   
