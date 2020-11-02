@@ -18,20 +18,14 @@ class PushNotificationManager: NSObject, UNUserNotificationCenterDelegate, Messa
   
   let gcmMessageIDKey = "gcm.message_id"
   func registerForPushNotifications() {
-    if #available(iOS 10.0, *) {
-      // For iOS 10 display notification (sent via APNS)
-      UNUserNotificationCenter.current().delegate = self
-      let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-      UNUserNotificationCenter.current().requestAuthorization(
-          options: authOptions,
-          completionHandler: {_, _ in })
-      // For iOS 10 data message (sent via FCM)
-      Messaging.messaging().delegate = self
-    } else {
-      let settings: UIUserNotificationSettings =
-          UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-      UIApplication.shared.registerUserNotificationSettings(settings)
-    }
+    // For iOS 10 display notification (sent via APNS)
+    UNUserNotificationCenter.current().delegate = self
+    let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+    UNUserNotificationCenter.current().requestAuthorization(
+        options: authOptions,
+        completionHandler: {_, _ in })
+    // For iOS 10 data message (sent via FCM)
+    Messaging.messaging().delegate = self
     UIApplication.shared.registerForRemoteNotifications()
     updateFirestorePushTokenIfNeeded()
   }
@@ -65,9 +59,6 @@ class PushNotificationManager: NSObject, UNUserNotificationCenterDelegate, Messa
                               willPresent notification: UNNotification,
                               withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
     let userInfo = notification.request.content.userInfo
-    
-    // With swizzling disabled you must let Messaging know about the message, for Analytics
-    // Messaging.messaging().appDidReceiveMessage(userInfo)
     
     // Print message ID.
     if let messageID = userInfo[gcmMessageIDKey] {

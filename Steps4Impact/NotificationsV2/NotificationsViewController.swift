@@ -32,7 +32,6 @@ import RxSwift
 
 class NotificationsViewController: TableViewController {
   
-  var hasClosedNotificationPermissionCell = false
   override func commonInit() {
     super.commonInit()
 
@@ -81,7 +80,6 @@ class NotificationsDataSource: TableViewDataSource {
   let cache = Cache.shared
   var cells: [[CellContext]] = []
   var disposeBag = DisposeBag()
-  var completion: (() -> Void)?
   
   let notificationPermissionCellContext = NotificationPermissionCellContext(title: Strings.NotificationsPermission.title,
                                                                             description: Strings.NotificationsPermission.message,
@@ -106,7 +104,7 @@ class NotificationsDataSource: TableViewDataSource {
     completion()
   }
   
-  func canShowPrompt() -> Bool {    
+  func canShowPrompt() -> Bool {
     if let data = UserDefaults.standard.value(forKey: "waitingDate"), let waitingDate = data as? Date {
       let currentDate = Date()
       if currentDate.compare(waitingDate) == .orderedAscending {
