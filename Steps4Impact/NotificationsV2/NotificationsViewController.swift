@@ -77,9 +77,7 @@ class NotificationsDataSource: TableViewDataSource {
       guard let fbId = participant?.fbid, let eventId = participant?.currentEvent?.id else { return }
       
       AKFCausesService.getNotifications(fbId: fbId, eventId: eventId) { (result) in
-        print(result)
         self?.configure()
-        dump(self)
       }
     }.disposed(by: disposeBag)
   }
