@@ -60,9 +60,7 @@ class PushNotificationManager: NSObject {
         }
         return
       }
-      AKFCausesService.createFCMToken(fbId: User.id, token: fcmToken) { (result) in
-        print(result)
-      }
+      AKFCausesService.createFCMToken(fbId: User.id, token: fcmToken) { _ in }
     }
   }
   

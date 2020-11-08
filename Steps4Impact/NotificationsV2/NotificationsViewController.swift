@@ -76,7 +76,7 @@ class NotificationsDataSource: TableViewDataSource {
     cache.participantRelay.subscribeOnNext { [weak self] (participant: Participant?) in
       guard let fbId = participant?.fbid, let eventId = participant?.currentEvent?.id else { return }
       
-      AKFCausesService.getNotifications(fbId: fbId, eventId: eventId) { (result) in
+      AKFCausesService.getNotifications(fbId: fbId, eventId: eventId) { (result) in 
         self?.configure()
       }
     }.disposed(by: disposeBag)
