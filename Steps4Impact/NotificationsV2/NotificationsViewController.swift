@@ -31,16 +31,22 @@ import UIKit
 import RxSwift
 
 class NotificationsViewController: TableViewController {
-  
   override func commonInit() {
     super.commonInit()
-
     title = Strings.Notifications.title
     dataSource = NotificationsDataSource()
   }
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    checkNotificationPermission()
+    // Check the notification permission and then add or remove the persmission cell from tableView if needed.
+    if let dataSource = dataSource as? NotificationsDataSource {
+      dataSource.handleNotificationPermissionCell { [weak self] (shouldReload) in
+        if shouldReload {
+          self?.tableView.reloadOnMain()
+        }
+      }
+    }
   }
   
   override func reload() {
@@ -55,25 +61,6 @@ class NotificationsViewController: TableViewController {
       cell.delegate = self
     }
   }
-  
-  func checkNotificationPermission() {
-    func reloadIfNeeded() {
-      guard let dataSource = dataSource as? NotificationsDataSource else {
-        return
-      }
-      if let _ = dataSource.cells.first as? [NotificationPermissionCellContext] {
-         if UIApplication.shared.isRegisteredForRemoteNotifications {
-            dataSource.cells.remove(at: 0)
-            tableView.reloadOnMain()
-         }
-      } else if !UIApplication.shared.isRegisteredForRemoteNotifications, dataSource.canShowPrompt() {
-        dataSource.cells.insert([dataSource.notificationPermissionCellContext], at: 0)
-        tableView.reloadOnMain()
-      }
-    }
-    
-    reloadIfNeeded()
-  }
 }
 
 class NotificationsDataSource: TableViewDataSource {
@@ -86,7 +73,6 @@ class NotificationsDataSource: TableViewDataSource {
                                                                             disclosureText: Strings.NotificationsPermission.discloreText)
   
   init() {
-    
     cache.participantRelay.subscribeOnNext { [weak self] (participant: Participant?) in
       guard let fbId = participant?.fbid, let eventId = participant?.currentEvent?.id else { return }
       
@@ -96,7 +82,6 @@ class NotificationsDataSource: TableViewDataSource {
         dump(self)
       }
     }.disposed(by: disposeBag)
-    
   }
   
   func reload(completion: @escaping () -> Void) {
@@ -104,8 +89,24 @@ class NotificationsDataSource: TableViewDataSource {
     completion()
   }
   
+  func handleNotificationPermissionCell(completion: ((Bool) -> Void)?) {
+    // Checking if notification permission cell is already included in the cells array
+    if let firstCell = cells.first, firstCell is [NotificationPermissionCellContext] {
+      // Check if user is registered for remote notifications
+      if UIApplication.shared.isRegisteredForRemoteNotifications {
+        // remove the permission cell as the user has registered for push notification
+        cells.remove(at: 0)
+        completion?(true)
+      }
+    } else if !UIApplication.shared.isRegisteredForRemoteNotifications, canShowPrompt() {
+      cells.insert([notificationPermissionCellContext], at: 0)
+      completion?(true)
+    }
+    completion?(false)
+  }
+  
   func canShowPrompt() -> Bool {
-    if let data = UserDefaults.standard.value(forKey: "waitingDate"), let waitingDate = data as? Date {
+    if let waitingDate = UserInfo.waitingDate {
       let currentDate = Date()
       if currentDate.compare(waitingDate) == .orderedAscending {
         return false
@@ -120,7 +121,6 @@ class NotificationsDataSource: TableViewDataSource {
       self.cells.insert([notificationPermissionCellContext], at: 0)
     }
   }
-
   
   private func testData() -> [NotificationCellInfo] {
     [
@@ -155,15 +155,13 @@ extension NotificationsViewController: NotificationPermissionCellDelegate {
   }
   
   func close() {
-  
-    if let _ = dataSource?.cells.first as? [NotificationPermissionCellContext] {
+    if let firstCell = dataSource?.cells.first, firstCell is [NotificationPermissionCellContext] {
       let currentDate = Date()
       let calendar = Calendar.current
 
-      //add 1 day to the date:
-      if let newDate = calendar.date(byAdding: .day, value: 1, to: currentDate){
-        UserDefaults.standard.set(newDate, forKey: "waitingDate")
-  
+      // add 1 day to the date:
+      if let newDate = calendar.date(byAdding: .day, value: 1, to: currentDate) {
+        UserInfo.waitingDate = newDate
       }
       dataSource?.cells.remove(at: 0)
       tableView.reloadOnMain()

@@ -71,13 +71,14 @@ class DashboardViewController: TableViewController {
     
     UNUserNotificationCenter.current().getNotificationSettings { (settings) in
       DispatchQueue.main.async {
-        if settings.authorizationStatus == .authorized {
+        switch settings.authorizationStatus {
+        case .authorized:
           PushNotificationManager.shared.updateFirestorePushTokenIfNeeded()
+        case .notDetermined:
+          PushNotificationManager.shared.registerForPushNotifications()
+        default:
+          break
         }
-        guard settings.authorizationStatus == .notDetermined else {
-          return
-        }
-        PushNotificationManager.shared.registerForPushNotifications()
       }
     }
   }

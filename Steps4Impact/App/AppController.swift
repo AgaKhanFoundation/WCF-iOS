@@ -99,6 +99,10 @@ class AppController {
         annotation: options)
     }
   }
+  
+  func willEnterForeground() {
+    PushNotificationManager.shared.updateFirestorePushTokenIfNeeded()
+  }
 
   enum ViewController {
     case login

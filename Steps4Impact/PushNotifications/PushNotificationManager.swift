@@ -1,30 +1,50 @@
-//
-//  PushNotificationsManager.swift
-//  Steps4Impact
-//
-//  Created by Aalim Mulji on 5/9/20.
-//  Copyright © 2020 AKDN. All rights reserved.
-//
+/**
+ * Copyright © 2019 Aga Khan Foundation
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ *
+ * 3. The name of the author may not be used to endorse or promote products
+ *    derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+ * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ **/
 
 import Foundation
 import FirebaseCore
 import FirebaseMessaging
 import UserNotifications
 
-class PushNotificationManager: NSObject, UNUserNotificationCenterDelegate, MessagingDelegate {
+class PushNotificationManager: NSObject {
   
   static let shared = PushNotificationManager()
   private override init() {}
   
   let gcmMessageIDKey = "gcm.message_id"
   func registerForPushNotifications() {
-    // For iOS 10 display notification (sent via APNS)
     UNUserNotificationCenter.current().delegate = self
     let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
     UNUserNotificationCenter.current().requestAuthorization(
         options: authOptions,
         completionHandler: {_, _ in })
-    // For iOS 10 data message (sent via FCM)
+    
     Messaging.messaging().delegate = self
     UIApplication.shared.registerForRemoteNotifications()
     updateFirestorePushTokenIfNeeded()
@@ -36,9 +56,7 @@ class PushNotificationManager: NSObject, UNUserNotificationCenterDelegate, Messa
     AKFCausesService.getFCMToken(fbId: User.id) { (result) in
       if result.isSuccess {
         if let responseToken = result.response?["fcm_token"]?.stringValue, responseToken != fcmToken {
-          AKFCausesService.setFCMToken(fbId: User.id, token: fcmToken) { (result) in
-            print(result)
-          }
+          AKFCausesService.setFCMToken(fbId: User.id, token: fcmToken) { _ in }
         }
         return
       }
@@ -49,12 +67,9 @@ class PushNotificationManager: NSObject, UNUserNotificationCenterDelegate, Messa
   }
   
   func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-    print("Firebase registration token: \(fcmToken)")
-      
     updateFirestorePushTokenIfNeeded()
   }
   
-  // Receive displayed notifications for iOS 10 devices.
   func userNotificationCenter(_ center: UNUserNotificationCenter,
                               willPresent notification: UNNotification,
                               withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
@@ -87,3 +102,5 @@ class PushNotificationManager: NSObject, UNUserNotificationCenterDelegate, Messa
     completionHandler()
   }
 }
+
+extension PushNotificationManager: UNUserNotificationCenterDelegate, MessagingDelegate {}
