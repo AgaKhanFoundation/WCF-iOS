@@ -36,6 +36,7 @@ import AppCenterAnalytics
 import AppCenterCrashes
 import HealthKit
 import GoogleSignIn
+import FirebaseCore
 
 class AppController {
   static let shared = AppController()

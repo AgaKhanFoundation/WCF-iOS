@@ -68,7 +68,6 @@ class DashboardViewController: TableViewController {
   }
   
   private func askForPushNotificationPermissionIfNeeded() {
-    
     UNUserNotificationCenter.current().getNotificationSettings { (settings) in
       DispatchQueue.main.async {
         switch settings.authorizationStatus {
@@ -87,16 +86,6 @@ class DashboardViewController: TableViewController {
     super.viewDidAppear(animated)
     reload()
   }
-
-  private var canShowPrompt: Bool = {
-    if let waitingDate = UserDefaults.standard.value(forKey: "waitingDate") as? Date {
-      let currentDate = Date()
-      if currentDate.compare(waitingDate) == .orderedDescending {
-        return false
-      }
-    }
-    return true
-  }()
 
   deinit {
     NotificationCenter.default.removeObserver(self)
