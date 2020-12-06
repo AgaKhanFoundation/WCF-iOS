@@ -123,6 +123,7 @@
 		A5123F242381B63300C3E9DE /* JourneyDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5123F232381B63300C3E9DE /* JourneyDataSource.swift */; };
 		A5123F262381C9CE00C3E9DE /* CurrentMilestoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5123F252381C9CE00C3E9DE /* CurrentMilestoneCell.swift */; };
 		A529214323F7281700545051 /* MiniChallengeProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529214223F7281700545051 /* MiniChallengeProgressCell.swift */; };
+		A52E332D24676929008FAF71 /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52E332C24676929008FAF71 /* PushNotificationManager.swift */; };
 		A53E7B3D236F576C006BD6D9 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E7B3C236F576C006BD6D9 /* CollectionViewController.swift */; };
 		A53E7B3F236F58D2006BD6D9 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E7B3E236F58D2006BD6D9 /* UICollectionView.swift */; };
 		A53E7B41236F59F0006BD6D9 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E7B40236F59F0006BD6D9 /* CollectionViewCell.swift */; };
@@ -131,6 +132,7 @@
 		A5790D4523F1C5B80026D1EE /* TeamBreakdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5790D4423F1C5B80026D1EE /* TeamBreakdownViewController.swift */; };
 		A5790D4823F1C62C0026D1EE /* TeamBreakdownDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5790D4723F1C62C0026D1EE /* TeamBreakdownDataSource.swift */; };
 		A57A29FC236E408E002AA380 /* BadgesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57A29FB236E408E002AA380 /* BadgesCollectionViewController.swift */; };
+		A58079F325463E9800205519 /* NotificationsPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58079F225463E9800205519 /* NotificationsPermissionView.swift */; };
 		A5865EB32377617500C551E9 /* BadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5865EB22377617500C551E9 /* BadgeCell.swift */; };
 		A5865EB5237761BF00C551E9 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5865EB4237761BF00C551E9 /* HeaderCell.swift */; };
 		A58E21D723DE85CF00929E86 /* AZSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58E21D623DE85CF00929E86 /* AZSClient.swift */; };
@@ -323,6 +325,7 @@
 		A5123F232381B63300C3E9DE /* JourneyDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyDataSource.swift; sourceTree = "<group>"; };
 		A5123F252381C9CE00C3E9DE /* CurrentMilestoneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentMilestoneCell.swift; sourceTree = "<group>"; };
 		A529214223F7281700545051 /* MiniChallengeProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniChallengeProgressCell.swift; sourceTree = "<group>"; };
+		A52E332C24676929008FAF71 /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
 		A53E7B3C236F576C006BD6D9 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		A53E7B3E236F58D2006BD6D9 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		A53E7B40236F59F0006BD6D9 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -331,6 +334,7 @@
 		A5790D4423F1C5B80026D1EE /* TeamBreakdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBreakdownViewController.swift; sourceTree = "<group>"; };
 		A5790D4723F1C62C0026D1EE /* TeamBreakdownDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBreakdownDataSource.swift; sourceTree = "<group>"; };
 		A57A29FB236E408E002AA380 /* BadgesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesCollectionViewController.swift; sourceTree = "<group>"; };
+		A58079F225463E9800205519 /* NotificationsPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsPermissionView.swift; sourceTree = "<group>"; };
 		A5865EB22377617500C551E9 /* BadgeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCell.swift; sourceTree = "<group>"; };
 		A5865EB4237761BF00C551E9 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		A58E21D623DE85CF00929E86 /* AZSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AZSClient.swift; sourceTree = "<group>"; };
@@ -619,6 +623,7 @@
 			children = (
 				2635EB8D2338B57800BC50E9 /* NotificationsViewController.swift */,
 				26AA2CEE245E5434000638D4 /* NotificationCell.swift */,
+				A58079F225463E9800205519 /* NotificationsPermissionView.swift */,
 			);
 			path = NotificationsV2;
 			sourceTree = "<group>";
@@ -697,6 +702,7 @@
 		269E34C81E765828000726C2 /* Steps4Impact */ = {
 			isa = PBXGroup;
 			children = (
+				A52E332B246768DA008FAF71 /* PushNotifications */,
 				A5123F1D2381B4F700C3E9DE /* Journey */,
 				A57A29FA236E404C002AA380 /* BadgesV2 */,
 				2668B0672361936300309B9D /* Generated */,
@@ -784,6 +790,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		A52E332B246768DA008FAF71 /* PushNotifications */ = {
+ 			isa = PBXGroup;
+ 			children = (
+ 				A52E332C24676929008FAF71 /* PushNotificationManager.swift */,
+ 			);
+ 			path = PushNotifications;
+ 			sourceTree = "<group>";
+ 		};
 		A550395E23823FE500788157 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1301,6 +1315,7 @@
 				262418342336EA5700454EF2 /* OnboardingViewController.swift in Sources */,
 				269E34CA1E765828000726C2 /* AppDelegate.swift in Sources */,
 				266DA27B2339E54000035CC5 /* ChallengeTeamProgressCell.swift in Sources */,
+				A58079F325463E9800205519 /* NotificationsPermissionView.swift in Sources */,
 				264AE87323F3B85900377D67 /* ActivityGraphView.swift in Sources */,
 				C92244D5235D4B670098A333 /* UserDefaults.swift in Sources */,
 				265FE47A2349A0A400215391 /* Cache.swift in Sources */,
@@ -1382,6 +1397,7 @@
 				F017B6932276B99A0023E84B /* OnboardingCreateTeam.swift in Sources */,
 				260BF5952324B3FC005F0882 /* ProfileCardCell.swift in Sources */,
 				2622C0962324A0490092B145 /* TableViewCell.swift in Sources */,
+				A52E332D24676929008FAF71 /* PushNotificationManager.swift in Sources */,
 				F017B6972276D0C60023E84B /* OnboardingDashboard.swift in Sources */,
 				26AA2CEF245E5434000638D4 /* NotificationCell.swift in Sources */,
 				269F95272377994B0089CDD1 /* ActivityCardCell.swift in Sources */,

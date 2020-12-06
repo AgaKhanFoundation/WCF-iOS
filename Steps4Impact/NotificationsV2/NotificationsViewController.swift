@@ -33,9 +33,33 @@ import RxSwift
 class NotificationsViewController: TableViewController {
   override func commonInit() {
     super.commonInit()
-
     title = Strings.Notifications.title
     dataSource = NotificationsDataSource()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    // Check the notification permission and then add or remove the persmission cell from tableView if needed.
+    if let dataSource = dataSource as? NotificationsDataSource {
+      dataSource.handleNotificationPermissionCell { [weak self] (shouldReload) in
+        if shouldReload {
+          self?.tableView.reloadOnMain()
+        }
+      }
+    }
+  }
+  
+  override func reload() {
+    dataSource?.reload { [weak self] in
+      self?.tableView.reloadOnMain()
+    }
+  }
+  
+  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
+    if let cell = cell as? NotificationPermissionCell {
+      cell.delegate = self
+    }
   }
 }
 
@@ -44,21 +68,56 @@ class NotificationsDataSource: TableViewDataSource {
   var cells: [[CellContext]] = []
   var disposeBag = DisposeBag()
   
+  let notificationPermissionCellContext = NotificationPermissionCellContext(title: Strings.NotificationsPermission.title,
+                                                                            description: Strings.NotificationsPermission.message,
+                                                                            disclosureText: Strings.NotificationsPermission.discloreText)
+  
   init() {
-    
     cache.participantRelay.subscribeOnNext { [weak self] (participant: Participant?) in
       guard let fbId = participant?.fbid, let eventId = participant?.currentEvent?.id else { return }
       
-      AKFCausesService.getNotifications(fbId: fbId, eventId: eventId) { (result) in
-        print(result)
-        dump(self)
+      AKFCausesService.getNotifications(fbId: fbId, eventId: eventId) { (result) in 
+        self?.configure()
       }
     }.disposed(by: disposeBag)
-    
+  }
+  
+  func reload(completion: @escaping () -> Void) {
+    configure()
+    completion()
+  }
+  
+  func handleNotificationPermissionCell(completion: ((Bool) -> Void)?) {
+    // Checking if notification permission cell is already included in the cells array
+    if let firstCell = cells.first, firstCell is [NotificationPermissionCellContext] {
+      // Check if user is registered for remote notifications
+      if UIApplication.shared.isRegisteredForRemoteNotifications {
+        // remove the permission cell as the user has registered for push notification
+        cells.remove(at: 0)
+        completion?(true)
+      }
+    } else if !UIApplication.shared.isRegisteredForRemoteNotifications, canShowPrompt() {
+      cells.insert([notificationPermissionCellContext], at: 0)
+      completion?(true)
+    }
+    completion?(false)
+  }
+  
+  func canShowPrompt() -> Bool {
+    if let waitingDate = UserInfo.waitingDate {
+      let currentDate = Date()
+      if currentDate.compare(waitingDate) == .orderedAscending {
+        return false
+      }
+    }
+    return true
   }
   
   func configure() {
     cells = [[]]
+    if !UIApplication.shared.isRegisteredForRemoteNotifications, canShowPrompt() {
+      self.cells.insert([notificationPermissionCellContext], at: 0)
+    }
   }
   
   private func testData() -> [NotificationCellInfo] {
@@ -78,5 +137,32 @@ class NotificationsDataSource: TableViewDataSource {
       NotificationCellInfo(title: "Notification from so long ago",
                            date: Date(timeIntervalSinceNow: -100*24*60*60), isLast: true)
     ]
+  }
+}
+extension NotificationsViewController: NotificationPermissionCellDelegate {
+  func turnOnNotifictions() {
+     guard let url = URL(string: UIApplication.openSettingsURLString) else {
+      return
+    }
+    
+    UIApplication.shared.open(url, options: [:]) { (success) in
+      guard !success else {
+        return
+      }
+    }
+  }
+  
+  func close() {
+    if let firstCell = dataSource?.cells.first, firstCell is [NotificationPermissionCellContext] {
+      let currentDate = Date()
+      let calendar = Calendar.current
+
+      // add 1 day to the date:
+      if let newDate = calendar.date(byAdding: .day, value: 1, to: currentDate) {
+        UserInfo.waitingDate = newDate
+      }
+      dataSource?.cells.remove(at: 0)
+      tableView.reloadOnMain()
+    }
   }
 }

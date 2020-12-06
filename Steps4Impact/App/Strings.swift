@@ -215,6 +215,14 @@ struct Strings {
     }
   }
   
+  struct NotificationsPermission {
+    static let title = NSLocalizedString("Notifications.Permission.title", comment: "")
+    static let message = NSLocalizedString("Notifications.Permission.message", comment: "")
+    static let discloreText = NSLocalizedString("Notifications.Permission.discloreText", comment: "")
+    static let proceed = NSLocalizedString("Notifications.Permission.proceed", comment: "")
+    static let cancel = NSLocalizedString("Notifications.Permission.cancel", comment: "")
+  }
+  
   struct CommitmentAlert {
     static let title = NSLocalizedString("CommitmentAlert.title", comment: "")
     struct Failure {

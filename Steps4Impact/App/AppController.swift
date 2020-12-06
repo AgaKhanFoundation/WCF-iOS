@@ -36,6 +36,7 @@ import AppCenterAnalytics
 import AppCenterCrashes
 import HealthKit
 import GoogleSignIn
+import FirebaseCore
 
 class AppController {
   static let shared = AppController()
@@ -97,6 +98,10 @@ class AppController {
         sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
         annotation: options)
     }
+  }
+  
+  func willEnterForeground() {
+    PushNotificationManager.shared.updateFirestorePushTokenIfNeeded()
   }
 
   enum ViewController {

@@ -46,6 +46,7 @@ struct UserInfo {
       "UserInfo.Keys.AKFProfileCreated"
   private static let staging: String = "UserInfo.Keys.staging"
   private static let fitbitAuthObjKey: String = "UserInfo.Keys.fitbitAuthObj"
+  private static let waitingDateKey: String = "UserInfo.Keys.waitingDate"
 
   enum Pedometer: String {
     case healthKit = "UserInfo.Pedometer.HealthKit"
@@ -101,5 +102,10 @@ struct UserInfo {
   public static var isStaging: Bool {
     get { return defaults.bool(forKey: staging) }
     set { defaults.set(newValue, forKey: staging) }
+  }
+  
+  public static var waitingDate: Date? {
+    get { return defaults.value(forKey: waitingDateKey) as? Date}
+    set { return defaults.set(newValue, forKey: waitingDateKey)}
   }
 }

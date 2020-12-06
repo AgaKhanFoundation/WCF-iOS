@@ -62,6 +62,26 @@ class DashboardViewController: TableViewController {
     }
   }
   
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.askForPushNotificationPermissionIfNeeded()
+  }
+  
+  private func askForPushNotificationPermissionIfNeeded() {
+    UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+      DispatchQueue.main.async {
+        switch settings.authorizationStatus {
+        case .authorized:
+          PushNotificationManager.shared.updateFirestorePushTokenIfNeeded()
+        case .notDetermined:
+          PushNotificationManager.shared.registerForPushNotifications()
+        default:
+          break
+        }
+      }
+    }
+  }
+  
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     reload()
