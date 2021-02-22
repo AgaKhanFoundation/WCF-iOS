@@ -55,6 +55,15 @@ class Cache {
     }
   }
   
+  func fetchParticipant(fbid: FirebaseID) {
+    AKFCausesService.getParticipant(fbid: fbid) { [weak self] (result) in
+      guard result.isSuccess, let participant = Participant(json: result.response) else {
+        return
+      }
+      self?.update(participant: participant)
+    }
+  }
+  
   let socialDisplayNamesRelay = BehaviorRelay<[FirebaseID: SocialDisplayName]>(value: [:])
   private var socialDisplayNames = [FirebaseID: SocialDisplayName]()
   func update(fbid: FirebaseID, name: SocialDisplayName) {
@@ -84,5 +93,8 @@ class Cache {
   }
 
   let participantRelay = BehaviorRelay<Participant?>(value: nil)
+  func update(participant: Participant) {
+    participantRelay.accept(participant)
+  }
   let currentEventRelay = BehaviorRelay<Event?>(value: nil)
 }
