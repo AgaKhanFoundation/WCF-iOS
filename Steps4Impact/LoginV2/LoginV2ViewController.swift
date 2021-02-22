@@ -152,11 +152,26 @@ class LoginV2ViewController: ViewController {
 // AKF-WCBackend
 extension LoginV2ViewController {
   private func linkAKFBackend(fbid: String) {
-    AKFCausesService.createParticipant(fbid: fbid) { [weak self] (_) in
+    
+    let handler = { [weak self] in
       onMain {
         AppController.shared.login()
       }
       self?.addParticipantToDefaultEventIfNeeded(fbid: fbid)
+    }
+    
+    AKFCausesService.getParticipant(fbid: fbid) { (result) in
+      if !result.isSuccess {
+        AKFCausesService.createParticipant(fbid: fbid) { [weak self] (result) in
+          guard result.isSuccess else {
+            self?.alert(message: "Sign In failed. Please try again")
+            return
+          }
+          handler()
+        }
+      } else {
+        handler()
+      }
     }
   }
   

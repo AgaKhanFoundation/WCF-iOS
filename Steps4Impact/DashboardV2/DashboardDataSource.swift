@@ -68,11 +68,11 @@ class DashboardDataSource: TableViewDataSource {
       cache.participantRelay)
 
     update.subscribeOnNext { [weak self] (names, imageURLs, participant) in
-      guard let `self` = self else { return }
-      self.name = names["me"] ?? " "
-      self.imageURL = imageURLs["me"]
-      self.teamName = participant?.team?.name ?? " "
-      if let event = participant?.currentEvent {
+      guard let `self` = self, let participant = participant else { return }
+      self.name = names[participant.fbid] ?? " "
+      self.imageURL = imageURLs[participant.fbid]
+      self.teamName = participant.team?.name ?? " "
+      if let event = participant.currentEvent {
         self.eventName = event.name
         self.eventTimeline = DateInterval(start: event.teamFormationPhase.start, end: event.challengePhase.end)
         self.eventTimelineString = DataFormatters
