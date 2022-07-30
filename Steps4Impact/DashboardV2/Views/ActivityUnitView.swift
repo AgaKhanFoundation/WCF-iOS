@@ -29,7 +29,7 @@
 
 import UIKit
 
-protocol ActivityUnitViewDelegate: class {
+protocol ActivityUnitViewDelegate: AnyObject {
   func activityUnitViewTapped(unit: ActivityUnit)
 }
 

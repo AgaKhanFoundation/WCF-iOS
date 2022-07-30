@@ -29,7 +29,7 @@
 
 import UIKit
 
-protocol ActivityDateViewDelegate: class {
+protocol ActivityDateViewDelegate: AnyObject {
   func activityDateViewLeftTapped()
   func activityDateViewRightTapped()
 }

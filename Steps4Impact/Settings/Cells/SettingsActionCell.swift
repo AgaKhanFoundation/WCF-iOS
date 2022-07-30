@@ -29,7 +29,7 @@
 
 import UIKit
 
-protocol SettingsActionCellDelegate: class {
+protocol SettingsActionCellDelegate: AnyObject {
   func settingsActionCellTapped(context: Context?, button: UIButton)
 }
 

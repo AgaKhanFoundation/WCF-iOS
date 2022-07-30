@@ -30,7 +30,7 @@
 import UIKit
 import SnapKit
 
-protocol ConnectedActivityCellDelegate: class {
+protocol ConnectedActivityCellDelegate: AnyObject {
 }
 
 struct ConnectedActivityCellContext: CellContext {

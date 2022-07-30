@@ -40,7 +40,7 @@ enum TeamMembersContext: Context {
   case remove(fbid: String, name: String)
 }
 
-protocol TeamSettingsDataSourceDelegate: class {
+protocol TeamSettingsDataSourceDelegate: AnyObject {
   func updated(team: Team?)
 }
 

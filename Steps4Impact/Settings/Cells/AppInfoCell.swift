@@ -36,7 +36,7 @@ struct AppInfoCellContext: CellContext {
   let body: String
 }
 
-protocol AppInfoCellDelegate: class {
+protocol AppInfoCellDelegate: AnyObject {
   func appInfoCellToggleStaging()
 }
 
