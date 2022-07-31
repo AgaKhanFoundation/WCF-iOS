@@ -320,6 +320,7 @@
 		3AAA329F23655CB5002B7479 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		644A965BB27AB6174A19603E /* Pods_Steps4ImpactTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Steps4ImpactTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D885FB78222CE09537F0C6A /* Pods-steps4impact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steps4impact.debug.xcconfig"; path = "Target Support Files/Pods-steps4impact/Pods-steps4impact.debug.xcconfig"; sourceTree = "<group>"; };
+		A51064892895F99C001467A2 /* Steps4ImpactDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Steps4ImpactDebug.entitlements; sourceTree = "<group>"; };
 		A5123F1E2381B51E00C3E9DE /* JourneyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyViewController.swift; sourceTree = "<group>"; };
 		A5123F212381B60B00C3E9DE /* MilestoneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneCell.swift; sourceTree = "<group>"; };
 		A5123F232381B63300C3E9DE /* JourneyDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyDataSource.swift; sourceTree = "<group>"; };
@@ -702,6 +703,7 @@
 		269E34C81E765828000726C2 /* Steps4Impact */ = {
 			isa = PBXGroup;
 			children = (
+				A51064892895F99C001467A2 /* Steps4ImpactDebug.entitlements */,
 				A52E332B246768DA008FAF71 /* PushNotifications */,
 				A5123F1D2381B4F700C3E9DE /* Journey */,
 				A57A29FA236E404C002AA380 /* BadgesV2 */,
@@ -1009,7 +1011,7 @@
 					};
 					269E34C51E765828000726C2 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 6SQ8F32998;
+						DevelopmentTeam = 77MLE67A45;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1609,15 +1611,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "Steps4Impact/Supporting Files/Steps4Impact.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Steps4Impact/Steps4ImpactDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 280;
-				DEVELOPMENT_TEAM = 6SQ8F32998;
+				DEVELOPMENT_TEAM = 77MLE67A45;
 				INFOPLIST_FILE = "Steps4Impact/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.akf.WalkingChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akf.WalkingChallenge.aalim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
