@@ -31,27 +31,29 @@ import Foundation
 
 struct AppConfig {
   static var server: URLComponents {
-    if UserInfo.isStaging {
-      return URLComponents(string: "https://staging.steps4impact.org")! // swiftlint:disable:this force_unwrapping
-    } else {
-      #if DEBUG
-        return URLComponents(string: "https://steps4impact-dev.azurewebsites.net")! // swiftlint:disable:this force_unwrapping
-      #else
-        return URLComponents(string: "https://production.steps4impact.org")! // swiftlint:disable:this force_unwrapping
-      #endif
-    }
+//    if UserInfo.isStaging {
+//      return URLComponents(string: "https://staging.steps4impact.org")! // swiftlint:disable:this force_unwrapping
+//    } else {
+//      #if DEBUG
+//        return URLComponents(string: "https://steps4impact-dev.azurewebsites.net")! // swiftlint:disable:this force_unwrapping
+//      #else
+//        return URLComponents(string: "https://production.steps4impact.org")! // swiftlint:disable:this force_unwrapping
+//      #endif
+//    }
+    return URLComponents(string: "https://step4impact.k8s.infinidigm.com")!
   }
 
   static var serverPassword: String {
-    if UserInfo.isStaging {
-      return AppSecrets.stagingPassword
-    } else {
-      #if DEBUG
-        return AppSecrets.devPassword
-      #else
-        return AppSecrets.prodPassword
-      #endif
-    }
+//    if UserInfo.isStaging {
+//      return AppSecrets.stagingPassword
+//    } else {
+//      #if DEBUG
+//        return AppSecrets.devPassword
+//      #else
+//        return AppSecrets.prodPassword
+//      #endif
+//    }
+    return "dGVzdDp0ZXN0"
   }
 
   static let appCenterSecret = "9ca54e4e-20df-425a-bfe6-b72d0daad2da" // TODO: Move this to CI env
