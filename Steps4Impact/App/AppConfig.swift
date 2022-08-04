@@ -40,7 +40,7 @@ struct AppConfig {
 //        return URLComponents(string: "https://production.steps4impact.org")! // swiftlint:disable:this force_unwrapping
 //      #endif
 //    }
-    return URLComponents(string: "https://steps4impact-test.theismailiusa.org ")!
+    return URLComponents(string: "https://steps4impact-test.theismailiusa.org")!
   }
 
   static var serverPassword: String {
