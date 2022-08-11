@@ -29,7 +29,7 @@
 
 import UIKit
 
-protocol JourneyDetailDelegate: class {
+protocol JourneyDetailDelegate: AnyObject {
   func didGetShareText(_ shareText: String)
 }
 

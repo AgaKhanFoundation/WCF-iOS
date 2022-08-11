@@ -30,7 +30,7 @@
 import UIKit
 import SnapKit
 
-protocol Keyboardable: class {
+protocol Keyboardable: AnyObject {
   func addKeyboardNotifications()
   func removeKeyboardNotifications()
   func keyboardChanged(notification: Foundation.Notification)

@@ -29,7 +29,7 @@
 
 import UIKit
 
-protocol ConnectSourceCellDelegate: class {
+protocol ConnectSourceCellDelegate: AnyObject {
   func updateSource(context: Context?)
 }
 

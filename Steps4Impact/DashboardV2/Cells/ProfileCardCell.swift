@@ -31,7 +31,7 @@ import UIKit
 import SnapKit
 import SDWebImage
 
-protocol ProfileCardCellDelegate: class {
+protocol ProfileCardCellDelegate: AnyObject {
   func profileDisclosureTapped()
 }
 

@@ -30,7 +30,7 @@
 import UIKit
 import SnapKit
 
-protocol TeamNeededCellDelegate: class {
+protocol TeamNeededCellDelegate: AnyObject {
   func teamNeededCellPrimaryTapped()
   func teamNeededCellSecondaryTapped()
 }

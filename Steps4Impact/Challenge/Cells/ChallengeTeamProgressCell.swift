@@ -30,7 +30,7 @@
 import UIKit
 import SnapKit
 
-protocol ChallengeTeamProgressCellDelegate: class {
+protocol ChallengeTeamProgressCellDelegate: AnyObject {
   func challengeTeamProgressDisclosureTapped()
   func challengeTeamProgressEditTapped()
 }

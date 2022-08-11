@@ -57,7 +57,7 @@ struct TeamSettingsMemberCellContext: CellContext {
   }
 }
 
-protocol TeamSettingsMemberCellDelegate: class {
+protocol TeamSettingsMemberCellDelegate: AnyObject {
   func removeTapped(context: Context?, button: UIButton)
 }
 

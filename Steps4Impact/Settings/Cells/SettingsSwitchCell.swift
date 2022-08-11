@@ -29,7 +29,7 @@
 
 import UIKit
 
-protocol SettingsSwitchCellDelegate: class {
+protocol SettingsSwitchCellDelegate: AnyObject {
   func settingsSwitchToggled(toggled: Bool, context: Context?)
 }
 

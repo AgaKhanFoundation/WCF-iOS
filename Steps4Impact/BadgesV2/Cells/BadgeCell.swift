@@ -20,7 +20,7 @@ struct Badge: CellContext {
   var badgeType: BadgeType = .unknown
 }
 
-protocol BadgeCellDelegate: class {
+protocol BadgeCellDelegate: AnyObject {
   func badgeCellTapped()
 }
 

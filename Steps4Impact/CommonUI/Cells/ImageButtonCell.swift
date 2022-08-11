@@ -30,7 +30,7 @@
 import UIKit
 import SnapKit
 
-protocol ImageButtonCellDelegate: class {
+protocol ImageButtonCellDelegate: AnyObject {
   func imageButtonCellTapped(context: Context?)
 }
 
