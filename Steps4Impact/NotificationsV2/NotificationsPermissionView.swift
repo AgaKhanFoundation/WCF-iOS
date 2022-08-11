@@ -30,7 +30,7 @@
 import Foundation
 import UIKit
 
-protocol NotificationPermissionCellDelegate: class {
+protocol NotificationPermissionCellDelegate: AnyObject {
   func turnOnNotifictions()
   func close()
 }

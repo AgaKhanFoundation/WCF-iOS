@@ -29,7 +29,7 @@
 
 import UIKit
 
-protocol RadioButtonDelegate: class {
+protocol RadioButtonDelegate: AnyObject {
   func radioButtonTapped(radioButton: RadioButton)
 }
 

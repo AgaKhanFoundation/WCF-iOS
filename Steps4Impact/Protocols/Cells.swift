@@ -33,11 +33,11 @@ protocol CellContext: Context {
   var identifier: String { get }
 }
 
-protocol ConfigurableCell: class {
+protocol ConfigurableCell: AnyObject {
   func configure(context: CellContext)
 }
 
-protocol ReusableCell: class {
+protocol ReusableCell: AnyObject {
   static var identifier: String { get }
 }
 

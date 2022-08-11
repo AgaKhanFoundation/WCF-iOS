@@ -30,7 +30,7 @@
 import UIKit
 import SnapKit
 
-protocol EmptyActivityCellDelegate: class {
+protocol EmptyActivityCellDelegate: AnyObject {
   func emptyActivityCellConnectTapped()
 }
 

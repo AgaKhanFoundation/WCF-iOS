@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol MilestoneNameButtonDelegate: class {
+protocol MilestoneNameButtonDelegate: AnyObject {
   func milestoneNameButtonTapped(sequence: Int)
 }
 

@@ -29,7 +29,7 @@
 
 import UIKit
 
-protocol ActivityTimeViewDelegate: class {
+protocol ActivityTimeViewDelegate: AnyObject {
   func activityTimeViewTapped(time: ActivityTime)
 }
 

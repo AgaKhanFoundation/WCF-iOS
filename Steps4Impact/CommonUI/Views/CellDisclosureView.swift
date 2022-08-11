@@ -29,7 +29,7 @@
 
 import UIKit
 
-protocol CellDisclosureViewDelegate: class {
+protocol CellDisclosureViewDelegate: AnyObject {
   func cellDisclosureTapped()
 }
 

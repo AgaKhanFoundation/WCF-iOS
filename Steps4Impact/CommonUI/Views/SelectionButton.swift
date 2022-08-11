@@ -30,7 +30,7 @@
 import UIKit
 import SnapKit
 
-protocol SelectionButtonDataSource: class {
+protocol SelectionButtonDataSource: AnyObject {
   var items: [String] { get }
   var selection: Int? { get set }
 }
@@ -102,7 +102,7 @@ extension SelectionButtonPopoverViewController: UIPopoverPresentationControllerD
   }
 }
 
-protocol SelectionButtonDelegate: class {
+protocol SelectionButtonDelegate: AnyObject {
   func present(_ viewControllerToPresent: UIViewController,
                animated flag: Bool, completion: (() -> Swift.Void)?)
 }

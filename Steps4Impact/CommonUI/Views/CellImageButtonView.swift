@@ -29,7 +29,7 @@
 
 import UIKit
 
-protocol CellImageButtonViewDelegate: class {
+protocol CellImageButtonViewDelegate: AnyObject {
   func cellImageButtonViewTapped()
 }
 

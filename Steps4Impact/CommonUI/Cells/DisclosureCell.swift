@@ -30,7 +30,7 @@
 import UIKit
 import SnapKit
 
-protocol DisclosureCellDelegate: class {
+protocol DisclosureCellDelegate: AnyObject {
   func disclosureCellTapped(context: Context?)
 }
 

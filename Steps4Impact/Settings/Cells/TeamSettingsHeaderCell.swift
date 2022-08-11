@@ -36,7 +36,7 @@ struct TeamSettingsHeaderCellContext: CellContext {
   let isLead: Bool
 }
 
-protocol TeamSettingsHeaderCellDelegate: class {
+protocol TeamSettingsHeaderCellDelegate: AnyObject {
   func editImageButtonPressed(cell: TeamSettingsHeaderCell)
 }
 
