@@ -791,13 +791,13 @@
 			sourceTree = "<group>";
 		};
 		A52E332B246768DA008FAF71 /* PushNotifications */ = {
- 			isa = PBXGroup;
- 			children = (
- 				A52E332C24676929008FAF71 /* PushNotificationManager.swift */,
- 			);
- 			path = PushNotifications;
- 			sourceTree = "<group>";
- 		};
+			isa = PBXGroup;
+			children = (
+				A52E332C24676929008FAF71 /* PushNotificationManager.swift */,
+			);
+			path = PushNotifications;
+			sourceTree = "<group>";
+		};
 		A550395E23823FE500788157 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -998,7 +998,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1330;
 				ORGANIZATIONNAME = AKDN;
 				TargetAttributes = {
 					2611A4EB2335F8350030E77E = {
@@ -1519,6 +1519,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1577,6 +1578,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
