@@ -50,7 +50,7 @@ class CreateTeamViewController: ViewController, UINavigationControllerDelegate, 
   private var imagePicker = UIImagePickerController()
   private let uploadImageButton: UIButton = {
     let button = UIButton(type: .custom)
-    button.addTarget(self, action: #selector(uploadImageButtonTapped), for: .touchUpInside)
+    button.addTarget(CreateTeamViewController.self, action: #selector(uploadImageButtonTapped), for: .touchUpInside)
     button.setTitle(Strings.Challenge.CreateTeam.uploadImageButtonText, for: .normal)
     button.setTitleColor(.blue, for: .normal)
     button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
