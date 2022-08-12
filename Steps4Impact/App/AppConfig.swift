@@ -31,27 +31,24 @@ import Foundation
 
 struct AppConfig {
   static var server: URLComponents {
-    if UserInfo.isStaging {
-      return URLComponents(string: "https://staging.step4change.org")! // swiftlint:disable:this force_unwrapping
-    } else {
-      #if DEBUG
-        return URLComponents(string: "https://dev.step4change.org")! // swiftlint:disable:this force_unwrapping
-      #else
-        return URLComponents(string: "http://step4change.org")! // swiftlint:disable:this force_unwrapping
-      #endif
-    }
+    let variant: String = {
+      guard !UserInfo.isStaging else { return "-test" }
+#if DEBUG
+      return "-dev"
+#else
+      return ""
+#endif
+    }()
+    return URLComponents(string: "https://steps4impact\(variant).theismailiusa.org")!  // swiftlint:disable:this force_unwrapping
   }
 
   static var serverPassword: String {
-    if UserInfo.isStaging {
-      return AppSecrets.stagingPassword
-    } else {
-      #if DEBUG
-        return AppSecrets.devPassword
-      #else
-        return AppSecrets.prodPassword
-      #endif
-    }
+    guard !UserInfo.isStaging else { return AppSecrets.stagingPassword }
+#if DEBUG
+    return AppSecrets.devPassword
+#else
+    return AppSecrets.prodPassword
+#endif
   }
 
   static let appCenterSecret = "9ca54e4e-20df-425a-bfe6-b72d0daad2da" // TODO: Move this to CI env
