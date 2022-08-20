@@ -11,20 +11,24 @@ import AZSClient
 
 class AZSClient {
 
-  static let accKey = String(AppSecrets.azureAccKey.reversed())
-  static let serverURL = "https://teamimages.blob.core.windows.net/"
-  static let containerName = "teamimages-dev"
-  static let accountName = "teamimages"
+//  static let accKey = String(AppSecrets.azureAccKey.reversed())
+  static let accKey = "qoLL+0O+vKrleXiGMrT6JPHsQI9f0juFYJ+aRJ8KnUkCwGbbYhaLpPMFOhIyuVXBMaibBcd5O9C6+AStLRpkVA=="
+//  static let serverURL = "https://teamimages.blob.core.windows.net/"
+  static let serverURL = "https://steps4impact.blob.core.windows.net/"
+//  static let containerName = "teamimages-dev"
+  static let containerName = "teamimages"
+//  static let accountName = "teamimages"
+  static let accountName = "steps4impact"
   static let folderName: String = {
-    if UserInfo.isStaging {
-        return "staging/"
-    } else {
-      #if DEBUG
-        return "dev/"
-      #else
+//    if UserInfo.isStaging {
+//        return "staging/"
+//    } else {
+//      #if DEBUG
+//        return "dev/"
+//      #else
         return ""
-      #endif
-    }
+//      #endif
+//    }
   }()
   static let connectionString = "DefaultEndpointsProtocol=https;AccountName=\(AZSClient.accountName);AccountKey=\(AZSClient.accKey)"
   static func uploadImage(data imageData: Data, teamName: String, completion: @escaping (Error?, Bool) -> (Void)) {
