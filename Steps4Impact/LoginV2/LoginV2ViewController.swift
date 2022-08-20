@@ -153,16 +153,16 @@ class LoginV2ViewController: ViewController {
 extension LoginV2ViewController {
   private func linkAKFBackend(fbid: String) -> Bool {
     var linked: Bool = false
-    AKFCausesService.getParticipant(fbid: fbid) { [weak self] (result) in
-      guard result.isSuccess else {
-        AKFCausesService.createParticipant(fbid: fbid) { [weak self] (result) in
-          guard result.isSuccess else {
-            self?.alert(message: "Sign In failed. Please try again")
-            return
-          }
+    AKFCausesService.getParticipant(fbid: fbid) { (result) in
+      linked = result.isSuccess
+      if !linked {
+        AKFCausesService.createParticipant(fbid: fbid) { (result) in
+          linked = result.isSuccess
         }
       }
-      linked = true
+    }
+    if !linked {
+      self.alert(message: "Sign In failed. Please try again")
     }
     return linked
   }
