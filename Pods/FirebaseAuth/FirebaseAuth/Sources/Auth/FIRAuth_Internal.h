@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-#import <FirebaseAuth/FIRAuth.h>
-#import <FirebaseAuthInterop/FIRAuthInterop.h>
 #import <Foundation/Foundation.h>
+#import "FirebaseAuth/Interop/FIRAuthInterop.h"
+#import "FirebaseAuth/Sources/Public/FirebaseAuth/FIRAuth.h"
+#import "FirebaseCore/Extension/FIRLogger.h"
 
 @class FIRAuthRequestConfiguration;
 @class FIRAuthURLPresenter;
@@ -65,9 +66,11 @@ NS_ASSUME_NONNULL_BEGIN
     @brief Designated initializer.
     @param APIKey The Google Developers Console API key for making requests from your app.
     @param appName The name property of the previously created @c FIRApp instance.
+    @param appID The app ID of the Firebase application.
  */
 - (nullable instancetype)initWithAPIKey:(NSString *)APIKey
-                                appName:(NSString *)appName NS_DESIGNATED_INITIALIZER;
+                                appName:(NSString *)appName
+                                  appID:(NSString *)appID;
 
 /** @fn getUserID
     @brief Gets the identifier of the current user, if any.
@@ -143,5 +146,9 @@ NS_ASSUME_NONNULL_BEGIN
     (nullable FIRAuthDataResultCallback)callback;
 
 @end
+
+/// Logger Service String
+
+extern FIRLoggerService kFIRLoggerAuth;
 
 NS_ASSUME_NONNULL_END

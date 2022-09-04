@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-#include <TargetConditionals.h>
+#import <TargetConditionals.h>
 #if TARGET_OS_IOS
 
-#import <FirebaseAuth/FIRMultiFactorInfo.h>
-#import <FirebaseAuth/FIRPhoneMultiFactorInfo.h>
+#import "FirebaseAuth/Sources/Public/FirebaseAuth/FIRMultiFactorInfo.h"
+#import "FirebaseAuth/Sources/Public/FirebaseAuth/FIRPhoneMultiFactorInfo.h"
 
 #import "FirebaseAuth/Sources/Backend/RPC/Proto/FIRAuthProtoMFAEnrollment.h"
 #import "FirebaseAuth/Sources/MultiFactor/FIRMultiFactorInfo+Internal.h"
@@ -31,7 +31,7 @@ extern NSString *const FIRPhoneMultiFactorID;
   self = [super initWithProto:proto];
   if (self) {
     _factorID = FIRPhoneMultiFactorID;
-    _phoneNumber = proto.MFAValue;
+    _phoneNumber = proto.phoneInfo;
   }
   return self;
 }
