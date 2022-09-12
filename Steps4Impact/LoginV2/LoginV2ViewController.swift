@@ -278,21 +278,23 @@ extension LoginV2ViewController {
   
   @objc
   private func googleLoginButtonTapped() {
-    let config = GIDConfiguration(clientID: FirebaseApp.app()?.options.clientID ?? "")
+    guard let clientID = FirebaseApp.app()?.options.clientID else {
+      NotificationCenter.default.post(name: .firebaseFailure, object: "Missing client ID")
+      return
+    }
+    let config = GIDConfiguration(clientID: clientID)
     GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { user, error in
       guard error == nil else {
         NotificationCenter.default.post(name: .googleSigninFailure, object: error)
         return
       }
       
-      guard let authentication = user?.authentication else {
+      guard
+        let authentication = user?.authentication,
+        let idToken = authentication.idToken
+      else {
         // This shouldn't happen if error == nil and we don't have a way to recover except try again
-        NotificationCenter.default.post(name: .googleSigninFailure, object: "Unknown Error")
-        return
-      }
-      
-      guard let idToken = authentication.idToken else {
-        NotificationCenter.default.post(name: .googleSigninFailure, object: "Unknown Error")
+        NotificationCenter.default.post(name: .googleSigninFailure, object: "Unknown error. Please try signing in again.")
         return
       }
       
@@ -354,6 +356,7 @@ extension LoginV2ViewController: ASAuthorizationControllerDelegate, ASAuthorizat
 
 
 extension Foundation.Notification.Name {
-  static let googleSignInSuccess = Foundation.Notification.Name(rawValue: "googleSignInSuccess")
-  static let googleSigninFailure = Foundation.Notification.Name(rawValue: "googleSigninFailure")
+  internal static let googleSignInSuccess = Foundation.Notification.Name(rawValue: "googleSignInSuccess")
+  internal static let googleSigninFailure = Foundation.Notification.Name(rawValue: "googleSigninFailure")
+  internal static let firebaseFailure = Foundation.Notification.Name(rawValue: "firebaseFailure")
 }
