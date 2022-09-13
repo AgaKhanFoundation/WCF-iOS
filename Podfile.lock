@@ -146,10 +146,10 @@ PODS:
     - nanopb/encode (= 2.30909.0)
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
-  - Nimble (9.0.1)
+  - Nimble (10.0.0)
   - OAuthSwift (2.0.0)
   - PromisesObjC (2.1.1)
-  - Quick (2.2.1)
+  - Quick (5.0.1)
   - RxBlocking (5.0.1):
     - RxSwift (~> 5)
   - RxCocoa (5.0.1):
@@ -177,9 +177,9 @@ DEPENDENCIES:
   - Firebase/Auth (~> 9.5.0)
   - Firebase/Messaging (~> 9.5.0)
   - GoogleSignIn (~> 6.2.3)
-  - Nimble (~> 9.0.1)
+  - Nimble (~> 10.0.0)
   - OAuthSwift (~> 2.0.0)
-  - Quick (~> 2.2.0)
+  - Quick (~> 5.0.1)
   - RxBlocking (~> 5.0.0)
   - RxCocoa (~> 5.0.0)
   - RxSwift (~> 5.0.0)
@@ -248,10 +248,10 @@ SPEC CHECKSUMS:
   GTMAppAuth: 4d8f864896f3646f0c33baf38a28362f4c601e15
   GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
-  Nimble: 7bed62ffabd6dbfe05f5925cbc43722533248990
+  Nimble: 5316ef81a170ce87baf72dd961f22f89a602ff84
   OAuthSwift: 6805456763cf1c7ae0c16765257ed430b7aacae7
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
-  Quick: f5754d69b7013f5864c29aab9ae6f0c79c5bc200
+  Quick: 749aa754fd1e7d984f2000fe051e18a3a9809179
   RxBlocking: c5e090f42d046df8b0e7752742510f349963710f
   RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
   RxRelay: 5a18c2eb2d68326ebaf0112f80d837ae41b92b97
@@ -262,6 +262,6 @@ SPEC CHECKSUMS:
   Sourcery: 3ed61be7c8a1218fce349266139379dba477efe0
   SwiftLint: 5553187048b900c91aa03552807681bb6b027846
 
-PODFILE CHECKSUM: a072d51fde48c97b514f80b18af9c144547558a8
+PODFILE CHECKSUM: 64d0be9b9930e735e2d6e9f7b5b8deadd956aacd
 
 COCOAPODS: 1.11.3

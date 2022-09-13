@@ -27,8 +27,8 @@ target 'Steps4Impact' do
 
   target 'Steps4ImpactTests' do
     inherit! :search_paths
-    pod 'Quick', '~> 2.2.0'
-    pod 'Nimble', '~> 9.0.1'
+    pod 'Quick', '~> 5.0.1'
+    pod 'Nimble', '~> 10.0.0'
     pod 'RxTest', '~> 5.0.0'
     pod 'RxBlocking', '~> 5.0.0'
   end
