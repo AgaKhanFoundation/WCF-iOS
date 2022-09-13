@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include <TargetConditionals.h>
+#import <TargetConditionals.h>
 #if TARGET_OS_IOS
 
-#import <FirebaseAuth/FIRMultiFactor.h>
+#import "FirebaseAuth/Sources/Public/FirebaseAuth/FIRMultiFactor.h"
 
 #import "FirebaseAuth/Sources/Auth/FIRAuthDataResult_Internal.h"
 #import "FirebaseAuth/Sources/Auth/FIRAuth_Internal.h"
@@ -28,10 +28,12 @@
 #import "FirebaseAuth/Sources/User/FIRUser_Internal.h"
 
 #if TARGET_OS_IOS
-#import <FirebaseAuth/FIRPhoneMultiFactorAssertion.h>
+#import "FirebaseAuth/Sources/Public/FirebaseAuth/FIRPhoneMultiFactorAssertion.h"
 
 #import "FirebaseAuth/Sources/AuthProvider/Phone/FIRPhoneAuthCredential_Internal.h"
 #import "FirebaseAuth/Sources/MultiFactor/Phone/FIRPhoneMultiFactorAssertion+Internal.h"
+#import "FirebaseAuth/Sources/MultiFactor/Phone/FIRPhoneMultiFactorInfo+Internal.h"
+
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
@@ -155,9 +157,11 @@ static NSString *kUserCodingKey = @"user";
   if (self) {
     NSMutableArray<FIRMultiFactorInfo *> *multiFactorInfoArray = [[NSMutableArray alloc] init];
     for (FIRAuthProtoMFAEnrollment *MFAEnrollment in MFAEnrollments) {
-      FIRMultiFactorInfo *multiFactorInfo =
-          [[FIRMultiFactorInfo alloc] initWithProto:MFAEnrollment];
-      [multiFactorInfoArray addObject:multiFactorInfo];
+      if (MFAEnrollment.phoneInfo) {
+        FIRMultiFactorInfo *multiFactorInfo =
+            [[FIRPhoneMultiFactorInfo alloc] initWithProto:MFAEnrollment];
+        [multiFactorInfoArray addObject:multiFactorInfo];
+      }
     }
     _enrolledFactors = [multiFactorInfoArray copy];
   }

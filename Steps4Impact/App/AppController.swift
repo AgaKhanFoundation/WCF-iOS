@@ -43,7 +43,6 @@ class AppController {
 
   static let isTestRun = true
 
-  private let googleSignInDelegate = GoogleSignInDelegate()
   var window: UIWindow?
   var navigation: UITabBarController = Navigation()
 
@@ -54,9 +53,9 @@ class AppController {
     ApplicationDelegate.shared.application(app, didFinishLaunchingWithOptions: options)
 
     // AppCenter Setup
-    MSAppCenter.start(AppConfig.appCenterSecret, withServices: [
-      MSAnalytics.self,
-      MSCrashes.self
+    AppCenter.start(withAppSecret: AppConfig.appCenterSecret, services: [
+      Analytics.self,
+      Crashes.self
     ])
 
     // Setup Telemetry
@@ -64,10 +63,6 @@ class AppController {
     
     // Setup Firebase
     FirebaseApp.configure()
-    
-    // Setup Google Sign In
-    GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
-    GIDSignIn.sharedInstance()?.delegate = googleSignInDelegate
 
     // Setup Window
     window?.frame = UIScreen.main.bounds
@@ -89,7 +84,7 @@ class AppController {
   }
 
   func can(_ app: UIApplication, open url: URL, with options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
-    if GIDSignIn.sharedInstance()?.handle(url) == true {
+    if GIDSignIn.sharedInstance.handle(url) == true {
       return true
     } else {
       return ApplicationDelegate.shared.application(

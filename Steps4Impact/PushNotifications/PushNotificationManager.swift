@@ -64,7 +64,7 @@ class PushNotificationManager: NSObject {
     }
   }
   
-  func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+  func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
     updateFirestorePushTokenIfNeeded()
   }
   

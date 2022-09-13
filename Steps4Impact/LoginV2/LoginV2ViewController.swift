@@ -31,6 +31,7 @@ import UIKit
 import SnapKit
 import FBSDKLoginKit
 import FirebaseAuth
+import FirebaseCore
 import SafariServices
 import GoogleSignIn
 import AuthenticationServices
@@ -277,8 +278,30 @@ extension LoginV2ViewController {
   
   @objc
   private func googleLoginButtonTapped() {
-    GIDSignIn.sharedInstance()?.presentingViewController = self
-    GIDSignIn.sharedInstance()?.signIn()
+    guard let clientID = FirebaseApp.app()?.options.clientID else {
+      NotificationCenter.default.post(name: .firebaseFailure, object: "Missing client ID")
+      return
+    }
+    let config = GIDConfiguration(clientID: clientID)
+    GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { user, error in
+      guard error == nil else {
+        NotificationCenter.default.post(name: .googleSigninFailure, object: error)
+        return
+      }
+      
+      guard
+        let authentication = user?.authentication,
+        let idToken = authentication.idToken
+      else {
+        // This shouldn't happen if error == nil and we don't have a way to recover except try again
+        NotificationCenter.default.post(name: .googleSigninFailure, object: "Unknown error. Please try signing in again.")
+        return
+      }
+      
+      let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                     accessToken: authentication.accessToken)
+      NotificationCenter.default.post(name: .googleSignInSuccess, object: credential)
+    }
   }
   
   @objc
@@ -329,4 +352,11 @@ extension LoginV2ViewController: ASAuthorizationControllerDelegate, ASAuthorizat
     alert.add(.okay())
     AppController.shared.present(alert: alert, in: self, completion: nil)
   }
+}
+
+
+extension Foundation.Notification.Name {
+  internal static let googleSignInSuccess = Foundation.Notification.Name(rawValue: "googleSignInSuccess")
+  internal static let googleSigninFailure = Foundation.Notification.Name(rawValue: "googleSigninFailure")
+  internal static let firebaseFailure = Foundation.Notification.Name(rawValue: "firebaseFailure")
 }

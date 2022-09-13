@@ -22,18 +22,14 @@
 #import <AppKit/AppKit.h>
 #endif  // TARGET_OS_IOS || TARGET_OS_TV
 
-#import "GoogleDataTransport/GDTCORLibrary/Public/GDTCORClock.h"
-#import "GoogleDataTransport/GDTCORLibrary/Public/GDTCORConsoleLogger.h"
-#import "GoogleDataTransport/GDTCORLibrary/Public/GDTCOREvent.h"
-#import "GoogleDataTransport/GDTCORLibrary/Public/GDTCORPlatform.h"
+#import "GoogleDataTransport/GDTCORLibrary/Internal/GDTCORPlatform.h"
+#import "GoogleDataTransport/GDTCORLibrary/Public/GoogleDataTransport/GDTCORClock.h"
+#import "GoogleDataTransport/GDTCORLibrary/Public/GoogleDataTransport/GDTCORConsoleLogger.h"
+#import "GoogleDataTransport/GDTCORLibrary/Public/GoogleDataTransport/GDTCOREvent.h"
 
-#if SWIFT_PACKAGE
-#import "nanopb.h"
-#else
 #import <nanopb/pb.h>
 #import <nanopb/pb_decode.h>
 #import <nanopb/pb_encode.h>
-#endif
 
 #import "GoogleDataTransport/GDTCCTLibrary/Public/GDTCOREvent+GDTCCTSupport.h"
 
@@ -128,7 +124,7 @@ gdt_cct_LogRequest GDTCCTConstructLogRequest(int32_t logSource,
   GDTCORClock *currentTime = [GDTCORClock snapshot];
   logRequest.request_time_ms = currentTime.timeMillis;
   logRequest.has_request_time_ms = 1;
-  logRequest.request_uptime_ms = currentTime.uptime;
+  logRequest.request_uptime_ms = [currentTime uptimeMilliseconds];
   logRequest.has_request_uptime_ms = 1;
 
   return logRequest;
@@ -138,7 +134,7 @@ gdt_cct_LogEvent GDTCCTConstructLogEvent(GDTCOREvent *event) {
   gdt_cct_LogEvent logEvent = gdt_cct_LogEvent_init_default;
   logEvent.event_time_ms = event.clockSnapshot.timeMillis;
   logEvent.has_event_time_ms = 1;
-  logEvent.event_uptime_ms = event.clockSnapshot.uptime;
+  logEvent.event_uptime_ms = [event.clockSnapshot uptimeMilliseconds];
   logEvent.has_event_uptime_ms = 1;
   logEvent.timezone_offset_seconds = event.clockSnapshot.timezoneOffsetSeconds;
   logEvent.has_timezone_offset_seconds = 1;
@@ -175,7 +171,8 @@ gdt_cct_ClientInfo GDTCCTConstructClientInfo() {
   clientInfo.ios_client_info = GDTCCTConstructiOSClientInfo();
   clientInfo.has_ios_client_info = 1;
 #elif TARGET_OS_OSX
-  // TODO(mikehaney24): Expand the proto to include macOS client info.
+  clientInfo.mac_client_info = GDTCCTConstructMacClientInfo();
+  clientInfo.has_mac_client_info = 1;
 #endif
   return clientInfo;
 }
@@ -204,6 +201,34 @@ gdt_cct_IosClientInfo GDTCCTConstructiOSClientInfo() {
   iOSClientInfo.application_bundle_id = GDTCCTEncodeString(bundle.bundleIdentifier);
 #endif
   return iOSClientInfo;
+}
+
+gdt_cct_MacClientInfo GDTCCTConstructMacClientInfo() {
+  gdt_cct_MacClientInfo macOSClientInfo = gdt_cct_MacClientInfo_init_default;
+
+  NSOperatingSystemVersion osVersion = [NSProcessInfo processInfo].operatingSystemVersion;
+  NSString *majorVersion = [@(osVersion.majorVersion) stringValue];
+  NSString *minorVersion = [@(osVersion.minorVersion) stringValue];
+  NSString *majorAndMinorString = [NSString stringWithFormat:@"%@.%@", majorVersion, minorVersion];
+  macOSClientInfo.os_major_version = GDTCCTEncodeString(majorAndMinorString);
+
+  NSString *patchVersion = [@(osVersion.patchVersion) stringValue];
+  NSString *majorMinorPatchString =
+      [NSString stringWithFormat:@"%@.%@", majorAndMinorString, patchVersion];
+  macOSClientInfo.os_full_version = GDTCCTEncodeString(majorMinorPatchString);
+
+  NSBundle *bundle = [NSBundle mainBundle];
+  NSString *version = [bundle objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
+  if (version) {
+    macOSClientInfo.application_build = GDTCCTEncodeString(version);
+  }
+
+  NSString *bundleID = bundle.bundleIdentifier;
+  if (bundleID) {
+    macOSClientInfo.application_bundle_id = GDTCCTEncodeString(bundleID);
+  }
+
+  return macOSClientInfo;
 }
 
 NSData *GDTCCTConstructNetworkConnectionInfoData() {

@@ -4,15 +4,15 @@ inhibit_all_warnings!
 
 target 'Steps4Impact' do
   # Services
-  pod 'AppCenter', '~> 2.3.0'
+  pod 'AppCenter', '~> 4.4.3'
   pod 'AZSClient', '~> 0.2.6'
   pod 'FBSDKCoreKit', '~> 7.0.0'
   pod 'FBSDKLoginKit', '~> 7.0.0'
   pod 'FBSDKShareKit', '~> 7.0.0'
-  pod 'Firebase/Analytics', '~> 6.26.0'
-  pod 'Firebase/Auth', "~> 6.26.0"
-  pod 'Firebase/Messaging', '~> 6.26.0'
-  pod 'GoogleSignIn', '~> 5.0.2'
+  pod 'Firebase/Analytics', '~> 9.5.0'
+  pod 'Firebase/Auth', "~> 9.5.0"
+  pod 'Firebase/Messaging', '~> 9.5.0'
+  pod 'GoogleSignIn', '~> 6.2.3'
   pod 'OAuthSwift', '~> 2.0.0'
 
   # App
@@ -27,8 +27,8 @@ target 'Steps4Impact' do
 
   target 'Steps4ImpactTests' do
     inherit! :search_paths
-    pod 'Quick', '~> 2.2.0'
-    pod 'Nimble', '~> 8.0.4'
+    pod 'Quick', '~> 5.0.1'
+    pod 'Nimble', '~> 10.0.0'
     pod 'RxTest', '~> 5.0.0'
     pod 'RxBlocking', '~> 5.0.0'
   end
