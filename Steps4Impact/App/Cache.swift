@@ -29,7 +29,6 @@
 
 import Foundation
 import RxSwift
-import RxCocoa
 
 class Cache {
   static let shared = Cache()
